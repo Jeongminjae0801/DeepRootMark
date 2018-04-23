@@ -1,0 +1,14 @@
+package DI2;
+
+public class NewRecordView {
+	//점수 출력 (NewRecord 객체가 필요)
+	
+	private NewRecord record;
+	
+	
+	
+	
+	public void print() {
+		System.out.println(record.total() + " /" + record.avg());
+	} 
+}

@@ -1,0 +1,12 @@
+package DI2;
+
+public class NewRecordView {
+	
+	
+	
+	
+	
+	public void print() {
+		System.out.println(record.total() + " /" + record.avg());
+	} 
+}
