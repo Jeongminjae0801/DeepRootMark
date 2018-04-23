@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--  
+	IOC 컨테이너 (Spring 전용 메모리) 안에 생성될 [객체 만들고 조립(의존) 설정] 파일 > xml파일
+	>> DIConfig.xml
+	
+	:제어의 역전 (프로그램을 제어구조 바꿘다)
+	:작은 단위의 부품을 만들어 좋고 그것을 조립하는 행위.....(레고 블럭)
+	
+	NewRecord record = new NewRecord();
+	NewRecordView view = new NewRecordView();
+	
+	view.setRecord(record);//객체 주입
+	
+	**property name은  setter 구현한 변수 이름
+	**private NewRecord record; -> setter 함수 구현
+-->
+	<!-- NewRecord record = new NewRecord(); -->
+  	<bean id="record" class="Spring_DI4.NewRecord"></bean>
+  	<!-- NewRecordView view = new NewRecordView(); -->
+  	<bean id="view" class="Spring_DI4.NewRecordView">
+  		<!-- ref: 함수 parameter의 주소값 record -->
+  		<property name="record" ref="record"></property>
+  	</bean>
+  	
+</beans>
