@@ -1,0 +1,9 @@
+package DI_01;
+
+public class MessageBean_kr implements Message {
+	@Override
+	public void sayHello() {
+		System.out.println("안녕 " + name + " Nice to meet you!!");
+		
+	}
+}

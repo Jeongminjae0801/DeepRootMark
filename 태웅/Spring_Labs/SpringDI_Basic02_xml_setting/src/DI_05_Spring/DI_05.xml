@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 
+	IOC 컨테이너 (Spring 전용 메모리 공간) 안에 생성될 객체를 만들고 조립(의존)관계 설정하는 파일
+	
+	MyBean mybean = new MyBean();
+	MyBean mybean2 = new MyBean("Woong");
+	
+	Singleton single = Singleton.getInstance();
+	Singleton single2 = Singleton.getInstance();
+ -->
+	<bean id="mybean" class="DI_05_Spring.MyBean"></bean>
+	
+	<bean id="mybean2" class="DI_05_Spring.MyBean" >
+		<constructor-arg value="Woong"/>
+	</bean>
+	
+	<bean id="single" class="DI_05_Spring.Singleton" factory-method="getInstance" ></bean>
+  	<bean id="single2" class="DI_05_Spring.Singleton" factory-method="getInstance" ></bean>
+  	<!-- 
+  		xml 설정을 통해서: singleton
+  		Singleton single = Singleton.getInstance();
+  		
+  		Version 3.x.x : factory-method="getInstance"
+  		Version 4.x.x : factory-method="getInstance" 생략가능 (알아서 ...처리) >> 하지만,가독성을 위해서 사용하는 것이 좋음.
+  	 -->
+  	
+</beans>
