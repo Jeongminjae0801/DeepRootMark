@@ -1,0 +1,8 @@
+1. 게시판 정의 테이블 (Article) : Oracle DB에 (create table Article .....
+						  Mysql DB에   (create table Article .....
+   (전제 조건 : Oracle, Mysql) 둘다 연동
+2. MVC 패턴을 통해서 CRUD 작업
+
+3. Model
+   3.1 DTO : Article
+   3.2 DAO : ArticleDao

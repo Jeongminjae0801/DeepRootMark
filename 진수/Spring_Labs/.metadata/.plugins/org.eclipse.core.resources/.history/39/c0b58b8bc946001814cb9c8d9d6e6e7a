@@ -1,0 +1,11 @@
+package DI_04_Spring;
+
+public class MessageBeanImp implements MessageBean {
+	
+	private String name;
+	private String greeting;
+	//name member field 생성자를 통해서 초기화
+	public MessageBeanImp(String name) {
+		this.name = name;//member field 초기화
+	}
+}
