@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+	IOC 컨테이너 (Spring 전용 메모리 공간) 안에 생성될 객체를 만들고 조립(의존관계 설정)하는 파일
+	
+	JobExecute jobexecute = new JobExecute("hong", 100); //parameter 처리
+	ArticleDao articledao = new ArticleDao();
+	jobexecute.setArticledao(articledao); 
+	jobexecute.setData(500);
+	
+	1. <constructor-arg> 순서를 인정한다
+	2. <value> 값에 Type 이 명시되지 않으면 Default >> String
+-->
+	<bean id="jobexecute" class="DI_08_Spring.JobExecute">
+		<constructor-arg>
+			<value>hong</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value type = "long">100</value>
+		</constructor-arg>
+		<!-- jobexecute.setArticledao(articledao);  -->
+		<property name="articledao">
+			<ref bean="articleDAO"/>
+		</property>
+		<!-- jobexecute.setData(500); -->
+		<property name="data">
+			<value>500</value>
+		</property>
+		
+		
+	</bean>
+	<bean id="articleDAO" class="DI_08_Spring.ArticleDao"></bean>
+
+</beans>
