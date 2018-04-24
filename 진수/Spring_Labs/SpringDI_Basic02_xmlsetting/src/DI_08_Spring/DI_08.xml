@@ -18,7 +18,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 		<constructor-arg>
 			<value>hong</value>
 		</constructor-arg>
-		<constructor-arg>
+		<constructor-arg> 
 			<value type = "long">100</value>
 		</constructor-arg>
 		<!-- jobexecute.setArticledao(articledao);  -->
