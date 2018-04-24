@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 
+	IOC 컨테이너 (Spring 전용 메모리 공간) 안에 생성될 객체를 만들고 조립(의존)관계 설정하는 파일
+	
+	ProtocolHandler handler = new ProtocolHandler();
+		
+	ArrayList<MyFilter> arraylist = new ArrayList<>();
+	arraylist.add(new EncFilter());
+	arraylist.add(new HeaderFilter());
+	arraylist.add(new ZipFilter());
+	
+	handler.setFilters(arraylist); -> 객체의 주소가 주입되는 부분(setter 주입)
+ -->
+ 	
+<!-- 
+	1단계: 사용자가 직접 정의한 클래스 bean으로 생성,
+		   사용자가 직접 만든 클래스가 아니라 JAVA API 제공하는 클래스(List...)
+		 setter 주입 >> Collection  >> <List> or <Map> or <Set> 요소를 통해서 정의 가능.
+		 
+		 JAVA 자원에 대한 요소는 Spring에서 xml element를 제공하고 있다. ex) <list>, <map>
+ -->
+	<!-- 
+	<bean id="handler" class="DI_07_Spring.ProtocolHandler">
+		<property name="filters">
+			<list>
+				<ref bean="encfilter"/>
+				<ref bean="headerfiler"/>
+				<ref bean="zipfilter"/>
+			</list>
+		</property>
+	</bean>
+		
+	<bean id="encfilter" class="DI_07_Spring.EncFilter"/>
+	<bean id="headerfiler" class="DI_07_Spring.HeaderFilter"/>
+	<bean id="zipfilter" class="DI_07_Spring.ZipFilter"/> 
+	-->
+	
+	<!-- 2단계 -->
+	<bean id="handler" class="DI_07_Spring.ProtocolHandler">
+		<property name="filters">
+			<list>
+				<!-- 재사용이 불필요하다면, id 속성 필요없음. -->
+				<bean class="DI_07_Spring.EncFilter"/>
+				<bean class="DI_07_Spring.HeaderFilter"/>
+				<bean class="DI_07_Spring.ZipFilter"/> 
+			</list>
+		</property>
+	</bean>
+  	
+</beans>
