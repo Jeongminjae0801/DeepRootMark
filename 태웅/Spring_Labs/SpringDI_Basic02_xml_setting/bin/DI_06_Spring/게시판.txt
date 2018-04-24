@@ -1,0 +1,16 @@
+
+						(전제 조건: Oracle, MySQL 모두 연동)
+1.게시판 정의 테이블(Article): 	Oracle DB에 (create table Article(......
+						 MySQL DB에 (create table Article(......
+  
+  
+2.MVC 패턴을 통해서 CRUD 작업
+
+3.Model
+ 3.1 DTO: Article
+ 3.2 DAO: ArticleDao (인터페이스 설계) >> 함수의 이름 동일 >> (oracle or mySQL) 뭐를 사용하던 'insert' 함수명 동일
+ 3.3 CRUD 함수 구현 (insert, update, delete, select ...)
+ 3.4 MysqlDao, OracleDao >> ArticleDao를 구현하는
+ 3.5 Service 클래스
+ 
+요청 --> Service --> 필요한 DAO 생성 --> 필요하다면 DTO --> VIEW(구현) --> 응답

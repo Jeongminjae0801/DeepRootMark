@@ -1,0 +1,20 @@
+package DI_08_Spring;
+
+//주입 되는 parameter
+public class JobExecute {
+	
+	public JobExecute(String first, int second) {
+		System.out.println("String, int");
+	}
+	
+	public JobExecute(String first, long second) {
+		System.out.println("String, long");
+	}
+	
+	public JobExecute(String first, long second) {
+		System.out.println("String, long");
+	}
+	
+	
+	
+}

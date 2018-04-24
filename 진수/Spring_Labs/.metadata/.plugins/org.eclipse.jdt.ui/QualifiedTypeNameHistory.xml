@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="DI2.NewRecord"/>
+<fullyQualifiedTypeName name="DI3.RecordView"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+<fullyQualifiedTypeName name="Spring_DI4.RecordView"/>
+<fullyQualifiedTypeName name="DI_01.MessageBean"/>
+<fullyQualifiedTypeName name="DI_02.MessageBean_en"/>
+<fullyQualifiedTypeName name="DI_02.MessageBean_kr"/>
+<fullyQualifiedTypeName name="DI_02.MessageBean"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.GenericApplicationContext"/>
+<fullyQualifiedTypeName name="DI_03_Spring.MessageBean"/>
+<fullyQualifiedTypeName name="DI_04_Spring.MessageBeanImp"/>
+<fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
+<fullyQualifiedTypeName name="org.springframework.context.support.GenericXmlApplicationContext"/>
+<fullyQualifiedTypeName name="DI_04_Spring.MessageBean"/>
+</qualifiedTypeNameHistroy>

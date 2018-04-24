@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+	IOC 컨테이너 (Spring 전용 메모리 공간) 안에 생성될 객체를 만들고 조립(의존관계 설정)하는 파일
+	
+	MysqlArticleDao articledao = new MysqlArticleDao();
+	WriteArticleService service = new WriteArticleService(articledao);
+	Article article = new Article();
+-->
+
+
+	
+</beans>
