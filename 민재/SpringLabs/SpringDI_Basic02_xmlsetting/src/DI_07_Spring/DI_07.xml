@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+<!-- IOC 컨테이너 안에 생성될 객체를 만들고 조립(의존)관계 설정하는 파일
+
+		ProtocolHandler handler = new ProtocolHandler();
+		
+		ArrayList<MyFilter> arraylist = new ArrayList<>();
+		arraylist.add(new EncFilter());
+		arraylist.add(new HeaderFilter());
+		arraylist.add(new ZipFilter());
+		
+		handler.setFilters(arraylist);	//setter 형태로 주입
+		// 객체의 주소가 주입되고 있다
+		
+		1단계 문제 : 사용자가 직접 정의한 클래스는 bean으로 생성한다
+				  사용자가 직접 만든 클래스가 아니라 java api를 제공하는 클래스라면 (List ...)
+				 setter 주입을 Collection 으로 한다면 <list> <map> <set> 요소를 통해서 정의할 수 있다
+				  자바 자원에 대한 요소는 스프링에서 xml element를 제공하고 있다
+-->
+	<!-- <bean id="handler" class="DI_07_Spring.ProtocolHandler">
+		<property name="filters">
+			<list>
+				<ref bean="encfilter"/>
+				<ref bean="headerfilter"/>
+				<ref bean="zipfilter"/>	
+			</list>	
+		</property>	
+	</bean>
+	
+	<bean id="headerfilter" class="DI_07_Spring.HeaderFilter"></bean>
+	<bean id="zipfilter" class="DI_07_Spring.ZipFilter"></bean>
+	<bean id="encfilter" class="DI_07_Spring.EncFilter"></bean> -->
+	
+	<!-- 2단계 -->
+	<bean id="handler" class="DI_07_Spring.ProtocolHandler">
+		<property name="filters">
+			<list> <!--  재사용하지 않을 것이기에 id 속성은 필요없다-->
+				<bean class="DI_07_Spring.HeaderFilter"></bean>
+				<bean class="DI_07_Spring.ZipFilter"></bean>
+				<bean class="DI_07_Spring.EncFilter"></bean>	
+			</list>	
+		</property>	
+	</bean>
+	
+	
+</beans>
