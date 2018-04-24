@@ -6,10 +6,10 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 <!--  
 	UserDao dao = new UserDao(new NConnectionMaker());
 -->
-   <bean id="dao" class="springbook.user.dao.UserDao">
-   	 <constructor-arg ref="connectionMaker" />
-   </bean>
-   <bean id="connectionMaker" class="springbook.user.dao.NConnectionMaker"></bean>
+   	<bean id="dao" class="springbook.user.dao.UserDao">
+   	 	<constructor-arg ref="connectionMaker" />
+   	</bean>
+   	<bean id="connectionMaker" class="springbook.user.dao.NConnectionMaker"></bean>
 </beans>
 
 
