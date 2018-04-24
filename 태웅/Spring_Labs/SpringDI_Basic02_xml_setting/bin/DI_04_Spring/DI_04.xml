@@ -13,7 +13,15 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	DI문법
 	<bean id="한 개의 이름(식별자)" 
-	      name="여러개의 이름" 구분자를 통해서(,), (공백), (;) example: <bean name="m1,m2 m3;m4 class="">
+	      name="여러개의 이름" 구분자를 통해서(,), (공백), (;) 
+	
+	[example] <bean name="m1,m2 m3;m4 class="">
+	
+	
+	**객체를 생성하고 필요한 객체를 주입**
+	**주입하는 방법:	1.생성자 주입 (의무적 성향)
+				2.setter 주입 (일반적, 선택적인 성향): 필요할 때 사용이 가능.
+	
  -->
  
 	<bean id="messagebean" name="m1,m2 m3;m4" class="DI_04_Spring.MessageBeanImpl">
@@ -22,7 +30,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 			<value>hong</value>
 		</constructor-arg> -->
 		
-		<property name="greeting" value="hello"/>
+		<property name="greeting" value="hello"/><!-- setter 함수를 구현하고 있는 변수명(member field) -->
 		<!-- <property name="greeting" >
 			<value>Hello</value>
 		</property> -->
