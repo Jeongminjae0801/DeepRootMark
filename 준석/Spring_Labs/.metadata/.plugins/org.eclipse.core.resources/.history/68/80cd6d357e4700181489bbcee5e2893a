@@ -1,0 +1,12 @@
+package DI_09_Spring;
+
+import java.util.Map;
+
+public class ProtocolHandlerFactory {
+  private Map<String, ProtocolHandler> handlers;
+
+public void setHandlers(Map<String, ProtocolHandler> handlers) {
+	this.handlers = handlers;
+}
+  
+}

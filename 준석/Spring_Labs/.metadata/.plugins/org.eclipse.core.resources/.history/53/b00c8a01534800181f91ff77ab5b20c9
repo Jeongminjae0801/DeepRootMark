@@ -1,0 +1,5 @@
+package AOP_Basic_Spring_04;
+
+public class LogPrintBeforeAdvice {
+
+}
