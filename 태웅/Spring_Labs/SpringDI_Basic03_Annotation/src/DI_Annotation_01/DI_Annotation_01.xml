@@ -46,16 +46,28 @@
 	[옵션] : 	required - @Autowired 어노테이션을 적용한 프로퍼티에 대해 굳이 설정할 필요가 없는 경우에 false값을 주며,
 						이때 해당 프로퍼티가 존재하지 않더라도 스프링은 예외를 발생시키지 않는다. 디폴트값은 true
 	
-	
+	[설정하기]^^
 	import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 	AutowiredAnnotationBeanPostProcessor >> 컨테이너 안 객체로 생성되어 있어야 @Autowired를 통한 자동 주입이 실행된다.
 											(컨테이너 안 메모리에만 올라와 있으면 됨.)
 		
-	**@Autowired 적용되기 전제 조건									
-	1.IOC 컨테이너 안에 @Autowired 적용을 위한 타입 객체 생성되어 있어야 한다.
-	2.AutowiredAnnotationBeanPostProcessor 빈객체로 등록되어 있어야 한다.
-	3.혹은 xml 상단에 <context:annotation-config /> 태그를 통해서 빈 객체 자동 생성할 수 있다.
+	** @Autowired 적용되기 전제 조건									
+		1.IOC 컨테이너 안에 @Autowired 적용을 위한 타입 객체 생성되어 있어야 한다.
+		2.AutowiredAnnotationBeanPostProcessor 빈객체로 등록되어 있어야 한다.
+		3.혹은 xml 상단에 <context:annotation-config /> 태그를 통해서 빈 객체 자동 생성할 수 있다.
 	
+	** @Autowired 적용되지 않는 경우 (By Type)
+		1.injection 되는 같은 타입의 bean IOC컨테이너 없는 경우 (exception 발생)
+		2.injection 되는 [타입] 여러개가 있는 경우 (exception 발생)
+	 	 <bean id="xx" class="DI_Annotation_01.Recorder"></bean> 	
+	  	 <bean id="yy" class="DI_Annotation_01.Recorder"></bean> 
+		3.예외적으로 같은 타입의 bean이 여러개 있다 하더라도 
+		 public void RecordMethod(Recorder rec) > parameter 이름이 
+	 	 bean id 값 하고 같으면 알아서 injection
+		   원칙적인 방법은 아니고 > @Resource 를 사용해야 합니다 ^^
+	 	 <bean id="xx" class="DI_Annotation_01.Recorder"></bean> 	
+	  	 <bean id="yy" class="DI_Annotation_01.Recorder"></bean> 
+	 	 <bean id="rec" class="DI_Annotation_01.Recorder"></bean>
  -->
 	<context:annotation-config />
 	<bean id="viewer" class="DI_Annotation_01.MonitorViewer"></bean>
