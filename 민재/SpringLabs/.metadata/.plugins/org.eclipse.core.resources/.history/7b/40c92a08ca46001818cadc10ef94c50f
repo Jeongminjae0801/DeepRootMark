@@ -1,0 +1,18 @@
+package DI_04_Spring;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class HelloApp {
+
+	public static void main(String[] args) {
+
+		//java 코드
+		//name은 생성자로 초기화
+		MessageBeanImpl messagebean = new MessageBeanImpl("minjae");	
+		messagebean.setGreeting("hello");	// greeting은 setter로 초기화
+		
+		messagebean.sayHello();
+		
+	}
+}

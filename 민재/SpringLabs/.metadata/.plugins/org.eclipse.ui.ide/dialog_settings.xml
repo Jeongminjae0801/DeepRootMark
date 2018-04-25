@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDI_Basic01"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic5"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic4"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic3"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic2"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic1"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+</section>
