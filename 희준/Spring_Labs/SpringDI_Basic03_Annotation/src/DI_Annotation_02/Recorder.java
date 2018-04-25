@@ -1,4 +1,4 @@
-package DI_Annotation_01;
+package DI_Annotation_02;
 
 public class Recorder {
 
