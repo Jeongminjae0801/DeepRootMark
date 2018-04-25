@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/SpringDI_Basic02_xmlsetting/src/DI_10_Spring/Program.java"/>
+<listEntry value="/SpringDI_Basic03_Annotation/src/DI_Annotation_03/Program.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="DI_10_Spring.Program"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="SpringDI_Basic02_xmlsetting"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="DI_Annotation_03.Program"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="SpringDI_Basic03_Annotation"/>
 </launchConfiguration>
