@@ -1,0 +1,17 @@
+package DI_08_Spring;
+
+public class Program {
+
+	public static void main(String[] args) {
+	
+		JobExecute jobexecute = new JobExecute("hong", 100);	//생성자 주입
+		
+		ArticleDao articledao = new ArticleDao();
+		
+		jobexecute.setArticledao(articledao); // setter 주입
+		jobexecute.setData(500);	//setter 주입(값)
+		
+		
+	}
+
+}

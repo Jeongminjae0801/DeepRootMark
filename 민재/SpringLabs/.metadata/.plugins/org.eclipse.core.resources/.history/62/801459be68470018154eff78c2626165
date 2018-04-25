@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+<!-- IOC 컨테이너 안에 생성될 객체를 만들고 조립(의존)관계 설정하는 파일
+
+		ProtocolHandler handler = new ProtocolHandler();
+		
+		ArrayList<MyFilter> arraylist = new ArrayList<>();
+		arraylist.add(new EncFilter());
+		arraylist.add(new HeaderFilter());
+		arraylist.add(new ZipFilter());
+		
+		handler.setFilters(arraylist);	//setter 형태로 주입
+		// 객체의 주소가 주입되고 있다
+-->
+	<bean id="handler" class="DI_07_Spring.ProtocolHandler">
+		<property name="filters">
+			<list>
+				<ref bean="encfilter"/>
+				<ref bean="headerfilter"/>
+				<ref bean="zipfilter"/>	
+			</list>	
+		</property>	
+	</bean>
+		<bean id="headerfilter" class="DI_07_Spring.HeaderFilter"></bean>
+		<bean id="zipfilter" class="DI_07_Spring.ZipFilter"></bean>
+		<bean id="encfilter" class="DI_07_Spring.EncFilter"></bean>
+</beans>
