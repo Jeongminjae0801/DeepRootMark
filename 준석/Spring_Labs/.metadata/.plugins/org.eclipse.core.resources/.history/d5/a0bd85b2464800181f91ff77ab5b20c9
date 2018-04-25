@@ -1,0 +1,8 @@
+package AOP_Basic_02;
+
+public class Program {
+	public static void main(String[] args) {
+		Calc calc = new NewCalc();
+	}
+
+}

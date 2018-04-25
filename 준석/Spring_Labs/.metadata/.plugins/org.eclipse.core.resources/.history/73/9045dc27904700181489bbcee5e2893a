@@ -1,0 +1,16 @@
+package DI_Annotation_01;
+
+public class MonitorViewer {
+	private Recorder recoder;
+
+	public Recorder getRecoder() {
+		return recoder;
+	}
+
+	public void setRecoder(Recorder recoder) {
+		this.recoder = recoder;
+	}
+	
+	
+
+}

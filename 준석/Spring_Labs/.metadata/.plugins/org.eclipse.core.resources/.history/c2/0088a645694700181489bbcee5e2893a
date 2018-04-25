@@ -1,0 +1,18 @@
+package DI_07_Spring;
+
+import java.util.ArrayList;
+
+public class Program {
+	public static void main(String[] args) {
+		ProtocolHandler handler = new ProtocolHandler();
+		
+		ArrayList<MyFilter> arraylist = new ArrayList<>();
+		arraylist.add(new EncFilter());
+		arraylist.add(new HeaderFilter());
+		arraylist.add(new ZipFilter());
+		
+		handler.setFilters(arraylist);
+		System.out.println(handler.filter_length());
+	}
+
+}

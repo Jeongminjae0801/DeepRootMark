@@ -1,0 +1,15 @@
+package DI_Annotation_01;
+
+public class Program {
+	public static void main(String[] args) {
+		
+		/*
+		 JAVA 코드 실행
+		MonitorViewer viewer = new MonitorViewer();
+		Recorder recoder = new Recorder();
+		viewer.setRecoder(recoder);
+		viewer.getRecoder();
+		System.out.println(viewer.getRecoder());*/
+	}
+
+}
