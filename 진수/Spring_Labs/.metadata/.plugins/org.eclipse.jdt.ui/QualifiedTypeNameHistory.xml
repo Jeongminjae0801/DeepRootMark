@@ -14,4 +14,19 @@
 <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
 <fullyQualifiedTypeName name="org.springframework.context.support.GenericXmlApplicationContext"/>
 <fullyQualifiedTypeName name="DI_04_Spring.MessageBean"/>
+<fullyQualifiedTypeName name="DI_09_Spring.ProtocolhandlerFactory"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="DI_09_Spring.RssHandler"/>
+<fullyQualifiedTypeName name="DI_09_Spring.RestHandler"/>
+<fullyQualifiedTypeName name="org.springframework.asm.Handle"/>
+<fullyQualifiedTypeName name="DI_09_Spring.ProtocolHandler"/>
+<fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthSeparatorUI"/>
+<fullyQualifiedTypeName name="DI_10_Spring.BookClient"/>
+<fullyQualifiedTypeName name="java.util.Properties"/>
+<fullyQualifiedTypeName name="springbook.user.dao.UserDao"/>
+<fullyQualifiedTypeName name="DI_Annotation_01.Recorder"/>
+<fullyQualifiedTypeName name="DI_Annotation_01.MonitorViewer"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 </qualifiedTypeNameHistroy>
