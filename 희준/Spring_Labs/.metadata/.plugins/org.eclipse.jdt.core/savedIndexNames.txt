@@ -1,9 +1,0 @@
-INDEX VERSION 1.130+C:\Users\Bit\Documents\RYAN-TEAM-2\ШёСи\Spring_Labs\.metadata\.plugins\org.eclipse.jdt.core
-3319765088.index
-2568024600.index
-3994534542.index
-2395566793.index
-125069243.index
-1998492468.index
-2497984110.index
-1886607149.index
