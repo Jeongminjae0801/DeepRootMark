@@ -31,19 +31,18 @@ public class LogPrintHandler implements InvocationHandler{
 		
 		//보조(공통) 업무
 		Log log = LogFactory.getLog(this.getClass());
-		//System.currentTimeMillis()
 		StopWatch sw = new StopWatch();
 		sw.start();
 		log.info("[타이머 시작]");
 		
 		//주 업무 (실제 Target 객체의 주소) --> Calc에서 구현된 실 함수를 호출(parameter 정보 가지고...)
 		int result = (int)method.invoke(this.target, args);
+		System.out.println(result);
 		
 		//보조(공통) 업무
 		sw.stop();
 		log.info("[타이머 종료]");
-		log.info("[TIME LOG] Method : ADD");
-		log.info("[TIME LOG] Method Time : " + sw.getTotalTimeMillis());
+		log.info("[TIME LOG] Method Time: " + sw.getTotalTimeSeconds());
 		
 		return result;
 	}
