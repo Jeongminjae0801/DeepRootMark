@@ -67,10 +67,12 @@ pom.xml.tag
 /.recommenders/
 /RemoteSystemsTempFiles/
 /Servers/
-鷓錠/Spring_Labs/.metadata/
-鷓錠/Spring_Labs/.recommenders/
-鷓錠/Spring_Labs/RemoteSystemsTempFiles/
-鷓錠/Spring_Labs/Servers/
+
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+Servers/
+
 團營/SpringLabs/.metadata/
 團營/SpringLabs/.recommenders/
 團營/SpringLabs/RemoteSystemsTempFiles/
