@@ -63,10 +63,10 @@ pom.xml.releaseBackup
 pom.xml.tag
 
 # General(server)
-.metadata/
-.recommenders/
-RemoteSystemsTempFiles/
-Servers/
+/.metadata/
+/.recommenders/
+/RemoteSystemsTempFiles/
+/Servers/
 еб©У/Spring_Labs/.metadata/
 еб©У/Spring_Labs/.recommenders/
 еб©У/Spring_Labs/RemoteSystemsTempFiles/
