@@ -35,7 +35,7 @@
 
 문제점 ) AOP_Basic_Spring_05번까지는 객체가 가지는 모든 함수가
       advice  적용
-          해결: 특정함수 pointcut   사용
+          해결: 특정함수 pointcut 사용
        
 import org.springframework.aop.support.NameMatchMethodPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
