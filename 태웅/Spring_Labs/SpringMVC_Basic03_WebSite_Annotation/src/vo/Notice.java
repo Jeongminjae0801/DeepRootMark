@@ -2,12 +2,14 @@ package vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class Notice {
 	private String seq;
 	private String title;
 	private String writer;
 	private Date regdate;
-	private String fileSrc;
+	private String fileSrc;	//이미지 경로
 	private int hit;
 	private String content;
 	
@@ -54,4 +56,13 @@ public class Notice {
 		this.content = content;
 	}
 	
+	//POINT (파일 정보를 가지는 객체)
+	private CommonsMultipartFile file;
+	
+	public CommonsMultipartFile getFile() {
+		return file;
+	}
+	public void setFile(CommonsMultipartFile file) {
+		this.file = file;
+	}
 }

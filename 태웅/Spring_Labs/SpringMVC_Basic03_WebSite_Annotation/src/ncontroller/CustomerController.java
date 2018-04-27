@@ -1,12 +1,19 @@
 package ncontroller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.NoticeDao;
@@ -86,6 +93,48 @@ public class CustomerController {
 		mav.setViewName("noticeDetail.jsp");
 		
 		return mav;
+	}
+	
+	//1.글쓰기 화면 처리 함수(GET)
+	@RequestMapping(path="/noticeReg.htm", method=RequestMethod.GET)
+	public String noticeReg() {
+		return "noticeReg.jsp";
+	}
+	
+	//2.글쓰기 처리 함수(POST) : 파일 업로드 기능
+	//public String noteiceReg(Notice n , HttpServletRequest request) {}
+	@RequestMapping(path="/noticeReg.htm", method=RequestMethod.POST)
+	public String noticeWrite(Notice notice, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
+		
+		//System.out.println(notice);
+		CommonsMultipartFile imagefile = notice.getFile();
+		
+		//[실 파일 업로드 ....]
+		String filename = imagefile.getOriginalFilename();
+		String path = request.getServletContext().getRealPath("/upload");
+		
+		String fpath = path + "\\" + filename;
+		
+		FileOutputStream fs = new FileOutputStream(fpath);
+		fs.write(imagefile.getBytes());
+		fs.close();
+		
+		notice.setFileSrc(filename);
+		noticedao.insert(notice);
+		System.out.println("파일 등록 완료");
+		
+		return "redirect:notice.htm";
+	}
+	
+	
+	//3.글삭제하기 
+	@RequestMapping("/noticeDel.htm")
+	public String noticeDel( String seq ) throws ClassNotFoundException, SQLException {
+		
+		//DB 에서 해당글 삭제
+		noticedao.delete(seq);
+		System.out.println("해당 게시글 삭제 완료");
+		return "redirect:notice.htm";
 	}
 	
 }
