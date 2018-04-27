@@ -82,6 +82,7 @@ public class NewArticleController {
 	--> Model.addAttribute("Articledata", new NewArticleCommand()); 자동...
 */	
 	@RequestMapping(method=RequestMethod.POST)
+	//public String submit(NewArticleCommand command)
 	public String submit(@ModelAttribute("Articledata")NewArticleCommand command) {
 		//1.parameter 받기
 		//2.Service 객체 생성하기  ArticleService service = new ArticleService()

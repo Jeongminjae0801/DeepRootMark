@@ -1,6 +1,7 @@
 package AOP_Basic_Spring_05;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,7 +14,7 @@ public class LogPrintBeforeAdvice implements MethodBeforeAdvice {
 		Log log = LogFactory.getLog(this.getClass());
 		log.info("Before Advice START!!!");
 		log.info("Method: " + method.getName());
-		log.info("Args: " + args.toString());
+		log.info("Args: " + Arrays.toString(args));
 		log.info("Target: " + target.toString());
 	}
 	

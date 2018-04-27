@@ -47,6 +47,14 @@
  -->
  	<bean class="com.controller.NewArticleController"></bean>
  	<bean class="com.service.ArticleService"></bean>
+ 	
+ 	
+<!-- Test_3: 설정(하나의 요청 주소 GET, POST 처리): List<> Collection -->	
+	<bean class="com.controller.OrderController"></bean>
+	
+	
+<!-- Test_4: Parameter 값 받기: @RequestParam 활용하기 -->	
+ 	<bean class="com.controller.SearchController"></bean>
 </beans>
 
 
