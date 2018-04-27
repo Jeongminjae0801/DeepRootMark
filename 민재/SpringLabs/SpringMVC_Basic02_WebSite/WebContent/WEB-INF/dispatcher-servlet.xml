@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- 
+	1. WebApp이 필요한 객체의 생성과 조립을 여기서 하겠다
+	2. DispatcherServlet 이 제공하는 IOC 컨테이너에 
+ -->
+	<bean name="/customer/notice.htm" class="controllers_customer.NoticeController" >
+		<property name="noticedao" ref="noticeDao"></property>
+	</bean>
+	
+	<bean name="/customer/noticeDetail.htm" class="controllers_customer.NoticeDetailController">
+		<property name="noticedao" ref="noticeDao"></property>
+	</bean>
+	<!-- 공통 사용 DAO Bean 객체 생성 -->
+	<bean id="noticeDao" class="dao.NoticeDao"></bean>
+</beans>

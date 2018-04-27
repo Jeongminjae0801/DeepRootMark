@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- 자동 주입
+	의존관계(생성자, setter) 자동 주입
+	xml에서 안하고 >> @Autowired @Resource 처리
+ -->
+
+<context:annotation-config />
+
+<!-- 공통 빈 -->
+	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+<!-- TEST_1
+	@Controller
+	public class HelloController
+
+	@Controller 어노테이션을 가지고 있는 클래스는 자동으로 IOC 컨테이너에 등록되는 방법은?
+	**<context:component-scan base-package="" />
+	 :@Component, @Repository, @Service, @Controller, @RestController, @ControllerAdvice, @Configuration 등의
+	 클래스를 자동으로 bean 객체 생성 가능
+	 
+	***나중에는 이 두 개로 모든 설정의 대부분이 끝이난다!! (Spring은 생략)
+ 	<context:annotation-config />
+ 	<context:component-scan base-package="com.*" />
+ -->
+	
+	<bean id="helloController" class="com.controller.HelloController"></bean>
+
+
+<!-- Test_2: 설정(하나의 요청 주소 GET, POST 처리)
+	화면단, 처리단(로그인 화면-로그인 처리, 글쓰기 화면-글쓰기 처리
+	전제조건] 요청되는 주소가 같다.
+ -->
+ 	<bean class="com.controller.NewArticleController"></bean>
+ 	<bean class="com.service.ArticleService"></bean>
+ 	
+ 	
+<!-- Test_3: 설정(하나의 요청 주소 GET, POST 처리): List<> Collection -->	
+	<bean class="com.controller.OrderController"></bean>
+	
+	
+<!-- Test_4: Parameter 값 받기: @RequestParam 활용하기 -->	
+ 	<bean class="com.controller.SearchController"></bean>
+</beans>
+
+
+
+
