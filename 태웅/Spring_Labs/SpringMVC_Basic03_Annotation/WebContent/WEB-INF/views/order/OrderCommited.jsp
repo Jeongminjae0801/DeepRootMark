@@ -8,7 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- model.addAttribute("orderCommand",OrderCommand)  -->
+
+<!-- 
+	model.addAttribute("orderCommand",OrderCommand)  
+
+	${orderCommand.orderItem}  >> 클래스의 get함수 호출
+  
+	public List<OrderItem> getOrderItem() {
+		return orderItem;
+	}
+	
+	for : List<OrderItem>
+	First for   ArrayList<OrderItem> list = new ArrayList<>();
+	           Orderitem  item =  list.get(i);
+	          .. item.id
+	          .. item.number
+-->
+
 	<h3>EL & JSTL 사용 출력</h3>
 	<ul>
 		<c:forEach items="${orderCommand.orderItem}" var="orderitem">

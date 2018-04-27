@@ -47,6 +47,14 @@
  -->
  	<bean class="com.controller.NewArticleController"></bean>
  	<bean class="com.service.ArticleService"></bean>
+ 	
+ 	
+<!-- Test_3: 설정(하나의 요청 주소 GET, POST 처리): List<> Collection
+	화면단, 처리단(로그인 화면-로그인 처리, 글쓰기 화면-글쓰기 처리
+	전제조건] 요청되는 주소가 같다.
+-->	
+	<bean class="com.controller.OrderController"></bean>
+ 	
 </beans>
 
 
