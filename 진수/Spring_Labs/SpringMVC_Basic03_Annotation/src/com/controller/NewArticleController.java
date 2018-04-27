@@ -57,7 +57,7 @@ public class NewArticleController {
 		}
 	*/
 	
-	//POST 방식 요청 은 (DB단 처리 Insert 처리)
+	//POST 방식 요청 은 (DB단 처리 Insert 처리) //**insert update하는 대부분의 작업은 아래처럼 메소드로 받아 작성하는 형식이 99%** ex)회원가입
 	@RequestMapping(method=RequestMethod.POST)
 	//public String submit(NewArticleCommand command) {  /* ***(NewArticleCommand command)이 한줄의 내용이 모든것을 자동화*** */
 	public String submit(@ModelAttribute("Articledata") NewArticleCommand command) {

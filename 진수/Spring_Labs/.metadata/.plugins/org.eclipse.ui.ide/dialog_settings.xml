@@ -5,6 +5,8 @@
 		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\Bit\Desktop\SpringMVC_Basic03_WebSite_Annotation_Solution"/>
+			<item value="C:\Users\Bit\Desktop\SpringMVC_Basic02_WebSite"/>
 			<item value="C:\Users\Bit\Desktop\SpringDI_Basic05_Prototype"/>
 			<item value="C:\Users\Bit\Desktop\SpringDI_Basic04_Bean_LifeCycle"/>
 			<item value="C:\Users\Bit\Desktop\SpringDI_Basic03_Annotation"/>

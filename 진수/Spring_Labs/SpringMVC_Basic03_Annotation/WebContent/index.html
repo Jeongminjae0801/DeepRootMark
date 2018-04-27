@@ -13,5 +13,32 @@
 	게시판 목록 페이지 : 글쓰기 버튼 클릭 (GET 방식 : 화면만 보여주면 됨) : 글쓰기  입력 화면 전송 (Form : POST 방식) <br>
 	<a href="article/newArticle.do">글쓰기(newArticle.do)</a>
 	
+	<hr>
+	
+	<h3>TEST_3(http 전송 : Form : method : >POST, GET) : 위 TEST_2와 다른점은 List 컬렉션 처리하기</h3>
+	<a href="order/order.do">주문하기(order.do)</a>
+	
+	<h3>TEST_4 : (http: 전송시 : Parameter 다루기 :@RequestParam)</h3>
+	<a href="search/internal.do?query=hong&p=100">internal.do</a>
+	<br>
+	Default: <a href="search/external.do?query=hong">external.do</a>
+	<br>
+	Default2:<a href="search/external.do?p=100">external.do</a>
+	<br>
+	Required :<a href="search/external.do">external.do</a>
+	<br>
+	parameter name: <a href="search/external.do?query=kim&p=1000">external.do</a>
+	
+	
+	<hr>
+	<h3>TEST_5(Spring Cookie 사용하기 : @Cookievalue : servlet 사용했던 것 사용 가능)</h3>
+	<a href="cookie/make.do">make.do(쿠키 만들기)</a><br>
+	<a href="cookie/view.do">view.do(쿠키 읽기)</a>
+	
+	<hr>
+	<h3>TEST_6 파일 업로드 (CommonMultipartResolver 사용하기)</h3>
+	<a href="image/upload.do">upload.do(파일 업로드)</a>
+	
+	
 </body>
 </html>

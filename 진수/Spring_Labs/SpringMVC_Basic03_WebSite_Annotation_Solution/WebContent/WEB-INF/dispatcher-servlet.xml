@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+<!--  
+1.WebApp 필요한 객체의 생성과 조립
+2.DispatcherServlet 제공하는 IOC 컨테이너에 
+-->
+  <context:annotation-config />
+  <bean class="ncontroller.CustomerController"></bean> 
+  
+  <!-- 공통 사용 DAO 빈 객체 생성 -->
+  <bean id="noticeDao" class="dao.NoticeDao"></bean>	
+  
+  <!-- 파일 업로드 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+  		<property name="maxUploadSize" value="10485760"/>
+	</bean>
+</beans>
+
+
+
+

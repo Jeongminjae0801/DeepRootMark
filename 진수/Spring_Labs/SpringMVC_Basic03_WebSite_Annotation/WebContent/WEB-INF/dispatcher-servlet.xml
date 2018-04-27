@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+	
+<!--  
+1. WebApp 에 필요한 객체의 생성과 조립을 이곳에서 하겠다
+2. DispatcherServlet 가 제공하는 IOC 컨테이너 안에다가
+-->
+
+	<bean class="ncontroller.CustomerController"> <!-- id 혹은 name이 필요 없다. 빈객체를 만들면 요청 왔던 주소 를 가지고 컨트롤러 내에서 @Requestmapping 에 대응되는것을 자동으로 찾아가기 때문에... -->
+		<property name="noticedao" ref="noticeDao"></property>
+	</bean> 
+	<!-- 공통 사용 DAO 빈 객체 생성 -->
+	<bean id="noticeDao" class="dao.NoticeDao"></bean>
+	
+</beans> 
