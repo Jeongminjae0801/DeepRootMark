@@ -77,50 +77,53 @@
 							공지사항수정
 						</li>
 					</ul>
-					<form action="" method="post">
-					<div id="notice-article-detail" class="article-detail margin-large" >						
-						<dl class="article-detail-row">
-							<dt class="article-detail-title">
-								제목
-							</dt>
-							<dd class="article-detail-data">
-								&nbsp;<input name="title" value="제 1회 경진대회 " />
-							</dd>
-						</dl>	
-						<dl class="article-detail-row half-row">
-							<dt class="article-detail-title">
-								작성자
-							</dt>
-							<dd class="article-detail-data half-data" >
-								코스타
-							</dd>
-						</dl>
-						<dl class="article-detail-row half-row">
-							<dt class="article-detail-title">
-								조회수
-							</dt>
-							<dd class="article-detail-data half-data">
-								1235
-							</dd>
-						</dl>
-						<dl class="article-detail-row">
-							<dt class="article-detail-title">
-								첨부파일
-							</dt>
-							<dd class="article-detail-data">
-								&nbsp;<input type="file" id="txtFile" name="file" />
-							</dd>
-						</dl>
-
-						<div class="article-content" >
-							<textarea id="txtContent" class="txtContent" name="content"><img src="http://sstatic.naver.net/keypage/outside/info/2011031017145546407.jpg" /><br />동해물과 백두산이 마르고 닳도록
-							</textarea>
-						</div>						
-					</div>
-					<p class="article-comment margin-small">
-						<a class="btn-save button" href="noticeEditProc.jsp">수정</a>
-						<a class="btn-cancel button" href="noticeDetail.jsp">취소</a>						
-					</p>		
+					<form action="" method="post" enctype="multipart/form-data">
+							<div id="notice-article-detail" class="article-detail margin-large" >						
+								<dl class="article-detail-row">
+									<dt class="article-detail-title">
+										제목
+									</dt>
+									<dd class="article-detail-data">
+										&nbsp;<input name="title" value="${notice.title}" />
+									</dd>
+								</dl>	
+								<dl class="article-detail-row half-row">
+									<dt class="article-detail-title">
+										작성자
+									</dt>
+									<dd class="article-detail-data half-data" >
+										${notice.writer}
+									</dd>
+								</dl>
+								<dl class="article-detail-row half-row">
+									<dt class="article-detail-title">
+										조회수
+									</dt>
+									<dd class="article-detail-data half-data">
+										${noitce.hit}
+									</dd>
+								</dl>
+								<dl class="article-detail-row">
+									<dt class="article-detail-title">
+										첨부파일
+									</dt>
+									<dd class="article-detail-data">
+										&nbsp;<input type="file" id="txtFile" name="file" />
+										      ${notice.fileSrc}
+									</dd>
+								</dl>
+		
+								<div class="article-content" >
+									<textarea id="txtContent" class="txtContent" name="content">
+									기존내용:${notice.content}
+									</textarea>
+								</div>						
+							</div>
+							<p class="article-comment margin-small">
+								<!-- <a class="btn-save button" href="noticeEditProc.jsp">수정</a> -->
+								<input type="submit" value="수정" class="btn-save button" />
+								<a class="btn-cancel button" href="noticeDetail.htm?seq=${notice.seq}">취소</a>						
+							</p>		
 					</form>					
 				</div>				
 				<div id="navi">
