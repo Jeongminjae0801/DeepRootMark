@@ -7,13 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="login.do" method="post">
+	<form action="buycar.do">
 		<h3>[ KIA K Series Index ]</h3>
-		<input type="radio" name="car" checked="checked">K3<br>
-	  	<input type="radio" name="car">K5<br>
-		<input type="radio" name="car">K7<br>
-		<input type="radio" name="car">K9<br>
+		<!-- 각 링크를 눌렀을 때, 차량에 맞는 view 페이지를 보여주는게 맞다고 봄. -->
+		<!-- 공통 관심사로는 상단 KIA -->
+		<input type="radio" name="carName" value="K3" checked><a href="#">K3</a><br>
+	  	<input type="radio" name="carName" value="K5"><a href="#">K5</a><br>
+		<input type="radio" name="carName" value="K7"><a href="#">K7</a><br>
+		<input type="radio" name="carName" value="K9"><a href="#">K9</a><br>
 		
+		<!-- 공통 관심사: 상단에 사용자 이름 + 현재시간, 하단에 구매가격  -->
 		<input type="submit" value="구매하기">
 		<input type="button" value="취소하기" onclick="location.href='main.do'">
 	</form>
