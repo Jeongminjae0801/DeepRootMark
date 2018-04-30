@@ -17,7 +17,7 @@
   	 </param-value>
 	</context-param>
 	<!-- Root Container END -->
-	
+
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -26,7 +26,7 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- Filter 사용한 한글 처리 org.springframework.web.filter.CharacterEncodingFilter -->
 	<filter>
 		<filter-name>EncodingFilter</filter-name>

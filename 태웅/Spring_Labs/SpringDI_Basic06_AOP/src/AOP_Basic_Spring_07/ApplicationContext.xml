@@ -33,8 +33,8 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
 
 import org.springframework.aop.support.RegexpMethodPointcutAdvisor;
 
-
 -->
+
 <bean id="calc" class="AOP_Basic_Spring_07.NewCalc"></bean> 
 <bean id="logPrintAroundAdvice" class="AOP_Basic_Spring_07.LogPrintAroundAdvice"></bean> 
 <bean id="logPrintBeforeAdvice" class="AOP_Basic_Spring_07.LogPrintBeforeAdvice"></bean>
