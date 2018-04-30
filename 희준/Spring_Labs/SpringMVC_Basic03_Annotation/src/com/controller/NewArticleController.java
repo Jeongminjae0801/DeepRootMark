@@ -42,6 +42,7 @@ public class NewArticleController {
 	/*
 	@RequestMapping(method=RequestMethod.POST)
 	public String submit(HttpServletRequest request) {
+		
 		NewArticleCommand article = new NewArticleCommand();
 		article.setParentId(Integer.parseInt(request.getParameter("parentId")));
 		article.setTitle(request.getParameter("title"));
@@ -52,45 +53,40 @@ public class NewArticleController {
 	}
 	*/
 	
-	// public String submit(NewArticleCommand command)
-	// 동작원리 : JSP (UseBean Action 태그 사용 : setProperty ....)
 	
-	// 전제조건 : Form 태그의 name 속성의 이름이 DTO 객체의 memberfield와 같아야한다.
 	
-	// submit(NewArticleCommand command) 함수의 parameter로 DTO 타입을 사용
-	// 넘어오는 parameter가 DTO 타입의 meberfield와 같다면
-	// 1. 자동으로 DTO 객체 생성 : NewArticleCommand newArticleCommand = new NewArticleCommand();
-	// 2. 자동으로 넘어온 parameter 값을 setter 함수를 이용하여 자동 주입
-	// 1.1 NewArticleCommand 객체가 IOC 컨테이너안에 id="newArticleCommand" 자동 생성......
-	// 원칙 : ModelAndView mv = new ModelAndView(); mv.addObject('newArticleCommand', newArticleCommand); return mv;
-	// 위 원칙이 없어도 view 페이지에 DTO 객체(NewArticleCommand 주소가 자동 forward.....)
+	
+	//public String submit(NewArticleCommand command) {
+	//동작동리 : JSP (UseBean Action 태그 사용 : setProperty ...)
+	
+	//전제조건 : Form 태그의 name 속성의 이름이 DTO 객체의  memberfield 과 같아야 한다.
+	//<input type="text" name="title">   >> private String title;
+	
+	//submit(NewArticleCommand command) 함수의  parameter DTO 타입을 사용
+	//넘어오는 parameter 가 DTO 타입의 memberfield 명과 같다면
+	//1. 자동으로 DTO 객체 생성 : NewArticleCommand newArticleCommand = new NewArticleCommand();
+	//2. 자동으로 넘어온 parameter 값을  setter 함수를 이용하여 자동 주입
+	//1.1 NewArticleCommand 객체 IOC 컨테이너에 id="newArticleCommand" 자동 생성....
+	//원칙 : ModelAndView mv = new ModelAndView();   mv.addObject("newArticleCommand",newArticleCommand);  return mv;
+	//위 원칙이 없어도 view 페이지에 DTO객체(NewArticleCommand) 주소가 자동 forward ....
 	
 	/*
-		1. submit(NewArticleCommand command)
-			> 자동 객체 생성 되고 객체변수명이 [key] : newArticleCommand
+		1. submit(NewArticleCommand command) 
+		   >자동 객체 생성 되고  객체변수명이 (key): newArticleCommand
 	
-		2. 이름이 자동으로 생성되는 것이 싫어요
-			submit(@ModelAttribute("Articledata") NewArticleCommand command)
-			>> 자동으로 생성되는 객체변수명을 제어 (Articledata 강제) key : Articledata
-			
-		3. Model addAttribute("Articledata", new NewArticleCommand()); 자동...
+	    2. 이름이 자동으로 생성되는 것이 싫어요
+	       submit(@ModelAttribute("Articledata")NewArticleCommand command)
+	       >>자동으로 생성되는 객체변수명을 제어 (Articledata 강제) key : Articledata
+	    
+	    3. Model.addAttribute("Articledata" , new  NewArticleCommand());  자동 ..
+	
+	
 	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//POST 방식 요청 (DB단 처리 Insert 처리)
 	@RequestMapping(method=RequestMethod.POST)
 	//public String submit(NewArticleCommand command) {
-	public String submit(@ModelAttribute("Articledata") NewArticleCommand command) {
+	public String submit(@ModelAttribute("Articledata")NewArticleCommand command) {
 		//1.parameter 받기
 		//2.Service 객체 생성하기  ArticleService service = new ArticleService()
 		//3.Service 객체 함수 호출하기

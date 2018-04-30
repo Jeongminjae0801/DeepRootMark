@@ -1,11 +1,10 @@
 package com.model;
 
+
 public class NewArticleCommand {
 	private int parentId;
 	private String title;
 	private String content;
-	
-	
 	public int getParentId() {
 		return parentId;
 	}
@@ -24,7 +23,6 @@ public class NewArticleCommand {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 	@Override
 	public String toString() {
 		return "NewArticleCommand [parentId=" + parentId + ", title=" + title + ", content=" + content + "]";
