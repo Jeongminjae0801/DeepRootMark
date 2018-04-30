@@ -10,7 +10,7 @@
 <!-- 
 <bean class="com.model.MemberDAOImpl">
 	<property name="jdbctemplate" ref=""></property>
-</bean> 
+</bean>
 -->
 <context:annotation-config />
 <bean class="com.model.MemberDAOImpl"></bean>

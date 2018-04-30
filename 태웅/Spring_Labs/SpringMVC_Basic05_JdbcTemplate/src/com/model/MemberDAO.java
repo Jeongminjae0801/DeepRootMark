@@ -2,6 +2,7 @@ package com.model;
 
 import java.sql.SQLException;
 
+//CRUD 함수를 인터페이스 기반 설계
 public interface MemberDAO {
 	
 	//회원가입 
