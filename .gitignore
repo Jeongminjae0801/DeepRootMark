@@ -13,7 +13,6 @@ tomcat
 *.dmg
 *.gz
 *.iso
-*.jar
 *.rar
 *.tar
 *.zip
@@ -65,16 +64,9 @@ pom.xml.tag
 # General(server)
 /.metadata/
 /.recommenders/
-/RemoteSystemsTempFiles/
 /Servers/
 
 .metadata/
 .recommenders/
-RemoteSystemsTempFiles/
 Servers/
 
-團營/SpringLabs/.metadata/
-團營/SpringLabs/.recommenders/
-團營/SpringLabs/RemoteSystemsTempFiles/
-團營/SpringLabs/Servers/
->>>>>>> 1abe4866e25d9b18cc2e511b145aed53981b6a84

@@ -1,6 +1,6 @@
 package ncontroller;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,6 +127,40 @@ public class CustomerController {
 		return "redirect:notice.htm";
 	}
 	
+	//4.글 수정 페이지
+	//함수 안에 void add(Model model) > 데이터 담아서 forward 할려고 함...
+	@RequestMapping(value="/noticeEdit.htm", method=RequestMethod.GET)
+	public String noticeEdit( String seq, Model model ) throws ClassNotFoundException, SQLException {
+		//System.out.println("글 수정 페이지 도착");
+		Notice item = noticedao.getNotice(seq);
+		System.out.println(item.getTitle());
+		model.addAttribute("notice", item);
+		return "noticeEdit.jsp";
+	}
+	
+	//5.글 수정 하기
+	@RequestMapping(value="/noticeEdit.htm", method=RequestMethod.POST)
+	public String noticeEdit( Notice notice, HttpServletRequest request ) throws Exception {
+		//System.out.println(notice);
+		CommonsMultipartFile imagefile = notice.getFile();
+		
+		//[실 파일 업로드 ....]
+		String filename = imagefile.getOriginalFilename();
+		String path = request.getServletContext().getRealPath("/upload");
+		
+		String fpath = path + "\\" + filename;
+		
+		FileOutputStream fs = new FileOutputStream(fpath);
+		fs.write(imagefile.getBytes());
+		fs.close();
+		
+		notice.setFileSrc(filename);
+		
+		//DB 에서 해당글 삭제
+		noticedao.update(notice);
+		System.out.println("해당 게시글 수정 완료");
+		return "redirect:noticeDetail.htm?seq=" + notice.getSeq();
+	}
 	
 	//3.글삭제하기 
 	@RequestMapping("/noticeDel.htm")
