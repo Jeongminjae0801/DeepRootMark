@@ -1,9 +1,0 @@
-package DI_01;
-
-public class MessageBean_kr implements Message {
-	@Override
-	public void sayHello(Stirng name) {
-		System.out.println("안녕 " + name + " 만나서 반가워!!");
-		
-	}
-}

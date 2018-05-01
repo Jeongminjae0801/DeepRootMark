@@ -54,34 +54,6 @@ public class CustomerController {
 		
 		return mav;
 	}
-/*
- *  함수 파라미터에  Model model > 함수의 parameter 사용시 자동 객체 생성 ... (Spring Framework 자동으로 만들고 주소값 줌)
-	public String notices(String pg , String f , String q , Model model) {
-		
-		int page=1;
-		String field="TITLE";
-		String query="%%";
-				
-		//조건 조합
-		if(pg != null && !pg.equals("")) { page = Integer.parseInt(pg); }	
-		if(f != null && !f.equals("")) { field = f; }	
-		if(q != null && !q.equals("")) { query = q; }
-
-		//DAO 객체 생성 ... 함수 호출
-		List<Notice> list=null;
-		try {
-			list = noticedao.getNotices(page, field, query);
-		}catch (Exception e) {
-			e.printStackTrace();
-		} 
-		
-		//ModelAndView 객체 사용가능
-		//Model 
-		model.addAttribute("list", list); //View 단 페이지에 자동 forward (list 이름으로)
-		
-		return "notice.jsp";
-	}
-*/
 	
 	@RequestMapping("/noticeDetail.htm")
 	public ModelAndView noticeDetail( String seq ) throws ClassNotFoundException, SQLException {

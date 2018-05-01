@@ -1,9 +1,0 @@
-package DI_01;
-
-public class MessageBean_kr implements Message {
-	@Override
-	public void sayHello() {
-		// TODO Auto-generated method stub
-		
-	}
-}

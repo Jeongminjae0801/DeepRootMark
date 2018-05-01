@@ -66,6 +66,7 @@
 		<div id="main">
 			<div class="top-wrapper clear">
 				<div id="content">
+				
 					<form action="" method="post">
 						<h2>회원가입</h2>
 						<h3 class="hidden">방문페이지 로그</h3>
@@ -77,7 +78,7 @@
 									아이디
 								</dt>
 								<dd class="join-form-data">
-									<input type="text" name="uid" />
+									<input type="text" name="userid" />
 									<input id="btnCheckUid" class="button" type="button" value="중복확인" />
 								</dd>
 							</dl>
@@ -125,7 +126,7 @@
 	                                    <input type="text" id="year" />년
 	                                    <input type="text" id="month" />월
 	                                    <input type="text" id="day" />일
-	                                    <input type="hidden" name="Birth" id="Birth" />
+	                                    <input type="hidden" name="birth" id="Birth" />
 	                                </span>
 	                                <span class="moon">
 	                                    <input type="radio" name="IsLunar" value="Solar" id="IsSolar" checked />양력
@@ -138,7 +139,7 @@
 									핸드폰 번호
 								</dt>
 								<dd class="join-form-data">
-									<input type="text" name="cphone" /><span>[대시(-)를 포함할 것: 예) 010-3456-2934]</span>
+									<input type="text" name="cPhone" /><span>[대시(-)를 포함할 것: 예) 010-3456-2934]</span>
 								</dd>
 							</dl>
 							<dl class="join-form-row">
@@ -160,10 +161,12 @@
 								</dd>
 							</dl>						
 						</div>
+						
+						<div id="buttonLine">
+							<input class="btn-okay button" type="submit" value="가입" />
+						</div>
 					</form>	
-					<div id="buttonLine">
-						<input class="btn-okay button" type="submit" value="가입" />
-					</div>
+					
 				</div>
 				<div id="navi">
 					<h2>회원가입</h2>
