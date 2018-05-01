@@ -77,14 +77,14 @@
 							공지사항수정
 						</li>
 					</ul>
-					<form action="" method="post" enctype="multipart/form-data">
+					<form action="" method="post">
 					<div id="notice-article-detail" class="article-detail margin-large" >						
 						<dl class="article-detail-row">
 							<dt class="article-detail-title">
 								제목
 							</dt>
 							<dd class="article-detail-data">
-								&nbsp;<input name="title" value="${notice.title}" />
+								&nbsp;<input name="title" value="제 1회 경진대회 " />
 							</dd>
 						</dl>	
 						<dl class="article-detail-row half-row">
@@ -92,7 +92,7 @@
 								작성자
 							</dt>
 							<dd class="article-detail-data half-data" >
-								${notice.writer}
+								코스타
 							</dd>
 						</dl>
 						<dl class="article-detail-row half-row">
@@ -100,7 +100,7 @@
 								조회수
 							</dt>
 							<dd class="article-detail-data half-data">
-								${notice.hit}
+								1235
 							</dd>
 						</dl>
 						<dl class="article-detail-row">
@@ -109,18 +109,17 @@
 							</dt>
 							<dd class="article-detail-data">
 								&nbsp;<input type="file" id="txtFile" name="file" />
-								
 							</dd>
 						</dl>
 
 						<div class="article-content" >
-							<textarea id="txtContent" class="txtContent" name="content">${notice.content}</textarea>
-							<input type="hidden" name="seq" value="${notice.seq}"/>
+							<textarea id="txtContent" class="txtContent" name="content"><img src="http://sstatic.naver.net/keypage/outside/info/2011031017145546407.jpg" /><br />동해물과 백두산이 마르고 닳도록
+							</textarea>
 						</div>						
 					</div>
 					<p class="article-comment margin-small">
-						<input class="btn-save button" type="submit" value="수정하기" />
-						<a class="btn-cancel button" href="noticeDetail.htm?seq=${notice.seq}">취소</a>						
+						<a class="btn-save button" href="noticeEditProc.jsp">수정</a>
+						<a class="btn-cancel button" href="noticeDetail.jsp">취소</a>						
 					</p>		
 					</form>					
 				</div>				

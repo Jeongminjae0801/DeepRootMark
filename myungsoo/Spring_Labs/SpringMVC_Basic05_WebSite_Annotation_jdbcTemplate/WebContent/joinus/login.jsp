@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>index</title>
-		<link href="../css/customer.css" type="text/css" rel="stylesheet" />
+		<link href="login.css" type="text/css" rel="stylesheet" />
 	</head>
 	<body>
 		<div id="header">
@@ -53,97 +53,69 @@
 						<a href=""><img src="../images/menuMyPage.png" alt="마이페이지" /></a>
 					</li>
 					<li>
-						<a href="notice.jsp"><img src="../images/menuCustomer.png" alt="고객센터" /></a>
+						<a href="../customer/notice.jsp"><img src="../images/menuCustomer.png" alt="고객센터" /></a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div id="visual" class="customer">
+		<div id="visual" class="joinus">
 			<div class="top-wrapper">
-				
+
 			</div>
 		</div>
 		<div id="main">
 			<div class="top-wrapper clear">
 				<div id="content">
-					<h2>공지사항</h2>
-					<h3 class="hidden">방문페이지위치</h3>
-					<ul id="breadscrumb" class="block_hlist">
-						<li>HOME</li>
+					<h2>로그인</h2>
+					<h3 class="hidden">방문페이지 로그</h3>
+					<ul id="breadscrumb" class="block_hlist clear">
 						<li>
-							고객센터
+							HOME
 						</li>
 						<li>
-							공지사항수정
+							회원가입
+						</li>
+						<li>
+							로그인
 						</li>
 					</ul>
-					<form action="" method="post" enctype="multipart/form-data">
-					<div id="notice-article-detail" class="article-detail margin-large" >						
-						<dl class="article-detail-row">
-							<dt class="article-detail-title">
-								제목
-							</dt>
-							<dd class="article-detail-data">
-								&nbsp;<input name="title" value="${notice.title}" />
-							</dd>
-						</dl>	
-						<dl class="article-detail-row half-row">
-							<dt class="article-detail-title">
-								작성자
-							</dt>
-							<dd class="article-detail-data half-data" >
-								${notice.writer}
-							</dd>
-						</dl>
-						<dl class="article-detail-row half-row">
-							<dt class="article-detail-title">
-								조회수
-							</dt>
-							<dd class="article-detail-data half-data">
-								${notice.hit}
-							</dd>
-						</dl>
-						<dl class="article-detail-row">
-							<dt class="article-detail-title">
-								첨부파일
-							</dt>
-							<dd class="article-detail-data">
-								&nbsp;<input type="file" id="txtFile" name="file" />
-								
-							</dd>
-						</dl>
-
-						<div class="article-content" >
-							<textarea id="txtContent" class="txtContent" name="content">${notice.content}</textarea>
-							<input type="hidden" name="seq" value="${notice.seq}"/>
-						</div>						
+					<h3 class="hidden">회원가입 폼</h3>
+					<div id="join-form" class="join-form margin-large" >						
+						<form action="" method="post">                            <fieldset>
+                                <legend class="hidden">로그인 폼</legend>
+                                <h3><img src="images/txtTitle.png" /></h3>
+                                <ul id="loginBox">
+                                    <li><label for="uid">아이디</label><input name="UserName" class="text" /></li>
+                                    <li><label for="pwd">비밀번호</label><input type="password" name="Password" class="text" /></li>
+                                </ul>
+                                <p><input type="submit" id="btnLogin" value="" /></p>
+                                <ul id="loginOption">
+                                    <li><span>아이디 또는 비밀번호를 분실하셨나요?</span><a href="/Member/FindID"><img alt="ID/PWD 찾기" src="images/btnFind.png" /></a></li>
+                                    <li><span>아이디가 없으신 분은 회원가입을 해주세요.</span><a href="/Member/Agree"><img alt="회원가입" src="images/btnJoin.png" /></a></li>
+                                </ul>
+                            </fieldset>
+						</form>
 					</div>
-					<p class="article-comment margin-small">
-						<input class="btn-save button" type="submit" value="수정하기" />
-						<a class="btn-cancel button" href="noticeDetail.htm?seq=${notice.seq}">취소</a>						
-					</p>		
-					</form>					
-				</div>				
+					
+				</div>
 				<div id="navi">
-					<h2>고객센터</h2>
-					<h3 class="hidden">고객센터메뉴</h3>
+					<h2>회원가입</h2>
+					<h3 class="hidden">회원메뉴</h3>
 					<ul id="navi-menu">
 						<li>
-							<a href="">소식</a>
+							<a href="">로그인</a>
 						</li>
 						<li>
-							<a href="" class="current">공지사항</a>
+							<a href="" class="current">회원가입</a>
 						</li>
 						<li>
-							<a href="">1:1 고객문의</a>
+							<a href="">아이디찾기</a>
 						</li>
 						<li>
-							<a href="">학습도구</a>
-						</li>
-						<li>
-							<a href="">학습안내</a>
-						</li>
+							<a href="">비밀번호 재발급</a>
+						</li>						
 					</ul>
+                       
 					<h3 id="fav-title">추천사이트</h3>
 					<ul class="margin-small">
 						<li>

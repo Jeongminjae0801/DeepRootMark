@@ -3,6 +3,7 @@ package ncontroller;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,22 +59,49 @@ public class CustomerController {
 	@RequestMapping(value="noticeReg.htm" , method=RequestMethod.POST)
 	public String writeOkBoard(Notice notice, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
 		
-		CommonsMultipartFile imagefile = notice.getFile();
 		
-		String filename = imagefile.getOriginalFilename();
-		String path = request.getServletContext().getRealPath("/upload");
+		   //다중 파일 업로드
+		   //view 코드 (JSP)
+		   //<input type="file" name="files[0]"
+		   //<input type="file" name="files[1]"
 		
-		notice.setFileSrc(filename);
-		
-		String fpath = path + "\\" + filename;
-		
-		FileOutputStream fs = new FileOutputStream(fpath);
-		fs.write(imagefile.getBytes());
-		fs.close();
-		
-		noticedao.insert(notice);
-		return "redirect:notice.htm";
-		
+		   //DTO
+		   //private List<CommonsMultipartFile> files   (setter , getter) 자동 주입
+		      
+		   //Controller
+		   //noticeReg(Notice n)
+		   System.out.println("다중 파일 업로드");
+		   System.out.println("n :" + notice.getTitle());
+		   System.out.println("n :" + notice.getContent());
+		   System.out.println("n 업로드 개수 :" + notice.getFiles().size());
+		   System.out.println("n :" + notice.getFiles().get(0).getName());
+		   System.out.println("n :" + notice.getFiles().get(1).getName());
+		   
+		   List<CommonsMultipartFile> files = notice.getFiles();
+		   List<String> filenames = new ArrayList<>(); //파일명 담아넣기 (DB Insert)
+		   
+		   if(files != null && files.size() > 0) {
+			   for(CommonsMultipartFile multifile : files) {
+				    
+				    String filename = multifile.getOriginalFilename();
+				    String path = request.getServletContext().getRealPath("/customer/upload");
+					String fpath = path + "\\" + filename;
+			
+					if(!filename.equals("")) { //파일 쓰기
+						FileOutputStream fs = new FileOutputStream(fpath);
+						fs.write(multifile.getBytes());
+						fs.close();
+					}
+					filenames.add(filename); //DB insert 파일명	
+			   }
+		   }
+		   //실 DB INSERT
+		   notice.setFileSrc(filenames.get(0));
+		   notice.setFileSrc2(filenames.get(1));
+		   
+		   noticedao.insert(notice);
+		   
+		   return "redirect:notice.htm";
 	}
 	
 	@RequestMapping(value="noticeEdit.htm" , method=RequestMethod.GET)
@@ -94,6 +122,31 @@ public class CustomerController {
 		System.out.println(notice.getSeq());
 		System.out.println("seq 들어 오니");
 		
+		 List<CommonsMultipartFile> files = notice.getFiles();
+		   List<String> filenames = new ArrayList<>(); //파일명 담아넣기 (DB Insert)
+		   
+		   if(files != null && files.size() > 0) {
+			   for(CommonsMultipartFile multifile : files) {
+				    
+				    String filename = multifile.getOriginalFilename();
+				    String path = request.getServletContext().getRealPath("/customer/upload");
+					String fpath = path + "\\" + filename;
+			
+					if(!filename.equals("")) { //파일 쓰기
+						FileOutputStream fs = new FileOutputStream(fpath);
+						fs.write(multifile.getBytes());
+						fs.close();
+					}
+					filenames.add(filename); //DB insert 파일명	
+			   }
+		   }
+		   //실 DB INSERT
+		   notice.setFileSrc(filenames.get(0));
+		   notice.setFileSrc2(filenames.get(1));
+		   int result = noticedao.update(notice);
+		   return "redirect:noticeDetail.htm?seq=" + notice.getSeq();
+		/*
+		
 		CommonsMultipartFile imagefile = notice.getFile();
 		
 		String filename = imagefile.getOriginalFilename();
@@ -112,6 +165,7 @@ public class CustomerController {
 		System.out.println("너 업로드 되었니");
 		System.out.println(result);
 		return "redirect:noticeDetail.htm?seq=" + notice.getSeq();
+		*/
 		
 	}
 	@RequestMapping("noticeDel.htm")

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -7,7 +8,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title>index</title>
-		<link href="../css/customer.css" type="text/css" rel="stylesheet" />
+		<link href="notice.css" type="text/css" rel="stylesheet" />
 	</head>
 	<body>
 		<div id="header">
@@ -53,77 +54,110 @@
 						<a href=""><img src="../images/menuMyPage.png" alt="마이페이지" /></a>
 					</li>
 					<li>
-						<a href="notice.jsp"><img src="../images/menuCustomer.png" alt="고객센터" /></a>
+						<a href="notice.htm"><img src="../images/menuCustomer.png" alt="고객센터" /></a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div id="visual" class="customer">
 			<div class="top-wrapper">
-				
+
 			</div>
 		</div>
 		<div id="main">
 			<div class="top-wrapper clear">
 				<div id="content">
 					<h2>공지사항</h2>
-					<h3 class="hidden">방문페이지위치</h3>
-					<ul id="breadscrumb" class="block_hlist">
+					<h3 class="hidden">방문페이지 로그</h3>
+					<ul id="breadscrumb" class="block_hlist clear">
 						<li>HOME</li>
 						<li>
 							고객센터
 						</li>
 						<li>
-							공지사항수정
+							공지사항목록
 						</li>
 					</ul>
-					<form action="" method="post" enctype="multipart/form-data">
-					<div id="notice-article-detail" class="article-detail margin-large" >						
-						<dl class="article-detail-row">
-							<dt class="article-detail-title">
-								제목
-							</dt>
-							<dd class="article-detail-data">
-								&nbsp;<input name="title" value="${notice.title}" />
-							</dd>
-						</dl>	
-						<dl class="article-detail-row half-row">
-							<dt class="article-detail-title">
-								작성자
-							</dt>
-							<dd class="article-detail-data half-data" >
-								${notice.writer}
-							</dd>
-						</dl>
-						<dl class="article-detail-row half-row">
-							<dt class="article-detail-title">
-								조회수
-							</dt>
-							<dd class="article-detail-data half-data">
-								${notice.hit}
-							</dd>
-						</dl>
-						<dl class="article-detail-row">
-							<dt class="article-detail-title">
-								첨부파일
-							</dt>
-							<dd class="article-detail-data">
-								&nbsp;<input type="file" id="txtFile" name="file" />
-								
-							</dd>
-						</dl>
-
-						<div class="article-content" >
-							<textarea id="txtContent" class="txtContent" name="content">${notice.content}</textarea>
-							<input type="hidden" name="seq" value="${notice.seq}"/>
-						</div>						
-					</div>
+					<h3 class="hidden">공지사항 목록</h3>
+					<form id="content-searchform" class="article-search-form" action="notice.jsp" method="get">
+						<fieldset>
+							<legend class="hidden">
+								목록 검색 폼
+							</legend>
+							<input type="hidden" name="pg" value="" />
+							<label for="f"
+							class="hidden">검색필드</label>
+							<select name="f">
+								<option value="TITLE">제목</option>
+								<option value="CONTENT">내용</option>
+							</select>
+							<label class="hidden" for="q">검색어</label>
+							<input type="text"
+							name="q" value="" />
+							<input type="submit" value="검색" />
+						</fieldset>
+					</form>
+					<table class="article-list margin-small">
+						<caption class="hidden">
+							공지사항
+						</caption>
+						<thead>
+							<tr>
+								<th class="seq">번호</th>
+								<th class="title">제목</th>
+								<th class="writer">작성자</th>
+								<th class="regdate">작성일</th>
+								<th class="hit">조회수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${list}" var="n">
+							<tr>
+								<td class="seq">${n.seq}</td>
+								<td class="title"><a href="noticeDetail.htm?seq=${n.seq}">${n.title}</a></td>
+								<td class="writer">${n.writer}</td>
+								<td class="regdate">${n.regdate}</td>
+								<td class="hit">${n.hit}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 					<p class="article-comment margin-small">
-						<input class="btn-save button" type="submit" value="수정하기" />
-						<a class="btn-cancel button" href="noticeDetail.htm?seq=${notice.seq}">취소</a>						
-					</p>		
-					</form>					
-				</div>				
+						<a class="btn-write button" href="noticeReg.htm">글쓰기</a>
+					</p>
+					<p id="cur-page" class="margin-small">
+						<span class="strong">1</span> /
+						10	page
+					</p>
+					<div id="pager-wrapper" class="margin-small">
+						<div class="pager clear">
+							<p id="btnPrev">
+								<a class="button btn-prev"
+								href="notice.jsp">이전</a>
+							</p>
+							<ul>
+								<li>
+									<a class="strong" href="">1</a>
+								</li>
+								<li>
+									<a href="">2</a>
+								</li>
+								<li>
+									<a href="">3</a>
+								</li>
+								<li>
+									<a href="">4</a>
+								</li>
+								<li>
+									<a href="">5</a>
+								</li>
+							</ul>
+							<p id="btnNext">
+								<span class="button btn-next">다음</span>
+							</p>
+						</div>
+					</div>
+				</div>
 				<div id="navi">
 					<h2>고객센터</h2>
 					<h3 class="hidden">고객센터메뉴</h3>
