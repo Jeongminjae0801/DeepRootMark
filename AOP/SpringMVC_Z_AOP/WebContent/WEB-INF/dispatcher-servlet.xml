@@ -28,7 +28,7 @@
 	<context:component-scan base-package="kr.or.bit.controller" />
 	<aop:aspectj-autoproxy/>
 	
-	<bean class="kr.or.bit.aspect.AspectJ"></bean>
+	<bean id="aspect" class="kr.or.bit.aspect.AspectJ"></bean>
 	
 	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
  		<property name="prefix">
@@ -39,6 +39,12 @@
  		</property>
  	</bean>
 
+	<aop:config>
+		<aop:aspect id="xmlAspect" ref="aspect">
+			<aop:pointcut expression="execution(* kr.or.bit.controller.MainController.*(..))" id="xmlPointcut"/>
+			<aop:after method="after" pointcut-ref="xmlPointcut"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
 
 
