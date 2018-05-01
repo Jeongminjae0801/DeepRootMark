@@ -6,6 +6,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	${date}
+	
 	
 </body>
 </html>
