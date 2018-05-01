@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ContentEditController {
 	
-	@RequestMapping("/contentedit.db")
+	@RequestMapping("/contentEdit.htm")
 	public String contentEdit() {
-		return null;
+		return "content.contentEdit";
 	}
 }

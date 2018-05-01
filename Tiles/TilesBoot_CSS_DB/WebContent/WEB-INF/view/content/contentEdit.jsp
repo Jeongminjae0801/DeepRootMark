@@ -1,5 +1,4 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="kr.or.css.dto.Content_DTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %> 
@@ -158,7 +157,6 @@
 	} 
 	</script>
 		<!-- header -->
-		<jsp:include page="include/header.jsp"></jsp:include>
 	
 		<!-- writer -->
 		<div class= "container"  >
@@ -295,7 +293,6 @@
 	 	</div>
  	
  	<!-- footer -->
-		<jsp:include page="include/footer.jsp"></jsp:include>
 
 </body>
 </html>

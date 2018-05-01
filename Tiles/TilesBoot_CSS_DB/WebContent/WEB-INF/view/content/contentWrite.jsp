@@ -224,7 +224,6 @@
 
 <body >
 		<!-- header -->
-		<jsp:include page="../include/header.jsp"></jsp:include>
 	
 		<!-- writer -->
 		<div class= "container"  >
@@ -367,7 +366,6 @@
  	</div>
  	
  	<!-- footer -->
-		<jsp:include page="../include/footer.jsp"></jsp:include>
 
 </body>
 </html>

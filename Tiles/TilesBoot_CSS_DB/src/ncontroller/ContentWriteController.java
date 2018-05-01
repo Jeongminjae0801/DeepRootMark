@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ContentWriteController {
 	
-	@RequestMapping("/contentWrite.db")
+	@RequestMapping("/contentWrite.htm")
 	public String contentWrite() {
-		return null;
+		return "content.contentWrite";
 	}
 }
