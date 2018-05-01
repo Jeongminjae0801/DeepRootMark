@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
-		  <style>
+		   <style>
 		  	  footer {
 			  	  background-color:  #e5faf5;
 			  }
@@ -17,8 +17,8 @@
 			  	  color : #3e9c9d;
 			  	  margin : 0px 0px 0px 0px;
 			  }		  
-		  </style>
-		  <script type="text/javascript">
+		  </style> 
+		   <script type="text/javascript">
 		  //top으로
 		  function topFunction() {
 			    document.body.scrollTop = 0;
@@ -27,7 +27,7 @@
 		  </script>
 	</head>
 		
-	<body>
+	<body> 
 	<!-- footer -->
 		<footer class="text-center">
 	
@@ -36,5 +36,5 @@
 		  </a><br><br>
 		  <p>CSS ⓒ DB</p> 
 		</footer>
-	</body>
-</html>
+	 </body>
+</html> 

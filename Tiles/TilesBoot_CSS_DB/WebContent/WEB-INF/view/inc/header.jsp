@@ -4,11 +4,11 @@
  <html>
  	<head>
  		  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		  <title>D.B.</title>
- 		  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-		  <link rel="stylesheet" href="css/mynavbar.css" type="text/css" media="screen"/>
-		  <style>
-		  	  #navbarcss {
+		  <title>D.B.</title> 
+ 		   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+		  <link rel="stylesheet" href="css/mynavbar.css" type="text/css" media="screen"/> -->
+  		  <style>
+ 		  	  #navbarcss {
 			      font-family: Montserrat, sans-serif;
 			      margin-bottom: 0;
 			      background-color: #e5faf5;
@@ -82,53 +82,19 @@
 #myNavbar ul li a:hover span.text{
     visibility:visible;
 }
-		  </style>
+		
+    </style>
 		  <script type="text/javascript">
 		  $(function(){
 		  var sessionid = "<%=session.getAttribute("id")%>";
 		 
 		  //준수
 		  	$('#a4').attr("href","mypage.db?myid="+sessionid);
-		  //
-	         /* if(sessionid !="null"){
-	        	 
-	        		if(sessionid=="admin"){
-	        			//admin
-	        			$('#a1').show();
-	        			$('#a2').show();
-	        			$('#a3').show();
-	        			$('#a4').hide();
-	        			$('#a5').hide();
-	        			$('#a6').hide();
-	        			$('#a7').hide();
-	        			$('#a8').hide();
-	        			$('#a9').show();
-	        		}else{
-	        			//일반
-	        			$('#a1').hide();
-	        			$('#a2').hide();
-	        			$('#a3').hide();
-	        			$('#a4').show();
-	        			$('#a5').show();
-	        			$('#a6').show();
-	        			$('#a7').hide();
-	        			$('#a8').hide();
-	        			$('#a9').show();
-	        		}
-		      }else{
-		    	  	$('#a1').hide();
-	      			$('#a2').hide();
-	      			$('#a3').hide();
-	      			$('#a4').hide();
-	      			$('#a5').hide();
-	      			$('#a6').hide();
-	      			$('#a7').show();
-	      			$('#a8').show();
-	      			$('#a9').hide();
-	         } */
+		  
 		  });
 		  </script>
-	</head>
+	</head> 
+	
 		
 	<body>
 	<!-- navbar -->
@@ -136,7 +102,7 @@
 			
 		  <div class="container-fluid" style="clear:both; margin:20px;">
 		    <div class="navbar-header">
-		      <a href="main.jsp" style="text-decoration:none"><i class="fab fa-skyatlas fa-4x" style="float:left;  color:#3e9c9d;"></i>&nbsp;<b style="href-style:none; font-size:30px; color:#3e9c9d;">DB</b></a>
+		      <a href="main.htm" style="text-decoration:none"><i class="fab fa-skyatlas fa-4x" style="float:left;  color:#3e9c9d;"></i>&nbsp;<b style="href-style:none; font-size:30px; color:#3e9c9d;">DB</b></a>
 		      
 		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 		        <span class="icon-bar"></span>
@@ -147,11 +113,11 @@
 		 
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav navbar-right">
-		      	<li><a href="contentWrite.db" id="a1"><span class="title">글작성하기</span></a></li>
-		      	<li><a href="contentList.db" id="a2"><span class="title">글목록보기</span></a></li>
-		      	<li><a href="contentedit.db" id="a2"><span class="title">글수정하기</span></a></li>			      	
-		        <li><a href="loginform.db" id="a7"><span class="title">회원가입</span></a></li>
-		        <li><a href="login.db" id="a8"><span class="title">로그인</span></a></li>
+		      	<li><a href="contentWrite.htm" id="a1"><span class="title">글작성하기</span></a></li>
+		      	<li><a href="contentList.htm" id="a2"><span class="title">글목록보기</span></a></li>
+		      	<li><a href="contentedit.htm" id="a2"><span class="title">글수정하기</span></a></li>			      	
+		        <li><a href="loginform.htm" id="a7"><span class="title">회원가입</span></a></li>
+		        <li><a href="login.htm" id="a8"><span class="title">로그인</span></a></li>
 		      </ul>
 		    </div> 
 		   </div>  
