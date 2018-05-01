@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ContentListController {
 	
-	@RequestMapping("/contentList.db")
+	@RequestMapping("/contentList.htm")
 	public String contentList() {
-		return null;
+		return "content.contentList";
 	}
 }

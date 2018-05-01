@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LogInController {
 	
-	@RequestMapping("/login.db")
+	@RequestMapping("/login.htm")
 	public String login() {
-		return null;
+		return "login.login";
 	}
 }
