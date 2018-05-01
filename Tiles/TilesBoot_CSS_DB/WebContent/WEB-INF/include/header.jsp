@@ -90,7 +90,7 @@
 		  //준수
 		  	$('#a4').attr("href","mypage.db?myid="+sessionid);
 		  //
-	         if(sessionid !="null"){
+	         /* if(sessionid !="null"){
 	        	 
 	        		if(sessionid=="admin"){
 	        			//admin
@@ -125,7 +125,7 @@
 	      			$('#a7').show();
 	      			$('#a8').show();
 	      			$('#a9').hide();
-	         }
+	         } */
 		  });
 		  </script>
 	</head>
@@ -145,18 +145,13 @@
 		      </button>
 			</div>
 		 
-		  
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav navbar-right">
-		      	<li><a style="display:none" href="contentWrite.db" id="a1"><span class="title">글작성하기</span></a></li>
-		      	<li><a style="display:none" href="contentList.db" id="a2"><span class="title">글목록보기</span></a></li>		      	
-		      	<li><a style="display:none" href="memberManagement.db" id="a3"><span class="title">회원관리</span></a></li>
-		      	<li><a style="display:none" href="mypage.db" id="a4"><span class="title">마이페이지</span></a></li>
-		        <li><a style="display:none" href="zzim.db" id="a5"><span class="title">찜목록</span></a></li>
-		        <li><a style="display:none" href="schedulemanage.db" id="a6"><span class="title">일정관리</span></a></li>
-		        <li><a style="display:none" href="loginform.db" id="a7"><span class="title">회원가입</span></a></li>
-		        <li><a style="display:none" href="login.db" id="a8"><span class="title">로그인</span></a></li>
-		        <li><a style="display:none" href="logout.db" id="a9"><span class="title">로그아웃</span></a></li>
+		      	<li><a href="contentWrite.db" id="a1"><span class="title">글작성하기</span></a></li>
+		      	<li><a href="contentList.db" id="a2"><span class="title">글목록보기</span></a></li>
+		      	<li><a href="contentedit.db" id="a2"><span class="title">글수정하기</span></a></li>			      	
+		        <li><a href="loginform.db" id="a7"><span class="title">회원가입</span></a></li>
+		        <li><a href="login.db" id="a8"><span class="title">로그인</span></a></li>
 		      </ul>
 		    </div> 
 		   </div>  
