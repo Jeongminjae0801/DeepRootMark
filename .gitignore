@@ -62,10 +62,6 @@ pom.xml.releaseBackup
 pom.xml.tag
 
 # General(server)
-/.metadata/
-/.recommenders/
-/Servers/
-
 .metadata/
 .recommenders/
 Servers/
