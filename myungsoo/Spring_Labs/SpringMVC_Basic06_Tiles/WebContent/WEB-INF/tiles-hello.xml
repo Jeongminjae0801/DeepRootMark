@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="hello" template="/template/layout.jsp">
+		<put-attribute name="title" value="LayOut(Master Page)" />	
+		<put-attribute name="header" value="/template/header.jsp" />
+		<put-attribute name="menu" value="/template/menu.jsp" />
+		<put-attribute name="body" value="/hello_body.jsp" />
+		<put-attribute name="footer" value="/template/footer.jsp" />
+	</definition>
+	<!-- 컨텐츠 개수 만큼  definition 을 만들어야 한다 (page 100개) 정의 파일 100개 -->
+	<definition name="hello2" template="/template/layout.jsp">
+		<put-attribute name="title" value="Master Page" />	
+		<put-attribute name="header" value="/template/header2.jsp" />
+		<put-attribute name="menu" value="/template/menu.jsp" />
+		<put-attribute name="body" value="/hello_body.jsp" />
+		<put-attribute name="footer" value="/template/footer2.jsp" />
+	</definition>
+	
+	<!-- 위 단점을 극복하기 위해서 (상속 개념을 제공)  -->
+	<definition name="itworld.base" template="/template/layout.jsp">
+		<put-attribute name="title" value="itworld" />	
+		<put-attribute name="header" value="/template/header.jsp" />
+		<put-attribute name="menu" value="/template/menu.jsp" />
+		<put-attribute name="body" value="/hello_body.jsp" />
+		<put-attribute name="footer" value="/template/footer.jsp" />
+	</definition>
+	<!-- 제목만 다른 페이지가 있어요   : 상속 과 재정의-->
+	<definition name="itworldsub" extends="itworld.base">
+		<put-attribute name="title" value="SUBWORLD" />
+	</definition>
+</tiles-definitions>
+
+
+
+
+
+
