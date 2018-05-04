@@ -14,9 +14,13 @@
 	<section class="portfolio">
 		<div class="container">
 			<div id="menu" style="text-align:left">
-				<button id="empallsearch">전체보기</button><button id="empinsert">사원추가</button>
+			
+				<!-- <button id="empallsearch">전체보기</button> -->
+				<button id="empinsert" onclick='location.href="insert.htm"'>사원추가</button>
+				
 			</div>
-			<div id="tablespace" class="table-responsive">
+			
+			<div id="tablespace" >
 				<table>
 					<thead>
 						<tr>
@@ -33,9 +37,6 @@
 					</thead>
 					<tbody class="mybox emp">
 						<c:forEach items="${list}" var="emp" >
-							<script type="text/javascript">
-								console.log("zzzzzz");
-							</script>
 							<tr>
 								<td>${emp.empno}</td>
 								<td>${emp.ename}</td>
@@ -45,8 +46,8 @@
 								<td>${emp.sal}</td>
 								<td>${emp.comm}</td>
 								<td>${emp.deptno}</td>
-								<td><a href='#'>수정</a></td>
-								<td><a href='#'>삭제</a></td>
+								<td><a href='update.htm?empno=${emp.empno}'>수정</a></td>
+								<td><a href='del.htm?empno=${emp.empno}'>삭제</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -10,6 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select empno , ename, job, nvl(mgr,0) as mgr , hiredate , sal,nvl(comm,0) as comm , deptno 
 		from emp 
 		order by empno
+		<if test="column != null">
+		where empno=${empno}
+		
+		</if>
 	</select>
 
 	<!-- insertBoard(글 입력하기) -->

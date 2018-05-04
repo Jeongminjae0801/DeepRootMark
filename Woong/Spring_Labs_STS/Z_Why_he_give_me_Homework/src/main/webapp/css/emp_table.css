@@ -15,6 +15,7 @@
 	}
 	
 	th {
+		text-align : center;
 		border: .1em solid #fff;
 		background-color: #dcfbff;
 		font-weight: bold;

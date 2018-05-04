@@ -22,8 +22,7 @@
     <!-- Custom scripts for this template -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<!-- <script src="js/jquery.tablesorter.min.js"></script>
-	<script src="js/3group.js"></script> -->
+	<script src="js/jquery.tablesorter.min.js"></script>
 
 	
 </head>
