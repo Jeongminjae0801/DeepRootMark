@@ -1,0 +1,109 @@
+	a {
+		color: black;
+	}
+	
+	table { 
+		border-spacing: 0px;
+		border: 1px;
+		width: 100%;
+		text-align: center;
+	}
+	
+	td {
+		border: .1em solid #F0F0F0;
+		padding: 5px;
+	}
+	
+	th {
+		border: .1em solid #fff;
+		background-color: #dcfbff;
+		font-weight: bold;
+		font-size: 14pt;
+	}
+	
+	table tr:nth-child(even) {
+		color: #000;
+		background: #dcfbff
+	}
+	
+	table tr:nth-child(odd) {
+		color: #000;
+		background: #FFF
+	}
+	
+	table tr:hover {
+		background-color: #ffffbb;
+	}
+
+	.mybox input{
+		height:25px;
+		width: 100%;
+		text-align: center;
+	
+	}
+
+	#search, #deptsearch, #empsearch {
+		width: 150px; 
+		height: 40px;
+		font-size: 1.6em;
+		position: relative;
+		margin-bottom: 5px;
+		margin-left: 3px;
+	}
+
+	#deptno {
+		height:40px;
+		width:80px;	
+		padding-top:.375rem;
+		padding-bottom:.375rem;
+		font-size:125%;
+		float : left;
+	}
+	
+	button {
+		background: #1AAB8A;
+		color: #fff;
+		border: none;
+		position: relative;
+		height: 40px;
+		font-size: 1.6em;
+		padding: 0 2em;
+		cursor: pointer;
+		transition: 800ms ease all;
+		outline: none;
+		margin-bottom: 5px;
+		margin-left: 3px;
+	}
+	
+	button:hover {
+		background: #fff;
+		color: #1AAB8A;
+	}
+	
+	button:before, button:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 2px;
+		width: 0;
+		background: #1AAB8A;
+		transition: 400ms ease all;
+	}
+	
+	button:after {
+		right: inherit;
+		top: inherit;
+		left: 0;
+		bottom: 0;
+	}
+	
+	button:hover:before, button:hover:after {
+		width: 100%;
+		transition: 800ms ease all;
+	}
+	
+	#empinsert, #empallsearch, #deptinsert, #deptallsearch, #allsearch, #allinsert {
+		float : right;
+	}
+	
