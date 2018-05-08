@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+ 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ 						http://www.springframework.org/schema/beans/spring-beans.xsd
+  						http://www.springframework.org/schema/security 
+  						http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+
+<!-- 
+	1단계: 인증과 권한 기본 설정: in-memory 방식의 사용자 설정.
+<security:http auto-config="true">
+	<security:intercept-url pattern="/customer/noticeDetail.htm" access="hasRole('ROLE_USER')" />
+  	<security:intercept-url pattern="/customer/noticeReg.htm" access="hasRole('ROLE_ADMIN')"/>
+</security:http>
+
+<security:authentication-manager>
+	<security:authentication-provider>
+      	<security:user-service>
+       		<security:user name="kglim" password="1004" authorities="ROLE_USER"/>
+       		<security:user name="admin" password="1004" authorities="ROLE_ADMIN,ROLE_USER"/>
+      	</security:user-service>
+ 	</security:authentication-provider>
+</security:authentication-manager>
+ -->
+ 
+<!-- 
+	2단계:	
+		Controller 처리 자동...
+		/login 처리
+		/logout 처리는 하고 있지 않아요 (Spring 설정)
+	사용자가 직접 /login, /logout 처리 가능하다!
+ -->
+<security:http auto-config="true">
+	<security:csrf disabled="true"/>
+	<security:form-login login-page="/joinus/login.htm" authentication-failure-url="/joinus/login.htm?error" />
+	<security:logout logout-success-url="/index.htm" />
+	<security:intercept-url pattern="/customer/noticeDetail.htm" access="hasRole('ROLE_USER')"/>
+	<security:intercept-url pattern="/customer/noticeReg.htm" access="hasRole('ROLE_ADMIN')" />
+</security:http>
+<security:authentication-manager>
+	<security:authentication-provider>
+      	<security:user-service>
+       		<security:user name="kglim" password="1004" authorities="ROLE_USER"/>
+       		<security:user name="admin" password="1004" authorities="ROLE_ADMIN,ROLE_USER"/>
+      	</security:user-service>
+ 	</security:authentication-provider>
+</security:authentication-manager>
+</beans>
