@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+      					   http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<context:annotation-config />
+<context:component-scan base-package="ncontroller" />
+<context:component-scan base-package="service" />
+
+<bean id="memberDao" class="dao.NewMemberDao"></bean>
+
+<!--Tiles 설정 (Bean 객체 생성 주입) -->
+<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	 <property name="definitions">
+		  <list>
+		   <value>/WEB-INF/Tiles.xml</value>
+		  </list>
+	 </property>
+</bean>
+
+<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+ 	<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+</bean> 
+
+<!-- Transaction 만들기 
+	Root 쪽에 있는 빈객체의 id(주소)를 
+	Child 쪽에서 참조 ref 가능하다 ^^
+-->
+ <bean id="transactionManager" 
+   class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+   	<property name="dataSource" ref="driverManagerDataSource" /> 
+ </bean>
+
+<!-- 
+	AOP 기반 (x)
+	(xml 기반) Annotation @Transactional
+	tx:annotation-driven >> @Transactional 자동 처리지원  DataSourceTransactionManager 관리를 받는다
+	
+	Ex) @Autowired 사용할려면 ....> 별도의 빈객체
+ 	    org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcess 등록
+ 	        자동화 : context:annotation-config
+ -->
+  <tx:annotation-driven transaction-manager="transactionManager"/><!-- "org.springframework.jdbc.datasource.DataSourceTransactionManager -->
+</beans>
+
+
+
+
