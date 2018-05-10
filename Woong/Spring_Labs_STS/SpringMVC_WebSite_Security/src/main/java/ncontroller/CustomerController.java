@@ -2,6 +2,7 @@ package ncontroller;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,8 +95,8 @@ public class CustomerController {
 	
 	//글쓰기 (처리)
 	@RequestMapping(value="noticeReg.htm",method=RequestMethod.POST)
-	public String noticeReg(Notice n, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
-	   
+	public String noticeReg(Notice n, HttpServletRequest request, Principal principal) throws IOException, ClassNotFoundException, SQLException {
+																// 인증 객체 Injection
 	   List<CommonsMultipartFile> files = n.getFiles();
 	   List<String> filenames = new ArrayList<String>(); //파일명 담아넣기 (DB Insert)
 	   
@@ -108,15 +113,29 @@ public class CustomerController {
 					fs.close();
 				}
 				filenames.add(filename); //DB insert 파일명	
-		   }
-	   }
-	   //실 DB INSERT
-	   n.setFileSrc(filenames.get(0));
-	   n.setFileSrc2(filenames.get(1));
+		   	}
+	   	}
+	   	//실 DB INSERT
+	   	n.setFileSrc(filenames.get(0));
+	   	n.setFileSrc2(filenames.get(1));
 	   
-	   NoticeDao dao = session.getMapper(NoticeDao.class);
-	   dao.insert(n);
-	   return "redirect:notice.htm";
+		/*****************************************************************************
+		 * security 처리 인증 사용자 정보 얻기 **************************************************/
+		/*SecurityContext context = SecurityContextHolder.getContext();	// 설정에 대한 전체 정보
+		Authentication auth = context.getAuthentication();	// 인증 관련
+		UserDetails userinfo = (UserDetails)auth.getPrincipal();
+		System.out.println(userinfo.getAuthorities());	// 권한 정보
+		System.out.println(userinfo.getUsername());	//회원 ID (로그인한 정보)
+		System.out.println(userinfo.getPassword());	
+			
+		n.setWriter(userinfo.getUsername());*/
+		/*****************************************************************************/
+	   	//구체적인 권한 정보를 알 필요가 없다면, 아래와 같이 제일 간단한 방법으로 할 수 있음
+	   	n.setWriter(principal.getName());
+	   
+	   	NoticeDao dao = session.getMapper(NoticeDao.class);
+	   	dao.insert(n);
+	   	return "redirect:notice.htm";
 	}
 
 	//글삭제하기
@@ -162,7 +181,7 @@ public class CustomerController {
 		// 실 DB INSERT
 		n.setFileSrc(filenames.get(0));
 		n.setFileSrc2(filenames.get(1));
-		
+
 		NoticeDao dao = session.getMapper(NoticeDao.class);
 		dao.update(n);
 		return "redirect:noticeDetail.htm?seq=" + n.getSeq();

@@ -4,6 +4,7 @@ Spring security @PreAuthorize @PostAuthorize 어노테이션 활용 #1
 
 @PreAuthorize @PostAuthorize 어노테이션은 
 인자값과 결과값을 이용해서 인증을 검사하는 역활을 한다.
+
 게시판에 작성된 글을 수정하려면 본인 글인지 먼저 확인해야 한다. 
 그럴때 사용하면 유용한 어노테이션이다.
 

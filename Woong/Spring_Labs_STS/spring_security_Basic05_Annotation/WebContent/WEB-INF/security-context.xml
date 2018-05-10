@@ -16,7 +16,7 @@
 <security:authentication-manager>
 	<security:authentication-provider>
 		<security:user-service>
-			<security:user name="kglim" password="1004" authorities="ROLE_READ,ROLE_WRITE"/>
+			<security:user name="admin" password="1004" authorities="ROLE_READ,ROLE_WRITE"/>
 			<security:user name="hong"  password="1004" authorities="ROLE_WRITE" />
 			<!-- 1. ROLE_READ > 2. ROLE_WRITE 전환 -->
 		</security:user-service>

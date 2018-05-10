@@ -7,8 +7,6 @@
   						http://www.springframework.org/schema/security 
   						http://www.springframework.org/schema/security/spring-security.xsd">
 
-
-
 <!-- 
 	1단계: 인증과 권한 기본 설정: in-memory 방식의 사용자 설정.
 <security:http auto-config="true">
@@ -32,7 +30,7 @@
 		/login 처리
 		/logout 처리는 하고 있지 않아요 (Spring 설정)
 	사용자가 직접 /login, /logout 처리 가능하다!
- -->
+
 <security:http auto-config="true">
 	<security:csrf disabled="true"/>
 	<security:form-login login-page="/joinus/login.htm" authentication-failure-url="/joinus/login.htm?error" />
@@ -48,4 +46,30 @@
       	</security:user-service>
  	</security:authentication-provider>
 </security:authentication-manager>
+ -->
+
+<!-- 
+	3단계: In-Memory 방식에서 DB연동 방식으로 
+-->
+<security:http>
+	<security:csrf disabled="true"/>
+	<security:form-login login-page="/joinus/login.htm" authentication-failure-url="/joinus/login.htm?error" />
+	<security:logout logout-success-url="/index.htm" />
+	
+	<security:intercept-url pattern="/customer/*Edit.htm" access="hasRole('ROLE_USER')" />
+	<security:intercept-url pattern="/customer/*Reg.htm" access="hasRole('ROLE_USER')" />
+  	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+</security:http>
+
+<security:authentication-manager>
+	<security:authentication-provider>
+      	<security:jdbc-user-service data-source-ref="driverManagerDataSource"
+      								users-by-username-query="SELECT USERID, pwd AS PASSWORD, 1 enabled FROM member WHERE userid=?"
+      								authorities-by-username-query="select m.userid, r.ROLE_NAME 
+															 	   from member m join roll r on m.userid = r.userid
+															 	   where m.userid=?" />
+		<security:password-encoder ref="bCryptPasswordEncoder"/>
+ 	</security:authentication-provider>
+</security:authentication-manager>
+
 </beans>

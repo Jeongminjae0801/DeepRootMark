@@ -10,8 +10,6 @@
 	<context:annotation-config />
 	<context:component-scan base-package="ncontroller" />
 
-	<!-- 회원 -->
-	<bean id="memberDao" class="dao.NewMemberDao"></bean>
 	
 	<!-- Tiles 설정 (Bean 객체 생성 주입) -->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
@@ -23,8 +21,7 @@
 	</bean>
 	
 	<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
 	<!-- Tiles 설정 END -->
 </beans>

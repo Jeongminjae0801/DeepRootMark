@@ -399,7 +399,7 @@ where m.userid='admin';
 SELECT USERID ,pwd AS PASSWORD , 1 enabled ,'ROLE_USER' ROLL_NAME
 FROM member WHERE userid=?     
  
-[ JDBC _2 ] => security-context.xml 코드 수정
+[ JDBC_2 ] => security-context.xml 코드 수정
  주석처리
   <!--  DB연결하지 않고 in-memory 처리  
        <security:user-service>
@@ -436,6 +436,10 @@ FROM member WHERE userid=?
    -->
   <security:intercept-url pattern="/customer/*Reg.htm" access="ROLE_USER" />
   <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+  
+  <!-- 변경전 -->
+  <security:intercept-url pattern="/customer/noticeDetail.htm" access="hasRole('ROLE_USER')"/>
+  <security:intercept-url pattern="/customer/noticeReg.htm" access="hasRole('ROLE_ADMIN')" />
 ^^
 
 **실습 테이블 -1**    

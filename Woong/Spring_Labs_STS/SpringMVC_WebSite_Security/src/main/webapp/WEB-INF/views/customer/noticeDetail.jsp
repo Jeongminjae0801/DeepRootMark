@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <div id="content">
 	<h2>공지사항</h2>
 	<h3 class="hidden">방문페이지위치</h3>
@@ -40,9 +42,16 @@
 		<div class="article-content">${notice.content}</div>
 	</div>
 	<p class="article-comment margin-small">
-		<a class="btn-list button" href="notice.htm">목록</a> <a
-			class="btn-edit button" href="noticeEdit.htm?seq=${notice.seq}">수정</a>
-		<a class="btn-del button" href="noticeDel.htm?seq=${notice.seq}">삭제</a>
+		<a class="btn-list button" href="notice.htm">목록</a> 
+		
+		<se:authorize access="hasRole('ROLE_USER') AND hasRole('ROLE_ADMIN')">
+			<a class="btn-edit button" href="noticeEdit.htm?seq=${notice.seq}">수정</a>
+		</se:authorize>
+
+		<se:authorize access="hasRole('ROLE_USER') AND hasRole('ROLE_ADMIN')">
+			<a class="btn-del button" href="noticeDel.htm?seq=${notice.seq}">삭제</a>
+		</se:authorize>
+		
 	</p>
 	<div class="margin-small" style="border-top: 1px solid #dfdfdf;">
 		<dl class="article-detail-row">

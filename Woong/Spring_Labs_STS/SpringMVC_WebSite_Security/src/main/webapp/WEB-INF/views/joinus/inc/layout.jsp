@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>      
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +8,9 @@
 	<title>
 		<!-- title 영역 -->
 		<tiles:getAsString name="title" />
+	
 	</title>
-		<!-- css 영역 -->
-		<link href='<tiles:getAsString name="css" />' type="text/css" rel="stylesheet">
+	<link href="notice.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 		<!-- Header  영역 -->
@@ -19,15 +19,14 @@
 		<tiles:insertAttribute name="visual" />
 		<div id="main">
 			<div class="top-wrapper clear">
-				 <!-- Content 영역 -->
-				 <tiles:insertAttribute name="content" />
-				 <!-- Aside  영역 -->
-				 <tiles:insertAttribute name="aside" />
+				<!-- Aside  영역 -->
+			 	<tiles:insertAttribute name="aside" />
+			 	<!-- Content 영역 -->
+			 	<tiles:insertAttribute name="content" />
 			</div>
 		</div>
 		
 		<!-- Footer 영역 -->
 		<tiles:insertAttribute name="footer" />
-		
 </body>
 </html>
