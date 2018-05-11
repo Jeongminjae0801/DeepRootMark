@@ -1,13 +1,13 @@
 package kosta.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.tribes.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
-
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 
 import kosta.vo.Employee;
 import kosta.vo.TestVO;
@@ -41,9 +39,7 @@ public class AjaxController {
 		list.add("치킨피자");
 		
 		map.addAttribute("menu", list);
-
-		//private View jsonview 타입으로 리턴 //[Model , ModelMap , ModelAndView]
-		//데이터를 객체(JSON)담아 놓으면  자동 ..... 
+		
 		return jsonview;  //private View jsonview 타입으로 리턴
 	}
 	@RequestMapping(value="json2.kosta")
@@ -91,67 +87,68 @@ public class AjaxController {
 		
 	}
 	@RequestMapping(value="/json4.kosta" , method = RequestMethod.POST)
-	public void testType(@RequestParam(value="aaa[]", required=false) String[] aaa,
-						 @RequestParam(value="bbb", required=true) String bbb,
-						 String ccc) {
-		
-		Map<String, Object> result = new HashMap<String, Object>(); 
-		      
-		// Array Request
-		try{
-		 for(int i=0,cnt=aaa.length; i<cnt; i++) System.out.println(aaa[i]);
-		}catch(Exception e) {
-			
-		}
-		 
-		// String Request
-		System.out.println(bbb);
-		System.out.println(ccc); 
-		// JSONArray Request
-		/*JsonArrayFormatVisitor jArr = new JSONArray();
-		try {
+	public void testType(
+			@RequestParam(value="aaa[]", required=false) String[] aaa,
+			@RequestParam(value="bbb", required=true) String bbb,
+			String ccc
+			) 
+	{
+			Map<String, Object> result = new HashMap<String, Object>(); 
+			      
+			// Array Request
+			try{
+			 for(int i=0,cnt=aaa.length; i<cnt; i++) System.out.println(aaa[i]);
+			}catch(Exception e) {
+				
+			}
+			 
+			// String Request
+			System.out.println(bbb);
+			System.out.println(ccc); 
+			// JSONArray Request
+			/*JSONArray jArr = new JSONArray();
+			try {
 			jArr = new JSONArray(ccc);
-		} catch (JSONException e1) {
+			} catch (JSONException e1) {
 			e1.printStackTrace();
-		}
-		 
+			}
+			 
 
-		// control JSONObject
-		JSONObject jObj = new JSONObject();
-		try {
+			// control JSONObject
+			JSONObject jObj = new JSONObject();
+			try {
 			jObj.put("이름","철수");
-		} catch (JSONException e1) {
+			} catch (JSONException e1) {
 			e1.printStackTrace();
-		}
-		
-		try {
+			}
+			try {
 			jObj.put("주소","서울");
-		} catch (JSONException e1) {
+			} catch (JSONException e1) {
 			e1.printStackTrace();
-		} 
-		String data = jObj.toString();
-		System.out.println(data);
-		 
-		// control JSONArray
-		JSONArray ja = new JSONArray();
-		JSONObject order = new JSONObject();
-		String rrr = "";
-		String Json = "[{\"Product\" : \"Mouse\", \"Maker\":\"Samsung\", \"Price\":23000},"
-		               + "{\"Product\" : \"KeyBoard\", \"Maker\":\"LG\", \"Price\":12000},"
-		               + "{\"Product\":\"HDD\", \"Maker\":\"Western Digital\", \"Price\":156000}]";
-		try{
+			} 
+			String data = jObj.toString();
+			System.out.println(data);
+			 
+			// control JSONArray
+			JSONArray ja = new JSONArray();
+			JSONObject order = new JSONObject();
+			String rrr = "";
+			String Json = "[{\"Product\" : \"Mouse\", \"Maker\":\"Samsung\", \"Price\":23000},"
+			               + "{\"Product\" : \"KeyBoard\", \"Maker\":\"LG\", \"Price\":12000},"
+			               + "{\"Product\":\"HDD\", \"Maker\":\"Western Digital\", \"Price\":156000}]";
+			try{
 			ja = new JSONArray(Json);
 			for (int i = 0; i < ja.length(); i++){
-				order = ja.getJSONObject(i);
-				rrr += 	"product: " + order.getString("Product") + ", maker: " + order.getString("Maker") +
-						", price: " + order.getInt("Price") + "\n";
-				}
-		}
-		catch (JSONException e){ ;}
+			order = ja.getJSONObject(i);
+			rrr += "product: " + order.getString("Product") + ", maker: " + order.getString("Maker") +
+			", price: " + order.getInt("Price") + "\n";
+			}
+			}
+			catch (JSONException e){ ;}
 
-		return result;  */
-	
-		}
+			return result;  */
+		
+			}
 			 
 			
 }

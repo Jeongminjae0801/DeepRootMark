@@ -125,8 +125,6 @@
         	<artifactId>spring-security-taglibs</artifactId>
         	<version>4.0.1.RELEASE</version>
     	</dependency>
-    	
-    	
     	<!-- jackson  lib  -->
     	<dependency>
     		<groupId>com.fasterxml.jackson.core</groupId>
