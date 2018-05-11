@@ -74,9 +74,11 @@
 				</ul>
 				<h3 class="hidden">회원메뉴</h3>
 				<ul id="membermenu" class="clear">
+				<se:authorize access="hasAnyRole('ROLE_USER,ROLE_ADMIN')">
 					<li>
 						<a href="${pageContext.request.contextPath}/member/confirm.htm"><img src="${pageContext.request.contextPath}/images/menuMyPage.png" alt="마이페이지" /></a>
 					</li>
+				</se:authorize>
 					<li>
 						<a href="${pageContext.request.contextPath}/customer/notice.htm">
 						<img src="${pageContext.request.contextPath}/images/menuCustomer.png" alt="고객센터" /></a>

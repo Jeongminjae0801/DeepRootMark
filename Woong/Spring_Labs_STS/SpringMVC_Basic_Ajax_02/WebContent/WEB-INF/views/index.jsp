@@ -41,53 +41,53 @@ Table.GridOne Td {
 		});  */
 	
 		 
-   /* 	 $.ajax({
- 			type: "post",
- 			url:  "response.kosta",
- 			cache: false,				
- 			data:'firstName=' + $("#firstName").val() + "&lastName=" + $("#lastName").val() + "&email=" + $("#email").val(),
- 		    success:function(data){ //callback  
- 		    	 console.log(data);
- 		    	$("#menuView").empty();
- 		        var resv="";  
- 		        $("#menuView").append("First Name:- " + data.firstname +"</br>Last Name:- " + data.lastname  + "</br>Email:- " + data.email + "<br>");
- 		         
- 		     },
- 			error: function(){						
- 				alert('Error while request..'	);
- 			}
- 		});
-		 */
+  	/* $.ajax({
+		type: "post",
+		url:  "response.kosta",
+		cache: false,				
+		data:'firstName=' + $("#firstName").val() + "&lastName=" + $("#lastName").val() + "&email=" + $("#email").val(),
+	    success:function(data){ //callback  
+	    	 console.log(data);
+	    	$("#menuView").empty();
+	        var resv="";  
+	        $("#menuView").append("First Name:- " + data.firstname +"</br>Last Name:- " + data.lastname  + "</br>Email:- " + data.email + "<br>");
+	         
+	     },
+		error: function(){						
+			alert('Error while request..'	);
+		}
+	});
+		*/	
 		
-		 var _param = {firstname:$("#firstName").val(), lastname:$("#lastName").val() , email:$("#email").val()};
-
-		 _data = JSON.stringify(_param); //jsonString으로 변환
-   	     alert(_data);
+	var _param = {firstname:$("#firstName").val(), lastname:$("#lastName").val() , email:$("#email").val()};
+	
+	_data = JSON.stringify(_param); //jsonString으로 변환
+	alert(_data); 
    	 
    	 
-   	$.ajax({
+   $.ajax({
    			  type : 'POST',
-   			  url : "response2.kosta",
+   			  url : "idcheck.kosta",
    			  cache: false,
    			  dataType: "json",
-   			  data: _data,  
+   			  data: {userid: "user"},  
    			  processData: false,
    			  contentType: "application/json; charset=utf-8",
    			  success : function(data, status){
-   			      console.log("status:"+status+","+"data:"+data);
-   			      alert(data.email);
+   			     
+   			      alert(data.msg);
    			  },
    			  error: function(request, status, error){
-   			      //alert("loading error:" + request.status);
-   			      console.log("code : " +  request.statusText  + "\r\nmessage : " + request.responseText);
+   			      alert("loading error:" + request.status);
+   			      //console.log("code : " +  request.statusText  + "\r\nmessage : " + request.responseText);
    			   
    			 }
-   			});
+   	});
 
 
    		
 		 
-	 }  
+	}  
  
 </script>
 </head>

@@ -1,16 +1,20 @@
 package ncontroller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import dao.MemberDao;
 import service.JoinService;
 import vo.Member;
+import vo.Message;
 
 @Controller
 @RequestMapping("/joinus/")
@@ -49,8 +53,19 @@ public class JoinController {
 			viewpage = "join.htm";
 		}
 		
-		return viewpage; //주의 (website/index.htm
+		return viewpage; 
 		
+	}
+	
+	@RequestMapping(value="idcheck.htm", produces="application/json; charset=UTF-8", method=RequestMethod.POST)
+	public @ResponseBody Message jsonkosta(String userid){
+		System.out.println("tlltltltqkfkfkqkfkf:" + userid);
+		Message message = new Message();
+
+		message.setMsg("hello");
+		
+		System.out.println(message);
+		return message;  //private View jsonview 타입으로 리턴
 	}
 	
 	//로그인 페이지
@@ -59,4 +74,6 @@ public class JoinController {
 		//return "join.jsp";
 		return "joinus.login"; //폴더명.파일명
 	}
+	
+	
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+	
 <div id="content">
 	<form action="" method="post">
 		<h2>회원가입</h2>
@@ -12,8 +15,8 @@
 			<dl class="join-form-row">
 				<dt class="join-form-title">아이디</dt>
 				<dd class="join-form-data">
-					<input type="text" name="userid" /> <input id="btnCheckUid"
-						class="button" type="button" value="중복확인" />
+					<input id="inputUid" type="text" name="userid" /> 
+					<input id="btnCheckUid" class="button" type="button" value="중복확인" />
 				</dd>
 			</dl>
 			<dl class="join-form-row">

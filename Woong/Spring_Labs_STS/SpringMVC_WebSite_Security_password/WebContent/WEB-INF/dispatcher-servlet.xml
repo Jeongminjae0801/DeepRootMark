@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" 
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context 
-                           http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context/spring-context.xsd
+						   http://www.springframework.org/schema/mvc
+						   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 <!-- 
      미리 필요한 class 생성되어 있고
@@ -19,6 +22,9 @@
  @Component      그 외에 자동으로 스캔해서 등록하고 싶은 것들을 위해 사용
  -->
 <context:annotation-config />
+<!-- @ResponseBody  messageConverter : JSON 변환.. 동작-->
+<mvc:annotation-driven /> 
+
 <context:component-scan base-package="ncontroller" />
 <context:component-scan base-package="service" />
 
@@ -26,17 +32,17 @@
 <!-- <bean id="memberDao" class="dao.NewMemberDao"></bean> -->
 
 <!-- Tiles 설정하기   -->
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-	 <property name="definitions">
-	  <list>
-	   <value>/WEB-INF/Tiles.xml</value>
-	  </list>
-	 </property>
-	</bean>
+<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+ 	<property name="definitions">
+		<list>
+			<value>/WEB-INF/Tiles.xml</value>
+		</list>
+	</property>
+</bean>
 <!-- Tiles 관련 Resolver 구성  -->
-	<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-	 	<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
-	</bean> 
+<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+ 	<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+</bean>
 </beans>
 
 
