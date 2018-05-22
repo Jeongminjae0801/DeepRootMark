@@ -137,17 +137,18 @@
   			<version>1.2.2</version>
   		</dependency>
   		<!-- Oracle local 저장소 -->
-  		<dependency>
+  		<!-- <dependency>
   			<groupId>com.oracle</groupId>
   			<artifactId>ojdbc</artifactId>
   			<version>11</version>
-  		</dependency>
-  		<!-- <dependency> 
+  		</dependency> -->
+  		<!-- Repository Oracle DB 들고 옴 -->
+  		<dependency> 
 	     	<groupId>com.oracle</groupId> 
 	     	<artifactId>ojdbc6</artifactId> 
 	     	<version>12.1.0.1</version> 
 	     	<scope>runtime</scope> 
-		</dependency> -->
+		</dependency>
 		<!--jdbc ,tx -->
 		<dependency>
     		<groupId>org.springframework</groupId>

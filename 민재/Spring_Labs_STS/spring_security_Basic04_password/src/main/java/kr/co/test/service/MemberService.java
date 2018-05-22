@@ -1,6 +1,6 @@
 package kr.co.test.service;
 
-import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSession; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class MemberService {
 		MemberDAO dao = sqlsession.getMapper(MemberDAO.class);
 		int result = dao.updateMember(member);
 		if(result > 0){
-			System.out.println("업데이트 성고");
+			System.out.println("업데이트 성공");
 		}else{
 			System.out.println("업데이트 실패");
 		}

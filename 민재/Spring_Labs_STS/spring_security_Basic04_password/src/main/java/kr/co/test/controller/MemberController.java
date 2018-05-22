@@ -41,7 +41,7 @@ public class MemberController {
 		//DB에서 가져온 암호화된 문자열
 		String encodedPassword = member.getPwd();
 		
-		System.out.println("rowPassword : "+rawPassword );
+		System.out.println("rowPassword : " + rawPassword );
 		System.out.println("encodepassword : " + encodedPassword);
 		
 		boolean result = bCryptPasswordEncoder.matches(rawPassword, encodedPassword);

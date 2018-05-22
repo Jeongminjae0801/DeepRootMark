@@ -30,6 +30,16 @@
 </security:http>
 
 
+<!-- 
+	/login 컨트롤러를 구현하지 않았다 -> 사용자가 입력한 id, pwd 가지고 처리하는 로직
+	select userid, pwd as password, 1 enabled from member where userid='test'
+	
+	결과를 가지고 -> 사용자가 있으면 입력한 password 비교하는 DB password 작업을 하지 않음
+	
+	로그인 처리를 <security:password-encoder ref="bCryptPasswordEncoder"/> 한 줄로 처리함
+
+ -->
+
 
 <security:authentication-manager>
 	<security:authentication-provider>

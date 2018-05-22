@@ -24,7 +24,10 @@ modify (pwd varchar2(200));
 4. MemberDAO 인터페이스
               //회원가입
 	public int insertMember(Member member);
-             
+
+              // 로그인
+
+
               //회원수정
 	public int updateMember(Member member);
 
@@ -40,8 +43,10 @@ modify (pwd varchar2(200));
    사용자 입력 : rawPassword >  1111
    DB 비번     : encodedPassword > $2a$10$wz7BhLkBKPV164JGmtEf4.9e9dn1ji6ABDC7cw9PxghN4o6BVaXhy
 
+회원 : enabled >> 1 (member 테이블)
+권한 : ROLE_USER (Roll 테이블)
 
-6. 회원 가입시 
+6. 회원 가입시 (반드시 회원은 권한을 가지고 있어야) ********
     roll 테이블에  기본 권한을 가지고 있어야 한다
    insert into roll
    values('park','ROLE_ADMIN');

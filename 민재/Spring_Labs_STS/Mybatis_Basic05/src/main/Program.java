@@ -1,6 +1,6 @@
 package main;
 
-import org.apache.ibatis.session.SqlSession; 
+import org.apache.ibatis.session.SqlSession;  
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.kosta.dto.User;

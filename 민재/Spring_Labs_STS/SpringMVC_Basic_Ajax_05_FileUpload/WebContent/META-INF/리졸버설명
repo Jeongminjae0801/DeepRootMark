@@ -1,0 +1,52 @@
+ViewResolver
+뷰 리졸버는 핸들러 매핑이 URL로부터 컨트롤러를 찾아주는 것처럼, 뷰 이름으로부터 사용할 뷰 오브젝트를 찾아줌
+뷰 리졸버는 매핑되는 View객체를 리턴, 매핑되는 View 객체가 전달되지 않으면 null을 리턴
+Controller가 넘긴 view 이름을 통해 알맞는 view 
+1. Controller는 ModelAndView 객체에 응답할 view 이름을 넣어 리턴
+ 2. DispatcherServlet은 viewResolver에게 응답할 view를 요청
+ 3. viewResolver는 view 이름을 이용해 알맞은 view 객체를 찾아 DispatcherServlet에게 전달
+- 뷰 리졸버를 빈으로 등록하지 않으면, DispatcherServlet의 디폴트 뷰 리졸버인 InternalResourceResolver가 사용
+- 핸들러 매핑과 마찬가지로 뷰 리졸버도 하나 이상의 빈으로 등록해서 사용가능
+  -> 이 때는 order 프로퍼티를 사용해 리졸버의 적용 순서를 지정해주는 것이 좋다
+
+*InternalResourceViewResolver
+- 뷰 리졸버를 지정하지 않았을 때 자동등록 되는 디폴트 뷰 리졸버
+- 논리적인 View 이름을 사용하여 템플릿 파일 장원을 사용하여 랜더링 되는 View 객체를 결정
+- 주로 JSP를 뷰로 사용하고자 할 때 사용
+- 테스트용의 단순한 예제를 만드는 경우가 아니라면 디폴트로 등록된 InternalResourceViewResolver를 그대로 사용하는 것은 지양
+- prefix, suffix 프로퍼티를 이용해서 항상 앞뒤에 붙는 내용을 생략할 수 있다 
+
+
+<bean id="viewResolver"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/view/" />
+    <property name="suffix" value=".jsp" />
+    <property name="order" value="1" />
+</bean>
+Colored by Color Scripter
+cs
+
+
+*BeanNameViewResolver
+논리적인 View 이름을 사용해 DispatcherServlet의 어플리케이션 컨텍스트에 있는 View Bean을 결정 
+뷰 이름과 동일한 빈 이름을 가진 빈을 찾아서 뷰로 사용하게 해준다
+- BeanNameViewResolver는 서블릿 컨텍스트의 빈을 사용
+- 별도의 파일을 만들 필요가 없으므로 매핑할 뷰가 많지 않다면 사용하는 것이 편리
+
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" > 
+        <property name="order" value="0" />
+    </bean>
+Colored by Color Scripter
+cs
+
+*ResourceBundleViewResolver
+- 논리적인 View 이름을 사용해 ResourceBundle에 포함돼있는 View를 결정
+
+*XmlViewResolver
+- DispatcherServlet의 어플리케이션 컨텍스트와는 별도로, XML 파일로부터 View Bean을 결정
+
+
+*다중 뷰 리졸버 설정
+- 서로 다른 뷰 리졸버를 함께 사용하는 경우 order 프로퍼티를 설정해서 우선순위를 준다
+- InternalResourceViewResolver는 항상 뷰 이름이 매핑되는 뷰 객체를 리턴하므로 마지막 순위를 갖도록 지정(null 반환 X)
+   -> InternalResourceViewResolver의 order 프로퍼티에는 기본적으로 Integer.MAX값이 지정

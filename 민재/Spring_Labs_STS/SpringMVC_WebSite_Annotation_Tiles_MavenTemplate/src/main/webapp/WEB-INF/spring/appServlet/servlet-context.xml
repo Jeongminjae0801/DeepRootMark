@@ -36,8 +36,7 @@
 			>>customer/notice.jsp을 client로 보낸다.
 		}
 	-->
-	<bean id="urlBasedViewResolver"
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
