@@ -34,7 +34,7 @@ public class FileController {
 	 ****************************************************/
 	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
-		
+		System.out.println("파일 업로드 커늩롤러");
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
 		 System.out.println(itr);
