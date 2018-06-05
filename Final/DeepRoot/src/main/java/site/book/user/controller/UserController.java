@@ -1,0 +1,8 @@
+package site.book.user.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class UserController {
+
+}
