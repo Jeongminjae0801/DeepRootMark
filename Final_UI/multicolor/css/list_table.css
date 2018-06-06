@@ -1,0 +1,73 @@
+
+h2 {
+    color: #3c3c3c;
+    font-size: 25px;
+}
+
+ul {
+    padding-left: 5px;
+}
+ul > li{
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.url > a {
+    margin-bottom: 5px;
+    color: black;
+}
+
+.url > a:hover {
+    text-decoration:none;
+}
+
+.url:hover {
+    color: cadetblue;
+    border-bottom: 1px dashed cadetblue;
+    text-decoration: none; 
+}
+
+.component{
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.component_title{
+    cursor: default;
+    height: 31px;
+    text-align: left;
+    margin-bottom: 5px;
+    border-bottom: 3px solid;
+}
+
+.component_title color4 {
+    border-color: #3a9ad9;
+}
+
+.favicon {
+    width: 15px;
+    height: 15px;
+}
+
+/* 테이블 북마크 추가 */
+.add-bookmark-button{margin-top:10px;}
+   
+.add-bookmark{height:auto}
+
+.button-style-small:hover{
+    -webkit-transition:color 0.2s,
+        background-color 0.2s;-moz-transition:color 0.2s,
+        background-color 0.2s;-ms-transition:color 0.2s,
+        background-color 0.2s;-o-transition:color 0.2s,
+        background-color 0.2s;transition:color 0.2s,
+        background-color 0.2s;color:#3a9ad9;
+        background-color:#fff;}
+.add-bookmark .button-style-small{
+    color:#3a9ad9;
+    border-color:#3a9ad9;
+}
+.add-bookmark .button-style-small:hover{
+    background-color:#3a9ad9;color:#fff;
+}
