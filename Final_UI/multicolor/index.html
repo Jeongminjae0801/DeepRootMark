@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -7,22 +7,32 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>뿌리깊은마크</title>
+
+    <!-- Bootstrap Common CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
-    <!--<link href="css/lightbox.css" rel="stylesheet">-->
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
-    <link href="css/login-register.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/list_table.css" type="text/css">
+    <!-- Bootstrap Common CSS END -->
 
-    <!-- 진수형 추가 -->
+    <!-- Main Page CSS -->
+    <link href="css/mainpage/main.css" rel="stylesheet">
+    <link href="css/mainpage/header.css" rel="stylesheet">
+    <link href="css/mainpage/footer.css" rel="stylesheet">
+    <link href="css/mainpage/list_table.css" rel="stylesheet">
+    <link href="css/mainpage/responsive.css" rel="stylesheet">
+    <link href="css/mainpage/login-register.css" rel="stylesheet" />
+
+    <!-- Main Page CSS END -->
+
+
+    <!-- Login / roll-in Modal Script Start -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/script.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <!--  -->
+    <!-- Login / roll-in Modal Script Start END -->
 
     <script>
-        /**************************  테이블  **********************************/
+        /**************************  Table Start  **********************************/
         $(function() {
             $(document).on("click", ".url", function() {
                 window.open(this.dataset.url, '_blank');
@@ -45,8 +55,9 @@
                 }
             });
         });
+        /**************************  Table END  **********************************/
 
-        /* ********************스크롤 시 그림자 생기기*************************** */
+        /* ******************** Scroll Shadow Start *************************** */
         $(function() {
             var header = $('#header');
             $(window).scroll(function(e) {
@@ -59,6 +70,7 @@
                 }
             })
         });
+        /* ******************** Scroll Shadow END *************************** */
     </script>
 
 </head>
@@ -126,7 +138,101 @@
                     <div class="slide-text">
                         <p> 희준이와 떠나는 신나는 코딩 세상~!!</p>
                         <p> 태웅이와 떠나는 신비한 모험의 세계~</p>
-                    </div>
+                        <!-- Login / Roll in Button START -->
+                        <a href="javascript:void(0)" data-toggle="modal" onclick="openLoginModal();" class="btn btn-common">LOG IN</a>
+                        <a href="javascript:void(0)" data-toggle="modal" onclick="openRegisterModal();" class="btn btn-common">SIGN UP</a>
+                        <!-- Login / Roll in Button END -->
+                        </div>
+                        <!-- Login / Roll in / password find modal START -->
+                        <div class="modal fade login" id="loginModal">
+                            <div class="modal-dialog login animated">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Login with</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="box">
+                                            <div class="content">
+                                                <div class="social">
+                                                    <a class="circle github" href="/auth/github">
+                                                        <i class="fa fa-github fa-fw" ></i>
+                                                    </a>
+                                                    <a id="google_login" class="circle google" href="/auth/google_oauth2">
+                                                        <i class="fa fa-google-plus fa-fw"></i>
+                                                    </a>
+                                                    <a id="facebook_login" class="circle facebook" href="/auth/facebook">
+                                                        <i class="fa fa-facebook fa-fw"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="division">
+                                                    <div class="line l"></div>
+                                                    <span>or</span>
+                                                    <div class="line r"></div>
+                                                </div>
+                                                <div class="error"></div>
+                                                <div class="form loginBox">
+                                                    <!-- Login START -->
+                                                    <form method="post" action="/login" accept-charset="UTF-8">
+                                                        <input id="uid" class="form-control" type="text" placeholder="Email" name="uid">
+                                                        <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
+                                                        <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                                                    </form>
+                                                    <!-- Login END -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="box">
+                                            <div class="content registerBox" style="display:none;">
+                                                <!-- Roll in START -->
+                                                <div class="form">
+                                                    <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
+                                                        <input id="uid_join" class="form-control" type="text" placeholder="Email@example.com" name="uid">
+                                                        <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname">
+                                                        <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd">
+                                                        <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation">
+                                                        <input id="profile_join" class="form-control" type="text" placeholder="Greetings" name="profile">
+                                                        <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
+                                                    </form>
+                                                </div>
+                                                <!-- Roll in END -->
+                                            </div>
+                                        </div>
+                                        <div class="box">
+                                            <div class="content findBox" style="display:none;">
+                                                <!-- password find START -->
+                                                <div class="form">
+                                                    <form method="post" action="/find" accept-charset="UTF-8">
+                                                        <input id="uid_find" class="form-control" type="text" placeholder="Email" name="uid">
+                                                        <input class="btn btn-default btn-find" type="submit" value="Find account" name="commit">
+                                                    </form>
+                                                </div>
+                                                <!-- password find END -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="forgot login-footer">
+                                            <span>아직 계정이 없으신가요?
+                                                 <a class="login-form" href="javascript: showRegisterForm();">회원가입</a>
+                                            </span><br>
+                                            <span>비밀번호를 잊으셨나요?
+                                                 <a class="login-form" href="javascript: showFindForm();">비밀번호 찾기</a>
+                                            </span>
+                                        </div>
+                                        <div class="forgot register-footer" style="display:none">
+                                            <span>이미 계정을 가지고 계신가요?</span>
+                                            <a class="login-form" href="javascript: showLoginForm();">로그인</a>
+                                        </div>
+                                        <div class="forgot find-footer" style="display:none">
+                                            <span></span>
+                                            <a class="login-form" href="javascript: showLoginForm();">돌아가기</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Login / Roll in / password find modal END -->
                     <img src="images/home/slider/hill.png" class="slider-hill" alt="slider image">
                 </div>
             </div>
@@ -212,9 +318,6 @@
                                         <img class="favicon" src="https://www.google.com/favicon.ico" alt="">
                                         <p class="url" data-url="https://www.google.com/">GOOGLE</p>
                                     </li>
-                                    <!-- 
-                                    url 내용 추가
-                                    작성자 : 정민재 -->
                                      <li>
                                         <button class="preview_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
                                         <img class="favicon" src="https://www.kakao.com/favicon.ico" alt="">
@@ -246,7 +349,7 @@
                                      <li class="url" data-url="https://trello.com/">
                                         <img class="favicon" src=" https://trello.com/favicon.ico" alt="">
                                         <span>Trello</span>
-                                      </li> 
+                                      </li>
                                     <!-- end -->
                                 </ul>
                             </div>
@@ -278,11 +381,15 @@
     </footer>
     <!-- Footer END -->
 
+    <!-- Common Script START -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/lightbox.min.js"></script>
     <script type="text/javascript" src="js/wow.min.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-</body>
+    <!-- Script Common END -->
 
+    <!-- Custom Script START -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <!-- Custom Script END -->
+</body>
 </html>
