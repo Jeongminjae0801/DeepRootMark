@@ -19,6 +19,16 @@ ul > li{
     margin-bottom: 5px;
     clear: right;
 }
+
+.hr-clear {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  height: 2px;
+  background: #ccc;
+  clear: both;
+}
+
 .title{
     font-weight: 400;
 }
