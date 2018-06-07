@@ -30,6 +30,7 @@ public class AdminController {
 	
 	@RequestMapping("admin.do")
 	public String admin() {
+		System.out.println("관리자 메인 페이지");
 		return "khj.admin";
 	}
 	
