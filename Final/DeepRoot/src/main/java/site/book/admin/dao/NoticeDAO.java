@@ -6,7 +6,7 @@
 */
 
 
-package site.book.alarm.dao;
+package site.book.admin.dao;
 
 public interface NoticeDAO {
 

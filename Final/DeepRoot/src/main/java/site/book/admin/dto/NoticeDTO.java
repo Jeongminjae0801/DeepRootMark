@@ -6,7 +6,7 @@
 */
 
 
-package site.book.alarm.dto;
+package site.book.admin.dto;
 
 /**
  * @Class : NoticeDTO.java

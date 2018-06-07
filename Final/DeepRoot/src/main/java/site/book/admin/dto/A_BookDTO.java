@@ -6,7 +6,7 @@
 */
 
 
-package site.book.bookmark.dto;
+package site.book.admin.dto;
 
 /**
  * @Class : A_BookDTO.java

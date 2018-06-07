@@ -6,7 +6,7 @@
 */
 
 
-package site.book.bookmark.dao;
+package site.book.admin.dao;
 
 public interface A_BookDAO {
 

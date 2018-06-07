@@ -8,8 +8,11 @@
 
 package site.book.bookmark.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import site.book.admin.service.A_CategoryService;
 
 /**
  * @Class : BookmarkController.java
