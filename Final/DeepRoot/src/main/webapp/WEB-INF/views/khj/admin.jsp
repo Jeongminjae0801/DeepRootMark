@@ -10,7 +10,15 @@
 <body>
 	<h2>관리자 페이지</h2>
 
-	<c:forEach items="${categoryList}" var="category">
+	<c:forEach items="${gCount}" var="g">
+		<ul>
+			<li>${g.d}</li>
+			<li>${g.c}</li>
+		</ul>
+	</c:forEach>
+
+
+ 	<c:forEach items="${categoryList}" var="category">
 		<ul>
 			<li>${category.acid}</li>
 			<li>${category.acname}</li>
@@ -35,5 +43,39 @@
 		카테고리 번호 <input type="text" id="acname" name="acid">
 		<button type="submit">삭제</button>
 	</form>
+	
+	<c:forEach items="${bookList}" var="book">
+		<ul>
+			<li>${book.abid}</li>
+			<li>${book.url}</li>
+			<li>${book.urlname}</li>
+			<li>${book.regdate}</li>
+			<li>${book.view}</li>
+			<li>${book.acid}</li>
+		</ul>
+	</c:forEach>
+	
+	<h3>관리자 URL 추가</h3>
+	<form action="addBook.do" method="post">
+		URL <input type="text" id="url" name="url">
+		URLNAME <input type="text" id="urlname" name="urlname">
+		관리자 카테고리 번호 <input type="text" id="acid" name="acid">
+		<button type="submit">추가</button>
+	</form>
+	
+	<h3>관리자 URL 수정</h3>
+	<form action="updateBook.do" method="post">
+		ABID <input type="text" id="abid" name="abid">
+		URL <input type="text" id="url" name="url">
+		URLNAME <input type="text" id="urlname" name="urlname">
+		<button type="submit">수정</button>
+	</form>
+	
+	<h3>관리자 URL 삭제</h3>
+	<form action="deleteBook.do" method="post">
+		ABID <input type="text" id="abid" name="abid">
+		<button type="submit">삭제</button>
+	</form>
+	
 </body>
 </html>

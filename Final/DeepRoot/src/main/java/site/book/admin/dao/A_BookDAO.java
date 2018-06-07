@@ -27,11 +27,11 @@ public interface A_BookDAO {
 	public A_BookDTO selectBook(int abid) throws ClassNotFoundException, SQLException;
 	
 	// URL 추가하기
-	public int insertBook() throws ClassNotFoundException, SQLException;
+	public int insertBook(A_BookDTO book) throws ClassNotFoundException, SQLException;
 	
 	// URL 수정하기
-	public int updateBook() throws ClassNotFoundException, SQLException;
+	public int updateBook(A_BookDTO book) throws ClassNotFoundException, SQLException;
 	
 	// URL 삭제하기
-	public int deleteBook() throws ClassNotFoundException, SQLException;
+	public int deleteBook(int abid) throws ClassNotFoundException, SQLException;
 }
