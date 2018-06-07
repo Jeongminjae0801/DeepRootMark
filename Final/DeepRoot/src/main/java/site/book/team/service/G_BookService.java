@@ -6,7 +6,7 @@
 */
 
 
-package site.book.bookmark.service;
+package site.book.team.service;
 
 import org.springframework.stereotype.Service;
 

@@ -6,7 +6,7 @@
 */
 
 
-package site.book.alarm.dto;
+package site.book.team.dto;
 
 /**
  * @Class : G_AlarmDTO.java

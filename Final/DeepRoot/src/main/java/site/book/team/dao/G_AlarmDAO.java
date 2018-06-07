@@ -6,7 +6,7 @@
 */
 
 
-package site.book.alarm.dao;
+package site.book.team.dao;
 
 public interface G_AlarmDAO {
 

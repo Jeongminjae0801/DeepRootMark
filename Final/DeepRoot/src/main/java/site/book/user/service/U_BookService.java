@@ -6,7 +6,7 @@
 */
 
 
-package site.book.bookmark.service;
+package site.book.user.service;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import site.book.bookmark.dao.U_BookDAO;
-import site.book.bookmark.dto.U_BookDTO;
+import site.book.user.dao.U_BookDAO;
+import site.book.user.dto.U_BookDTO;
 
 @Service
 public class U_BookService {

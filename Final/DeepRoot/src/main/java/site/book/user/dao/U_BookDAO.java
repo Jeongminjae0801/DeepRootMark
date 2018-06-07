@@ -6,11 +6,11 @@
 */
 
 
-package site.book.bookmark.dao;
+package site.book.user.dao;
 
 import java.util.List;
 
-import site.book.bookmark.dto.U_BookDTO;
+import site.book.user.dto.U_BookDTO;
 
 public interface U_BookDAO {
 	

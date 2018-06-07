@@ -6,7 +6,7 @@
 */
 
 
-package site.book.alram.service;
+package site.book.team.service;
 
 import org.springframework.stereotype.Service;
 
