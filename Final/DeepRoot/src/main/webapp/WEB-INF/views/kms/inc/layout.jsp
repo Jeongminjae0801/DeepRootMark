@@ -246,6 +246,7 @@
 				.bind("select_node.jstree", function (e, data) {
 					console.log(data);
 	 					console.log(data.node.a_attr);
+	 					console.log(data.node.original);
 						console.log(" 위에 속성");
 						
 					 	var href = data.node.a_attr.href;
