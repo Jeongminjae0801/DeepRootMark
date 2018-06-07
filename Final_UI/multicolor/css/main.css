@@ -7,6 +7,11 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
 
+.category-items {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .logo-text {
     font-family: 'Gugi';
     font-size: 45px;
@@ -44,7 +49,7 @@
     margin-right:  15px;
     font-size: 15px;
     font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
-    
+
 }
 
 .header-ico {
@@ -243,7 +248,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 #header {
-    
+
     margin-bottom: 0;
     width: 100%;
     padding: 15px 0 15px 0;
@@ -255,7 +260,7 @@ h1,h2,h3,h4,h5,h6 {
 #header .navbar-inverse .container {
     position: relative;
     padding-left: 0px;
-   
+
 }
 
 .field-toggle {
@@ -439,7 +444,7 @@ ul.sub-menu {
     top: 50px;
     left: 0;
     width: 450px;
-    
+
     text-align: center;
     font-family: 'Lato', 'Spoqa Han Sans';
     font-size: 28px;
