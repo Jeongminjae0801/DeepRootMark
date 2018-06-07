@@ -20,4 +20,8 @@ public interface U_BookDAO {
 
 	public int getMaxId();
 
+	public int updateNodeText(int id, String text);
+
+	public int addFolderOrLink(U_BookDTO dto);
+
 }
