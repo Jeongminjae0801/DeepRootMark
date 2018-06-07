@@ -5,7 +5,7 @@
  * @Author : 김희준
 */
 
-package site.book.bookmark.dto;
+package site.book.admin.dto;
 
 /**
  * @Class : A_CategoryDTO.java

@@ -1,16 +1,16 @@
 /*
  * @Project : DeepRoot
- * @FileName : NoticeService.java
+ * @FileName : A_BookService.java
  * @Date : 2018. 6. 5.
  * @Author : 김희준
 */
 
 
-package site.book.alram.service;
+package site.book.admin.service;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class NoticeService {
+public class A_BookService {
 
 }
