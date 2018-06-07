@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="site.book.admin.dao.A_BookDAO">
+
+	<select id="selectAllBook" resultType="site.book.admin.dto.A_BookDTO">
+		SELECT ABID, URL, URLNAME, VIEW, ACID FROM A_BOOK
+	</select>
+	
+	<select id="selectBook" resultType="site.book.admin.dto.A_BookDTO">
+	
+	</select>
+</mapper>
