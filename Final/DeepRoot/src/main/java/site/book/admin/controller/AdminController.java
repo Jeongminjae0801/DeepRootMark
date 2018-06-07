@@ -8,7 +8,9 @@
 
 package site.book.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
+import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
+import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
+import site.book.team.service.G_BookService;
 
 /**
  * @Class : AdminController.java
@@ -32,14 +37,23 @@ public class AdminController {
 	private A_CategoryService a_CategoryService;
 	
 	@Autowired
-	private View jsonview;
+	private A_BookService a_BookService;
+	
+	@Autowired
+	private G_BookService g_BookService;
 	
 	@RequestMapping("admin.do")
 	public String admin(Model model) {
 		System.out.println("관리자 메인 페이지");
 		
-		List<A_CategoryDTO> list = a_CategoryService.getCategorys();
-		model.addAttribute("categoryList", list);
+		List<A_CategoryDTO> categoryList = a_CategoryService.getCategorys();
+		model.addAttribute("categoryList", categoryList);
+		
+		List<A_BookDTO> bookList = a_BookService.getBooks();
+		model.addAttribute("bookList", bookList);
+		
+		List<HashMap<String, String>> gCount = g_BookService.numOfBookByDate();
+		model.addAttribute("gCount", gCount);
 		
 		return "khj.admin";
 	}
@@ -75,4 +89,39 @@ public class AdminController {
 		
 		return "redirect:admin.do";
 	}
+	
+	@RequestMapping("addBook.do")
+	public String addBook(A_BookDTO book) {
+		System.out.println("관리자 URL 추가");
+		System.out.println("관리자 카테고리 \n" + book.toString());
+		
+		a_BookService.addBook(book);
+		
+		return "redirect:admin.do";
+	}
+	
+	@RequestMapping("updateBook.do")
+	public String updateBook(A_BookDTO book) {
+		System.out.println("관리자 URL 수정");
+		System.out.println("관리자 카테고리 \n" + book.toString());
+		
+		a_BookService.updateBook(book);
+		
+		return "redirect:admin.do";
+	}
+	
+	@RequestMapping("deleteBook.do")
+	public String deleteBook(String abid) {
+		System.out.println("관리자 URL 삭제");
+		System.out.println("관리자 카테고리  번호: " + abid);
+		
+		a_BookService.deleteBook(Integer.parseInt(abid));
+		
+		return "redirect:admin.do";
+	}
+	
+	
+	
+	
+	
 }
