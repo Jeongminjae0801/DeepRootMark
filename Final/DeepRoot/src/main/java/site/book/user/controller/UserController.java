@@ -33,6 +33,7 @@ public class UserController {
 	@RequestMapping("getCategoryList.do")	//해당 유저의 카테고리를 보내준다.
 	public void getCategoryList(String uid , HttpServletResponse res) {
 		
+		uid = "user1@naver.com";
 		res.setCharacterEncoding("UTF-8");
 		
 		JSONArray jsonArray = new JSONArray();	
