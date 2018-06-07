@@ -109,10 +109,10 @@
 									            		  console.log("sharing 여부")
 									            		  console.log(sharing);
 									            		  
-									            		  var form = {url : url , title : title , parent : par, sharing: sharing}
+									            		  var form = {url : url , urlname : title , pid : par, uid:  "user1@naver.com"}
 									            		  
 									            		  $.ajax({
-									            			  url: "linkAdd",
+									            			  url: "addFolderOrLink.do",
 									            			  type :"POST",
 									            			  data : form,
 									            			  success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기
@@ -143,10 +143,10 @@
 								                		 
 								                		 var foldername = $('#foldername').val();
 								                		 var sharing = 0;
-								                		 var form = {title : foldername, parent : par , sharing : sharing}
+								                		 var form = {urlname : foldername, pid : par , uid : "user1@naver.com"}
 	
 								               		  $.ajax({
-								            			  url: "folderAdd",
+								            			  url: "addFolderOrLink.do",
 								            			  type :"POST",
 								            			  data : form,
 								            			  success : function(data){
@@ -260,9 +260,11 @@
 			    	.bind('rename_node.jstree', function(event, data){
 			    		var node_id = data.node.id;
 			    		var node_text = data.text;
+			    		console.log(node_id);
+			    		console.log(node_text);
 			    		
 			    		$.ajax({
-		        			url : 'updateNodeText',
+		        			url : 'updateNodeText.do',
 		        			type: 'POST',
 		        			data: {'id' : node_id, 'text' : node_text},
 		        			success : function(result){
@@ -292,19 +294,24 @@
 			    			} 
 
 			    			console.log(child_ids);
-			    		}else{console.log("nochilde");}
+			    		}else{console.log("nochilde");
+			    			child_ids[0] = node_id;
+			    		}
 			    		
 			    		console.log(node_id);
 			    		
+			    		var form = {childs : child_ids}
+			    		
 	 		    		$.ajax({
-			    			url:'deleteNode',
-			    			type:'post',
-			    			data:JSON.stringify(child_ids),
+			    			url:'deleteNode.do',
+			    			type:'POST',
+			    			dataType : "json",
+			    			data: form,
 			    			success:function(result){
 			    				console.log(result);
 			    			}
 			    			
-			    		}) 
+			    		})  
 			    	
 			    		
 			    		
@@ -318,6 +325,88 @@
 
 	<div id="main">
 		<tiles:insertAttribute name="content" />
+	</div>
+	
+	<div class="modal fade" id="linkAdd" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<b>URL 추가</b>
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form id="form">
+						<table class="table">
+							<colgroup>
+								<col width="30%">
+								<col width="70%">
+							</colgroup>
+							<tr>
+								<td class="info" style="vertical-align: middle;">URL :</td>
+								<td><input type="text" id="url" name="url"
+									class="form-control"></td>
+							</tr>
+							<tr>
+								<td class="info" style="vertical-align: middle;">제목 :</td>
+								<td><input type="text" id="title" name="title"
+									class="form-control"></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="share"> <label
+									for="share">공유하기</label></td>
+								<td></td>
+							</tr>
+						</table>
+					</form>
+					<div class="modal-footer">
+						<!-- type="submit" value="Submit" -->
+						<button type="button" class="btn btn-default btn-sm"
+							data-dismiss="modal">취소</button>
+						<button class="btn btn-default btn-sm" id="linkAddSubmit">추가하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="folderAdd" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<b>폴더 추가</b>
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form id="form2">
+						<table class="table">
+							<colgroup>
+								<col width="30%">
+								<col width="70%">
+							</colgroup>
+							<tr>
+								<td class="info" style="vertical-align: middle;">폴더 이름</td>
+								<td><input type="text" id="foldername" name="foldername"
+									class="form-control"></td>
+							</tr>
+						</table>
+					</form>
+					<div class="modal-footer">
+						<!-- type="submit" value="Submit" -->
+						<button type="button" class="btn btn-default btn-sm"
+							data-dismiss="modal">취소</button>
+						<button class="btn btn-default btn-sm" id="folderAddsubmit">추가하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 </body>

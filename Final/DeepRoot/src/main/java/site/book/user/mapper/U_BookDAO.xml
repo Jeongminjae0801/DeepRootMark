@@ -15,5 +15,24 @@
 	<select id="getMaxId" resultType="int">
 		select max(UBID) +1 from U_BOOK
 	</select>
+	
+	<update id="updateNodeText" >
+		UPDATE U_BOOK SET URLNAME = #{1} WHERE UBID= #{0}
+	</update>
+	
+	<insert id="addFolderOrLink" parameterType="site.book.user.dto.U_BookDTO">
+		<if test="abid == 0 and htag !=null">
+			INSERT INTO U_BOOK(UBID,URL,URLNAME,REGDATE,VIEW,UID,PID,SNAME,HTAG,SDATE)
+			VALUES(#{ubid},#{url},#{urlname},SYSDATE(),0,#{uid},#{pid},#{sname},#{htag},SYSDATE())
+		</if>
+		<if test="abid == 0 and htag == null">
+		INSERT INTO U_BOOK(UBID,URL,URLNAME,REGDATE,VIEW,UID,PID)
+			VALUES(#{ubid},#{url},#{urlname},SYSDATE(),0,#{uid},#{pid})
+		</if>
+		<if test="abid != 0">
+		INSERT INTO U_BOOK(UBID,URL,URLNAME,REGDATE,VIEW,UID,PID,SNAME,HTAG,SDATE,ABID)
+			VALUES(#{ubid},#{url},#{urlname},SYSDATE(),0,#{uid},#{pid},#{sname},#{htag},#{sdate},#{abid})
+		</if>
+	</insert>
 
 </mapper>

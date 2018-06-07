@@ -10,5 +10,7 @@
 	<script type="text/javascript">
 		location.href="user/mybookmark.do";
 	</script>
+	
+	
 </body>
 </html>

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
+
 import site.book.user.dto.U_BookDTO;
 import site.book.user.service.U_BookService;
 //user/mycategory.do";
@@ -33,7 +35,7 @@ public class UserController {
 	@RequestMapping("getCategoryList.do")	//해당 유저의 카테고리를 보내준다.
 	public void getCategoryList(String uid , HttpServletResponse res) {
 		
-		uid = "user1@naver.com";
+		uid = "user1@naver.com";	//USER ID 받는거 생각하고 함
 		res.setCharacterEncoding("UTF-8");
 		
 		JSONArray jsonArray = new JSONArray();	
@@ -91,8 +93,45 @@ public class UserController {
 		}catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("updateNodeText.do")
+	public void updateNodeText(int id, String text, HttpServletResponse res) {
 		
+		int result = u_bookservice.updateNodeText(id , text);
+		System.out.println(id+text);
 		
+		try {
+			res.getWriter().println(result);
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("addFolderOrLink.do")
+	public void addFolder(U_BookDTO dto , HttpServletResponse res) {
+		
+		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
+		dto.setUbid(ubid);
+			
+		System.out.println(dto.toString());
+		int result = u_bookservice.addFolderOrLink(dto);
+		
+		try {
+			res.getWriter().println(ubid);
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("deleteNode.do")
+	public void deleNode(HttpServletRequest req) {
+		System.out.println("ddd");
+		System.out.println(req.getParameterValues("childs[]"));
+		 String[] aStr = req.getParameterValues("childs[]");
+		 for(String str : aStr){
+	            System.out.println(str);
+	        }
 	}
 
 }

@@ -47,4 +47,20 @@ public class U_BookService {
 		return maxid;
 	}
 
+	public int updateNodeText(int id, String text) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = dao.updateNodeText(id, text);
+		
+		return result;
+	}
+
+	public int addFolderOrLink(U_BookDTO dto) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = dao.addFolderOrLink(dto);
+		
+		return result;
+	}
+
 }
