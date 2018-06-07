@@ -32,6 +32,21 @@ ul > li{
 .title{
     font-weight: 400;
 }
+/***** 
+카테고리 폰트 수정 
+작성자 : 정민재   
+******/
+.bookmark-category{
+    font-family: 'Lato', 'Spoqa Han Sans';
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.input-group{
+    padding-top: 10px;
+}
+/* ****** */
+
 .bookmark-title {
    font-family: 'Lato', 'Spoqa Han Sans';
    margin-right: 30px;
