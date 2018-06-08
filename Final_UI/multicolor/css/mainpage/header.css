@@ -186,7 +186,7 @@ ul.sub-menu {
     position: fixed;
     top: 100px;
     left: 0;
-    border-radius: 0;
+    border-radius: 2px;
     z-index: 2;
 }
 
@@ -195,7 +195,7 @@ ul.sub-menu {
     width: 200px;
     padding: 10px;
     position: fixed;
-    top: 140px;
+    top: 152px;
     left: 0;
     background: #fff;
     border: solid 1px #7bbfa8;
@@ -208,12 +208,11 @@ ul.sub-menu {
 }
 
 .notice-alarm {
-    color: #fff;
-    background-color: #7bbfa8;
-    border-color: #7bbfa8;
+    background-color: #fff;
+    border-color: #f4ea3c;
 }
 .notice-sm {
-    padding: 5px 10px;
+    padding: 5px 5px;
     font-size: 15px;
     line-height: 1.5;
     border-radius: 0;
@@ -223,22 +222,15 @@ ul.sub-menu {
     font-family: "Lato",'Spoqa Han Sans';
     text-transform: uppercase;
     letter-spacing: .08em;
-    padding: 6px 12px;
+    padding: 5px 10px;
     font-size: 13px;
     line-height: 1.42857143;
     border-radius: 0;
 }
-/*
-.btn:hover {
-    color: #2c8494;
-    text-decoration: none;
-}*/
+
 .notice-alarm:hover, .notice-alarm:focus, .notice-alarm:active, .notice-alarm.active, .open>.dropdown-toggle.notice-alarm {
-    color: #E31515;
     background-color: #fff;
-    border: solid 1px #2a7d8c;
+    border: solid 1px #000;
 }
-
-
 /* Notice Alarm Style CSS END */
 
