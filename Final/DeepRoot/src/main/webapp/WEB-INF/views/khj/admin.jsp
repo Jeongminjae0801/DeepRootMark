@@ -10,6 +10,18 @@
 <body>
 	<h2>관리자 페이지</h2>
 
+	<h3>전체 회원수 : ${allUser}</h3>
+	<h3>신규 가입자수 : ${newUser}</h3>
+	
+	<h3>개인이 추가한 북마크수</h3>
+	<c:forEach items="${uCount}" var="u">
+		<ul>
+			<li>${u.d}</li>
+			<li>${u.c}</li>
+		</ul>
+	</c:forEach>
+	
+	<h3>그룹이 추가한 북마크수</h3>
 	<c:forEach items="${gCount}" var="g">
 		<ul>
 			<li>${g.d}</li>
@@ -17,7 +29,46 @@
 		</ul>
 	</c:forEach>
 
+	<h3>소셜 개인 북마크 리스트</h3>
+ 	<c:forEach items="${uBookList}" var="uBook">
+		<ul>
+			<li>${uBook.ubid}</li>
+			<li>${uBook.url}</li>
+			<li>${uBook.sname}</li>
+			<li>${uBook.uid}</li>
+			<li>${uBook.nname}</li>
+			<li>${uBook.view}</li>
+			<li>${uBook.htag}</li>
+			<li>${uBook.sdate}</li>
+		</ul>
+	</c:forEach>
 
+	<h3>소셜 개인 북마크 삭제</h3>
+	<form action="deleteSUBook.do" method="post">
+		북마크 번호 <input type="text" id="ubid" name="ubid">
+		<button type="submit">삭제</button>
+	</form>
+	
+	<h3>소셜 그룹 리스트</h3>
+ 	<c:forEach items="${sGroupList}" var="sGroup">
+		<ul>
+			<li>${sGroup.gid}</li>
+			<li>${sGroup.gname}</li>
+			<li>${sGroup.nname}</li>
+			<li>${sGroup.htag}</li>
+			<li>${sGroup.regdate}</li>
+			<li>${sGroup.duedate}</li>
+		</ul>
+	</c:forEach>
+
+	<h3>소셜 그룹 삭제</h3>
+	<form action="deleteSGroup.do" method="post">
+		그룹 번호 <input type="text" id="gid" name="gid">
+		<button type="submit">삭제</button>
+	</form>
+	
+	
+	<%-- <h3>카테고리</h3>
  	<c:forEach items="${categoryList}" var="category">
 		<ul>
 			<li>${category.acid}</li>
@@ -42,9 +93,9 @@
 	<form action="deleteCategory.do" method="post">
 		카테고리 번호 <input type="text" id="acname" name="acid">
 		<button type="submit">삭제</button>
-	</form>
+	</form> --%>
 	
-	<c:forEach items="${bookList}" var="book">
+	<%-- <c:forEach items="${bookList}" var="book">
 		<ul>
 			<li>${book.abid}</li>
 			<li>${book.url}</li>
@@ -75,7 +126,7 @@
 	<form action="deleteBook.do" method="post">
 		ABID <input type="text" id="abid" name="abid">
 		<button type="submit">삭제</button>
-	</form>
+	</form> --%>
 	
 </body>
 </html>
