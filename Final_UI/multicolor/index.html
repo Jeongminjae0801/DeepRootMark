@@ -28,7 +28,7 @@
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- Login / roll-in Modal Script Start END -->
-    
+
     <script>
         /**************************  Table Start  **********************************/
         $(function() {
@@ -136,7 +136,7 @@
     </header>
     <!-- Header END-->
         <!-- Notice Alarm Button START -->
-        <button type="button" class="btn notice-alarm notice-sm" 
+        <button type="button" class="btn notice-alarm notice-sm"
                 data-toggle="collapse" data-target="#style-switch" id="style-switch-button">
                 <img src="icon/alert.png" style="width:40px ;height: 40px;">
         </button>
@@ -508,18 +508,23 @@
 
                 <!--Preview Floating Box Area START -->
                 <div class="col-sm-6">
-                    <div id="floatMenu">
-                        <div class="">
-                            <h2 class="component_title color4">
-                                <img class="preview_img" src="icon/open_previewB.png">
-                                <span class="title">Preview</span>
-                            </h2>
-                        </div>
-                        <div id="layout"><img src="images/cinqueterre.jpg" style="width: 70%"></div>
-                        <div id="explain"></div>
-                        <div id="comment">코멘트</div>
-                    </div>
 
+                  <div id="floatMenu">
+                      <div id="preview_title">
+                          <h2>
+                              <img class="preview_img" src="icon/open_previewB.png">
+                              <span class="title">Preview</span>
+                          </h2>
+                      </div>
+                      <div id="preview_content">
+                          <div id="layout">미리보기: Page Image</div>
+                          <div id="explain">상세정보: Today Visitors, Using Flow</div>
+                          <div id="comment">설명 Details</div>
+                      </div>
+                      <div id="advertise_content">
+
+                      </div>
+                  </div>
                 </div>
                 <!--Preview Floating Box Area END -->
             </div>
@@ -546,6 +551,6 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <!-- Custom Script END -->
-    
+
 </body>
 </html>

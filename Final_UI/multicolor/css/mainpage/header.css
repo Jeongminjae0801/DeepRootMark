@@ -186,7 +186,7 @@ ul.sub-menu {
     position: fixed;
     top: 100px;
     left: 0;
-    border-radius: 0;
+    border-radius: 2px;
     z-index: 2;
 }
 
@@ -195,7 +195,7 @@ ul.sub-menu {
     width: 200px;
     padding: 10px;
     position: fixed;
-    top: 140px;
+    top: 152px;
     left: 0;
     background: #fff;
     border: solid 1px #7bbfa8;
@@ -208,15 +208,14 @@ ul.sub-menu {
 }
 
 .notice-alarm {
-    color: #fff;
-    background-color: #7bbfa8;
-    border-color: #7bbfa8;
+    background-color: #fff;
+    border-color: #f4ea3c;
 }
 .notice-sm {
     padding: 5px 5px;
     font-size: 15px;
     line-height: 1.5;
-    border-radius: 0;ss
+    border-radius: 0;
 }
 .btn {
     font-weight: 600;
@@ -230,9 +229,8 @@ ul.sub-menu {
 }
 
 .notice-alarm:hover, .notice-alarm:focus, .notice-alarm:active, .notice-alarm.active, .open>.dropdown-toggle.notice-alarm {
-    color: #E31515;
     background-color: #fff;
-    border: solid 1px #2a7d8c;
+    border: solid 1px #000;
 }
 /* Notice Alarm Style CSS END */
 

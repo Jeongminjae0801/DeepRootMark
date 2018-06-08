@@ -254,7 +254,7 @@ h2 {
 ****** Floating BoX CSS START ******
 ***********************************/
 #floatMenu {
-  left: 0;
+  padding-right: 30px;
   position: absolute;
   width: 100%;
   height: 800px;
@@ -289,6 +289,23 @@ h2 {
   width: 40px;
   margin-top: -10px;
 }
+
+#preview_title{
+    cursor: default;
+    height: 31px;
+    text-align: left;
+    margin-bottom: 5px;
+    border-bottom: 3px solid;
+}
+
+#preview_title color4 {
+    border-color: #3a9ad9;
+}
+
+#preview_content {
+    height: 60%;
+}
+
 /*********************************
 ****** Floating BoX CSS END ******
 ***********************************/
