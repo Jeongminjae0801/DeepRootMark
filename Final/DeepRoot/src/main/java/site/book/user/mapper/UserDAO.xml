@@ -4,7 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="site.book.user.dao.UserDAO">
+	<!-- 태웅 -->
 	
+	
+	<!-- 희준 -->
 	<select id="selectAllUser" resultType="site.book.user.dto.UserDTO">
 		SELECT * FROM USER
 	</select>
@@ -12,4 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUser">
 		
 	</select>
+	
+	<!-- 명수 -->
+	
 </mapper>

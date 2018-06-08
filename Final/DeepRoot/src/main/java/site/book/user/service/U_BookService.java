@@ -20,9 +20,29 @@ import site.book.user.dto.U_BookDTO;
 @Service
 public class U_BookService {
 	
+	// 변수 Start
+	
+	// 태웅
+	
+	
+	// 희준
+	
+	
+	// 명수
 	@Autowired
 	private SqlSession sqlsession;
 
+	// 변수 End
+	
+	// 함수 Start
+	
+	// 태웅
+	
+	
+	// 희준
+	
+	
+	// 명수
 	public List<U_BookDTO> getCategoryList(String uid) {	//해당
 		
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
@@ -63,4 +83,5 @@ public class U_BookService {
 		return result;
 	}
 
+	// 함수 End
 }

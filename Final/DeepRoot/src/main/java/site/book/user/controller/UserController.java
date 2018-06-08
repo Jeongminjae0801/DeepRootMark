@@ -23,9 +23,29 @@ import site.book.user.service.U_BookService;
 @RequestMapping("/user/")
 public class UserController {
 	
+	// 변수 Start
+	
+	// 태웅
+	
+	
+	// 희준
+	
+	
+	// 명수
 	@Autowired
 	U_BookService u_bookservice;
 	
+	// 변수 End
+	
+	// 함수 Start
+	
+	// 태웅
+	
+	
+	// 희준
+	
+	
+	// 명수
 	@RequestMapping("mybookmark.do")
 	public String mybookmark() {
 		System.out.println("들어왔어용");
@@ -133,5 +153,6 @@ public class UserController {
 	            System.out.println(str);
 	        }
 	}
-
+	
+	// 함수 End
 }

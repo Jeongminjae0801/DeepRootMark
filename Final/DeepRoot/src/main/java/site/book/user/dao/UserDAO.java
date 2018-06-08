@@ -11,6 +11,11 @@ import site.book.user.dto.UserDTO;
  * @Author : 김희준
  */
 public interface UserDAO {
+	
+	// 태웅
+	
+	// 희준
+	
 	//전체 회원
 	public List<UserDTO> selectAllUser() throws ClassNotFoundException, SQLException;
 	
@@ -26,4 +31,5 @@ public interface UserDAO {
 	//회원 삭제
 	public int deleteUser(String uid) throws ClassNotFoundException, SQLException;
 	
+	// 명수
 }

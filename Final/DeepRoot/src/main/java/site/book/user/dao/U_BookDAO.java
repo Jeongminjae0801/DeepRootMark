@@ -14,6 +14,13 @@ import site.book.user.dto.U_BookDTO;
 
 public interface U_BookDAO {
 	
+	// 태웅
+	
+	
+	// 희준
+	
+	
+	// 명수
 	public List<U_BookDTO> getCategoryList(String uid);
 
 	public int insertRootFolder(int ubid, String uid);
