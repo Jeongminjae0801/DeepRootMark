@@ -20,17 +20,19 @@
     <link href="css/mainpage/footer.css" rel="stylesheet">
     <link href="css/mainpage/list_table.css" rel="stylesheet">
     <link href="css/mainpage/responsive.css" rel="stylesheet">
-    <link href="css/mainpage/login-register.css" rel="stylesheet" />
-
+    <link href="css/mainpage/login-register.css" rel="stylesheet"/>
     <!-- Main Page CSS END -->
-
 
     <!-- Login / roll-in Modal Script Start -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- Login / roll-in Modal Script Start END -->
+    
+    <!-- Notice Alarm Bootstrap CSS START-->
+   <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
+    <!-- Notice Alarm Bootstrap CSS END-->
     <script>
         /**************************  Table Start  **********************************/
         $(function() {
@@ -137,6 +139,15 @@
         </div>
     </header>
     <!-- Header END-->
+        <!-- Notice Alarm Button START -->
+        <button type="button" class="btn notice-alarm notice-sm" 
+                data-toggle="collapse" data-target="#style-switch" id="style-switch-button">
+                <i class="fa fa-check-square-o"></i>
+        </button>
+        <div id="style-switch" class="collapse" aria-expanded="false" style="">
+            <h4 class="text-uppercase">토요일 12pm~6pm 서버 점검 예정</h4>
+        </div>
+        <!--Notice Alarm Button END-->
 
     <!-- Home slider START-->
     <section id="home-slider">
@@ -508,7 +519,7 @@
                                 <span class="title">Preview</span>
                             </h2>
                         </div>
-                        <div id="layout"><img src="images/cinqueterre.jpg" style="width: 70%";></div>
+                        <div id="layout"><img src="images/cinqueterre.jpg" style="width: 70%"></div>
                         <div id="explain">풍경이당!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
                         <div id="comment">코멘트</div>
                     </div>
@@ -539,5 +550,6 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <!-- Custom Script END -->
+    
 </body>
 </html>
