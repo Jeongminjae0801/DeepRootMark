@@ -251,12 +251,15 @@ h2 {
     top: 50%;
     margin-top: -24px;
 }
+
+/*********************************
+****** Floating BoX CSS START ******
+***********************************/
 #floatMenu {
   left: 0;
   position: absolute;
   width: 100%;
   height: 800px;
-  background-color: #f8f2f2;
   color: #000;
 }
 
@@ -283,3 +286,11 @@ h2 {
   background-color: #7171FF;
   color: #E6E84B;
 }
+
+.preview_img {
+  width: 40px;
+  margin-top: -10px;
+}
+/*********************************
+****** Floating BoX CSS END ******
+***********************************/
