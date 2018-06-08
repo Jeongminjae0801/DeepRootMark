@@ -114,21 +114,23 @@ jQuery(function($) {
       backgroundColor: '#3e8bff',
     });
   }
-  $(document).ready(function() {
 
+  $(document).ready(function() {
     // 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
     var floatPosition = parseInt($("#floatMenu").css('top'));
+    var footerPosition = $("#footer").offset();
     // 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
 
     $(window).scroll(function() {
       // 현재 스크롤 위치를 가져온다.
       var scrollTop = $(window).scrollTop();
-      var newPosition = scrollTop + floatPosition - 400 + "px";
+      var newPosition = scrollTop + floatPosition - 500 + "px";
       var fixedpositon = floatPosition + "px";
-
+      //console.log(scrollTop);
       // 애니메이션 없이 바로 따라감
-      if ($(this).scrollTop() <= 400)
-        scrollTop.toFixed();
+      if ($(this).scrollTop() <= 500)
+        //scrollTop.toFixed();
+        $("#floatMenu").css("top","0px");
       else
         $("#floatMenu").css('top', newPosition);
 

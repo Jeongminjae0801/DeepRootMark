@@ -88,6 +88,7 @@ h2 {
 .main-admin-category {
     margin-top: 25px;
     font-family: 'Lato','Spoqa Han Sans', sans-serif;
+    overflow: hidden;
 }
 
 .hr-clear {
@@ -251,33 +252,34 @@ h2 {
     margin-top: -24px;
 }
 #floatMenu {
-	position: absolute;
-	width: 700px;
-	height: 530px;
-	left: 50px;
-	top: 80px;
-	background-color: #f8f2f2;
-	color: #000;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 800px;
+  background-color: #f8f2f2;
+  color: #000;
 }
-#layout {
-    float:left;
-	width: 60%;
-	height: 70%;
-    background-color: #253d52;
-	color: #f9c300;
-}
-#explain {
-    float:left;
-	width: 40%;
-	height: 70%;
-    background-color: #6999E8;
-	color: #4CFF69;
-}
-#comment{
-    float:left;
-    width: 100%;
-	height: 30%;
-    background-color: #7171FF;
-	color: #E6E84B;
 
+#layout {
+  float: left;
+  width: 60%;
+  height: 70%;
+  background-color: #253d52;
+  color: #f9c300;
+}
+
+#explain {
+  float: left;
+  width: 40%;
+  height: 70%;
+  background-color: #6999E8;
+  color: #4CFF69;
+}
+
+#comment {
+  float: left;
+  width: 100%;
+  height: 30%;
+  background-color: #7171FF;
+  color: #E6E84B;
 }

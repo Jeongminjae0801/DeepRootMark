@@ -80,7 +80,15 @@ ul > li{
     height: 17px;
 }
 
-.preview_btn {
+.url_link_btn {
+    height: 15px;
+    width: 15px;
+    margin: 5px 5px 0px 0px;
+    display: none;
+    float: right;
+}
+
+.url_hover_btn {
     display: none;
     padding: 0px 2px 0px 2px;
     background-color: #fff;

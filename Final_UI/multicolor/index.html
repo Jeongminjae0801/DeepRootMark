@@ -37,6 +37,14 @@
             $(document).on("click", ".url", function() {
                 window.open(this.dataset.url, '_blank');
             });
+            $('.url').on({
+                mouseover: function() {
+                    $(this).parent().children('.url_link_btn').css('display', 'block')
+                },
+                mouseleave: function() {
+                    $(this).parent().children('.url_link_btn').css('display', 'none')
+                }
+            });
             $('li').on({
                 mouseover: function() {
                     $(this).children('button').css('display', 'block')
@@ -304,22 +312,30 @@
                                 </h2>
                                 <ul>
                                     <li>
-                                        <button class="preview_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/url_save.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <img class="url_link_btn" src="icon/open_link.png">
                                         <img class="favicon" src="https://www.naver.com/favicon.ico" alt="">
                                         <p class="url" data-url="https://www.naver.com/">NAVER</p>
                                     </li>
                                     <li>
-                                        <button class="preview_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/url_save.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <img class="url_link_btn" src="icon/open_link.png">
                                         <img class="favicon" src="https://www.daum.net/favicon.ico" alt="">
                                         <p class="url" data-url="https://www.daum.net/">DAUM</p>
                                     </li>
                                     <li>
-                                        <button class="preview_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/url_save.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <img class="url_link_btn" src="icon/open_link.png">
                                         <img class="favicon" src="https://www.google.com/favicon.ico" alt="">
                                         <p class="url" data-url="https://www.google.com/">GOOGLE</p>
                                     </li>
                                      <li>
-                                        <button class="preview_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/url_save.png"></button>
+                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+                                        <img class="url_link_btn" src="icon/open_link.png">
                                         <img class="favicon" src="https://www.kakao.com/favicon.ico" alt="">
                                         <p class="url" data-url="https://www.kakao.com/">카카오</p>
                                     </li>
@@ -490,7 +506,7 @@
                 <div class="col-sm-6">
                     <div id="floatMenu">
                         <div id="layout"><img src="images/cinqueterre.jpg" style="width: 70%";></div>
-                        <div id="explain">풍경이당!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
+                        <div id="explain">풍경이당!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>
                         <div id="comment">코멘트</div>
                     </div>
 
