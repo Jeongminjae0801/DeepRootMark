@@ -8,7 +8,13 @@
 /*************************
 *******Home Page******
 **************************/
-
+/* reponsive web CSS START */
+@media only screen and (max-width : 992px) {
+#home-slider .slide-text .introduce-text{
+    display: none;
+}
+    
+/* reponsive web CSS END */
 html {
     height: 100%;
 }
@@ -206,17 +212,21 @@ h2 {
     position: absolute;
     top: 50px;
     left: 0;
-    width: 450px;
-
+    width: 500px;
     text-align: center;
     font-family: 'Lato', 'Spoqa Han Sans';
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 300;
     margin-top: 100px;
     margin-bottom: 25px;
     z-index: 1;
 }
 
+#home-slider .slide-text .introduce-text{
+    font-family: 'Lato', 'Spoqa Han Sans';
+    text-align: left;
+    padding-left: 20px;
+}
 #home-slider .slider-hill {
     position: absolute;
     right: 0;

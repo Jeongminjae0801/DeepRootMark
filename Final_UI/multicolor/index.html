@@ -125,7 +125,15 @@
                                 </li>
                             </ul>
                         </li>
-
+                        <!-- Notice Alarm START -->
+                        <li class="dropdown">
+                            <a href="#">
+                            <img src="icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a>
+                            <ul role="menu" class="sub-menu">
+                                <li>토요일 12pm~6pm 서버 점검 예정</li>
+                            </ul>
+                        </li>
+                        <!-- Notice Alarm END -->
                         <li>
                             <a href="#">
                             <img class="dropdown header-ico" src="images/profile.png"> ID</a>
@@ -140,14 +148,6 @@
         </div>
     </header>
     <!-- Header END-->
-    <!-- Notice Alarm Button START -->
-    <button type="button" class="btn notice-alarm notice-sm" data-toggle="collapse" data-target="#style-switch" id="style-switch-button">
-                <img src="icon/alert.png" style="width:25px ;height: 25px;">
-        </button>
-    <div id="style-switch" class="collapse" aria-expanded="false" style="">
-        <h4 class="text-uppercase">토요일 12pm~6pm 서버 점검 예정</h4>
-    </div>
-    <!--Notice Alarm Button END-->
 
     <!-- Home slider START-->
     <section id="home-slider">
@@ -155,9 +155,15 @@
             <div class="row">
                 <div class="main-slider">
                     <div class="slide-text">
-                        <p> 희준이와 떠나는 신나는 코딩 세상~!!</p>
-                        <p> 태웅이와 떠나는 신비한 모험의 세계~</p>
+                        <!-- introduce text START -->
+                        <div class="introduce-text">
+                        개발자들에게 필요한 사이트들을 제공해줍니다<br>
+                        자신만의 북마크 사이트를 추가하고<br>
+                        다른사람들과 공유해보세요<br>
+                        </div>
+                        <!-- introduce text END -->
                         <!-- Login / Roll in Button START -->
+                        <div>
                         <a href="javascript:void(0)" data-toggle="modal" onclick="openLoginModal();" class="btn btn-common">LOG IN</a>
                         <a href="javascript:void(0)" data-toggle="modal" onclick="openRegisterModal();" class="btn btn-common">SIGN UP</a>
                         <!-- Login / Roll in Button END -->
@@ -251,6 +257,7 @@
                             </div>
                         </div>
                     </div>
+                        </div>
                     <!-- Login / Roll in / password find modal END -->
                     <img src="images/home/slider/hill.png" class="slider-hill" alt="slider image">
                 </div>
@@ -601,7 +608,6 @@
                     <div class="modal-footer">
                         <div class="url-footer">
                             <input class="btn btn-default btn-next" type="button" value="다음" onclick="showCategoryForm()">
-                            <!--<a href="javascript: showCategoryForm();">회원가입</a>-->
                         </div>
                         <div class="category_unshared-footer" style="display:none">
                             <input class="btn btn-default btn-prev" type="button" value="이전" onclick="showUrlForm()">

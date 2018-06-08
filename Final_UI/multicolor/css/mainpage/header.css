@@ -76,6 +76,7 @@
 }
 
 #header .navbar-nav.navbar-right > li a {
+    margin-right: 3px;
     padding-top: 5px;
     color: #000;
     font-size: 13px;
@@ -182,54 +183,12 @@ ul.sub-menu {
 }
 
 /* Notice Alarm Style CSS START */
-#style-switch-button {
-    position: fixed;
-    top: 100px;
-    left: 0;
-    border-radius: 10px;
-    z-index: 2;
-}
 
-#style-switch {
-    box-sizing: border-box;
-    width: 200px;
-    padding: 10px;
-    position: fixed;
-    top: 152px;
-    left: 0;
-    background: #fff;
-    border: solid 1px #7bbfa8;
-    z-index: 2;
-}
-
-#style-switch:hover{
-    background-color: #7bbfa8;
-    color: #fff;
-}
-
-.notice-alarm {
-    background-color: #fff;
-    border-color: red;
-}
-.notice-sm {
-    padding: 5px 5px;
-    font-size: 15px;
-    line-height: 1.5;
-    border-radius: 0;
-}
-.btn {
-    font-weight: 600;
-    font-family: "Lato",'Spoqa Han Sans';
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    padding: 5px 10px;
-    font-size: 13px;
-    line-height: 1.42857143;
-}
-
-.notice-alarm:hover, .notice-alarm:focus, .notice-alarm:active, .notice-alarm.active, .open>.dropdown-toggle.notice-alarm {
-    background-color: #fff;
-    border: solid 1px #000;
+.notice-alarm{
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    margin: 0;
 }
 /* Notice Alarm Style CSS END */
 
