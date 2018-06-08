@@ -186,7 +186,7 @@ ul.sub-menu {
     position: fixed;
     top: 100px;
     left: 0;
-    border-radius: 2px;
+    border-radius: 10px;
     z-index: 2;
 }
 
@@ -209,7 +209,7 @@ ul.sub-menu {
 
 .notice-alarm {
     background-color: #fff;
-    border-color: #f4ea3c;
+    border-color: red;
 }
 .notice-sm {
     padding: 5px 5px;
@@ -225,7 +225,6 @@ ul.sub-menu {
     padding: 5px 10px;
     font-size: 13px;
     line-height: 1.42857143;
-    border-radius: 0;
 }
 
 .notice-alarm:hover, .notice-alarm:focus, .notice-alarm:active, .notice-alarm.active, .open>.dropdown-toggle.notice-alarm {
