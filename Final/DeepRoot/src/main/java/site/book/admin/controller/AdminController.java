@@ -22,7 +22,13 @@ import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
+import site.book.team.dto.S_TeamDTO;
 import site.book.team.service.G_BookService;
+import site.book.team.service.TeamService;
+import site.book.user.dto.S_U_BookDTO;
+import site.book.user.dto.U_BookDTO;
+import site.book.user.service.U_BookService;
+import site.book.user.service.UserService;
 
 /**
  * @Class : AdminController.java
@@ -42,6 +48,15 @@ public class AdminController {
 	@Autowired
 	private G_BookService g_BookService;
 	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private U_BookService u_BookService;
+	
+	@Autowired
+	private TeamService teamService;
+	
 	@RequestMapping("admin.do")
 	public String admin(Model model) {
 		System.out.println("관리자 메인 페이지");
@@ -54,6 +69,21 @@ public class AdminController {
 		
 		List<HashMap<String, String>> gCount = g_BookService.numOfBookByDate();
 		model.addAttribute("gCount", gCount);
+		
+		List<HashMap<String, String>> uCount = u_BookService.numOfBookByDate();
+		model.addAttribute("uCount", uCount);
+		
+		int allUser = userService.getAllUser();
+		model.addAttribute("allUser", allUser);
+		
+		int newUser = userService.getNewUser();
+		model.addAttribute("newUser", newUser);
+		
+		List<S_U_BookDTO> uBookList = u_BookService.getSocialBookmarkList();
+		model.addAttribute("uBookList", uBookList);
+		
+		List<S_TeamDTO> sGroupList = teamService.getSocialGroupList();
+		model.addAttribute("sGroupList", sGroupList);
 		
 		return "khj.admin";
 	}
@@ -120,8 +150,23 @@ public class AdminController {
 		return "redirect:admin.do";
 	}
 	
+	@RequestMapping("deleteSUBook.do")
+	public String deleteSUBook(String ubid) {
+		System.out.println("소셜 개인 URL 삭제");
+		System.out.println("소셜 개인 URL 번호: " + ubid);
+		
+		u_BookService.deleteSocialBookmark(Integer.parseInt(ubid));
+		
+		return "redirect:admin.do";
+	}
 	
-	
-	
-	
+	@RequestMapping("deleteSGroup.do")
+	public String deleteSGroup(String gid) {
+		System.out.println("소셜 그룹 삭제");
+		System.out.println("소셜 그룹 번호: " + gid);
+		
+		teamService.deleteSocialGroup(Integer.parseInt(gid));
+		
+		return "redirect:admin.do";
+	}
 }

@@ -8,12 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 희준 -->
-	<select id="selectAllUser" resultType="site.book.user.dto.UserDTO">
-		SELECT * FROM USER
+	<select id="allUser" resultType="Integer">
+		SELECT Count(*) FROM USER
 	</select>
 	
-	<select id="selectUser">
-		
+	<select id="newUser" resultType="Integer">
+		SELECT COUNT(*) FROM USER WHERE REGDATE >= DATE_FORMAT(CURDATE( ), '%Y-%m-%d')
 	</select>
 	
 	<!-- 명수 -->
