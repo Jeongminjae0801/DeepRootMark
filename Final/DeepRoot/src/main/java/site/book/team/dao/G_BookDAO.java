@@ -22,6 +22,7 @@ public interface G_BookDAO {
 	// 그룹이 추가한 북마크 수
 	public List<HashMap<String, String>> numOfBookByDate() throws ClassNotFoundException, SQLException;
 
-	
+	// 회원이 그룹에 작성한 URL 지우기
+	public int deleteGroupBook(String uid) throws ClassNotFoundException, SQLException;
 	
 }

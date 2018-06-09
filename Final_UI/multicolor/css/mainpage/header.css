@@ -1,4 +1,8 @@
-
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+/* 헤더 로고 폰트 */
+@import url('https://fonts.googleapis.com/css?family=Gugi');
+/* 한글 폰트*/
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 
 /*************************
 *******Header******
@@ -72,6 +76,7 @@
 }
 
 #header .navbar-nav.navbar-right > li a {
+    margin-right: 3px;
     padding-top: 5px;
     color: #000;
     font-size: 13px;
@@ -176,3 +181,14 @@ ul.sub-menu {
         transform: scale(1);
     }
 }
+
+/* Notice Alarm Style CSS START */
+
+.notice-alarm{
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    margin: 0;
+}
+/* Notice Alarm Style CSS END */
+
