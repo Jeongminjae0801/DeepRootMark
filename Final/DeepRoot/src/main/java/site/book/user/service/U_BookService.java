@@ -121,10 +121,25 @@ public class U_BookService {
 		return result;
 	}
 
-	public int addFolderOrLink(U_BookDTO dto) {
+	public int addFolderOrUrl(U_BookDTO dto) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.addFolderOrLink(dto);
+		int result = dao.addFolderOrUrl(dto);
+		
+		return result;
+	}
+
+	public void deleteFolderOrUrl(String str) {
+		
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		dao.deleteFolderOrUrl(str);
+		
+	}
+
+	public int editUrl(U_BookDTO dto) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = dao.editUrl(dto);
 		
 		return result;
 	}
