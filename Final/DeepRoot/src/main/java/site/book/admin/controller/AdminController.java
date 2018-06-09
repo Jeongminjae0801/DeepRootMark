@@ -72,7 +72,7 @@ public class AdminController {
 		List<HashMap<String, String>> gCount = g_book_service.numOfBookByDate();
 		model.addAttribute("gCount", gCount);
 		
-		List<HashMap<String, String>> uCount = u_BookService.numOfBookByDate();
+		List<HashMap<String, String>> uCount = u_book_service.numOfBookByDate();
 		model.addAttribute("uCount", uCount);
 		
 		int allUser = user_service.getAllUser();
@@ -81,7 +81,7 @@ public class AdminController {
 		int newUser = user_service.getNewUser();
 		model.addAttribute("newUser", newUser);
 		
-		List<S_U_BookDTO> uBookList = u_BookService.getSocialBookmarkList();
+		List<S_U_BookDTO> uBookList = u_book_service.getSocialBookmarkList();
 		model.addAttribute("uBookList", uBookList);
 		
 		List<S_TeamDTO> sGroupList = teamService.getSocialGroupList();
@@ -160,7 +160,7 @@ public class AdminController {
 		System.out.println("소셜 개인 URL 삭제");
 		System.out.println("소셜 개인 URL 번호: " + ubid);
 		
-		u_BookService.deleteSocialBookmark(Integer.parseInt(ubid));
+		u_book_service.deleteSocialBookmark(Integer.parseInt(ubid));
 		
 		return "redirect:admin.do";
 	}

@@ -59,7 +59,6 @@ public class UserController {
 		res.setCharacterEncoding("UTF-8");
 		
 		JSONArray jsonArray = new JSONArray();	
-		HashMap<String, String> urlmap = new  HashMap();
 		
 		List<U_BookDTO> list = u_bookservice.getCategoryList(uid);
 		
@@ -72,7 +71,6 @@ public class UserController {
 			
 			if(result ==1 ) {	//처음 가입한 유저일 경우 root폴더 생성해 준다.
 				
-				urlmap.put("href", "");
 				jsonobject.put("id", ubid);
 				jsonobject.put("parent", "#");
 				jsonobject.put("text", "첫 카테고리");
@@ -89,7 +87,6 @@ public class UserController {
 				JSONObject jsonobject = new JSONObject();
 				
 				String parentid = String.valueOf(list.get(i).getPid());
-				urlmap.put("href", list.get(i).getUrl());	//a_attr 에 href를 객체로 넣어야 한다.
 				
 				if(parentid.equals("0") || parentid.equals(""))
 					jsonobject.put("parent", "#");
@@ -99,7 +96,6 @@ public class UserController {
 				jsonobject.put("id", list.get(i).getUbid());
 				jsonobject.put("text", list.get(i).getUrlname());
 				jsonobject.put("icon", "");	//favicon 추가
-				jsonobject.put("a_attr", urlmap);
 				jsonobject.put("uid",uid);
 				jsonobject.put("sname", list.get(i).getSname());
 				jsonobject.put("htag", list.get(i).getHtag());

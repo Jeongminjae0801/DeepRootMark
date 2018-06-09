@@ -332,8 +332,8 @@
 			    		console.log(obj);
 			    		console.log(stric);
 			    		console.log(c);
-			    		console.log(this);
-			    		console.log(this.get_node(obj,true));
+			    		//console.log(this);
+			    		//console.log(this.get_node(obj,true));
 			    		
 			    	})
 			    	.bind('delete_node.jstree',function(event,data){
