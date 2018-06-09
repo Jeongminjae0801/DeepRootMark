@@ -29,6 +29,10 @@ public interface U_BookDAO {
 
 	public int updateNodeText(int id, String text);
 
-	public int addFolderOrLink(U_BookDTO dto);
+	public int addFolderOrUrl(U_BookDTO dto);
+
+	public void deleteFolderOrUrl(String str);
+
+	public int editUrl(U_BookDTO dto);
 
 }
