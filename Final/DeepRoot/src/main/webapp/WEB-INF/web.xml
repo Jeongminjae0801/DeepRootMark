@@ -52,7 +52,7 @@
 	</listener>
 	
 	<listener>
-		<listener-class>site.book.admin.service.VisitorCounter</listener-class>
+		<listener-class>site.book.utils.VisitorCounter</listener-class>
 	</listener>
 	
 </web-app>

@@ -4,8 +4,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-		
-	
+
 	<!-- DB 연결(Mysql) -->
 	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
@@ -52,4 +51,5 @@
 		<!-- <constructor-arg name="strength" value="20"></constructor-arg> -->
 	</bean>
 	
+	<bean id="visitorService" class="site.book.admin.service.VisitorService" />
 </beans>

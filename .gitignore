@@ -66,5 +66,5 @@ pom.xml.tag
 .recommenders/
 Servers/
 
-#Google Driver
-*.ini
+#Image .db
+Thumbs.db
