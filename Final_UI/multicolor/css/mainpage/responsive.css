@@ -87,7 +87,12 @@
     #style-switch-button {
         display: none;
     }
-  
+  /* introduce text, picture START */
+  #home-slider .slide-text .introduce-text{
+      display: none;
+  }
+  /* introduce text, picture END */
+
   #header {
     padding-bottom: 40px;
     padding-top: 10px;
@@ -177,6 +182,7 @@
   #home-slider .slider-hill {
     right: 50%;
     margin-right: -200px;
+    height: 50%;
   }
 
   #home-slider .slider-house {

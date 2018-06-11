@@ -20,12 +20,12 @@
 	
 	<!-- 명수 -->
 	<select id="getCategoryList" resultType="site.book.user.dto.U_BookDTO">
-		SELECT * FROM U_BOOK WHERE UID=#{uid}; 
+		SELECT * FROM U_BOOK WHERE UID=#{uid} AND URL IS NULL 
 	</select>
 
 	<insert id="insertRootFolder">
 		INSERT INTO U_BOOK (UBID, URLNAME,REGDATE,VIEW,UID)
-			VALUES (#{ubid},'카테고리 시작',SYSDATE(), 0, #{uid});
+			VALUES (#{ubid},'카테고리 시작',SYSDATE(), 0, #{uid})
 	</insert>
 	
 	<select id="getMaxId" resultType="int">
@@ -36,7 +36,8 @@
 		UPDATE U_BOOK SET URLNAME = #{1} WHERE UBID= #{0}
 	</update>
 	
-	<insert id="addFolderOrLink" parameterType="site.book.user.dto.U_BookDTO">
+	<insert id="addFolderOrUrl" parameterType="site.book.user.dto.U_BookDTO">
+	
 		<if test="abid == 0 and htag !=null">
 			INSERT INTO U_BOOK(UBID,URL,URLNAME,REGDATE,VIEW,UID,PID,SNAME,HTAG,SDATE)
 			VALUES(#{ubid},#{url},#{urlname},SYSDATE(),0,#{uid},#{pid},#{sname},#{htag},SYSDATE())
@@ -50,5 +51,13 @@
 			VALUES(#{ubid},#{url},#{urlname},SYSDATE(),0,#{uid},#{pid},#{sname},#{htag},#{sdate},#{abid})
 		</if>
 	</insert>
+	
+	<delete id="deleteFolderOrUrl">
+		DELETE FROM U_BOOK WHERE UBID=#{0}
+	</delete>
+	
+	<update id="editUrl" parameterType="site.book.user.dto.U_BookDTO">
+		UPDATE U_BOOK SET URL= #{url} WHERE UBID=#{ubid}
+	</update>
 
 </mapper>

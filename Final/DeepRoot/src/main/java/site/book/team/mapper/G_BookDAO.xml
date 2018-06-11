@@ -7,4 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="numOfBookByDate" resultType="java.util.HashMap">
 		SELECT DATE_FORMAT(regdate,'%Y-%m-%d') d, COUNT(*) as c FROM G_BOOK GROUP BY d
 	</select>
+	
+	<delete id="deleteGroupBook">
+		DELETE FROM G_BOOK WHERE uid = #{uid} AND URL IS NOT NULL
+	</delete>
 </mapper>

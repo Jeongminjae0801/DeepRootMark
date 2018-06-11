@@ -64,6 +64,10 @@ h2 {
     color: #3c3c3c;
     font-size: 25px;
 }
+.category-div{
+    margin-bottom: 10px;
+
+}
 
 .bookmark-category {
     font-family: 'Lato', 'Spoqa Han Sans';
@@ -90,7 +94,7 @@ h2 {
 }
 
 .hr-clear {
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 5px;
   border: 0px;
   height: 2px;
@@ -169,10 +173,15 @@ h2 {
 .btn-common {
     font-size: 14px;
     color: #0099ae;
-    border: 1px solid #0099ae;
+    border: 2px solid #0099ae;
     font-family: 'Lato','Spoqa Han Sans', sans-serif;
     font-weight: 300;
     padding: 10px 25px;
+}
+
+.btn-common:hover{
+    color: #fff;
+    background-color: #0099ae;
 }
 
 .animate-in .slide-text {
@@ -206,17 +215,21 @@ h2 {
     position: absolute;
     top: 50px;
     left: 0;
-    width: 450px;
-
-    text-align: center;
+    width: 500px;
+    text-align: right;
     font-family: 'Lato', 'Spoqa Han Sans';
-    font-size: 28px;
-    font-weight: 300;
+    font-size: 25px;
+    font-weight: 500;
     margin-top: 100px;
     margin-bottom: 25px;
     z-index: 1;
 }
 
+#home-slider .slide-text .introduce-text{
+    font-family: 'Lato', 'Spoqa Han Sans';
+    text-align: left;
+    padding-left: 20px;
+}
 #home-slider .slider-hill {
     position: absolute;
     right: 0;
@@ -226,6 +239,7 @@ h2 {
 
 #home-slider .btn-common {
     margin-top: 20px;
+    font-weight: 700;
 }
 
 #home-slider .preloader {
