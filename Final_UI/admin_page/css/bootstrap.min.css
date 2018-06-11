@@ -1,17 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+/* 헤더 로고 폰트 */
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 /* 한글 폰트*/
-.navbar-default .navbar-brand.logo-text {
-    font-family: 'Gugi';
-    font-size: 40px;
-    font-weight: 600;
-    color: white;
-    padding-left: 50px;
-}
-
-.navbar-default .navbar-brand.logo-text:hover,
-.navbar-default .navbar-brand:focus {
-    background-color: transparent;
-}
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 
 html {
     font-family: sans-serif;
@@ -311,7 +302,7 @@ th {
 }
 
 @font-face {
-    font-family: 'Glyphicons Halflings';
+    font-family: 'Lato', 'Spoqa Han Sans','Glyphicons Halflings';
     src: url(../fonts/glyphicons-halflings-regular.eot);
     src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(../fonts/glyphicons-halflings-regular.woff) format('woff'), url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
 }
@@ -1396,7 +1387,7 @@ html {
 }
 
 body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Lato','Spoqa Han Sans', Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
@@ -1413,7 +1404,7 @@ textarea {
 }
 
 a {
-    color: white;
+    color: #337ab7;
     text-decoration: none
 }
 
@@ -1424,6 +1415,7 @@ a:hover {
 }
 
 a:focus {
+    outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px
 }
@@ -1544,7 +1536,7 @@ h6 .small,
 h6 small {
     font-weight: 400;
     line-height: 1;
-    color: #777
+    color: #fff
 }
 
 .h1,
@@ -1688,7 +1680,7 @@ mark {
 }
 
 .text-muted {
-    color: #777
+    color: #fff
 }
 
 .text-primary {
@@ -1785,16 +1777,8 @@ a.bg-danger:hover {
 .page-header {
     padding-bottom: 9px;
     margin: 40px 0 20px;
-    color: white;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee
 }
-/* sidebar top menu css */
-.page-main {
-    padding-bottom: 9px;
-    margin: 40px 0 20px;
-    border-bottom: 1px solid #eee;
-}
-/* sidebar top menu css */
 
 ol,
 ul {
@@ -3137,6 +3121,7 @@ select[size] {
 input[type=file]:focus,
 input[type=checkbox]:focus,
 input[type=radio]:focus {
+    outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px
 }
@@ -3699,6 +3684,7 @@ textarea.input-lg {
 .btn:active.focus,
 .btn:active:focus,
 .btn:focus {
+    outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px
 }
@@ -4813,16 +4799,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
     position: relative;
     display: block;
-    padding: 20px 15px;
-    font-size: 18px;
-    font-weight: 600;
+    padding: 10px 15px
 }
 
 .nav > li > a:focus,
 .nav > li > a:hover {
     text-decoration: none;
-    color: white;
-    background: black;
+    background-color: #eee
 }
 
 .nav > li.disabled > a {
@@ -4840,8 +4823,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav .open > a,
 .nav .open > a:focus,
 .nav .open > a:hover {
-    color: white;
-    background: black;
+    background-color: #eee;
+    border-color: #337ab7
 }
 
 .nav .nav-divider {
@@ -5162,8 +5145,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
     float: left;
     height: 50px;
     padding: 15px 15px;
-    line-height: 20px;
-    margin-top: 8px;
+    font-size: 18px;
+    line-height: 20px
 }
 
 .navbar-brand:focus,
@@ -5404,23 +5387,27 @@ textarea.input-group-sm > .input-group-btn > .btn {
     }
 }
 
-/* header div CSS START */
 .navbar-default {
-    background-color: #3A3F44 !important;
-    border-bottom: 4px solid orange;
-    height: 70px;
-    position: fixed;
-    width: 100%;
-    
+    background-color: #f8f8f8;
+    border-color: #e7e7e7
 }
-/* header div CSS END */
+
+.navbar-default .navbar-brand {
+    color: #fff
+}
+
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover {
+    color: #5e5e5e;
+    background-color: transparent
+}
 
 .navbar-default .navbar-text {
-    color: #777
+    color: #fff
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #777
+    color: #fff
 }
 
 .navbar-default .navbar-nav > li > a:focus,
@@ -5444,8 +5431,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #ddd;
-    margin-top:15px;
+    border-color: #ddd
 }
 
 .navbar-default .navbar-toggle:focus,
@@ -5459,7 +5445,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-    /*border-color: #e7e7e7*/
+    border-color: #e7e7e7
 }
 
 .navbar-default .navbar-nav > .open > a,
@@ -5493,7 +5479,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-link {
-    color: #777
+    color: #fff
 }
 
 .navbar-default .navbar-link:hover {
@@ -5501,7 +5487,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .btn-link {
-    color: #777
+    color: #fff
 }
 
 .navbar-default .btn-link:focus,
@@ -5656,7 +5642,7 @@ fieldset[disabled] .navbar-inverse .btn-link:hover {
 }
 
 .breadcrumb > .active {
-    color: #777
+    color: #fff
 }
 
 .pagination {
@@ -5809,7 +5795,7 @@ fieldset[disabled] .navbar-inverse .btn-link:hover {
 .pager .disabled > a:focus,
 .pager .disabled > a:hover,
 .pager .disabled > span {
-    color: #777;
+    color: #fff;
     cursor: not-allowed;
     background-color: #fff
 }
@@ -5904,11 +5890,11 @@ a.label:hover {
     font-size: 12px;
     font-weight: 700;
     line-height: 1;
-    color: #fff;
+    color: #000;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    background-color: #777;
+    background-color: #fff;
     border-radius: 10px
 }
 
@@ -8049,5 +8035,3 @@ button.close {
         display: none !important
     }
 }
-
-/*# sourceMappingURL=bootstrap.min.css.map */
