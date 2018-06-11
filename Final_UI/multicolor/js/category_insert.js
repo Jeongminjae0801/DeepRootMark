@@ -30,7 +30,7 @@ function showCategoryForm() {
                             
                             /*클릭, 더블클릭 구분을 위한 코드*/
                             var timer = 0;
-                            var delay = 200;
+                            var delay = 1000;
                             var prevent = false;
                             
                             $('#share').on("click", function() {
