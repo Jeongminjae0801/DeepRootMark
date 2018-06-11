@@ -17,33 +17,48 @@ function showUrlForm() {
 }
 /*URL 추가 2단계 모달*/
 function showCategoryForm() {
-  $('.shareBox').fadeOut('fast', function() {
-    $('.urlBox').fadeOut('fast', function() {
-      $('.categoryBox').fadeIn('fast');
-      $('.url-footer').fadeOut('fast', function() {
-        $('.share-footer').fadeOut('fast', function() {
-          if (!$('#share').is(':checked')) {
-            $('.category_unshared-footer').fadeIn('fast')
-          } else {
-            $('.category_share-footer').fadeIn('fast')
-          }
-          $('#share').mousedown(function() {
-            if (!$(this).is(':checked')) {
-              $('.category_unshared-footer').fadeOut('fast', function() {
-                $('.category_share-footer').fadeIn('fast')
-              })
-            } else {
-              $('.category_share-footer').fadeOut('fast', function() {
-                $('.category_unshared-footer').fadeIn('fast')
-              })
-            }
-          });
-        });
-      });
-    });
-    $('.modal-title').html('2단계');
-  });
-}
+            $('.shareBox').fadeOut('fast', function() {
+                $('.urlBox').fadeOut('fast', function() {
+                    $('.categoryBox').fadeIn('fast');
+                    $('.url-footer').fadeOut('fast', function() {
+                        $('.share-footer').fadeOut('fast', function() {
+                            if (!$('#share').is(':checked')) {
+                                $('.category_unshared-footer').fadeIn('fast')
+                            } else {
+                                $('.category_share-footer').fadeIn('fast')
+                            }
+                            
+                            /*클릭, 더블클릭 구분을 위한 코드*/
+                            var timer = 0;
+                            var delay = 200;
+                            var prevent = false;
+                            
+                            $('#share').on("click", function() {
+                                timer = setTimeout(function() {
+                                  if (!prevent) {
+                                        if ($('#share').is(':checked')) {
+                                            $('.category_unshared-footer').fadeOut('fast', function() {
+                                                $('.category_share-footer').fadeIn('fast')
+                                            })
+                                        } else {
+                                            $('.category_share-footer').fadeOut('fast', function() {
+                                                $('.category_unshared-footer').fadeIn('fast')
+                                            })
+                                        }
+                                  }
+                                  prevent = false;
+                                }, delay);
+                              })
+                              .on("dblclick", function() {
+                                clearTimeout(timer);
+                                prevent = true;
+                            });                            
+                        });
+                    });
+                });
+                $('.modal-title').html('2단계');
+            });
+        }
 /*URL 추가 3단계 모달*/
 function showShareForm() {
   $('.categoryBox').fadeOut('fast', function() {
