@@ -8,11 +8,13 @@
     <link rel=stylesheet href="css/bootstrap.min.css">
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css>
+    <!-- CSS START -->
     <link rel=stylesheet href="/css/AdminLTE.css">
     <link rel=stylesheet href="/css/skin-blue.min.css">
     <link rel=stylesheet href="/plugins/pace/pace.css">
     <link href=css/app.css rel=stylesheet>
     <link rel="stylesheet" href="plugins/datatables/datatables.Bootstrap.css">
+    <!-- CSS END -->
 
     <!--CHART Resources START-->
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -74,24 +76,27 @@
                 </nav>
                 <!-- header menu bar END -->
             </header>
-            
+
             <!-- SideMenu START -->
             <aside class="main-sidebar">
                 <section class="sidebar">
                     <ul class="sidebar-menu">
-                        <li class="header">CHART</li>
-                        <li class="pageLink router-link-active"><a href="/main.html"><i class="fa fa-line-chart"></i> <span class="page">Chart</span></a></li>
-
-                        <li class="header">Pages</li>
-                        <li class="pageLink"><a href="#"><i class="fa fa-table"></i> <span class="page">Tables</span></a></li>
-
-                        <li class="header">Bookmark List</li>
-                        <li class="pageLink"><a href="#"><i class="fa fa-bookmark fa-fw"></i> <span class="page">Main Page Bookmark</span></a></li>
-                        <li class="pageLink"><a href="#"><i class="fa fa-bookmark fa-fw"></i> <span class="page">Social Page Bookmark</span></a></li>
-
-                        <li class="header">List</li>
-                        <li class="pageLink"><a href="#"><i class="fa fa-list-ul"></i> <span class="page">Group List</span></a></li>
-                        <li class="pageLink"><a href="#"><i class="fa fa-list-ul"></i> <span class="page">User List</span></a></li>
+                        <!-- Sidemenu Chart START -->
+                        <li class="header"><i class="fa fa-area-chart"></i>&nbsp;&nbsp;CHART</li>
+                        <li class="pageLink router-link-active"><a href="/main.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-line-chart"></i> <span class="page">Chart</span></a></li>
+                        <!-- Sidemenu Chart END -->
+                        
+                        <!-- Sidemenu Pages Bookmark list START -->
+                        <li class="header"><i class="fa fa-book"></i>&nbsp;&nbsp;Bookmark List</li>
+                        <li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark fa-fw"></i><span class="page">Main Page Bookmark</span></a></li>
+                        <li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark fa-fw"></i><span class="page">Social Page Bookmark</span></a></li>
+                        <!-- Sidemenu Pages Bookmark list END -->
+                        
+                        <!-- Sidemenu List START -->
+                        <li class="header"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;List</li>
+                        <li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-list-ul"></i><span class="page">Group List</span></a></li>
+                        <li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-list-ul"></i><span class="page">User List</span></a></li>
+                        <!-- Sidemenu List END -->
                     </ul>
                 </section>
             </aside>
@@ -260,7 +265,6 @@
                             function zoomChart() {
                                 chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
                             }
-
                         </script>
                     </div>
                 </section>
@@ -421,7 +425,6 @@
                             function zoomChart() {
                                 chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
                             }
-
                         </script>
                     </div>
                 </section>
@@ -603,22 +606,7 @@
     <script src="/plugins/pace/pace.js"></script>
     <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
     <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-plugins/v1/bugsnag-vue.min.js"></script>
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'YOUR_SHIT_HERE', 'auto')
-        ga('send', 'pageview')
 
-    </script>
     <!--<script type="text/javascript" src="/js/manufacture.js"></script>
     <script type="text/javascript" src="/js/vendor.js"></script>-->
     <!--<script type="text/javascript" src="/js/app.js"></script>-->
