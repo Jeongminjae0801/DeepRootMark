@@ -6,24 +6,20 @@
 */
 
 
-package site.book.admin.service;
+package site.book.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import site.book.admin.dto.VisitorDTO;
+import site.book.admin.service.VisitorService;
 
 /**
  * @Class : VisitorCounter.java
@@ -63,9 +59,6 @@ public class VisitorCounter implements HttpSessionListener{
 	}
 
 	@Override
-	public void sessionDestroyed(HttpSessionEvent se) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void sessionDestroyed(HttpSessionEvent se) {}
 
 }

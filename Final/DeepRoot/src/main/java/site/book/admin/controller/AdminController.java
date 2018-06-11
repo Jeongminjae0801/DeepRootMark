@@ -8,6 +8,9 @@
 
 package site.book.admin.controller;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,12 +18,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.View;
+
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.services.gmail.Gmail;
+import com.google.api.services.gmail.model.ListMessagesResponse;
+import com.google.api.services.gmail.model.Message;
 
 import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
 import site.book.admin.service.NoticeService;
+import site.book.admin.service.VisitorService;
 import site.book.team.dto.S_TeamDTO;
 import site.book.team.service.G_BookService;
 import site.book.team.service.TeamService;
@@ -28,6 +38,8 @@ import site.book.user.dto.S_U_BookDTO;
 import site.book.user.dto.UserDTO;
 import site.book.user.service.U_BookService;
 import site.book.user.service.UserService;
+import site.book.utils.GmailQuickstart;
+import site.book.utils.MailService;
 
 /**
  * @Class : AdminController.java
@@ -59,6 +71,15 @@ public class AdminController {
 	@Autowired
 	private NoticeService notice_service;
 	
+	@Autowired
+	private VisitorService visitor_service;
+	
+	@Autowired
+	private GmailQuickstart gmail_quickstart;
+	
+	@Autowired
+	private MailService mail_service;
+	
 	@RequestMapping("admin.do")
 	public String admin(Model model) {
 		System.out.println("관리자 메인 페이지");
@@ -89,6 +110,14 @@ public class AdminController {
 		
 		List<UserDTO> userList = user_service.getUserList();
 		model.addAttribute("userList", userList);
+		
+		int total_visitors = visitor_service.getTotalVisitors();
+		model.addAttribute("total_visitors", total_visitors);
+		
+		List<HashMap<String, String>> visitor_count = visitor_service.numOfVisitorByDate();
+		model.addAttribute("visitor_count", visitor_count);
+		
+//		mail_service.mailGet();
 		
 		return "khj.admin";
 	}
@@ -194,4 +223,5 @@ public class AdminController {
 		
 		return "redirect:admin.do";
 	}
+	
 }
