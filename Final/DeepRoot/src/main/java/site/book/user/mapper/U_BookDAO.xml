@@ -23,6 +23,10 @@
 		SELECT * FROM U_BOOK WHERE UID=#{uid} AND URL IS NULL 
 	</select>
 
+	<select id="getUrl" resultType="site.book.user.dto.U_BookDTO">
+		SELECT * FROM U_BOOK WHERE PID=#{0} AND URL IS NOT NULL
+	</select>
+	
 	<insert id="insertRootFolder">
 		INSERT INTO U_BOOK (UBID, URLNAME,REGDATE,VIEW,UID)
 			VALUES (#{ubid},'카테고리 시작',SYSDATE(), 0, #{uid})
