@@ -152,5 +152,12 @@ public class U_BookService {
 		return list;
 	}
 
+	public int dropNode(int dragnode, int dropnode) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = dao.dropNode(dragnode, dropnode);
+		return 0;
+	}
+
 	// 함수 End
 }

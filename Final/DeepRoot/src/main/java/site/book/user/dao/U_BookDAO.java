@@ -48,4 +48,6 @@ public interface U_BookDAO {
 
 	public List<U_BookDTO> getUrl(int ubid);
 
+	public int dropNode(int dragnode, int dropnode);
+
 }
