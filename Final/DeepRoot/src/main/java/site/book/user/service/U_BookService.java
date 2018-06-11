@@ -144,5 +144,13 @@ public class U_BookService {
 		return result;
 	}
 
+	public List<U_BookDTO> getUrl(int ubid) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		List<U_BookDTO> list = dao.getUrl(ubid);
+		
+		return list;
+	}
+
 	// 함수 End
 }

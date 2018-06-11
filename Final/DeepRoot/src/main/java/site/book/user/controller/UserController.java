@@ -111,6 +111,45 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping("getUrl.do")
+	public void getUrl(int ubid , HttpServletResponse res) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		List<U_BookDTO> list = u_bookservice.getUrl(ubid);
+		System.out.println(list);
+		JSONArray jsonArray = new JSONArray();	
+		
+		for(int i =0;i<list.size();i++) {
+			
+			JSONObject jsonobject = new JSONObject();
+			
+			String parentid = String.valueOf(list.get(i).getPid());
+			
+			jsonobject.put("parent", parentid);
+			
+			jsonobject.put("id", list.get(i).getUbid());
+			jsonobject.put("text", list.get(i).getUrlname());
+			jsonobject.put("icon", "");	//favicon 추가
+			jsonobject.put("sname", list.get(i).getSname());
+			jsonobject.put("htag", list.get(i).getHtag());
+			jsonobject.put("href", list.get(i).getUrl());
+			
+			jsonArray.put(jsonobject);
+			
+		}
+		
+		
+		
+		
+		try {
+			res.getWriter().println(jsonArray);
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@RequestMapping("updateNodeText.do")
 	public void updateNodeText(int id, String text, HttpServletResponse res) {
 		

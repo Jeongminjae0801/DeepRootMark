@@ -73,6 +73,7 @@
 						"contextmenu" : {
 							
 							"select_node" : false,
+							
 							"items" : function($node){
 						    	
 						    	  var href = $node.a_attr.href;
@@ -224,26 +225,11 @@
 									                			 console.log(data);
 									                			 $('#editurl').modal("toggle");
 									                			 
-									                			 
 									                		 }
 									                	 }) 
 								                		 
 								                		 
 								                	 })
-								                	 /* $.ajax({
-								                		 
-								                		 url: "editUrl.do",
-								                		 type: "POST",
-								                		 data: form ,
-								                		 success: function(data){
-								                			 console.log(data);
-								                			 
-								                			 
-								                		 }
-								                	 }) */
-								                	 
-								                	 
-
 								                	
 								                }
 								            },
@@ -292,21 +278,23 @@
 							} */
 					})
 				.bind("select_node.jstree", function (e, data) {
-					console.log(data);
-	 					console.log(data.node.a_attr);
-	 					console.log(data.node.original);
-						console.log(" 위에 속성");
-						
-					 	var href = data.node.a_attr.href;
-						console.log(data.node.a_attr.href)
-						if(href == '#')
-						return '';
-
-						//jstree_container_child
-						console.log("아래");
-						console.log(data.element);
 					
-						 window.open(href); 
+	 					console.log(data.node.id);
+	 					var id = data.node.id;
+		
+	 					$.ajax({
+	 						
+	 						url : "getUrl.do",
+	 						type : "POST",
+	 						data : {ubid : id},
+	 						success : function(data){
+	 							console.log(data);
+ 	 							$.each(data, function(index, value){
+ 	 								console.log(index);
+	 								
+	 							});
+	 						}
+	 					});
 						 
 					}) 
 			    	.bind('rename_node.jstree', function(event, data){

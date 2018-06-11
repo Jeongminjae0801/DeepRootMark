@@ -46,4 +46,6 @@ public interface U_BookDAO {
 
 	public int editUrl(U_BookDTO dto);
 
+	public List<U_BookDTO> getUrl(int ubid);
+
 }
