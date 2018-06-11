@@ -1,7 +1,6 @@
 package site.book.user.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +11,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.gargoylesoftware.htmlunit.javascript.host.Console;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import site.book.user.dto.U_BookDTO;
+import site.book.user.dto.UserDTO;
 import site.book.user.service.U_BookService;
+import site.book.user.service.UserService;
 //user/mycategory.do";
 @Controller
 @RequestMapping("/user/")
@@ -26,8 +31,11 @@ public class UserController {
 	// 변수 Start
 	
 	// 태웅
+	@Autowired
+    private View jsonview;
 	
-	
+	@Autowired
+	private UserService userservice;
 	// 희준
 	
 	
@@ -40,8 +48,31 @@ public class UserController {
 	// 함수 Start
 	
 	// 태웅
+	@RequestMapping(value="idcheck.do", method = RequestMethod.POST)
+	public View userIdCheck(@RequestParam("uid") String uid, Model model) {
+		//System.out.println(uid);
+		int result = userservice.checkUserID(uid);
+		if(result > 0) {
+			model.addAttribute("result", "fail");
+		}else {
+			model.addAttribute("result", "pass");
+		}
+		
+		return jsonview;
+	}
 	
-	
+	@RequestMapping(value="nnamecheck.do", method = RequestMethod.POST)
+	public View userNnameCheck(@RequestParam("nname") String nname, Model model) {
+		//System.out.println(nname);
+		int result = userservice.checkUserNickname(nname);
+		if(result > 0) {
+			model.addAttribute("result", "fail");
+		}else {
+			model.addAttribute("result", "pass");
+		}
+		
+		return jsonview;
+	}
 	// 희준
 	
 	

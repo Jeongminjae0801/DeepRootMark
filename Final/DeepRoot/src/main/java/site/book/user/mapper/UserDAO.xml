@@ -5,7 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="site.book.user.dao.UserDAO">
 	<!-- 태웅 -->
+	<select id="checkUserID" resultType="Integer">
+		SELECT Count(*) FROM USER WHERE UID=#{uid}
+	</select>
 	
+	<select id="checkUserNickname" resultType="Integer">
+		SELECT Count(*) FROM USER WHERE NNAME=#{nname}
+	</select>
 	
 	<!-- 희준 -->
 	<select id="allUser" resultType="Integer">
