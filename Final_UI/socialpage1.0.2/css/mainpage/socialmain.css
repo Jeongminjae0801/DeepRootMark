@@ -91,12 +91,13 @@ h2 {
     margin-top: 25px;
     font-family: 'Lato','Spoqa Han Sans', sans-serif;
 }
-.group-share-bokkmark {
+.group-share-bookmark {
     margin-top: 25px;
     font-family: 'Lato','Spoqa Han Sans', sans-serif;
 }
 
 .hr-clear {
+  width: 50%;
   margin-top: 5px;
   margin-bottom: 5px;
   border: 0px;
@@ -287,3 +288,27 @@ h2 {
 	color: #E6E84B;
 
 }
+/*datatable start*/
+body {
+  margin: 2rem;
+}
+/*
+th {
+  background-color: white;
+}
+tr:nth-child(odd) {
+  background-color: grey;
+}
+th, td {
+  padding: 0.5rem;
+}
+td:hover {
+  background-color: lightsalmon;
+}
+*/
+.paginate_button {
+  border-radius: 0 !important;
+}
+
+
+/*datatable end*/
