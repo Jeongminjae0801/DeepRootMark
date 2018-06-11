@@ -2,4 +2,5 @@
     pageEncoding="UTF-8"%>
     <div id="content">
 <div id="jstree_container"></div>
+<div id="jstree_container_child"></div>
 </div>

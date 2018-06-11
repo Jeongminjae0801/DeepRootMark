@@ -59,7 +59,6 @@ public class UserController {
 		res.setCharacterEncoding("UTF-8");
 		
 		JSONArray jsonArray = new JSONArray();	
-		HashMap<String, String> urlmap = new  HashMap();
 		
 		List<U_BookDTO> list = u_bookservice.getCategoryList(uid);
 		
@@ -72,7 +71,6 @@ public class UserController {
 			
 			if(result ==1 ) {	//처음 가입한 유저일 경우 root폴더 생성해 준다.
 				
-				urlmap.put("href", "");
 				jsonobject.put("id", ubid);
 				jsonobject.put("parent", "#");
 				jsonobject.put("text", "첫 카테고리");
@@ -89,7 +87,6 @@ public class UserController {
 				JSONObject jsonobject = new JSONObject();
 				
 				String parentid = String.valueOf(list.get(i).getPid());
-				urlmap.put("href", list.get(i).getUrl());	//a_attr 에 href를 객체로 넣어야 한다.
 				
 				if(parentid.equals("0") || parentid.equals(""))
 					jsonobject.put("parent", "#");
@@ -99,7 +96,6 @@ public class UserController {
 				jsonobject.put("id", list.get(i).getUbid());
 				jsonobject.put("text", list.get(i).getUrlname());
 				jsonobject.put("icon", "");	//favicon 추가
-				jsonobject.put("a_attr", urlmap);
 				jsonobject.put("uid",uid);
 				jsonobject.put("sname", list.get(i).getSname());
 				jsonobject.put("htag", list.get(i).getHtag());
@@ -128,14 +124,14 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("addFolderOrLink.do")
+	@RequestMapping("addFolderOrUrl.do")
 	public void addFolder(U_BookDTO dto , HttpServletResponse res) {
 		
 		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
 		dto.setUbid(ubid);
 			
 		System.out.println(dto.toString());
-		int result = u_bookservice.addFolderOrLink(dto);
+		int result = u_bookservice.addFolderOrUrl(dto);
 		
 		try {
 			res.getWriter().println(ubid);
@@ -145,13 +141,39 @@ public class UserController {
 	}
 	
 	@RequestMapping("deleteNode.do")
-	public void deleNode(HttpServletRequest req) {
+	public void deleNode(HttpServletRequest req , HttpServletResponse res) {
+		res.setCharacterEncoding("UTF-8");
+		//mysql에 cascade 햇기 때문에 url이든 폴더를 지우려고 하든 상위의 ubid를 보내부면 알아서 참조하는 모든 데이터가 삭제된다,.
 		System.out.println("ddd");
-		System.out.println(req.getParameterValues("childs[]"));
-		 String[] aStr = req.getParameterValues("childs[]");
+	//	System.out.println(req.getParameterValues("childs[]"));
+		/* String[] aStr = req.getParameterValues("childs[]");
 		 for(String str : aStr){
 	            System.out.println(str);
-	        }
+	            u_bookservice.deleteFolderOrUrl(str);
+	        }*/
+		String nodeid = req.getParameter("node");
+		u_bookservice.deleteFolderOrUrl(nodeid);
+		
+		try {
+			res.getWriter().println("success");
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("editUrl.do")
+	public void editUrl(U_BookDTO dto , HttpServletResponse res) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		int result = u_bookservice.editUrl(dto);
+		
+		try {
+			res.getWriter().println(result);
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+		
 	}
 	
 	// 함수 End

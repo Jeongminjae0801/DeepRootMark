@@ -21,6 +21,7 @@ public class G_BookDTO {
 	private int gid;
 	private int pid;
 	private int abid;
+	private String uid;
 	
 	public G_BookDTO() {}
 
@@ -52,6 +53,8 @@ public class G_BookDTO {
 	public void setPid(int pid) {this.pid = pid;}
 	public int getAbid() {return abid;}
 	public void setAbid(int abid) {this.abid = abid;}
+	public String getUid() {return uid;}
+	public void setUid(String uid) {this.uid = uid;}
 
 	@Override
 	public String toString() {

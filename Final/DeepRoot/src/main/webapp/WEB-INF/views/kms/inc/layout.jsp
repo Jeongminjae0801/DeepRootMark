@@ -47,7 +47,8 @@
 							'themes':{
 								'name' : 'proton',
 								'responsive' : true,
-								"dots": false
+								"dots": false,
+								
 							},
 							"check_callback" : function(op, node, par, pos, more){
 								if(op === "move_node"){ // dnd 이벤트 일때 
@@ -112,7 +113,7 @@
 									            		  var form = {url : url , urlname : title , pid : par, uid:  "user1@naver.com"}
 									            		  
 									            		  $.ajax({
-									            			  url: "addFolderOrLink.do",
+									            			  url: "addFolderOrUrl.do",
 									            			  type :"POST",
 									            			  data : form,
 									            			  success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기
@@ -146,7 +147,7 @@
 								                		 var form = {urlname : foldername, pid : par , uid : "user1@naver.com"}
 	
 								               		  $.ajax({
-								            			  url: "addFolderOrLink.do",
+								            			  url: "addFolderOrUrl.do",
 								            			  type :"POST",
 								            			  data : form,
 								            			  success : function(data){
@@ -192,20 +193,67 @@
 								                	tree.edit($node);
 								                   
 								                }
-								            },                         
+								            }, 
+								            "reurl": {
+								                "separator_before": false,
+								                "separator_after": false,
+								                "label": "url 수정",
+								                "action": function (obj) { 
+								                	
+								                	$('#form3')[0].reset();	// url 모달창 reset
+								                	$('#editurl').modal();	//url 수정 모달창 띄우기
+								                	 
+								                	var inst = $.jstree.reference(obj.reference);
+									                var url = inst.get_node(obj.reference).a_attr.href;
+									                var id = inst.get_node(obj.reference).id;
+									                
+								                	 console.log(url);
+								                	 $('#editurlval').val(url);
+								                	 
+								                	 $('#editurlsubmit').on("click",function(){
+								                		 
+								                		 var newurl = $('#editurlval').val();
+								                		 var form = {ubid : id, url : newurl }
+								                		 
+								                		 $.ajax({
+									                		 
+									                		 url: "editUrl.do",
+									                		 type: "POST",
+									                		 data: form ,
+									                		 success: function(data){
+									                			 console.log(data);
+									                			 $('#editurl').modal("toggle");
+									                			 
+									                			 
+									                		 }
+									                	 }) 
+								                		 
+								                		 
+								                	 })
+								                	 /* $.ajax({
+								                		 
+								                		 url: "editUrl.do",
+								                		 type: "POST",
+								                		 data: form ,
+								                		 success: function(data){
+								                			 console.log(data);
+								                			 
+								                			 
+								                		 }
+								                	 }) */
+								                	 
+								                	 
+
+								                	
+								                }
+								            },
 								            "remove": {
 								                "separator_before": false,
 								                "separator_after": false,
 								                "label": "삭제",
 								                "action": function (obj) { 
 								                  	console.log("누름");
-								                	console.log(tree.is_selected(obj));
-								                	if(tree.is_selected(obj)) {
-								                		tree.delete_node(inst.get_selected());
-													}
-													else {
-														tree.delete_node(obj);
-													}
+								                	tree.delete_node($node);
 								                   
 								                }
 								            }
@@ -254,6 +302,10 @@
 						if(href == '#')
 						return '';
 
+						//jstree_container_child
+						console.log("아래");
+						console.log(data.element);
+					
 						 window.open(href); 
 						 
 					}) 
@@ -274,6 +326,15 @@
 		        					alert('수정 실패');
 		        			}
 		        		});   
+			    	})
+			    	.bind('before_open.jstree',function(obj,stric,c){
+			    		console.log("dom 선택 불러오는 중");
+			    		console.log(obj);
+			    		console.log(stric);
+			    		console.log(c);
+			    		//console.log(this);
+			    		//console.log(this.get_node(obj,true));
+			    		
 			    	})
 			    	.bind('delete_node.jstree',function(event,data){
 			    		console.log("삭제!!!");
@@ -300,7 +361,7 @@
 			    		
 			    		console.log(node_id);
 			    		
-			    		var form = {childs : child_ids}
+			    		var form = {node : node_id}
 			    		
 	 		    		$.ajax({
 			    			url:'deleteNode.do',
@@ -312,9 +373,6 @@
 			    			}
 			    			
 			    		})  
-			    	
-			    		
-			    		
 			    		
 			    		
 			    	})	;
@@ -403,6 +461,43 @@
 						<button type="button" class="btn btn-default btn-sm"
 							data-dismiss="modal">취소</button>
 						<button class="btn btn-default btn-sm" id="folderAddsubmit">추가하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="modal fade" id="editurl" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<b>URL 변경</b>
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form id="form3">
+						<table class="table">
+							<colgroup>
+								<col width="30%">
+								<col width="70%">
+							</colgroup>
+							<tr>
+								<td class="info" style="vertical-align: middle;">URL</td>
+								<td><input type="text" id="editurlval" name="editurlval"
+									class="form-control"></td>
+							</tr>
+						</table>
+					</form>
+					<div class="modal-footer">
+						<!-- type="submit" value="Submit" -->
+						<button type="button" class="btn btn-default btn-sm"
+							data-dismiss="modal">취소</button>
+						<button class="btn btn-default btn-sm" id="editurlsubmit">수정하기</button>
 					</div>
 				</div>
 			</div>

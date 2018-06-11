@@ -10,10 +10,39 @@
 <body>
 	<h2>관리자 페이지</h2>
 
+	<!-- BEGIN Free Counter Code! counter -->
+	<script type="text/javascript" src="https://freecountercode.com/service/BbLjksOnMILSKx97uL55"></script>
+	<!-- END Free Counter Code! counter -->
+	<script src=http://zerocounter.com?TVRVeU9EVTVPVFl5TVE9PQ==></script>
+	
 	<h3>전체 회원수 : ${allUser}</h3>
 	<h3>신규 가입자수 : ${newUser}</h3>
 	
-	<h3>개인이 추가한 북마크수</h3>
+	<h3>회원 리스트</h3>
+ 	<c:forEach items="${userList}" var="user">
+		<ul>
+			<li>${user.uid}</li>
+			<li>${user.nname}</li>
+			<li>${user.pwd}</li>
+			<li>${user.enabled}</li>
+			<li>${user.regdate}</li>
+			<li>${user.profile}</li>
+		</ul>
+	</c:forEach>
+	
+	<h3>블랙리스트 등록</h3>
+	<form action="blacklist.do" method="post">
+		아이디 <input type="text" id="uid" name="uid">
+		<button type="submit">등록</button>
+	</form>
+	
+	<h3>공지사항 쓰기</h3>
+	<form action="noticeReg.do" method="post">
+		공지사항 내용<input type="text" id="ncontent" name="ncontent">
+		<button type="submit">등록</button>
+	</form>
+	
+<%-- 	<h3>개인이 추가한 북마크수</h3>
 	<c:forEach items="${uCount}" var="u">
 		<ul>
 			<li>${u.d}</li>
@@ -65,7 +94,7 @@
 	<form action="deleteSGroup.do" method="post">
 		그룹 번호 <input type="text" id="gid" name="gid">
 		<button type="submit">삭제</button>
-	</form>
+	</form> --%>
 	
 	
 	<%-- <h3>카테고리</h3>
