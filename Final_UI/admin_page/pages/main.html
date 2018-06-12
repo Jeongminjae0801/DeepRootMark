@@ -29,51 +29,9 @@
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
     <!--CHART Resources END-->
-
-    <!-- 페이지 전환 Script START -->
-    <script type="text/javascript">
-        $(window).load(function() {
-            setTimeout(function() {
-                $(".loader").addClass('end');
-            }, 100);
-            $('.skin-blue').on('click', 'transition', function(e) {
-                e.preventDefault();
-                var t = $(this),
-                    duration = t.data('duration'),
-                    getNum = /[^0-9]/g,
-                    href = t.attr('href'),
-                    time = parseFloat(duration);
-
-                time = time * 1000;
-                console.log(time);
-
-                $('.loader').find('*').css({
-                    '-moz-transition-duration': duration,
-                    '-o-transition-duration': duration,
-                    '-webkit-transition-duration': duration,
-                    'transition-duration': duration
-                });
-                $('.loader').addClass('exit');
-                window.setTimeout(function() {
-                    window.location = href
-                }, time)
-            });
-        });
-    </script>
-    <!-- 페이지 전환 Script END -->
-
 </head>
 
-<body class="skin-blue sidebar-mini  pace-done" style="overflow-y:scroll">
-
-    <!-- Page Transition START -->
-    <div class="loader">
-        <svg height="100%" width="100%" class="svg-wrap">
-    <circle class="circle"  r="100%" cx="50%" cy="50%" fill="#222d32"/>
-  </svg>
-    </div>
-    <!-- Page Transition END -->
-
+<body class="skin-blue sidebar-mini pace-done" style="overflow-y:scroll">
     <div id="app">
         <div class="wrapper">
             <header class="main-header"><span class="logo-mini"><a href="main.html" data-duration="0.2s"><span class="img-responsive center-block logo">뿌리깊은마크</span></a>

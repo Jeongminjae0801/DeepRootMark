@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="/css/pace.css">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/pagetransition.css">
-        <!-- adminTable CSS START -->
+    <!-- adminTable CSS START -->
     <link rel="stylesheet" href="/css/adminTable.css">
     <link rel="stylesheet" href="/css/dataTables.bootstrap.css">
-        <!-- adminTable CSS END -->
+    <!-- adminTable CSS END -->
     <!-- CSS END -->
 
     <!-- Script START -->
@@ -36,67 +36,29 @@
 
     <!-- 페이지 전환 Script START -->
     <script type="text/javascript">
-        $(window).load(function() {
-            setTimeout(function() {
-                $(".loader").addClass('end');
-            }, 100);
-            $('.skin-blue').on('click', 'transition', function(e) {
-                e.preventDefault();
-                var t = $(this),
-                    duration = t.data('duration'),
-                    getNum = /[^0-9]/g,
-                    href = t.attr('href'),
-                    time = parseFloat(duration);
-
-                time = time * 1000;
-                console.log(time);
-
-                $('.loader').find('*').css({
-                    '-moz-transition-duration': duration,
-                    '-o-transition-duration': duration,
-                    '-webkit-transition-duration': duration,
-                    'transition-duration': duration
-                });
-                $('.loader').addClass('exit');
-                window.setTimeout(function() {
-                    window.location = href
-                }, time)
-            });
-            
+       
             $(document).ready(function() {
                 $('#groupListTable').DataTable({
                     responsive: true
                 });
             });
-            
-        });
-        
+
         /*그룹삭제 임시 스크립트 START*/
-            function deleteGroup(data){
-                if(confirm('삭제하시겠습니까?')){
-                    var clickedRow = $(data).parent().parent();
-                    clickedRow.remove();
-                } else{
-                    return;
-                }
+        function deleteGroup(data) {
+            if (confirm('삭제하시겠습니까?')) {
+                var clickedRow = $(data).parent().parent();
+                clickedRow.remove();
+            } else {
+                return;
             }
+        }
         /*그룹삭제 임시 스크립트 END*/
-        
     </script>
     <!-- 페이지 전환 Script END -->
 
 </head>
 
 <body class="skin-blue sidebar-mini  pace-done" style="overflow-y:scroll">
-
-    <!-- Page Transition START -->
-    <div class="loader">
-        <svg height="100%" width="100%" class="svg-wrap">
-    <circle class="circle"  r="100%" cx="50%" cy="50%" fill="#222d32"/>
-  </svg>
-    </div>
-    <!-- Page Transition END -->
-
     <div id="app">
         <div class="wrapper">
             <header class="main-header"><span class="logo-mini"><a href="main.html" data-duration="0.5s"><span class="img-responsive center-block logo">뿌리깊은마크</span></a>
@@ -134,7 +96,7 @@
                                 </ul>
                             </li>
                             <!-- Notice Alarm END -->
-                           
+
                             <!-- Admin Infomation START -->
                             <li class="dropdown user user-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
                                 <span class="hidden-xs">관리자(Admin)</span></a></li>
@@ -171,9 +133,18 @@
             </aside>
             <!-- Sidemenu END -->
 
+
             <!-- Main Content START -->
-                <!--groupList table start-->
-                <div id="page-wrapper">
+            <div class="content-wrapper" style="min-height: 913px;">
+            <section class="content-header">
+                <h1>Group List</h1>
+                <ol class="breadcrumb">
+                    <li><a href="javascript:;"><i class="fa fa-home"></i>Home</a></li>
+                    <li class="active">group list</li>
+                </ol>
+            </section>
+            <!--groupList table start-->
+            <div id="page-wrapper">
                 <br>
                 <div class="row">
                     <div class="col-lg-8">
@@ -246,32 +217,38 @@
                                             <td>789 스터디</td>
                                             <td>#789 #스터디</td>
                                             <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                        </tr><tr class="index2">
+                                        </tr>
+                                        <tr class="index2">
                                             <td>그룹9</td>
                                             <td>789 스터디</td>
                                             <td>#789 #스터디</td>
                                             <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                        </tr><tr class="index2">
+                                        </tr>
+                                        <tr class="index2">
                                             <td>그룹9</td>
                                             <td>789 스터디</td>
                                             <td>#789 #스터디</td>
                                             <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                        </tr><tr class="index2">
+                                        </tr>
+                                        <tr class="index2">
                                             <td>그룹9</td>
                                             <td>789 스터디</td>
                                             <td>#789 #스터디</td>
                                             <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                        </tr><tr class="index2">
+                                        </tr>
+                                        <tr class="index2">
                                             <td>그룹9</td>
                                             <td>789 스터디</td>
                                             <td>#789 #스터디</td>
                                             <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                        </tr><tr class="index2">
+                                        </tr>
+                                        <tr class="index2">
                                             <td>그룹9</td>
                                             <td>789 스터디</td>
                                             <td>#789 #스터디</td>
                                             <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                        </tr><tr class="index2">
+                                        </tr>
+                                        <tr class="index2">
                                             <td>그룹9</td>
                                             <td>789 스터디</td>
                                             <td>#789 #스터디</td>
@@ -293,7 +270,7 @@
             </div>
             <!-- /#page-wrapper -->
             <!--groupList table end-->
-            
+            </div>
             <!-- Main Content END -->
 
             <!-- footer START -->
@@ -304,10 +281,10 @@
         </div>
     </div>
     <!-- Script START -->
-        <!-- adminTable JS START -->
+    <!-- adminTable JS START -->
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap.min.js"></script>
-        <!-- adminTable JS END -->
+    <!-- adminTable JS END -->
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/app.min.js"></script>
