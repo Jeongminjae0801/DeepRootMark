@@ -10,8 +10,9 @@
 <security:http>
 	<security:csrf disabled="true" />
 	<security:form-login login-page="/joinus/login.htm" authentication-failure-url="/joinus/login.htm?error" />
-	<security:logout logout-success-url="/index.htm" />
-	<!-- 	
+	<security:logout logout-success-url="/index.do" />
+	
+	<!--
 	<security:intercept-url pattern="/customer/noticeDetail.htm" access="hasRole('ROLE_USER')" />
 	<security:intercept-url pattern="/customer/noticeReg.htm" access="hasRole('ROLE_ADMIN')" /> 
 	-->

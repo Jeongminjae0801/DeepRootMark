@@ -43,6 +43,6 @@ public class MainController {
 		List<A_BookDTO> bookList = a_book_service.getMainBooks();
 		model.addAttribute("bookList", bookList);
 		
-		return "home.home";
+		return "home.index";
 	}
 }

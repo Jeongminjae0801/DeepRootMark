@@ -45,35 +45,7 @@
 	</script>
 </head>
 <body>
-	<h1>
-		Main Home Page
-	</h1>
-
-	<h3>카테고리(admin)</h3>
-	<ul>
-		<c:forEach items="${categoryList}" var="category">
-			<li>${category.acid}: ${category.acname}</li>
-		</c:forEach>
-	</ul>
 	
-	
-	<h3>북마크(admin)</h3>
-	<ul>
-		<c:forEach items="${bookList}" var="books">
-			<li>${books.acname}(${books.acid}): ${books.url}, ${books.urlname}, ${books.view}, ${books.regdate}</li>
-		</c:forEach>
-	</ul>
-	
-	<h3>회원가입</h3>
-	<form method="post" action="user/register.do" accept-charset="UTF-8">
-	    <input id="uid_join" type="text" placeholder="Email@example.com" name="uid">
-	    <a id="check-user-id" style="border: 1px solid black;">아이디 중복확인</a>
-	    <input id="nname_join" type="text" placeholder="Nickname" name="nname">
-	    <a id="check-user-nickname" style="border: 1px solid black;">닉네임 중복확인</a>
-	    <input type="password" placeholder="Password" name="pwd">
-	    <input type="text" placeholder="Greetings" name="profile">
-	    <input type="submit" value="Create account" name="commit">
-	</form>
 
 	
 	
