@@ -8,6 +8,8 @@
 
 package site.book.admin.controller;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,14 +68,6 @@ public class AdminController {
 	@Autowired
 	private VisitorService visitor_service;
 	
-	@Autowired
-	private GmailQuickstart gmail_quickstart;
-	
-	@Autowired
-	private MailService mail_service;
-	
-	@Autowired
-	private View jsonview;
 	
 	@RequestMapping("admin.do")
 	public String admin(Model model) {
@@ -112,7 +106,11 @@ public class AdminController {
 		List<HashMap<String, String>> visitor_count = visitor_service.numOfVisitorByDate();
 		model.addAttribute("visitor_count", visitor_count);
 		
-//		mail_service.mailGet();
+		try {
+			GmailQuickstart.main();
+		} catch (IOException | GeneralSecurityException e) {
+			e.printStackTrace();
+		}
 		
 		return "khj.admin";
 	}
