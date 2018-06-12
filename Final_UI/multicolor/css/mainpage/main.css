@@ -118,10 +118,11 @@ h2 {
     float: left;
 }
 
-.category:hover {
-    margin-right: 13px;
+.category:hover,
+.category:active{
+    margin-right: 15px;
     background-color: #fff;
-    border : 2px solid #7bbfa8;
+    border : 1px solid #7bbfa8;
     color: #7bbfa8;
 }
 
@@ -179,7 +180,9 @@ h2 {
     padding: 10px 25px;
 }
 
-.btn-common:hover{
+.btn-common:hover,
+.btn-common:active,
+.btn-common:focus{
     color: #fff;
     background-color: #0099ae;
 }

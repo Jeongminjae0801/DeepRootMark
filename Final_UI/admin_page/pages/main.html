@@ -6,19 +6,21 @@
 
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title>뿌리깊은마크_관리자</title>
-    <link rel=stylesheet href="css/bootstrap.min.css">
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css>
+
     <!-- CSS START -->
-    <link rel=stylesheet href="/css/AdminLTE.css">
-    <link rel=stylesheet href="/css/skin-blue.min.css">
-    <link rel=stylesheet href="/plugins/pace/pace.css">
-    <link href=css/app.css rel=stylesheet>
-    <link rel="stylesheet" href="plugins/datatables/datatables.Bootstrap.css">
-    <link rel="stylesheet" href="css/pagetransition.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/AdminLTE.css">
+    <link rel="stylesheet" href="/css/skin.css">
+    <link rel="stylesheet" href="/css/pace.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/pagetransition.css">
     <!-- CSS END -->
 
-    <script src="jquery.js"></script>
+    <!-- Script START -->
+    <script src="/js/jquery.js"></script>
+    <!-- Script END -->
 
     <!--CHART Resources START-->
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -63,7 +65,7 @@
 </head>
 
 <body class="skin-blue sidebar-mini  pace-done" style="overflow-y:scroll">
-    
+
     <!-- Page Transition START -->
     <div class="loader">
         <svg height="100%" width="100%" class="svg-wrap">
@@ -72,22 +74,17 @@
     </div>
     <!-- Page Transition END -->
 
-    <!--<div class="pace pace-inactive">
-        <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
-            <div class="pace-progress-inner"></div>
-        </div>
-        <div class="pace-activity"></div>
-    </div>-->
-
     <div id="app">
         <div class="wrapper">
-            <header class="main-header"><span class="logo-mini"><a href="main.html"  data-duration="0.5s"><span class="img-responsive center-block logo">뿌리깊은마크</span></a>
+            <header class="main-header"><span class="logo-mini"><a href="main.html" data-duration="0.5s"><span class="img-responsive center-block logo">뿌리깊은마크</span></a>
                 </span>
                 <!-- header menu bar START -->
                 <nav role="navigation" class="navbar navbar-static-top"><a href="javascript:;" data-toggle="offcanvas" role="button" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span></a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown messages-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-envelope-o"></i> <span class="label label-success">3</span></a>
+                            <li class="dropdown messages-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">3</span></a>
+                                <!-- Message Alarm START -->
                                 <ul class="dropdown-menu">
                                     <li class="header">You have 1 message(s)</li>
                                     <li>
@@ -104,20 +101,21 @@
                                     </li>
                                     <li class="footer"><a href="javascript:;">See All Messages</a></li>
                                 </ul>
+                                <!-- Message Alarm END -->
                             </li>
-                            <li class="dropdown notifications-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-bell-o"></i> <span class="label label-warning">0</span></a>
+                            <!-- Notice Alarm START -->
+                            <li class="dropdown notifications-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">0</span></a>
                                 <ul class="dropdown-menu">
                                     <li class="header">You have 0 notification(s)</li>
-
                                 </ul>
                             </li>
-                            <li class="dropdown tasks-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-flag-o"></i> <span class="label label-danger">0 </span></a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 0 task(s)</li>
-
-                                </ul>
-                            </li>
-                            <li class="dropdown user user-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image"> <span class="hidden-xs">관리자(Admin)</span></a></li>
+                            <!-- Notice Alarm END -->
+                           
+                            <!-- Admin Infomation START -->
+                            <li class="dropdown user user-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
+                                <span class="hidden-xs">관리자(Admin)</span></a></li>
+                            <!-- Admin Infomation END -->
                         </ul>
                     </div>
                 </nav>
@@ -150,6 +148,7 @@
             </aside>
             <!-- Sidemenu END -->
 
+            <!-- Main Content START -->
             <div class="content-wrapper" style="min-height: 913px;">
                 <section class="content-header">
                     <h1>Chart</h1>
@@ -638,28 +637,22 @@
                 </section>
                 <!-- 개인 / 그룹 페이지에서 추가한 북마크 수 END -->
             </div>
+            <!-- Main Content END -->
 
             <!-- footer START -->
             <footer class="main-footer"><strong>Copyright © 2018
-            <a href="javascript:;">BitCamp</a>.</strong> <b>Java 104th, Team2</b>
+            <a href="http://www.bitcamp.co.kr">BitCamp</a>.</strong> <b>Java 104th, Team2</b>
             </footer>
             <!-- footer END -->
         </div>
     </div>
-
+    <!-- Script START -->
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
-    <!--<script src="/plugins/Jquery/jquery.js"></script>-->
-    <script src="/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="/plugins/AdminLTE/app.min.js"></script>
-    <script src="/plugins/pace/pace.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/app.min.js"></script>
+    <script src="/js/pace.js"></script>
     <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
     <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-plugins/v1/bugsnag-vue.min.js"></script>
-
-
-    <!--<script type="text/javascript" src="/js/manufacture.js"></script>
-    <script type="text/javascript" src="/js/vendor.js"></script>-->
-    <!--<script type="text/javascript" src="/js/app.js"></script>-->
-
+    <!-- Script END -->
 </body>
-
 </html>
