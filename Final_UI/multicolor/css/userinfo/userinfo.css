@@ -1,0 +1,106 @@
+/* 영어 폰트*/
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+/* 한글 폰트*/
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+
+.userinfo{
+    font-family: 'Lato', 'Spoqa Han Sans';
+    height: 100%;
+    font-size : 15px;
+    padding-top: 100px;
+    padding-bottom: 207px;
+}
+
+.form{
+}
+
+.form-control{
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.09);
+    box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
+    color: #FFFFFF;
+}
+.form-control:hover{
+    background-color: rgba(0,0,0,.16);
+}
+.form-control:focus{
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04) inset;
+    background-color: rgba(0,0,0,0.23);
+    color: #FFFFFF;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.confirm{
+    font-family: 'Lato', 'Spoqa Han Sans';
+    font-size:18px;
+    background-color: #7bbfa8;
+    color: white;
+    padding: 16px 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    opacity: 0.9;
+}
+.confirm:hover {
+    opacity: 1;
+    background-color: #fff;
+    color: #7bbfa8;
+    border : 1px solid #7bbfa8;
+}
+
+.cancel{
+    font-family: 'Lato', 'Spoqa Han Sans';
+    font-size:18px;
+    background-color: #ff5757;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: 1px solid #fff;
+    font-weight: 500;
+}
+
+.cancel:hover{
+    opacity: 1;
+    background-color: #fff;
+    color: #ff5757;
+    border: 1px solid #ff5757;
+}
+
+/* Add a blue text color to links */
+a {
+    color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
