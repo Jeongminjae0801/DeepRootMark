@@ -15,9 +15,8 @@
 						 login-processing-url="/security/login"
 						 username-parameter="uid"
    						 password-parameter="pwd"
-   						 default-target-url="/index.do" 
-   						 authentication-failure-url="/index.do"
-   						 authentication-failure-handler-ref="" />
+   						 authentication-success-handler-ref="loginSuccessHandler"
+   						 authentication-failure-handler-ref="loginFailureHandler" /><!-- default-target-url="/index.do" -->
    						 
 	<security:logout logout-url="/security/logout" 
 					 logout-success-url="/index.do" />

@@ -52,12 +52,38 @@
                                             <div class="error"></div>
                                             <div class="form loginBox">
                                                 <!-- Login START -->
-                                                <form action='<c:url value="/security/login" />' method="POST">
+                                                <%-- <form action='<c:url value="/security/login" />' method="POST"> --%>
+                                                <form id="login-form">
                                                     <input id="uid" class="form-control" type="text" placeholder="Email" name="uid">
                                                     <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
-                                                    <input id="loginAjax" class="btn btn-default btn-login" type="submit" value="Login">
+                                                    <!-- <input id="loginAjax" class="btn btn-default btn-login" type="submit" value="Login"> -->
+                                                    <input id="loginAjax" class="btn btn-default btn-login" type="button" value="Login">
                                                 </form>
                                                 <!-- Login END -->
+                                                <script type="text/javascript">
+                                                $(function() {
+                                                	$("#loginAjax").on("dblclick", function(){ });
+                                        		    $("#loginAjax").on("click", function(){
+                                        		    	$.ajax({ 
+                                        		    		url:"security/login",
+                                        		            type:"POST",
+                                        		            data:{uid: $("#uid").val(), pwd: $("#pwd").val()},
+                                        		            dataType:"json",
+                                        		            crossDomain: false,
+                                        		            success:function(data){
+                                        		            	if(data.msg == 'fail') { 
+                                        		            		$("#pwd").val('');
+                                        		            		$("#login-form").html("<strong>아이디 또는 비밀번호 오류입니다.</strong>");
+                                        		            	}
+                                        		            	else { location.reload(); }
+                                        		            },
+                                        		            error:function(e){  
+                                        		            	console.log("Error: " + e.responseText); 
+                                        		            }  
+                                        		        });
+                                        		    });
+                                                });
+                                                </script>
                                             </div>
                                         </div>
                                     </div>

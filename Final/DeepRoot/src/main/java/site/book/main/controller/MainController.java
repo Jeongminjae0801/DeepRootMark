@@ -66,12 +66,10 @@ public class MainController {
 	}
 	
 	/* Log in */
-	@RequestMapping(value="/joinus/login.do")
+	/*@RequestMapping(value="/joinus/login.do")
 	public String login(Model model, UserDTO user) {
-		System.out.println("왔니?");
-		
 		return "joinus.login";
-	}
+	}*/
 	
 	/* Roll in */
 	

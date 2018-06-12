@@ -10,6 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 
 /**
  * @Class : AdminController.java
@@ -25,7 +28,13 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		
+		System.out.println("sssssssssssssss");
+		request.setAttribute("userid", request.getParameter("uid"));
+
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		response.getWriter().print("{\"msg\": success}");
+		response.getWriter().flush();
 	}
+	
 	
 }
