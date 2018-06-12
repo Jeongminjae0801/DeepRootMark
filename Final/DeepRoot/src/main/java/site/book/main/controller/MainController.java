@@ -29,11 +29,27 @@ import site.book.user.dto.UserDTO;
  */
 @Controller
 public class MainController {
+	
+	// 변수 Start
+	
+	// 태웅
 	@Autowired
 	private A_CategoryService a_category_service;
 	
 	@Autowired
 	private A_BookService a_book_service;
+	
+	// 희준
+	
+	
+	
+	// 명수
+	
+	// 변수 End
+	
+	// 함수 Start
+	
+	// 태웅
 	
 	/*메인 화면 데이터 출력*/
 	@RequestMapping(value="/index.do", method=RequestMethod.GET)
@@ -58,4 +74,14 @@ public class MainController {
 	}
 	
 	/* Roll in */
+	
+	// 희준
+	
+	
+	
+	
+	// 명수
+	
+	
+	// 함수 End
 }
