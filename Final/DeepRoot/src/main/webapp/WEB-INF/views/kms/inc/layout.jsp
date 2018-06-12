@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <!DOCTYPE html>
 <html>
@@ -28,7 +28,7 @@
 	src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script>
 
 
-<title>my</title>
+<title>my BookMark</title>
 </head>
 <body>
 	<script type="text/javascript">
@@ -175,10 +175,11 @@
 								            			  success : function(data){
 								            					console.log(data);
 								            				  $('#folderAdd').modal("toggle");
-								            					
+								            				  inst.create_node(par ,  { "id" : data , "text" : foldername}, "last", function(){
+													          });
 								            					//id 가져오는 문 만들기
-								            					 $('#jstree_container').jstree().create_node(par ,  { "id" : data , "text" : foldername}, "last", function(){
-												          });
+								            					/*  $('#jstree_container').jstree().create_node(par ,  { "id" : data , "text" : foldername}, "last", function(){
+												          }); */
 							              			  }
 							          			  })
 						                	 })
@@ -242,17 +243,19 @@
 	 						dataType:"json",
 	 						data : {ubid : id},
 	 						success : function(data){
-	 							/* var json = JSON.parse(data)
-	 							console.log(json); */
+	 							
 	 							console.log("under");
 	 							if(firstclick == 1){
-	 								console.log("dd");
-	 							$('#jstree_container_child').jstree(true).settings.core.data = data;
-	 							$('#jstree_container_child').jstree(true).refresh();
+	 								
+	 								console.log("refresh");
+	 								$("#jstree_container_child").jstree(true).settings.core.data = data;
+	 								$("#jstree_container_child").jstree(true).refresh();
+	 							
 	 							}
 	 							
 	 							
 	 							firstclick =1;
+	 							
 	 							$("#jstree_container_child").jstree({
 	 								
 	 								"core" : {
@@ -288,6 +291,12 @@
 	 									"items" : function($node){
 	 										
 	 										var tree_child = $("#jstree_container_child").jstree(true);
+	 										
+	 										console.log($node);
+	 										
+	 										var htag = $node.test;
+	 										console.log(htag);
+	 										
 	 										return{
 	 											
 	 									            "rename": {
@@ -295,6 +304,7 @@
 	 									                "separator_after": false,
 	 									                "label": "이름 수정",
 	 									                "action": function (obj) { 
+	 									                	console.log("d이름수정");
 	 									                	tree_child.edit($node);
 	 									                   
 	 									                }
@@ -332,8 +342,6 @@
 	 										                			 
 	 										                		 }
 	 										                	 }) 
-	 									                		 
-	 									                		 
 	 									                	 })
 	 									                }
 	 									            },
@@ -369,18 +377,14 @@
 	 										                		console.log(data);
 	 										                		
 	 										                	}
-	 										                	
 	 										                })
-	 										               
 	 									                }
-	 									            	
 	 									            }
 	 							                 }		
 	 									}
-	 									
 	 								}
 	 							})
-	 							.bind("select_node.jstree",function(e,data){
+	 							/* .bind("select_node.jstree",function(e,data){
 	 								
 	 								var href = data.node.a_attr.href;
 	 								
@@ -388,11 +392,11 @@
 	 								
 	 							window.open(href); 
 	 								
-	 							})
-	 							.bind('delete_node.jstree',function(event,data){
+	 							}) */
+	 							.bind("delete_node.jstree",function(event,data){
 
-			    		var node_id = data.node.id;
-			    		var form = {node : node_id}
+					    			var node_id = data.node.id;
+					    			var form = {node : node_id}
 			    		
 	 		    		$.ajax({
 			    			url:'deleteNode.do',
@@ -407,7 +411,7 @@
 			    		
 			    	})
 			    	.bind('rename_node.jstree', function(event, data){
-			    		var node_id = data.node.id;
+			    		 var node_id = data.node.id;
 			    		var node_text = data.text;
 			    		console.log(node_id);
 			    		console.log(node_text);
@@ -424,9 +428,8 @@
 		        			}
 		        		});   
 			    	})
-	 							
-	 						}
-	 					});
+					}
+	 			})
 						 
 					}) 
 			    	.bind('rename_node.jstree', function(event, data){
@@ -515,15 +518,13 @@
     			})
 				
 			});
-				
-			
 		});
 	</script>
 
 	<div id="main">
 		<tiles:insertAttribute name="content" />
 	</div>
-	
+
 	<div class="modal fade" id="linkAdd" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -569,7 +570,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="folderAdd" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -605,8 +606,8 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<div class="modal fade" id="editurl" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -642,6 +643,6 @@
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>
