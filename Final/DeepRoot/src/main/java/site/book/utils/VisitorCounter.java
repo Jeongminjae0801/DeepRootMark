@@ -13,7 +13,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -28,15 +31,19 @@ import site.book.admin.service.VisitorService;
  */
 
 public class VisitorCounter implements HttpSessionListener{
-
+	
 	@Override
 	public void sessionCreated(HttpSessionEvent se) {
 		System.out.println("visitor 들어옴");
 		
 		HttpSession session = se.getSession();
 		
+		
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext()); 
 		VisitorService visitor_service = (VisitorService)context.getBean("visitorService");
+		
+		/*ApplicationContext context = new GenericXmlApplicationContext("classpath*:/WEB-INF/spring/root-context.xml");
+		VisitorService visitor_service = context.getBean("visitorService", VisitorService.class);*/
 		
 		//request를 파라미터에 넣지 않고도 사용할수 있도록 설정
 		HttpServletRequest req = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -46,12 +53,6 @@ public class VisitorCounter implements HttpSessionListener{
 		visitor.setVip(req.getRemoteAddr());
 		visitor.setVagent(req.getHeader("User-Agent"));
 		System.out.println("refer : " + req.getHeader("referer"));
-		
-/*		if(req.getHeader("referer") == null) {
-			visitor.setVrefer("");
-		}else {
-			visitor.setVrefer(req.getHeader("referer"));
-		}*/
 		
 		visitor_service.insertVisitor(visitor);
 		

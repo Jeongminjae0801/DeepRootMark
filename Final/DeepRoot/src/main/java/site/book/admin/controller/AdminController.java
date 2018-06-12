@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
@@ -70,6 +71,9 @@ public class AdminController {
 	
 	@Autowired
 	private MailService mail_service;
+	
+	@Autowired
+	private View jsonview;
 	
 	@RequestMapping("admin.do")
 	public String admin(Model model) {
