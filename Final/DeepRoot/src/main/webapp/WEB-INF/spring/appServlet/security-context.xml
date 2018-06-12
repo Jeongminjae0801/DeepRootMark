@@ -15,7 +15,9 @@
 						 login-processing-url="/security/login"
 						 username-parameter="uid"
    						 password-parameter="pwd"
-   						 default-target-url="/index.do" />
+   						 default-target-url="/index.do" 
+   						 authentication-failure-url="/index.do"
+   						 authentication-failure-handler-ref="" />
    						 
 	<security:logout logout-url="/security/logout" 
 					 logout-success-url="/index.do" />
@@ -37,5 +39,9 @@
 		<!-- <security:password-encoder ref="bCryptPasswordEncoder" /> -->
 	</security:authentication-provider>
 </security:authentication-manager>
+
+<!-- 로그인 처리 핸들러 빈 -->
+<bean id="loginSuccessHandler" class="site.book.main.handler.LoginSuccessHandler"></bean>
+<bean id="loginFailureHandler" class="site.book.main.handler.LoginFailHandler"></bean>
 
 </beans>
