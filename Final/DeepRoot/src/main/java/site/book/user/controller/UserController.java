@@ -152,7 +152,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("getUrl.do")
-	public void getUrl(int ubid , HttpServletResponse res) {
+	public void getUrl(int ubid , HttpServletResponse res) {	//해당 노드의 url 추출
 		
 		res.setCharacterEncoding("UTF-8");
 		
@@ -174,8 +174,18 @@ public class UserController {
 			jsonobject.put("parent", "#");
 			jsonobject.put("text", list.get(i).getUrlname());
 			jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
-			jsonobject.put("sname", list.get(i).getSname());
-			jsonobject.put("htag", list.get(i).getHtag());
+			
+			String htag = list.get(i).getHtag();
+			
+			if(htag.equals("")) {
+				jsonobject.put("sname", "");
+				jsonobject.put("htag", "");
+			}else {
+				jsonobject.put("sname", list.get(i).getSname());
+				jsonobject.put("htag", list.get(i).getHtag());
+			}
+				
+			jsonobject.put("test", "dd");
 			jsonobject.put("a_attr", href);
 			
 			jsonArray.put(jsonobject);
@@ -190,11 +200,11 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("updateNodeText.do")
-	public void updateNodeText(int id, String text, HttpServletResponse res) {
+	@RequestMapping("updateNodeText.do")	//urlname 수정
+	public void updateNodeText(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
 		
-		int result = u_bookservice.updateNodeText(id , text);
-		System.out.println(id+text);
+		int result = u_bookservice.updateNodeText(param);
+		System.out.println(param);
 		
 		try {
 			res.getWriter().println(result);
@@ -203,7 +213,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("addFolderOrUrl.do")
+	@RequestMapping("addFolderOrUrl.do")	//폴더인지 url인지는 href로 구분이 된다& 공유하기에서 해시태그가 있으면 sql에서 따로 저장이 된다.
 	public void addFolder(U_BookDTO dto , HttpServletResponse res) {
 		
 		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
@@ -219,17 +229,11 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("deleteNode.do")
+	@RequestMapping("deleteNode.do")	//db에서 참조하는거 다 지우는 cascade 걸었기 때문에 상위 node의 id만 알아와 지우면 내부에 있는 폴더 url 다 삭제됨
 	public void deleNode(HttpServletRequest req , HttpServletResponse res) {
 		res.setCharacterEncoding("UTF-8");
 		//mysql에 cascade 햇기 때문에 url이든 폴더를 지우려고 하든 상위의 ubid를 보내부면 알아서 참조하는 모든 데이터가 삭제된다,.
 		System.out.println("ddd");
-	//	System.out.println(req.getParameterValues("childs[]"));
-		/* String[] aStr = req.getParameterValues("childs[]");
-		 for(String str : aStr){
-	            System.out.println(str);
-	            u_bookservice.deleteFolderOrUrl(str);
-	        }*/
 		String nodeid = req.getParameter("node");
 		u_bookservice.deleteFolderOrUrl(nodeid);
 		
@@ -240,7 +244,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("editUrl.do")
+	@RequestMapping("editUrl.do")	//url update
 	public void editUrl(U_BookDTO dto , HttpServletResponse res) {
 		
 		res.setCharacterEncoding("UTF-8");
@@ -255,11 +259,11 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("dropNode.do")
-	public void dropNode(HttpServletResponse res , int dragnode , int dropnode) {
+	@RequestMapping("dropNode.do")	//드래그 드랍 했을 경우 부모 id 바꾸기
+	public void dropNode(HttpServletResponse res , @RequestParam HashMap<String, String> param) {
 		
 		res.setCharacterEncoding("UTF-8");
-		int result = u_bookservice.dropNode(dragnode , dropnode);
+		int result = u_bookservice.dropNode(param);
 		
 		try {
 			res.getWriter().println(result);
@@ -271,7 +275,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("recommend.do")
-	public void recommend(HttpServletResponse res, String url , String text) {
+	public void recommend(HttpServletResponse res, String url , String text) {	// email 보내기 받는 사람 주소 변경하기
+			// 내용 알 맞게 변경하기
 		
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setSubject("뿌리 깊은 마크 URL 추천 ");
