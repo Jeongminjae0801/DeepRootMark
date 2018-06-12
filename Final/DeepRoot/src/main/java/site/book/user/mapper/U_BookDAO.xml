@@ -29,7 +29,7 @@
 	
 	<insert id="insertRootFolder">
 		INSERT INTO U_BOOK (UBID, URLNAME,REGDATE,VIEW,UID)
-			VALUES (#{ubid},'카테고리 시작',SYSDATE(), 0, #{uid})
+			VALUES (#{0},'카테고리 시작',SYSDATE(), 0, #{1})
 	</insert>
 	
 	<select id="getMaxId" resultType="int">

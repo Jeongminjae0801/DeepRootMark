@@ -14,11 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
+import site.book.user.dto.UserDTO;
 
 /**
  * @Class : MainController.java
@@ -33,7 +35,8 @@ public class MainController {
 	@Autowired
 	private A_BookService a_book_service;
 	
-	@RequestMapping("/main.do")
+	/*메인 화면 데이터 출력*/
+	@RequestMapping(value="/index.do", method=RequestMethod.GET)
 	public String initMain(Model model) {
 		//System.out.println("홈: 메인 페이지");
 		
@@ -43,6 +46,16 @@ public class MainController {
 		List<A_BookDTO> bookList = a_book_service.getMainBooks();
 		model.addAttribute("bookList", bookList);
 		
-		return "home.home";
+		return "home.index";
 	}
+	
+	/* Log in */
+	@RequestMapping(value="/joinus/login.do")
+	public String login(Model model, UserDTO user) {
+		System.out.println("왔니?");
+		
+		return "joinus.login";
+	}
+	
+	/* Roll in */
 }
