@@ -36,11 +36,13 @@
 			
 			var urlpid = null;
 			var firstclick = 0;
+			var child_data = null;
 			
 			$.ajax({
 				url : "getCategoryList.do",
 				type:"POST",
 				dataType:"json",
+				data : {uid : "user1@naver.com"},
 				success : function(data){	
 					console.log(data);
 			
@@ -78,17 +80,18 @@
 										success : function(data){
 											console.log(data);
 											
-											
 										}
-										
-										
-										
 									})
-									
-									
-									
 									return true;
-								}							
+								}else if(op === "create_node"){   
+									
+									$("#jstree_container_child").jstree(true).redraw_node(par, true);
+									console.log("dd");
+									console.log(node);
+									console.log(par);
+								
+									return true;
+								}
 								return true;	
 							}
 						},
@@ -153,45 +156,42 @@
 								            "folder_create": {
 								                "separator_before": false,
 								                "separator_after": false,
+								                "_disabled"			: false, 
 								                "label": "그룹 추가",
 								                "action": function (obj) { 
 								                	
 								                	var inst = $.jstree.reference(obj.reference);
-								                	var par = inst.get_node(obj.reference).id;
+								                	console.log(inst.get_node(obj.reference));//내가 우클릭한 노드의 값
+								                	var par_node = inst.get_node(obj.reference);
 								                	
-								                	 $('#form2')[0].reset();
-								                	 $('#folderAdd').modal();
-								                	 
-								                	 $('#folderAddsubmit').on("click",function(){
-								                		 
-								                		 var foldername = $('#foldername').val();
-								                		 var sharing = 0;
-								                		 var form = {urlname : foldername, pid : par , uid : "user1@naver.com"}
-	
+								                	var par = inst.get_node(obj.reference).id;
+	 												var form = {urlname : "새 폴더", pid : par , uid : "user1@naver.com"}	// 해당 유저의 아이디 가져오기
+	 												
 								               		  $.ajax({
 								            			  url: "addFolderOrUrl.do",
 								            			  type :"POST",
 								            			  data : form,
 								            			  success : function(data){
-								            					console.log(data);
-								            				  $('#folderAdd').modal("toggle");
-								            				  inst.create_node(par ,  { "id" : data , "text" : foldername}, "last", function(){
-													          });
-								            					//id 가져오는 문 만들기
-								            					/*  $('#jstree_container').jstree().create_node(par ,  { "id" : data , "text" : foldername}, "last", function(){
-												          }); */
-							              			  }
-							          			  })
-						                	 })
-								                	
+								            				  
+								            				 var node_id = $.trim(data);
+									            				 
+								            				 	tree.create_node(par_node , {text : "새 폴더" , id : node_id} ,"last",function(new_node){
+								            				 		console.log(new_node.id);
+								            				 		new_node.id = node_id;
+								            				 		tree.edit(new_node);
+								            				 	});
+							              			 	 }
+							          			 	})
 								                }
 								            },
 								            "rename": {
 								                "separator_before": false,
 								                "separator_after": false,
 								                "label": "이름 수정",
-								                "action": function (obj) { 					                	
-								                	tree.edit($node);				                	
+								                "action": function (obj) { 		
+								                	
+								                	tree.edit($node);			
+								                	console.log($node);
 								                }
 								            },                         
 								            "remove": {
@@ -199,9 +199,9 @@
 								                "separator_after": false,
 								                "label": "삭제",
 								                "action": function (obj) { 
+								                	
 								                	console.log("삭제 누름");
 													tree.delete_node($node);
-								                    
 								                }
 								            }
 								        };						
@@ -243,194 +243,16 @@
 	 						dataType:"json",
 	 						data : {ubid : id},
 	 						success : function(data){
-	 							
+
+	 							child_data = data;
 	 							console.log("under");
-	 							if(firstclick == 1){
-	 								
+	 							
 	 								console.log("refresh");
+	 								console.log($("#jstree_container_child").jstree(true).settings);
 	 								$("#jstree_container_child").jstree(true).settings.core.data = data;
 	 								$("#jstree_container_child").jstree(true).refresh();
-	 							
-	 							}
-	 							
-	 							
-	 							firstclick =1;
-	 							
-	 							$("#jstree_container_child").jstree({
-	 								
-	 								"core" : {
-	 									'data' : data,
-	 									'themes' : { 
-	 										'name' : 'proton',
-	 										'responsive' : true,
-	 										"dots": false
-	 									},
-	 									"check_callback" : function(op, node, par, pos, more){
-	 										if(op === "move_node"){ // dnd 이벤트 일때 
-	 											console.log(op);//move_node
-	 											console.log(node);//실제 select 한node
-	 											console.log(par);// select node 사위 헐 여기서 나옴 childe
-	 											console.log(par.a_attr.href);
-	 											console.log(par.children_d);
-	 			
-	 											console.log(pos);
-	 											console.log(more.ref);// drop한 노드의 정보
-	 											if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
-	 												return false;	
-	 											}
-	 											return true;
-	 										}							
-	 										return true;	
-	 									}
-	 								},
-	 								"plugins" : [ "dnd","contextmenu" ],
-	 								
-	 								"contextmenu" : {
-	 									
-	 									"select_node" : false,
-	 									"items" : function($node){
-	 										
-	 										var tree_child = $("#jstree_container_child").jstree(true);
-	 										
-	 										console.log($node);
-	 										
-	 										var htag = $node.test;
-	 										console.log(htag);
-	 										
-	 										return{
-	 											
-	 									            "rename": {
-	 									                "separator_before": false,
-	 									                "separator_after": false,
-	 									                "label": "이름 수정",
-	 									                "action": function (obj) { 
-	 									                	console.log("d이름수정");
-	 									                	tree_child.edit($node);
-	 									                   
-	 									                }
-	 									            }, 
-	 									            "reurl": {
-	 									                "separator_before": false,
-	 									                "separator_after": false,
-	 									                "label": "url 수정",
-	 									                "action": function (obj) { 
-	 									                	
-	 									                	$('#form3')[0].reset();	// url 모달창 reset
-	 									                	$('#editurl').modal();	//url 수정 모달창 띄우기
-	 									                	 
-	 									                	var inst = $.jstree.reference(obj.reference);
-	 										                var url = inst.get_node(obj.reference).a_attr.href;
-	 										                var id = inst.get_node(obj.reference).id;
-	 										                
-	 									                	 console.log(url);
-	 									                	 $('#editurlval').val(url);
-	 									                	 
-	 									                	 $('#editurlsubmit').on("click",function(){
-	 									                		 
-	 									                		 var newurl = $('#editurlval').val();
-	 									                		 var form = {ubid : id, url : newurl }
-	 									                		 
-	 									                		 $.ajax({
-	 										                		 
-	 										                		 url: "editUrl.do",
-	 										                		 type: "POST",
-	 										                		 data: form ,
-	 										                		 success: function(data){
-	 										                			 console.log(data);
-	 										                			 $('#editurl').modal("toggle");
-	 										                			 
-	 										                			 
-	 										                		 }
-	 										                	 }) 
-	 									                	 })
-	 									                }
-	 									            },
-	 									            "remove": {
-	 									                "separator_before": false,
-	 									                "separator_after": false,
-	 									                "label": "삭제",
-	 									                "action": function (obj) { 
-	 									                  	console.log("누름");
-	 									                  	tree_child.delete_node($node);
-	 									                   
-	 									                }
-	 									            },
-	 									            "recommend" :{
-	 									            	"separator_before": false,
-	 									                "separator_after": false,
-	 									                "label": "관리자 추천",
-	 									                "action": function (obj) { 
-	 									                	
-		 									               	var inst = $.jstree.reference(obj.reference);
-	 										                var url = inst.get_node(obj.reference).a_attr.href;
-	 										                var text = inst.get_node(obj.reference).text;
-	 										                
-	 										                form = {url : url , text : text }
-	 										                
-	 										                $.ajax({
-	 										                	
-	 										                	url : "recommend.do",
-	 										                	type : "POST",
-	 										                	data : form,
-	 										                	success : function(data){
-	 										                		
-	 										                		console.log(data);
-	 										                		
-	 										                	}
-	 										                })
-	 									                }
-	 									            }
-	 							                 }		
-	 									}
-	 								}
-	 							})
-	 							/* .bind("select_node.jstree",function(e,data){
-	 								
-	 								var href = data.node.a_attr.href;
-	 								
-	 								console.log(href);
-	 								
-	 							window.open(href); 
-	 								
-	 							}) */
-	 							.bind("delete_node.jstree",function(event,data){
-
-					    			var node_id = data.node.id;
-					    			var form = {node : node_id}
-			    		
-	 		    		$.ajax({
-			    			url:'deleteNode.do',
-			    			type:'POST',
-			    			dataType : "json",
-			    			data: form,
-			    			success:function(result){
-			    				console.log(result);
-			    			}
-			    			
-			    		})  
-			    		
-			    	})
-			    	.bind('rename_node.jstree', function(event, data){
-			    		 var node_id = data.node.id;
-			    		var node_text = data.text;
-			    		console.log(node_id);
-			    		console.log(node_text);
-			    		
-			    		$.ajax({
-		        			url : 'updateNodeText.do',
-		        			type: 'POST',
-		        			data: {'id' : node_id, 'text' : node_text},
-		        			success : function(result){
-		        				if(result == 1)
-		        					alert('수정되었습니다.');
-		        				else
-		        					alert('수정 실패');
-		        			}
-		        		});   
-			    	})
-					}
-	 			})
-						 
+								}
+	 					})
 					}) 
 			    	.bind('rename_node.jstree', function(event, data){
 			    		var node_id = data.node.id;
@@ -454,7 +276,6 @@
 			    		console.log("dom 선택 불러오는 중");
 			    		console.log(obj);
 			    		console.log(stric);
-			    		console.log(c);
 			    		//console.log(this);
 			    		//console.log(this.get_node(obj,true));
 			    		
@@ -471,8 +292,7 @@
 			    			data: form,
 			    			success:function(result){
 			    				console.log(result);
-			    			}
-			    			
+			    				}
 			    		})  
 			    	})	;
 				}
@@ -499,11 +319,8 @@
           		  console.log(url,title,par); //확인
           		  
           		  var result = $("#share").prop("checked"); //공유 체크여부 확인
-          		  if(result){ sharing =1;}
-          		  console.log("sharing 여부")
-          		  console.log(sharing);
           		  
-          		  var form = {url : url , urlname : title , pid : par, uid:  "user1@naver.com"}
+          		  var form = {url : url , urlname : title , pid : urlpid , uid:  "user1@naver.com"}
           		  
           		  $.ajax({
           			  url: "addFolderOrUrl.do",
@@ -518,6 +335,186 @@
     			})
 				
 			});
+					
+					
+	
+					
+					
+					
+			
+					
+			$("#jstree_container_child").jstree({
+					
+					"core" : {
+						'data' : child_data,
+						'themes' : { 
+							'name' : 'proton',
+							'responsive' : true,
+							"dots": false
+						},
+						"check_callback" : function(op, node, par, pos, more){
+							if(op === "move_node"){ // dnd 이벤트 일때 
+								console.log(op);//move_node
+								console.log(node);//실제 select 한node
+								console.log(par);// select node 사위 헐 여기서 나옴 childe
+								console.log(par.a_attr.href);
+								console.log(par.children_d);
+
+								console.log(pos);
+								console.log(more.ref);// drop한 노드의 정보
+								if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
+									return false;	
+								}
+								return true;
+							}							
+							return true;	
+						}
+					},
+					"plugins" : [ "dnd","contextmenu" ],
+					
+					"contextmenu" : {
+						
+						"select_node" : false,
+						"items" : function($node){
+							
+							var tree_child = $("#jstree_container_child").jstree(true);
+							
+							console.log($node);
+							
+							var htag = $node.test;
+							console.log(htag);
+							
+							return{
+								
+						            "rename": {
+						                "separator_before": false,
+						                "separator_after": false,
+						                "label": "이름 수정",
+						                "action": function (obj) { 
+						                	console.log("d이름수정");
+						                	tree_child.edit($node);
+						                }
+						            }, 
+						            "reurl": {
+						                "separator_before": false,
+						                "separator_after": false,
+						                "label": "url 수정",
+						                "action": function (obj) { 
+						                	
+						                	$('#form3')[0].reset();	// url 모달창 reset
+						                	$('#editurl').modal();	//url 수정 모달창 띄우기
+						                	 
+						                	var inst = $.jstree.reference(obj.reference);
+							                var url = inst.get_node(obj.reference).a_attr.href;
+							                var id = inst.get_node(obj.reference).id;
+							                
+						                	 console.log(url);
+						                	 $('#editurlval').val(url);
+						                	 
+						                	 $('#editurlsubmit').on("click",function(){
+						                		 
+						                		 var newurl = $('#editurlval').val();
+						                		 var form = {ubid : id, url : newurl }
+						                		 
+						                		 $.ajax({
+							                		 
+							                		 url: "editUrl.do",
+							                		 type: "POST",
+							                		 data: form ,
+							                		 success: function(data){
+							                			 console.log(data);
+							                			 $('#editurl').modal("toggle");
+							                			 
+							                			 
+							                		 }
+							                	 }) 
+						                	 })
+						                }
+						            },
+						            "remove": {
+						                "separator_before": false,
+						                "separator_after": false,
+						                "label": "삭제",
+						                "action": function (obj) { 
+						                	
+						                  	console.log("누름");
+						                  	tree_child.delete_node($node);
+						                }
+						            },
+						            "recommend" :{
+						            	"separator_before": false,
+						                "separator_after": false,
+						                "label": "관리자 추천",
+						                "action": function (obj) { 
+						                	
+							               	var inst = $.jstree.reference(obj.reference);
+							                var url = inst.get_node(obj.reference).a_attr.href;
+							                var text = inst.get_node(obj.reference).text;
+							                
+							                form = {url : url , text : text }
+							                
+							                $.ajax({
+							                	
+							                	url : "recommend.do",
+							                	type : "POST",
+							                	data : form,
+							                	success : function(data){
+							                		
+							                		console.log(data);
+							                		
+							                	}
+							                })
+						                }
+						            }
+				                 }		
+						}
+					}
+				})
+				.bind("select_node.jstree",function(e,data){
+					var href = data.node.a_attr.href;
+					
+					console.log(href);
+					
+				window.open(href); 
+					
+				}) 
+				.bind("delete_node.jstree",function(event,data){
+
+    			var node_id = data.node.id;
+    			var form = {node : node_id}
+	
+		$.ajax({
+		url:'deleteNode.do',
+		type:'POST',
+		dataType : "json",
+		data: form,
+		success:function(result){
+			console.log(result);
+		}
+		
+	})  
+	
+})
+.bind('rename_node.jstree', function(event, data){
+	 var node_id = data.node.id;
+	var node_text = data.text;
+	console.log(node_id);
+	console.log(node_text);
+	
+	$.ajax({
+		url : 'updateNodeText.do',
+		type: 'POST',
+		data: {'id' : node_id, 'text' : node_text},
+		success : function(result){
+			if(result == 1)
+				alert('수정되었습니다.');
+			else
+				alert('수정 실패');
+		}
+	});   
+})
+
+
 		});
 	</script>
 
