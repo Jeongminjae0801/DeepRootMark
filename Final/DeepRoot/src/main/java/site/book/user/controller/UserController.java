@@ -89,7 +89,6 @@ public class UserController {
 	@RequestMapping("getCategoryList.do")	//해당 유저의 카테고리를 보내준다.
 	public void getCategoryList(String uid , HttpServletResponse res) {
 		
-		uid = "user1@naver.com";	//USER ID 받는거 생각하고 함
 		res.setCharacterEncoding("UTF-8");
 		
 		JSONArray jsonArray = new JSONArray();	
@@ -165,22 +164,24 @@ public class UserController {
 		for(int i =0;i<list.size();i++) {
 			
 			JSONObject jsonobject = new JSONObject();
-			
-			String parentid = String.valueOf(list.get(i).getPid());
+
 			href.put("href", list.get(i).getUrl());
-			//jsonobject.put("parent", parentid);
 			
 			jsonobject.put("id", list.get(i).getUbid());
 			jsonobject.put("parent", "#");
 			jsonobject.put("text", list.get(i).getUrlname());
 			jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
 			
-			String htag = list.get(i).getHtag();
+			String htag = String.valueOf(list.get(i).getHtag());
+			System.out.println("아래에");
+			System.out.println(htag);
 			
-			if(htag.equals("")) {
-				jsonobject.put("sname", "");
-				jsonobject.put("htag", "");
+			if(htag.equals("") || htag.equals("null")) {
+				System.out.println("없는서");
+				jsonobject.put("sname", "#");
+				jsonobject.put("htag", "#");
 			}else {
+				System.out.println("잇는거");
 				jsonobject.put("sname", list.get(i).getSname());
 				jsonobject.put("htag", list.get(i).getHtag());
 			}
