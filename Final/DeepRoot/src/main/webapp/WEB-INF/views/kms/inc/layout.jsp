@@ -104,6 +104,7 @@
 							"items" : function($node){
 						    	
 						    	  var href = $node.a_attr.href;
+						    	  
 								  var tree = $("#jstree_container").jstree(true);
 						    	  
 									if(href == null || href == "#"){  
@@ -130,15 +131,16 @@
 									            		  var sharing = 0; //일단 default 0은 비공유
 									            		  var url = $('#url').val(); //추가 url 값
 									            		  var title = $('#title').val(); // 추가 url 명값
+									            		  var htag = $('#htag').val();
+									            		  var sname = $.trim($('#sname').val());
 									            		 // var parent = par;
-									            		  console.log(url,title,par); //확인
+									            		  console.log(url,title,par,htag,sname); //확인
 									            		  
-									            		  var result = $("#share").prop("checked"); //공유 체크여부 확인
-									            		  if(result){ sharing =1;}
-									            		  console.log("sharing 여부")
-									            		  console.log(sharing);
-									            		  
-									            		  var form = {url : url , urlname : title , pid : par, uid:  "user1@naver.com"}
+									            		  if($.trim(htag) == ""){
+									            			  var form = {url : url , urlname : title , pid : par , uid : "user1@naver.com" }
+									            		  }else{
+									            			  var form = {url : url , urlname : title , pid : par, uid:  "user1@naver.com" , htag : htag , sname : sname}
+									            		  }
 									            		  
 									            		  $.ajax({
 									            			  url: "addFolderOrUrl.do",
@@ -303,36 +305,41 @@
 				console.log(urlpid);
 				
 
-          	  $('#form')[0].reset();// modal input text 창 초기화
+          	  $('#form_btn')[0].reset();// modal input text 창 초기화
           	  
           	  
-          	  $('#linkAdd').modal(); // url 추가하는 modal 창이 나온다.
+          	  $('#linkAdd_btn').modal(); // url 추가하는 modal 창이 나온다.
           	  
           	  var par =urlpid; // 내가 우 클릭한 node의 id를 새로 생성하는 url의 부모로 지정
           	  
-          	  $('#linkAddSubmit').on("click",function(){ // modal에서 보내기 선택한 것임
+           	  $('#linkAddSubmit_btn').on("click",function(){ // modal에서 보내기 선택한 것임
           		  
           		  var sharing = 0; //일단 default 0은 비공유
-          		  var url = $('#url').val(); //추가 url 값
-          		  var title = $('#title').val(); // 추가 url 명값
+          		  var url = $('#url_btn').val(); //추가 url 값
+          		  var title = $('#title_btn').val(); // 추가 url 명값
+          		  var htag = $('#htag_btn').val();
+        		  var sname = $.trim($('#sname_btn').val());
           		 // var parent = par;
-          		  console.log(url,title,par); //확인
+          		  console.log(url,title,par,sname,htag); //확인
           		  
           		  var result = $("#share").prop("checked"); //공유 체크여부 확인
           		  
-          		  var form = {url : url , urlname : title , pid : urlpid , uid:  "user1@naver.com"}
-          		  
+          		  if($.trim($('#htag_btn').val())==""){
+          		  var form = {url : url , urlname : title , pid : urlpid , uid:  "user1@naver.com"};
+          		  }else{
+          			var form = {url : url , urlname : title , pid : urlpid , uid:  "user1@naver.com",htag : htag , sname : sname};
+          		  }
           		  $.ajax({
           			  url: "addFolderOrUrl.do",
           			  type :"POST",
           			  data : form,
           			  success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기
           					
-          				  $('#linkAdd').modal("toggle"); // 모달 창 닫아주기
+          				  $('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
           					console.log(data);	//id 확인
         			  }
     			  })
-    			})
+    			}) 
 				
 			});
 					
@@ -379,13 +386,98 @@
 							
 							var tree_child = $("#jstree_container_child").jstree(true);
 							
-							console.log($node);
+							console.log($node.original.htag);
+							var htag = $node.original.htag;
 							
-							var htag = $node.test;
-							console.log(htag);
+							if(htag == '#'){
 							
 							return{
 								
+						            "rename": {
+						                "separator_before": false,
+						                "separator_after": false,
+						                "label": "이름 수정",
+						                "action": function (obj) { 
+						                	console.log("d이름수정");
+						                	tree_child.edit($node);
+						                }
+						            }, 
+						            "reurl": {
+						                "separator_before": false,
+						                "separator_after": false,
+						                "label": "url 수정",
+						                "action": function (obj) { 
+						                	
+						                	$('#form3')[0].reset();	// url 모달창 reset
+						                	$('#editurl').modal();	//url 수정 모달창 띄우기
+						                	 
+						                	var inst = $.jstree.reference(obj.reference);
+							                var url = inst.get_node(obj.reference).a_attr.href;
+							                var id = inst.get_node(obj.reference).id;
+							                
+						                	 console.log(url);
+						                	 $('#editurlval').val(url);
+						                	 
+						                	 $('#editurlsubmit').on("click",function(){
+						                		 
+						                		 var newurl = $('#editurlval').val();
+						                		 var form = {ubid : id, url : newurl }
+						                		 
+						                		 $.ajax({
+							                		 
+							                		 url: "editUrl.do",
+							                		 type: "POST",
+							                		 data: form ,
+							                		 success: function(data){
+							                			 console.log(data);
+//							                			node 도 url 수정해야 한다. 
+							                			 $('#editurl').modal("toggle");
+							                			 
+							                		 }
+							                	 }) 
+						                	 })
+						                }
+						            },
+						            "remove": {
+						                "separator_before": false,
+						                "separator_after": false,
+						                "label": "삭제",
+						                "action": function (obj) { 
+						                	
+						                  	console.log("누름");
+						                  	tree_child.delete_node($node);
+						                }
+						            },
+						            "recommend" :{
+						            	"separator_before": false,
+						                "separator_after": false,
+						                "label": "관리자 추천",
+						                "action": function (obj) { 
+						                	
+							               	var inst = $.jstree.reference(obj.reference);
+							                var url = inst.get_node(obj.reference).a_attr.href;
+							                var text = inst.get_node(obj.reference).text;
+							                
+							                form = {url : url , text : text }
+							                
+							                $.ajax({
+							                	
+							                	url : "recommend.do",
+							                	type : "POST",
+							                	data : form,
+							                	success : function(data){
+							                		
+							                		console.log(data);
+							                		
+							                	}
+							                })
+						                }
+						            }
+				                 }		
+							}else{
+								
+								return{
+									
 						            "rename": {
 						                "separator_before": false,
 						                "separator_after": false,
@@ -465,8 +557,47 @@
 							                	}
 							                })
 						                }
+						            },
+						            "share":{
+						            	 "separator_before": true,
+							              "separator_after": false,
+							                "label": "공유",
+							                "action"			: false,
+							                "submenu" :{
+							                	"editing" :{
+							                		"separator_before"	: false,
+													"separator_after"	: false,
+							                		"label": "수정하기",
+							                		"action" : function(data){
+							                			
+							                		}
+							                	},
+							                	"dimiss" :{
+							                		"separator_before"	: false,
+													"separator_after"	: false,
+							                		"label" : "취소하기",
+							                		"action" : function(data){
+							                			
+							                		}
+							                	}
+							                	
+							                }
+						            	
+						            	
 						            }
-				                 }		
+						            
+				                 }
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							}
 						}
 					}
 				})
@@ -551,6 +682,16 @@
 									class="form-control"></td>
 							</tr>
 							<tr>
+								<td class="info" style="vertical-align: middle;">해시태그 :</td>
+								<td><input type="text" id="htag" name="htag"
+									class="form-control"></td>
+							</tr>
+							<tr>
+								<td class="info" style="vertical-align: middle;">공유제목 :</td>
+								<td><input type="text" id="sname" name="sname"
+									class="form-control"></td>
+							</tr>
+							<tr>
 								<td><input type="checkbox" id="share"> <label
 									for="share">공유하기</label></td>
 								<td></td>
@@ -567,6 +708,73 @@
 			</div>
 		</div>
 	</div>
+	
+	
+		<div class="modal fade" id="linkAdd_btn" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<b>URL 추가</b>
+					</h4>
+				</div>
+
+				<div class="modal-body">
+					<form id="form_btn">
+						<table class="table">
+							<colgroup>
+								<col width="30%">
+								<col width="70%">
+							</colgroup>
+							<tr>
+								<td class="info" style="vertical-align: middle;">URL :</td>
+								<td><input type="text" id="url_btn" name="url_btn"
+									class="form-control"></td>
+							</tr>
+							<tr>
+								<td class="info" style="vertical-align: middle;">제목 :</td>
+								<td><input type="text" id="title_btn" name="title_btn"
+									class="form-control"></td>
+							</tr>
+							<tr>
+								<td class="info" style="vertical-align: middle;">해시태그 :</td>
+								<td><input type="text" id="htag_btn" name="htag_btn"
+									class="form-control"></td>
+							</tr>
+							<tr>
+								<td class="info" style="vertical-align: middle;">공유제목 :</td>
+								<td><input type="text" id="sname_btn" name="sname_btn"
+									class="form-control"></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="share"> <label
+									for="share">공유하기</label></td>
+								<td></td>
+							</tr>
+						</table>
+					</form>
+					<div class="modal-footer">
+						<!-- type="submit" value="Submit" -->
+						<button type="button" class="btn btn-default btn-sm"
+							data-dismiss="modal">취소</button>
+						<button class="btn btn-default btn-sm" id="linkAddSubmit_btn">추가하기</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<div class="modal fade" id="folderAdd" role="dialog">
 		<div class="modal-dialog">
