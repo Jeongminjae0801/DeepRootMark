@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 	<!-- Home slider START-->
     <section id="home-slider">
         <div class="container">
@@ -17,9 +16,10 @@
                         </div>
                         <!-- introduce text END -->
                         <!-- Login / Roll in Button START -->
-                        
+                        <se:authorize access="!hasRole('ROLE_USER')">
                         <a href="javascript:void(0)" data-toggle="modal" onclick="openLoginModal();" class="btn btn-common">LOG IN</a>
                         <a href="javascript:void(0)" data-toggle="modal" onclick="openRegisterModal();" class="btn btn-common">SIGN UP</a>
+                        </se:authorize>
                         <!-- Login / Roll in Button END -->
                     </div>
                     <!-- Login / Roll in / password find modal START -->
@@ -52,10 +52,10 @@
                                             <div class="error"></div>
                                             <div class="form loginBox">
                                                 <!-- Login START -->
-                                                <form method="post" action="/login" accept-charset="UTF-8">
+                                                <form action='<c:url value="/security/login" />' method="POST">
                                                     <input id="uid" class="form-control" type="text" placeholder="Email" name="uid">
                                                     <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
-                                                    <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
+                                                    <input id="loginAjax" class="btn btn-default btn-login" type="submit" value="Login">
                                                 </form>
                                                 <!-- Login END -->
                                             </div>
@@ -65,7 +65,7 @@
                                         <div class="content registerBox" style="display:none;">
                                             <!-- Roll in START -->
                                             <div class="form">
-                                                <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
+                                                <form action="/main.do" method="post" html="{:multipart=>true}" data-remote="true" accept-charset="UTF-8">
                                                     <input id="uid_join" class="form-control" type="text" placeholder="Email@example.com" name="uid">
                                                     <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname">
                                                     <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd">
@@ -180,7 +180,7 @@
                                			<li>
 	                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/url_save.png" data-toggle="modal" onclick="openUrlModal()"></button>
 	                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
-	                                        <img class="favicon" src="${bList.url}/favicon.ico" alt="">
+	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}" alt="">
 	                                        <p class="url" data-url="${bList.url}"
 	                                        			   data-regdate="${bList.regdate}"
 	                                        			   data-views="${bList.view}">${bList.urlname}<img class="url_link_btn" src="icon/open_link.png"></p>

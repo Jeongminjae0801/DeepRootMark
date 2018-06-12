@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 
 <!-- Header START-->
 <header id="header" class="header">
@@ -15,9 +15,8 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-			
+
             <div class="collapse navbar-collapse">
-            	<se:authorize access="isAuthenticated()">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#">MyBookmark</a>
@@ -53,17 +52,14 @@
                    <!-- USER INFO START -->
                    <li>
                        <a href="#">
-                       <img class="dropdown header-ico" 
-                       		src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" 
-                       		alt="images/profile.png"> Nickname</a>
+                       <img class="dropdown header-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png"> Nickname</a>
                        <ul role="menu" class="sub-menu">
                            <li><a href="#">회원정보수정</a></li>
-                           <li><a href='security/logout'>Logout</a></li>
+                           <li><a href="#">Logout</a></li>
                        </ul>
                    </li>
                    <!-- USER INFO END -->
                 </ul>
-                </se:authorize>
             </div>
         </div>
     </div>
