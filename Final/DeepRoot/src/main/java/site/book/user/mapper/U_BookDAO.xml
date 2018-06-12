@@ -36,8 +36,8 @@
 		select max(UBID) +1 from U_BOOK
 	</select>
 	
-	<update id="updateNodeText" >
-		UPDATE U_BOOK SET URLNAME = #{1} WHERE UBID= #{0}
+	<update id="updateNodeText" parameterType="hashMap">
+		UPDATE U_BOOK SET URLNAME = #{text} WHERE UBID= #{id}
 	</update>
 	
 	<insert id="addFolderOrUrl" parameterType="site.book.user.dto.U_BookDTO">
@@ -64,8 +64,8 @@
 		UPDATE U_BOOK SET URL= #{url} WHERE UBID=#{ubid}
 	</update>
 	
-	<update id="dropNode">
-		UPDATE U_BOOK SET PID = #{1} WHERE UBID = #{0}
+	<update id="dropNode" parameterType="hashMap">
+		UPDATE U_BOOK SET PID = #{dropnode} WHERE UBID = #{dragnode}
 	</update>
 
 </mapper>
