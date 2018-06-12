@@ -67,5 +67,16 @@
 	<update id="dropNode" parameterType="hashMap">
 		UPDATE U_BOOK SET PID = #{dropnode} WHERE UBID = #{dragnode}
 	</update>
+	
+	<update id="shareUrlEdit" parameterType="site.book.user.dto.U_BookDTO">
+		<choose>
+			<when test="htag !=null">
+				UPDATE U_BOOK SET HTAG= #{htag} , SNAME =#{sname} WHERE UBID = #{ubid}
+			</when>
+			<otherwise>
+				UPDATE U_BOOK SET HTAG = NULL , SNAME = NULL , SDATE = NULL WHERE UBID = #{ubid}
+			</otherwise>
+		</choose>
+	</update>
 
 </mapper>

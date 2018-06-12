@@ -50,4 +50,6 @@ public interface U_BookDAO {
 
 	public int updateNodeText(HashMap<String, String> param);
 
+	public int shareUrlEdit(U_BookDTO dto);
+
 }

@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
+
 import site.book.user.dto.U_BookDTO;
 import site.book.user.service.U_BookService;
 import site.book.user.service.UserService;
@@ -86,7 +88,8 @@ public class UserController {
 		return "kms.myCategory";
 	}
 	
-	@RequestMapping("getCategoryList.do")	//해당 유저의 카테고리를 보내준다.
+	//해당 유저의 카테고리를 보내준다.
+	@RequestMapping("getCategoryList.do")	
 	public void getCategoryList(String uid , HttpServletResponse res) {
 		
 		res.setCharacterEncoding("UTF-8");
@@ -103,7 +106,8 @@ public class UserController {
 			int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
 			int result = u_bookservice.insertRootFolder(ubid, uid);
 			
-			if(result ==1 ) {	//처음 가입한 유저일 경우 root폴더 생성해 준다.
+			//처음 가입한 유저일 경우 root폴더 생성해 준다.
+			if(result ==1 ) {	
 				
 				jsonobject.put("id", ubid);
 				jsonobject.put("parent", "#");
@@ -149,8 +153,9 @@ public class UserController {
 		}
 	}
 	
+	//해당 노드의 url 추출
 	@RequestMapping("getUrl.do")
-	public void getUrl(int ubid , HttpServletResponse res) {	//해당 노드의 url 추출
+	public void getUrl(int ubid , HttpServletResponse res) {	
 		
 		res.setCharacterEncoding("UTF-8");
 		
@@ -200,7 +205,8 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping("updateNodeText.do")	//urlname 수정
+	//urlname 수정
+	@RequestMapping("updateNodeText.do")	
 	public void updateNodeText(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
 		
 		int result = u_bookservice.updateNodeText(param);
@@ -213,7 +219,8 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("addFolderOrUrl.do")	//폴더인지 url인지는 href로 구분이 된다& 공유하기에서 해시태그가 있으면 sql에서 따로 저장이 된다.
+	//폴더 & url & 공유일 경우 공유로 추가
+	@RequestMapping("addFolderOrUrl.do")
 	public void addFolder(U_BookDTO dto , HttpServletResponse res) {
 		
 		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
@@ -229,7 +236,8 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("deleteNode.do")	//db에서 참조하는거 다 지우는 cascade 걸었기 때문에 상위 node의 id만 알아와 지우면 내부에 있는 폴더 url 다 삭제됨
+	//url 혹은 폴더 삭제
+	@RequestMapping("deleteNode.do")	
 	public void deleNode(HttpServletRequest req , HttpServletResponse res) {
 		res.setCharacterEncoding("UTF-8");
 		//mysql에 cascade 햇기 때문에 url이든 폴더를 지우려고 하든 상위의 ubid를 보내부면 알아서 참조하는 모든 데이터가 삭제된다,.
@@ -244,7 +252,8 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("editUrl.do")	//url update
+	//url update
+	@RequestMapping("editUrl.do")	
 	public void editUrl(U_BookDTO dto , HttpServletResponse res) {
 		
 		res.setCharacterEncoding("UTF-8");
@@ -259,7 +268,8 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping("dropNode.do")	//드래그 드랍 했을 경우 부모 id 바꾸기
+	//드래그 드랍 했을 경우 부모 id 바꾸기
+	@RequestMapping("dropNode.do")	
 	public void dropNode(HttpServletResponse res , @RequestParam HashMap<String, String> param) {
 		
 		res.setCharacterEncoding("UTF-8");
@@ -274,8 +284,9 @@ public class UserController {
 		
 	}
 	
+	// email 보내기 받는 사람 주소 변경하기
 	@RequestMapping("recommend.do")
-	public void recommend(HttpServletResponse res, String url , String text) {	// email 보내기 받는 사람 주소 변경하기
+	public void recommend(HttpServletResponse res, String url , String text) {	
 			// 내용 알 맞게 변경하기
 		
 		SimpleMailMessage message = new SimpleMailMessage();
@@ -291,6 +302,22 @@ public class UserController {
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		
+	}
+	
+	//url 공유하기 위에 눌렀을 경우 & url 공유 취소 했을 경우 & url 공유 수정 했을 경우
+	@RequestMapping("shareUrlEdit.do")
+	public void shareUrlEdit(U_BookDTO dto , HttpServletResponse res) {	
+		
+		res.setCharacterEncoding("UTF-8");
+		int result = u_bookservice.shareUrlEdit(dto);
+		
+		try {
+			res.getWriter().println(result);
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+		
 		
 	}
 	

@@ -159,5 +159,12 @@ public class U_BookService {
 		return result;
 	}
 
+	public int shareUrlEdit(U_BookDTO dto) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = dao.shareUrlEdit(dto);
+		return result;
+	}
+
 	// 함수 End
 }
