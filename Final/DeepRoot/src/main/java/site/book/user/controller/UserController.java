@@ -82,7 +82,7 @@ public class UserController {
 	// 명수
 	@RequestMapping("mybookmark.do")
 	public String mybookmark() {
-		System.out.println("들어왔어용");
+		
 		return "kms.myCategory";
 	}
 	
@@ -92,7 +92,6 @@ public class UserController {
 		res.setCharacterEncoding("UTF-8");
 		
 		JSONArray jsonArray = new JSONArray();	
-		
 		List<U_BookDTO> list = u_bookservice.getCategoryList(uid);
 		
 		System.out.println(list);
