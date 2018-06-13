@@ -59,7 +59,6 @@
                                                     <!-- <input id="loginAjax" class="btn btn-default btn-login" type="submit" value="Login"> -->
                                                     <input id="loginAjax" class="btn btn-default btn-login" type="button" value="Login">
                                                 </form>
-                                                <!-- Login END -->
                                                 <script type="text/javascript">
                                                 $(function() {
                                                 	$("#loginAjax").on("dblclick", function(){ });
@@ -84,6 +83,7 @@
                                         		    });
                                                 });
                                                 </script>
+                                                <!-- Login END -->
                                             </div>
                                         </div>
                                     </div>
