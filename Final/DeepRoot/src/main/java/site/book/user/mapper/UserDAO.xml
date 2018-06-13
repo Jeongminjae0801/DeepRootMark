@@ -13,6 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT Count(*) FROM USER WHERE NNAME=#{nname}
 	</select>
 	
+	<insert id="insertNewUser" parameterType="site.book.user.dto.UserDTO">
+		INSERT USER(UID, NNAME, PWD, REGDATE, PROFILE) 
+		VALUES(#{uid}, #{nname}, #{pwd}, sysdate(), #{profile})
+	</insert>
+	
 	<!-- 희준 -->
 	<select id="allUser" resultType="Integer">
 		SELECT Count(*) FROM USER

@@ -25,6 +25,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
+		// authentication.getName(): userid
+		request.setAttribute("userid", authentication.getName());
 		request.setAttribute("msg", "success");
 		request.getRequestDispatcher("/joinus/login.do").forward(request, response);
 	}

@@ -62,6 +62,20 @@ public class UserService {
 		return row;
 	}
 	
+	// Roll in New User
+	public int rollinUser(UserDTO user) {
+		int row = 0;
+		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
+		
+		try {
+			row = userDAO.insertNewUser(user);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return row;
+	}
+	
 	// 희준
 	
 	// 전체 회원수 가져오기

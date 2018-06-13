@@ -32,10 +32,7 @@
 			users-by-username-query="SELECT UID AS userid, PWD AS password, ENABLED AS enabled FROM USER WHERE uid = ?"
 			data-source-ref="driverManagerDataSource" 
 		/><!-- db연결 -->
-		<security:user-service>
-			<security:user name="root" password="1004" authorities="ROLE_USER, ROLE_ADMIN"/>
-		</security:user-service>
-		<!-- <security:password-encoder ref="bCryptPasswordEncoder" /> -->
+		<security:password-encoder ref="bCryptPasswordEncoder" />
 	</security:authentication-provider>
 </security:authentication-manager>
 

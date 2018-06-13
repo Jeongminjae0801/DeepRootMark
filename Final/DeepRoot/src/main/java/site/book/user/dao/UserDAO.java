@@ -19,6 +19,9 @@ public interface UserDAO {
 	// 회원가입 Nickname check
 	public int checkUserNickname(String user) throws ClassNotFoundException, SQLException;
 	
+	// 회원가입
+	public int insertNewUser(UserDTO user) throws ClassNotFoundException, SQLException;
+	
 	// 희준
 	
 	//전체 회원수

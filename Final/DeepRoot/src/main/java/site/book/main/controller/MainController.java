@@ -8,6 +8,7 @@
 
 package site.book.main.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +24,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +38,7 @@ import site.book.admin.dto.A_CategoryDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
 import site.book.user.dto.UserDTO;
+import site.book.user.service.UserService;
 
 /**
  * @Class : MainController.java
@@ -48,10 +52,16 @@ public class MainController {
 	
 	// 태웅
 	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
 	private A_CategoryService a_category_service;
 	
 	@Autowired
 	private A_BookService a_book_service;
+	
+	@Autowired
+	private UserService user_service;
 	
 	// 희준
 	@Autowired
@@ -83,23 +93,39 @@ public class MainController {
 	/* Log in */
 	@RequestMapping(value="/joinus/login.do")
 	public View login(HttpServletRequest request, HttpServletResponse response, 
-			HttpSession session, Model model, UserDTO user) {
+			HttpSession session, Model model) {
 		
 		// process message from Handler and JSON data response
 		if(request.getAttribute("msg").equals("fail")) {
 			model.addAttribute("login", "fail");
 		}else {
+			String userid = (String)request.getAttribute("userid");
 			model.addAttribute("login", "success");
-			user = (UserDTO)SecurityContextHolder.getContext().getAuthentication().getDetails();
-			System.out.println(user);
-			// set session user info
-			session.setAttribute("info_userid", user.getUid());
+			System.out.println(userid);
+
+			// set info session userid
+			session.setAttribute("info_userid", userid);
 		}
 		
 		return jsonview;
 	}
 	
 	/* Roll in */
+	@RequestMapping(value="/joinus/rollin.do", method=RequestMethod.POST)
+	public View rollin(HttpServletRequest request, HttpServletResponse response, 
+			UserDTO user, Model model) {
+		
+		user.setPwd(this.bCryptPasswordEncoder.encode(user.getPwd()));
+		System.out.println(user);
+		int result = user_service.rollinUser(user);
+		if(result > 0) {
+			model.addAttribute("rollin", "success");
+		}else {
+			model.addAttribute("rollin", "fail");
+		}
+		
+		return jsonview;
+	}
 	
 	// 희준
 	@RequestMapping("preview.do")
