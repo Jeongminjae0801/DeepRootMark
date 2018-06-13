@@ -70,11 +70,11 @@
                                         		            dataType:"json",
                                         		           /*  crossDomain: false, */
                                         		            success:function(data){
-                                        		            	if(data.msg == 'fail') { 
+                                        		            	if(data.login == 'fail') { 
                                         		            		$("#pwd").val('');
-                                        		            		$("#login-form").html("<strong>아이디 또는 비밀번호 오류입니다.</strong>");
+                                        		            		$("#login-form").eq(0).prepend("<strong>아이디 또는 비밀번호 오류입니다.</strong>");
                                         		            	}
-                                        		            	else { location.href="/index.do"; }
+                                        		            	else { location.href="index.do"; }
                                         		            },
                                         		            error:function(e){  
                                         		            	console.log("Error: " + e.responseText); 

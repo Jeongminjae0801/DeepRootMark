@@ -14,11 +14,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,8 +82,21 @@ public class MainController {
 	
 	/* Log in */
 	@RequestMapping(value="/joinus/login.do")
-	public String login(Model model, UserDTO user) {
-		return "joinus.login";
+	public View login(HttpServletRequest request, HttpServletResponse response, 
+			HttpSession session, Model model, UserDTO user) {
+		
+		// process message from Handler and JSON data response
+		if(request.getAttribute("msg").equals("fail")) {
+			model.addAttribute("login", "fail");
+		}else {
+			model.addAttribute("login", "success");
+			user = (UserDTO)SecurityContextHolder.getContext().getAuthentication().getDetails();
+			System.out.println(user);
+			// set session user info
+			session.setAttribute("info_userid", user.getUid());
+		}
+		
+		return jsonview;
 	}
 	
 	/* Roll in */
