@@ -68,13 +68,13 @@
                                         		            type:"POST",
                                         		            data:{uid: $("#uid").val(), pwd: $("#pwd").val()},
                                         		            dataType:"json",
-                                        		            crossDomain: false,
+                                        		           /*  crossDomain: false, */
                                         		            success:function(data){
                                         		            	if(data.msg == 'fail') { 
                                         		            		$("#pwd").val('');
                                         		            		$("#login-form").html("<strong>아이디 또는 비밀번호 오류입니다.</strong>");
                                         		            	}
-                                        		            	else { location.reload(); }
+                                        		            	else { location.href="/index.do"; }
                                         		            },
                                         		            error:function(e){  
                                         		            	console.log("Error: " + e.responseText); 
