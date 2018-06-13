@@ -108,6 +108,29 @@
 		    });
         }); */
         /* Login Function END */
+        
+        /**************************  Preview Start  **********************************/
+        function preview(abid){
+        	$.ajax({
+        		url: "preview.do",
+				type: "post",
+				data : {
+					abid : abid
+				},
+				success : function(data){
+					var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
+		        	$("#layout").html(layout);
+					var explain = '<img src=' + data.image + ' style="width:100%; height:50%">';
+					$("#explain").html(explain);
+					var comment = "사이트명 : " + data.title + "<br> 설명 : " + data.description;
+					$("#comment").html(comment);
+				}
+        	});
+        };
+        
+        
+        
+        /**************************  Preview End  **********************************/
     </script>
 </head>
 <body>

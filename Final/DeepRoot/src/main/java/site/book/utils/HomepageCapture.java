@@ -38,7 +38,7 @@ public class HomepageCapture {
 	@Autowired
 	private A_BookService a_book_service;
 	
-	@Scheduled(cron= "0 */41 */11 * * *" )
+	@Scheduled(cron= "0 0 */4 * * *" )
 	public void screenshot() {
 		System.out.println("스케줄러 시작");
 		

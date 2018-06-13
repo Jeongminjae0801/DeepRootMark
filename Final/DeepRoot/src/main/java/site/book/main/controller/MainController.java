@@ -102,8 +102,12 @@ public class MainController {
 	/* Roll in */
 	
 	// 희준
-	@RequestMapping("webcrawling.do")
-	public View WebCrawling(String url, Model model) {
+	@RequestMapping("preview.do")
+	public View WebCrawling(String abid, Model model) {
+		
+		A_BookDTO book = a_book_service.getBook(Integer.parseInt(abid));
+		String url = book.getUrl();
+		
 		Document doc;
 		Map<String, List<String>> result = new HashMap<String, List<String>>();
 		String[] REQUIRED_META = new String[] { "og:title", "og:type", "og:image", "og:url", "og:description" };
