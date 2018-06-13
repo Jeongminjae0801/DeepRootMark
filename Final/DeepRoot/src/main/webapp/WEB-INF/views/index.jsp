@@ -205,7 +205,7 @@
                                 		<c:when test="${cList.acid == bList.acid}">
                                			<li>
 	                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/url_save.png" data-toggle="modal" onclick="openUrlModal()"></button>
-	                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/open_preview.png"></button>
+	                                        <button class="url_hover_btn" type="button"><img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
 	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}" alt="">
 	                                        <p class="url" data-url="${bList.url}"
 	                                        			   data-regdate="${bList.regdate}"
