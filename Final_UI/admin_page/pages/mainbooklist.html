@@ -6,6 +6,7 @@
 
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title>뿌리깊은마크_관리자</title>
+
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
     <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css>
 
@@ -13,9 +14,8 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/AdminLTE.css">
     <link rel="stylesheet" href="/css/skin.css">
-    <link rel="stylesheet" href="/css/pace.css">
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/pagetransition.css">
+    <link rel="stylesheet" href="/css/mainbooklist/mainbooklist.css">
     <!-- adminTable CSS START -->
     <link rel="stylesheet" href="/css/adminTable.css">
     <link rel="stylesheet" href="/css/dataTables.bootstrap.css">
@@ -26,38 +26,9 @@
     <script src="/js/jquery.js"></script>
     <!-- Script END -->
 
-    <!--CHART Resources START-->
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
-    <!--CHART Resources END-->
-
-    <!-- 페이지 전환 Script START -->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#groupListTable').DataTable({
-                responsive: true
-            });
-        });
-
-        /*그룹삭제 임시 스크립트 START*/
-        function deleteGroup(data) {
-            if (confirm('삭제하시겠습니까?')) {
-                var clickedRow = $(data).parent().parent();
-                clickedRow.remove();
-            } else {
-                return;
-            }
-        }
-        /*그룹삭제 임시 스크립트 END*/
-    </script>
-    <!-- 페이지 전환 Script END -->
-
 </head>
 
-<body class="skin-blue sidebar-mini  pace-done" style="overflow-y:scroll">
+<body class="skin-blue sidebar-mini" style="overflow-y:scroll">
     <div id="app">
         <div class="wrapper">
             <header class="main-header"><span class="logo-mini"><a href="main.html" data-duration="0.5s"><span class="img-responsive center-block logo">뿌리깊은마크</span></a>
@@ -136,21 +107,77 @@
             <!-- Main Content START -->
             <div class="content-wrapper" style="min-height: 913px;">
                 <section class="content-header">
-                    <h1>Group List</h1>
+                    <h1>Main Bookmark List</h1>
                     <ol class="breadcrumb">
                         <li><a href="javascript:;"><i class="fa fa-home"></i>Home</a></li>
-                        <li class="active">group list</li>
+                        <li class="active">main bookmark list</li>
                     </ol>
                 </section>
+
+                <!-- Category lsit Dropdown START -->
+                <section class="content-category">
+                        <div class="row">
+                            <div class="col-sm-12 category">카테고리</div>
+                        </div>
+                </section>
+                <!-- Category lsit Dropdown END -->
+
                 <!--groupList table start-->
                 <section class="content">
                     <div id="page-wrapper">
-                        <br>
                         <div class="row">
-                            <div class="col-lg-8">
+                            <!-- Category List Table START -->
+                            <div class="col-sm-6">
                                 <div class="panel">
                                     <div class="panel-heading">
-                                        그룹목록 테이블
+                                        HTML
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <table width="100%" class="table table-hover" id="groupListTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>사이트명</th>
+                                                    <th>URL 주소</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="index1">
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index3">
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" >http://www.naver.com</a></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        CSS
                                     </div>
                                     <!-- /.panel-heading -->
                                     <div class="panel-body">
@@ -194,84 +221,127 @@
                                                     <td>#Front-end #스터디</td>
                                                     <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
                                                 </tr>
-                                                <tr class="index2">
-                                                    <td>그룹6</td>
-                                                    <td>abc 스터디</td>
-                                                    <td></td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        SPRING
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <table width="100%" class="table table-hover" id="groupListTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>GroupId</th>
+                                                    <th>GroupName</th>
+                                                    <th>GroupHashTag</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="index1">
+                                                    <td>그룹1</td>
+                                                    <td>java 스터디</td>
+                                                    <td>#java #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index3">
+                                                    <td>그룹2</td>
+                                                    <td>Back-end 스터디</td>
+                                                    <td>#Back-end #스터디</td>
                                                     <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹7</td>
-                                                    <td>123 스터디</td>
-                                                    <td></td>
+                                                    <td>그룹3</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
                                                     <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹8</td>
-                                                    <td>456 스터디</td>
-                                                    <td></td>
+                                                    <td>그룹4</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
                                                     <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹9</td>
-                                                    <td>789 스터디</td>
-                                                    <td>#789 #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                                </tr>
-                                                <tr class="index2">
-                                                    <td>그룹9</td>
-                                                    <td>789 스터디</td>
-                                                    <td>#789 #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                                </tr>
-                                                <tr class="index2">
-                                                    <td>그룹9</td>
-                                                    <td>789 스터디</td>
-                                                    <td>#789 #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                                </tr>
-                                                <tr class="index2">
-                                                    <td>그룹9</td>
-                                                    <td>789 스터디</td>
-                                                    <td>#789 #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                                </tr>
-                                                <tr class="index2">
-                                                    <td>그룹9</td>
-                                                    <td>789 스터디</td>
-                                                    <td>#789 #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                                </tr>
-                                                <tr class="index2">
-                                                    <td>그룹9</td>
-                                                    <td>789 스터디</td>
-                                                    <td>#789 #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
-                                                </tr>
-                                                <tr class="index2">
-                                                    <td>그룹9</td>
-                                                    <td>789 스터디</td>
-                                                    <td>#789 #스터디</td>
+                                                    <td>그룹5</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
                                                     <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <!-- /.table-responsive -->
                                     </div>
-                                    <!-- /.panel-body -->
                                 </div>
-                                <!-- /.panel -->
                             </div>
-                            <!-- /.col-lg-12 -->
+
+                            <div class="col-sm-6">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        JQuery
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <table width="100%" class="table table-hover" id="groupListTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>GroupId</th>
+                                                    <th>GroupName</th>
+                                                    <th>GroupHashTag</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="index1">
+                                                    <td>그룹1</td>
+                                                    <td>java 스터디</td>
+                                                    <td>#java #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index3">
+                                                    <td>그룹2</td>
+                                                    <td>Back-end 스터디</td>
+                                                    <td>#Back-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹3</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹4</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹5</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Category List Table END -->
+
                         </div>
                         <!-- /.row -->
                     </div>
                     <!-- /#page-wrapper -->
-                    <!--groupList table end-->
                 </section>
             </div>
             <!-- Main Content END -->
-            
+
             <!-- footer START -->
             <footer class="main-footer"><strong>Copyright © 2018
             <a href="http://www.bitcamp.co.kr">BitCamp</a>.</strong> <b>Java 104th, Team2</b>
@@ -292,4 +362,5 @@
     <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-plugins/v1/bugsnag-vue.min.js"></script>
     <!-- Script END -->
 </body>
+
 </html>

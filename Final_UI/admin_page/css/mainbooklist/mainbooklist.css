@@ -1,0 +1,24 @@
+/* 영어 폰트*/
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+/* 한글 폰트*/
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+.category {
+    font-size:20px;
+    text-align: left;
+    color:white;
+    float: left;
+}
+
+.content-category{
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 50px;
+    
+}
+
+.content-category a{
+    color:white;
+    
+}
