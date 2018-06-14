@@ -46,8 +46,13 @@
 				success : function(data){	
 					console.log(data);
 			
-					$("#jstree_container").jstree({	
+					$("#jstree_container").on("click",'.jstree-anchor',function(e){
+						$('#jstree_container').jstree(true).toggle_node(e.target);	
+						
+					}).
+					jstree({	
 							"core": {
+								"dblclick_toggle" : false,
 							'data' : data,
 							'themes':{
 								'name' : 'proton',
