@@ -24,7 +24,7 @@
     <link href="css/mainpage/footer.css" rel="stylesheet">
     <link href="css/mainpage/list_table.css" rel="stylesheet">
     <link href="css/mainpage/responsive.css" rel="stylesheet">
-    <link href="css/mainpage/login-register.css" rel="stylesheet" />
+    <link href="css/mainpage/login-register.css?ver=1" rel="stylesheet" />
     <link href="css/addBookmarkStepModal-register.css" rel="stylesheet" />
     <!-- Main Page CSS END -->
 
@@ -135,7 +135,7 @@
 
     <!-- Custom Script START -->
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/login.js?ver=2"></script>
+    <script type="text/javascript" src="js/login.js?ver=1"></script>
     <!-- Custom Script END -->
 </body>
 </html>

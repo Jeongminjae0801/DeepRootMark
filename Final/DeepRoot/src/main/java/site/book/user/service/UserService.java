@@ -108,9 +108,10 @@ public class UserService {
 			sendMail.setTo(authcode.getUid());
 			sendMail.send();
 			// save user's authcode
+			authcode.setAuthcode(key);
 			row = userDAO.insertAuthCode(authcode);
 		}catch (Exception e) {
-			System.out.println("e-amil send error");
+			e.getMessage();
 		}
 		
 		return row;

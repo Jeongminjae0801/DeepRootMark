@@ -71,11 +71,17 @@
                                                 <form id="rollin-form">
                                                 	<strong class="error-text"></strong>
                                                     <input id="uid_join" class="form-control" type="text" placeholder="Email@example.com" name="uid">
-                                                    <input id="authcode_join" class="form-control" type="text" placeholder="Auth Code" name="authcode">
-                                                    <button id="authcode_check">인증키 전송</button>
                                                     <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd">
                                                     <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation">
                                                     <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname">
+                                                    <div id="auth-div" class="form-group" style="display: none">
+                                                       <input id="authcode_join" class="form-control" type="text" placeholder="Auth Code" name="authcode">
+                                                       <input id="authcode_check" class="btn btn-default" type="button" value="인증키 재전송">
+                                                   	</div>
+                                                    <div>
+                                                    	<input id="agree-site-rule" class="form-check-input" type="checkbox"><span class="agree-site-rule-text">
+                                                    	뿌리깊은마크를 악의적인 용도로 사용하면 안됩니다.</span>
+                                                    </div>
                                                     <input id="rollinAjax" class="btn btn-default btn-register" type="button" value="Create account" name="commit">
                                                 </form>
                                             </div>
