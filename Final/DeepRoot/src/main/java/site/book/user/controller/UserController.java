@@ -273,6 +273,7 @@ public class UserController {
 	public void dropNode(HttpServletResponse res , @RequestParam HashMap<String, String> param) {
 		
 		res.setCharacterEncoding("UTF-8");
+		System.out.println("아래에 param");
 		System.out.println(param);
 		int result = u_bookservice.dropNode(param);
 		
