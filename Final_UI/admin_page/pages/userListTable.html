@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="/css/pace.css">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/pagetransition.css">
-        <!-- adminTable CSS START -->
+    <!-- adminTable CSS START -->
     <link rel="stylesheet" href="/css/adminTable.css">
     <link rel="stylesheet" href="/css/dataTables.bootstrap.css">
-        <!-- adminTable CSS END -->
+    <!-- adminTable CSS END -->
     <!-- CSS END -->
 
     <!-- Script START -->
@@ -36,24 +36,22 @@
 
     <!-- 페이지 전환 Script START -->
     <script type="text/javascript">
-       
-            $(document).ready(function() {
-                $('#userListTable').DataTable({
-                    responsive: true
-                });
+        $(document).ready(function() {
+            $('#userListTable').DataTable({
+                responsive: true
             });
-    
+        });
+
         /*회원삭제 임시 스크립트 START*/
-        function deleteUser(data){
-                if(confirm('해당 회원을 블랙리스트로 등록하시겠습니까?')){
-                    var clickedRow = $(data).parent().parent();
-                    clickedRow.remove();
-                } else{
-                    return;
-                }
+        function deleteUser(data) {
+            if (confirm('해당 회원을 블랙리스트로 등록하시겠습니까?')) {
+                var clickedRow = $(data).parent().parent();
+                clickedRow.remove();
+            } else {
+                return;
             }
+        }
         /*회원삭제 임시 스크립트 END*/
-        
     </script>
     <!-- 페이지 전환 Script END -->
 
@@ -97,7 +95,7 @@
                                 </ul>
                             </li>
                             <!-- Notice Alarm END -->
-                           
+
                             <!-- Admin Infomation START -->
                             <li class="dropdown user user-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
                                 <span class="hidden-xs">관리자(Admin)</span></a></li>
@@ -135,7 +133,7 @@
             <!-- Sidemenu END -->
 
             <!-- Main Content START -->
-             <div class="content-wrapper" style="min-height: 913px;">
+            <div class="content-wrapper" style="min-height: 913px;">
                 <section class="content-header">
                     <h1>User List</h1>
                     <ol class="breadcrumb">
@@ -145,91 +143,91 @@
                 </section>
                 <!--userList table start-->
 
-                <div id="page-wrapper">
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="panel">
-                                <div class="panel-heading">
-                                    회원목록
+                <section class="content">
+                    <div id="page-wrapper">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        회원목록
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <table width="100%" class="table table-hover" id="userListTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="index1">
+                                                    <td>김</td>
+                                                    <td>abc@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index3">
+                                                    <td>이</td>
+                                                    <td>bcd@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박2</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박3</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박4</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박5</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박6</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박7</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>박8</td>
+                                                    <td>cde@naver.com</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.panel-body -->
                                 </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <table width="100%" class="table table-hover" id="userListTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="index1">
-                                                <td>김</td>
-                                                <td>abc@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index3">
-                                                <td>이</td>
-                                                <td>bcd@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박2</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박3</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박4</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박5</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박6</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박7</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                            <tr class="index2">
-                                                <td>박8</td>
-                                                <td>cde@naver.com</td>
-                                                <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteUser(this)"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <!-- /.table-responsive -->
-
-
-                                </div>
-                                <!-- /.panel-body -->
+                                <!-- /.panel -->
                             </div>
-                            <!-- /.panel -->
+                            <!-- /.col-lg-12 -->
                         </div>
-                        <!-- /.col-lg-12 -->
+                        <!-- /.row -->
                     </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /#page-wrapper -->
-                <!--userList table end-->
+                    <!-- /#page-wrapper -->
+                    <!--userList table end-->
+                </section>
             </div>
             <!-- Main Content END -->
 
@@ -241,10 +239,10 @@
         </div>
     </div>
     <!-- Script START -->
-        <!-- adminTable JS START -->
+    <!-- adminTable JS START -->
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap.min.js"></script>
-        <!-- adminTable JS END -->
+    <!-- adminTable JS END -->
     <script async="" src="https://www.google-analytics.com/analytics.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/app.min.js"></script>

@@ -65,7 +65,9 @@ body {
     -o-transition: -o-transform .3s ease-in-out, margin .3s ease-in-out;
     transition: transform .3s ease-in-out, margin .3s ease-in-out;
     z-index: 820;
+/*
     text-align: center;
+*/
 }
 .main-footer {
     font-family: 'Lato', 'Spoqa Han Sans';
@@ -168,10 +170,11 @@ body.hold-transition .main-header .logo {
 }
 /* Body Content CSS START */
 .content {
+    text-align: center;
     min-height: 250px;
-    padding-left: 100px !important;
-    padding-right: 15px !important;
-    padding-bottom: 15px;
+    padding-left: 70px ;
+    padding-right: 15px ;
+    padding-bottom: 68px;
     padding-top: 15px;
     margin-right: auto;
     margin-left: auto;
