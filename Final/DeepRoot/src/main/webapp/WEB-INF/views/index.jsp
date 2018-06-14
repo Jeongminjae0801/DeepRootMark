@@ -60,30 +60,6 @@
                                                     <!-- <input id="loginAjax" class="btn btn-default btn-login" type="submit" value="Login"> -->
                                                     <input id="loginAjax" class="btn btn-default btn-login" type="button" value="Login">
                                                 </form>
-                                                <script type="text/javascript">
-                                                $(function() {
-                                                	$("#loginAjax").on("dblclick", function(){ });
-                                        		    $("#loginAjax").on("click", function(){
-                                        		    	$.ajax({ 
-                                        		    		url:"security/login",
-                                        		            type:"POST",
-                                        		            data:{uid: $("#uid").val(), pwd: $("#pwd").val()},
-                                        		            dataType:"json",
-                                        		           /*  crossDomain: false, */
-                                        		            success:function(data){
-                                        		            	if(data.login == 'fail') { 
-                                        		            		$("#pwd").val('');
-                                        		            		$("#login-form > strong").html("아이디 또는 비밀번호 오류입니다.");
-                                        		            	}
-                                        		            	else { location.href="index.do"; }
-                                        		            },
-                                        		            error:function(e){  
-                                        		            	console.log("Error: " + e.responseText); 
-                                        		            }
-                                        		        });
-                                        		    });
-                                                });
-                                                </script>
                                                 <!-- Login END -->
                                             </div>
                                         </div>
@@ -95,39 +71,14 @@
                                                 <form id="rollin-form">
                                                 	<strong class="error-text"></strong>
                                                     <input id="uid_join" class="form-control" type="text" placeholder="Email@example.com" name="uid">
-                                                    <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname">
+                                                    <input id="authcode_join" class="form-control" type="text" placeholder="Auth Code" name="authcode">
+                                                    <button id="authcode_check">인증키 전송</button>
                                                     <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd">
                                                     <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation">
-                                                    <input id="profile_join" class="form-control" type="text" placeholder="Greetings" name="profile">
+                                                    <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname">
                                                     <input id="rollinAjax" class="btn btn-default btn-register" type="button" value="Create account" name="commit">
                                                 </form>
                                             </div>
-                                            <script type="text/javascript">
-                                            $(function() {
-                                            	$("#rollinAjax").on("dblclick", function(){ });
-                                    		    $("#rollinAjax").on("click", function(){
-                                    		    	$.ajax({ 
-                                    		    		url:"joinus/rollin.do",
-                                    		            type:"POST",
-                                    		            data: {	"uid": $('#uid_join').val(),
-                                    		            		"nname": $('#nname_join').val(),
-                                    		            		"pwd": $('#pwd_join').val()
-                                    		            },
-                                    		            dataType:"json",
-                                    		           /*  crossDomain: false, */
-                                    		            success:function(data){
-                                    		            	if(data.rollin == 'fail') {
-                                    		            		$("#rollinAjax > strong").html("잘못된 접근입니다. 잠시후 다시 시도해주세요.");
-                                    		            	}
-                                    		            	else { location.href="index.do"; }
-                                    		            },
-                                    		            error:function(e){  
-                                    		            	console.log("Error: " + e.responseText); 
-                                    		            }
-                                    		        });
-                                    		    });
-                                            });
-                                            </script>
                                             <!-- Roll in END -->
                                         </div>
                                     </div>

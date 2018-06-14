@@ -8,7 +8,6 @@
 
 package site.book.main.controller;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -24,8 +23,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +34,7 @@ import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
+import site.book.user.dto.EmailAuthDTO;
 import site.book.user.dto.UserDTO;
 import site.book.user.service.UserService;
 
@@ -116,12 +114,74 @@ public class MainController {
 			UserDTO user, Model model) {
 		
 		user.setPwd(this.bCryptPasswordEncoder.encode(user.getPwd()));
-		System.out.println(user);
+		//System.out.println(user);
+		
 		int result = user_service.rollinUser(user);
 		if(result > 0) {
 			model.addAttribute("rollin", "success");
 		}else {
 			model.addAttribute("rollin", "fail");
+		}
+		
+		return jsonview;
+	}
+	
+	/* Send email & Save email, authcode */
+	@RequestMapping(value="/joinus/emailsend.do", method=RequestMethod.POST)
+	public View emailConfirm(HttpServletRequest request, HttpServletResponse response, 
+			EmailAuthDTO auth, Model model) {
+		
+		System.out.println(auth);
+		int result = user_service.confirmEmail(auth);
+		if(result > 0) {
+			model.addAttribute("email", "success");
+		}else {
+			model.addAttribute("email", "fail");
+		}
+		return jsonview;
+	}
+	
+	/* check Authcode */
+	@RequestMapping(value="/joinus/emailauth.do", method=RequestMethod.POST)
+	public View checkAuthcode(HttpServletRequest request, HttpServletResponse response, 
+			EmailAuthDTO auth, Model model) {
+		
+		System.out.println(auth);
+		int result = user_service.checkAuthcode(auth);
+		if(result > 0) {
+			model.addAttribute("auth", "success");
+		}else {
+			model.addAttribute("auth", "fail");
+		}
+		return jsonview;
+	}
+	
+	/* Check UID */
+	@RequestMapping(value="/joinus/checkuid.do", method=RequestMethod.POST)
+	public View checkUid(HttpServletRequest request, HttpServletResponse response, 
+			UserDTO user, Model model) {
+		
+		//System.out.println(user);
+		int result = user_service.checkUserID(user.getUid());
+		if(result > 0) {
+			model.addAttribute("result", "fail");
+		}else {
+			model.addAttribute("result", "pass");
+		}
+		
+		return jsonview;
+	}
+	/* Check Nickname */
+	@RequestMapping(value="/joinus/checknname.do", method=RequestMethod.POST)
+	public View checkNname(HttpServletRequest request, HttpServletResponse response, 
+			UserDTO user, Model model) {
+
+		//System.out.println(user);
+		int result = user_service.checkUserNickname(user.getNname());
+		if(result > 0) {
+			model.addAttribute("result", "fail");
+		}else {
+			model.addAttribute("result", "pass");
 		}
 		
 		return jsonview;

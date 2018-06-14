@@ -1,10 +1,11 @@
 package site.book.user.dao;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import site.book.user.dto.EmailAuthDTO;
+import site.book.user.dto.EmailAuthDTO;
 import site.book.user.dto.UserDTO;
 
 /**
@@ -23,6 +24,12 @@ public interface UserDAO {
 	
 	// 회원가입
 	public int insertNewUser(Map<String, String> user) throws ClassNotFoundException, SQLException;
+	
+	// 인증코드 insert to DB(email check)
+	public int insertAuthCode(EmailAuthDTO authcode) throws ClassNotFoundException, SQLException;
+	
+	// 인증코드 일치 확인
+	public int checkAuthCode(EmailAuthDTO authcode) throws ClassNotFoundException, SQLException;
 	
 	// 희준
 	

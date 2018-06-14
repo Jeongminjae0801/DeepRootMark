@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT Count(*) FROM USER WHERE NNAME=#{nname}
 	</select>
 	
-	<insert id="insertNewUser" statementType="CALLABLE" parameterType="HashMap"><!-- site.book.user.dto.UserDTO -->
+	<insert id="insertNewUser" statementType="CALLABLE" parameterType="HashMap">
 		<!-- INSERT INTO USER(UID, NNAME, PWD, REGDATE, PROFILE) 
 		VALUES(#{uid}, #{nname}, #{pwd}, sysdate(), #{profile}) -->
 		{  call insert_user_and_role
@@ -25,6 +25,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         }
 	</insert>
 	
+	<insert id="insertAuthCode" parameterType="site.book.user.dto.EmailAuthDTO">
+		INSERT INTO U_AUTHCODE(AUTHCODE, UID) VALUES(#{authcode}, #{uid})
+	</insert>
+	
+	<select id="checkAuthCode" resultType="Integer">
+		SELECT Count(*) FROM U_AUTHCODE WHERE UID=#{uid} and AUTHCODE=#{authcode}
+	</select>
+	
 	<!-- 희준 -->
 	<select id="allUser" resultType="Integer">
 		SELECT Count(*) FROM USER
@@ -35,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="blacklist">
-		UPDATE USER SET enabled = 2 WHERE uid=#{uid}
+		UPDATE USER SET enabled = 0 WHERE uid=#{uid}
 	</update>
 	
 	<select id="getUserList" resultType="site.book.user.dto.UserDTO">

@@ -88,27 +88,6 @@
         });
         /* ******************** Scroll Shadow END *************************** */
         
-        /* Login Function START */
-        /* $(function() {
-        	$("#loginAjax").on("dblclick", function(){ });
-		    $("#loginAjax").on("click", function(){
-		    	console.log("Login Modal");
-		    	$.ajax({ 
-		    		url:"/main.do",
-		            type:"POST",
-		            data:{uid: $("#uid").val(), pwd: $("#pwd").val()},
-		            dataType:"json",
-		            success:function(data){  
-		            	console.log(data);
-		            },
-		            error:function(e){  
-		            	console.log(e.responseText);  
-		            }  
-		        });
-		    });
-        }); */
-        /* Login Function END */
-        
         /**************************  Preview Start  **********************************/
         function preview(abid){
         	$.ajax({
@@ -156,7 +135,7 @@
 
     <!-- Custom Script START -->
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/login.js?ver=2"></script>
     <!-- Custom Script END -->
 </body>
 </html>
