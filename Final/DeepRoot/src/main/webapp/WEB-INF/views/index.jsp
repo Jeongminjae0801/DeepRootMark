@@ -213,7 +213,6 @@
                         </div>
                         <div id="preview_content">
                             <div id="layout">미리보기: Page Image</div>
-                            <div id="explain">상세정보: Today Visitors, Using Flow</div>
                             <div id="comment">설명 Details</div>
                         </div>
                         <div id="advertise_content">

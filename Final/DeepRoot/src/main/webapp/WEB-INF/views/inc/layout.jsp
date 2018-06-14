@@ -125,7 +125,8 @@
 				*/
 				if ($(this).text().trim() == "Show All") {
 					$.each(categoryList, function(index, element) {
-						$('li[id="' + element + '"]').show(750);
+						//$('li[id="' + element + '"]').show(750);
+						$('li[id="' + element + '"]').slideDown("slow");
 					});
 					$.each(selectedCate, function(index, element) {
 						$(".category").removeClass("reddiv");
@@ -145,14 +146,14 @@
 						
 						if(selectedCate.length > 0){
 							$.each(categoryList, function(index, element) {
-								$('#' + element).hide(500);
+								$('#' + element).slideUp("slow");
 							});
 							$.each(selectedCate, function(index, element) {
-								$("#" + element).show(750);
+								$("#" + element).slideDown("slow");
 							});
 						}else {
 							$.each(categoryList, function(index, element) {
-								$('li[id="' + element + '"]').show(750);
+								$('li[id="' + element + '"]').slideDown("slow");
 							});
 							$.each(selectedCate, function(index, element) {
 								$(".category").removeClass("reddiv");
@@ -168,20 +169,20 @@
 						$.each(categoryList, function(index, element) {
 							console.log(element);
 							
-							$('li[id="' + element + '"]').hide(500);
+							$('li[id="' + element + '"]').slideUp("slow");
 						});
 						console.log("selected : " + selectedCate);
 						
 						$.each(selectedCate, function(index, element) {
 							if(index == 0) {
-								$('li[id="' + element + '"]').show(750);
+								$('li[id="' + element + '"]').slideDown("slow");
 								console.log(element);
 							}else {
 								console.log(element);
 								console.log("이전 : " + selectedCate[index-1]);
 								
 								$('li[id="' + element + '"]').insertBefore($('li[id="' + selectedCate[index-1] + '"]'));
-								$('li[id="' + element + '"]').show(750);
+								$('li[id="' + element + '"]').slideDown("slow");
 							}
 							
 						});
