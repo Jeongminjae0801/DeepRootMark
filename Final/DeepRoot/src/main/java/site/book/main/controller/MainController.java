@@ -174,7 +174,13 @@ public class MainController {
 		return jsonview;
 	}
 	
-	
+	@RequestMapping("/categoryList.do")
+	public View getCategoryList(Model model) {
+		List<A_CategoryDTO> categoryList = a_category_service.getCategorys();
+		model.addAttribute("categoryList", categoryList);
+		
+		return jsonview;
+	}
 	
 	// 명수
 	

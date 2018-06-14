@@ -128,9 +128,114 @@
         	});
         };
         
-        
-        
         /**************************  Preview End  **********************************/
+        
+        /**************************  Category Click Evnet Start  *******************/
+        $(function(){
+        	var categoryList = categoryListAjax();
+			var selectedCate = [];
+			
+        	$(document).on("click", ".category", function() {
+				var id = $(this).text().trim();
+				// console.log("categoryList : " + categoryList);
+				// console.log(id);
+				/* 
+					category class를 클릭한 text가 Show All일 경우, 전체 카테고리 리스트를 show!! 
+					선택된 카테고리 리스트는 배경색 기존색으로 변경(removeClass)
+					Show All 카테고리는 custom색으로 변경		
+				*/
+				if ($(this).text().trim() == "Show All") {
+					$.each(categoryList, function(index, element) {
+						$('li[id="' + element + '"]').show(750);
+					});
+					$.each(selectedCate, function(index, element) {
+						$(".category").removeClass("reddiv");
+					});
+
+					$("#showall").addClass("reddiv");
+					selectedCate = []; 
+
+				} else {
+					$("#showall").removeClass("reddiv");
+					
+					if($(this).hasClass("reddiv") == true) {
+						$(this).removeClass("reddiv");
+						
+						const idx = selectedCate.indexOf($(this).text().trim());
+						selectedCate.splice(idx, 1);
+						
+						if(selectedCate.length > 0){
+							$.each(categoryList, function(index, element) {
+								$('#' + element).hide(500);
+							});
+							$.each(selectedCate, function(index, element) {
+								$("#" + element).show(750);
+							});
+						}else {
+							$.each(categoryList, function(index, element) {
+								$('li[id="' + element + '"]').show(750);
+							});
+							$.each(selectedCate, function(index, element) {
+								$(".category").removeClass("reddiv");
+							});
+
+							$("#showall").addClass("reddiv");
+						}
+						
+					}else {
+						selectedCate.push($(this).text().trim());
+						$(this).addClass("reddiv");
+						
+						$.each(categoryList, function(index, element) {
+							console.log(element);
+							
+							$('li[id="' + element + '"]').hide(500);
+						});
+						console.log("selected : " + selectedCate);
+						
+						$.each(selectedCate, function(index, element) {
+							if(index == 0) {
+								$('li[id="' + element + '"]').show(750);
+								console.log(element);
+							}else {
+								console.log(element);
+								console.log("이전 : " + selectedCate[index-1]);
+								
+								$('li[id="' + element + '"]').insertBefore($('li[id="' + selectedCate[index-1] + '"]'));
+								$('li[id="' + element + '"]').show(750);
+							}
+							
+						});
+					}
+					
+				}
+				
+			});
+        });
+        
+        function categoryListAjax() {
+        	var categoryListAjax = [];
+        	$.ajax({
+        		url : "categoryList.do",
+        		type : "POST",
+        		success : function(data) {
+        			//console.log(data); // 카테고리 리스트 확인 콘솔
+        			$.each(data, function(index, element) {
+        				$.each(element, function(index2, element2){
+        					//console.log(element2.acname);
+        					categoryListAjax.push(element2.acname);
+        				});
+        			});
+        		},
+        		error: function (error) {
+        		    alert('error : ' + eval(error));
+        		}
+        	});
+        	return categoryListAjax;
+        }
+        
+        /**************************  Category Click Evnet End  *******************/
+        
     </script>
 </head>
 <body>
