@@ -83,8 +83,7 @@
                     <ul class="sidebar-menu">
                         <!-- Sidemenu Chart START -->
                         <li class="header"><i class="fa fa-area-chart"></i>&nbsp;&nbsp;CHART</li>
-                        <li class="pageLink router-link-active"><a href="/main.html" class="transition">&nbsp;&nbsp;&nbsp;<i class="fa fa-line-chart"></i> <span class="page">Member Chart</span></a></li>
-                        <li class="pageLink router-link-active"><a href="/main.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-line-chart"></i> <span class="page">Bookmark Chart</span></a></li>
+                        <li class="pageLink router-link-active"><a href="main.html" class="transition">&nbsp;&nbsp;&nbsp;<i class="fa fa-line-chart"></i> <span class="page">Chart</span></a></li>
                         <!-- Sidemenu Chart END -->
 
                         <!-- Sidemenu Pages Bookmark list START -->
@@ -103,13 +102,12 @@
             </aside>
             <!-- Sidemenu END -->
 
-
             <!-- Main Content START -->
             <div class="content-wrapper" style="min-height: 913px;">
                 <section class="content-header">
                     <h1>Main Bookmark List
                         <!-- Category insert / Delete START -->
-                        <span class="btn-category" data-toggle="dropdown"><i class="fa fa-th-list"></i></span>
+                        <span class="btn-category" data-toggle="dropdown"><i class="fa fa-th-list category-dropdown"></i></span>
                         <ul class="dropdown-menu category">
                             <li><a data-toggle="modal" onclick="openCategoryModal();">카테고리 추가<i class="fa fa-plus"></i></a></li>
                             <li><a data-toggle="modal" onclick="openCategoryDeleteModal();">카테고리 삭제<i class="fa fa-minus"></i></a></li>
@@ -128,7 +126,7 @@
                             <div class="col-sm-12 category">
                                 <!-- Category lsit Dropdown START -->
                                 <button class="btn-category categorylist" data-toggle="dropdown" type="button">
-                                카테고리<i class="fa fa-caret-right"data-toggle="modal" onclick="openCategoryEditModal();"></i> </button>
+                                카테고리<i class="fa fa-caret-right"></i></button>
                                 <ul class="dropdown-menu categorylist">
                                     <li><a href="#">HTML</a></li>
                                     <li><a href="#">CSS</a></li>
@@ -136,10 +134,8 @@
                                     <li><a href="#">JQuery</a></li>
                                 </ul>
                                 <!-- Category lsit Dropdown END -->
-                            
                             </div>
                         </div>
-                        
                 </section>
                 <!-- Category lsit Dropdown END -->
 
@@ -150,13 +146,15 @@
                             <!-- Category List Table START -->
                             <div class="col-sm-6">
                                 <div class="panel">
+                                    <!-- Category Name & edit & insert START -->
                                     <div class="panel-heading">
-                                        HTML
+                                        HTML<i class="fa fa-pencil" data-toggle="modal" onclick="openCategoryEditModal();"></i>
                                         <div class="pull-right">
-                                            <a class="btn btn-warning" data-toggle="modal" onclick="openUrlModal();">URL 추가</a>
+                                            <i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal();"></i>
                                         </div>
                                     </div>
                                     <!-- /.panel-heading -->
+                                    <!-- Category Name & edit & insert END -->
                                     <div class="panel-body">
                                         <table width="100%" class="table table-hover" id="listTable1">
                                             <thead>
@@ -170,203 +168,235 @@
                                                 <tr class="index1">
                                                     <td>네이버</td>
                                                     <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index3">
                                                     <td>네이버</td>
                                                     <td><a href="http://www.naver.com">http://www.naver.com</a></td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
                                                     <td>네이버</td>
                                                     <td><a href="http://www.naver.com" >http://www.naver.com</a></td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
                                                     <td>네이버</td>
                                                     <td><a href="http://www.naver.com">http://www.naver.com</a></td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
                                                     <td>네이버</td>
                                                     <td><a href="http://www.naver.com">http://www.naver.com</a></td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>
+                                                         <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                   </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                          
 
                             <div class="col-sm-6">
                                 <div class="panel">
+                                    <!-- Category Name & edit & insert START -->
                                     <div class="panel-heading">
-                                        CSS
+                                        CSS<i class="fa fa-pencil" data-toggle="modal" onclick="openCategoryEditModal();"></i>
                                         <div class="pull-right">
-                                            <a class="btn btn-warning" data-toggle="modal" onclick="openUrlModal();">URL 추가</a>
+                                            <i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal();"></i>
                                         </div>
                                     </div>
                                     <!-- /.panel-heading -->
+                                    <!-- Category Name & edit & insert END -->
                                     <div class="panel-body">
                                         <table width="100%" class="table table-hover" id="listTable2">
                                             <thead>
                                                 <tr>
-                                                    <th>GroupId</th>
-                                                    <th>GroupName</th>
-                                                    <th>GroupHashTag</th>
+                                                    <th>사이트명</th>
+                                                    <th>URL 주소</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="index1">
-                                                    <td>그룹1</td>
-                                                    <td>java 스터디</td>
-                                                    <td>#java #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index3">
-                                                    <td>그룹2</td>
-                                                    <td>Back-end 스터디</td>
-                                                    <td>#Back-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹3</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" >http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹4</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                          <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                  </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹5</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                           
 
                             <div class="col-sm-6">
                                 <div class="panel">
+                                    <!-- Category Name & edit & insert START -->
                                     <div class="panel-heading">
-                                        SPRING
+                                        SPRING<i class="fa fa-pencil" data-toggle="modal" onclick="openCategoryEditModal();"></i>
                                         <div class="pull-right">
-                                            <a class="btn btn-warning" data-toggle="modal" onclick="openUrlModal();">URL 추가</a>
+                                            <i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal();"></i>
                                         </div>
                                     </div>
                                     <!-- /.panel-heading -->
+                                    <!-- Category Name & edit & insert END -->
                                     <div class="panel-body">
                                         <table width="100%" class="table table-hover" id="listTable3">
                                             <thead>
                                                 <tr>
-                                                    <th>GroupId</th>
-                                                    <th>GroupName</th>
-                                                    <th>GroupHashTag</th>
+                                                    <th>사이트명</th>
+                                                    <th>URL 주소</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="index1">
-                                                    <td>그룹1</td>
-                                                    <td>java 스터디</td>
-                                                    <td>#java #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index3">
-                                                    <td>그룹2</td>
-                                                    <td>Back-end 스터디</td>
-                                                    <td>#Back-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹3</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" >http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹4</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹5</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                            
 
                             <div class="col-sm-6">
                                 <div class="panel">
+                                    <!-- Category Name & edit & insert START -->
                                     <div class="panel-heading">
-                                        JQuery
+                                        JQuery<i class="fa fa-pencil" data-toggle="modal" onclick="openCategoryEditModal();"></i>
                                         <div class="pull-right">
-                                            <a class="btn btn-warning" data-toggle="modal" onclick="openUrlModal();">URL 추가</a>
+                                            <i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal();"></i>
                                         </div>
                                     </div>
-                                    <!-- /.panel-heading -->
+                                    <!-- /.panel-heading -->                             <!-- Category Name & edit & insert END -->
+
                                     <div class="panel-body">
                                         <table width="100%" class="table table-hover" id="listTable4">
-                                            <thead>
+                                          <thead>
                                                 <tr>
-                                                    <th>GroupId</th>
-                                                    <th>GroupName</th>
-                                                    <th>GroupHashTag</th>
+                                                    <th>사이트명</th>
+                                                    <th>URL 주소</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="index1">
-                                                    <td>그룹1</td>
-                                                    <td>java 스터디</td>
-                                                    <td>#java #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                                    <td>
+                                                         <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                   </td>
                                                 </tr>
                                                 <tr class="index3">
-                                                    <td>그룹2</td>
-                                                    <td>Back-end 스터디</td>
-                                                    <td>#Back-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹3</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com" >http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹4</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                                 <tr class="index2">
-                                                    <td>그룹5</td>
-                                                    <td>Front-end 스터디</td>
-                                                    <td>#Front-end #스터디</td>
-                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                    <td>네이버</td>
+                                                    <td><a href="http://www.naver.com">http://www.naver.com</a></td>
+                                                    <td>
+                                                        <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                           
                             <!-- Category List Table END -->
-
+                                
                         </div>
                         <!-- /.row -->
                     </div>
@@ -425,10 +455,7 @@
                         </div>
                     </div>
                     <!--categoryModal end-->
-
-
-
-
+                    
                     <!--categoryEditModal script start-->
                     <script>
                     /*카테고리 수정 모달 바로열기*/
@@ -437,14 +464,11 @@
                             $('.editCategory-footer').fadeIn('fast');
                             $('.modal-title').html('카테고리 수정');
                         }
-
-
                         function openCategoryEditModal() {
                             showCategoryEditForm();
                             setTimeout(function() {
                                 $('#editCategoryModal').modal('show');
                             }, 230);
-
                         }
                     </script>
                     <!--categoryEditModal script end-->
@@ -483,16 +507,9 @@
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                     <!--categoryEditModal end-->
-
-
-
-
-
-
 
                     <!--categoryDeleteModal script start-->
                     <script>
@@ -502,8 +519,6 @@
                             $('.deleteCategory-footer').fadeIn('fast');
                             $('.modal-title').html('카테고리 삭제');
                         }
-
-
                         function openCategoryDeleteModal() {
                             showCategoryDeleteForm();
                             setTimeout(function() {
@@ -517,7 +532,7 @@
                     <!--categoryDeleteModal start-->
                     <div class="modal fade deleteCategory" id="deleteCategoryModal">
                         <div class="modal-dialog">
-
+                            
                             <div class="modal-content">
                                 <form name="deleteCategory" method="post" action="/deleteCategory" accept-charset="UTF-8">
 
@@ -547,13 +562,9 @@
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                     <!--categoryDeleteModal end-->
-
-
-
 
                     <!--urlAddModal script start-->
                     <script>
@@ -581,7 +592,6 @@
                             $('.modal-title').html('2단계');
 
                     }
-
 
                     /*URL 추가 1단계 모달 바로열기*/
                     function openUrlModal() {
@@ -637,10 +647,8 @@
                                             <input class="btn btn-default btn-comp" type="button" value="등록" onclick="addBookmarkButton()">
                                         </div>
                                     </div>
-
                                 </form>
                             </div>
-
                         </div>
                     </div>
                     <!--urlAddModal end-->
@@ -655,6 +663,7 @@
             <!-- footer END -->
         </div>
     </div>
+    
     <!-- Script START -->
     <!-- adminTable JS START -->
     <script src="/js/jquery.dataTables.min.js"></script>
@@ -682,8 +691,6 @@
         });
     });
     </script>
-    
     <!-- Script END -->
 </body>
-
 </html>
