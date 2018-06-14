@@ -196,7 +196,31 @@
     padding: 13px 12px;
     width: 100%;
 }
+/*ADD auth text&auth button start*/
+.login .box .form .form-group input[type="text"] {
+    border-radius: 3px;
+    border: none;
+    display: inline;
+    color: #333333;
+    font-size: 16px;
+    height: 46px;
+    width: 60%;
+}
 
+.login .box .form .form-group {
+    margin-bottom: 0px;
+}
+
+.login .box .form .form-group input[type="button"] {
+    background-color: #7bbfa8; 
+    border-color: #7bbfa8;
+    color: #FFFFFF;
+    display: inline;
+    height: 46px;
+    text-transform: uppercase;
+    width: 38.5%;
+}
+/*ADD auth text&auth button end*/
 
 @media (max-width:400px){
     .login .modal-dialog{

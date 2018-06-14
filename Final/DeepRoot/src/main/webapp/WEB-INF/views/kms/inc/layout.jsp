@@ -61,12 +61,12 @@
 								
 							},
 							"check_callback" : function(op, node, par, pos, more){
+								console.log("아래에 무엇이 실행되는 것인지");
+								console.log(op);
 								if(op === "move_node"){ // dnd 이벤트 일때 
 									console.log(op);//move_node
 									console.log(node);//실제 select 한node
 									console.log(par);// select node 사위 헐 여기서 나옴 childe
-									console.log(par.a_attr.href);
-									console.log(par.children_d);
 	
 									console.log("선택 node 의 id 값");
 									console.log(node.id);
@@ -615,21 +615,22 @@
 					
 				}) 
 				.bind("delete_node.jstree",function(event,data){
+				console.log("자식에서 삭제되는 것인지");
 
     			var node_id = data.node.id;
     			var form = {node : node_id}
 	
-		$.ajax({
-		url:'deleteNode.do',
-		type:'POST',
-		dataType : "json",
-		data: form,
-		success:function(result){
-			console.log(result);
-		}
+					$.ajax({
+					url:'deleteNode.do',
+					type:'POST',
+					dataType : "json",
+					data: form,
+					success:function(result){
+						console.log(result);
+					}
 		
-	})  
-	
+			})  
+		
 })
 .bind('rename_node.jstree', function(event, data){
 	 var node_id = data.node.id;
