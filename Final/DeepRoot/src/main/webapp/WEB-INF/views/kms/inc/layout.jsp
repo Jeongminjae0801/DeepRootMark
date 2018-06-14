@@ -111,6 +111,7 @@
 						    	  var href = $node.a_attr.href;
 						    	  
 								  var tree = $("#jstree_container").jstree(true);
+								  var tree_child = $("#jstree_container_child").jstree(true);
 						    	  
 									if(href == null || href == "#"){  
 										// 링크 만들기, 폴더 만들기, 이름 바꾸기, 삭제
@@ -154,6 +155,11 @@
 									            			  success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기
 									            					
 									            				  $('#linkAdd').modal("toggle"); // 모달 창 닫아주기
+									            				  var node_id = $.trim(data);
+									            				  
+									            				  tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+									          				 		console.log(new_node.id);
+									          				 	});
 									            					console.log(data);	//id 확인
 								              			  }
 								          			  })
@@ -182,7 +188,7 @@
 								            				  
 								            				 var node_id = $.trim(data);
 									            				 
-								            				 	tree.create_node(par_node , {text : "새 폴더" , id : node_id} ,"last",function(new_node){
+								            				 	tree.create_node(par_node , {text : "새 폴더" , id : node_id } ,"last",function(new_node){
 								            				 		console.log(new_node.id);
 								            				 		new_node.id = node_id;
 								            				 		tree.edit(new_node);
@@ -305,11 +311,48 @@
 				}
 			})
 			
+			
+			$('#addroot').on("click",function(){
+				
+				  var tree = $("#jstree_container").jstree(true);
+				  
+				  var form = {uid : "user1@naver.com"};
+				  
+				  $.ajax({
+						
+					  url : "addRoot.do",
+					  type : "POST",
+					  data : form,
+					  success : function(data){
+						  
+						  var ubid = $.trim(data);
+						  
+						  tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fa fa-folder-o"} ,"last",function(new_node){
+							  new_node = ubid;
+							  tree.edit(new_node);
+	
+							  
+	      				 	});
+					  }
+				  })
+			})
+			
+			
+			
+			
+			
 			$("#testing").on("click",function(){
+				
+				var tree_child = $("#jstree_container_child").jstree(true);
 				
 				console.log(urlpid);
 				
-
+				if(urlpid == null){
+					alert("노드를 선택해 주세요");
+					return false;
+					
+				}
+				
           	  $('#form_btn')[0].reset();// modal input text 창 초기화
           	  
           	  
@@ -342,6 +385,10 @@
           					
           				  $('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
           					console.log(data);	//id 확인
+          					var node_id = $.trim(data);
+          					tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+        				 		console.log(new_node.id);
+        				 	});
         			  }
     			  })
     			}) 
@@ -592,16 +639,6 @@
 						            }
 						            
 				                 }
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
 							}
 						}
 					}
