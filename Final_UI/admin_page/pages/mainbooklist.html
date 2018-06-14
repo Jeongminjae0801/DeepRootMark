@@ -107,7 +107,15 @@
             <!-- Main Content START -->
             <div class="content-wrapper" style="min-height: 913px;">
                 <section class="content-header">
-                    <h1>Main Bookmark List</h1>
+                    <h1>Main Bookmark List
+                        <!-- Category insert / Delete START -->
+                        <span class="btn-category" data-toggle="dropdown"><i class="fa fa-th-list"></i></span>
+                        <ul class="dropdown-menu category">
+                            <li><a data-toggle="modal" onclick="openCategoryModal();">카테고리 추가<i class="fa fa-plus"></i></a></li>
+                            <li><a data-toggle="modal" onclick="openCategoryDeleteModal();">카테고리 삭제<i class="fa fa-minus"></i></a></li>
+                        </ul>
+                        <!-- Category inert / Delete END -->
+                    </h1>
                     <ol class="breadcrumb">
                         <li><a href="javascript:;"><i class="fa fa-home"></i>Home</a></li>
                         <li class="active">main bookmark list</li>
@@ -117,14 +125,19 @@
                 <!-- Category lsit Dropdown START -->
                 <section class="content-category">
                         <div class="row">
-                            <div class="col-sm-12 category">카테고리</div>
+                            <div class="col-sm-12 category">
+                                <!-- Category lsit Dropdown START -->
+                                <button class="btn-category categorylist" data-toggle="dropdown" type="button">
+                                카테고리<i class="fa fa-caret-right"data-toggle="modal" onclick="openCategoryEditModal();"></i> </button>
+                                <ul class="dropdown-menu categorylist">
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">Spring</a></li>
+                                    <li><a href="#">JQuery</a></li>
+                                </ul>
+                                <!-- Category lsit Dropdown END -->
                             
-                            <center>
-                                <a class="btn btn-warning" data-toggle="modal" onclick="openCategoryModal();">카테고리 추가</a>
-                                <a class="btn btn-warning" data-toggle="modal" onclick="openCategoryEditModal();">카테고리 수정</a>
-                                <a class="btn btn-warning" data-toggle="modal" onclick="openCategoryDeleteModal();">카테고리 삭제</a>
-                            </center>
-                            
+                            </div>
                         </div>
                         
                 </section>
