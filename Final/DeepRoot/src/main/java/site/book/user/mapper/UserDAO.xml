@@ -13,9 +13,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT Count(*) FROM USER WHERE NNAME=#{nname}
 	</select>
 	
-	<insert id="insertNewUser" parameterType="site.book.user.dto.UserDTO">
-		INSERT USER(UID, NNAME, PWD, REGDATE, PROFILE) 
-		VALUES(#{uid}, #{nname}, #{pwd}, sysdate(), #{profile})
+	<insert id="insertNewUser" statementType="CALLABLE" parameterType="HashMap"><!-- site.book.user.dto.UserDTO -->
+		<!-- INSERT INTO USER(UID, NNAME, PWD, REGDATE, PROFILE) 
+		VALUES(#{uid}, #{nname}, #{pwd}, sysdate(), #{profile}) -->
+		{  call insert_user_and_role
+			(
+                #{uid},
+                #{nname},
+                #{pwd}
+            )
+        }
 	</insert>
 	
 	<!-- 희준 -->

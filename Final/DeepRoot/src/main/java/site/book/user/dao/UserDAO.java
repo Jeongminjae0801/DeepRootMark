@@ -1,7 +1,9 @@
 package site.book.user.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import site.book.user.dto.UserDTO;
 
@@ -20,7 +22,7 @@ public interface UserDAO {
 	public int checkUserNickname(String user) throws ClassNotFoundException, SQLException;
 	
 	// 회원가입
-	public int insertNewUser(UserDTO user) throws ClassNotFoundException, SQLException;
+	public int insertNewUser(Map<String, String> user) throws ClassNotFoundException, SQLException;
 	
 	// 희준
 	

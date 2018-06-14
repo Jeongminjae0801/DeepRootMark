@@ -2,11 +2,14 @@ package site.book.user.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import site.book.team.dao.G_AlarmDAO;
 import site.book.team.dao.G_BookDAO;
@@ -66,9 +69,11 @@ public class UserService {
 	public int rollinUser(UserDTO user) {
 		int row = 0;
 		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
+		ObjectMapper oMapper = new ObjectMapper();
 		
 		try {
-			row = userDAO.insertNewUser(user);
+			Map<String, String> convert_user = oMapper.convertValue(user, Map.class);
+			row = userDAO.insertNewUser(convert_user);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
