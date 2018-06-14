@@ -161,7 +161,7 @@
                           </span>
                         </div>
                         <div id="category-display" class="col-sm-12 category-items">
-                            <div id="showall" class="category">
+                            <div id="showall" class="category reddiv">
                                 <span>Show All</span></div>
                             <c:forEach items="${categoryList}" var="cList">
                             	<div data-category="${cList.acname}" class="category">

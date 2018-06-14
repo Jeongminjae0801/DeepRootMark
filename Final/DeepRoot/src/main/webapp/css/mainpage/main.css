@@ -125,6 +125,11 @@ h2 {
     color: #7bbfa8;
 }
 
+.reddiv {
+	background-color: #285943;
+	/* ff8700 */
+}
+
 
 .bookmark-title {
    font-family: 'Lato', 'Spoqa Han Sans';
@@ -262,6 +267,10 @@ h2 {
     margin-left: -24px;
     top: 50%;
     margin-top: -24px;
+}
+
+.ul-table {
+	min-height: 550px !important;
 }
 
 /*********************************
