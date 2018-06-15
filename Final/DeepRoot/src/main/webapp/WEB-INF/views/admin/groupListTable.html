@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>뿌리깊은마크_관리자</title>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css>
+
+    <!-- CSS START -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/AdminLTE.css">
+    <link rel="stylesheet" href="/css/skin.css">
+    <link rel="stylesheet" href="/css/pace.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/pagetransition.css">
+    <!-- adminTable CSS START -->
+    <link rel="stylesheet" href="/css/adminTable.css">
+    <link rel="stylesheet" href="/css/dataTables.bootstrap.css">
+    <!-- adminTable CSS END -->
+    <!-- CSS END -->
+
+    <!-- Script START -->
+    <script src="/js/jquery.js"></script>
+    <!-- Script END -->
+
+    <!--CHART Resources START-->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
+    <!--CHART Resources END-->
+
+    <!-- 페이지 전환 Script START -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#groupListTable').DataTable({
+                responsive: true
+            });
+        });
+
+        /*그룹삭제 임시 스크립트 START*/
+        function deleteGroup(data) {
+            if (confirm('삭제하시겠습니까?')) {
+                var clickedRow = $(data).parent().parent();
+                clickedRow.remove();
+            } else {
+                return;
+            }
+        }
+        /*그룹삭제 임시 스크립트 END*/
+    </script>
+    <!-- 페이지 전환 Script END -->
+
+</head>
+
+<body class="skin-blue sidebar-mini  pace-done" style="overflow-y:scroll">
+    <div id="app">
+        <div class="wrapper">
+            <header class="main-header"><span class="logo-mini"><a href="main.html" data-duration="0.5s"><span class="img-responsive center-block logo">뿌리깊은마크</span></a>
+                </span>
+                <!-- header menu bar START -->
+                <nav role="navigation" class="navbar navbar-static-top"><a href="javascript:;" data-toggle="offcanvas" role="button" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span></a>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown messages-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">3</span></a>
+                                <!-- Message Alarm START -->
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 1 message(s)</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <h4>
+                                                        Support Team
+                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
+                                                    <p>Why not consider this a test message?</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="javascript:;">See All Messages</a></li>
+                                </ul>
+                                <!-- Message Alarm END -->
+                            </li>
+                            <!-- Notice Alarm START -->
+                            <li class="dropdown notifications-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">0</span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 0 notification(s)</li>
+                                </ul>
+                            </li>
+                            <!-- Notice Alarm END -->
+
+                            <!-- Admin Infomation START -->
+                            <li class="dropdown user user-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
+                                <span class="hidden-xs">관리자(Admin)</span></a></li>
+                            <!-- Admin Infomation END -->
+                        </ul>
+                    </div>
+                </nav>
+                <!-- header menu bar END -->
+            </header>
+
+            <!-- SideMenu START -->
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <!-- Sidemenu Chart START -->
+                        <li class="header"><i class="fa fa-area-chart"></i>&nbsp;&nbsp;CHART</li>
+                        <li class="pageLink router-link-active"><a href="main.html" class="transition">&nbsp;&nbsp;&nbsp;<i class="fa fa-line-chart"></i> <span class="page">Chart</span></a></li>
+                        <!-- Sidemenu Chart END -->
+
+                        <!-- Sidemenu Pages Bookmark list START -->
+                        <li class="header"><i class="fa fa-book"></i>&nbsp;&nbsp;Bookmark List</li>
+                        <li class="pageLink"><a href="mainbooklist.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark fa-fw"></i><span class="page">Main Page Bookmark</span></a></li>
+                        <li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark fa-fw"></i><span class="page">Social Page Bookmark</span></a></li>
+                        <!-- Sidemenu Pages Bookmark list END -->
+
+                        <!-- Sidemenu List START -->
+                        <li class="header"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;List</li>
+                        <li class="pageLink"><a href="groupListTable.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-list-ul"></i><span class="page">Group List</span></a></li>
+                        <li class="pageLink"><a href="userListTable.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-list-ul"></i><span class="page">User List</span></a></li>
+                        <!-- Sidemenu List END -->
+                    </ul>
+                </section>
+            </aside>
+            <!-- Sidemenu END -->
+
+
+            <!-- Main Content START -->
+            <div class="content-wrapper" style="min-height: 913px;">
+                <section class="content-header">
+                    <h1>Group List</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:;"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="active">group list</li>
+                    </ol>
+                </section>
+                <!--groupList table start-->
+                <section class="content">
+                    <div id="page-wrapper">
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        그룹목록 테이블
+                                    </div>
+                                    <!-- /.panel-heading -->
+                                    <div class="panel-body">
+                                        <table width="100%" class="table table-hover" id="groupListTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>GroupId</th>
+                                                    <th>GroupName</th>
+                                                    <th>GroupHashTag</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="index1">
+                                                    <td>그룹1</td>
+                                                    <td>java 스터디</td>
+                                                    <td>#java #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index3">
+                                                    <td>그룹2</td>
+                                                    <td>Back-end 스터디</td>
+                                                    <td>#Back-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹3</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹4</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹5</td>
+                                                    <td>Front-end 스터디</td>
+                                                    <td>#Front-end #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹6</td>
+                                                    <td>abc 스터디</td>
+                                                    <td></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹7</td>
+                                                    <td>123 스터디</td>
+                                                    <td></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹8</td>
+                                                    <td>456 스터디</td>
+                                                    <td></td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹9</td>
+                                                    <td>789 스터디</td>
+                                                    <td>#789 #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹9</td>
+                                                    <td>789 스터디</td>
+                                                    <td>#789 #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹9</td>
+                                                    <td>789 스터디</td>
+                                                    <td>#789 #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹9</td>
+                                                    <td>789 스터디</td>
+                                                    <td>#789 #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹9</td>
+                                                    <td>789 스터디</td>
+                                                    <td>#789 #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹9</td>
+                                                    <td>789 스터디</td>
+                                                    <td>#789 #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                                <tr class="index2">
+                                                    <td>그룹9</td>
+                                                    <td>789 스터디</td>
+                                                    <td>#789 #스터디</td>
+                                                    <td><input class="btn btn-danger" type="button" value="삭제" onclick="deleteGroup(this)"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.panel-body -->
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    <!--groupList table end-->
+                </section>
+            </div>
+            <!-- Main Content END -->
+            
+            <!-- footer START -->
+            <footer class="main-footer"><strong>Copyright © 2018
+            <a href="http://www.bitcamp.co.kr">BitCamp</a>.</strong> <b>Java 104th, Team2</b>
+            </footer>
+            <!-- footer END -->
+        </div>
+    </div>
+    <!-- Script START -->
+    <!-- adminTable JS START -->
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap.min.js"></script>
+    <!-- adminTable JS END -->
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/app.min.js"></script>
+    <script src="/js/pace.js"></script>
+    <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
+    <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-plugins/v1/bugsnag-vue.min.js"></script>
+    <!-- Script END -->
+</body>
+</html>
