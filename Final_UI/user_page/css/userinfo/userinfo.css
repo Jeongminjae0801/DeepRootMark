@@ -9,50 +9,52 @@
     height: 100%;
     font-size : 15px;
     padding-top: 100px;
-    padding-bottom: 207px;
+    padding-bottom: 180px;
 }
 
-.form{
+.userinfo .form{
+    width: 50%;
+    margin: 0 auto;
 }
 
-.form-control{
+.userinfo .form-control{
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.09);
     box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
     color: #FFFFFF;
 }
-.form-control:hover{
+.userinfo .form-control:hover{
     background-color: rgba(0,0,0,.16);
 }
-.form-control:focus{
+.userinfo .form-control:focus{
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04) inset;
     background-color: rgba(0,0,0,0.23);
-    color: #FFFFFF;
+    color: #666666;
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
+.userinfo input[type="text"], .userinfo input[type="password"] {
+    border-radius: 3px;
     border: none;
-    background: #f1f1f1;
+    color: #333333;
+    font-size: 15px;
+    height: 40px;
+    padding: 13px 12px;
 }
 
-input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
+.userinfo .currentProfileImg{
+    width: 150px;
+    height: 150px;
 }
 
 /* Overwrite default styles of hr */
-hr {
+.userinfo hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
 }
 
 /* Set a style for the submit button */
-.confirm{
+.userinfo .confirm{
     font-family: 'Lato', 'Spoqa Han Sans';
     font-size:18px;
     background-color: #7bbfa8;
@@ -64,14 +66,14 @@ hr {
     cursor: pointer;
     opacity: 0.9;
 }
-.confirm:hover {
+.userinfo .confirm:hover {
     opacity: 1;
     background-color: #fff;
     color: #7bbfa8;
     border : 1px solid #7bbfa8;
 }
 
-.cancel{
+.userinfo .cancel{
     font-family: 'Lato', 'Spoqa Han Sans';
     font-size:18px;
     background-color: #ff5757;
@@ -87,7 +89,7 @@ hr {
     font-weight: 500;
 }
 
-.cancel:hover{
+.userinfo .cancel:hover{
     opacity: 1;
     background-color: #fff;
     color: #ff5757;
@@ -95,12 +97,12 @@ hr {
 }
 
 /* Add a blue text color to links */
-a {
+.userinfo a {
     color: dodgerblue;
 }
 
 /* Set a grey background color and center the text of the "sign in" section */
-.signin {
+.userinfo .signin {
     background-color: #f1f1f1;
     text-align: center;
 }

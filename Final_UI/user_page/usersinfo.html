@@ -27,7 +27,6 @@
 
     <!-- UI Script Start -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="js/script.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- UI Script END -->
 
@@ -101,43 +100,71 @@
         </div>
     </header>
     <!-- Header END-->
-
+    
+    <!--JS start--> 
+    <script>
+        
+        
+        $(function(){
+            $("input[type='image']").click(function(){
+                $("input[id='profileImg']").click();
+            })
+        });
+        
+        function profileImgUpLoad(img) {
+            if(img.files && img.files[0]){
+                var reader = new FileReader();
+                    reader.onload=function(e){
+                        $('#currentProfileImg').attr('src', e.target.result);
+                        $('#currentProfileImg').attr('width', '150px');
+                        $('#currentProfileImg').attr('height', '150px');
+                    }
+                    reader.readAsDataURL(img.files[0]);
+            }
+            
+        }
+    </script>
+    <!--JS end-->
+    
     <section class="userinfo">
         <div class="container">
             <div class="row">
-                <form action="">
-                    <div>
+                <div class="form">
+                    <form action="" method = "POST" enctype="multipart/form-data">
                         <h1>개인정보 수정</h1>
-                        <p>Please fill in this form to create an account.</p>
+                        <p>Edit membership information.</p>
                         <hr>
-                            <label for="photo"><b>Profile Photo</b></label>
-                            <h4>프로필 수정  <img class="dropdown header-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png"></h4>
-                        <br>                  
-                            <div class="form-group container text-center">
-                                <img class="img-circle center-block" id="currentProfile" style=" width: 150px; height: 150px;" onclick="modupload()" />
-                                <input type="file" id="modfileUpLoad" name="modfileUpLoad" onchange="profileimgmodify()">
-                            </div>
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email" value="" readonly>
+                        <label class="control-label" for="pwd_check">Password check</label>
+                        <input id="pwd_check" class="form-control" type="password" placeholder="Password check" name="pwd_confirmation" required>
+                        <br>
+                        
+                        <label class="control-label" for="photo">Profile Photo</label>
+                        <br>  
+                        <center>
+                            <input type="image" class="currentProfileImg" id="currentProfileImg" src="images/profile.png">
+                            <input type="file" id="profileImg" name="profileImg" accept="image/jpeg, image/png" style="display: none;" onchange="profileImgUpLoad(this)">
+                        </center>
+                            
+                        <label class="control-label" for="uid_edit">Email</label>
+                        <input id="uid_edit" class="form-control" type="text" placeholder="Enter Email (readonly)" name="uid" value="" readonly><br>
 
-                        <label for="nickname"><b>Nickname</b></label>
-                        <input type="text" placeholder="닉네임" name="nickname" value="">
 
-                        <label for="password"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
+                        <label class="control-label" for="nname_edit">Nickname</label>
+                        <input id="nname_edit" class="form-control" type="text" placeholder="Nickname (readonly)" name="nname" value="" readonly><br>
 
-                        <label for="password-repeat"><b>Repeat Password</b></label>
-                        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                        <label class="control-label" for="pwd_edit">Password</label>
+                        <input id="pwd_edit" class="form-control" type="password" placeholder="Enter Password" name="pwd" required><br>
 
-                       
-                       
+                        <label class="control-label" for="pwd_confirmation">Repeat Password</label>
+                        <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation" required><br>
 
                         <center>
-                            <button type="submit" class="confirm">확인</button>
-                            <button type="submit" class="cancel">취소</button></center>
-                    </div>
-
-                </form>
+                            <input type="button" class="btn btn-default confirm" value="확인" onclick="">
+                            <input type="button" class="btn btn-default cancel" value="취소" onclick="">
+                        </center>
+                        
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -159,7 +186,6 @@
 
     <!-- Custom Script START -->
     <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
     <!-- Custom Script END -->
 
 </body>
