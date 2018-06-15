@@ -96,16 +96,11 @@ $(function() {
 
 
     //비밀번호 길이 확인 함수
-    $('#pwd_join').blur(function() {
+    $('#pwd_join').keyup(function() {
         /*var pwd = $('#pwd_join').val();
         var pwd_con = $('#pwd_confirmation').val();*/
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
-            $('#loginModal .modal-dialog').addClass('shake');
             $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
-            setTimeout(function() {
-                $('#loginModal .modal-dialog').removeClass('shake');
-            }, 1000);
-            $("#pwd_join").focus();
         } else {
             $('.error').removeClass('alert alert-danger').html('');
         }
@@ -113,20 +108,61 @@ $(function() {
 
 
     //비밀번호 동일 확인 함수
-    $('#pwd_confirmation').blur(function() {
+    $('#pwd_confirmation').keyup(function() {
         /*var pwd = $('#pwd_join').val();
         var pwd_con = $('#pwd_confirmation').val();*/
         if (!($('#pwd_join').val() == $('#pwd_confirmation').val())) {
-            $('#loginModal .modal-dialog').addClass('shake');
             $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
-            setTimeout(function() {
-                $('#loginModal .modal-dialog').removeClass('shake');
-            }, 1000);
-            $("#pwd_confirmation").focus();
         } else {
             $('.error').removeClass('alert alert-danger').html('');
         }
     })
+    
+    //이메일 형식 확인 함수
+    $('#uid_join').keyup(function() {
+        /*var email = $('#uid_join').val();*/
+        var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
+        if(($('#uid_join').val().trim() == "") || !($('#uid_join').val().length >= 5 )){
+                 $('.error').addClass('alert alert-danger').html("이메일은 5자 이상 입력해야 합니다.");
+            
+        } else if( !(regex.test($('#uid_join').val())) ) {
+                 $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 이메일 입니다.");
+        }
+        
+        else{
+            $('.error').removeClass('alert alert-danger').html('');
+            /*
+            var data = {uid:$('#uid').val()};
+            $.ajax({
+                url:"",
+                data:data,
+                success:function(responsedata){
+                    if(responsedata == 1) {
+                        console.log("등록가능한 메일");
+                    } else {
+                        console.log("중복된 이메일");
+                        $('.error').addClass('alert alert-danger').html("중복된 이메일 입니다.");
+                        $('#uid_join').val('');
+                        $("#uid_join").focus();
+                    }
+                }
+            })
+            */
+        }
+    })
+    
+    
+    //인증키 확인 함수
+    $('#authcode_join').keyup(function(){
+        if( ($('#authcode_join').val().length >= 11 ) ) {
+            $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 인증키 입니다.");
+        }
+        else{
+            $('.error').removeClass('alert alert-danger').html('');
+        }
+    })
+
+
 })
 
 /**************************  테이블  **********************************/

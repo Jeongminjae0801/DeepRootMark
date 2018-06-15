@@ -137,37 +137,4 @@ $(function(){
        }
    })
    */
-   
-   //비밀번호 길이 확인 함수
-   $('#pwd_join').blur(function(){
-       /*var pwd = $('#pwd_join').val();
-       var pwd_con = $('#pwd_confirmation').val();*/
-       if( ($('#pwd_join').val().trim()=="") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) ){
-               $('#loginModal .modal-dialog').addClass('shake');
-               $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
-               setTimeout( function(){
-                   $('#loginModal .modal-dialog').removeClass('shake');
-           }, 1000 );
-           $("#pwd_join").focus();
-       } else {
-           $('.error').removeClass('alert alert-danger').html('');
-       }
-   })
-
-   
-   //비밀번호 동일 확인 함수
-   $('#pwd_confirmation').blur(function(){
-       /*var pwd = $('#pwd_join').val();
-       var pwd_con = $('#pwd_confirmation').val();*/
-       if( !($('#pwd_join').val() == $('#pwd_confirmation').val()) ){
-               $('#loginModal .modal-dialog').addClass('shake');
-               $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
-               setTimeout( function(){
-                   $('#loginModal .modal-dialog').removeClass('shake');
-           }, 1000 );
-           $("#pwd_confirmation").focus();
-       } else {
-           $('.error').removeClass('alert alert-danger').html('');
-       }
-   })
 })
