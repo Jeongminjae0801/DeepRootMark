@@ -45,6 +45,7 @@
 .userinfo .currentProfileImg{
     width: 150px;
     height: 150px;
+    border-radius: 50%;
 }
 
 /* Overwrite default styles of hr */
