@@ -22,6 +22,11 @@
 <link rel="stylesheet" href="../css/admin/pagetransition.css">
 <!-- CSS END -->
 
+<!-- adminTable CSS START -->
+<link rel="stylesheet" href="../css/admin/adminTable.css">
+<link rel="stylesheet" href="../css/admin/dataTables.bootstrap.css">
+<!-- adminTable CSS END -->
+
 <!-- Script START -->
 <script src="../js/jquery.js"></script>
 <!-- Script END -->
@@ -63,22 +68,27 @@
 
 	<!-- Script END -->
 	
-<!-- 검색기능 플러그인 -->
-<script>
-    $(document).ready(function() {
-        $('#listTable1').DataTable({
-            responsive: true
-        });
-        $('#listTable2').DataTable({
-            responsive: true
-        });
-        $('#listTable3').DataTable({
-            responsive: true
-        });
-        $('#listTable4').DataTable({
-            responsive: true
-        });
-    });
-</script>
+	<!-- adminTable JS START -->
+    <script src="../js/admin/jquery.dataTables.min.js"></script>
+    <script src="../js/admin/dataTables.bootstrap.min.js"></script>
+    <!-- adminTable JS END -->
+    
+	<!-- 검색기능 플러그인 -->
+	<script>
+	    $(document).ready(function() {
+	        $('#listTable1').DataTable({
+	            responsive: true
+	        });
+	        $('#listTable2').DataTable({
+	            responsive: true
+	        });
+	        $('#listTable3').DataTable({
+	            responsive: true
+	        });
+	        $('#listTable4').DataTable({
+	            responsive: true
+	        });
+	    });
+	</script>
 </body>
 </html>

@@ -148,6 +148,23 @@ public class AdminController {
 		return "admin.mainBookList";
 	}
 	
+	@RequestMapping("userListTable.do")
+	public String userListTable(Model model) {
+		List<UserDTO> userlist = user_service.getUserList();
+		model.addAttribute("userlist", userlist);
+		
+		return "admin.userListTable";
+	}
+	
+	@RequestMapping("groupListTable.do")
+	public String groupListTable(Model model) {
+		List<S_TeamDTO> grouplist = team_service.getSocialGroupList();
+		model.addAttribute("grouplist", grouplist);
+		
+		return "admin.groupListTable";
+	}
+	
+	
 	
 	
 	@RequestMapping("addCategory.do")

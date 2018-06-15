@@ -21,14 +21,13 @@ import site.book.team.dto.TeamDTO;
  */
 public interface TeamDAO {
 	
+	// 희준
+	
 	// 소셜 그룹 리스트 가져오기
 	public List<S_TeamDTO> socialGroupList() throws ClassNotFoundException, SQLException;
 	
 	// 소셜 그룹 삭제
 	public int deleteSocialGroup(int gid) throws ClassNotFoundException, SQLException;
-
-
-	
 	
 	
 	
