@@ -111,6 +111,7 @@ $(function() {
                         	if(data.email == 'pass') {
                         		$('.error').removeClass('alert alert-danger').html('');
                         		$('.error').addClass('alert alert-success').html("해당 이메일로 인증키가 발송되었습니다.");
+                        		alert("해당 이메일로 인증키가 발송되었습니다.");
                         	}
                         	else {
                         		$('#loginModal .modal-dialog').addClass('shake');
@@ -129,11 +130,12 @@ $(function() {
             	// 사용 불가능한 ID
             	else { 
             		$('#loginModal .modal-dialog').addClass('shake');
-            		$('.error').addClass('alert alert-danger').html("이미 가입된 이메일입니다");
-	                    setTimeout(function() {
-	                        $('#loginModal .modal-dialog').removeClass('shake');
-	                    }, 500);
             		$("#uid_join").val("");
+            		$("#uid_join").focus();
+            		$('.error').removeClass('alert alert-danger').addClass('alert alert-danger').html("이미 가입된 이메일입니다");
+                    setTimeout(function() {
+                        $('#loginModal .modal-dialog').removeClass('shake');
+                    }, 500);
             	}
             },
             error:function(e){  
@@ -146,7 +148,7 @@ $(function() {
     $('#pwd_join').blur(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
             $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
-            $('#pwd_join').focus();
+            //$('#pwd_join').focus();
         } else {
             $('.error').removeClass('alert alert-danger').html('');
             $('#pwd_join').removeClass('clear_join').addClass('clear_join');
