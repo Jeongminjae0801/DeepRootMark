@@ -1,6 +1,7 @@
 package site.book.user.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public interface UserDAO {
 	public int allUser() throws ClassNotFoundException, SQLException;
 	
 	// 신규 가입자 수
-	public int newUser() throws ClassNotFoundException, SQLException;
+	public List<HashMap<String, String>> newUser() throws ClassNotFoundException, SQLException;
 	
 	// 블랙리스트 추가
 	public int blacklist(String uid) throws ClassNotFoundException, SQLException;

@@ -94,9 +94,10 @@
         		url: "preview.do",
 				type: "post",
 				data : {
-					abid : abid
+					abid : abid // 북마크 ID
 				},
 				success : function(data){
+					// console.log(data);
 					var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
 		        	$("#layout").html(layout);
 					var explain = '<img src=' + data.image + ' style="width:100%; height:50%">';
@@ -111,77 +112,75 @@
         
         /**************************  Category Click Evnet Start  *******************/
         $(function(){
-        	var categoryList = categoryListAjax();
-			var selectedCate = [];
+        	var categoryList = categoryListAjax(); // 전체 카테고리 리스트 비동기로 받아오기
+			var selectedCategory = [];
 			
         	$(document).on("click", ".category", function() {
 				var id = $(this).text().trim();
-				// console.log("categoryList : " + categoryList);
-				// console.log(id);
 				/* 
-					category class를 클릭한 text가 Show All일 경우, 전체 카테고리 리스트를 show!! 
+					category class를 클릭한 text가 Show All일 경우, 전체 카테고리 리스트를 slideDown!! 
 					선택된 카테고리 리스트는 배경색 기존색으로 변경(removeClass)
 					Show All 카테고리는 custom색으로 변경		
 				*/
-				if ($(this).text().trim() == "Show All") {
+				if (id == "Show All") {
 					$.each(categoryList, function(index, element) {
-						//$('li[id="' + element + '"]').show(750);
 						$('li[id="' + element + '"]').slideDown("slow");
 					});
-					$.each(selectedCate, function(index, element) {
+					$.each(selectedCategory, function(index, element) {
 						$(".category").removeClass("reddiv");
 					});
 
 					$("#showall").addClass("reddiv");
-					selectedCate = []; 
+					selectedCategory = []; 
 
 				} else {
+					/* Show All이 아닌 카테고리 선택시 Show All style 배경색 기존색으로 변경(removeclass)*/
 					$("#showall").removeClass("reddiv");
 					
+					/* 선택된 카테고리를 다시 클릭시 해당 카테고리만 SelectCategory에서 지우기 */
 					if($(this).hasClass("reddiv") == true) {
 						$(this).removeClass("reddiv");
 						
-						const idx = selectedCate.indexOf($(this).text().trim());
-						selectedCate.splice(idx, 1);
+						const idx = selectedCategory.indexOf(id);
+						selectedCategory.splice(idx, 1);
 						
-						if(selectedCate.length > 0){
+						// 이미 선택된 카테고리가 1개 이상인 경우
+						if(selectedCategory.length > 0){
 							$.each(categoryList, function(index, element) {
-								$('#' + element).slideUp("slow");
+								$('li[id="' + element + '"]').slideUp("slow");
 							});
-							$.each(selectedCate, function(index, element) {
-								$("#" + element).slideDown("slow");
+							$.each(selectedCategory, function(index, element) {
+								$('li[id="' + element + '"]').slideDown("slow");
 							});
-						}else {
+						}else { // 선택된 카테고리가 하나도 없을 경우 Show All로 변경
 							$.each(categoryList, function(index, element) {
 								$('li[id="' + element + '"]').slideDown("slow");
 							});
-							$.each(selectedCate, function(index, element) {
+							$.each(selectedCategory, function(index, element) {
 								$(".category").removeClass("reddiv");
 							});
 
 							$("#showall").addClass("reddiv");
 						}
 						
-					}else {
-						selectedCate.push($(this).text().trim());
+					}else { 
+						/* 
+							카테고리를 선택한 경우 
+							전체 카테고리 리스트 SlideUp, 선택된 카테고리 리스트는 SlideDown
+						*/
+						selectedCategory.push(id);
 						$(this).addClass("reddiv");
 						
 						$.each(categoryList, function(index, element) {
-							console.log(element);
-							
 							$('li[id="' + element + '"]').slideUp("slow");
 						});
-						console.log("selected : " + selectedCate);
 						
-						$.each(selectedCate, function(index, element) {
+						$.each(selectedCategory, function(index, element) {
 							if(index == 0) {
 								$('li[id="' + element + '"]').slideDown("slow");
-								console.log(element);
 							}else {
-								console.log(element);
-								console.log("이전 : " + selectedCate[index-1]);
-								
-								$('li[id="' + element + '"]').insertBefore($('li[id="' + selectedCate[index-1] + '"]'));
+								// 선택된 카테고리 보여줄 시 이전 카테고리 위로 insert해서 보여줌
+								$('li[id="' + element + '"]').insertBefore($('li[id="' + selectedCategory[index-1] + '"]'));
 								$('li[id="' + element + '"]').slideDown("slow");
 							}
 							
@@ -193,6 +192,7 @@
 			});
         });
         
+        // 카테고리 리스트 비동기로 받아와서 리턴해주는 함수
         function categoryListAjax() {
         	var categoryListAjax = [];
         	$.ajax({
@@ -212,7 +212,7 @@
         		}
         	});
         	return categoryListAjax;
-        }
+        };
         
         /**************************  Category Click Evnet End  *******************/
         

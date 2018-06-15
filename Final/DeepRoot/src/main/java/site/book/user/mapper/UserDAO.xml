@@ -38,8 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT Count(*) FROM USER
 	</select>
 	
-	<select id="newUser" resultType="Integer">
-		SELECT COUNT(*) FROM USER WHERE REGDATE >= DATE_FORMAT(CURDATE( ), '%Y-%m-%d')
+	<select id="newUser" resultType="java.util.HashMap">
+		SELECT DATE_FORMAT(regdate,'%Y-%m-%d') d, COUNT(*) as c FROM `USER` GROUP BY d
 	</select>
 	
 	<update id="blacklist">

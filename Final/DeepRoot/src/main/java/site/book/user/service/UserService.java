@@ -1,6 +1,7 @@
 package site.book.user.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -148,17 +149,17 @@ public class UserService {
 	}
 	
 	// 신규 가입자수 가져오기
-	public int getNewUser() {
+	public List<HashMap<String, String>> getNewUser() {
 		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
-		int row = 0;
+		List<HashMap<String, String>> list = null;
 		
 		try {
-			row = userDAO.newUser();
+			list = userDAO.newUser();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return row;
+		return list;
 	}
 	
 	// 블랙리스트 추가하기
