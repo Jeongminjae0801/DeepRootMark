@@ -35,14 +35,15 @@
     };
 
     $.fn.colorPick.defaults = {
-        'initialColor': '#3498db',
+        'initialColor': '#000',
         'paletteLabel': 'Default palette:',
         'allowRecent': true,
         'recentMax': 5,
         'allowCustomColor': false,
-        'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad", "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
+        'palette': ["#1abc9c", "#c5f0a4", "#00ffff", "#3498db", "#9b59b6", "#ff4057", "#fd75b3", "#84b9ef", "#f1c40f", "#fb93b1", "#ff8000",  "#000"],
         'onColorSelected': function() {
-            this.element.css({'backgroundColor': this.color, 'color': this.color, 'z-index':1000});
+            this.element.css({'backgroundColor': this.color, 'color': this.color});
+        
         }
     };
 
@@ -52,17 +53,25 @@
 
             var self = this;
             var o = this.options;
-
+            
             $.proxy($.fn.colorPick.defaults.onColorSelected, this)();
 
             this.element.click(function(event) {
                 event.preventDefault();
                 self.show(event.pageX, event.pageY);
+                var targetText = $(this).parent().children('span');
 
                 $('.customColorHash').val(self.color);
 
                 $('.colorPickButton').click(function(event) {
 					self.color = $(event.target).attr('hexValue');
+                    
+                    if(self.color == "#000") {
+                        targetText.css('color', '#fff');
+                    }else {
+                        targetText.css('color', self.color);
+                    }
+                    
 					self.appendToStorage($(event.target).attr('hexValue'));
 					self.hide();
 					$.proxy(self.options.onColorSelected, self)();
@@ -131,7 +140,7 @@
 				if (JSON.parse(localStorage.getItem("colorPickRecentItems")) == null || JSON.parse(localStorage.getItem("colorPickRecentItems")) == []) {
 					$("#colorPick").append('<div class="colorPickButton colorPickDummy"></div>');
 				} else {
-                    jQuery.each(JSON.parse(localStorage.getItem("colorPickRecentItems")), (index, item) => {
+					jQuery.each(JSON.parse(localStorage.getItem("colorPickRecentItems")), (index, item) => {
 		        		$("#colorPick").append('<div class="colorPickButton" hexValue="' + item + '" style="background:' + item + '"></div>');
                         if (index == $.fn.colorPick.defaults.recentMax-1) {
                             return false;
@@ -139,11 +148,12 @@
 					});
 				}
 			}
-	        $("#colorPick").fadeIn(500);
+	        $("#colorPick").fadeIn(200);
 	    },
 
 	    hide: function() {
-		    $( "#colorPick" ).fadeOut(500, function() {
+            
+		    $( "#colorPick" ).fadeOut(200, function() {
 			    $("#colorPick").remove();
 			    return this;
 			});

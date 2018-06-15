@@ -1,16 +1,9 @@
-/*!
-*
-* ColorPick jQuery plugin
-* https://github.com/philzet/ColorPick.js
-*
-* Copyright (c) 2017 Phil Zet (a.k.a. Philipp Zakharchenko)
-* Licensed under the MIT License
-*
-*/
+
 .colorPickSelector {
   border-radius: 5px;
-  width: 36px;
-  height: 36px;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   -webkit-transition: all linear .2s;
   -moz-transition: all linear .2s;
@@ -20,7 +13,6 @@
 }
 
 .colorPickSelector:hover { transform: scale(1.1); }
-
 
 #colorPick * {
 	-webkit-transition: all linear .2s;
@@ -35,9 +27,9 @@
 	-webkit-backdrop-filter: blur(15px);
 	position: absolute;
 	border-radius: 5px;
-	box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 	padding: 15px;
-	font-family: "Open Sans", sans-serif;
+	font-family: "Lato", sans-serif;
 	width: 140px;
 }
 
