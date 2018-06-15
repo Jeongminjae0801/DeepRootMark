@@ -27,7 +27,11 @@
     <link href="css/mainpage/login-register.css?ver=1" rel="stylesheet" />
     <link href="css/addBookmarkStepModal-register.css" rel="stylesheet" />
     <!-- Main Page CSS END -->
-
+    
+    <!-- User Info Page CSS -->
+    <link href="css/userinfo/userinfo.css?ver=2" rel="stylesheet">
+	<!-- User Info CSS END -->
+	
     <!-- Login / roll-in Modal Script Start -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="js/script.js"></script>

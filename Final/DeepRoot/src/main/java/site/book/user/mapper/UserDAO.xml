@@ -33,6 +33,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT Count(*) FROM U_AUTHCODE WHERE UID=#{uid} and AUTHCODE=#{authcode}
 	</select>
 	
+	<select id="getUser" parameterType="site.book.user.dto.UserDTO" resultType="site.book.user.dto.UserDTO">
+		SELECT UID, NNAME, PWD, ENABLED, REGDATE, PROFILE FROM `USER` WHERE UID=#{uid}
+	</select>
+	
+	<update id="editUser">
+		UPDATE USER SET PWD=#{pwd}, PROFILE=#{profile} WHERE UID=#{uid};
+	</update>
+	
+	<delete id="deleteUser">
+		DELETE FROM USER WHERE UID=#{uid}
+	</delete>
+	
 	<!-- 희준 -->
 	<select id="allUser" resultType="Integer">
 		SELECT Count(*) FROM USER
