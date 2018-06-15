@@ -118,7 +118,7 @@ public class MainController {
 		
 		int result = user_service.rollinUser(user);
 		if(result > 0) {
-			model.addAttribute("rollin", "success");
+			model.addAttribute("rollin", "pass");
 		}else {
 			model.addAttribute("rollin", "fail");
 		}
@@ -134,7 +134,7 @@ public class MainController {
 		System.out.println(auth);
 		int result = user_service.confirmEmail(auth);
 		if(result > 0) {
-			model.addAttribute("email", "success");
+			model.addAttribute("email", "pass");
 		}else {
 			model.addAttribute("email", "fail");
 		}
@@ -149,7 +149,7 @@ public class MainController {
 		System.out.println(auth);
 		int result = user_service.checkAuthcode(auth);
 		if(result > 0) {
-			model.addAttribute("auth", "success");
+			model.addAttribute("auth", "pass");
 		}else {
 			model.addAttribute("auth", "fail");
 		}
