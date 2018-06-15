@@ -59,7 +59,7 @@ body {
 
 .content-wrapper,
 .right-side{
-    margin-left: 230px;
+    padding-left: 230px;
     -webkit-transition: -webkit-transform .3s ease-in-out, margin .3s ease-in-out;
     -moz-transition: -moz-transform .3s ease-in-out, margin .3s ease-in-out;
     -o-transition: -o-transform .3s ease-in-out, margin .3s ease-in-out;

@@ -9,13 +9,18 @@
 package site.book.admin.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import site.book.admin.dao.A_BookDAO;
 import site.book.admin.dao.A_CategoryDAO;
+import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
 
 @Service
@@ -23,6 +28,9 @@ public class A_CategoryService {
 	
 	@Autowired
 	private SqlSession sqlsession;
+	
+	@Autowired
+	private A_BookService a_book_service;
 	
 	// 전체 카테고리
 	public List<A_CategoryDTO> getCategorys(){
@@ -77,5 +85,19 @@ public class A_CategoryService {
 		
 		return row;
 	}
+	
+	// 카테고리 별 URL
+	public HashMap<String, List<A_BookDTO>> urlByCategory() {
+		HashMap<String, List<A_BookDTO>> map = new HashMap<>();
+		
+		List<A_CategoryDTO> categorylist = getCategorys();
+		
+		for(A_CategoryDTO category : categorylist) {
+			List<A_BookDTO> booklist = a_book_service.getCategoryURL(category.getAcid());
+			map.put(category.getAcname(), booklist);
+		}
+		return map;
+	}
+	
 	
 }

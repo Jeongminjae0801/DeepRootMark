@@ -137,6 +137,19 @@ public class AdminController {
 		return "admin.main";
 	}
 
+	@RequestMapping("mainBookList.do")
+	public String mainBookList(Model model) {
+		List<A_CategoryDTO> categorylist = a_category_service.getCategorys();
+		model.addAttribute("categorylist", categorylist);
+		
+		HashMap<String, List<A_BookDTO>> url_by_category = a_category_service.urlByCategory();
+		model.addAttribute("url_by_category", url_by_category);
+		
+		return "admin.mainBookList";
+	}
+	
+	
+	
 	@RequestMapping("addCategory.do")
 	public String addCategory(A_CategoryDTO category) {
 		System.out.println("관리자 카테고리 추가");
