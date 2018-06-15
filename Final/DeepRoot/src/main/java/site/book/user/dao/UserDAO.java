@@ -32,6 +32,15 @@ public interface UserDAO {
 	// 인증코드 일치 확인
 	public int checkAuthCode(EmailAuthDTO authcode) throws ClassNotFoundException, SQLException;
 	
+	// 회원 한명 출력
+	public UserDTO getUser(UserDTO user) throws ClassNotFoundException, SQLException;
+	
+	// 회원 한명 수정
+	public int editUser(UserDTO user) throws ClassNotFoundException, SQLException;
+	
+	// 회원 탈퇴
+	public int deleteUser(UserDTO user) throws ClassNotFoundException, SQLException;
+	
 	// 희준
 	
 	//전체 회원수

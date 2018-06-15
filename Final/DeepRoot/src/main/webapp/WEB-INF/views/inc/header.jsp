@@ -7,7 +7,7 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="navbar-brand">
-                <a class="logo-text" href="#">뿌리깊은마크</a>
+                <a class="logo-text" href="index.do">뿌리깊은마크</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -54,10 +54,10 @@
                    <li>
                        <a href="#">
                        <img class="dropdown header-ico" 
-                       		src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" 
-                       		alt="images/profile.png"> ${sessionScope.info_userid}</a>
+                       		src="images/profile/${sessionScope.info_userprofile}"
+                       		onerror="images/profile.png"> ${sessionScope.info_usernname}</a>
                        <ul role="menu" class="sub-menu">
-                           <li><a href="#">회원정보수정</a></li>
+                           <li><a href="myInfo.do">회원정보수정</a></li>
                            <li><a href='security/logout'>Logout</a></li>
                        </ul>
                    </li>

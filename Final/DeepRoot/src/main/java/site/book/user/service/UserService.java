@@ -1,15 +1,19 @@
 package site.book.user.service;
 
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -130,6 +134,75 @@ public class UserService {
 		}
 		
 		return row;
+	}
+	
+	// 한명의 회원정보 가져오기
+	public UserDTO getMember(UserDTO user) {
+		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
+		UserDTO editedUser = null;
+
+		try {
+			editedUser = userDAO.getUser(user);
+		}catch (Exception e) {
+			System.out.println("Get User Info Error");
+		}
+		
+		return editedUser;
+	}
+	
+	// 한명의 회원정보 수정하기
+	public String editMember(HttpServletRequest request, UserDTO user, MultipartFile file) {
+		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
+		int result = 0;
+		String changed_file_name = "";
+		
+		//업로드한 파일이 있다면,
+		if (file != null) {
+			String filename = file.getOriginalFilename();
+			String path = request.getServletContext().getRealPath("/");
+			String[] temp = filename.split("\\.");
+			changed_file_name = user.getNname() + "." + temp[temp.length-1];
+			
+			String fpath = path + "images\\profile\\" + changed_file_name;
+			//System.out.println(filename + " , " + fpath);
+
+			// 서버에 파일 업로드 (write)
+			FileOutputStream fs = null;
+			try {
+				fs = new FileOutputStream(fpath);
+				fs.write(file.getBytes());
+			} catch (Exception e) {
+				System.out.println("이미지 쓰기 실패");
+			} finally {
+				try {
+					fs.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		try {
+			user.setProfile(changed_file_name);
+			result = userDAO.editUser(user);
+		}catch (Exception e) {
+			System.out.println("Edit User Info Error");
+		}
+				
+		return changed_file_name;
+	}
+	
+	// 회원 탈퇴 서비스
+	public int deleteMember(UserDTO user) {
+		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
+		int result = 0;
+
+		try {
+			result = userDAO.deleteUser(user);
+		}catch (Exception e) {
+			System.out.println("Get User Info Error");
+		}
+		
+		return result;
 	}
 	
 	// 희준

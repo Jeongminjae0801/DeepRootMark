@@ -14,6 +14,9 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
+import site.book.user.dto.UserDTO;
+import site.book.user.service.UserService;
+
 /**
  * @Class : AdminController.java
  * @Date : 2018. 6. 12.
@@ -29,5 +32,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		request.setAttribute("userid", authentication.getName());
 		request.setAttribute("msg", "success");
 		request.getRequestDispatcher("/joinus/login.do").forward(request, response);
+				
 	}
 }

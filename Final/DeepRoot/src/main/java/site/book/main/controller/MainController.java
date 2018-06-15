@@ -8,6 +8,10 @@
 
 package site.book.main.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.buf.UEncoder;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -28,6 +33,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.A_BookDTO;
@@ -91,18 +99,21 @@ public class MainController {
 	/* Log in */
 	@RequestMapping(value="/joinus/login.do")
 	public View login(HttpServletRequest request, HttpServletResponse response, 
-			HttpSession session, Model model) {
+			HttpSession session, Model model, UserDTO user) {
 		
 		// process message from Handler and JSON data response
 		if(request.getAttribute("msg").equals("fail")) {
 			model.addAttribute("login", "fail");
 		}else {
 			String userid = (String)request.getAttribute("userid");
+			user.setUid(userid);
+			user = user_service.getMember(user);
 			model.addAttribute("login", "success");
-			System.out.println(userid);
-
+			
 			// set info session userid
-			session.setAttribute("info_userid", userid);
+			session.setAttribute("info_userid", user.getUid());
+			session.setAttribute("info_usernname", user.getNname());
+			session.setAttribute("info_userprofile", user.getProfile());
 		}
 		
 		return jsonview;
@@ -171,6 +182,7 @@ public class MainController {
 		
 		return jsonview;
 	}
+	
 	/* Check Nickname */
 	@RequestMapping(value="/joinus/checknname.do", method=RequestMethod.POST)
 	public View checkNname(HttpServletRequest request, HttpServletResponse response, 
@@ -187,6 +199,63 @@ public class MainController {
 		return jsonview;
 	}
 	
+	/* 회원정보 수정 페이지 GET */
+	@RequestMapping(value="/myInfo.do", method=RequestMethod.GET)
+	public String initMemberInfo(Model model) {
+		
+		return "member.myinfo";
+	}
+	
+	/* 회원정보 수정 페이지 POST */
+	@RequestMapping(value="/myInfo.do", method=RequestMethod.POST)
+	public String editMemberInfo(HttpServletRequest request, HttpSession session,
+			UserDTO user, @RequestParam("uploadFile") MultipartFile file, 
+			Model model) {
+		
+		//비밀번호 재암호화
+		user.setPwd(this.bCryptPasswordEncoder.encode(user.getPwd()));
+		//result = UID.확장자
+		String result = user_service.editMember(request, user, file);
+		//System.out.println("회원수정: " + result);
+		
+		session.setAttribute("info_userprofile", result);
+		return "redirect:index.do";
+	}
+	
+	/* 회원정보 수정 페이지 비밀번호 재확인 */
+	@RequestMapping(value="/reconfirm.do", method=RequestMethod.POST)
+	public View confirmMemberPWD(Model model, UserDTO input_data) {
+		
+		//getMember 통해  해당 회원정보 가져옴
+		UserDTO member = user_service.getMember(input_data);
+		//DB에서 가져온 암호화된 문자열
+		String encodedPassword = member.getPwd();
+		
+		boolean result = bCryptPasswordEncoder.matches(input_data.getPwd(), encodedPassword);
+		if(result) {
+			model.addAttribute("result", "pass");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		return jsonview;
+	}
+	
+	/* 회원 탈퇴 */
+	@RequestMapping(value="/rollout.do", method=RequestMethod.GET)
+	public String rolloutMember(HttpServletRequest request, Model model) {
+		
+		UserDTO user = new UserDTO();
+		user.setUid((String)request.getAttribute("uid"));
+		int result = user_service.deleteMember(user);
+
+		if(result > 0) {
+			model.addAttribute("result", "pass");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		return "member.logout";
+	}
+
 	// 희준
 	@RequestMapping("preview.do")
 	public View WebCrawling(String abid, Model model) {
