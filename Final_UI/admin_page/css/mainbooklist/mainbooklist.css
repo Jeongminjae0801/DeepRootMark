@@ -13,7 +13,7 @@ body {
 }
 /* Table font CSS START */
 .panel-body table tr>th{
-    color:#ccc22b;
+    color:#ffd933;
     font-size:15px;
     font-weight: 400;
 }
@@ -507,26 +507,26 @@ table.table-hover tbody tr:hover {
 .panel-heading > i{
     font-size: 18px;
     padding-left : 10px;
-    color: #ccc22b;
+    color: #ffd933;
     cursor: pointer;
 }
 
 .panel-heading > i:hover,
 .panel-heading > i:active{
-    color:#f39c12;
+    color:#fff0ac;
 }
 /* Category update button CSS END */
 
 /* Category Insert button CSS START */
 .i-plus-circle{
-    color: #ccc22b;
+    color: #f62a66;
     font-size:25px;
     cursor: pointer;
 }
 .i-plus-circle:active,
 .i-plus-circle:focus,
 .i-plus-circle:hover{
-    color: #f39c12;
+    color: #fb9bb8;
    
 }
 /* Category Insert button CSS END */
