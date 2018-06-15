@@ -93,7 +93,7 @@
         /* ******************** Scroll Shadow END *************************** */
         
         /**************************  Preview Start  **********************************/
-        function preview(abid){
+    	function preview(abid){
         	$.ajax({
         		url: "preview.do",
 				type: "post",
@@ -101,13 +101,19 @@
 					abid : abid // 북마크 ID
 				},
 				success : function(data){
-					// console.log(data);
-					var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
-		        	$("#layout").html(layout);
-					var explain = '<img src=' + data.image + ' style="width:100%; height:50%">';
-					$("#explain").html(explain);
-					var comment = "사이트명 : " + data.title + "<br> 설명 : " + data.description;
-					$("#comment").html(comment);
+					
+					$('#preview_content').fadeOut(10, function(){
+						
+						// console.log(data);
+						var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
+			        	$("#layout").html(layout);
+						var explain = '<img src=' + data.image + ' style="width:100%; height:50%">';
+						$("#explain").html(explain);
+						var comment = "사이트명 : " + data.title + "<br> 설명 : " + data.description;
+						$("#comment").html(comment);
+                        $('#preview_content').fadeIn(1000);
+                        
+                    });
 				}
         	});
         };
