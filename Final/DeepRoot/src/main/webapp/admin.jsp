@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-		location.href="admin/mainBookList.do";
+		location.href="admin/groupListTable.do";
 	</script>
 </body>
 </html>
