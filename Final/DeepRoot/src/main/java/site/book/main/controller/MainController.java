@@ -244,9 +244,9 @@ public class MainController {
 	@RequestMapping(value="/rollout.do", method=RequestMethod.GET)
 	public String rolloutMember(HttpServletRequest request, Model model) {
 		
-		UserDTO user = new UserDTO();
-		user.setUid((String)request.getAttribute("uid"));
-		int result = user_service.deleteMember(user);
+		String uid = (String)request.getParameter("uid");
+		System.out.println(uid);
+		int result = user_service.deleteMember(uid);
 
 		if(result > 0) {
 			model.addAttribute("result", "pass");

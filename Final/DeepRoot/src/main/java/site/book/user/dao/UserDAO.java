@@ -39,7 +39,7 @@ public interface UserDAO {
 	public int editUser(UserDTO user) throws ClassNotFoundException, SQLException;
 	
 	// 회원 탈퇴
-	public int deleteUser(UserDTO user) throws ClassNotFoundException, SQLException;
+	public int deleteUser(String uid) throws ClassNotFoundException, SQLException;
 	
 	// 희준
 	

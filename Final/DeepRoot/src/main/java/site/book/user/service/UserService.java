@@ -192,12 +192,12 @@ public class UserService {
 	}
 	
 	// 회원 탈퇴 서비스
-	public int deleteMember(UserDTO user) {
+	public int deleteMember(String uid) {
 		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
 		int result = 0;
 
 		try {
-			result = userDAO.deleteUser(user);
+			result = userDAO.deleteUser(uid);
 		}catch (Exception e) {
 			System.out.println("Get User Info Error");
 		}
