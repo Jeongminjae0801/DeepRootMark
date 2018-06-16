@@ -29,6 +29,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO U_AUTHCODE(AUTHCODE, UID, SENDDATE) VALUES(#{authcode}, #{uid}, sysdate())
 	</insert>
 	
+	<select id="getUser" parameterType="site.book.user.dto.UserDTO" resultType="site.book.user.dto.UserDTO">
+        SELECT UID, NNAME, PWD, ENABLED, REGDATE, PROFILE FROM `USER` WHERE UID=#{uid}
+    </select>
+    
+    <update id="editUser">
+        UPDATE USER SET PWD=#{pwd}, PROFILE=#{profile} WHERE UID=#{uid};
+    </update>
+    
+    <delete id="deleteUser">
+        DELETE FROM USER WHERE UID=#{uid}
+    </delete>
+	
 	<select id="checkAuthCode" resultType="Integer">
 		SELECT Count(*) FROM U_AUTHCODE WHERE UID=#{uid} and AUTHCODE=#{authcode}
 	</select>
