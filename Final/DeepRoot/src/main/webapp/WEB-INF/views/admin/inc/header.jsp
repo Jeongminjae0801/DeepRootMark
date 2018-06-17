@@ -63,7 +63,7 @@
 				<ul class="sidebar-menu">
 					<!-- Sidemenu Chart START -->
 					<li class="header"><i class="fa fa-area-chart"></i>&nbsp;&nbsp;CHART</li>
-					<li class="pageLink router-link-active"><a href="main.html"
+					<li class="pageLink router-link-active"><a href="main.do"
 						class="transition">&nbsp;&nbsp;&nbsp;<i
 							class="fa fa-line-chart"></i> <span class="page">Chart</span></a></li>
 					<!-- Sidemenu Chart END -->
@@ -71,7 +71,7 @@
 					<!-- Sidemenu Pages Bookmark list START -->
 					<li class="header"><i class="fa fa-book"></i>&nbsp;&nbsp;Bookmark
 						List</li>
-					<li class="pageLink"><a href="mainbooklist.html">&nbsp;&nbsp;&nbsp;<i
+					<li class="pageLink"><a href="mainBookList.do">&nbsp;&nbsp;&nbsp;<i
 							class="fa fa-bookmark fa-fw"></i><span class="page">Main
 								Page Bookmark</span></a></li>
 					<li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i
@@ -81,9 +81,9 @@
 
 					<!-- Sidemenu List START -->
 					<li class="header"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;List</li>
-					<li class="pageLink"><a href="groupListTable.html">&nbsp;&nbsp;&nbsp;<i
+					<li class="pageLink"><a href="groupListTable.do">&nbsp;&nbsp;&nbsp;<i
 							class="fa fa-list-ul"></i><span class="page">Group List</span></a></li>
-					<li class="pageLink"><a href="userListTable.html">&nbsp;&nbsp;&nbsp;<i
+					<li class="pageLink"><a href="userListTable.do">&nbsp;&nbsp;&nbsp;<i
 							class="fa fa-list-ul"></i><span class="page">User List</span></a></li>
 					<!-- Sidemenu List END -->
 				</ul>

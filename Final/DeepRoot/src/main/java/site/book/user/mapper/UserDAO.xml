@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="getUserList" resultType="site.book.user.dto.UserDTO">
-		SELECT UID, NNAME, PWD, ENABLED, REGDATE, PROFILE FROM `USER` WHERE Enabled <![CDATA[<>]]> 2
+		SELECT UID, NNAME, PWD, ENABLED, REGDATE, PROFILE FROM `USER` WHERE Enabled = 1
 	</select>
 	
 	<delete id="deleteUserBook">
