@@ -10,18 +10,27 @@
 		});
     });
 
-	/*그룹삭제 임시 스크립트 START*/
+	/*그룹삭제  스크립트 START*/
 	function deleteGroup(gid) {
 		if (confirm('삭제하시겠습니까?')) {
-			$("#"+gid).remove();
+			$("#"+gid).remove(); // dataTable에서 지우기
 			
-			/* var clickedRow = $(this).parent();
-			clickedRow.remove(); */
-			} else {
-				return;
-			}
+			$.ajax({
+				url: "deleteGroup.do",
+				type: "post",
+				data : {
+					gid : gid // 그룹 ID
+				},
+				success : function(data){
+					console.log(data);
+				}
+			});
+			
+		} else {
+			return;
+		}
 	}
-    /*그룹삭제 임시 스크립트 END*/
+    /*그룹삭제  스크립트 END*/
 </script>
 <!-- 페이지 전환 Script END -->
 

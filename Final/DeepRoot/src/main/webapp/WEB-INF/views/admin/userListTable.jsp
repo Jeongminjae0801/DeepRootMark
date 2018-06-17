@@ -2,14 +2,34 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script>
+<script type="text/javascript">
 	$(function(){
-		$("#userListTable").DataTable();
+		$("#userListTable").DataTable({
+			responsive: true
+		});
 	});
 	
+	/*회원삭제  스크립트 START*/
 	function deleteUser(uid) {
-		
+		if (confirm('삭제하시겠습니까?')) {
+			$("#"+uid).remove(); // dataTable에서 지우기
+			
+			$.ajax({
+				url: "blacklist.do",
+				type: "post",
+				data : {
+					uid : uid // 회원 ID
+				},
+				success : function(data){
+					console.log(data);
+				}
+			});
+			
+		} else {
+			return;
+		}
 	};
+    /*회원삭제  스크립트 END*/
 </script>
 
 <!-- Main Content START -->
@@ -42,7 +62,7 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${userlist}" var="user">
-									<tr>
+									<tr id="${user.uid}">
 										<td>${user.nname}</td>
 										<td>${user.uid}</td>
 										<td><input class="btn btn-danger" type="button"

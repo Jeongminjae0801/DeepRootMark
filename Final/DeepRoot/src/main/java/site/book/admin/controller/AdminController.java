@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
@@ -64,6 +65,9 @@ public class AdminController {
 	@Autowired
 	private VisitorService visitor_service;
 
+	@Autowired
+	private View jsonview;
+	
 	@RequestMapping("main.do")
 	public String admin(Model model) {
 		// System.out.println("관리자 메인 페이지");
@@ -164,8 +168,31 @@ public class AdminController {
 		return "admin.groupListTable";
 	}
 	
+	@RequestMapping("deleteGroup.do")
+	public View deleteSGroup(String gid, Model model) {
+		System.out.println("그룹 삭제");
+		System.out.println("그룹 번호: " + gid);
+
+		int row = team_service.deleteSocialGroup(Integer.parseInt(gid));
+		model.addAttribute("data", row);
+		
+		return jsonview;
+	}
+	
+	@RequestMapping("blacklist.do")
+	public View blacklist(String uid, Model model) {
+		System.out.println("블랙리스트 등록");
+		System.out.println("회원 아이디: " + uid);
+
+		int row = user_service.blacklist(uid);
+		model.addAttribute("data", row);
+		
+		return jsonview;
+	}
 	
 	
+	
+	///////////////////////////////////////////////////
 	
 	@RequestMapping("addCategory.do")
 	public String addCategory(A_CategoryDTO category) {
@@ -238,25 +265,9 @@ public class AdminController {
 		return "redirect:admin.do";
 	}
 
-	@RequestMapping("deleteSGroup.do")
-	public String deleteSGroup(String gid) {
-		System.out.println("소셜 그룹 삭제");
-		System.out.println("소셜 그룹 번호: " + gid);
+	
 
-		team_service.deleteSocialGroup(Integer.parseInt(gid));
-
-		return "redirect:admin.do";
-	}
-
-	@RequestMapping("blacklist.do")
-	public String blacklist(String uid) {
-		System.out.println("블랙리스트 등록");
-		System.out.println("회원 아이디: " + uid);
-
-		user_service.blacklist(uid);
-
-		return "redirect:admin.do";
-	}
+	
 
 	@RequestMapping("noticeReg.do")
 	public String noticeReg(String ncontent) {
