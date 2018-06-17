@@ -30,6 +30,9 @@ public class TeamService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	
+	// 희준
+	
 	// 소셜 그룹 리스트 가져오기
 	public List<S_TeamDTO> getSocialGroupList() {
 		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
@@ -58,6 +61,34 @@ public class TeamService {
 		return row;
 	}
 
+	// 모든 그룹 리스트 가져오기
+	public List<TeamDTO> getGroupList() {
+		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		List<TeamDTO> list = null;
+		
+		try {
+			list = teamDAO.selectGroupList();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	// 그룹 삭제하기
+	public int deleteGroup(int gid) {
+		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		int row = 0;
+		
+		try {
+			row = teamDAO.deleteGroup(gid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return row;
+	}
+	
 	
 	// 명수
 	// 완료 그룹 리스트 가져오기

@@ -4,7 +4,7 @@
 	<div class="wrapper">
 
 		<header class="main-header">
-			<span class="logo-mini"><a href="main.html"
+			<span class="logo-mini"><a href="/bit/index.do"
 				data-duration="0.2s"><span
 					class="img-responsive center-block logo">뿌리깊은마크</span></a> </span>
 			<!-- header menu bar START -->

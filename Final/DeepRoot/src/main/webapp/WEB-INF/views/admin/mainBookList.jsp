@@ -9,28 +9,24 @@
 <link rel="stylesheet" href="/bit/css/admin/colorPick.css">
 <!-- adminTable CSS END -->
 
-<script>
+<script type="text/javascript">
+	
 	$(function(){
-		dataTable();
+		var categorylist = new Array(); 
+		
+		<c:forEach items="${categorylist}" var="category">
+			categorylist.push("${category.acname}");
+		</c:forEach>
+		
+		// DataTable 적용
+		$.each(categorylist, function(index, element){
+			$('table[id="'+ element + '"]').DataTable();
+		});
+		
+		
 	});
 	
-	function dataTable() {
-    	$.ajax({
-    		url : "/bit/categoryList.do",
-    		type : "POST",
-    		success : function(data) {
-    			//console.log(data); // 카테고리 리스트 확인 콘솔
-    			$.each(data, function(index, element) {
-    				$.each(element, function(index2, element2){
-    					$('table[id="'+ element2.acname + '"]').dataTable();
-    				});
-    			});
-    		},
-    		error: function (error) {
-    		    alert('error : ' + eval(error));
-    		}
-    	});
-    };
+	
 </script>
 
 
@@ -84,18 +80,19 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<!-- Category List Table START -->
-				<c:forEach items="${url_by_category}" var="hashmap">
-					<div class="col-sm-6">
+				<c:forEach items="${url_by_category}" var="list">
+					<c:forEach items="${list}" var="hashmap">
+						<div class="col-sm-6">
 						<div class="panel">
 							<!-- Category Name & edit & insert START -->
 
 							<div class="panel-heading">
-								<span id="${hashmap.key}"> ${hashmap.key}</span>
+								<span id="${hashmap.key.acname}"> ${hashmap.key.acname}</span>
 								<!--color picker START -->
 								<button class="colorPickSelector"></button>
 								<!--color picker END -->
 								<i class="fa fa-pencil" data-toggle="modal"
-									onclick="openCategoryEditModal();"></i>
+									onclick="openCategoryEditModal(${hashmap.key.acid});"></i>
 								<div class="pull-right">
 									<i class="fa fa-plus-circle i-plus-circle" data-toggle="modal"
 										onclick="openUrlModal();"></i>
@@ -103,10 +100,11 @@
 							</div>
 							<!-- /.panel-heading -->
 
-							
-								<!-- Category Name & edit & insert END -->
-								<div class="panel-body">
-								<table width="100%" class="table table-hover" id="${hashmap.key}">
+
+							<!-- Category Name & edit & insert END -->
+							<div class="panel-body">
+								<table width="100%" class="table table-hover"
+									id="${hashmap.key}">
 									<thead>
 										<tr>
 											<th>사이트명</th>
@@ -116,43 +114,55 @@
 									</thead>
 									<tbody>
 										<c:forEach items="${hashmap.value}" var="book">
-										<tr>
-											<td>${book.urlname}</td>
-											<td><a href="${book.url}" target="_blank">${book.url}</a></td>
-											<td><i class="fa fa-pencil url-action" onclick=""></i><i
-												class="fa fa-trash-o url-action" onclick="deleteGroup(${book.abid})"></i>
-											</td>
-										</tr>
+											<tr>
+												<td>${book.urlname}</td>
+												<td><a href="${book.url}" target="_blank">${book.url}</a></td>
+												<td><i class="fa fa-pencil url-action" onclick=""></i><i
+													class="fa fa-trash-o url-action"
+													onclick="deleteGroup(${book.abid})"></i></td>
+											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
-							
 						</div>
 					</div>
+					</c:forEach>	
 				</c:forEach>
 			</div>
 			<!-- /.row -->
 		</div>
 		<!-- /#page-wrapper -->
 		<!--categoryModal script start-->
-		<script>
-                        /*카테고리 추가 모달 바로열기*/
-                        function showCategoryForm() {
-                            $('.addCategoryBox').fadeIn('fast');
-                            $('.addCategory-footer').fadeIn('fast');
-                            $('.modal-title').html('카테고리 추가');
-                        }
-
-
-                        function openCategoryModal() {
-                            showCategoryForm();
-                            setTimeout(function() {
-                                $('#addCategoryModal').modal('show');
-                            }, 230);
-
-                        }
-                    </script>
+		<script type="text/javascript">
+        	/*카테고리 추가 모달 바로열기*/
+            function showCategoryForm() {
+            	$('.addCategoryBox').fadeIn('fast');
+                $('.addCategory-footer').fadeIn('fast');
+                $('.modal-title').html('카테고리 추가');
+            }
+        	
+            function openCategoryModal() {
+            	showCategoryForm();
+                setTimeout(function() {
+                	$('#addCategoryModal').modal('show');
+                }, 230);
+           }
+            
+           function addAdminCategory() {
+        	   //console.log("click");
+        	   //console.log($("#acname1").val().trim());
+        	   if($("#acname1").val().trim() == ""){
+        		   $("#acname1").focus();
+		 	   }else {
+		 		  $("#addCategoryForm").submit();
+		 		  $("#addCategoryForm")[0].reset();
+		 		  setTimeout(function() {
+	               	$('#addCategoryModal').modal('hide');
+	              }, 230);
+		 	   }
+		   }
+        </script>
 		<!--categoryModal script end-->
 
 		<!--categoryModal start-->
@@ -160,7 +170,7 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form name="addCategory" method="post" action="/addCategory"
+					<form id="addCategoryForm" name="addCategory" method="post" action="addCategory.do"
 						accept-charset="UTF-8">
 
 						<div class="modal-header">
@@ -175,7 +185,7 @@
 								<div class="form addCategoryBox">
 									<label class="control-label" for="acname">추가할 카테고리명을
 										입력하세요</label> <input id="acname1" class="form-control" type="text"
-										placeholder="acname" name="acname" /><br>
+										placeholder="카테고리명" name="acname" /><br>
 								</div>
 							</div>
 						</div>
@@ -183,7 +193,7 @@
 						<div class="modal-footer">
 							<div class="addCategory-footer">
 								<input class="btn btn-default btn-comp" type="button" value="등록"
-									onclick="">
+									onclick="addAdminCategory();">
 							</div>
 						</div>
 					</form>
@@ -201,11 +211,24 @@
                             $('.modal-title').html('카테고리 수정');
                         }
 
-                        function openCategoryEditModal() {
+                        function openCategoryEditModal(acid) {
+                        	$("#editCategoryID").val(acid); // 카테고리 ID hidden type에 넣어주기
                             showCategoryEditForm();
                             setTimeout(function() {
                                 $('#editCategoryModal').modal('show');
                             }, 230);
+                        }
+                        
+                        function editAdminCategory() {
+							if (confirm('수정하시겠습니까?')) {
+                        		$("#editCategoryForm").submit();
+	              		 		$("#editCategoryForm")[0].reset();
+	              		 		setTimeout(function() {
+	              	            	$('#editCategoryForm').modal('hide');
+	              	            }, 230);
+                    		} else {
+                    			return;
+                    		}
                         }
                     </script>
 		<!--categoryEditModal script end-->
@@ -215,7 +238,7 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form name="editCategory" method="post" action="/editCategory"
+					<form id="editCategoryForm" name="editCategory" method="post" action="editCategory.do"
 						accept-charset="UTF-8">
 
 						<div class="modal-header">
@@ -228,12 +251,8 @@
 							<div class="box">
 								<!--카테고리명 입력-->
 								<div class="form editCategoryBox">
-									<label class="control-label" for="acnameList">수정할 카테고리를
-										선택하세요</label>&nbsp; <select id="acnameList" class="form-control"
-										name="acnameList">
-										<option>포털사이트</option>
-										<option>서칭</option>
-									</select><br> <br> <label class="control-label" for="acname">카테고리명을
+									<input type="hidden" id="editCategoryID" name="acid">
+									<label class="control-label" for="acname">카테고리명을
 										입력하세요</label> <input id="acname2" class="form-control" type="text"
 										placeholder="acname" name="acname"><br>
 								</div>
@@ -242,8 +261,8 @@
 
 						<div class="modal-footer">
 							<div class="editCategory-footer">
-								<input class="btn btn-default btn-comp" type="button" value="등록"
-									onclick="">
+								<input class="btn btn-default btn-comp" type="button" value="수정"
+									onclick="editAdminCategory();">
 							</div>
 						</div>
 					</form>
@@ -268,6 +287,23 @@
                             }, 230);
 
                         }
+                        
+                        function deleteAdminCategory() {
+                        	if (confirm('삭제하시겠습니까?')) {
+                    			
+                        		$("#deleteCategoryForm").submit();
+	              		 		$("#deleteCategoryForm")[0].reset();
+	              		 		setTimeout(function() {
+	              	            	$('#deleteCategoryModal').modal('hide');
+	              	            }, 230);
+                        		
+                        		
+                    		} else {
+                    			return;
+                    		}
+                        	
+                        }
+                        
                     </script>
 		<!--categoryDeleteModal script end-->
 
@@ -276,7 +312,7 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form name="deleteCategory" method="post" action="/deleteCategory"
+					<form id="deleteCategoryForm" name="deleteCategory" method="post" action="deleteCategory.do"
 						accept-charset="UTF-8">
 
 						<div class="modal-header">
@@ -291,9 +327,10 @@
 								<div class="form deleteCategoryBox">
 									<label class="control-label" for="acnameList2">삭제할
 										카테고리를 선택하세요</label>&nbsp; <select id="acnameList2"
-										class="form-control" name="acnameList">
-										<option>포털사이트</option>
-										<option>서칭</option>
+										class="form-control" name="acid">
+										<c:forEach items="${categorylist}" var="category">
+											<option value="${category.acid}">${category.acname}</option>
+										</c:forEach>
 									</select><br> <input id="acname3" class="form-control"
 										type="hidden" name="acname"><br>
 								</div>
@@ -302,8 +339,8 @@
 
 						<div class="modal-footer">
 							<div class="deleteCategory-footer">
-								<input class="btn btn-default btn-comp" type="button" value="확인"
-									onclick="">
+								<input class="btn btn-default btn-comp" type="button" value="삭제"
+									onclick="deleteAdminCategory();">
 							</div>
 						</div>
 					</form>

@@ -122,7 +122,12 @@
         
         /**************************  Category Click Evnet Start  *******************/
         $(function(){
-        	var categoryList = categoryListAjax(); // 전체 카테고리 리스트 비동기로 받아오기
+        	var categoryList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+        	
+    		<c:forEach items="${categoryList}" var="category">
+    			categoryList.push("${category.acname}");
+    		</c:forEach>
+    		
 			var selectedCategory = [];
 			
         	$(document).on("click", ".category", function() {
@@ -201,28 +206,6 @@
 				
 			});
         });
-        
-        // 카테고리 리스트 비동기로 받아와서 리턴해주는 함수
-        function categoryListAjax() {
-        	var categoryListAjax = [];
-        	$.ajax({
-        		url : "categoryList.do",
-        		type : "POST",
-        		success : function(data) {
-        			//console.log(data); // 카테고리 리스트 확인 콘솔
-        			$.each(data, function(index, element) {
-        				$.each(element, function(index2, element2){
-        					//console.log(element2.acname);
-        					categoryListAjax.push(element2.acname);
-        				});
-        			});
-        		},
-        		error: function (error) {
-        		    alert('error : ' + eval(error));
-        		}
-        	});
-        	return categoryListAjax;
-        };
         
         /**************************  Category Click Evnet End  *******************/
         

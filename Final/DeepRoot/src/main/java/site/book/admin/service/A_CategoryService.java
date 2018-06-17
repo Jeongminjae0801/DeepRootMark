@@ -87,16 +87,18 @@ public class A_CategoryService {
 	}
 	
 	// 카테고리 별 URL
-	public HashMap<String, List<A_BookDTO>> urlByCategory() {
-		HashMap<String, List<A_BookDTO>> map = new HashMap<>();
+	public List<HashMap<A_CategoryDTO, List<A_BookDTO>>> urlByCategory() {
+		List<HashMap<A_CategoryDTO, List<A_BookDTO>>> list = new ArrayList<>();
 		
 		List<A_CategoryDTO> categorylist = getCategorys();
 		
 		for(A_CategoryDTO category : categorylist) {
+			HashMap<A_CategoryDTO, List<A_BookDTO>> map = new HashMap<>();
 			List<A_BookDTO> booklist = a_book_service.getCategoryURL(category.getAcid());
-			map.put(category.getAcname(), booklist);
+			map.put(category, booklist);
+			list.add(map);
 		}
-		return map;
+		return list;
 	}
 	
 	

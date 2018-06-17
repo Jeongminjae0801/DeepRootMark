@@ -25,6 +25,7 @@ import site.book.admin.service.A_CategoryService;
 import site.book.admin.service.NoticeService;
 import site.book.admin.service.VisitorService;
 import site.book.team.dto.S_TeamDTO;
+import site.book.team.dto.TeamDTO;
 import site.book.team.service.G_BookService;
 import site.book.team.service.TeamService;
 import site.book.user.dto.S_U_BookDTO;
@@ -68,8 +69,9 @@ public class AdminController {
 	@Autowired
 	private View jsonview;
 	
+	// 메인 페이지
 	@RequestMapping("main.do")
-	public String admin(Model model) {
+	public String main(Model model) {
 		// System.out.println("관리자 메인 페이지");
 
 		// Visit Chart Data
@@ -141,17 +143,19 @@ public class AdminController {
 		return "admin.main";
 	}
 
+	// mainBookList 페이지
 	@RequestMapping("mainBookList.do")
 	public String mainBookList(Model model) {
 		List<A_CategoryDTO> categorylist = a_category_service.getCategorys();
 		model.addAttribute("categorylist", categorylist);
 		
-		HashMap<String, List<A_BookDTO>> url_by_category = a_category_service.urlByCategory();
+		List<HashMap<A_CategoryDTO, List<A_BookDTO>>> url_by_category = a_category_service.urlByCategory();
 		model.addAttribute("url_by_category", url_by_category);
 		
 		return "admin.mainBookList";
 	}
 	
+	// userListTable 페이지
 	@RequestMapping("userListTable.do")
 	public String userListTable(Model model) {
 		List<UserDTO> userlist = user_service.getUserList();
@@ -160,61 +164,56 @@ public class AdminController {
 		return "admin.userListTable";
 	}
 	
+	// groupListTable 페이지
 	@RequestMapping("groupListTable.do")
 	public String groupListTable(Model model) {
-		List<S_TeamDTO> grouplist = team_service.getSocialGroupList();
+		List<TeamDTO> grouplist = team_service.getGroupList();
 		model.addAttribute("grouplist", grouplist);
 		
 		return "admin.groupListTable";
 	}
 	
+	// 그룹 삭제
 	@RequestMapping("deleteGroup.do")
 	public View deleteSGroup(String gid, Model model) {
 		System.out.println("그룹 삭제");
 		System.out.println("그룹 번호: " + gid);
 
-		int row = team_service.deleteSocialGroup(Integer.parseInt(gid));
-		model.addAttribute("data", row);
+		int row = team_service.deleteGroup(Integer.parseInt(gid));
+		String data = (row == 1) ? "성공" : "실패";
+		model.addAttribute("data", data);
 		
 		return jsonview;
 	}
 	
+	// 블랙리스트 등록
 	@RequestMapping("blacklist.do")
 	public View blacklist(String uid, Model model) {
 		System.out.println("블랙리스트 등록");
 		System.out.println("회원 아이디: " + uid);
 
 		int row = user_service.blacklist(uid);
-		model.addAttribute("data", row);
+		String data = (row == 1) ? "성공" : "실패";
+		
+		model.addAttribute("data", data);
 		
 		return jsonview;
 	}
 	
-	
-	
-	///////////////////////////////////////////////////
-	
 	@RequestMapping("addCategory.do")
-	public String addCategory(A_CategoryDTO category) {
+	public String addCategory(A_CategoryDTO category, Model model) {
 		System.out.println("관리자 카테고리 추가");
 		System.out.println("관리자 카테고리\n" + category.toString());
 
-		a_category_service.addCategory(category);
-
-		return "redirect:admin.do";
+		int row = a_category_service.addCategory(category);
+		String data = (row == 1) ? "성공" : "실패";
+		
+		model.addAttribute("data", data);
+		
+		return "redirect:mainBookList.do";
 
 	}
-
-	@RequestMapping("updateCategory.do")
-	public String updateCategory(A_CategoryDTO category) {
-		System.out.println("관리자 카테고리 수정");
-		System.out.println("관리자 카테고리\n" + category.toString());
-
-		a_category_service.updateCategory(category);
-
-		return "redirect:admin.do";
-	}
-
+	
 	@RequestMapping("deleteCategory.do")
 	public String deleteCategory(String acid) {
 		System.out.println("관리자 카테고리 삭제");
@@ -222,8 +221,22 @@ public class AdminController {
 
 		a_category_service.deleteCategory(Integer.parseInt(acid));
 
-		return "redirect:admin.do";
+		return "redirect:mainBookList.do";
 	}
+	
+	@RequestMapping("editCategory.do")
+	public String updateCategory(A_CategoryDTO category) {
+		System.out.println("관리자 카테고리 수정");
+		System.out.println("관리자 카테고리\n" + category.toString());
+
+		a_category_service.updateCategory(category);
+
+		return "redirect:mainBookList.do";
+	}
+	
+	
+	
+	///////////////////////////////////////////////////
 
 	@RequestMapping("addBook.do")
 	public String addBook(A_BookDTO book) {

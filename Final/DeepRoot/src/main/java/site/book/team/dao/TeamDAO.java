@@ -29,6 +29,11 @@ public interface TeamDAO {
 	// 소셜 그룹 삭제
 	public int deleteSocialGroup(int gid) throws ClassNotFoundException, SQLException;
 	
+	// 모든 그룹 리스트 가져오기
+	public List<TeamDTO> selectGroupList() throws ClassNotFoundException, SQLException;
+
+	// 그룹 삭제하기
+	public int deleteGroup(int gid) throws ClassNotFoundException, SQLException;
 	
 	
 	// 명수

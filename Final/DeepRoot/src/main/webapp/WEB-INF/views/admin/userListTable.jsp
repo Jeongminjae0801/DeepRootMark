@@ -10,9 +10,9 @@
 	});
 	
 	/*회원삭제  스크립트 START*/
-	function deleteUser(uid) {
+	function deleteUser(uid, nname) {
 		if (confirm('삭제하시겠습니까?')) {
-			$("#"+uid).remove(); // dataTable에서 지우기
+			$("#" + nname).remove(); // dataTable에서 지우기
 			
 			$.ajax({
 				url: "blacklist.do",
@@ -62,11 +62,11 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${userlist}" var="user">
-									<tr id="${user.uid}">
+									<tr id="${user.nname}">
 										<td>${user.nname}</td>
 										<td>${user.uid}</td>
 										<td><input class="btn btn-danger" type="button"
-											value="삭제" onclick="deleteUser(${user.uid})"></td>
+											value="삭제" onclick="deleteUser('${user.uid}','${user.nname}')"></td>
 									</tr>
 									</c:forEach>
 								</tbody>
