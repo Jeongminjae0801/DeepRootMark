@@ -110,6 +110,13 @@ public class MainController {
 			user = user_service.getMember(user);
 			model.addAttribute("login", "success");
 			
+			String role = (String)request.getAttribute("ROLE");
+			if(role.equals("ADMIN")) {
+				model.addAttribute("path", "admin/main.do");
+			}else {
+				model.addAttribute("path", "index.do");
+			}
+			
 			// set info session userid
 			session.setAttribute("info_userid", user.getUid());
 			session.setAttribute("info_usernname", user.getNname());
