@@ -113,6 +113,7 @@
 										// 링크 만들기, 폴더 만들기, 이름 바꾸기, 삭제
 										return {
 								            "link_create": {
+								            	"icon" : "fas fa-plus",
 								                "separator_before": false,
 								                "separator_after": false,
 								                "label": "URL 추가",
