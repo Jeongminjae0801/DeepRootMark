@@ -25,11 +25,23 @@
 <!-- adminTable CSS START -->
 <link rel="stylesheet" href="../css/admin/adminTable.css">
 <link rel="stylesheet" href="../css/admin/dataTables.bootstrap.css">
+<link rel="stylesheet" href="/bit/css/admin/colorPick.css">
 <!-- adminTable CSS END -->
+
+
+
+
+
 
 <!-- Script START -->
 <script src="../js/jquery.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <!-- Script END -->
+
+<!-- jQuery Confirm START -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+<!-- jQuery Confirm END -->
 
 <!--CHART Resources START-->
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>

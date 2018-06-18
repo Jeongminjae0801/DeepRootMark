@@ -12,23 +12,40 @@
 
 	/*그룹삭제  스크립트 START*/
 	function deleteGroup(gid) {
-		if (confirm('삭제하시겠습니까?')) {
-			$("#"+gid).remove(); // dataTable에서 지우기
-			
-			$.ajax({
-				url: "deleteGroup.do",
-				type: "post",
-				data : {
-					gid : gid // 그룹 ID
-				},
-				success : function(data){
-					console.log(data);
-				}
-			});
-			
-		} else {
-			return;
-		}
+		$.confirm({
+			title : '그룹 삭제',
+			content : '삭제하시겠습니까?',
+			theme: 'dark',
+			backgroundDismiss: true,
+			closeIcon: true,
+		    closeIconClass: 'fa fa-close',
+			buttons: {
+		        '삭제': {
+		        	btnClass : 'btn-danger',
+		        	keys: ['enter'],
+		        	action : function () {
+		        		$("#"+gid).remove(); // dataTable에서 지우기
+		    			$.ajax({
+		    				url: "deleteGroup.do",
+		    				type: "post",
+		    				data : {
+		    					gid : gid // 그룹 ID
+		    				},
+		    				success : function(data){
+		    					console.log(data);
+		    				}
+		    			});
+		        	}
+		        },
+		     
+		        '취소': {
+		        	btnClass : 'btn-success',
+		        	action : function() {
+		        		
+		        	}
+		        }
+		    }
+		});
 	}
     /*그룹삭제  스크립트 END*/
 </script>
