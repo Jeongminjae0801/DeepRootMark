@@ -11,23 +11,40 @@
 	
 	/*회원삭제  스크립트 START*/
 	function deleteUser(uid, nname) {
-		if (confirm('삭제하시겠습니까?')) {
-			$("#" + nname).remove(); // dataTable에서 지우기
-			
-			$.ajax({
-				url: "blacklist.do",
-				type: "post",
-				data : {
-					uid : uid // 회원 ID
-				},
-				success : function(data){
-					console.log(data);
-				}
-			});
-			
-		} else {
-			return;
-		}
+		$.confirm({
+			title : '회원 삭제',
+			content : '삭제하시겠습니까?',
+			theme: 'dark',
+			backgroundDismiss: true,
+			closeIcon: true,
+		    closeIconClass: 'fa fa-close',
+			buttons: {
+		        '삭제': {
+		        	btnClass : 'btn-danger',
+		        	keys: ['enter'],
+		        	action : function () {
+		        		$("#" + nname).remove(); // dataTable에서 지우기
+		    			$.ajax({
+		    				url: "blacklist.do",
+		    				type: "post",
+		    				data : {
+		    					uid : uid // 회원 ID
+		    				},
+		    				success : function(data){
+		    					console.log(data);
+		    				}
+		    			});
+		        	}
+		        },
+		     
+		        '취소': {
+		        	btnClass : 'btn-success',
+		        	action : function() {
+		        		
+		        	}
+		        }
+		    }
+		});
 	};
     /*회원삭제  스크립트 END*/
 </script>
