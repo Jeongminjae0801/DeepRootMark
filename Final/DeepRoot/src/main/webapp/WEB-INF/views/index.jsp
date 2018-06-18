@@ -139,7 +139,7 @@
                 <div class="col-sm-12">
                     <!-- Admin Bookmark & Search Area START -->
                     <span class="bookmark-title">
-                        <img src="icon/bookmark2.jpg" style="margin-right:5px; width:30px">
+                        <img src="icon/bookmark.png" style="margin-right:5px; width:30px">
                         Admin Bookmark
                     </span>
                     <div id="custom-search-input">
