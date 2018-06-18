@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,30 +23,17 @@
     <link href="css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Social Page CSS END -->
 
-    <!-- Login / roll-in Modal Script Start -->
-   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-   <script src="js/script.js"></script>
-   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-   <!-- Login / roll-in Modal Script Start END -->
-    
-    <!--jquery Datatable Start-->
-    <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-    <script src='http://cdn.datatables.net/1.10.9/js/jquery.dataTables.js'>
-    </script>
-    
+    <!--Script Start -->
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script src="js/socialmain.js"></script>
-    <link rel='stylesheet prefetch' href='http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css'>
-
-    <!--jquery Datatable END-->
-
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/dataTables.bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- Script END -->
 
-    <!--vue.js start-->
-    <script src="https://unpkg.com/vue"></script>
-    <!--vue.js END-->
     <script>
-        /**************************  Table Start  **********************************/
+        /*****************  Table Start **********************/
         $(function() {
             $(document).on("click", ".url", function() {
                 window.open(this.dataset.url, '_blank');
@@ -70,9 +56,9 @@
                 }
             });
         });
-        /**************************  Table END  **********************************/
+        /******************  Table END  *******************/
 
-        /* ******************** Scroll Shadow Start *************************** */
+        /* *********** Scroll Shadow Start ********************* */
         $(function() {
             var header = $('#header');
             $(window).scroll(function(e) {
@@ -85,9 +71,10 @@
                 }
             })
         });
-        /* ******************** Scroll Shadow END *************************** */
-        /*검색기능 플러그인*/
-        $(document).ready(function() {
+        /* ************* Scroll Shadow END ******************* */
+
+        /* ******************** Table Search START *************************** */
+        $(function() {
             $('#listTable1').DataTable({
                 responsive: true
             });
@@ -95,6 +82,7 @@
                 responsive: true
             });
         });
+        /* ******************** Table Search END *************************** */
     </script>
 
 </head>
@@ -164,31 +152,32 @@
     </header>
     <!-- Header END-->
 
+    <!-- Top5 DIV START -->
     <section class="ranking-div">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
-                    <!--social page ranking START-->
+                <!-- Individual TOP5 DIV START -->
+                <div class="col-sm-5 social">
                     <div class="">
-                        <span class="ranktitle">개인 Top 5</span>
+                        <span class="ranktitle"><img src="icon/trophy.png" class="rankimg">개인 Top 5</span>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Rank</th>
+                                    <th><img class="rankimg" src="icon/rank.png">Rank</th>
                                     <th>사이트명</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="rank">1</td>
+                                    <td class="rank"><img class="rankimg" src="icon/gold.png">1</td>
                                     <td class="team">네이버</td>
                                 </tr>
                                 <tr>
-                                    <td class="rank">2</td>
+                                    <td class="rank"><img class="rankimg" src="icon/silver.png">2</td>
                                     <td class="team">DAUM</td>
                                 </tr>
                                 <tr>
-                                    <td class="rank">3</td>
+                                    <td class="rank"><img class="rankimg" src="icon/bronze.png">3</td>
                                     <td class="team">w3school</td>
                                 </tr>
                                 <tr>
@@ -203,27 +192,32 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <!-- Individual TOP5 DIV END -->
+                <div class="col-sm-1">
+                </div>
+
+                <!-- Group TOP5 DIV START -->
+                <div class="col-sm-5 social">
                     <div class="">
-                        <span class="ranktitle">그룹 Top 5</span>
+                        <span class="ranktitle"><img src="icon/trophy.png" class="rankimg">그룹 Top 5</span>
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Rank</th>
-                                    <th>링크</th>
+                                    <th><img class="rankimg" src="icon/rank.png">Rank</th>
+                                    <th>사이트명</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="rank">1</td>
+                                    <td class="rank"><img class="rankimg" src="icon/gold.png">1</td>
                                     <td class="team">네이버</td>
                                 </tr>
                                 <tr>
-                                    <td class="rank">2</td>
+                                    <td class="rank"><img class="rankimg" src="icon/silver.png">2</td>
                                     <td class="team">구글</td>
                                 </tr>
                                 <tr>
-                                    <td class="rank">3</td>
+                                    <td class="rank"><img class="rankimg" src="icon/bronze.png">3</td>
                                     <td class="team">w3school</td>
                                 </tr>
                                 <tr>
@@ -237,131 +231,276 @@
                             </tbody>
                         </table>
                     </div>
-                    <!--social page ranking END-->
+                </div>
+                <!-- Group TOP5 DIV END -->
+            </div>
+        </div>
+    </section>
+    <!-- Top5 DIV END -->
+
+    <!-- center slide START -->
+    <section id="home-slider">
+        <div class="container">
+            <div class="row">
+                <div class="main-slider">
                 </div>
             </div>
         </div>
     </section>
+    <!-- center slide END -->
 
-    <section class="bookmark-share-div">
+    <!-- Share Bookmark div START -->
+    <section>
         <div class="container">
             <div class="row">
+
+                <!-- Individual Share Bookmark START -->
                 <div class="col-sm-6">
-                    <!--개인 공유 Bookmark Area START -->
                     <div class="share-table">
-
-
-                        <!-- Category Name & edit & insert START -->
                         <div class="panel-heading"><span id="category1">
                                         HTML</span>
                         </div>
-                        <!-- /.panel-heading -->
-                        <!-- Category Name & edit & insert END -->
                         <div class="panel-body">
                             <table width="100%" class="table table-hover" id="listTable1">
                                 <thead>
                                     <tr>
                                         <th>사이트명</th>
-                                        <th>URL 주소</th>
-                                        <th>Actions</th>
+                                        <th>태그</th>
+                                        <th>작성자명</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="index1">
-                                        <td>네이버</td>
-                                        <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                        <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자0
                                         </td>
                                     </tr>
                                     <tr class="index3">
-                                        <td>다음</td>
-                                        <td><a href="http://www.daum.net" target="_blank">http://www.daum.net</a></td>
+                                        <td><a href="http://www.daum.net" target="_blank">다음</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자1
                                         </td>
                                     </tr>
                                     <tr class="index2">
-                                        <td>구글</td>
-                                        <td><a href="http://www.google.com" target="_blank">http://www.google.com</a></td>
+                                        <td><a href="http://www.google.com" target="_blank">구글</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자2
                                         </td>
                                     </tr>
                                     <tr class="index2">
-                                        <td>카카오</td>
-                                        <td><a href="http://www.kakao.com" target="_blank">http://www.kakao.com</a></td>
+                                        <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자3
                                         </td>
                                     </tr>
                                     <tr class="index2">
-                                        <td>ZUM</td>
-                                        <td><a href="http://www.zum.com" target="_blank">http://www.zum.com</a></td>
+                                        <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자4
+                                        </td>
+                                    </tr>
+                                    <tr class="index1">
+                                        <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자0
+                                        </td>
+                                    </tr>
+                                    <tr class="index3">
+                                        <td><a href="http://www.daum.net" target="_blank">다음</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자1
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.google.com" target="_blank">구글</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자2
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자3
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자4
+                                        </td>
+                                    </tr>
+                                    <tr class="index1">
+                                        <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자0
+                                        </td>
+                                    </tr>
+                                    <tr class="index3">
+                                        <td><a href="http://www.daum.net" target="_blank">다음</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자1
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.google.com" target="_blank">구글</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자2
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자3
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자4
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
-
                 </div>
+                <!-- Individual Share Bookmark START -->
 
+                <!-- Group Share Bookmark START -->
                 <div class="col-sm-6">
-                    <!--group Share Bookmark Area START -->
                     <div class="group-share-table">
-                        <!-- Category Name & edit & insert START -->
                         <div class="panel-heading"><span id="category1">
                                         HTML</span>
                         </div>
-                        <!-- /.panel-heading -->
-                        <!-- Category Name & edit & insert END -->
                         <div class="panel-body">
                             <table width="100%" class="table table-hover" id="listTable2">
                                 <thead>
                                     <tr>
                                         <th>사이트명</th>
-                                        <th>URL 주소</th>
-                                        <th>Actions</th>
+                                        <th>태그</th>
+                                        <th>작성자명</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="index1">
-                                        <td>네이버</td>
-                                        <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                        <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자0
                                         </td>
                                     </tr>
                                     <tr class="index3">
-                                        <td>다음</td>
-                                        <td><a href="http://www.daum.net" target="_blank">http://www.daum.net</a></td>
+                                        <td><a href="http://www.daum.net" target="_blank">다음</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자1
                                         </td>
                                     </tr>
                                     <tr class="index2">
-                                        <td>구글</td>
-                                        <td><a href="http://www.google.com" target="_blank">http://www.google.com</a></td>
+                                        <td><a href="http://www.google.com" target="_blank">구글</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자2
                                         </td>
                                     </tr>
                                     <tr class="index2">
-                                        <td>카카오</td>
-                                        <td><a href="http://www.kakao.com" target="_blank">http://www.kakao.com</a></td>
+                                        <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자3
                                         </td>
                                     </tr>
                                     <tr class="index2">
-                                        <td>ZUM</td>
-                                        <td><a href="http://www.zum.com" target="_blank">http://www.zum.com</a></td>
+                                        <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
+                                        <td>#포털사이트 #검색</td>
                                         <td>
-                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                            작성자4
+                                        </td>
+                                    </tr>
+                                    <tr class="index1">
+                                        <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자0
+                                        </td>
+                                    </tr>
+                                    <tr class="index3">
+                                        <td><a href="http://www.daum.net" target="_blank">다음</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자1
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.google.com" target="_blank">구글</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자2
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자3
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자4
+                                        </td>
+                                    </tr>
+                                    <tr class="index1">
+                                        <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자0
+                                        </td>
+                                    </tr>
+                                    <tr class="index3">
+                                        <td><a href="http://www.daum.net" target="_blank">다음</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자1
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.google.com" target="_blank">구글</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자2
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자3
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
+                                        <td>#포털사이트 #검색</td>
+                                        <td>
+                                            작성자4
                                         </td>
                                     </tr>
                                 </tbody>
@@ -369,9 +508,11 @@
                         </div>
                     </div>
                 </div>
+                <!-- Group Share Bookmark END -->
             </div>
         </div>
     </section>
+    <!-- Share Bookmark div END -->
 
     <!-- Footer START -->
     <footer id="footer">
@@ -382,17 +523,13 @@
     <!-- Footer END -->
 
     <!-- Common Script START -->
-    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/wow.min.js"></script>
-    <!-- Script Common END -->
+    <!-- Common Script END -->
 
     <!-- Custom Script START -->
     <script type="text/javascript" src="js/socialmain.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <!-- Custom Script END -->
-
-
 </body>
-
 </html>

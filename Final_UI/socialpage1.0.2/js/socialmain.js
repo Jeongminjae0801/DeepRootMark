@@ -134,12 +134,4 @@ jQuery(function($) {
 
     }).scroll();
   });
-  /*data table start*/
-  $(document).ready( function () {
-    $('#individual-share').DataTable();
-  });
-    $(document).ready( function () {
-    $('#group-share').DataTable();
-  });
-    /*data table end*/
 });
