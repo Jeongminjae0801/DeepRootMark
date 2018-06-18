@@ -1,0 +1,126 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+/* 헤더 로고 폰트 */
+@import url('https://fonts.googleapis.com/css?family=Gugi');
+/* 한글 폰트*/
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+
+/* Social Page CSS START */
+.ranking-div{
+    padding-top: 150px;
+    text-align: left;
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    padding-left:30px;
+    padding-right:30px;
+}
+
+.ranktitle{
+    font-size: 18px;
+    color: #7bbfa8;
+}
+/* RANK Img START */
+.rankimg{
+    width:30px;
+    height:25px;
+    padding-left:5px;
+}
+
+/* RANK Img END */
+/* Slide Img START */
+
+#home-slider {
+    background: url(../../images/home/slider-bg.png) 0 100% repeat-x;
+    position: relative;
+}
+
+#home-slider .main-slider {
+    position: relative;
+    height: 100px;
+    text-align: right;
+}
+
+.slide-img{
+    width:200px;
+    height:200px;
+    z-index: 9999;
+}
+
+/* Slide Img END */
+.bookmark-share-div{
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    padding-top: 60px;
+    padding-left:30px;
+    padding-right:30px;
+    font-size:15px;
+}
+.background{
+    background: url(../../icon/family.png) 0 100% no-repeat;
+    background-size: auto;
+}
+/* TABLE Background START */
+.social{
+    background-color: #eee;
+}
+/* TABLE Background END */
+
+/* Share Bookmark div START */
+
+table.dataTable thead .sorting_asc:after {
+    color: #d9534f;
+    padding-left: 5px;
+    font-family: FontAwesome;
+    content: "\F0DD"
+}
+table.dataTable thead .sorting_desc:after {
+    color: #d9534f;
+    padding-left: 5px;
+    font-family: FontAwesome;
+    content: "\F0DE"
+}
+div.dataTables_length label {
+    display: none;
+}
+div.dataTables_info {
+    display: none;
+}
+.panel-body thead tr{
+    background-color: #7bbfa8;
+}
+
+/* Share Bookmark div END */
+
+
+html {
+    height: 100%;
+}
+
+a:hover {
+    outline: none;
+    text-decoration: none;
+    color: #7bbfa8;
+}
+
+a:focus {
+    outline: none;
+    outline-offset: 0;
+}
+
+a {
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    color: #000;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+
+table {
+    width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    font-weight: 300;
+}
+
+/* Social Page CSS END */
