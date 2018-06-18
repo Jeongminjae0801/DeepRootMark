@@ -14,29 +14,35 @@
     <link href="css/animate.min.css" rel="stylesheet">
     <!-- Bootstrap Common CSS END -->
 
-    <!-- Main Page CSS -->
+    <!-- Social Page CSS -->
     <link href="css/mainpage/socialmain.css" rel="stylesheet">
     <link href="css/mainpage/header.css" rel="stylesheet">
     <link href="css/mainpage/footer.css" rel="stylesheet">
     <link href="css/mainpage/list_table.css" rel="stylesheet">
     <link href="css/mainpage/responsive.css" rel="stylesheet">
     <link href="css/mainpage/login-register.css" rel="stylesheet" />
+    <link href="css/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- Social Page CSS END -->
 
-    <!-- Main Page CSS END -->
-
+    <!-- Login / roll-in Modal Script Start -->
+   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+   <script src="js/script.js"></script>
+   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <!-- Login / roll-in Modal Script Start END -->
+    
     <!--jquery Datatable Start-->
     <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
-    <script src='http://cdn.datatables.net/1.10.9/js/jquery.dataTables.js'></script>
+    <script src='http://cdn.datatables.net/1.10.9/js/jquery.dataTables.js'>
+    </script>
+    
     <script src="js/socialmain.js"></script>
     <link rel='stylesheet prefetch' href='http://cdn.datatables.net/1.10.9/css/jquery.dataTables.css'>
 
     <!--jquery Datatable END-->
-    <!-- Login / roll-in Modal Script Start -->
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="js/script.js"></script>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
-    <!-- Login / roll-in Modal Script Start END -->
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/dataTables.bootstrap.min.js"></script>
+
     <!--vue.js start-->
     <script src="https://unpkg.com/vue"></script>
     <!--vue.js END-->
@@ -80,6 +86,15 @@
             })
         });
         /* ******************** Scroll Shadow END *************************** */
+        /*검색기능 플러그인*/
+        $(document).ready(function() {
+            $('#listTable1').DataTable({
+                responsive: true
+            });
+            $('#listTable2').DataTable({
+                responsive: true
+            });
+        });
     </script>
 
 </head>
@@ -234,177 +249,125 @@
                 <div class="col-sm-6">
                     <!--개인 공유 Bookmark Area START -->
                     <div class="share-table">
-                        <table id="individual-share" class="display" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>사이트명</th>
-                                    <th>태그</th>
-                                    <th>작성자</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
 
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
+                        <!-- Category Name & edit & insert START -->
+                        <div class="panel-heading"><span id="category1">
+                                        HTML</span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <!-- Category Name & edit & insert END -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-hover" id="listTable1">
+                                <thead>
+                                    <tr>
+                                        <th>사이트명</th>
+                                        <th>URL 주소</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="index1">
+                                        <td>네이버</td>
+                                        <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index3">
+                                        <td>다음</td>
+                                        <td><a href="http://www.daum.net" target="_blank">http://www.daum.net</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td>구글</td>
+                                        <td><a href="http://www.google.com" target="_blank">http://www.google.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td>카카오</td>
+                                        <td><a href="http://www.kakao.com" target="_blank">http://www.kakao.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td>ZUM</td>
+                                        <td><a href="http://www.zum.com" target="_blank">http://www.zum.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-                                </tr>
-
-                                <tr>
-                                    <td>Colleen Hurst</td>
-                                    <td>Javascript Developer</td>
-                                    <td>San Francisco</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Sonya Frost</td>
-                                    <td>Software Engineer</td>
-                                    <td>Edinburgh</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Jena Gaines</td>
-                                    <td>Office Manager</td>
-                                    <td>London</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Quinn Flynn</td>
-                                    <td>Support Lead</td>
-                                    <td>Edinburgh</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Charde Marshall</td>
-                                    <td>Regional Director</td>
-                                    <td>San Francisco</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Haley Kennedy</td>
-                                    <td>Senior Marketing Designer</td>
-                                    <td>London</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Tatyana Fitzpatrick</td>
-                                    <td>Regional Director</td>
-                                    <td>London</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Shou Itou</td>
-                                    <td>Regional Marketing</td>
-                                    <td>Tokyo</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Michelle House</td>
-                                    <td>Integration Specialist</td>
-                                    <td>Sidney</td>
-
-                                </tr>
-
-                            </tbody>
-                        </table>
                     </div>
-                    <!--개인 공유 Bookmark Area END -->
+
                 </div>
 
                 <div class="col-sm-6">
                     <!--group Share Bookmark Area START -->
-                    <div class="share-table">
-                        <table id="group-share" class="display" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>사이트명</th>
-                                    <th>태그</th>
-                                    <th>작성자</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Garrett Winters</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Colleen Hurst</td>
-                                    <td>Javascript Developer</td>
-                                    <td>San Francisco</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Sonya Frost</td>
-                                    <td>Software Engineer</td>
-                                    <td>Edinburgh</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Jena Gaines</td>
-                                    <td>Office Manager</td>
-                                    <td>London</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Quinn Flynn</td>
-                                    <td>Support Lead</td>
-                                    <td>Edinburgh</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Charde Marshall</td>
-                                    <td>Regional Director</td>
-                                    <td>San Francisco</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Haley Kennedy</td>
-                                    <td>Senior Marketing Designer</td>
-                                    <td>London</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Tatyana Fitzpatrick</td>
-                                    <td>Regional Director</td>
-                                    <td>London</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td>Shou Itou</td>
-                                    <td>Regional Marketing</td>
-                                    <td>Tokyo</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Michelle House</td>
-                                    <td>Integration Specialist</td>
-                                    <td>Sidney</td>
-
-                                </tr>
-
-                            </tbody>
-                        </table>
-
+                    <div class="group-share-table">
+                        <!-- Category Name & edit & insert START -->
+                        <div class="panel-heading"><span id="category1">
+                                        HTML</span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <!-- Category Name & edit & insert END -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-hover" id="listTable2">
+                                <thead>
+                                    <tr>
+                                        <th>사이트명</th>
+                                        <th>URL 주소</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="index1">
+                                        <td>네이버</td>
+                                        <td><a href="http://www.naver.com" target="_blank">http://www.naver.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index3">
+                                        <td>다음</td>
+                                        <td><a href="http://www.daum.net" target="_blank">http://www.daum.net</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td>구글</td>
+                                        <td><a href="http://www.google.com" target="_blank">http://www.google.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td>카카오</td>
+                                        <td><a href="http://www.kakao.com" target="_blank">http://www.kakao.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                    <tr class="index2">
+                                        <td>ZUM</td>
+                                        <td><a href="http://www.zum.com" target="_blank">http://www.zum.com</a></td>
+                                        <td>
+                                            <i class="fa fa-pencil url-action" onclick=""></i><i class="fa fa-trash-o url-action" onclick="deleteGroup(this)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <!--group Share Bookmark Area END -->
                 </div>
             </div>
         </div>
@@ -428,6 +391,8 @@
     <script type="text/javascript" src="js/socialmain.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <!-- Custom Script END -->
+
+
 </body>
 
 </html>
