@@ -11,15 +11,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/docs.css" />
-<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <link rel="icon"
 	href="${pageContext.request.contextPath}/resources/assets/favicon.ico"
 	type="image/x-icon" />
-<link rel="apple-touch-icon-precomposed"
-	href="${pageContext.request.contextPath}/resources/assets/apple-touch-icon-precomposed.png" />
 <script
 	src="${pageContext.request.contextPath}/resources/assets/jquery-1.10.2.min.js"></script>
 <script
@@ -42,7 +38,7 @@
 				url : "getCategoryList.do",
 				type:"POST",
 				dataType:"json",
-				data : {uid : "user1@naver.com"},
+				data : {uid : "procedure2@naver.com"},
 				success : function(data){	
 					console.log(data);
 			
@@ -143,9 +139,9 @@
 									            		  console.log(url,title,par,htag,sname); //확인
 									            		  
 									            		  if($.trim(htag) == ""){
-									            			  var form = {url : url , urlname : title , pid : par , uid : "user1@naver.com" }
+									            			  var form = {url : url , urlname : title , pid : par , uid : "procedure2@naver.com" }
 									            		  }else{
-									            			  var form = {url : url , urlname : title , pid : par, uid:  "user1@naver.com" , htag : htag , sname : sname}
+									            			  var form = {url : url , urlname : title , pid : par, uid:  "procedure2@naver.com" , htag : htag , sname : sname}
 									            		  }
 									            		  
 									            		  $.ajax({
@@ -178,7 +174,7 @@
 								                	var par_node = inst.get_node(obj.reference);
 								                	
 								                	var par = inst.get_node(obj.reference).id;
-	 												var form = {urlname : "새 폴더", pid : par , uid : "user1@naver.com"}	// 해당 유저의 아이디 가져오기
+	 												var form = {urlname : "새 폴더", pid : par , uid : "procedure2@naver.com"}	// 해당 유저의 아이디 가져오기
 	 												
 								               		  $.ajax({
 								            			  url: "addFolderOrUrl.do",
@@ -316,7 +312,7 @@
 				
 				  var tree = $("#jstree_container").jstree(true);
 				  
-				  var form = {uid : "user1@naver.com"};
+				  var form = {uid : "procedure2@naver.com"};
 				  
 				  $.ajax({
 						
@@ -373,9 +369,9 @@
           		  var result = $("#share").prop("checked"); //공유 체크여부 확인
           		  
           		  if($.trim($('#htag_btn').val())==""){
-          		  var form = {url : url , urlname : title , pid : urlpid , uid:  "user1@naver.com"};
+          		  var form = {url : url , urlname : title , pid : urlpid , uid:  "procedure2@naver.com"};
           		  }else{
-          			var form = {url : url , urlname : title , pid : urlpid , uid:  "user1@naver.com",htag : htag , sname : sname};
+          			var form = {url : url , urlname : title , pid : urlpid , uid:  "procedure2@naver.com",htag : htag , sname : sname};
           		  }
           		  $.ajax({
           			  url: "addFolderOrUrl.do",
