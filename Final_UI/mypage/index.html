@@ -8,7 +8,7 @@
 
     <!-- Bootstrap Common CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
     <link href="css/animate.min.css" rel="stylesheet">
     <!-- Bootstrap Common CSS END -->
 
@@ -42,11 +42,6 @@
 
     <!-- 명수 CSS END -->
 
-        <style>
-        .test {
-            background-color: #7bbfa8
-        }
-    </style>
 
     </head>
 
@@ -122,13 +117,14 @@
 
     <div id="content">
         <div class="container">
-            <div class="row" style="padding-top: 150px;">
+            <div class="row" style="padding-top: 150px;"></div>
+            <div class="row my-row-bg">
                 <!-- 카테고리 div -->
-                <div class="col-lg-4 test" style="border-radius:15px 0px 0px 15px">
-                    <!-- Root 카테고리 생성 버튼 -->
-                   <a id="addroot"><i class="fa fa-plus"></i></a>
-                    <a id="addroot"><i class="fa fa-plus-circle"></i></a>
-                    <h2>마이 북마크</h2>
+                <div class="col-lg-4 mydiv-height my-bookmark-div">
+                    <!-- 마이 북마크 Heading -->
+                    <div class="heading my-bookmark-list">
+                      <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">마이 북마크</span>
+                    </div>
                     <div style="color: orangered; background: white;width:120px;border: 1px solid orangered; border-radius: 6px 6px 6px 6px;  text-align: center;">new category</div>
                     <div style="background-color: white; border-radius: 15px 15px 15px 15px">
                         <div id="jstree_container">
@@ -148,8 +144,11 @@
                 </div>
 
                 <!-- 선택한 폴더(카테고리)의 URL -->
-                <div class="col-lg-5 test">
-                    <!-- 선택한 폴더(카테고리)에서 url 추가 -->
+                <div class="col-lg-5 mydiv-height my-bookmark-print-div">
+                    <!-- 출력 Div Heading -->
+                    <div class="heading my-bookmark-print-list">
+                      <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">마이 북마크</span>
+                    </div>
                     <button id="testing">url add</button>
                     <div style="background-color: white; border-radius: 15px 15px 15px 15px">
                         <div id="jstree_container_child">
@@ -169,14 +168,14 @@
                 </div>
 
                 <!-- 내가 참여하는 그룹 리스트 -->
-                <div class="col-lg-3" style="padding: 0; height: 730px;">
+                <div class="col-lg-3 mydiv-height">
                     <!-- 참여중인 그룹리스트 -->
-                    <div class="group-list panel group-list-panel">
-                        <div class="group-list-heading">
+                    <div class="group-list-div panel group-list-panel">
+                        <div class="heading group-list">
                           <i class="material-icons md-36">playlist_play</i><span class="mypage-title">그룹리스트</span>
                         </div>
                         <div class="panel-body">
-                            <ul class="list-group">
+                            <ul class="group-list-list">
                                 <li class="list-group-item">
                                     <label class="my-group-list">
                                         List group item heading 1
@@ -272,12 +271,36 @@
                     </div>
 
                     <!-- 완료된 그룹리스트 -->
-                    <div class="completed-group-list panel group-completed-list-panel">
-                        <div class="group-completed-list-heading">
+                    <div class="completed-group-list-div panel group-completed-list-panel">
+                        <div class="heading group-completed-list">
                           <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">완료된 그룹</span>
                         </div>
                         <div class="panel-body-scroll">
-                            <ul class="list-group">
+                            <ul class="group-list-list">
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
                                 <li class="list-group-item">
                                     <label class="my-group-list">
                                         List group item heading 1
