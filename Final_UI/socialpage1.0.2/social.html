@@ -16,7 +16,6 @@
 
     <!-- Main Page CSS -->
     <link href="css/mainpage/socialmain.css" rel="stylesheet">
-    <link href="css/socialpage/socialmainpage.css" rel="stylesheet">
     <link href="css/mainpage/header.css" rel="stylesheet">
     <link href="css/mainpage/footer.css" rel="stylesheet">
     <link href="css/mainpage/list_table.css" rel="stylesheet">
@@ -24,10 +23,6 @@
     <link href="css/mainpage/login-register.css" rel="stylesheet" />
 
     <!-- Main Page CSS END -->
-
-    <!--Social Page CSS -->
-    <link href="css/socialpage/socialmainpage.css" rel="stylesheet">
-    <!--Social Page CSS END -->
 
     <!--jquery Datatable Start-->
     <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
@@ -158,16 +153,74 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                <!--social page ranking START-->
+                    <!--social page ranking START-->
                     <div class="">
-                        <h2 class="ranktitle">개인 Top 5</h2>
-
+                        <span class="ranktitle">개인 Top 5</span>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>사이트명</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="rank">1</td>
+                                    <td class="team">네이버</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">2</td>
+                                    <td class="team">DAUM</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">3</td>
+                                    <td class="team">w3school</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">4</td>
+                                    <td class="team">Brazil</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">5</td>
+                                    <td class="team">Colombia</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="">
-                        <h2 class="ranktitle">그룹 Top 5</h2>
-
+                        <span class="ranktitle">그룹 Top 5</span>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>링크</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="rank">1</td>
+                                    <td class="team">네이버</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">2</td>
+                                    <td class="team">구글</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">3</td>
+                                    <td class="team">w3school</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">4</td>
+                                    <td class="team">Brazil</td>
+                                </tr>
+                                <tr>
+                                    <td class="rank">5</td>
+                                    <td class="team">Colombia</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <!--social page ranking END-->
                 </div>
@@ -175,23 +228,183 @@
         </div>
     </section>
 
-    <section>
+    <section class="bookmark-share-div">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                <!--개인 공유 Bookmark Area START -->
+                    <!--개인 공유 Bookmark Area START -->
                     <div class="share-table">
-                        테이블 들어갈 자리 ^^
+                        <table id="individual-share" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>사이트명</th>
+                                    <th>태그</th>
+                                    <th>작성자</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Colleen Hurst</td>
+                                    <td>Javascript Developer</td>
+                                    <td>San Francisco</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Sonya Frost</td>
+                                    <td>Software Engineer</td>
+                                    <td>Edinburgh</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Jena Gaines</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Quinn Flynn</td>
+                                    <td>Support Lead</td>
+                                    <td>Edinburgh</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Charde Marshall</td>
+                                    <td>Regional Director</td>
+                                    <td>San Francisco</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Haley Kennedy</td>
+                                    <td>Senior Marketing Designer</td>
+                                    <td>London</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Tatyana Fitzpatrick</td>
+                                    <td>Regional Director</td>
+                                    <td>London</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Shou Itou</td>
+                                    <td>Regional Marketing</td>
+                                    <td>Tokyo</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Michelle House</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Sidney</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
-                <!--개인 공유 Bookmark Area END -->
+                    <!--개인 공유 Bookmark Area END -->
                 </div>
 
                 <div class="col-sm-6">
-                <!--group Share Bookmark Area START -->
-                    <div class="group-share-table">
-                        테이블 들어갈 자리2 ^^
+                    <!--group Share Bookmark Area START -->
+                    <div class="share-table">
+                        <table id="group-share" class="display" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>사이트명</th>
+                                    <th>태그</th>
+                                    <th>작성자</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Colleen Hurst</td>
+                                    <td>Javascript Developer</td>
+                                    <td>San Francisco</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Sonya Frost</td>
+                                    <td>Software Engineer</td>
+                                    <td>Edinburgh</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Jena Gaines</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Quinn Flynn</td>
+                                    <td>Support Lead</td>
+                                    <td>Edinburgh</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Charde Marshall</td>
+                                    <td>Regional Director</td>
+                                    <td>San Francisco</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Haley Kennedy</td>
+                                    <td>Senior Marketing Designer</td>
+                                    <td>London</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Tatyana Fitzpatrick</td>
+                                    <td>Regional Director</td>
+                                    <td>London</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Shou Itou</td>
+                                    <td>Regional Marketing</td>
+                                    <td>Tokyo</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Michelle House</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Sidney</td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
                     </div>
-                <!--group Share Bookmark Area END -->
+                    <!--group Share Bookmark Area END -->
                 </div>
             </div>
         </div>

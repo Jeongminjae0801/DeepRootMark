@@ -8,14 +8,38 @@
 /* Social Page CSS START */
 
 .ranking-div{
-    padding-top: 500px;
+    padding-top: 150px;
     text-align: center;
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    padding-left:30px;
+    padding-right:30px;
+}
+table{
+    border : 1px solid #8aa4af;
     
 }
+table tr,
+table th,
+table td{
+    border : 1px solid #8aa4af;
+    text-align: center;
+}
 
+.ranktitle{
+    font-size: 18px;
+    color: #7bbfa8;
+}
+.ranktitle>table * {
+    text-align: center;
+}
 
-
-
+.bookmark-share-div{
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    padding-top: 120px;
+    padding-left:30px;
+    padding-right:30px;
+    font-size:15px;
+}
 
 
 
@@ -28,26 +52,8 @@
 /* Social Page CSS END */
 
 
-
-
-
-
-
-
-/*************************
-*******Home Page******
-**************************/
-
 html {
     height: 100%;
-}
-
-a.login-form {
-    color: #cb5b35;
-}
-
-a.login-form:hover {
-    color: red;
 }
 
 a:hover {
@@ -83,138 +89,9 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 300;
 }
 
-hr {
-    width: 60%;
-    clear: both;
-    margin-top: 10px;
-    margin-left: 0px;
-    margin-bottom: 10px;
-}
-
 h2 {
     color: #3c3c3c;
     font-size: 25px;
-}
-
-.bookmark-category {
-    font-family: 'Lato', 'Spoqa Han Sans';
-    font-size: 25px;
-    font-weight: 500;
-}
-
-.category-items {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.category-text {
-    margin-left: 10px;
-    margin-right:  15px;
-    font-size: 15px;
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
-}
-
-.individual-share-bookmark {
-    margin-top: 25px;
-    font-family: 'Lato','Spoqa Han Sans', sans-serif;
-}
-.group-share-bookmark {
-    margin-top: 25px;
-    font-family: 'Lato','Spoqa Han Sans', sans-serif;
-}
-
-.hr-clear {
-  width: 50%;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border: 0px;
-  height: 2px;
-  background: #ccc;
-  clear: both;
-}
-
-/* 카테고리 영역 */
-.category {
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
-    height: 30px;
-    margin-bottom: 10px;
-    margin-right: 15px;
-    padding: 5px 10px 5px 10px;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    background-color: #7bbfa8;
-    border : 1px solid #7bbfa8;
-    color: #fff;
-    float: left;
-}
-
-.category:hover {
-    margin-right: 13px;
-    background-color: #fff;
-    border : 2px solid #7bbfa8;
-    color: #7bbfa8;
-}
-
-
-.bookmark-title {
-   font-family: 'Lato', 'Spoqa Han Sans';
-   margin-right: 30px;
-   padding-top: 5px;
-   padding-bottom: 5px;
-   font-size: 30px;
-   float: left;
-   font-weight: 500;
-}
-
-.input-group {
-    padding-top: 10px;
-}
-
-.search-input {
-   font-family: 'Lato', 'Spoqa Han Sans';
-   width: 200px;
-   box-sizing: border-box;
-   border: 1px solid #ccc;
-   border-radius: 4px;
-   font-size: 16px;
-   background-color: white;
-   background-image: url('../../icon/search-icon.png');
-   background-size: 25px;
-   background-position: 5px 5px;
-   background-repeat: no-repeat;
-   padding: 5px 20px 5px 30px;
-   -webkit-transition: width 0.5s ease-in-out;
-   transition: width 0.5s ease-in-out;
-   float: left;
-}
-
-.search-input:focus {
-   width: 100%;
-}
-
-.overflow {
-    overflow: hidden;
-}
-
-.uppercase {
-    text-transform: uppercase;
-}
-
-.btn-common {
-    font-size: 14px;
-    color: #0099ae;
-    border: 1px solid #0099ae;
-    font-family: 'Lato','Spoqa Han Sans', sans-serif;
-    font-weight: 300;
-    padding: 10px 25px;
-}
-
-#action .col-sm-5 {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    right: 0;
 }
 
 /*datatable start*/
