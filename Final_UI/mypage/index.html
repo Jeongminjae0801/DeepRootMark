@@ -2,17 +2,61 @@
 <html>
     <head>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- Bootstrap Common CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <!-- Bootstrap Common CSS END -->
+
+    <!-- Category Input Script START -->
+    <script src="js/category_insert.js"></script>
+    <!-- Category Input Script END -->
+
+    <!-- Main Page CSS -->
+    <link href="css/mainpage/main.css" rel="stylesheet">
+    <link href="css/mainpage/header.css" rel="stylesheet">
+    <link href="css/mainpage/footer.css" rel="stylesheet">
+    <!-- Main Page CSS END -->
+
+    <!-- MY Page CSS -->
+    <link href="css/mypage/main.css" rel="stylesheet">
+    <!-- MY Page CSS END -->
+
+    <!-- Google Icon CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Icon CDN END -->
+
+    <!-- 태웅 CSS -->
+
+
+    <!-- 태웅 CSS END -->
+
+
+
+    <!-- 명수 CSS -->
+
+
+    <!-- 명수 CSS END -->
+
+        <style>
+        .test {
+            background-color: #7bbfa8
+        }
+    </style>
 
     </head>
 
 <body>
-  <!-- Header START-->
-  <header id="header" class="header">
+    <!-- Header START-->
+    <header id="header" class="header">
       <div class="navbar navbar-inverse" role="banner">
           <div class="container">
               <div class="navbar-brand">
-                  <a class="logo-text" href="#">뿌리깊은마크</a>
+                  <a class="logo-text" href="index.do">뿌리깊은마크</a>
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                       <span class="sr-only">Toggle navigation</span>
                       <span class="icon-bar"></span>
@@ -22,6 +66,7 @@
               </div>
 
               <div class="collapse navbar-collapse">
+                <se:authorize access="isAuthenticated()">
                   <ul class="nav navbar-nav navbar-right">
                       <li>
                           <a href="#">MyBookmark</a>
@@ -46,72 +91,241 @@
                           </ul>
                       </li>
                       <!-- Notice Alarm START -->
-                      <li class="dropdown">
-                          <a href="#">
-                          <img src="icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a>
-                          <ul role="menu" class="sub-menu">
-                              <li>토요일 12pm~6pm 서버 점검 예정</li>
-                          </ul>
-                      </li>
-                      <!-- Notice Alarm END -->
-                      <!-- USER INFO START -->
-                      <li>
-                          <a href="#">
-                          <img class="dropdown header-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png"> Nickname</a>
-                          <ul role="menu" class="sub-menu">
-                              <li><a href="userinfo.html">회원정보수정</a></li>
-                              <li><a href="#">Logout</a></li>
-                          </ul>
-                      </li>
-                      <!-- USER INFO END -->
+                     <li class="dropdown">
+                         <a href="#">
+                         <img src="icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a>
+                         <ul role="menu" class="sub-menu">
+                             <li>토요일 12pm~6pm 서버 점검 예정</li>
+                         </ul>
+                     </li>
+                     <!-- Notice Alarm END -->
+                     <!-- USER INFO START -->
+                     <li>
+                         <a href="#">
+                         <img class="dropdown header-ico"
+                            src="images/profile/${sessionScope.info_userprofile}"
+                            onerror="images/profile.png"> ${sessionScope.info_usernname}</a>
+                         <ul role="menu" class="sub-menu">
+                             <li><a href="myInfo.do">회원정보수정</a></li>
+                             <li><a href='security/logout'>Logout</a></li>
+                         </ul>
+                     </li>
+                     <!-- USER INFO END -->
                   </ul>
+                  </se:authorize>
               </div>
           </div>
       </div>
-  </header>
-  <!-- Header END-->
+    </header>
+    <!-- Header END-->
+
 
     <div id="content">
-        <div id="my-main-div" class="container">
-            <div id="my-main-area" class="row">
+        <div class="container">
+            <div class="row" style="padding-top: 150px;">
                 <!-- 카테고리 div -->
-                <div class="col-lg-4 test">
+                <div class="col-lg-4 test" style="border-radius:15px 0px 0px 15px">
                     <!-- Root 카테고리 생성 버튼 -->
-                    <button id="addroot">카테고리 추가</button>
-                    <div id="jstree_container"></div>
+                   <a id="addroot"><i class="fa fa-plus"></i></a>
+                    <a id="addroot"><i class="fa fa-plus-circle"></i></a>
+                    <h2>마이 북마크</h2>
+                    <div style="color: orangered; background: white;width:120px;border: 1px solid orangered; border-radius: 6px 6px 6px 6px;  text-align: center;">new category</div>
+                    <div style="background-color: white; border-radius: 15px 15px 15px 15px">
+                        <div id="jstree_container">
+                        <ul>
+
+                                <i class="fa fa-folder-o"></i> 카테고리 시작<br>
+                                &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> java 시작<br>
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> uml 시작<br>
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> java 시작<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> 객체 시작<br>
+                           <i class="fa fa-folder-o"></i> 공부 시작
+
+                        </ul>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- 선택한 폴더(카테고리)의 URL -->
                 <div class="col-lg-5 test">
                     <!-- 선택한 폴더(카테고리)에서 url 추가 -->
                     <button id="testing">url add</button>
-                    <div id="jstree_container_child"></div>
+                    <div style="background-color: white; border-radius: 15px 15px 15px 15px">
+                        <div id="jstree_container_child">
+                        <ul>
+
+                                <img src="https://www.google.com/s2/favicons?domain=https://colorscripter.com/"> 칼라 스크립트 <br>
+                                <img src="https://www.google.com/s2/favicons?domain=https://naver.com/">블로그 참조<br>
+                            <img style="background-image: url("https://www.google.com/s2/favicons?domain=https://colorscripter.com/");"></i> uml 시작<br>
+                            <i class="fa fa-folder-o"></i> java 시작<br>
+                            <i class="fa fa-folder-o"></i> 객체 시작<br>
+                           <i class="fa fa-folder-o"></i> 공부 시작
+                                <img src="https://www.google.com/s2/favicons?domain=https://colorscripter.com/">
+                        </ul>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- 내가 참여하는 그룹 리스트 -->
+                <div class="col-lg-3" style="padding: 0; height: 730px;">
+                    <!-- 참여중인 그룹리스트 -->
+                    <div class="group-list panel group-list-panel">
+                        <div class="group-list-heading">
+                          <i class="material-icons md-36">playlist_play</i><span class="mypage-title">그룹리스트</span>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
+                    <!-- 완료된 그룹리스트 -->
+                    <div class="completed-group-list panel group-completed-list-panel">
+                        <div class="group-completed-list-heading">
+                          <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">완료된 그룹</span>
+                        </div>
+                        <div class="panel-body-scroll">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <label class="my-group-list">
+                                        List group item heading 1
+                                    </label>
+                                    <div class="pull-right action-buttons">
+                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+ <i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
 
-
-
-
-    <!-- Footer START -->
-    <footer id="footer">
-        <div class="footer">
-            Bitcamp Java 104th Team2, 2018
-        </div>
-    </footer>
-    <!-- Footer END -->
-
-    <!-- Common Script START -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/wow.min.js"></script>
-    <!-- Script Common END -->
-
-    <!-- Custom Script START -->
-    <script type="text/javascript" src="js/main.js"></script>
-    <!-- Custom Script END -->
 </body>
 </html>
