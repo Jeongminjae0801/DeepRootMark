@@ -8,8 +8,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--  CSS START -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
 
 <!-- Font Awesome CSS STARAT -->
 <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
@@ -29,8 +28,10 @@
 <!-- Google Icon CDN END -->
 
 <!-- Script START -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script>
+<script 	src="${pageContext.request.contextPath}/resources/assets/jquery-1.10.2.min.js"></script>
+<script 	src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script>
+
+	
 <!-- Script END -->
 
 <title>my BookMark</title>
@@ -195,7 +196,7 @@
 								            				  
 								            				 var node_id = $.trim(data);
 									            				 
-								            				 	tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fas fa-folder"} ,"last",function(new_node){
+								            				 	tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa-folder"} ,"last",function(new_node){
 								            				 		console.log(new_node.id);
 								            				 		new_node.id = node_id;
 								            				 		tree.edit(new_node);
