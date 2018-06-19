@@ -22,6 +22,7 @@
     <link href="css/mainpage/footer.css" rel="stylesheet">
     <!-- Main Page CSS END -->
 
+    <!-- 태웅 CSS -->
     <!-- MY Page CSS -->
     <link href="css/mypage/main.css" rel="stylesheet">
     <!-- MY Page CSS END -->
@@ -29,9 +30,6 @@
     <!-- Google Icon CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Google Icon CDN END -->
-
-    <!-- 태웅 CSS -->
-
 
     <!-- 태웅 CSS END -->
 
@@ -96,10 +94,6 @@
                      <!-- Notice Alarm END -->
                      <!-- USER INFO START -->
                      <li>
-                         <a href="#">
-                         <img class="dropdown header-ico"
-                            src="images/profile/${sessionScope.info_userprofile}"
-                            onerror="images/profile.png"> ${sessionScope.info_usernname}</a>
                          <ul role="menu" class="sub-menu">
                              <li><a href="myInfo.do">회원정보수정</a></li>
                              <li><a href='security/logout'>Logout</a></li>
@@ -121,46 +115,46 @@
             <div class="row my-row-bg">
                 <!-- 카테고리 div -->
                 <div class="col-lg-4 mydiv-height my-bookmark-div">
+                    <img src="images/left_spring.png" alt="" class="spring left-top">
+                    <img src="images/left_spring.png" alt="" class="spring left-bottom">
                     <!-- 마이 북마크 Heading -->
                     <div class="heading my-bookmark-list">
-                      <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">마이 북마크</span>
+                      <i class="material-icons md-32">archive</i><span class="mypage-title">마이 북마크</span>
+                      <button type="button" class="my-boomark-btn">New Category</button>
                     </div>
-                    <div style="color: orangered; background: white;width:120px;border: 1px solid orangered; border-radius: 6px 6px 6px 6px;  text-align: center;">new category</div>
                     <div style="background-color: white; border-radius: 15px 15px 15px 15px">
                         <div id="jstree_container">
                         <ul>
-
-                                <i class="fa fa-folder-o"></i> 카테고리 시작<br>
-                                &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> java 시작<br>
+                            <i class="fa fa-folder-o"></i> 카테고리 시작<br>
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> java 시작<br>
                             &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> uml 시작<br>
                             &nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> java 시작<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-folder-o"></i> 객체 시작<br>
                            <i class="fa fa-folder-o"></i> 공부 시작
-
                         </ul>
                         </div>
                     </div>
-
                 </div>
 
                 <!-- 선택한 폴더(카테고리)의 URL -->
-                <div class="col-lg-5 mydiv-height my-bookmark-print-div">
+                <div class="col-lg-4 mydiv-height my-bookmark-print-div">
+                    <img src="images/right_spring.png" alt="" class="spring right-top">
+                    <img src="images/right_spring.png" alt="" class="spring right-bottom">
                     <!-- 출력 Div Heading -->
-                    <div class="heading my-bookmark-print-list">
-                      <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">마이 북마크</span>
+                    <div class="heading my-bookmark-print-list ">
+                      <i class="material-icons md-32 pull-left">view_list</i><span class="mypage-title pull-left">리스트</span>
+                      <span class="mypage-title">&nbsp;</span>
+                      <button type="button" class="my-boomark-btn">Add URL</button>
                     </div>
-                    <button id="testing">url add</button>
-                    <div style="background-color: white; border-radius: 15px 15px 15px 15px">
+                    <div>
                         <div id="jstree_container_child">
                         <ul>
-
-                                <img src="https://www.google.com/s2/favicons?domain=https://colorscripter.com/"> 칼라 스크립트 <br>
-                                <img src="https://www.google.com/s2/favicons?domain=https://naver.com/">블로그 참조<br>
+                            <img src="https://www.google.com/s2/favicons?domain=https://colorscripter.com/"> 칼라 스크립트 <br>
+                            <img src="https://www.google.com/s2/favicons?domain=https://naver.com/">블로그 참조<br>
                             <img style="background-image: url("https://www.google.com/s2/favicons?domain=https://colorscripter.com/");"></i> uml 시작<br>
                             <i class="fa fa-folder-o"></i> java 시작<br>
                             <i class="fa fa-folder-o"></i> 객체 시작<br>
-                           <i class="fa fa-folder-o"></i> 공부 시작
-                                <img src="https://www.google.com/s2/favicons?domain=https://colorscripter.com/">
+                            <i class="fa fa-folder-o"></i> 공부 시작
                         </ul>
                         </div>
                     </div>
@@ -171,7 +165,7 @@
                 <div class="col-lg-3 mydiv-height">
                     <!-- 참여중인 그룹리스트 -->
                     <div class="group-list-div panel group-list-panel">
-                        <div class="heading group-list">
+                        <div class="heading-post-top group-list">
                           <i class="material-icons md-36">playlist_play</i><span class="mypage-title">그룹리스트</span>
                         </div>
                         <div class="panel-body">
@@ -272,7 +266,7 @@
 
                     <!-- 완료된 그룹리스트 -->
                     <div class="completed-group-list-div panel group-completed-list-panel">
-                        <div class="heading group-completed-list">
+                        <div class="heading-post-bottom group-completed-list">
                           <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">완료된 그룹</span>
                         </div>
                         <div class="panel-body-scroll">
