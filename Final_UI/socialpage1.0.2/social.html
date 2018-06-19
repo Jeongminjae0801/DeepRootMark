@@ -83,6 +83,14 @@
             });
         });
         /* ******************** Table Search END *************************** */
+
+        $(function() {
+            $("#myModal").on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var titleData = button.data('title'); // Extract value from data-* attributes
+                $(this).find('.modal-title').text(titleData + ' Form');
+            });
+        });
     </script>
 
 </head>
@@ -205,7 +213,7 @@
                 <!-- Group TOP5 DIV START -->
                 <div class="col-sm-5">
                     <div class="panel-body rank-table">
-                         <span class="ranktitle"><img src="icon/trophy.png" class="rankimg">그룹 Top 5</span>
+                        <span class="ranktitle"><img src="icon/trophy.png" class="rankimg">그룹 Top 5</span>
                         <table>
                             <thead>
                                 <tr>
@@ -251,7 +259,7 @@
     <!-- Top5 DIV END -->
     <section class="slideimg">
     </section>
-    
+
     <!-- Share Bookmark div START -->
     <section class="bookmark-share-div">
         <img src="images/books.png" class="bg-bottom">
@@ -265,7 +273,7 @@
                             <thead>
                                 <tr>
                                     <th>사이트명</th>
-                                    <th>태그</th>
+                                    <th class="table-tag">태그</th>
                                     <th>작성자</th>
                                     <th>공유날짜</th>
                                     <th>조회수</th>
@@ -274,25 +282,25 @@
                             <tbody>
                                 <tr class="index1">
                                     <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
-                                        <a href="#">작성자0</a>
+                                        <a data-toggle="modal" data-target="#myModal">작성자0</a>
                                     </td>
                                     <td>2018-06-12</td>
-                                    <td>1033</td>
+                                    <td>1130</td>
                                 </tr>
                                 <tr class="index3">
                                     <td><a href="http://www.daum.net" target="_blank">다음</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자1
                                     </td>
                                     <td>2018-06-12</td>
-                                    <td>1033</td>
+                                    <td>900</td>
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.google.com" target="_blank">구글</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자2
                                     </td>
@@ -301,7 +309,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자3
                                     </td>
@@ -310,7 +318,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자4
                                     </td>
@@ -319,7 +327,7 @@
                                 </tr>
                                 <tr class="index1">
                                     <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자0
                                     </td>
@@ -328,7 +336,7 @@
                                 </tr>
                                 <tr class="index3">
                                     <td><a href="http://www.daum.net" target="_blank">다음</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자1
                                     </td>
@@ -337,7 +345,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.google.com" target="_blank">구글</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자2
                                     </td>
@@ -346,7 +354,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자3
                                     </td>
@@ -355,7 +363,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자4
                                     </td>
@@ -364,7 +372,7 @@
                                 </tr>
                                 <tr class="index1">
                                     <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자0
                                     </td>
@@ -373,7 +381,7 @@
                                 </tr>
                                 <tr class="index3">
                                     <td><a href="http://www.daum.net" target="_blank">다음</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자1
                                     </td>
@@ -382,7 +390,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.google.com" target="_blank">구글</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자2
                                     </td>
@@ -391,7 +399,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자3
                                     </td>
@@ -400,7 +408,7 @@
                                 </tr>
                                 <tr class="index2">
                                     <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-                                    <td>#포털사이트 #검색</td>
+                                    <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자4
                                     </td>
@@ -414,7 +422,7 @@
                 <!-- Individual Share Bookmark START -->
 
                 <!-- Div center START -->
-                
+             
                 <!-- Div center END -->
                 <!-- Group Share Bookmark START -->
                 <div class="col-sm-6">
@@ -575,6 +583,98 @@
         </div>
     </section>
     <!-- Share Bookmark div END -->
+
+       <div>
+                <form name="addCategory" method="post" action="/addCategory" accept-charset="UTF-8">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="box">
+                            카테고리명 입력
+                            <div class="form addCategoryBox">
+                                <label class="control-label" for="acname">추가할 카테고리명을 입력하세요</label>
+                                <input id="acname1" class="form-control" type="text" placeholder="acname" name="acname" /><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="addCategory-footer">
+                            <input class="btn btn-default btn-comp" type="button" value="등록" onclick="">
+                        </div>
+                    </div>
+                </form>
+</div>
+
+    <!-- Surfing Modal Script START -->
+   <!-- <script>
+        function surfingModal() {
+            showCategoryForm();
+            setTimeout(function() {
+                $('#surfingModal').modal('show');
+            }, 230);
+        }
+    </script>-->
+    <!-- Surfing Modal Script END -->
+
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal Window</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Email:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Surfing Modal START -->
+    <!--<div class="modal fade addCategory" id="surfingModal">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <form name="surfingURL" method="post" action="/addCategory" accept-charset="UTF-8">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="box">
+                            카테고리명 입력
+                            <div class="form addCategoryBox">
+                                <label class="control-label" for="acname">추가할 카테고리명을 입력하세요</label>
+                                <input id="acname1" class="form-control" type="text" placeholder="acname" name="acname" /><br>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>-->
+    <!-- Surfing Modal END -->
 
     <!-- Footer START -->
     <footer id="footer">
