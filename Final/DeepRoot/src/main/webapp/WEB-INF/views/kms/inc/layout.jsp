@@ -10,8 +10,9 @@
 	href="${pageContext.request.contextPath}/resources/assets/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
 
 <link rel="icon"
 	href="${pageContext.request.contextPath}/resources/assets/favicon.ico"
@@ -186,7 +187,7 @@
 								            				  
 								            				 var node_id = $.trim(data);
 									            				 
-								            				 	tree.create_node(par_node , {text : "새 폴더" , id : node_id } ,"last",function(new_node){
+								            				 	tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fas fa-folder"} ,"last",function(new_node){
 								            				 		console.log(new_node.id);
 								            				 		new_node.id = node_id;
 								            				 		tree.edit(new_node);
@@ -223,8 +224,13 @@
                         }			    
 					})	
 					.bind("loaded.jstree", function (event, data) {
+						$('#jstree_container').jstree("open_all");
 							console.log("loaded jstree");
+							console.log(data);
+							//console.log(data.node.id);
+							//$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().addClass('colorfold');
 							console.log(data.instance._model.data);
+							console.log(data.instance._model.data.id);
 							var test = data.instance._model.data
 							console.log(Object.keys(test).length);
 	
@@ -327,7 +333,7 @@
 						  
 						  var ubid = $.trim(data);
 						  
-						  tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fa fa-folder-o"} ,"last",function(new_node){
+						  tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fas fa-folder"} ,"last",function(new_node){
 							  new_node = ubid;
 							  tree.edit(new_node);
 	
@@ -443,52 +449,68 @@
 							if(htag == '#'){
 							
 							return{
-								
-						            "rename": {
-						                "separator_before": false,
-						                "separator_after": false,
-						                "label": "이름 수정",
-						                "action": function (obj) { 
-						                	console.log("d이름수정");
-						                	tree_child.edit($node);
-						                }
-						            }, 
-						            "reurl": {
-						                "separator_before": false,
-						                "separator_after": false,
-						                "label": "url 수정",
-						                "action": function (obj) { 
-						                	
-						                	$('#form3')[0].reset();	// url 모달창 reset
-						                	$('#editurl').modal();	//url 수정 모달창 띄우기
-						                	 
-						                	var inst = $.jstree.reference(obj.reference);
-							                var url = inst.get_node(obj.reference).a_attr.href;
-							                var id = inst.get_node(obj.reference).id;
-							                
-						                	 console.log(url);
-						                	 $('#editurlval').val(url);
-						                	 
-						                	 $('#editurlsubmit').on("click",function(){
-						                		 
-						                		 var newurl = $('#editurlval').val();
-						                		 var form = {ubid : id, url : newurl }
-						                		 
-						                		 $.ajax({
-							                		 
-							                		 url: "editUrl.do",
-							                		 type: "POST",
-							                		 data: form ,
-							                		 success: function(data){
-							                			 console.log(data);
-//							                			node 도 url 수정해야 한다. 
-							                			 $('#editurl').modal("toggle");
-							                			 
-							                		 }
-							                	 }) 
-						                	 })
-						                }
-						            },
+////////////////////////////////////공유하기 버튼 만들기								
+								"edit" : {
+									"icon" : "fa fa-edit",
+									 "separator_before": false,
+						              "separator_after": false,
+						              "label" : "수정",
+						              "action" : false,
+						              "submenu" :{
+						            	  "rename" : {
+						            		  "separator_before"	: false,
+												"separator_after"	: false,
+												"label" : "이름 수정",
+												"action" : function(obj){
+													console.log("d이름수정");
+								                	tree_child.edit($node);
+													
+													
+													
+												}
+						            		  
+						            	  },
+						            	  
+						            	  "editurl" : {
+						            		  "separator_before"	: false,
+												"separator_after"	: false,
+						                		"label" : "URL 수정",
+						                		"action" : function(obj){
+						                			
+						                			
+								                	$('#form3')[0].reset();	// url 모달창 reset
+								                	$('#editurl').modal();	//url 수정 모달창 띄우기
+								                	 
+								                	var inst = $.jstree.reference(obj.reference);
+									                var url = inst.get_node(obj.reference).a_attr.href;
+									                var id = inst.get_node(obj.reference).id;
+									                
+								                	 console.log(url);
+								                	 $('#editurlval').val(url);
+								                	 
+								                	 $('#editurlsubmit').on("click",function(){
+								                		 
+								                		 var newurl = $('#editurlval').val();
+								                		 var form = {ubid : id, url : newurl }
+								                		 
+								                		 $.ajax({
+									                		 
+									                		 url: "editUrl.do",
+									                		 type: "POST",
+									                		 data: form ,
+									                		 success: function(data){
+									                			 console.log(data);
+									                			 $('#editurl').modal("toggle");
+									                			 
+									                			 
+									                		 }
+									                	 }) 
+								                	 })
+						                		}
+						            		  
+						            	  }
+						              }
+								},
 						            "remove": {
 						            	"icon" : "fa fa-trash",
 						                "separator_before": false,
@@ -648,14 +670,28 @@
 							                		"separator_before"	: false,
 													"separator_after"	: false,
 							                		"label" : "취소하기",
-							                		"action" : function(data){
+							                		"action" : function(obj){
+							                			var inst = $.jstree.reference(obj.reference);
+							                			var id = inst.get_node(obj.reference).id;
+///////////////////////////////////////////공유 취소하기/////////////		
+//////////////////redraw 해야 한다. refresh 이든/////////////////
+																$.ajax({
+																	url: 'shareUrlEdit.do',
+																	type: 'POST',
+																	data: {ubid: id },
+																	success:function(data){
+																		console.log(data);
+																		
+																	}
+																	
+																	
+																})
+																
 							                			
 							                		}
 							                	}
 							                	
 							                }
-						            	
-						            	
 						            }
 						            
 				                 }
@@ -717,10 +753,10 @@ $("#jstree_container").on('open_node.jstree', function(e,data){
 	//data.instance.set_type(data.node,'f-open');
 	$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder-open")
 	//colorfold
-	$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().addClass('colorfold');
+	/* $('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().addClass('colorfold'); */
 })
 $("#jstree_container").on('close_node.jstree', function(e,data){
-	$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder-o")
+	$.jstree.reference('#jstree_container').set_icon(data.node, "fas fa-folder")
 	$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().removeClass('colorfold');
 })
 
