@@ -9,6 +9,22 @@
 .material-icons.md-36 { float: left; font-size: 36px; }
 .material-icons.md-48 { float: left;font-size: 48px; }
 
+.bg-img {
+  position: fixed;
+
+}
+.bg-right-top {
+  top: 200px;
+  left: 1350px;
+  width: 400px;
+}
+.bg-left-bottom {
+  top: 660px;
+  right: 1380px;
+  width: 400px;
+  z-index: 999;
+}
+
 #my-main-div {
   padding-top: 150px;
   padding-bottom: 10px;

@@ -20,9 +20,13 @@ div.dataTables_filter label {
 }
 
 div.dataTables_filter input {
-	margin-left: 0.5em;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #000;
 	display: inline-block;
 }
+
 
 div.dataTables_info {
 	padding-top: 8px;
@@ -49,7 +53,9 @@ div.dataTables_paginate ul.pagination {
 	}
 }
 
-
+table{
+    width:100%;
+}
 table.dataTable td,
 table.dataTable th {
 	-webkit-box-sizing: content-box;
@@ -81,8 +87,8 @@ table.dataTable thead .sorting_asc_disabled { background: url('../images/sort_as
 table.dataTable thead .sorting_desc_disabled { background: url('../images/sort_desc_disabled.png') no-repeat center right; }
 
 table.dataTable thead > tr > th {
-	padding-left: 18px;
-	padding-right: 18px;
+	padding-left: 3px;
+	padding-right: 3px;
 }
 
 table.dataTable th:active {

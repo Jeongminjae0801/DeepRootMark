@@ -3,8 +3,11 @@
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 /* 한글 폰트*/
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-
-
+/*
+.container{
+    margin-left: 150px;
+    margin-right: 50px;
+}*/
 /* Social Page CSS START */
 .ranking-div{
     padding-top: 150px;
@@ -15,80 +18,124 @@
 }
 
 .ranktitle{
-    font-size: 18px;
-    color: #7bbfa8;
+    font-size: 25px;
+    color: #2c3e50;
 }
-/* RANK Img START */
+
+/* RANK, Share Img START */
 .rankimg{
-    width:30px;
-    height:25px;
-    padding-left:5px;
+    width:55px;
+    height:40px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.rankimg2{
+    width:45px;
+    height:35px;
+    padding-left:10px;
+    padding-right:10px;
+    margin-right:10px;
 }
 
-/* RANK Img END */
-/* Slide Img START */
-
-#home-slider {
-    background: url(../../images/home/slider-bg.png) 0 100% repeat-x;
-    position: relative;
+.shareimg{
+    width: 35px;
+    height: 35px;
+   margin-right: 5px;
 }
+/* RANK, Share Img END */
 
-#home-slider .main-slider {
-    position: relative;
-    height: 100px;
-    text-align: right;
-}
-
-.slide-img{
-    width:200px;
-    height:200px;
-    z-index: 9999;
-}
-
-/* Slide Img END */
 .bookmark-share-div{
     font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
-    padding-top: 60px;
+    padding-top: 30px;
     padding-left:30px;
     padding-right:30px;
     font-size:15px;
 }
-.background{
-    background: url(../../icon/family.png) 0 100% no-repeat;
-    background-size: auto;
-}
-/* TABLE Background START */
-.social{
-    background-color: #eee;
-}
-/* TABLE Background END */
 
-/* Share Bookmark div START */
+.slideimg{
+    background: url(../../images/1196.png) 0 85% repeat-x;
+    height: 85px;
+}
 
+.bg{
+    background: url(../../images/family.png) no-repeat;
+    background-size: 100% 45%;
+    background-position: center bottom;
+    height: 330px;
+}
+
+.bg-bottom{
+    position: absolute;
+    float: left;
+    bottom: -150px;
+    width: 350px;
+    height: 400px;
+}
+/* Table CSS START */
+.panel-body.rank-table tr .rank{
+    font-size:11px;
+}
 table.dataTable thead .sorting_asc:after {
     color: #d9534f;
+/*
     padding-left: 5px;
+*/
     font-family: FontAwesome;
     content: "\F0DD"
 }
+
 table.dataTable thead .sorting_desc:after {
     color: #d9534f;
-    padding-left: 5px;
+/*    padding-left: 5px;*/
     font-family: FontAwesome;
     content: "\F0DE"
 }
-div.dataTables_length label {
+
+/* 진수 : 호잇호잇 */
+/*div.dataTables_length label {
     display: none;
 }
+
 div.dataTables_info {
     display: none;
+}*/
+/* 진수 : 호잇호잇 */
+.panel-body{
+    box-shadow: 6px 7px 25px 10px #8aa4af;
+    border-radius: 25px;
+    /*border : 1px solid #8aa4af;*/
+    background-color: #fff;
+}
+
+.panel-body.rank-table tr,
+.panel-body.rank-table td{
+    border-bottom: 1px solid #fff;
+    font-size: 17px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 .panel-body thead tr{
     background-color: #7bbfa8;
+    text-align: center;
+}
+.panel-body thead tr th{
+    text-align: center;
+    font-weight: 600;
+    font-size: 17px;
 }
 
-/* Share Bookmark div END */
+.panel-body tbody tr{
+    background-color: #eee;
+    text-align: center;
+}
+/* Table CSS END */
 
+.share-head{
+    font-size: 25px;
+    font-weight: 500;
+    color: #2c3e50;
+    
+}
 
 html {
     height: 100%;
@@ -97,11 +144,12 @@ html {
 a:hover {
     outline: none;
     text-decoration: none;
-    color: #7bbfa8;
+    color: #35b0ab;
 }
-
+a:active,
 a:focus {
     outline: none;
+    text-decoration: none;
     outline-offset: 0;
 }
 
