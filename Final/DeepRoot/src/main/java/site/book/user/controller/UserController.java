@@ -85,7 +85,7 @@ public class UserController {
 	@RequestMapping("mybookmark.do")
 	public String mybookmark() {
 		
-		return "kms.myCategory";
+		return "mypage.myCategory";
 	}
 	
 	//해당 유저의 카테고리를 보내준다.
@@ -112,7 +112,7 @@ public class UserController {
 				jsonobject.put("id", ubid);
 				jsonobject.put("parent", "#");
 				jsonobject.put("text", "첫 카테고리");
-				jsonobject.put("icon", "fa fa-folder");
+				jsonobject.put("icon", "fas fa-folder");
 				jsonobject.put("uid", uid);
 				
 				jsonArray.put(jsonobject);
@@ -132,7 +132,7 @@ public class UserController {
 					jsonobject.put("parent", parentid);
 				
 				if(list.get(i).getUrl() == null)
-					jsonobject.put("icon", "fa fa-folder-o");	//favicon 추가
+					jsonobject.put("icon", "fas fa-folder");	//favicon 추가
 				else {
 					jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
 				}
