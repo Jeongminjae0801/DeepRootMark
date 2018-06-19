@@ -85,7 +85,7 @@ public class UserController {
 	@RequestMapping("mybookmark.do")
 	public String mybookmark() {
 		
-		return "kms.myCategory";
+		return "mypage.myCategory";
 	}
 	
 	//해당 유저의 카테고리를 보내준다.
