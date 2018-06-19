@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="/bit/css/admin/mainbooklist.css">
 <!-- adminTable CSS END -->
 
+
+
 <script type="text/javascript">
 	
 	$(function(){
@@ -49,7 +51,9 @@
 	        });
 		});
 		
-		
+		/* $('.grid').masonry({
+			  itemSelector: '.grid-item',
+		}); */
 	});
 	
 	

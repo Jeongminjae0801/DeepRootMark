@@ -107,9 +107,16 @@
 						// console.log(data);
 						var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
 			        	$("#layout").html(layout);
-						var explain = '<img src=' + data.image + ' style="width:100%; height:50%">';
-						$("#explain").html(explain);
-						var comment = "사이트명 : " + data.title + "<br> 설명 : " + data.description;
+			        	var comment = "";
+			        	if(data.title != "" && data.title != null){
+			        		comment = "<b>" + data.title + "</b>";
+			        	}
+			        	if(data.url != "" && data.url != null){
+			        		comment += "   -   <a href='" + data.url + "' target='_blank'><font style='color : #1bc9c4; text-decoration : underline'>" + data.url + "</font></a>";
+			        	}
+			        	if(data.description != "" && data.description != null){
+			        		comment += "<br> <p>" + data.description + "</p>";
+			        	}
 						$("#comment").html(comment);
                         $('#preview_content').fadeIn(1000);
                         
