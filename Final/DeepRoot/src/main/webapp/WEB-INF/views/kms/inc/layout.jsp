@@ -113,7 +113,7 @@
 										// 링크 만들기, 폴더 만들기, 이름 바꾸기, 삭제
 										return {
 								            "link_create": {
-								            	"icon" : "fas fa-plus",
+								            	"icon" : "fa fa-plus",
 								                "separator_before": false,
 								                "separator_after": false,
 								                "label": "URL 추가",
@@ -164,6 +164,7 @@
 								                }
 								            },
 								            "folder_create": {
+								            	"icon" : "fa fa-plus-circle",
 								                "separator_before": false,
 								                "separator_after": false,
 								                "_disabled"			: false, 
@@ -195,6 +196,7 @@
 								                }
 								            },
 								            "rename": {
+								            	"icon" : "fa fa-edit",
 								                "separator_before": false,
 								                "separator_after": false,
 								                "label": "이름 수정",
@@ -205,6 +207,7 @@
 								                }
 								            },                         
 								            "remove": {
+								            	"icon" : "fa fa-trash",
 								                "separator_before": false,
 								                "separator_after": false,
 								                "label": "삭제",
@@ -359,7 +362,6 @@
           	  
            	  $('#linkAddSubmit_btn').on("click",function(){ // modal에서 보내기 선택한 것임
           		  
-          		  var sharing = 0; //일단 default 0은 비공유
           		  var url = $('#url_btn').val(); //추가 url 값
           		  var title = $('#title_btn').val(); // 추가 url 명값
           		  var htag = $('#htag_btn').val();
@@ -426,7 +428,7 @@
 							return true;	
 						}
 					},
-					"plugins" : [ "dnd","contextmenu" ],
+					"plugins" : [ "dnd","contextmenu" , "wholerow"],
 					
 					"contextmenu" : {
 						
@@ -488,6 +490,7 @@
 						                }
 						            },
 						            "remove": {
+						            	"icon" : "fa fa-trash",
 						                "separator_before": false,
 						                "separator_after": false,
 						                "label": "삭제",
@@ -527,52 +530,71 @@
 								
 								return{
 									
-						            "rename": {
-						                "separator_before": false,
-						                "separator_after": false,
-						                "label": "이름 수정",
-						                "action": function (obj) { 
-						                	console.log("d이름수정");
-						                	tree_child.edit($node);
-						                }
-						            }, 
-						            "reurl": {
-						                "separator_before": false,
-						                "separator_after": false,
-						                "label": "url 수정",
-						                "action": function (obj) { 
-						                	
-						                	$('#form3')[0].reset();	// url 모달창 reset
-						                	$('#editurl').modal();	//url 수정 모달창 띄우기
-						                	 
-						                	var inst = $.jstree.reference(obj.reference);
-							                var url = inst.get_node(obj.reference).a_attr.href;
-							                var id = inst.get_node(obj.reference).id;
-							                
-						                	 console.log(url);
-						                	 $('#editurlval').val(url);
-						                	 
-						                	 $('#editurlsubmit').on("click",function(){
-						                		 
-						                		 var newurl = $('#editurlval').val();
-						                		 var form = {ubid : id, url : newurl }
-						                		 
-						                		 $.ajax({
-							                		 
-							                		 url: "editUrl.do",
-							                		 type: "POST",
-							                		 data: form ,
-							                		 success: function(data){
-							                			 console.log(data);
-							                			 $('#editurl').modal("toggle");
-							                			 
-							                			 
-							                		 }
-							                	 }) 
-						                	 })
-						                }
-						            },
+									"edit" : {
+										"icon" : "fa fa-edit",
+										 "separator_before": false,
+							              "separator_after": false,
+							              "label" : "수정",
+							              "action" : false,
+							              "submenu" :{
+							            	  "rename" : {
+							            		  "separator_before"	: false,
+													"separator_after"	: false,
+													"label" : "이름 수정",
+													"action" : function(obj){
+														console.log("d이름수정");
+									                	tree_child.edit($node);
+														
+														
+														
+													}
+							            		  
+							            	  },
+							            	  
+							            	  "editurl" : {
+							            		  "separator_before"	: false,
+													"separator_after"	: false,
+							                		"label" : "URL 수정",
+							                		"action" : function(obj){
+							                			
+							                			
+									                	$('#form3')[0].reset();	// url 모달창 reset
+									                	$('#editurl').modal();	//url 수정 모달창 띄우기
+									                	 
+									                	var inst = $.jstree.reference(obj.reference);
+										                var url = inst.get_node(obj.reference).a_attr.href;
+										                var id = inst.get_node(obj.reference).id;
+										                
+									                	 console.log(url);
+									                	 $('#editurlval').val(url);
+									                	 
+									                	 $('#editurlsubmit').on("click",function(){
+									                		 
+									                		 var newurl = $('#editurlval').val();
+									                		 var form = {ubid : id, url : newurl }
+									                		 
+									                		 $.ajax({
+										                		 
+										                		 url: "editUrl.do",
+										                		 type: "POST",
+										                		 data: form ,
+										                		 success: function(data){
+										                			 console.log(data);
+										                			 $('#editurl').modal("toggle");
+										                			 
+										                			 
+										                		 }
+										                	 }) 
+									                	 })
+							                		}
+							            		  
+							            	  }
+							              }
+									},
+									
+						            
 						            "remove": {
+						            	"icon" : "fa fa-trash",
 						                "separator_before": false,
 						                "separator_after": false,
 						                "label": "삭제",
@@ -608,8 +630,9 @@
 						                }
 						            },
 						            "share":{
-						            	 "separator_before": true,
-							              "separator_after": false,
+						            	   "icon" : "fa fa-share",
+						            	   "separator_before": true,
+							               "separator_after": false,
 							                "label": "공유",
 							                "action"			: false,
 							                "submenu" :{
@@ -683,6 +706,22 @@
 				alert('수정 실패');
 		}
 	});   
+})
+
+$("#jstree_container").on('select_node.jstree',function(e,data){
+	console.log("clicked 호ㅓㅏㄱ읺");
+	console.log(e);
+	console.log(data);
+})
+$("#jstree_container").on('open_node.jstree', function(e,data){
+	//data.instance.set_type(data.node,'f-open');
+	$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder-open")
+	//colorfold
+	$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().addClass('colorfold');
+})
+$("#jstree_container").on('close_node.jstree', function(e,data){
+	$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder-o")
+	$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().removeClass('colorfold');
 })
 
 
