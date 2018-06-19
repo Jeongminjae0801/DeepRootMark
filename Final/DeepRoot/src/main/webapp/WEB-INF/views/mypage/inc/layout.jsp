@@ -13,12 +13,13 @@
 	href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
 
 <!-- Font Awesome CSS STARAT -->
-<link rel="stylesheet" 
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
+<!-- <link rel="stylesheet" 
  href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<!-- Font Awesome CSS END -->
+ --><!-- Font Awesome CSS END -->
 
 <!-- MY Page CSS -->
-<link rel="stylesheet" href="css/mypage/mypage.css">
+<link rel="stylesheet" href="../css/mypage/mypage.css">
 <!-- MY Page CSS END -->
 
 <!--  -->
@@ -28,8 +29,8 @@
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Header Footer -->
-    <link href="css/mainpage/header.css" rel="stylesheet">
-    <link href="css/mainpage/footer.css" rel="stylesheet">
+    <link href="../css/mainpage/header.css" rel="stylesheet">
+    <link href="../css/mainpage/footer.css" rel="stylesheet">
 
 <!-- Google Icon CDN -->
  <link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -782,10 +783,20 @@ $("#jstree_container").on('close_node.jstree', function(e,data){
 
 		});
 	</script>
+	
+	<div id="header">
+		<tiles:insertAttribute name="header" />
+	</div>
 
 	<div id="main">
 		<tiles:insertAttribute name="content" />
 	</div>
+
+	<div id="footer">
+		<tiles:insertAttribute name="footer" />
+	</div>
+
+
 
 	<div class="modal fade" id="linkAdd" role="dialog">
 		<div class="modal-dialog">
@@ -982,6 +993,7 @@ $("#jstree_container").on('close_node.jstree', function(e,data){
 			</div>
 		</div>
 	</div>
+<i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
 
 </body>
 </html>

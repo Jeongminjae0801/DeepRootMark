@@ -1,31 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
   <div id="content">
+        <img class="bg-img bg-right-top" src="images/mypage/bookshelf.jpg" alt="">
+        <img class="bg-img bg-left-bottom" src="images/mypage/hill.png" alt="">
         <div class="container">
             <div class="row" style="padding-top: 150px;"></div>
             <div class="row my-row-bg">
                 <!-- 카테고리 div -->
                 <div class="col-lg-4 mydiv-height my-bookmark-div">
+                    <img src="images/mypage/left_spring.png" alt="" class="spring left-top">
+                    <img src="images/mypage/left_spring.png" alt="" class="spring left-bottom">
                     <!-- 마이 북마크 Heading -->
                     <div class="heading my-bookmark-list">
-                      <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">마이 북마크</span>
+                      <i class="material-icons md-32">archive</i><span class="mypage-title">마이 북마크</span>
+                      <button type="button" class="my-boomark-btn">New Category</button>
                     </div>
-                    <div style="color: orangered; background: white;width:120px;border: 1px solid orangered; border-radius: 6px 6px 6px 6px;  text-align: center;">new category</div>
                     <div style="background-color: white; border-radius: 15px 15px 15px 15px">
                         <div id="jstree_container"></div>
                     </div>
-
                 </div>
 
                 <!-- 선택한 폴더(카테고리)의 URL -->
-                <div class="col-lg-5 mydiv-height my-bookmark-print-div">
+                <div class="col-lg-4 mydiv-height my-bookmark-print-div">
+                    <img src="images/mypage/right_spring.png" alt="" class="spring right-top">
+                    <img src="images/mypage/right_spring.png" alt="" class="spring right-bottom">
                     <!-- 출력 Div Heading -->
-                    <div class="heading my-bookmark-print-list">
-                      <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">마이 북마크</span>
+                    <div class="heading my-bookmark-print-list ">
+                      <i class="material-icons md-32 pull-left">view_list</i><span class="mypage-title pull-left">리스트</span>
+                      <span class="mypage-title">&nbsp;</span>
+                      <button type="button" class="my-boomark-btn">Add URL</button>
                     </div>
-                    <button id="testing">url add</button>
-                    <div style="background-color: white; border-radius: 15px 15px 15px 15px">
+                    <div>
                         <div id="jstree_container_child"></div>
                     </div>
 
@@ -35,7 +40,7 @@
                 <div class="col-lg-3 mydiv-height">
                     <!-- 참여중인 그룹리스트 -->
                     <div class="group-list-div panel group-list-panel">
-                        <div class="heading group-list">
+                        <div class="heading-post-top group-list">
                           <i class="material-icons md-36">playlist_play</i><span class="mypage-title">그룹리스트</span>
                         </div>
                         <div class="panel-body">
@@ -136,7 +141,7 @@
 
                     <!-- 완료된 그룹리스트 -->
                     <div class="completed-group-list-div panel group-completed-list-panel">
-                        <div class="heading group-completed-list">
+                        <div class="heading-post-bottom group-completed-list">
                           <i class="material-icons md-36">playlist_add_check</i><span class="mypage-title">완료된 그룹</span>
                         </div>
                         <div class="panel-body-scroll">
@@ -212,4 +217,4 @@
             </div>
         </div>
     </div>
- <i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
+ 
