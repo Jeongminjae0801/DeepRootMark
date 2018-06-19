@@ -75,6 +75,11 @@
 .panel-body.rank-table tr .rank{
     font-size:11px;
 }
+table thead tr th.table-tag,
+table tbody tr td.table-tag{
+    display: none;
+}
+
 table.dataTable thead .sorting_asc:after {
     color: #d9534f;
 /*
