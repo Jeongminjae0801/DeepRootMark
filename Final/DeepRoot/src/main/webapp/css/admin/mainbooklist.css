@@ -619,3 +619,8 @@ table.table-hover tbody tr:hover {
     color:#fff;
 }
 /* category CSS END */
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
