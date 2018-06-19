@@ -23,6 +23,8 @@
 				responsive: true
 			});
 			
+			$('span[id="'+ element[0] + '"]').css("color", element[1]);
+			
 			$(".categoryColor"+element[0]).colorPick({
 	            'initialColor': element[1],
 	            'onColorSelected': function() {
@@ -42,6 +44,7 @@
 	    				}
 	            	});
 	                
+	                $('span[id="'+ element[0] + '"]').css("color", this.color);
 	            }
 	        });
 		});
@@ -110,7 +113,7 @@
 							<!-- Category Name & edit & insert START -->
 
 							<div class="panel-heading">
-								<span id="${hashmap.key.acname}"> ${hashmap.key.acname}</span>
+								<span id="${hashmap.key.acid}"> ${hashmap.key.acname}</span>
 								<!--color picker START -->
 								<button class="colorPickSelector categoryColor${hashmap.key.acid}"></button>
 								<!--color picker END -->
