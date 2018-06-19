@@ -302,7 +302,7 @@
 						  
 						  var ubid = $.trim(data);
 						  
-						  tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fas fa-folder"} ,"last",function(new_node){
+						  tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fa fa-folder"} ,"last",function(new_node){
 							  new_node = ubid;
 							  tree.edit(new_node);
 	
@@ -316,7 +316,7 @@
 			
 			
 			
-			$("#testing").on("click",function(){
+			$("#addurl").on("click",function(){
 				
 				var tree_child = $("#jstree_container_child").jstree(true);
 				
