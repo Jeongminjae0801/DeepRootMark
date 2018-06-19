@@ -268,7 +268,6 @@ public class AdminController {
 			}
 			for (String s : result.keySet()) {
 				model.addAttribute(s.substring(3), result.get(s));
-				System.out.println(result.get(s));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -300,20 +299,33 @@ public class AdminController {
 		return jsonview;
 	}
 	
-	
-	///////////////////////////////////////////////////
-
-	
-
-	@RequestMapping("updateBook.do")
+	@RequestMapping("editUrl.do")
 	public String updateBook(A_BookDTO book) {
 		System.out.println("관리자 URL 수정");
 		System.out.println("관리자 카테고리 \n" + book.toString());
 
 		a_book_service.updateBook(book);
 
-		return "redirect:admin.do";
+		return "redirect:mainBookList.do";
 	}
+	
+	@RequestMapping("editCategoryCclor.do")
+	public View updateCategoryColor(A_CategoryDTO category, Model model) {
+		
+		int row = a_category_service.editCategoryColor(category);
+		
+		String data = (row == 1) ? "성공" : "실패";
+		
+		model.addAttribute("data", data);
+		
+		return jsonview;
+	}
+	
+	///////////////////////////////////////////////////
+
+	
+
+	
 
 	
 

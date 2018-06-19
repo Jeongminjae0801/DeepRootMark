@@ -11,15 +11,39 @@
 	$(function(){
 		var categorylist = new Array(); 
 		
-		<c:forEach items="${categorylist}" var="category">
-			categorylist.push("${category.acname}");
+		<c:forEach items="${categorylist}" var="category" varStatus="status">
+			categorylist.push(new Array("${category.acid}", "${category.color}"));
 		</c:forEach>
 		
+		// console.log(categorylist);
 		// DataTable 적용
 		$.each(categorylist, function(index, element){
-			$('table[id="'+ element + '"]').DataTable({
+			console.log(element);
+			$('table[id="'+ element[0] + '"]').DataTable({
 				responsive: true
 			});
+			
+			$(".categoryColor"+element[0]).colorPick({
+	            'initialColor': element[1],
+	            'onColorSelected': function() {
+	                this.element.css({
+	                    'backgroundColor': this.color,
+	                    'color': this.color
+	                });
+	                $.ajax({
+	            		url: "editCategoryCclor.do",
+	    				type: "post",
+	    				data : {
+	    					acid : element[0], // 카테고리 ID
+	    					color : this.color // 카테고리 색상
+	    				},
+	    				success : function(data){
+	    					console.log(data);
+	    				}
+	            	});
+	                
+	            }
+	        });
 		});
 		
 		
@@ -88,7 +112,7 @@
 							<div class="panel-heading">
 								<span id="${hashmap.key.acname}"> ${hashmap.key.acname}</span>
 								<!--color picker START -->
-								<button class="colorPickSelector"></button>
+								<button class="colorPickSelector categoryColor${hashmap.key.acid}"></button>
 								<!--color picker END -->
 								<i class="fa fa-pencil" data-toggle="modal"
 									onclick="openCategoryEditModal(${hashmap.key.acid}, '${hashmap.key.acname}');"></i>
@@ -103,7 +127,7 @@
 							<!-- Category Name & edit & insert END -->
 							<div class="panel-body">
 								<table width="100%" class="table table-hover"
-									id="${hashmap.key.acname}">
+									id="${hashmap.key.acid}">
 									<thead>
 										<tr>
 											<th>사이트명</th>
@@ -116,7 +140,7 @@
 											<tr id="${book.abid}">
 												<td>${book.urlname}</td>
 												<td><a href="${book.url}" target="_blank">${book.url}</a></td>
-												<td><i class="fa fa-pencil url-action" onclick="openUrlEditModal(${book.abid}, '${hashmap.key.acname}', '${book.url}');"></i><i
+												<td><i class="fa fa-pencil url-action" onclick="openUrlEditModal(${hashmap.key.acid}, '${hashmap.key.acname}', '${book.url}', ${book.abid});"></i><i
 													class="fa fa-trash-o url-action"
 													onclick="deleteUrl(${book.abid})"></i></td>
 											</tr>
@@ -540,10 +564,10 @@
                         
                         /* URL 1단계에서 다음 눌렀을 때 WebCrawling을 통해 비동기로 타이틀 가져오기 */
                         function getTitleEditUrl() {
-                        	var url = $("#url").val().trim();
+                        	var url = $("#editurl").val().trim();
                         	
 	                       	if(url == ""){
-	                     		$("#url").focus();
+	                     		$("#editurl").focus();
 	                     	}else {
 	                     		editUrlPreview(url);
              		 	   	}
@@ -557,7 +581,7 @@
                 					url : url // 북마크 ID
                 				},
                 				success : function(data){
-                					$("#urlname").val(data.title);
+                					$("#editUrlname").val(data.title);
                 					showUrlEditStep2Form();
                 				}
                         	});
@@ -566,7 +590,7 @@
                         /*URL 수정 2단계 모달*/
                         function showUrlEditStep2Form() {
                             $('.editUrlBox').fadeOut('fast', function() {
-                                $('.editUrlBox').fadeIn('fast');
+                                $('.categoryBox').fadeIn('fast');
                                 $('.url-footer').fadeOut('fast', function() {
                                     $('.category_unshared-footer').fadeIn('fast')
 
@@ -577,12 +601,13 @@
                         }
 
                         /*URL 수정 1단계 모달 바로열기*/
-                        function openUrlEditModal(acid, acname) {
+                        function openUrlEditModal(acid, acname, url, abid) {
                         	$("#editurl").val(url);
                         	$("#acname5").val(acname);
                         	$("#editAdminCategoryID").val(acid);
+                        	$("#editUrlID").val(abid);
                         	
-                            showUrlForm();
+                        	showEditUrlForm();
                             setTimeout(function() {
                                 $('#editUrlModal').modal('show');
                             }, 230);
@@ -596,11 +621,33 @@
 	                       	if(urlname == ""){
 	                     		$("#editUrlname").focus();
 	                     	}else {
-	                     		$("#editUrlForm").submit();
-	                     		$("#editUrlForm")[0].reset();
-	              		 		setTimeout(function() {
-	              	            	$('#editUrlModal').modal('hide');
-	              	            }, 230);
+	                     		$.confirm({
+	            					title : 'URL 수정',
+	            					content : '수정하시겠습니까?',
+	            					theme: 'dark',
+	            					backgroundDismiss: true,
+	            					closeIcon: true,
+	            				    closeIconClass: 'fa fa-close',
+	            					buttons: {
+	            				        '수정': {
+	            				        	btnClass : 'btn-danger',
+	            				        	keys: ['enter'],
+	            				        	action : function () {
+	            				        		$("#editUrlForm").submit();
+	            	                     		$("#editUrlForm")[0].reset();
+	            	              		 		setTimeout(function() {
+	            	              	            	$('#editUrlModal').modal('hide');
+	            	              	            }, 230);
+	            				        	}
+	            				        },
+	            				     
+	            				        '취소': {
+	            				        	btnClass : 'btn-success',
+	            				        	action : function() {
+	            				        	}
+	            				        }
+	            				    }
+	            				});
              		 	   	}
                         }
                                     
@@ -612,7 +659,7 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form id="editUrlForm" name="editUrl" method="post" action="editURL.do"
+					<form id="editUrlForm" name="editUrl" method="post" action="editUrl.do"
 						accept-charset="UTF-8">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
@@ -624,11 +671,11 @@
 							<div class="box">
 								<!--1단계 URL 입력-->
 								<div class="form editUrlBox">
-									<label class="control-label" for="url">URL을 입력하세요</label> <input
+									<label class="control-label" for="editurl">URL을 입력하세요</label> <input
 										id="editurl" class="form-control" type="text" placeholder="URL"
 										name="url"><br>
-									<input type="hidden" id="editA
-									dminCategoryID" name="acid">
+									<input type="hidden" id="editAdminCategoryID" name="acid">
+									<input type="hidden" id="editUrlID" name="abid">
 								</div>
 							</div>
 
@@ -654,7 +701,7 @@
 							</div>
 							<div class="category_unshared-footer" style="display: none">
 								<input class="btn btn-default btn-prev" type="button" value="이전"
-									onclick="showUrlForm()"> <input
+									onclick="showEditUrlForm()"> <input
 									class="btn btn-default btn-comp" type="button" value="수정"
 									onclick="editBookmarkButton()">
 							</div>
@@ -719,15 +766,17 @@
 <!-- Color Picker JS START -->
 <script src="/bit/js/admin/colorPick.js"></script>
 <script>
-        $(".colorPickSelector").colorPick({
+        /* $(".colorPickSelector").colorPick({
             'initialColor': '#000',
             'onColorSelected': function() {
                 this.element.css({
                     'backgroundColor': this.color,
                     'color': this.color
+                    
                 });
+                console.log(this.color);
             }
-        });
+        }); */
     </script>
 <!-- Color Picker JS END -->
 

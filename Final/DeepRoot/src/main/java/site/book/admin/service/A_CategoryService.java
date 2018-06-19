@@ -101,5 +101,18 @@ public class A_CategoryService {
 		return list;
 	}
 	
+	// 카테고리 색상 변경
+	public int editCategoryColor(A_CategoryDTO category) {
+		A_CategoryDAO categoryDAO = sqlsession.getMapper(A_CategoryDAO.class);
+		int row = 0;
+		
+		try {
+			row = categoryDAO.updateCategoryColor(category);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return row;
+	}
 	
 }
