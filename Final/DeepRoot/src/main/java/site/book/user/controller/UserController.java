@@ -112,7 +112,7 @@ public class UserController {
 				jsonobject.put("id", ubid);
 				jsonobject.put("parent", "#");
 				jsonobject.put("text", "첫 카테고리");
-				jsonobject.put("icon", "fa fa-folder-o");
+				jsonobject.put("icon", "fa fa-folder");
 				jsonobject.put("uid", uid);
 				
 				jsonArray.put(jsonobject);
