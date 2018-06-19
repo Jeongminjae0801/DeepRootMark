@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <div id="content">
-        <img class="bg-img bg-right-top" src="images/mypage/bookshelf.jpg" alt="">
-        <img class="bg-img bg-left-bottom" src="images/mypage/hill.png" alt="">
+        <img class="bg-img bg-right-top" src="${pageContext.request.contextPath}/images/mypage/bookshelf.jpg" alt="">
+        <img class="bg-img bg-left-bottom" src="${pageContext.request.contextPath}/images/mypage/hill.png" alt="">
         <div class="container">
             <div class="row" style="padding-top: 150px;"></div>
             <div class="row my-row-bg">
                 <!-- 카테고리 div -->
                 <div class="col-lg-4 mydiv-height my-bookmark-div">
-                    <img src="images/mypage/left_spring.png" alt="" class="spring left-top">
-                    <img src="images/mypage/left_spring.png" alt="" class="spring left-bottom">
+                    <img src="${pageContext.request.contextPath}/images/mypage/left_spring.png" alt="" class="spring left-top">
+                    <img src="${pageContext.request.contextPath}/images/mypage/left_spring.png" alt="" class="spring left-bottom">
                     <!-- 마이 북마크 Heading -->
                     <div class="heading my-bookmark-list">
                       <i class="material-icons md-32">archive</i><span class="mypage-title">마이 북마크</span>
@@ -22,8 +22,8 @@
 
                 <!-- 선택한 폴더(카테고리)의 URL -->
                 <div class="col-lg-4 mydiv-height my-bookmark-print-div">
-                    <img src="images/mypage/right_spring.png" alt="" class="spring right-top">
-                    <img src="images/mypage/right_spring.png" alt="" class="spring right-bottom">
+                    <img src="${pageContext.request.contextPath}/images/mypage/right_spring.png" alt="" class="spring right-top">
+                    <img src="${pageContext.request.contextPath}/images/mypage/right_spring.png" alt="" class="spring right-bottom">
                     <!-- 출력 Div Heading -->
                     <div class="heading my-bookmark-print-list ">
                       <i class="material-icons md-32 pull-left">view_list</i><span class="mypage-title pull-left">리스트</span>

@@ -13,10 +13,11 @@
 	href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
 
 <!-- Font Awesome CSS STARAT -->
-<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
+<link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
 <!-- <link rel="stylesheet" 
  href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
- --><!-- Font Awesome CSS END -->
+ -->
+ <!-- Font Awesome CSS END -->
 
 <!-- MY Page CSS -->
 <link rel="stylesheet" href="../css/mypage/mypage.css">
