@@ -6,26 +6,17 @@
 <head>
 <meta charset="UTF-8">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--  CSS START -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/assets/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
 
 <!-- Font Awesome CSS STARAT -->
 <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
-<!-- <link rel="stylesheet" 
- href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
- -->
+
  <!-- Font Awesome CSS END -->
 
-<!-- MY Page CSS -->
-<link rel="stylesheet" href="../css/mypage/mypage.css">
-<!-- MY Page CSS END -->
-
 <!--  -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="../css/animate.min.css" rel="stylesheet">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,10 +29,6 @@
 <!-- Google Icon CDN END -->
 
 <!-- Script START -->
-<script
-	src="${pageContext.request.contextPath}/resources/assets/jquery-1.10.2.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script>
 <!-- Script END -->
@@ -997,4 +984,7 @@ $("#jstree_container").on('close_node.jstree', function(e,data){
 <i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
 
 </body>
+<!-- MY Page CSS -->
+<link rel="stylesheet" href="../css/mypage/mypage.css?ver=2" />
+<!-- MY Page CSS END -->
 </html>
