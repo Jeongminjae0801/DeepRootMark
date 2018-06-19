@@ -399,7 +399,7 @@ table.table-hover tbody tr:hover {
 }
 
 /*modal css*/
-.addUrl .btn-next, .addUrl .btn-prev, .addUrl .btn-comp{
+.editUrl .btn-next, .editUrl .btn-prev, .editUrl .btn-comp{
     background-color: #7bbfa8; 
     border-color: #7bbfa8;
     border-width: 0;
@@ -409,12 +409,12 @@ table.table-hover tbody tr:hover {
     text-transform: uppercase;
     width: 10%;
 }
-.addUrl .btn-next:hover, .addUrl .btn-prev:hover, .addUrl .btn-comp:hover{
+.editUrl .btn-next:hover, .editUrl .btn-prev:hover, .editUrl .btn-comp:hover{
     background-color: #7bab94; 
     color: #FFFFFF;
 }
 
-.addUrl .btn-hash{
+.editUrl .btn-hash{
     background-color: #7bbfa8; 
     border-color: #7bbfa8;
     border-width: 0;
@@ -423,26 +423,26 @@ table.table-hover tbody tr:hover {
     padding: 15px 50px;
     text-transform: uppercase;
 }
-.addUrl .btn-hash:hover{
+.editUrl .btn-hash:hover{
     background-color: #7bab94; 
     color: #FFFFFF;
 }
 
-.addUrl .form-control{
+.editUrl .form-control{
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.09);
     box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
     color: #FFFFFF;
 }
-.addUrl .form-control:hover{
+.editUrl .form-control:hover{
     background-color: rgba(0,0,0,.16);
 }
-.addUrl .form-control:focus{
+.editUrl .form-control:focus{
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04) inset;
     background-color: rgba(0,0,0,0.23);
     color: #666666;
 }
-.addUrl .form input[type="text"]{
+.editUrl .form input[type="text"]{
     border-radius: 3px;
     border: none;
     color: #333333;
@@ -453,7 +453,7 @@ table.table-hover tbody tr:hover {
     width: 100%;
 }
 
-.addUrl .form select{
+.editUrl .form select{
     border-radius: 3px;
     border: none;
     color: #666666;
@@ -463,7 +463,7 @@ table.table-hover tbody tr:hover {
     width: 25%;
 }
 
-.addUrl .form input[type="checkbox"] {
+.editUrl .form input[type="checkbox"] {
     color: #333333;
     display: inline-block;
     vertical-align:middle;
