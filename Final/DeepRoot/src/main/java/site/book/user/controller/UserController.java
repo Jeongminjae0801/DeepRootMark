@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +23,10 @@ import org.springframework.web.servlet.View;
 
 import com.gargoylesoftware.htmlunit.javascript.host.Console;
 
+import site.book.team.dto.G_MemberDTO;
+import site.book.team.dto.TeamDTO;
+import site.book.team.service.G_MemberService;
+import site.book.team.service.TeamService;
 import site.book.user.dto.U_BookDTO;
 import site.book.user.service.U_BookService;
 import site.book.user.service.UserService;
@@ -40,6 +45,11 @@ public class UserController {
 	private UserService userservice;
 	// 희준
 	
+	@Autowired
+	private TeamService teamservice;
+	
+	@Autowired
+	private G_MemberService g_memberservice;
 	
 	// 명수
 	@Autowired
@@ -80,10 +90,56 @@ public class UserController {
 	}
 	// 희준
 	
+	@RequestMapping("leaveGroup.do")
+	public View leaveGroup(HttpServletRequest req, G_MemberDTO member, Model model) {
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		member.setUid(uid);
+		
+		int row = g_memberservice.leaveGroup(member);
+		
+		String data = (row == 1) ? "성공" : "실패";
+		model.addAttribute("data", data);
+		
+		return jsonview;
+	}
+	
+	@RequestMapping("addGroup.do")
+	public String addGroup(HttpServletRequest req, String gname) {
+		System.out.println("그룹 추가");
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		
+		G_MemberDTO member = new G_MemberDTO();
+		member.setUid(uid);
+		member.setGrid(1);
+		
+		teamservice.addGroup(gname, member);
+		
+		return "redirect:mybookmark.do";
+	}
+	
+	@RequestMapping("completedGroup.do")
+	public String completedGroup(TeamDTO team) {
+		
+		teamservice.completedGroup(team);
+		
+		return "redirect:mybookmark.do";
+	}
+	
 	
 	// 명수
 	@RequestMapping("mybookmark.do")
-	public String mybookmark() {
+	public String mybookmark(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		System.out.println("uid : " + uid);
+		
+		List<TeamDTO> teamList = teamservice.getTeamList(uid);
+		model.addAttribute("teamList", teamList);
+		
+		List<TeamDTO> completedTeamList = teamservice.getCompletedTeamList(uid);
+		model.addAttribute("completedTeamList", completedTeamList);
 		
 		return "mypage.myCategory";
 	}

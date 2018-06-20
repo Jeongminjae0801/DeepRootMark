@@ -35,6 +35,14 @@ public interface TeamDAO {
 	// 그룹 삭제하기
 	public int deleteGroup(int gid) throws ClassNotFoundException, SQLException;
 	
+	// 그룹 추가
+	public int insertGroup(String gname) throws ClassNotFoundException, SQLException;
+	
+	// 그룹 마지막 번호 가져오기
+	public int selectLastGroupID() throws ClassNotFoundException, SQLException;
+	
+	// 그룹 완료
+	public int completedGroup(TeamDTO team) throws ClassNotFoundException, SQLException;
 	
 	// 명수
 	// 완료 그룹 리스트 가져오기

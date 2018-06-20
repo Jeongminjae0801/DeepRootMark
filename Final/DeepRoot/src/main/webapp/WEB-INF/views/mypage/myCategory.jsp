@@ -1,5 +1,155 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<script>
+	function deleteGroup(gid) {
+		$.confirm({
+			title : '그룹 삭제',
+			content : '삭제하시겠습니까?',
+			theme: 'light',
+			backgroundDismiss: true,
+			closeIcon: true,
+		    closeIconClass: 'fa fa-close',
+			buttons: {
+		        '삭제': {
+		        	btnClass : 'btn-danger',
+		        	keys: ['enter'],
+		        	action : function () {
+		        		$("#"+gid).remove(); // 그룹리스트에서 지우기
+		    			$.ajax({
+		    				url: "leaveGroup.do",
+		    				type: "post",
+		    				data : {
+		    					gid : gid // 그룹 ID
+		    				},
+		    				success : function(data){
+		    					console.log(data);
+		    				}
+		    			});
+		        	}
+		        },
+		     
+		        '취소': {
+		        	btnClass : 'btn-success',
+		        	action : function() {
+		        		
+		        	}
+		        }
+		    }
+		});
+	}
+	
+	function deleteCompletedGroup(gid) {
+		$.confirm({
+			title : '완료된 그룹 삭제',
+			content : '삭제하시겠습니까?',
+			theme: 'light',
+			backgroundDismiss: true,
+			closeIcon: true,
+		    closeIconClass: 'fa fa-close',
+			buttons: {
+		        '삭제': {
+		        	btnClass : 'btn-danger',
+		        	keys: ['enter'],
+		        	action : function () {
+		        		$("#completed"+gid).remove(); // 완료된 그룹리스트에서 지우기
+		    			$.ajax({
+		    				url: "leaveGroup.do",
+		    				type: "post",
+		    				data : {
+		    					gid : gid // 그룹 ID
+		    				},
+		    				success : function(data){
+		    					console.log(data);
+		    				}
+		    			});
+		        	}
+		        },
+		     
+		        '취소': {
+		        	btnClass : 'btn-success',
+		        	action : function() {
+		        		
+		        	}
+		        }
+		    }
+		});
+	}
+	
+	function addGroup(gid) {
+		$.confirm({
+		    title: '그룹 추가',
+		    content: '' +
+		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/user/addGroup.do" class="formName" method="post">' +
+		    '<div class="form-group">' +
+		    '<label>그룹명</label>' +
+		    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
+		    '</div>' +
+		    '</form>',
+		    closeIcon: true,
+		    closeIconClass: 'fa fa-close',
+		    
+		    buttons: {
+		        formSubmit: {
+		            text: '추가',
+		            btnClass: 'btn-blue',
+		            action: function () {
+		                var name = this.$content.find('.name').val();
+		                if(!name){
+		                    $.alert('그룹명을 적어주세요');
+		                    return false;
+		                }
+		                $("#addGroupForm").submit();
+		                
+		            }
+		        },
+		                    취소: function () {
+		            //close
+		        },
+		    }
+
+		});
+	}
+	
+	function completedGroup(gid) {
+		$.confirm({
+		    title: '그룹 완료',
+		    content: '' +
+		    '<form id="completedGroupForm" action="${pageContext.request.contextPath}/user/completedGroup.do" class="formName" method="post">' +
+		    '<div class="form-group">' +
+		    '<label>해시태그</label>' +
+		    '<input type="text" name="htag" placeholder="#해쉬태그" class="name form-control" required />' +
+		    '<input type="hidden" class="gid" name="gid" />' + 
+		    '</div>' +
+		    '</form>',
+		    closeIcon: true,
+		    closeIconClass: 'fa fa-close',
+		    
+		    buttons: {
+		        formSubmit: {
+		            text: '완료',
+		            btnClass: 'btn-blue',
+		            action: function () {
+		                var name = this.$content.find('.name').val();
+		                this.$content.find('.gid').val(gid);
+		                if(!name){
+		                    $.alert('해시태그를 적어주세요');
+		                    return false;
+		                }
+		                $("#completedGroupForm").submit();
+		                
+		            }
+		        },
+		                    취소: function () {
+		            //close
+		        },
+		    }
+		    
+		});
+	}
+</script>
+
   <div id="content">
         <img class="bg-img bg-right-top" src="${pageContext.request.contextPath}/images/mypage/bookshelf.jpg" alt="">
         <img class="bg-img bg-left-bottom" src="${pageContext.request.contextPath}/images/mypage/hill.png" alt="">
@@ -45,96 +195,30 @@
                         </div>
                         <div class="panel-body">
                             <ul class="group-list-list">
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
+                            	<c:forEach items="${teamList}" var="team">
+                            		<li id="${team.gid}" class="list-group-item">
+	                                    <label class="my-group-list">
+	                                        ${team.gname}
+	                                    </label>
+	                                    <div class="pull-right action-buttons">
+	                                    	<c:choose>
+	                                    		<c:when test="${team.grid == '1'}">
+	                                    			<a class="completed"><span class="glyphicon glyphicon-check" onclick="completedGroup(${team.gid})"></span></a>
+	                                    		</c:when>
+	                                    		<c:otherwise>
+	                                    			<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteGroup(${team.gid})"></span></a>
+	                                    		</c:otherwise>
+	                                    	</c:choose>
+	                                    </div>
+                                	</li>
+                            	</c:forEach>
+                            	<li class="list-group-item">
+                            		<a class="plus"><span class="glyphicon glyphicon-plus-sign" onclick="addGroup()"></span></a>
+                            		<label class="my-group-list">
+                            			그룹을 만드시겠습니까?
+                            		</label>
+                            		
+                            	</li>
                             </ul>
                         </div>
                     </div>
@@ -146,70 +230,16 @@
                         </div>
                         <div class="panel-body-scroll">
                             <ul class="group-list-list">
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <label class="my-group-list">
-                                        List group item heading 1
-                                    </label>
-                                    <div class="pull-right action-buttons">
-                                        <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
-                                    </div>
-                                </li>
+                            	<c:forEach items="${completedTeamList}" var="completedTeam">
+                            		<li id="completed${completedTeam.gid}" class="list-group-item">
+	                                    <label class="my-group-list">
+	                                        ${completedTeam.gname}
+	                                    </label>
+	                                    <div class="pull-right action-buttons">
+	                                        <a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(${completedTeam.gid})"></span></a>
+	                                    </div>
+                                	</li>
+                            	</c:forEach>
                             </ul>
                         </div>
                     </div>

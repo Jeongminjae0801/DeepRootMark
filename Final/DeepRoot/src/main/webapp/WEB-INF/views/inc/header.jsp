@@ -7,7 +7,7 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="navbar-brand">
-                <a class="logo-text" href="index.do">뿌리깊은마크</a>
+                <a class="logo-text" href="${pageContext.request.contextPath}/index.do">뿌리깊은마크</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
