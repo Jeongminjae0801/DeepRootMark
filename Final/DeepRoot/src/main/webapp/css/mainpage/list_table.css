@@ -44,11 +44,12 @@ ul > li{
 }
 
 .component_title{
+	padding: 3px 0px 0px 5px;
     cursor: default;
-    height: 31px;
+    height: 35px;
     text-align: left;
     margin-bottom: 5px;
-    border-bottom: 3px solid;
+    border-bottom: 3px solid #333;
 }
 
 .component_title color4 {
@@ -56,6 +57,7 @@ ul > li{
 }
 
 .title{
+	padding-left: 5px;
     font-weight: 400;
 }
 

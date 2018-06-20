@@ -22,9 +22,9 @@
     <link href="css/mainpage/main.css?ver=2" rel="stylesheet">
     <link href="css/mainpage/header.css" rel="stylesheet">
     <link href="css/mainpage/footer.css" rel="stylesheet">
-    <link href="css/mainpage/list_table.css" rel="stylesheet">
+    <link href="css/mainpage/list_table.css?ver=1" rel="stylesheet">
     <link href="css/mainpage/responsive.css" rel="stylesheet">
-    <link href="css/mainpage/login-register.css?ver=1" rel="stylesheet" />
+    <link href="css/mainpage/login-register.css?ver=2" rel="stylesheet" />
     <link href="css/addBookmarkStepModal-register.css" rel="stylesheet" />
     <!-- Main Page CSS END -->
     
@@ -74,7 +74,7 @@
                     $(this).children('button').css('display', 'none')
                 }
             });
-            $(document).on("click", ".show_close_img", function() {
+            /* $(document).on("click", ".fa-folder-open", function() {
                 if ($(this).attr('src') == 'icon/all_show.png') {
                     $(this).attr('src', 'icon/all_close.png');
                     $(this).parent().parent().children('ul').hide(500);
@@ -82,6 +82,16 @@
                     $(this).attr('src', 'icon/all_show.png');
                     $(this).parent().parent().children('ul').show(500);
                 }
+            }); */
+            $(document).on("click", ".fa-folder-open", function() {
+                $(this).parent().parent().children('ul').hide(500);
+                $(this).removeClass("fa-folder-open");
+                $(this).addClass("fa-folder");
+            });
+            $(document).on("click", ".fa-folder", function() {
+                $(this).parent().parent().children('ul').show(500);
+                $(this).removeClass("fa-folder");
+                $(this).addClass("fa-folder-open");
             });
         });
         /**************************  Table END  **********************************/

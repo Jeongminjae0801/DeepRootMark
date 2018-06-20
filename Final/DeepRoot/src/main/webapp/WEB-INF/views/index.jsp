@@ -185,7 +185,7 @@
                     	<li id="${cList.acname}">
                             <div class="component">
                                 <h2 class="component_title color4" style="border-bottom: 3px solid ${cList.color}">
-                                    <img class="show_close_img" src="icon/all_show.png">
+                                    <i class="fa fa-folder-open show_close_img" aria-hidden="true" style="color: ${cList.color}"></i>
                                     <span class="title">${cList.acname}</span>
                                 </h2>
                                 <ul>
