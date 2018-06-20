@@ -107,6 +107,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Individual Share Bookmark START -->
+			<!-- u_booklist start -->
 			<div class="col-sm-6">
 				<div class="panel-body">
 					<span class="share-head"><img src="../icon/hash.png"
@@ -135,6 +136,7 @@
 					</table>
 				</div>
 			</div>
+			<!-- u_booklist end -->
 			<!-- Individual Share Bookmark START -->
 
 			<!-- Group Share Bookmark START -->
