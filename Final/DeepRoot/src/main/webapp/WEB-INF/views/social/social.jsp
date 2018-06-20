@@ -6,7 +6,6 @@
 	<div class="container">
 		<div class="row">
 			<!-- Individual TOP5 DIV START -->
-			<!-- top5 list start -->
 			<div class="col-sm-5">
 				<div class="panel-body rank-table">
 					<span class="ranktitle"><img src="../icon/trophy.png"
@@ -20,18 +19,40 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${u_top5}" var="user_top">
-								<%-- <tr>
-									<td class="rank"></td>
-									<td class="team"><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
-									<td>${user_top.view}</td>
-								</tr> --%>
+							<!-- 개인 북마크 공유 순위 -->
+							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
+								<tr>
+									<c:choose>
+										<c:when test="${status.count == '1'}">
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '2'}">
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '3'}">
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '4'}">
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '5'}">
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+										</c:when>
+									</c:choose>
+									<td><a href="${group_top.url}" target="_blank">${group_top.urlname}</a></td>
+									<td>${group_top.ucount}</td>
+								</tr>
 							</c:forEach>
+							<!-- 개인 북마크 공유 순위 -->
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<!-- top5 list end -->
 			<!-- Individual TOP5 DIV END -->
 			<div class="col-sm-2 bg"></div>
 
@@ -50,27 +71,32 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/gold.png">1</td>
+								<td class="rank"><img class="rankimg"
+									src="../icon/gold.png">1</td>
 								<td class="team">네이버</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/silver.png">2</td>
+								<td class="rank"><img class="rankimg"
+									src="../icon/silver.png">2</td>
 								<td class="team">구글</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/bronze.png">3</td>
+								<td class="rank"><img class="rankimg"
+									src="../icon/bronze.png">3</td>
 								<td class="team">w3school</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/medal2.png">4</td>
+								<td class="rank"><img class="rankimg"
+									src="../icon/medal2.png">4</td>
 								<td class="team">Brazil</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/medal2.png">5</td>
+								<td class="rank"><img class="rankimg"
+									src="../icon/medal2.png">5</td>
 								<td class="team">Colombia</td>
 								<td></td>
 							</tr>
