@@ -2,15 +2,16 @@
 /* Login / Roll_in / Password find script START */
 
 function showRegisterForm() {
+	$('.findBox').fadeOut('fast');
     $('.loginBox').fadeOut('fast', function() {
-        $('.registerBox').fadeIn('fast');
+		$('.registerBox').fadeIn('fast');
         $('.login-footer').fadeOut('fast', function() {
             $('.register-footer').fadeIn('fast');
         });
         $('.modal-title').html('Register with');
+    	
     });
     $('.error').removeClass('alert alert-danger').html('');
-
 }
 
 function showLoginForm() {
