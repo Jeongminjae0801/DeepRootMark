@@ -123,7 +123,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${s_list}" var="u_booklist">
+							<c:forEach items="${u_list}" var="u_booklist">
 								<tr>
 									<td><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
@@ -154,114 +154,21 @@
 								<th class="table-click">조회수</th>
 							</tr>
 						</thead>
+						<!-- g_list start -->
 						<tbody>
-							<tr class="index1">
-								<td><a href="http://www.naver.com" target="_blank">희준이와
-										아이들</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자0</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index3">
-								<td><a href="http://www.daum.net" target="_blank">다음</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자1</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.google.com" target="_blank">구글</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자2</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자3</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자4</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index1">
-								<td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자0</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index3">
-								<td><a href="http://www.daum.net" target="_blank">다음</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자1</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.google.com" target="_blank">구글</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자2</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자3</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자4</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index1">
-								<td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자0</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index3">
-								<td><a href="http://www.daum.net" target="_blank">다음</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자1</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.google.com" target="_blank">구글</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자2</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자3</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자4</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
+							<!-- 그룹 공유   -->
+							<c:forEach items="${g_list}" var="g_booklist">
+								<tr>
+									<td><a href="" target="_blank">${g_booklist.gname}</a></td>
+									<td class="table-tag">"${g_booklist.htag}"</td>
+									<td>${g_booklist.nname}</td>
+									<td class="table-date">${g_booklist.duedate}</td>
+									<td class="table-click"></td>
+								</tr>
+							</c:forEach>
+							<!-- 그룹 공유   -->
 						</tbody>
+						<!-- g_list end -->
 					</table>
 				</div>
 			</div>
