@@ -8,12 +8,11 @@
 
 package site.book.team.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +23,7 @@ import site.book.team.dto.TeamDTO;
 import site.book.team.service.TeamService;
 
 @Controller
+@RequestMapping("/team/")
 public class TeamController {
 
 	
@@ -62,7 +62,9 @@ public class TeamController {
 	}
 	
 	@RequestMapping("getTeamList.do")
-	public View getTeamList(String uid,  Model model) {
+	public View getTeamList(HttpServletRequest req,  Model model) {
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
 		
 		List<TeamDTO> teamlist = teamservice.getTeamList(uid);
 		
