@@ -143,14 +143,12 @@
                 <div class="col-sm-12">
                     <!-- Admin Bookmark & Search Area START -->
                     <span class="bookmark-title">
-                        <img src="icon/bookmark.png" style="margin-right:5px; width:30px">
+                        <i class="fa fa-book" aria-hidden="true" style="color: #270119"></i>
                         Admin Bookmark
                     </span>
                     <div id="custom-search-input">
                         <div class="input-group">
-                            <input class="search-input" type="text" name="search" placeholder="Search..." />
-                            <span class="input-group-btn">
-                          </span>
+                            <span class="input-group-btn"></span>
                         </div>
                     </div>
                     <hr class="hr-clear">
@@ -160,7 +158,7 @@
                     <div class="col-sm-12">
                         <div class="category-div">
                             <span class="bookmark-category">
-                            <img src="icon/category.png" style="margin-right:5px; width:25px">
+                            <i class="fa fa-tags" aria-hidden="true" style="color: #294400"></i>
                             Category
                           </span>
                         </div>
@@ -217,12 +215,12 @@
                     <div id="floatMenu">
                         <div id="preview_title">
                             <h2>
-                                <img class="preview_img" src="icon/open_previewB.png">
+                                <i class="fa fa-rss" aria-hidden="true" style="color: #287bfb"></i>
                                 <span class="title">Preview</span>
                             </h2>
                         </div>
                         <div id="preview_content" >
-                            <div id="layout" >미리보기: Page Image</div>
+                            <div id="layout">미리보기: Page Image</div>
                             <div id="comment" >설명 Details</div>
                         </div>
                         <div id="advertise_content">

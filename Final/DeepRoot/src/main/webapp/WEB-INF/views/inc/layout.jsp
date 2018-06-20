@@ -121,6 +121,12 @@
 				data : {
 					abid : abid // 북마크 ID
 				},
+				beforeSend: function() {
+	                $('#layout').html('<img src="${pageContext.request.contextPath}/images/loading/preview.gif" style="margin-top: 17%;"/>');
+	            },
+	            complete: function() {
+	            	$('#layout').html('');
+	            },
 				success : function(data){
 					
 					$('#preview_content').fadeOut(10, function(){
