@@ -224,7 +224,9 @@ public class MainController {
 		String result = user_service.editMember(request, user, file);
 		//System.out.println("회원수정: " + result);
 		
-		session.setAttribute("info_userprofile", result);
+		// .확장자명이 있다면 session update
+		if(result.split("\\.").length > 1)
+			session.setAttribute("info_userprofile", result);
 		return "redirect:index.do";
 	}
 	

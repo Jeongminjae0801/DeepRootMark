@@ -38,7 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <update id="editUser">
-        UPDATE USER SET PWD=#{pwd}, PROFILE=#{profile} WHERE UID=#{uid};
+    	<choose>
+    		<when test="profile == null">
+    			UPDATE USER SET PWD=#{pwd} WHERE UID=#{uid};
+    		</when>
+    		<otherwise>
+    			UPDATE USER SET PWD=#{pwd}, PROFILE=#{profile} WHERE UID=#{uid};
+    		</otherwise>
+    	</choose>
     </update>
     
     <delete id="deleteUser">
