@@ -33,13 +33,16 @@ public interface UserDAO {
 	public int checkAuthCode(EmailAuthDTO authcode) throws ClassNotFoundException, SQLException;
 	
 	// 회원 한명 출력
-	public UserDTO getUser(UserDTO user) throws ClassNotFoundException, SQLException;
+	public UserDTO getUser(String uid) throws ClassNotFoundException, SQLException;
 	
 	// 회원 한명 수정
 	public int editUser(UserDTO user) throws ClassNotFoundException, SQLException;
 	
 	// 회원 탈퇴
 	public int deleteUser(String uid) throws ClassNotFoundException, SQLException;
+	
+	// 비밀번호 변경(비밀번호 찾기)
+	public int updatePwd(UserDTO user) throws ClassNotFoundException, SQLException;
 	
 	// 희준
 	

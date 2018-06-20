@@ -427,3 +427,76 @@ $(function() {
 
 
 /* Login / Roll_in / Password find script END */
+
+
+/*  Password find script START */
+$(function() {
+	$('#check_email_find').dblclick(function() { return });
+	$('#check_email_find').click(function() {
+		$.ajax({ 
+    		url:"confirmuser.do",
+            type:"POST",
+            data:{uid: $("#uid_find").val()},
+            dataType:"json",
+            beforeSend: function() {$('html').css("cursor", "wait");},
+            complete: function() {$('html').css("cursor", "auto");},
+            success:function(data){
+            	console.log(data);
+            	if(data.result == 'member') {
+            		$('#check_email_find').css('display', 'none');
+            		$('.confrim_code_find').css('display', 'block');
+            		$('#loginModal .modal-dialog').addClass('shake');
+            		$('.error').addClass('alert alert-success').html("회원님 이메일로 인증키가 발송되었습니다.");
+	                    setTimeout(function() {
+	                        $('#loginModal .modal-dialog').removeClass('shake');
+	                    }, 500);
+            	}
+            	else {
+	            	$('#loginModal .modal-dialog').addClass('shake');
+            		$('.error').addClass('alert alert-danger').html("가입된 회원이 아니십니다. 확인 부탁드립니다.");
+	                    setTimeout(function() {
+	                        $('#loginModal .modal-dialog').removeClass('shake');
+	                    }, 500);
+            	}
+            },
+            error:function(e){  
+            	console.log("Error: " + e.responseText); 
+            }
+        });
+	});
+	
+	$('#find-password').dblclick(function() { return });
+	$('#find-password').click(function() {
+		console.log('#find-password AJAX START');
+		$.ajax({ 
+    		url:"findpwd.do",
+            type:"POST",
+            data:{uid: $("#uid_find").val(), authcode: $("#authcode_find").val()},
+            dataType:"json",
+            beforeSend: function() {$('html').css("cursor", "wait");},
+            complete: function() {$('html').css("cursor", "auto");},
+            success:function(data){
+            	if(data.result == 'success') {
+            		alert('발송된 임시 비밀번호로 로그인 해주세요');
+            		console.log(data.path);
+            		location.href = data.path;
+            	}
+            	else {
+            		$('#loginModal .modal-dialog').addClass('shake');
+            		$('.error').addClass('alert alert-danger').html("잘못된 인증키입니다. 확인 부탁드립니다.");
+	                    setTimeout(function() {
+	                        $('#loginModal .modal-dialog').removeClass('shake');
+	                    }, 500);
+            	}
+            },
+            error:function(e){  
+            	console.log("Error: " + e.responseText); 
+            }
+        });
+	});
+});
+/*  Password find script END */
+
+
+
+
