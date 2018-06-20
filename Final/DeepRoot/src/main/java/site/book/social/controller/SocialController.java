@@ -25,10 +25,15 @@ import site.book.social.service.TopService;
 @Controller
 @RequestMapping("/social/")
 public class SocialController {
-	
+	/* 민재 파라미터 */
 	@Autowired
 	private TopService top_service;
 	
+	
+	/* 진수햄 파라미터 */
+	
+	
+	/* 민재 함수 */
 	@RequestMapping("social.do")
 	public String social(Model model) {
 		
@@ -41,6 +46,11 @@ public class SocialController {
 		List<TopDTO> a_top5 = top_service.getATop5();
 		model.addAttribute("a_top5", a_top5);
 		
-		return "khj.social";
+		return "social.social";
 	}
+	
+	
+	/***********************************************
+	/* 진수햄 함수 ************************************
+	**********************************************/
 }

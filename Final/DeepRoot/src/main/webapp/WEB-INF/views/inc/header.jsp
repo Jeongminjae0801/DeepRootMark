@@ -7,7 +7,7 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="navbar-brand">
-                <a class="logo-text" href="index.do">뿌리깊은마크</a>
+                <a class="logo-text" href="<%= request.getContextPath() %>/index.do">뿌리깊은마크</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -20,7 +20,7 @@
             	<se:authorize access="isAuthenticated()">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="user/mybookmark.do">MyBookmark</a>
+                        <a href="<%= request.getContextPath() %>/user/mybookmark.do">MyBookmark</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">Group <i class="fa fa-angle-down"></i></a>
@@ -31,7 +31,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Social</a>
+                    <!-- Social Link  -->
+                        <a href="<%= request.getContextPath() %>/social/social.do">Social</a>
+                    <!-- Social Link  -->
                     </li>
                     <li class="dropdown">
                         <a href="#">Notice <i class="fa fa-angle-down"></i></a>
@@ -44,7 +46,7 @@
                     <!-- Notice Alarm START -->
                    <li class="dropdown">
                        <a href="#">
-                       <img src="icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a>
+                       <img src="<%= request.getContextPath() %>/icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a>
                        <ul role="menu" class="sub-menu">
                            <li>토요일 12pm~6pm 서버 점검 예정</li>
                        </ul>
@@ -54,8 +56,8 @@
                    <li>
                        <a href="#">
                        <img class="dropdown header-ico" 
-                       		src="images/profile/${sessionScope.info_userprofile}"
-                       		onerror="images/profile.png"> ${sessionScope.info_usernname}</a>
+                       		src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}"
+                       		onerror="<%= request.getContextPath() %>/images/profile.png"> ${sessionScope.info_usernname}</a>
                        <ul role="menu" class="sub-menu">
                            <li><a href="myInfo.do">회원정보수정</a></li>
                            <li><a href='security/logout'>Logout</a></li>
