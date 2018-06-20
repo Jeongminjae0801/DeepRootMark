@@ -16,15 +16,31 @@
 							<tr>
 								<th>Rank</th>
 								<th>사이트명</th>
-								<th>조회수</th>
+								<th>공유개수</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${u_top5} var="user_top">
+							<c:forEach items="${u_top5}" var="user_top" varStatus="status">
 								<tr>
-									<td></td>
+									<c:choose>
+										<c:when test="${status.count == '1'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '2'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '3'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '4'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '5'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+										</c:when>
+									</c:choose>
 									<td><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
-									<td>${user_top.view}</td>
+									<td>${user_top.ucount}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -36,6 +52,7 @@
 			<div class="col-sm-2 bg"></div>
 
 			<!-- Group TOP5 DIV START -->
+			<!-- Gtop5 list start -->
 			<div class="col-sm-5">
 				<div class="panel-body rank-table">
 					<span class="ranktitle"><img src="../icon/trophy.png"
@@ -44,40 +61,39 @@
 						<thead>
 							<tr>
 								<th>Rank</th>
-								<th>그룹명</th>
-								<th>조회수</th>
+								<th>사이트명</th>
+								<th>공유개수</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/gold.png">1</td>
-								<td class="team">네이버</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/silver.png">2</td>
-								<td class="team">구글</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/bronze.png">3</td>
-								<td class="team">w3school</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/medal2.png">4</td>
-								<td class="team">Brazil</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/medal2.png">5</td>
-								<td class="team">Colombia</td>
-								<td></td>
-							</tr>
+							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
+								<tr>
+									<c:choose>
+										<c:when test="${status.count == '1'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '2'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '3'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '4'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+										</c:when>
+										<c:when test="${status.count == '5'}">
+											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+										</c:when>
+									</c:choose>
+									<td><a href="${group_top.url}" target="_blank">${group_top.urlname}</a></td>
+									<td>${group_top.ucount}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<!-- Gtop5 list end -->
 		</div>
 		<!-- Group TOP5 DIV END -->
 	</div>
