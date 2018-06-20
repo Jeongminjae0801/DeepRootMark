@@ -20,27 +20,28 @@
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
-							<!-- 개인 북마크 공유 순위 -->
-=======
->>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 							<c:forEach items="${u_top5}" var="user_top" varStatus="status">
 								<tr>
 									<c:choose>
 										<c:when test="${status.count == '1'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '2'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '3'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '4'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '5'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
 										</c:when>
 									</c:choose>
 									<td><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
@@ -70,37 +71,35 @@
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
-						<!-- 그룹 북마크 공유 순위 -->
-=======
->>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
+						
 							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
 								<tr>
 									<c:choose>
 										<c:when test="${status.count == '1'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '2'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '3'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '4'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
 										</c:when>
 										<c:when test="${status.count == '5'}">
-											<td class="rank"><img class="rankimg" src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
+											<td class="rank"><img class="rankimg"
+												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
 										</c:when>
 									</c:choose>
 									<td><a href="${group_top.url}" target="_blank">${group_top.urlname}</a></td>
 									<td>${group_top.ucount}</td>
 								</tr>
 							</c:forEach>
-<<<<<<< HEAD
-							<!-- 그룹 북마크 공유 순위 -->
-=======
->>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 						</tbody>
 					</table>
 				</div>
@@ -146,7 +145,7 @@
 								</tr>
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->
-							
+
 						</tbody>
 					</table>
 				</div>
