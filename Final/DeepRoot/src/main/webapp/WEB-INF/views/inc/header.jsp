@@ -7,7 +7,7 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="navbar-brand">
-                <a class="logo-text" href="index.do">뿌리깊은마크</a>
+                <a class="logo-text" href="<%= request.getContextPath() %>/index.do">뿌리깊은마크</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -20,7 +20,7 @@
             	<se:authorize access="isAuthenticated()">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="user/mybookmark.do">MyBookmark</a>
+                        <a href="<%= request.getContextPath() %>/user/mybookmark.do">MyBookmark</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">Group <i class="fa fa-angle-down"></i></a>
@@ -32,7 +32,7 @@
                     </li>
                     <li>
                     <!-- Social Link  -->
-                        <a href="social/social.do">Social</a>
+                        <a href="<%= request.getContextPath() %>/social/social.do">Social</a>
                     <!-- Social Link  -->
                     </li>
                     <li class="dropdown">
