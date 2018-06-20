@@ -104,7 +104,11 @@ table.dataTable thead .sorting_desc:after {
     font-family: FontAwesome;
     content: "\F0DE"
 }
-
+/* DATA TABLE CONTENT DISPLAY START */
+div.dataTables_info {
+    display: none;
+}
+/* DATA TABLE CONTENT DISPLAY END */
 .panel-body{
     box-shadow: 6px 7px 25px 10px #8aa4af;
     border-radius: 25px;
