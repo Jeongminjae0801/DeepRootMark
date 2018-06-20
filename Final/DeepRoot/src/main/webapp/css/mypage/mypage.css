@@ -2,12 +2,37 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
 @import url('https://fonts.googleapis.com/css?family=Poor+Story');
 @import url('https://fonts.googleapis.com/css?family=Jua');
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
 
 .material-icons.md-18 { float: left; font-size: 18px; }
 .material-icons.md-24 { float: left; font-size: 24px; }
 .material-icons.md-32 { float: left; font-size: 32px; margin-right: 7px; }
 .material-icons.md-36 { float: left; font-size: 36px; }
 .material-icons.md-48 { float: left;font-size: 48px; }
+
+
+a:hover {
+    outline: none;
+    text-decoration: none;
+    color: #7bbfa8;
+}
+
+a:focus {
+    outline: none;
+    outline-offset: 0;
+}
+
+a {
+    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    color: #000;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+
 
 .bg-img {
   position: fixed;
@@ -162,6 +187,7 @@
   margin: 0 0 7px 20px;
   border-color: #000;
   border: 1px solid;
+  overflow: hidden;
   /*border-top-right-radius: 30px;*/
 }
 

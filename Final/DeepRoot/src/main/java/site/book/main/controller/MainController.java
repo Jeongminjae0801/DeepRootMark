@@ -41,6 +41,8 @@ import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
+import site.book.team.dto.G_MemberDTO;
+import site.book.team.service.TeamService;
 import site.book.user.dto.EmailAuthDTO;
 import site.book.user.dto.UserDTO;
 import site.book.user.service.UserService;
@@ -72,7 +74,8 @@ public class MainController {
 	@Autowired
 	private View jsonview;
 	
-	
+	@Autowired
+	private TeamService teamservice;
 	// 명수
 	
 	// 변수 End

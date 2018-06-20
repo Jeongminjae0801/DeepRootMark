@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,30 +12,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <!--  CSS START -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
-
 <!-- Font Awesome CSS STARAT -->
-<link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
 
  <!-- Font Awesome CSS END -->
-
 <!--  -->
-<link href="../css/animate.min.css" rel="stylesheet">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-
+ 	<link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
 <!-- Header Footer -->
     <link href="../css/mainpage/header.css" rel="stylesheet">
     <link href="../css/mainpage/footer.css" rel="stylesheet">
-
+    <!-- <link href="../css/mainpage/list_table.css" rel="stylesheet"> -->
+    
+    <link href="../css/mainpage/responsive.css" rel="stylesheet">
 <!-- Google Icon CDN -->
  <link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <!-- Google Icon CDN END -->
-
 <!-- Script START -->
-<script 	src="${pageContext.request.contextPath}/resources/assets/jquery-1.10.2.min.js"></script>
-<script 	src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-
+<script  src="${pageContext.request.contextPath}/resources/assets/jquery-1.10.2.min.js"></script>
+<script  src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script>
 <!-- Script END -->
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script src="../js/script.js"></script>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
 <!-- jQuery Confirm START -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
@@ -47,7 +49,7 @@
 <!-- Script -->
 <script type="text/javascript"  src="../js/mypage/mycategory.js"></script>
 	
-	<div id="header">
+	<div id="main-header">
 		<tiles:insertAttribute name="header" />
 	</div>
 
@@ -55,7 +57,7 @@
 		<tiles:insertAttribute name="content" />
 	</div>
 
-	<div id="footer">
+	<div id="main-footer">
 		<tiles:insertAttribute name="footer" />
 	</div>
 
@@ -257,6 +259,7 @@
 		</div>
 	</div>
 <i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 
 </body>
 <!-- MY Page CSS -->

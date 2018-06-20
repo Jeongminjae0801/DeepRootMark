@@ -77,7 +77,7 @@
 		});
 	}
 	
-	function addGroup(gid) {
+	function addGroup() {
 		$.confirm({
 		    title: '그룹 추가',
 		    content: '' +
@@ -149,8 +149,6 @@
 		});
 	}
 </script>
-
-  <div id="content">
         <img class="bg-img bg-right-top" src="${pageContext.request.contextPath}/images/mypage/bookshelf.jpg" alt="">
         <img class="bg-img bg-left-bottom" src="${pageContext.request.contextPath}/images/mypage/hill.png" alt="">
         <div class="container">
@@ -246,5 +244,4 @@
                 </div>
             </div>
         </div>
-    </div>
  
