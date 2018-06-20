@@ -33,7 +33,7 @@
 	<!-- User Info CSS END -->
 	
     <!-- Login / roll-in Modal Script Start -->
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- Login / roll-in Modal Script Start END -->
@@ -41,6 +41,15 @@
     <!-- Category Input Script START -->
     <script src="js/category_insert.js"></script>
     <!-- Category Input Script END -->
+    
+    <!-- Common Script START -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+    <!-- Script Common END -->
+    
+    
+    
     
     <script>
         /**************************  Table Start  **********************************/
@@ -233,15 +242,15 @@
 	</div>
 	
 	
-	<!-- Common Script START -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/wow.min.js"></script>
-    <!-- Script Common END -->
+	
+    
+   
 
     <!-- Custom Script START -->
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/login.js?ver=1"></script>
     <!-- Custom Script END -->
 </body>
+
+
 </html>

@@ -20,6 +20,10 @@
 							</tr>
 						</thead>
 						<tbody>
+<<<<<<< HEAD
+							<!-- 개인 북마크 공유 순위 -->
+=======
+>>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 							<c:forEach items="${u_top5}" var="user_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -66,6 +70,10 @@
 							</tr>
 						</thead>
 						<tbody>
+<<<<<<< HEAD
+						<!-- 그룹 북마크 공유 순위 -->
+=======
+>>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -89,6 +97,10 @@
 									<td>${group_top.ucount}</td>
 								</tr>
 							</c:forEach>
+<<<<<<< HEAD
+							<!-- 그룹 북마크 공유 순위 -->
+=======
+>>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 						</tbody>
 					</table>
 				</div>
@@ -123,7 +135,12 @@
 							</tr>
 						</thead>
 						<tbody>
+<<<<<<< HEAD
 							<c:forEach items="${u_list}" var="u_booklist">
+=======
+							<!-- 개인 북마크 공유 -->
+							<c:forEach items="${s_list}" var="u_booklist">
+>>>>>>> 02617d0b2ee8c792dc83a9d75167ed307d9203e7
 								<tr>
 									<td><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
@@ -132,6 +149,8 @@
 									<td class="table-click">${u_booklist.view}</td>
 								</tr>
 							</c:forEach>
+							<!-- 개인 북마크 공유 -->
+							
 						</tbody>
 					</table>
 				</div>

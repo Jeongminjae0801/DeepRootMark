@@ -33,7 +33,6 @@ public class SocialController {
 	@Autowired
 	private TopService top_service;
 	
-	
 	/* 진수햄 파라미터 */
 	@Autowired
 	private U_BookService u_bookservice;
