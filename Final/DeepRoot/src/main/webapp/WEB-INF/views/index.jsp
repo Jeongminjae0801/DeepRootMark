@@ -92,9 +92,13 @@
                                         <div class="content findBox" style="display:none;">
                                             <!-- password find START -->
                                             <div class="form">
-                                                <form method="post" action="/find" accept-charset="UTF-8">
-                                                    <input id="uid_find" class="form-control" type="text" placeholder="Email" name="uid">
-                                                    <input class="btn btn-default btn-find" type="submit" value="Find account" name="commit">
+                                                <form>
+                                                    <input id="uid_find" class="form-control" type="text" placeholder="Email">
+                                                    <input id="check_email_find" class="btn btn-default btn-find" type="button" value="Are you a member?">
+                                                    
+                                                    <p class="confrim_code_find" style="display: none;"><b>회원님</b>의 이메일로 인증 코드가 발송되었습니다.</p>
+                                                    <input id="authcode_find" class="form-control confrim_code_find" type="text" placeholder="Authcode" style="display: none;">
+                                                    <input id="find-password" class="btn btn-default btn-find confrim_code_find" type="button" value="Find Password" style="display: none;">
                                                 </form>
                                             </div>
                                             <!-- password find END -->

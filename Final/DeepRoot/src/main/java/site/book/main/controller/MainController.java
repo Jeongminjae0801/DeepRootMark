@@ -106,7 +106,7 @@ public class MainController {
 		}else {
 			String userid = (String)request.getAttribute("userid");
 			user.setUid(userid);
-			user = user_service.getMember(user);
+			user = user_service.getMember(user.getUid());
 			model.addAttribute("login", "success");
 			
 			String role = (String)request.getAttribute("ROLE");
@@ -233,7 +233,7 @@ public class MainController {
 	public View confirmMemberPWD(Model model, UserDTO input_data) {
 		
 		//getMember 통해  해당 회원정보 가져옴
-		UserDTO member = user_service.getMember(input_data);
+		UserDTO member = user_service.getMember(input_data.getUid());
 		//DB에서 가져온 암호화된 문자열
 		String encodedPassword = member.getPwd();
 		
@@ -261,6 +261,44 @@ public class MainController {
 		}
 		return "member.logout";
 	}
+	
+	/* 비밀번호 찾기 */
+	// 비밀번호 찾기 시, 회원인지 확인
+	@RequestMapping(value="/confirmuser.do", method=RequestMethod.POST)
+	public View confirmUser(HttpServletRequest request, Model model, EmailAuthDTO user) {
+
+		System.out.println(user);
+		int result = user_service.confirmUser(user);
+
+		if(result > 0) {
+			model.addAttribute("result", "member");
+		}else {
+			model.addAttribute("result", "who");
+		}
+		return jsonview;
+	}
+	
+	// 회원 여부 확인 후, 임시 비밀번호 전송
+	@RequestMapping(value="/findpwd.do", method=RequestMethod.POST)
+	public View findUserPwd(HttpServletRequest request, Model model,
+			EmailAuthDTO authcode, UserDTO user) {
+
+		//System.out.println(authcode);
+		//System.out.println(user);
+		int resultAuth = user_service.checkAuthcode(authcode);
+		
+		// 인증코드가 정확하다면,
+		if(resultAuth > 0) {
+			// 회원에게 임시 비밀번호 발급
+			user_service.findUserPwd(user);
+			model.addAttribute("result", "success");
+			model.addAttribute("path", "index.do");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		return jsonview;
+	}
+	/* 비밀번호 찾기 END */
 
 	// 희준
 	@RequestMapping("preview.do")
