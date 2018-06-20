@@ -8,7 +8,7 @@
 			<!-- Individual TOP5 DIV START -->
 			<div class="col-sm-5">
 				<div class="panel-body rank-table">
-					<span class="ranktitle"><img src="icon/trophy.png"
+					<span class="ranktitle"><img src="../icon/trophy.png"
 						class="rankimg">개인 Top 5</span>
 					<table>
 						<thead>
@@ -20,31 +20,31 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/gold.png">1</td>
+								<td class="rank"><img class="rankimg" src="../icon/gold.png">1</td>
 								<td class="team"><a href="http://www.naver.com"
 									target="_blank">네이버</a></td>
 								<td>1053</td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/silver.png">2</td>
+								<td class="rank"><img class="rankimg" src="../icon/silver.png">2</td>
 								<td class="team"><a href="http://www.daum.net"
 									target="_blank">DAUM</a></td>
 								<td>951</td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/bronze.png">3</td>
+								<td class="rank"><img class="rankimg" src="../icon/bronze.png">3</td>
 								<td class="team"><a href="https://w3school.com"
 									target="_blank">w3school</a></td>
 								<td>453</td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/medal2.png">4</td>
+								<td class="rank"><img class="rankimg" src="../icon/medal2.png">4</td>
 								<td class="team"><a href="http://www.kakao.com"
 									target="_blank">kakao</a></td>
 								<td>358</td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/medal2.png">5</td>
+								<td class="rank"><img class="rankimg" src="../icon/medal2.png">5</td>
 								<td class="team"><a href="http://www.google.com"
 									target="_blank">google</a></td>
 								<td>351</td>
@@ -59,7 +59,7 @@
 			<!-- Group TOP5 DIV START -->
 			<div class="col-sm-5">
 				<div class="panel-body rank-table">
-					<span class="ranktitle"><img src="icon/trophy.png"
+					<span class="ranktitle"><img src="../icon/trophy.png"
 						class="rankimg">그룹 Top 5</span>
 					<table>
 						<thead>
@@ -71,27 +71,27 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/gold.png">1</td>
+								<td class="rank"><img class="rankimg" src="../icon/gold.png">1</td>
 								<td class="team">네이버</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/silver.png">2</td>
+								<td class="rank"><img class="rankimg" src="../icon/silver.png">2</td>
 								<td class="team">구글</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/bronze.png">3</td>
+								<td class="rank"><img class="rankimg" src="../icon/bronze.png">3</td>
 								<td class="team">w3school</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/medal2.png">4</td>
+								<td class="rank"><img class="rankimg" src="../icon/medal2.png">4</td>
 								<td class="team">Brazil</td>
 								<td></td>
 							</tr>
 							<tr>
-								<td class="rank"><img class="rankimg" src="icon/medal2.png">5</td>
+								<td class="rank"><img class="rankimg" src="../icon/medal2.png">5</td>
 								<td class="team">Colombia</td>
 								<td></td>
 							</tr>
@@ -108,13 +108,13 @@
 
 <!-- Share Bookmark div START -->
 <section class="bookmark-share-div">
-	<img src="images/books.png" class="bg-bottom">
+	<img src="../images/social/books.png" class="bg-bottom">
 	<div class="container">
 		<div class="row">
 			<!-- Individual Share Bookmark START -->
 			<div class="col-sm-6">
 				<div class="panel-body">
-					<span class="share-head"><img src="icon/hash.png"
+					<span class="share-head"><img src="../icon/hash.png"
 						class="shareimg">개인 북마크 공유</span>
 					<table class="table table-hover" id="listTable1">
 						<thead>
@@ -242,7 +242,7 @@
 			<!-- Group Share Bookmark START -->
 			<div class="col-sm-6">
 				<div class="panel-body">
-					<span class="share-head"><img src="icon/hash.png"
+					<span class="share-head"><img src="../icon/hash.png"
 						class="shareimg">그룹 북마크 공유</span>
 					<table class="table table-hover" id="listTable2">
 						<thead>

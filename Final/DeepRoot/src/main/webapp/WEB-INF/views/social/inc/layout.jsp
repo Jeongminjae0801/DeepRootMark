@@ -13,27 +13,27 @@
     <title>뿌리깊은마크</title>
 
     <!-- Bootstrap Common CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/animate.min.css" rel="stylesheet">
     <!-- Bootstrap Common CSS END -->
 
     <!-- Social Page CSS -->
-    <link href="css/social/social.css" rel="stylesheet">
-    <link href="css/social/header.css" rel="stylesheet">
-    <link href="css/social/footer.css" rel="stylesheet">
-    <link href="css/social/list_table.css" rel="stylesheet">
-    <link href="css/social/responsive.css" rel="stylesheet">
-    <link href="css/social/login-register.css" rel="stylesheet" />
-    <link href="css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../css/social/social.css" rel="stylesheet">
+    <link href="../css/mainpage/header.css" rel="stylesheet">
+    <link href="../css/mainpage/footer.css" rel="stylesheet">
+    <link href="../css/mainpage/list_table.css" rel="stylesheet">
+    <link href="../css/mainpage/responsive.css" rel="stylesheet">
+    <link href="../css/mainpage/login-register.css" rel="stylesheet" />
+    <link href="../css/social/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Social Page CSS END -->
 
     <!--Script Start -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script src="js/socialmain.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script src="../js/social/social.js"></script>
+    <script src="../js/social/jquery.dataTables.min.js"></script>
+    <script src="../js/social/dataTables.bootstrap.min.js"></script>
+    <script src="../js/script.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- Script END -->
 
@@ -106,7 +106,7 @@
 	</div>
 	
 	
-	<div id="social">
+	<div id="main">
 		<tiles:insertAttribute name="content" />
 	</div>
 	
@@ -116,13 +116,13 @@
 	
 	
 	 <!-- Common Script START -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/wow.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/wow.min.js"></script>
     <!-- Common Script END -->
 
     <!-- Custom Script START -->
-    <script type="text/javascript" src="js/social.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="../js/social/social.js"></script>
+    <script type="text/javascript" src="../js/login.js"></script>
     <!-- Custom Script END -->
 </body>
 </html>

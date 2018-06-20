@@ -46,7 +46,7 @@ public class SocialController {
 		List<TopDTO> a_top5 = top_service.getATop5();
 		model.addAttribute("a_top5", a_top5);
 		
-		return " ";
+		return "social.social";
 	}
 	
 	
