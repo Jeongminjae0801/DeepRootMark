@@ -110,10 +110,10 @@ table.dataTable thead .sorting_desc:after {
 /*div.dataTables_length label {
     display: none;
 }
-
+*/
 div.dataTables_info {
     display: none;
-}*/
+}
 /* 진수 : 호잇호잇 */
 .panel-body{
     box-shadow: 6px 7px 25px 10px #8aa4af;

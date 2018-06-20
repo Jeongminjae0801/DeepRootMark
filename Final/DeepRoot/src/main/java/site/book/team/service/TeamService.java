@@ -14,8 +14,11 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import site.book.team.dao.G_MemberDAO;
 import site.book.team.dao.TeamDAO;
+import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.S_TeamDTO;
 import site.book.team.dto.TeamDTO;
 
@@ -82,6 +85,40 @@ public class TeamService {
 		
 		try {
 			row = teamDAO.deleteGroup(gid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return row;
+	}
+	
+	// 그룹 추가하기
+	@Transactional
+	public int addGroup(String gname, G_MemberDTO member) {
+		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		G_MemberDAO g_memberDAO = sqlsession.getMapper(G_MemberDAO.class);
+		
+		int row = 0;
+		
+		try {
+			row = teamDAO.insertGroup(gname);
+			int gid = teamDAO.selectLastGroupID();
+			member.setGid(gid);
+			row = g_memberDAO.insertGMember(member);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return row;
+	}
+	
+	// 그룹 완료하기
+	public int completedGroup(TeamDTO team) {
+		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		int row = 0;
+		
+		try {
+			row = teamDAO.completedGroup(team);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
