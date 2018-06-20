@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,9 +91,15 @@ public class UserController {
 	
 	//해당 유저의 카테고리를 보내준다.
 	@RequestMapping("getCategoryList.do")	
-	public void getCategoryList(String uid , HttpServletResponse res) {
+	public void getCategoryList(HttpServletRequest req , HttpServletResponse res) {
 		
 		res.setCharacterEncoding("UTF-8");
+		
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        System.out.println("uid : " + uid);
+		
 		
 		JSONArray jsonArray = new JSONArray();	
 		List<U_BookDTO> list = u_bookservice.getCategoryList(uid);
@@ -221,11 +228,15 @@ public class UserController {
 	
 	//폴더 & url & 공유일 경우 공유로 추가
 	@RequestMapping("addFolderOrUrl.do")
-	public void addFolder(U_BookDTO dto , HttpServletResponse res) {
+	public void addFolder(U_BookDTO dto ,HttpServletRequest req, HttpServletResponse res) {
 		
 		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
-		dto.setUbid(ubid);
-			
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        dto.setUbid(ubid);
+        dto.setUid(uid);
+        
 		System.out.println(dto.toString());
 		int result = u_bookservice.addFolderOrUrl(dto);
 		
@@ -240,7 +251,6 @@ public class UserController {
 	@RequestMapping("deleteNode.do")	
 	public void deleNode(HttpServletRequest req , HttpServletResponse res) {
 		res.setCharacterEncoding("UTF-8");
-		//mysql에 cascade 햇기 때문에 url이든 폴더를 지우려고 하든 상위의 ubid를 보내부면 알아서 참조하는 모든 데이터가 삭제된다,.
 		System.out.println("ddd");
 		String nodeid = req.getParameter("node");
 		u_bookservice.deleteFolderOrUrl(nodeid);
@@ -324,10 +334,14 @@ public class UserController {
 	
 	//ROOT 카테고리 추가 
 	@RequestMapping("addRoot.do")
-	public void addRoot(String uid , HttpServletResponse res) {
+	public void addRoot(HttpServletRequest req , HttpServletResponse res) {
 		
 		res.setCharacterEncoding("UTF-8");
 		
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        System.out.println("uid : " + uid);
+        
 		int ubid = u_bookservice.getmaxid();
 		int result = u_bookservice.insertRootFolder(ubid, uid);
 		

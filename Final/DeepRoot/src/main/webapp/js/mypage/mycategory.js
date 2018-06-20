@@ -8,7 +8,6 @@
 				url : "getCategoryList.do",
 				type:"POST",
 				dataType:"json",
-				data : {uid : "procedure2@naver.com"},
 				success : function(data){	
 					console.log(data);
 			
@@ -110,9 +109,9 @@
 									            		  console.log(url,title,par,htag,sname); //확인
 									            		  
 									            		  if($.trim(htag) == ""){
-									            			  var form = {url : url , urlname : title , pid : par , uid : "procedure2@naver.com" }
+									            			  var form = {url : url , urlname : title , pid : par ,  }
 									            		  }else{
-									            			  var form = {url : url , urlname : title , pid : par, uid:  "procedure2@naver.com" , htag : htag , sname : sname}
+									            			  var form = {url : url , urlname : title , pid : par,  htag : htag , sname : sname}
 									            		  }
 									            		  
 									            		  $.ajax({
@@ -146,7 +145,7 @@
 								                	var par_node = inst.get_node(obj.reference);
 								                	
 								                	var par = inst.get_node(obj.reference).id;
-	 												var form = {urlname : "새 폴더", pid : par , uid : "procedure2@naver.com"}	// 해당 유저의 아이디 가져오기
+	 												var form = {urlname : "새 폴더", pid : par , }	// 해당 유저의 아이디 가져오기
 	 												
 								               		  $.ajax({
 								            			  url: "addFolderOrUrl.do",
@@ -347,9 +346,9 @@
           		  var result = $("#share").prop("checked"); //공유 체크여부 확인
           		  
           		  if($.trim($('#htag_btn').val())==""){
-          		  var form = {url : url , urlname : title , pid : urlpid , uid:  "procedure2@naver.com"};
+          		  var form = {url : url , urlname : title , pid : urlpid};
           		  }else{
-          			var form = {url : url , urlname : title , pid : urlpid , uid:  "procedure2@naver.com",htag : htag , sname : sname};
+          			var form = {url : url , urlname : title , pid : urlpid , htag : htag , sname : sname};
           		  }
           		  $.ajax({
           			  url: "addFolderOrUrl.do",
