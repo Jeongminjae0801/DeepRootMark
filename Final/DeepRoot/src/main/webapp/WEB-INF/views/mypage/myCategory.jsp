@@ -13,7 +13,7 @@
                     <!-- 마이 북마크 Heading -->
                     <div class="heading my-bookmark-list">
                       <i class="material-icons md-32">archive</i><span class="mypage-title">마이 북마크</span>
-                      <button type="button" class="my-boomark-btn">New Category</button>
+                      <button type="button" class="my-boomark-btn" id="addroot">New Category</button>
                     </div>
                     <div style="background-color: white; border-radius: 15px 15px 15px 15px">
                         <div id="jstree_container"></div>
@@ -28,7 +28,7 @@
                     <div class="heading my-bookmark-print-list ">
                       <i class="material-icons md-32 pull-left">view_list</i><span class="mypage-title pull-left">리스트</span>
                       <span class="mypage-title">&nbsp;</span>
-                      <button type="button" class="my-boomark-btn">Add URL</button>
+                      <button type="button" class="my-boomark-btn" id="addurl">Add URL</button>
                     </div>
                     <div>
                         <div id="jstree_container_child"></div>

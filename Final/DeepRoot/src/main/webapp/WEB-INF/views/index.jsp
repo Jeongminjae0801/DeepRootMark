@@ -161,10 +161,10 @@
                           </span>
                         </div>
                         <div id="category-display" class="col-sm-12 category-items">
-                            <div id="showall" class="category reddiv">
+                            <div id="showall" class="category reddiv" style="background-color: #7bbfa8">
                                 <span>Show All</span></div>
                             <c:forEach items="${categoryList}" var="cList">
-                            	<div data-category="${cList.acname}" class="category">
+                            	<div id="${cList.acid}" data-category="${cList.acname}" class="category" style="background-color: ${cList.color}">
                                 <span>${cList.acname}</span></div>
                             </c:forEach>
                         </div>
@@ -180,7 +180,7 @@
                     	<c:forEach items="${categoryList}" var="cList">
                     	<li id="${cList.acname}">
                             <div class="component">
-                                <h2 class="component_title color4">
+                                <h2 class="component_title color4" style="border-bottom: 3px solid ${cList.color}">
                                     <img class="show_close_img" src="icon/all_show.png">
                                     <span class="title">${cList.acname}</span>
                                 </h2>

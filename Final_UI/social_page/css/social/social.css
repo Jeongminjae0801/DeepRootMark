@@ -72,6 +72,16 @@
     height: 400px;
 }
 /* Table CSS START */
+table thead tr th.table-date,
+table tbody tr th.table-date{
+    width:20%;
+}
+
+table thead tr th.table-click,
+table tbody tr th.table-click{
+    width:13%;
+}
+
 .panel-body.rank-table tr .rank{
     font-size:11px;
 }
