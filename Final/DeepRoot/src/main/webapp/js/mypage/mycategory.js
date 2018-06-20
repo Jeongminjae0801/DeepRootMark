@@ -1,4 +1,4 @@
-		$(document).ready(function(){
+$(document).ready(function(){
 			
 			var urlpid = null;
 			var firstclick = 0;
@@ -730,3 +730,4 @@ $("#jstree_container").on('close_node.jstree', function(e,data){
 
 
 		});
+
