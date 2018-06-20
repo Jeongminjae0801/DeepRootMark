@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import site.book.social.dto.TopDTO;
 import site.book.social.service.TopService;
+import site.book.user.service.U_BookService;
 
 /**
  * @Class : SocialController.java
@@ -28,7 +29,6 @@ public class SocialController {
 	/* 민재 파라미터 */
 	@Autowired
 	private TopService top_service;
-	
 	
 	/* 진수햄 파라미터 */
 	

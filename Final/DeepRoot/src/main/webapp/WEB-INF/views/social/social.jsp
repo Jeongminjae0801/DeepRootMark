@@ -19,37 +19,7 @@
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
 							<!-- 개인 북마크 공유 순위 -->
-							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
-								<tr>
-									<c:choose>
-										<c:when test="${status.count == '1'}">
-											<td class="rank"><img class="rankimg"
-												src="<%=request.getContextPath()%>/icon/gold.png">${status.count}</td>
-										</c:when>
-										<c:when test="${status.count == '2'}">
-											<td class="rank"><img class="rankimg"
-												src="<%=request.getContextPath()%>/icon/silver.png">${status.count}</td>
-										</c:when>
-										<c:when test="${status.count == '3'}">
-											<td class="rank"><img class="rankimg"
-												src="<%=request.getContextPath()%>/icon/bronze.png">${status.count}</td>
-										</c:when>
-										<c:when test="${status.count == '4'}">
-											<td class="rank"><img class="rankimg"
-												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
-										</c:when>
-										<c:when test="${status.count == '5'}">
-											<td class="rank"><img class="rankimg"
-												src="<%=request.getContextPath()%>/icon/medal2.png">${status.count}</td>
-										</c:when>
-									</c:choose>
-									<td><a href="${group_top.url}" target="_blank">${group_top.urlname}</a></td>
-									<td>${group_top.ucount}</td>
-								</tr>
-=======
-<<<<<<< HEAD
 							<c:forEach items="${u_top5}" var="user_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -72,15 +42,6 @@
 									<td><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
 									<td>${user_top.ucount}</td>
 								</tr>
-=======
-							<c:forEach items="${u_top5}" var="user_top">
-								<%-- <tr>
-									<td class="rank"></td>
-									<td class="team"><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
-									<td>${user_top.view}</td>
-								</tr> --%>
->>>>>>> 9aad775f2555918ea5054d956aaa54a35fd37e90
->>>>>>> acd2a37b4b021638626437ab91fd5e9ec6a95726
 							</c:forEach>
 							<!-- 개인 북마크 공유 순위 -->
 						</tbody>
@@ -105,38 +66,7 @@
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
-							<tr>
-								<td class="rank"><img class="rankimg"
-									src="../icon/gold.png">1</td>
-								<td class="team">네이버</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg"
-									src="../icon/silver.png">2</td>
-								<td class="team">구글</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg"
-									src="../icon/bronze.png">3</td>
-								<td class="team">w3school</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg"
-									src="../icon/medal2.png">4</td>
-								<td class="team">Brazil</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg"
-									src="../icon/medal2.png">5</td>
-								<td class="team">Colombia</td>
-								<td></td>
-							</tr>
-=======
+						<!-- 그룹 북마크 공유 순위 -->
 							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -160,7 +90,7 @@
 									<td>${group_top.ucount}</td>
 								</tr>
 							</c:forEach>
->>>>>>> acd2a37b4b021638626437ab91fd5e9ec6a95726
+							<!-- 그룹 북마크 공유 순위 -->
 						</tbody>
 					</table>
 				</div>
@@ -194,10 +124,11 @@
 							</tr>
 						</thead>
 						<tbody>
+						<!-- 개인 북마크 공유 -->
 							<tr class="index1">
-								<td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td><a data-toggle="modal" data-target="#myModal">작성자0</a>
+								<td><a href="" target="_blank"> </a></td>
+								<td class="table-tag"></td>
+								<td><a data-toggle="modal" data-target="#myModal"> </a>
 								</td>
 								<td class="table-date">2018-06-12</td>
 								<td class="table-click">1130</td>
@@ -300,6 +231,7 @@
 								<td class="table-date">2018-06-12</td>
 								<td class="table-click">1033</td>
 							</tr>
+							<!-- 개인 북마크 공유 -->
 						</tbody>
 					</table>
 				</div>
