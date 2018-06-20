@@ -24,13 +24,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM TEAM WHERE GID = #{gid}
 	</delete>
 	
+	<insert id="insertGroup">
+		INSERT INTO TEAM(GNAME, REGDATE) VALUES(#{gname}, sysdate())
+	</insert>
+	
+	<select id="selectLastGroupID" resultType="Integer">
+		SELECT Max(GID) from TEAM
+	</select>
+	
+	<update id="completedGroup">
+		update TEAM set HTAG = #{htag}, DUEDATE = sysdate() where gid = #{gid}
+	</update>
 	
 	<!-- 명수 -->
-	<select id="getCompletedTeamList" resultType="site.book.team.dto.S_TeamDTO">
+	<select id="getCompletedTeamList" resultType="site.book.team.dto.TeamDTO">
 		SELECT * FROM TEAM t JOIN G_MEMBER gm ON t.gid = gm.gid WHERE UID = #{0} AND HTAG IS NOT NULL
 	</select>
 	
-	<select id="getTeamList" resultType="site.book.team.dto.S_TeamDTO">
+	<select id="getTeamList" resultType="site.book.team.dto.TeamDTO">
 		SELECT * FROM TEAM T JOIN G_MEMBER GM ON T.GID = GM.GID WHERE UID = #{0} AND HTAG IS NULL;
 	</select>
 	
