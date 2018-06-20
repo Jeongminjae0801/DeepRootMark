@@ -280,26 +280,26 @@ h2 {
 
 #layout {
   float: left;
-  width: 60%;
+  width: 100%;
   height: 70%;
-  background-color: #253d52;
-  color: #f9c300;
+  /*background-color: #fff;*/
+  /*color: #f9c300;*/
 }
 
 #explain {
   float: left;
   width: 40%;
   height: 70%;
-  background-color: #6999E8;
-  color: #4CFF69;
+  /*background-color: #6999E8;*/
+  /*color: #fff;*/
 }
 
 #comment {
   float: left;
   width: 100%;
   height: 30%;
-  background-color: #7171FF;
-  color: #E6E84B;
+  /*background-color: #7171FF;*/
+  color: #fff;
 }
 
 .preview_img {

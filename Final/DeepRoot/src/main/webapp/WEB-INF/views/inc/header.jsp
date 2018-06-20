@@ -31,7 +31,9 @@
                         </ul>
                     </li>
                     <li>
+                    <!-- Social Link  -->
                         <a href="#">Social</a>
+                    <!-- Social Link  -->
                     </li>
                     <li class="dropdown">
                         <a href="#">Notice <i class="fa fa-angle-down"></i></a>
