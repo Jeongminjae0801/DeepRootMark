@@ -20,7 +20,7 @@
             	<se:authorize access="isAuthenticated()">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">MyBookmark</a>
+                        <a href="user/mybookmark.do">MyBookmark</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">Group <i class="fa fa-angle-down"></i></a>
