@@ -20,12 +20,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${u_top5} var="user_top">
-								<tr>
-									<td></td>
-									<td><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
+							<c:forEach items="${u_top5}" var="user_top">
+								<%-- <tr>
+									<td class="rank"></td>
+									<td class="team"><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
 									<td>${user_top.view}</td>
-								</tr>
+								</tr> --%>
 							</c:forEach>
 						</tbody>
 					</table>
