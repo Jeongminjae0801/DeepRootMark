@@ -48,8 +48,10 @@
     <script type="text/javascript" src="js/wow.min.js"></script>
     <!-- Script Common END -->
     
-    
-    
+	<!-- jQuery Confirm START -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+	<!-- jQuery Confirm END -->
     
     <script>
         /**************************  Table Start  **********************************/
@@ -260,6 +262,8 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/login.js?ver=1"></script>
     <!-- Custom Script END -->
+    
+    
 </body>
 
 
