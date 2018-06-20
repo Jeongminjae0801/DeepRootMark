@@ -54,7 +54,7 @@
 			</div>
 			<!-- top5 list end -->
 			<!-- Individual TOP5 DIV END -->
-			<div class="col-sm-2 bg"></div>
+			<div class="col-sm-2"></div>
 
 			<!-- Group TOP5 DIV START -->
 			<!-- Gtop5 list start -->
@@ -131,6 +131,7 @@
 								<th>작성자</th>
 								<th class="table-date">공유날짜</th>
 								<th class="table-click">조회수</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -142,10 +143,10 @@
 									<td>${u_booklist.uid}</td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
+									<td><i class="fa fa-share" onclick="addUrl()"></i></td>
 								</tr>
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->
-
 						</tbody>
 					</table>
 				</div>
@@ -166,6 +167,7 @@
 								<th>그룹장</th>
 								<th class="table-date">공유날짜</th>
 								<th class="table-click">조회수</th>
+								<th></th>
 							</tr>
 						</thead>
 						<!-- g_list start -->
@@ -178,6 +180,7 @@
 									<td>${g_booklist.nname}</td>
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click"></td>
+									<td><i class="fa fa-share" onclick="addUrl()"></i></td>
 								</tr>
 							</c:forEach>
 							<!-- 그룹 공유   -->

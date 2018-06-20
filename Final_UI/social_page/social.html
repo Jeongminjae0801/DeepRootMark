@@ -260,6 +260,28 @@
     <section class="slideimg">
     </section>
 
+
+    <!-- 호잇 호잇-->
+    <script>
+        $(function() {
+            $(document).on("click", ".url", function() {
+                window.open(this.dataset.url, '_blank');
+            });
+
+            $('.a').on({
+                mouseover: function() {
+                    /*$(this).children('i').css('display', 'block')*/
+                    $('.bb').css('display', 'block')
+                },
+                mouseleave: function() {
+                    /*$(this).children('i').css('display', 'none')*/
+                    $(this).parent().children('.bb').css('display', 'none')
+                }
+            });
+        });
+    </script>
+    <!-- 호잇 호잇-->
+
     <!-- Share Bookmark div START -->
     <section class="bookmark-share-div">
         <img src="images/books.png" class="bg-bottom">
@@ -277,37 +299,52 @@
                                     <th>작성자</th>
                                     <th class="table-date">공유날짜</th>
                                     <th class="table-click">조회수</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="index1">
-                                    <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                    <td class="a">
+                                        <a href="http://www.naver.com" target="_blank">네이버</a>
+                                    </td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         <a data-toggle="modal" data-target="#myModal">작성자0</a>
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1130</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index3">
-                                    <td><a href="http://www.daum.net" target="_blank">다음</a></td>
+
+                                    <td class="a"><a href="http://www.daum.net" target="_blank">다음</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자1
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">900</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
-                                    <td><a href="http://www.google.com" target="_blank">구글</a></td>
+
+                                    <td class="a"><a href="http://www.google.com" target="_blank">구글</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
                                         작성자2
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -315,8 +352,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -324,8 +365,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index1">
+
                                     <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -333,8 +378,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index3">
+
                                     <td><a href="http://www.daum.net" target="_blank">다음</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -342,8 +391,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.google.com" target="_blank">구글</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -351,8 +404,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -360,8 +417,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -369,8 +430,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index1">
+
                                     <td><a href="http://www.naver.com" target="_blank">네이버</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -378,8 +443,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index3">
+
                                     <td><a href="http://www.daum.net" target="_blank">다음</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -387,8 +456,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.google.com" target="_blank">구글</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -396,8 +469,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.kakao.com" target="_blank">뿌리깊은마크</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -405,8 +482,12 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                                 <tr class="index2">
+
                                     <td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
                                     <td class="table-tag">#포털사이트 #검색</td>
                                     <td>
@@ -414,24 +495,16 @@
                                     </td>
                                     <td class="table-date">2018-06-12</td>
                                     <td class="table-click">1033</td>
+                                    <td>
+                                        <i class="fa fa-plus-circle i-plus-circle" onclick="addUrl()"></i>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <!-- Individual Share Bookmark START -->
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
-
-                <!-- Div center START -->
-
-                <!-- Div center END -->
->>>>>>> 35a188f84999b5870def51b3dd547f88b92b3455
->>>>>>> 87bb36a53011f37c6da60095cd5960473a0359cb
                 <!-- Group Share Bookmark START -->
                 <div class="col-sm-6">
                     <div class="panel-body">
@@ -593,7 +666,7 @@
     <!-- Share Bookmark div END -->
 
     <!-- Surfing Modal Script START -->
-   <!-- <script>
+    <!-- <script>
         function surfingModal() {
             showCategoryForm();
             setTimeout(function() {
@@ -619,10 +692,10 @@
                             <input type="text" class="form-control" id="recipient-name">
                         </div>
                         <div class="form-group dropright">
-                             <button class="control-label dropdown-toggle dtn-secondary" type="button" data-toggle="dropdown">가져갈 곳</button>
+                            <button class="control-label dropdown-toggle dtn-secondary" type="button" data-toggle="dropdown">가져갈 곳</button>
                             <ul class="dropdown-menu">
                                 <li><a data-toggle="modal" onclick="">My Page</a></li>
-                            <li><a data-toggle="modal" onclick="">Group</a></li>
+                                <li><a data-toggle="modal" onclick="">Group</a></li>
                             </ul>
                         </div>
                     </form>

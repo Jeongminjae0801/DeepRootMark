@@ -22,6 +22,15 @@
     color: #2c3e50;
 }
 
+.bb{
+    display: none;
+    width:5px;
+    height:5px;
+}
+.cc{
+    width: 5px;
+    height: 5px;
+}
 /* RANK, Share Img START */
 .rankimg{
     width:55px;
@@ -55,13 +64,6 @@
 .slideimg{
     background: url(../../images/1196.png) 0 85% repeat-x;
     height: 85px;
-}
-
-.bg{
-    background: url(../../images/family.png) no-repeat;
-    background-size: 100% 45%;
-    background-position: center bottom;
-    height: 330px;
 }
 
 .bg-bottom{
