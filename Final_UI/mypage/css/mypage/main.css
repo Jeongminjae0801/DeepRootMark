@@ -211,41 +211,48 @@
   margin: 22px 40px 0px 0px;
 }
 .completed-modal-title { margin: 0px; }
-.completed-modal-from { float: left; }
-.completed-modal-to { float: left; margin-right: 10px; }
+.completed-modal-from { float: left; color: #dc3500; }
+.completed-modal-to { float: left; margin-right: 10px; color: #081971; }
 .completed-modal-hr { margin-top: 2px; border-top: 2px solid #a94442; }
 .divider-hr { margin: 0px; border-top: 1px dashed #bdb4b4; }
-.completed-modal-btn{ float: right; }
 .completed-modal-content { margin-bottom: 10px; }
 .completed-modal-left {
   padding-left: 10px;
   width: 50%;
-  border: 1px solid #000;
   float: left;
 }
 .completed-modal-right {
   padding-left: 10px;
   width: 50%;
-  border: 1px solid #000;
+  border-left: 1px dashed #000;
   float: left;
 }
-
 .completed-modal-dropdown { float: left; }
 .completed-modal-dropdown .btn {
   margin-top: 1px;
+  width: 235px;
+  color: #fff;
   font-size: 15px;
   font-weight: 600;
-  border: 2px solid #000;
+  background: #005188;
+  border: 2px solid #00366b;
   border-radius: 5px;
+}
+
+.completed-modal-btn {
+  background-color: #305677;
+  color: #fff;
+  font-weight: 600;
+  float: right;
 }
 
 .dropdown-menu { z-index: 1000; }
 .dropdown-menu > li { padding: 5px 10px 5px 10px; background-color: #fff; }
-.dropdown-menu > li > a { padding: 0px; background-color: #fff; }
-.dropdown-menu > li: hover {
+.dropdown-menu > li > a { padding: 0px; }
+.dropdown-menu > li:hover {
    background-color: #ddd;
 }
-.dropdown-menu > li > a: hover {
+.dropdown-menu > li > a:hover {
    background-color: #ddd;
 }
 
