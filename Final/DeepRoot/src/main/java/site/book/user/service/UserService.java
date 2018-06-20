@@ -159,34 +159,37 @@ public class UserService {
 		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
 		int result = 0;
 		String changed_file_name = "";
-		
+		System.out.println(user);
 		//업로드한 파일이 있다면,
 		if (file != null) {
 			String filename = file.getOriginalFilename();
 			String path = request.getServletContext().getRealPath("/");
 			String[] temp = filename.split("\\.");
-			changed_file_name = user.getNname() + "." + temp[temp.length-1];
+			if(temp.length > 1) {
+				changed_file_name = user.getNname() + "." + temp[temp.length-1];
+				user.setProfile(changed_file_name);
 			
-			String fpath = path + "images\\profile\\" + changed_file_name;
-			//System.out.println(filename + " , " + fpath);
-
-			// 서버에 파일 업로드 (write)
-			FileOutputStream fs = null;
-			try {
-				fs = new FileOutputStream(fpath);
-				fs.write(file.getBytes());
-			} catch (Exception e) {
-				System.out.println("이미지 쓰기 실패");
-			} finally {
+				String fpath = path + "images\\profile\\" + changed_file_name;
+	
+				// 서버에 파일 업로드 (write)
+				FileOutputStream fs = null;
 				try {
-					fs.close();
+					fs = new FileOutputStream(fpath);
+					fs.write(file.getBytes());
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println("이미지 쓰기 실패");
+				} finally {
+					try {
+						fs.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
+		// 파일 쓰기 완료 후, 유저 프로필 수정
 		try {
-			user.setProfile(changed_file_name);
+			System.out.println(user);
 			result = userDAO.editUser(user);
 		}catch (Exception e) {
 			System.out.println("Edit User Info Error");

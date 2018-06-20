@@ -6,6 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Individual TOP5 DIV START -->
+			<!-- top5 list start -->
 			<div class="col-sm-5">
 				<div class="panel-body rank-table">
 					<span class="ranktitle"><img src="../icon/trophy.png"
@@ -19,7 +20,10 @@
 							</tr>
 						</thead>
 						<tbody>
+<<<<<<< HEAD
 							<!-- 개인 북마크 공유 순위 -->
+=======
+>>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 							<c:forEach items="${u_top5}" var="user_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -43,11 +47,11 @@
 									<td>${user_top.ucount}</td>
 								</tr>
 							</c:forEach>
-							<!-- 개인 북마크 공유 순위 -->
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<!-- top5 list end -->
 			<!-- Individual TOP5 DIV END -->
 			<div class="col-sm-2 bg"></div>
 
@@ -66,7 +70,10 @@
 							</tr>
 						</thead>
 						<tbody>
+<<<<<<< HEAD
 						<!-- 그룹 북마크 공유 순위 -->
+=======
+>>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -90,7 +97,10 @@
 									<td>${group_top.ucount}</td>
 								</tr>
 							</c:forEach>
+<<<<<<< HEAD
 							<!-- 그룹 북마크 공유 순위 -->
+=======
+>>>>>>> 1b3268b6254e5196ad4fb2db03123dbf5faddb98
 						</tbody>
 					</table>
 				</div>
@@ -109,6 +119,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Individual Share Bookmark START -->
+			<!-- u_booklist start -->
 			<div class="col-sm-6">
 				<div class="panel-body">
 					<span class="share-head"><img src="../icon/hash.png"
@@ -124,118 +135,23 @@
 							</tr>
 						</thead>
 						<tbody>
-						<!-- 개인 북마크 공유 -->
-							<tr class="index1">
-								<td><a href="" target="_blank"> </a></td>
-								<td class="table-tag"></td>
-								<td><a data-toggle="modal" data-target="#myModal"> </a>
-								</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1130</td>
-							</tr>
-							<tr class="index3">
-								<td><a href="http://www.daum.net" target="_blank">다음</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자1</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">900</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.google.com" target="_blank">구글</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자2</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자3</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자4</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index1">
-								<td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자0</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index3">
-								<td><a href="http://www.daum.net" target="_blank">다음</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자1</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.google.com" target="_blank">구글</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자2</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.kakao.com" target="_blank">카카오</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자3</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자4</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index1">
-								<td><a href="http://www.naver.com" target="_blank">네이버</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자0</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index3">
-								<td><a href="http://www.daum.net" target="_blank">다음</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자1</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.google.com" target="_blank">구글</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자2</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.kakao.com" target="_blank">뿌리깊은마크</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자3</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
-							<tr class="index2">
-								<td><a href="http://www.zum.com" target="_blank">ZUM</a></td>
-								<td class="table-tag">#포털사이트 #검색</td>
-								<td>작성자4</td>
-								<td class="table-date">2018-06-12</td>
-								<td class="table-click">1033</td>
-							</tr>
 							<!-- 개인 북마크 공유 -->
+							<c:forEach items="${s_list}" var="u_booklist">
+								<tr>
+									<td><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
+									<td class="table-tag">"${u_booklist.htag}"</td>
+									<td>${u_booklist.uid}</td>
+									<td class="table-date">${u_booklist.sdate}</td>
+									<td class="table-click">${u_booklist.view}</td>
+								</tr>
+							</c:forEach>
+							<!-- 개인 북마크 공유 -->
+							
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<!-- u_booklist end -->
 			<!-- Individual Share Bookmark START -->
 
 			<!-- Group Share Bookmark START -->

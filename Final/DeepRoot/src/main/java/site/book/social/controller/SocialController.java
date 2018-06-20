@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import site.book.social.dto.TopDTO;
 import site.book.social.service.TopService;
+import site.book.user.dto.S_U_BookDTO;
 import site.book.user.service.U_BookService;
 
 /**
@@ -31,6 +32,8 @@ public class SocialController {
 	private TopService top_service;
 	
 	/* 진수햄 파라미터 */
+	@Autowired
+	private U_BookService u_bookservice;
 	
 	
 	/* 민재 함수 */
@@ -45,11 +48,14 @@ public class SocialController {
 		
 		List<TopDTO> a_top5 = top_service.getATop5();
 		model.addAttribute("a_top5", a_top5);
+		/*u_booklist start*/
+		List<S_U_BookDTO> s_list= u_bookservice.getSocialBookmarkList();
+		model.addAttribute("s_list",s_list);
 		
 		return "social.social";
 	}
 	
-	
+	/*u_booklist end*/
 	/***********************************************
 	/* 진수햄 함수 ************************************
 	**********************************************/
