@@ -19,7 +19,6 @@
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
 							<!-- 개인 북마크 공유 순위 -->
 							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
 								<tr>
@@ -48,8 +47,7 @@
 									<td><a href="${group_top.url}" target="_blank">${group_top.urlname}</a></td>
 									<td>${group_top.ucount}</td>
 								</tr>
-=======
-<<<<<<< HEAD
+							</c:forEach>
 							<c:forEach items="${u_top5}" var="user_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -72,15 +70,13 @@
 									<td><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
 									<td>${user_top.ucount}</td>
 								</tr>
-=======
+							</c:forEach>
 							<c:forEach items="${u_top5}" var="user_top">
 								<%-- <tr>
 									<td class="rank"></td>
 									<td class="team"><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
 									<td>${user_top.view}</td>
 								</tr> --%>
->>>>>>> 9aad775f2555918ea5054d956aaa54a35fd37e90
->>>>>>> acd2a37b4b021638626437ab91fd5e9ec6a95726
 							</c:forEach>
 							<!-- 개인 북마크 공유 순위 -->
 						</tbody>

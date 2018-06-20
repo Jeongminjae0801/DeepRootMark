@@ -23,14 +23,14 @@
     <!-- Main Page CSS END -->
 
     <!-- 태웅 CSS -->
-    <!-- MY Page CSS -->
-    <link href="css/mypage/main.css" rel="stylesheet">
-    <!-- MY Page CSS END -->
+
 
     <!-- Google Icon CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Google Icon CDN END -->
 
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <!-- 태웅 CSS END -->
 
 
@@ -273,7 +273,7 @@
                         </div>
                         <div class="panel-body-scroll">
                             <ul class="group-list-list">
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -281,7 +281,7 @@
                                         <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -289,7 +289,7 @@
                                         <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -297,7 +297,7 @@
                                         <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -305,7 +305,7 @@
                                         <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -313,7 +313,7 @@
                                         <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -321,7 +321,7 @@
                                         <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -329,7 +329,7 @@
                                         <a class="trash"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="list-group-item completed-list">
                                     <label class="my-group-list">
                                         List group item heading 1
                                     </label>
@@ -344,7 +344,58 @@
             </div>
         </div>
     </div>
- <i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
+    <i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
+
+    <!-- 완료 그룹 가져오기 Modal -->
+    <div id="get-completed-group" class="modal z-index999">
+        <h3 class="completed-modal-title"><b>북마크 파도타기</b></h3>
+        <hr class="completed-modal-hr">
+
+        <div class="completed-modal-content">
+            <div class="completed-modal-left">
+                <h4 class="completed-modal-from"><b>From : </b></h4>
+            </div>
+            <div class="completed-modal-right">
+                <h4 class="completed-modal-to"><b>To : </b></h4>
+
+                <!-- Dropdown -->
+                <div class="dropdown completed-modal-dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown button <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li class="dropdown-item" href="#">나의 북마크</li>
+                        <hr class="divider-hr">
+                        <li class="dropdown-submenu">
+                            <a tabindex="-1" href="#">나의 그룹북마크</a>
+                            <ul class="dropdown-menu">
+                              <li><span tabindex="-1">Group 1</span></li>
+                              <li><span>Group 2</span></li>
+                              <li><span>Group 3</span></li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="completed-modal-hr">
+        <a href="#" rel="modal:close"></a>
+        <button type="button" class="btn btn-default completed-modal-btn">가져오기</button>
+    </div>
+
+    <script type="text/javascript">
+        $('.completed-list').dblclick(function(){});
+        $('.completed-list').click(function(event){
+            $('#get-completed-group').modal();
+            $('#get-completed-group').parent().css('z-index', '500');
+        });
+    </script>
+
 
 </body>
+    <!-- MY Page CSS -->
+    <link href="css/mypage/main.css" rel="stylesheet">
+    <!-- MY Page CSS END -->
 </html>
