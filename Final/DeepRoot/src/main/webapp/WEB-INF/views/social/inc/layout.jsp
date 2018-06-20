@@ -81,10 +81,12 @@
         /* ******************** Table Search START *************************** */
         $(function() {
             $('#listTable1').DataTable({
-                responsive: true
+                responsive: true,
+                "order": [[ 3, "desc" ]]
             });
             $('#listTable2').DataTable({
-                responsive: true
+                responsive: true,
+                "order": [[ 3, "desc" ]]
             });
         });
         /* ******************** Table Search END *************************** */
