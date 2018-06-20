@@ -19,7 +19,7 @@
     <!-- Bootstrap Common CSS END -->
 
     <!-- Main Page CSS -->
-    <link href="css/mainpage/main.css" rel="stylesheet">
+    <link href="css/mainpage/main.css?ver=2" rel="stylesheet">
     <link href="css/mainpage/header.css" rel="stylesheet">
     <link href="css/mainpage/footer.css" rel="stylesheet">
     <link href="css/mainpage/list_table.css" rel="stylesheet">

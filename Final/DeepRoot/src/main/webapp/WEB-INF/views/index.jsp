@@ -166,10 +166,10 @@
                         </div>
                         <div id="category-display" class="col-sm-12 category-items">
                             <div id="showall" class="category reddiv" style="background-color: #7bbfa8">
-                                <span>Show All</span></div>
+                                <span class="category-title">Show All</span></div>
                             <c:forEach items="${categoryList}" var="cList">
                             	<div id="${cList.acid}" data-category="${cList.acname}" class="category" style="background-color: ${cList.color}">
-                                <span>${cList.acname}</span></div>
+                                <span class="category-title">${cList.acname}</span></div>
                             </c:forEach>
                         </div>
                     </div>

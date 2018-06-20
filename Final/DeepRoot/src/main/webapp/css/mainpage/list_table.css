@@ -60,6 +60,7 @@ ul > li{
 }
 
 .url{
+	font-size: 15px;
     font-weight: 400;
     margin-bottom: 5px;
     color: black;
@@ -76,13 +77,13 @@ ul > li{
     float: left;
     margin-top: 3px;
     margin-right: 5px;
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
 }
 
 .url_link_btn {
-    height: 10px;
-    width: 10px;
+    height: 14px;
+    width: 14px;
     margin: 7px 5px 0px 0px;
     display: none;
     float: right;
