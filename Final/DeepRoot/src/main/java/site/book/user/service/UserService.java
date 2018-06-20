@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +35,9 @@ public class UserService {
 	// 태웅
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	// 희준
 	@Autowired
@@ -137,12 +141,12 @@ public class UserService {
 	}
 	
 	// 한명의 회원정보 가져오기
-	public UserDTO getMember(UserDTO user) {
+	public UserDTO getMember(String uid) {
 		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
 		UserDTO editedUser = null;
 
 		try {
-			editedUser = userDAO.getUser(user);
+			editedUser = userDAO.getUser(uid);
 		}catch (Exception e) {
 			System.out.println("Get User Info Error");
 		}
@@ -200,6 +204,77 @@ public class UserService {
 			result = userDAO.deleteUser(uid);
 		}catch (Exception e) {
 			System.out.println("Get User Info Error");
+		}
+		
+		return result;
+	}
+	
+	// 비밀번호 찾기 서비스
+	public int findUserPwd(UserDTO user) {
+		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
+		int result = 0;
+		String pwd = new RollinTempKey().getKey(15, false).toLowerCase();
+		try {
+			// 회원이라면,
+			if(userDAO.getUser(user.getUid()) != null) {
+				// Send email with new temp password
+				user.setPwd(this.bCryptPasswordEncoder.encode(pwd));
+				result = userDAO.updatePwd(user);
+				
+				RollinMailHandler sendMail = new RollinMailHandler(mailSender);
+				sendMail.setSubject("[뿌리깊은마크 이메일 인증]");
+				sendMail.setText(
+						new StringBuffer().append("<h1>임시 비밀번호 발급</h1>")
+										  .append("<p>사용자님의 인증키입니다.</p>")
+										  .append("<p>[Temp Password]: <b>" + pwd + "</b></p>")
+										  .append("<h5 style='color:red'>※주의: 로그인 후, 비밀번호를 변경해주세요.</h5>")
+										  .toString()
+				);
+				sendMail.setFrom("bitcamp104@gmail.com", "뿌리깊은마크 관리자");
+				sendMail.setTo(user.getUid());
+				sendMail.send();
+			}
+		}catch (Exception e) {
+			
+		}
+		
+		return result;
+	}
+	
+	// 회원(이메일) 확인 서비스
+	public int confirmUser(EmailAuthDTO user) {
+		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
+		String key = new RollinTempKey().getKey(10, false);
+		int result = 0;
+		
+		try {
+			// 회원이라면,
+			String uid = user.getUid();
+			UserDTO member =  userDAO.getUser(uid);
+			System.out.println(member);
+			if(member != null) {
+				// Send email Authcode
+				
+				RollinMailHandler sendMail = new RollinMailHandler(mailSender);
+				sendMail.setSubject("[뿌리깊은마크 이메일 인증]");
+				sendMail.setText(
+						new StringBuffer().append("<h1>회원 인증 서비스</h1>")
+										  .append("<p>사용자님의 인증키입니다.</p>")
+										  .append("<p>[Authcode]: <b>" + key + "</b></p>")
+										  .append("<h5 style='color:red'>※주의: 5분 안에 인증이 안될 시 비밀번호 찾기 서비스가 취소됩니다.</h5>")
+										  .toString()
+				);
+				sendMail.setFrom("bitcamp104@gmail.com", "뿌리깊은마크 관리자");
+				sendMail.setTo(user.getUid());
+				sendMail.send();
+				
+				// save user's authcode
+				user.setAuthcode(key);
+				result = userDAO.insertAuthCode(user);
+				System.out.println("전송 & insert 완료");
+			}
+		}catch (Exception e) {
+			
 		}
 		
 		return result;

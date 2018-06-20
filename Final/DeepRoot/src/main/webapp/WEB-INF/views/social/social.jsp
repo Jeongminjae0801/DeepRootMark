@@ -20,6 +20,7 @@
 							</tr>
 						</thead>
 						<tbody>
+<<<<<<< HEAD
 							<c:forEach items="${u_top5}" var="user_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -42,6 +43,14 @@
 									<td><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
 									<td>${user_top.ucount}</td>
 								</tr>
+=======
+							<c:forEach items="${u_top5}" var="user_top">
+								<%-- <tr>
+									<td class="rank"></td>
+									<td class="team"><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
+									<td>${user_top.view}</td>
+								</tr> --%>
+>>>>>>> 9aad775f2555918ea5054d956aaa54a35fd37e90
 							</c:forEach>
 						</tbody>
 					</table>
