@@ -134,12 +134,8 @@
 							</tr>
 						</thead>
 						<tbody>
-<<<<<<< HEAD
 							<c:forEach items="${u_list}" var="u_booklist">
-=======
 							<!-- 개인 북마크 공유 -->
-							<c:forEach items="${s_list}" var="u_booklist">
->>>>>>> 02617d0b2ee8c792dc83a9d75167ed307d9203e7
 								<tr>
 									<td><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
