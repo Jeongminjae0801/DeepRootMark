@@ -6,6 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- Individual TOP5 DIV START -->
+			<!-- top5 list start -->
 			<div class="col-sm-5">
 				<div class="panel-body rank-table">
 					<span class="ranktitle"><img src="../icon/trophy.png"
@@ -19,40 +20,18 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/gold.png">1</td>
-								<td class="team"><a href="http://www.naver.com"
-									target="_blank">네이버</a></td>
-								<td>1053</td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/silver.png">2</td>
-								<td class="team"><a href="http://www.daum.net"
-									target="_blank">DAUM</a></td>
-								<td>951</td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/bronze.png">3</td>
-								<td class="team"><a href="https://w3school.com"
-									target="_blank">w3school</a></td>
-								<td>453</td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/medal2.png">4</td>
-								<td class="team"><a href="http://www.kakao.com"
-									target="_blank">kakao</a></td>
-								<td>358</td>
-							</tr>
-							<tr>
-								<td class="rank"><img class="rankimg" src="../icon/medal2.png">5</td>
-								<td class="team"><a href="http://www.google.com"
-									target="_blank">google</a></td>
-								<td>351</td>
-							</tr>
+							<c:forEach items="${u_top5} var="user_top">
+								<tr>
+									<td></td>
+									<td><a href="${user_top.url}" target="_blank">${user_top.urlname}</a></td>
+									<td>${user_top.view}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 			</div>
+			<!-- top5 list end -->
 			<!-- Individual TOP5 DIV END -->
 			<div class="col-sm-2 bg"></div>
 
