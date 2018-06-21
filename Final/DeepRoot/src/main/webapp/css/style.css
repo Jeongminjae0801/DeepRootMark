@@ -121,7 +121,7 @@ font-family: 'Gamja Flower', cursive;
 @import url('https://fonts.googleapis.com/css?family=Gugi|Jua');
 @import url('https://fonts.googleapis.com/css?family=Cute+Font|Gamja+Flower|Jua|Song+Myung|Stylish');
 .jstree {
-	font-family:   'Stylish', sans-serif; 폰트
+	font-family:   'Stylish', sans-serif; /* 폰트 */
     font-size: 15px;
     font-weight:800;
 }
