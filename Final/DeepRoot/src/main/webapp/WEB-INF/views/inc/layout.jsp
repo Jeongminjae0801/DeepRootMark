@@ -119,37 +119,53 @@
         
         /**************************  Preview Start  **********************************/
     	function preview(abid){
+    		var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
+    		$('#preview_content').fadeOut(10, function(){
+	    		$('#preview_content').fadeIn(1000);
+	        	$("#layout").html(layout);
+    		});
+        	
         	$.ajax({
         		url: "preview.do",
 				type: "post",
-				data : {
-					abid : abid // 북마크 ID
-				},
+				data : { abid : abid },// 북마크 ID
 				beforeSend: function() {
-	                $('#layout').html('<img src="${pageContext.request.contextPath}/images/loading/preview.gif" style="margin-top: 17%;"/>');
+	                $('#comment').html('<img src="${pageContext.request.contextPath}/images/loading/preview.gif" style="margin-top: 0;"/>');
 	            },
 	            complete: function() {
-	            	$('#layout').html('');
+	            	$('#comment').html('');
 	            },
 				success : function(data){
-					
-					$('#preview_content').fadeOut(10, function(){
-						
+					//console.log(data);
+					$('#comment').fadeOut(10, function(){
 						// console.log(data);
-						var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
-			        	$("#layout").html(layout);
 			        	var comment = "";
 			        	if(data.title != "" && data.title != null){
 			        		comment = "<b>" + data.title + "</b>";
 			        	}
 			        	if(data.url != "" && data.url != null){
-			        		comment += "   -   <a href='" + data.url + "' target='_blank'><font style='color : #1bc9c4; text-decoration : underline'>" + data.url + "</font></a>";
+			        		comment += "&nbsp;-&nbsp;<a href='" + data.url + "' target='_blank'><font style='color : #1bc9c4; text-decoration : underline'>" + data.url + "</font></a>";
 			        	}
 			        	if(data.description != "" && data.description != null){
 			        		comment += "<br> <p>" + data.description + "</p>";
 			        	}
-						$("#comment").html(comment);
-                        $('#preview_content').fadeIn(1000);
+			        	$("#comment").html(comment);
+			        	
+			        	var detail = "";
+			        	if(data.rank != "" && data.rank != null) {
+			        		detail += "<br><span>World Rank: " + data.rank + "</span>";
+			        	}
+			        	if(data.visitor != "" && data.visitor != null) {
+			        		detail += "<br><span>Daily Visitor: " + data.visitor + "</span>";
+			        	}
+			        	if(data.suburl != "" && data.suburl != null) {
+			        		for(index in data.suburl) {
+			        			detail += "<br><span>" + data.suburl[index][0] + " >> " + data.suburl[index][1] + "</span>";
+			        		}
+			        	}
+			        	$("#comment").append(detail);
+						
+                        $('#comment').fadeIn(1000);
                         
                     });
 				}

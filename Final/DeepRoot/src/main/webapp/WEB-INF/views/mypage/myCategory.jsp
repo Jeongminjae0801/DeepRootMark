@@ -158,7 +158,7 @@
 			
 			url : "getCompletedTeamBookmark.do",
 			type : "POST",
-			data : {gid : "4"},	/* group id 를 넣어야 한다. */
+			data : {gid : gid},	/* group id 를 넣어야 한다. */
 			dataType :"json",
 			success : function(obj){
 				
