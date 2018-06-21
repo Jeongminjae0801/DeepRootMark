@@ -15,7 +15,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="completed-modal-left">
-	                <h4 class="completed-modal-from"><b>From : </b></h4>
+	                <h4 class="completed-modal-from"><b>From : <span id="from-text"></span></b></h4>
 	
 	                <div id="jstree-from-left">
 	
@@ -272,13 +272,13 @@
 							<c:forEach items="${g_list}" var="g_booklist">
 								<tr>
 								<!-- 그룹 공유  -->
-									<td class="table-groupname"><a href="" target="_blank">${g_booklist.gname}</a></td>
+									<td class="table-groupname"><a href="#">${g_booklist.gname}</a></td>
 									<td class="table-tag">"${g_booklist.htag}"</td>
 									<td class="table-write">${g_booklist.nname}</td>
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click"></td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal"><i class="fa fa-share"></i></td>
+									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}"><i class="fa fa-share"></i></td>
 									<!-- 가져오기 icon -->
 								</tr>
 							</c:forEach>

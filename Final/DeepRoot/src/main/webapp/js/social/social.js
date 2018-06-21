@@ -140,8 +140,13 @@ jQuery(function($) {
 
 /* 태웅이 onclick */
 $('#socialGroupModal').on('shown.bs.modal', function(){
-	console.log($(this));
-	console.log($('#listTable2 > tbody > tr > .table-groupname').text());
+	
+});
+
+$('.table-icon').on('dblclick', function(){ return });
+$('.table-icon').on('click', function(){
+	var title = $(this).data('title');
+	$('#from-text').text(title);
 });
 
 /* 태웅이 onclick END */
