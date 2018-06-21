@@ -6,4 +6,11 @@ $(document).ready(function(){
 	$('#completedGroupModal').on('shown.bs.modal', function(){
 		
 	});
+	
+	
+	function testing_modal(d){
+		console.log(d);
+		
+		
+	}
 });

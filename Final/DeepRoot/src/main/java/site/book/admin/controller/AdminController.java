@@ -74,6 +74,12 @@ public class AdminController {
 	private VisitorService visitor_service;
 
 	@Autowired
+	private U_BookService u_bookservice;
+	
+	@Autowired
+	private TeamService teamservice;
+	
+	@Autowired
 	private View jsonview;
 	
 	// 메인 페이지
@@ -162,6 +168,20 @@ public class AdminController {
 		return "admin.mainBookList";
 	}
 	
+	// social 페이지
+	@RequestMapping("social.do")
+	public String social(Model model) {
+		
+		List<S_U_BookDTO> u_list= u_bookservice.getSocialBookmarkList();
+		model.addAttribute("u_list",u_list);
+		
+		List<S_TeamDTO> g_list=teamservice.getSocialGroupList();
+		model.addAttribute("g_list", g_list);
+		
+		return "admin.social";
+	}
+	
+	
 	// userListTable 페이지
 	@RequestMapping("userListTable.do")
 	public String userListTable(Model model) {
@@ -207,6 +227,7 @@ public class AdminController {
 		return jsonview;
 	}
 	
+	// 카테고리 추가
 	@RequestMapping("addCategory.do")
 	public String addCategory(A_CategoryDTO category, Model model) {
 		System.out.println("관리자 카테고리 추가");
@@ -221,6 +242,7 @@ public class AdminController {
 
 	}
 	
+	// 카테고리 삭제
 	@RequestMapping("deleteCategory.do")
 	public String deleteCategory(String acid) {
 		System.out.println("관리자 카테고리 삭제");
@@ -231,6 +253,7 @@ public class AdminController {
 		return "redirect:mainBookList.do";
 	}
 	
+	// 카테고리 수정
 	@RequestMapping("editCategory.do")
 	public String updateCategory(A_CategoryDTO category) {
 		System.out.println("관리자 카테고리 수정");
@@ -241,6 +264,7 @@ public class AdminController {
 		return "redirect:mainBookList.do";
 	}
 	
+	// URL 추가시 타이틀 가져오기
 	@RequestMapping("preview.do")
 	public View WebCrawling(String url, Model model) {
 		Document doc;
@@ -275,6 +299,7 @@ public class AdminController {
 		return jsonview;
 	}
 	
+	// URL 추가하기
 	@RequestMapping("addUrl.do")
 	public String addBook(A_BookDTO book) {
 		System.out.println("관리자 URL 추가");
@@ -285,6 +310,7 @@ public class AdminController {
 		return "redirect:mainBookList.do";
 	}
 	
+	// URL 삭제하기
 	@RequestMapping("deleteUrl.do")
 	public View deleteBook(String abid, Model model) {
 		System.out.println("관리자 URL 삭제");
@@ -299,6 +325,7 @@ public class AdminController {
 		return jsonview;
 	}
 	
+	// URL 수정하기
 	@RequestMapping("editUrl.do")
 	public String updateBook(A_BookDTO book) {
 		System.out.println("관리자 URL 수정");
@@ -309,40 +336,31 @@ public class AdminController {
 		return "redirect:mainBookList.do";
 	}
 	
+	// 카테고리 색상 변경하기
 	@RequestMapping("editCategoryCclor.do")
 	public View updateCategoryColor(A_CategoryDTO category, Model model) {
-		
 		int row = a_category_service.editCategoryColor(category);
-		
 		String data = (row == 1) ? "성공" : "실패";
-		
 		model.addAttribute("data", data);
 		
 		return jsonview;
 	}
 	
-	///////////////////////////////////////////////////
-
-	
-
-	
-
-	
-
+	// 소셜 개인 북마크 삭제하기
 	@RequestMapping("deleteSUBook.do")
-	public String deleteSUBook(String ubid) {
+	public View deleteSUBook(String ubid, Model model) {
 		System.out.println("소셜 개인 URL 삭제");
 		System.out.println("소셜 개인 URL 번호: " + ubid);
 
-		u_book_service.deleteSocialBookmark(Integer.parseInt(ubid));
-
-		return "redirect:admin.do";
+		int row = u_book_service.deleteSocialBookmark(Integer.parseInt(ubid));
+		String data = (row == 1) ? "성공" : "실패";
+		model.addAttribute("data", data);
+		
+		return jsonview;
 	}
 
+	////////////////////////////////////////
 	
-
-	
-
 	@RequestMapping("noticeReg.do")
 	public String noticeReg(String ncontent) {
 		System.out.println("공지사항 쓰기");

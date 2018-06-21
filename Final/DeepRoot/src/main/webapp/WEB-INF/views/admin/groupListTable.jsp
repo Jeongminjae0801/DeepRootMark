@@ -16,9 +16,9 @@
 			title : '그룹 삭제',
 			content : '삭제하시겠습니까?',
 			theme: 'dark',
+			type: 'orange',
 			backgroundDismiss: true,
 			closeIcon: true,
-		    closeIconClass: 'fa fa-close',
 			buttons: {
 		        '삭제': {
 		        	btnClass : 'btn-danger',
@@ -67,7 +67,7 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="panel">
-						<div class="panel-heading">그룹목록 테이블</div>
+						<div class="panel-heading">그룹 목록</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<table width="100%" class="table table-hover" id="groupListTable">
@@ -81,13 +81,12 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${grouplist}" var="group">
-									<tr id="${group.gid}">
-										<td>${group.gid}</td>
-										<td>${group.gname}</td>
-										<td>${group.htag}</td>
-										<td><input class="btn btn-danger" type="button"
-											value="삭제" onclick="deleteGroup(${group.gid})"></td>
-									</tr>
+										<tr id="${group.gid}">
+											<td>${group.gid}</td>
+											<td>${group.gname}</td>
+											<td>${group.htag}</td>
+											<td><i class="fas fa-trash-alt url-action" onclick="deleteGroup(${group.gid})"></i></td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>

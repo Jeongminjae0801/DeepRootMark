@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import site.book.team.dao.G_BookDAO;
 import site.book.team.dao.G_MemberDAO;
 import site.book.team.dao.TeamDAO;
 import site.book.team.dto.G_MemberDTO;
@@ -39,10 +40,16 @@ public class TeamService {
 	// 소셜 그룹 리스트 가져오기
 	public List<S_TeamDTO> getSocialGroupList() {
 		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		G_BookDAO g_bookDAO = sqlsession.getMapper(G_BookDAO.class);
+		
 		List<S_TeamDTO> list = null;
 		
 		try {
 			list = teamDAO.socialGroupList();
+			for(S_TeamDTO team : list) {
+				team.setView(g_bookDAO.selectGroupViews(team.getGid()));
+			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
