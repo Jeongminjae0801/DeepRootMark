@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!-- 페이지 전환 Script START -->
 <script type="text/javascript">
 	$(window).load(function() {
@@ -28,7 +29,7 @@
 						'-webkit-transition-duration' : duration,
 						'transition-duration' : duration
 					});
-				$('.loader').addClass('exit');
+				$('.loader-circle').addClass('exit');
 				window.setTimeout(function() {
 					window.location = href
 					}, time)

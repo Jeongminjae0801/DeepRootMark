@@ -62,16 +62,15 @@
                 var targetText = $(this).parent().children('span');
 
                 $('.customColorHash').val(self.color);
-
                 $('.colorPickButton').click(function(event) {
 					self.color = $(event.target).attr('hexValue');
-                    
+                    /*
                     if(self.color == "#000") {
                         targetText.css('color', '#fff');
                     }else {
                         targetText.css('color', self.color);
                     }
-                    
+                    */
 					self.appendToStorage($(event.target).attr('hexValue'));
 					self.hide();
 					$.proxy(self.options.onColorSelected, self)();
