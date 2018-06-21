@@ -175,16 +175,15 @@
 							<!-- 그룹 공유   -->
 							<c:forEach items="${g_list}" var="g_booklist">
 								<tr>
+								<!-- 그룹 공유  -->
 									<td class="table-groupname"><a href="" target="_blank">${g_booklist.gname}</a></td>
 									<td class="table-tag">"${g_booklist.htag}"</td>
 									<td class="table-write">${g_booklist.nname}</td>
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click"></td>
-<<<<<<< HEAD
-									<td class="table-icon"><i class="fa fa-share" onclick="addUrl()"></i></td>
-=======
-									<td><i class="fa fa-share"></i></td>
->>>>>>> e3faab12b3c323123cb67cecaa6a0f36c52902fa
+									<!-- 가져오기 icon -->
+									<td class="table-icon">><i class="fa fa-share"></i></td>
+									<!-- 가져오기 icon -->
 								</tr>
 							</c:forEach>
 							<!-- 그룹 공유   -->
