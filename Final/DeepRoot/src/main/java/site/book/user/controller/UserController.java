@@ -1,6 +1,7 @@
 package site.book.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -421,6 +422,7 @@ public class UserController {
 		System.out.println(gid);
 		
 		JSONArray jsonArray = new JSONArray();	
+		HashMap<String, String> href = new HashMap();
 		List<G_BookDTO> list = g_bookservice.getCompletedTeamBookmark(gid);
 		
 		System.out.println(list);
@@ -441,6 +443,8 @@ public class UserController {
 			else
 				jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());
 			
+			href.put("href", list.get(i).getUrl());
+			jsonobject.put("a_attr", href);
 			jsonobject.put("id", list.get(i).getGbid());
 			jsonobject.put("text", list.get(i).getUrlname());
 			
@@ -453,6 +457,12 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@RequestMapping("insertGroupUrl.do")
+	public void insertGroupUrl( @RequestParam(value="gbid[]") List<String> gbid , HttpServletResponse res) {
+		System.out.println("dd");
+		System.out.println(gbid);
 	}
 	// 함수 End
 }

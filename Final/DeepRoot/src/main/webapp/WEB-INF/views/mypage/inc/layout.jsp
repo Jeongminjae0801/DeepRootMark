@@ -46,6 +46,94 @@
 <body>
 	<!-- Script -->
 	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/mypage/mycategory.js"></script>
+	<script type="text/javascript">
+	
+	
+ 	function testing_modal(d){
+		console.log(d.id);
+		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
+		
+		$.ajax({
+			
+			url : "getCompletedTeamBookmark.do",
+			type : "POST",
+			data : {gid : gid},	
+			dataType :"json",
+			success : function(obj){
+				first_data=obj;
+				$('#group_bookmark_modal').jstree().deselect_all(true);			
+				$("#group_bookmark_modal").jstree(true).settings.core.data = obj;
+				$("#group_bookmark_modal").jstree(true).refresh();
+			}	
+		})
+		
+		$('#completedGroupModal').modal();
+	} 
+ 	
+	function submitgroupurl(){
+		
+		var checked_ids = []; 
+		var submit_url_ids = [];
+		checked_ids = $('#group_bookmark_modal').jstree("get_checked",null,true);
+		console.log("check");
+		console.log(checked_ids);
+		
+		$.each(checked_ids,function(key,value){
+			console.log(value);
+			var checknode_href = $('#group_bookmark_modal').jstree(true).get_node(value).a_attr.href;
+			
+			if(checknode_href != '#'){
+				console.log(checknode_href);
+				submit_url_ids.push(value);
+			}
+		})
+		console.log(submit_url_ids); //[3,4]
+		
+		$.ajax({
+		
+			url : "insertGroupUrl.do",
+			type : "POST",
+			data : {gbid : submit_url_ids},
+			success : function(){
+			}
+		})
+	}
+	
+	$(document).ready(function(){
+	
+	var first_data = null;
+
+	$("#group_bookmark_modal").on('click','.jstree-anchor',function(e){
+		$('#group_bookmark_modal').jstree(true).toggle_node(e.target);
+		
+	}).jstree({
+			
+			"core" : {
+				"dblclick_toggle" : false,
+				'data' : first_data,
+				'themes':{
+					'name' : 'proton',
+					'responsive' : true,
+					'dots' : false,
+				}
+			},
+			"plugins" : ["checkbox" ]
+			
+		}).bind("loaded.jstree",function(event,data){
+			console.log("ready");
+			/* $('#group_bookmark_modal').jstree("open_all"); */
+			
+		}).bind("select_node.jstree",function(event,data){
+				console.log($('#group_bookmark_modal').jstree("get_checked",null,true));
+		})
+
+
+	
+	
+
+	})
+	
+	</script>
 	
 	<div id="main-header">
 		<tiles:insertAttribute name="header" />
