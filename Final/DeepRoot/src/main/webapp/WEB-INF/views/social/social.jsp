@@ -65,6 +65,39 @@
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<!-- social 개인 북마크 가져가기 div START -->
+<div id="socialindiModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialGroupModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-9">
+					
+						url : <input type="text" value="ㅇㅇㅇㅇ">
+						<div class="row">
+							<div class="col-xs-8 col-sm-6">Level 2: .col-xs-8 .col-sm-6
+							</div>
+							<div class="col-xs-4 col-sm-6">Level 2: .col-xs-4 .col-sm-6
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- social 개인 북마크 가져가기 div END -->
+
 <section class="ranking-div">
 	<div class="container">
 		<div class="row">
@@ -206,7 +239,7 @@
 									<td class="table-write"><a>${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
-									<td class="table-icon indi-share"><i class="fa fa-share" onclick="indi_share_bookmark()"></i></td>
+									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialindiModal"><i class="fa fa-share"></i></td>
 								</tr>
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->
