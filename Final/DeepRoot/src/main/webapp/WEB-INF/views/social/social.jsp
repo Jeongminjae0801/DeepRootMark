@@ -214,10 +214,7 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click"></td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon">
-										<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#socialGroupModal">
-										<i class="fa fa-share"></i></button>
-									</td>
+									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal"><i class="fa fa-share"></i></td>
 									<!-- 가져오기 icon -->
 								</tr>
 							</c:forEach>
