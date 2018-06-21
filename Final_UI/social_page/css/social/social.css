@@ -55,6 +55,7 @@
 .slideimg{
     background: url(../../images/1196.png) 0 85% repeat-x;
     height: 85px;
+    cursor: pointer
 }
 
 .bg-bottom{
