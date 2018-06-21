@@ -80,30 +80,43 @@ table tr td a{
 /* 북마크 공유 div 가져가기 icon END */
 
 /* Table CSS START */
+table thead tr th.table-site,
+table thead tr td.table-site,
+table thead tr th.table-group,
+table thead tr td.table-group{
+	width: 180px;
+}
+
+table thead tr td.table-write{
+	width: 90px;
+}
+
 table thead tr th.table-date,
-table tbody tr th.table-date{
-    width:20%;
+table tbody tr td.table-date{
+    width:100px;
 }
 
 table thead tr th.table-click,
-table tbody tr th.table-click{
-    width:13%;
+table tbody tr td.table-click{
+    width:60px;
+}
+
+table thead tr th.table-tag,
+table tbody tr td.table-tag{
+    display: none;
+}
+table thead tr th.table-icon,
+table thead tr td.table-icon{
+	width: 28px;
 }
 
 .panel-body.rank-table tr .rank{
     font-size:11px;
 }
-table thead tr th.table-tag,
-table tbody tr td.table-tag{
-    display: none;
-}
 
+/* 테이블 정렬 icon START */
 table.dataTable thead .sorting_asc:after {
-<<<<<<< HEAD
-    color: #d9534f;
-=======
     /* color: #d9534f;
->>>>>>> 3dc218146ccad5747dc697902918bf649646490e
     font-family: FontAwesome;
     content: "\F0DE" */
 }
@@ -113,6 +126,8 @@ table.dataTable thead .sorting_desc:after {
     font-family: FontAwesome;
     content: "\F0DD" */
 }
+/* 테이블 정렬 icon END */
+
 
 /* DATA TABLE CONTENT DISPLAY START */
 div.dataTables_info {

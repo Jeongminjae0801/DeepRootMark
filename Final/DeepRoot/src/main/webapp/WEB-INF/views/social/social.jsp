@@ -126,24 +126,24 @@
 					<table class="table table-hover" id="listTable1">
 						<thead>
 							<tr>
-								<th>사이트명</th>
+								<th class="table-site">사이트명</th>
 								<th class="table-tag">태그</th>
-								<th>작성자</th>
+								<th class="table-write">작성자</th>
 								<th class="table-date">공유날짜</th>
 								<th class="table-click">조회수</th>
-								<th></th>
+								<th class="table-icon"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${u_list}" var="u_booklist">
 							<!-- 개인 북마크 공유 -->
 								<tr>
-									<td><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
+									<td class="table-site"><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
-									<td><a>${u_booklist.nname}</a></td>
+									<td class="table-write"><a>${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
-									<td><i class="fa fa-share" onclick="addUrl()"></i></td>
+									<td class="table-icon"><i class="fa fa-share" onclick="addUrl()"></i></td>
 								</tr>
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->
@@ -162,12 +162,12 @@
 					<table class="table table-hover" id="listTable2">
 						<thead>
 							<tr>
-								<th>그룹명</th>
+								<th class="table-groupname">그룹명</th>
 								<th class="table-tag">태그</th>
-								<th>그룹장</th>
+								<th class="table-write">그룹장</th>
 								<th class="table-date">공유날짜</th>
 								<th class="table-click">조회수</th>
-								<th></th>
+								<th class="table-icon"></th>
 							</tr>
 						</thead>
 						<!-- g_list start -->
@@ -175,12 +175,12 @@
 							<!-- 그룹 공유   -->
 							<c:forEach items="${g_list}" var="g_booklist">
 								<tr>
-									<td><a href="" target="_blank">${g_booklist.gname}</a></td>
+									<td class="table-groupname"><a href="" target="_blank">${g_booklist.gname}</a></td>
 									<td class="table-tag">"${g_booklist.htag}"</td>
-									<td>${g_booklist.nname}</td>
+									<td class="table-write">${g_booklist.nname}</td>
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click"></td>
-									<td><i class="fa fa-share" onclick="addUrl()"></i></td>
+									<td class="table-icon"><i class="fa fa-share" onclick="addUrl()"></i></td>
 								</tr>
 							</c:forEach>
 							<!-- 그룹 공유   -->
