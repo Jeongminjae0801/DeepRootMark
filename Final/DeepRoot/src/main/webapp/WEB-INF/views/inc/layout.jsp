@@ -12,11 +12,16 @@
     <meta name="author" content="">
     <title>뿌리깊은마크</title>
     
-    <!-- Bootstrap Common CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
+    <!-- Latest compiled Bootstrap Common CSS -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Bootstrap Common CSS END -->
+    
+    <!-- Common Script START -->
+    <!-- Latest compiled JavaScript & CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Script Common JavaScript & CSS END -->
 
     <!-- Main Page CSS -->
     <link href="css/mainpage/main.css?ver=2" rel="stylesheet">
@@ -26,6 +31,7 @@
     <link href="css/mainpage/responsive.css" rel="stylesheet">
     <link href="css/mainpage/login-register.css?ver=2" rel="stylesheet" />
     <link href="css/addBookmarkStepModal-register.css" rel="stylesheet" />
+    <link href="css/animate.min.css" rel="stylesheet">
     <!-- Main Page CSS END -->
     
     <!-- User Info Page CSS -->
@@ -33,25 +39,23 @@
 	<!-- User Info CSS END -->
 	
     <!-- Login / roll-in Modal Script Start -->
-    <!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
     <script src="js/script.js"></script>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- Login / roll-in Modal Script Start END -->
 
     <!-- Category Input Script START -->
     <script src="js/category_insert.js"></script>
     <!-- Category Input Script END -->
     
-    <!-- Common Script START -->
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/wow.min.js"></script>
-    <!-- Script Common END -->
-    
 	<!-- jQuery Confirm START -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 	<!-- jQuery Confirm END -->
+	
+	<!-- Custom Script START -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+    <script type="text/javascript" src="js/login.js?ver=2"></script>
+    <!-- Custom Script END -->
     
     <script>
         /**************************  Table Start  **********************************/
@@ -259,18 +263,5 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
 	
-	
-	
-    
-   
-
-    <!-- Custom Script START -->
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/login.js?ver=1"></script>
-    <!-- Custom Script END -->
-    
-    
 </body>
-
-
 </html>

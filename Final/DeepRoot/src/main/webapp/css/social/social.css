@@ -99,15 +99,19 @@ table tbody tr td.table-tag{
 }
 
 table.dataTable thead .sorting_asc:after {
+<<<<<<< HEAD
     color: #d9534f;
+=======
+    /* color: #d9534f;
+>>>>>>> 3dc218146ccad5747dc697902918bf649646490e
     font-family: FontAwesome;
-    content: "\F0DE"
+    content: "\F0DE" */
 }
 
 table.dataTable thead .sorting_desc:after {
-    color: #d9534f;
+    /* color: #d9534f;
     font-family: FontAwesome;
-    content: "\F0DD"
+    content: "\F0DD" */
 }
 
 /* DATA TABLE CONTENT DISPLAY START */

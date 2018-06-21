@@ -13,7 +13,7 @@
 .material-icons.md-48 { float: left;font-size: 48px; }
 
 
-a:hover {
+/* a:hover {
     outline: none;
     text-decoration: none;
     color: #7bbfa8;
@@ -31,7 +31,7 @@ a {
     -moz-transition: 300ms;
     -o-transition: 300ms;
     transition: 300ms;
-}
+} */
 
 
 .bg-img {
@@ -47,7 +47,6 @@ a {
   top: 660px;
   right: 1380px;
   width: 400px;
-  z-index: 999;
 }
 
 #my-main-div {
@@ -60,7 +59,7 @@ a {
 }
 .spring {
   position: relative;
-  z-index: 9999;
+  z-index: 1;
 }
 .left-top {
   float: right;
@@ -92,7 +91,6 @@ a {
 .mydiv-height {
   padding: 0;
   height: 735px;
-  z-index: 100;
 }
 
 .mypage-title {
@@ -125,11 +123,11 @@ a {
 
 /* My Bookmark Note 마이북마크 노트 부분 CSS */
 .my-boomark-btn {
-	-webkit-transition: all 500ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+/* 	-webkit-transition: all 500ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
 	-moz-transition: all 500ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
 	-ms-transition: all 500ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
 	-o-transition: all 500ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	transition: all 500ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+	transition: all 500ms cubic-bezier(0.390, 0.500, 0.150, 1.360); */
   margin-top: 2px;
   padding: 2px 20px 2px 20px;
   color: #fff;
@@ -171,7 +169,6 @@ a {
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 3px 3px 0px 0px gray;
-  z-index: 100;
 }
 
 /* My Group Post 마이 그룹 포스트잇 부분 CSS */
@@ -230,15 +227,3 @@ a {
 	cursor : pointer;
 }
 
-
-/* z-index 여러장처럼 곂치는 효과 */
-.z-index1 {
-  position: relative;
-  right: 408px;
-  z-index: 10;
-}
-.z-index2 {
-  position: relative;
-  right: 410px;
-  z-index: 9;
-}

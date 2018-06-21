@@ -759,31 +759,11 @@
 				});
 				
 			}
-		
-		
 		</script>
-		
-		
-		
 		<!-- urlDelete script End -->
 		
 	</section>
 </div>
 <!-- Main Content END -->
-<!-- Color Picker JS START -->
-<script src="/bit/js/admin/colorPick.js"></script>
-<script>
-        /* $(".colorPickSelector").colorPick({
-            'initialColor': '#000',
-            'onColorSelected': function() {
-                this.element.css({
-                    'backgroundColor': this.color,
-                    'color': this.color
-                    
-                });
-                console.log(this.color);
-            }
-        }); */
-    </script>
-<!-- Color Picker JS END -->
+
 
