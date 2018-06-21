@@ -175,7 +175,7 @@
 									<td class="table-write"><a>${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
-									<td class="table-icon"><i class="fa fa-share" onclick="addUrl()"></i></td>
+									<td class="table-icon indi-share"><i class="fa fa-share" onclick="indi_share_bookmark()"></i></td>
 								</tr>
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->
