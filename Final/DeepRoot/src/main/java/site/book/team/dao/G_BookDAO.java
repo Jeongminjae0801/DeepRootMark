@@ -25,4 +25,6 @@ public interface G_BookDAO {
 	// 회원이 그룹에 작성한 URL 지우기
 	public int deleteGroupBook(String uid) throws ClassNotFoundException, SQLException;
 	
+	// 그룹의 총 조회수 가져오기
+	public int selectGroupViews(int gid) throws ClassNotFoundException, SQLException;
 }

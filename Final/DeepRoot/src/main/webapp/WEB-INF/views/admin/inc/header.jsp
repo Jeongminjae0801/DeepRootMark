@@ -6,7 +6,7 @@
 	<div class="wrapper">
 
 		<header class="main-header">
-			<span class="logo-mini"><a href="/bit/index.do"
+			<span class="logo-mini"><a href="${pageContext.request.contextPath}/index.do"
 				data-duration="0.2s"><span
 					class="img-responsive center-block logo">뿌리깊은마크</span></a> </span>
 			<!-- header menu bar START -->
@@ -18,7 +18,7 @@
 					<ul class="nav navbar-nav">
 						<li class="dropdown messages-menu"><a href="javascript:;"
 							data-toggle="dropdown" class="dropdown-toggle"><i
-								class="fa fa-envelope-o"></i> <span class="label label-success">3</span></a>
+								class="fas fa-envelope"></i> <span class="label label-success">3</span></a>
 							<!-- Message Alarm START -->
 							<ul class="dropdown-menu">
 								<li class="header">You have 1 message(s)</li>
@@ -26,7 +26,7 @@
 									<ul class="menu">
 										<li><a href="javascript:;">
 												<h4>
-													Support Team <small><i class="fa fa-clock-o"></i> 5
+													Support Team <small><i class="fas fa-clock"></i> 5
 														mins</small>
 												</h4>
 												<p>Why not consider this a test message?</p>
@@ -39,7 +39,7 @@
 						<!-- Notice Alarm START -->
 						<li class="dropdown notifications-menu"><a
 							href="javascript:;" data-toggle="dropdown"
-							class="dropdown-toggle"><i class="fa fa-bell-o"></i> <span
+							class="dropdown-toggle"><i class="fas fa-bell fa-lg"></i> <span
 								class="label label-warning">0</span></a>
 							<ul class="dropdown-menu">
 								<li class="header">You have 0 notification(s)</li>
@@ -64,29 +64,29 @@
 			<section class="sidebar">
 				<ul class="sidebar-menu">
 					<!-- Sidemenu Chart START -->
-					<li class="header"><i class="fa fa-area-chart"></i>&nbsp;&nbsp;CHART</li>
+					<li class="header"><i class="fas fa-chart-area"></i>&nbsp;&nbsp;CHART</li>
 					<li class="pageLink router-link-active"><a href="main.do"
 						class="transition">&nbsp;&nbsp;&nbsp;<i
-							class="fa fa-line-chart"></i> <span class="page">Chart</span></a></li>
+							class="fas fa-chart-line"></i> <span class="page">&nbsp;&nbsp;Chart</span></a></li>
 					<!-- Sidemenu Chart END -->
 
 					<!-- Sidemenu Pages Bookmark list START -->
-					<li class="header"><i class="fa fa-book"></i>&nbsp;&nbsp;Bookmark
+					<li class="header"><i class="fas fa-book"></i>&nbsp;&nbsp;Bookmark
 						List</li>
 					<li class="pageLink"><a href="mainBookList.do">&nbsp;&nbsp;&nbsp;<i
-							class="fa fa-bookmark fa-fw"></i><span class="page">Main
+							class="fas fa-bookmark fa-fw"></i><span class="page">&nbsp;&nbsp;Main
 								Page Bookmark</span></a></li>
-					<li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i
-							class="fa fa-bookmark fa-fw"></i><span class="page">Social
+					<li class="pageLink"><a href="social.do">&nbsp;&nbsp;&nbsp;<i
+							class="fas fa-bookmark fa-fw"></i><span class="page">&nbsp;&nbsp;Social
 								Page Bookmark</span></a></li>
 					<!-- Sidemenu Pages Bookmark list END -->
 
 					<!-- Sidemenu List START -->
 					<li class="header"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;List</li>
 					<li class="pageLink"><a href="groupListTable.do">&nbsp;&nbsp;&nbsp;<i
-							class="fa fa-list-ul"></i><span class="page">Group List</span></a></li>
+							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;Group List</span></a></li>
 					<li class="pageLink"><a href="userListTable.do">&nbsp;&nbsp;&nbsp;<i
-							class="fa fa-list-ul"></i><span class="page">User List</span></a></li>
+							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;User List</span></a></li>
 					<!-- Sidemenu List END -->
 				</ul>
 			</section>

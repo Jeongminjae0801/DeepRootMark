@@ -179,7 +179,7 @@
 									<td class="table-tag">"${g_booklist.htag}"</td>
 									<td>${g_booklist.nname}</td>
 									<td class="table-date">${g_booklist.duedate}</td>
-									<td class="table-click"></td>
+									<td class="table-click">${g_booklist.view}</td>
 									<td><i class="fa fa-share" onclick="addUrl()"></i></td>
 								</tr>
 							</c:forEach>
