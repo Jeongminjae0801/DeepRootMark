@@ -380,18 +380,7 @@ $(document).ready(function(){
 						},
 						"check_callback" : function(op, node, par, pos, more){
 							if(op === "move_node"){ // dnd 이벤트 일때 
-								console.log(op);//move_node
-								console.log(node);//실제 select 한node
-								console.log(par);// select node 사위 헐 여기서 나옴 childe
-								console.log(par.a_attr.href);
-								console.log(par.children_d);
-
-								console.log(pos);
-								console.log(more.ref);// drop한 노드의 정보
-								if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
-									return false;	
-								}
-								return true;
+								return false;
 							}							
 							return true;	
 						}
@@ -649,7 +638,8 @@ $(document).ready(function(){
 					
 					console.log(href);
 					
-				window.open(href); 
+					window.open(href); 
+					$('#jstree_container_child').jstree().deselect_all(true);			
 					
 				}) 
 				.bind("delete_node.jstree",function(event,data){
