@@ -1,8 +1,8 @@
 $(document).ready(function(){
 			
-			var urlpid = null;
-			var firstclick = 0;
-			var child_data = null;
+			var urlpid = null;	//왼쪽 클릭된 폴더의 id
+			var firstclick = 0;	//왼쪽 폴더 클릭 되었는지 확인용
+			var child_data = null;	//오른쪽 url jstree data 담을 변수
 			
 			$.ajax({
 				url : "getCategoryList.do",
@@ -10,7 +10,6 @@ $(document).ready(function(){
 				dataType:"json",
 				success : function(data){	
 					console.log(data);
-			
 					$("#jstree_container").on("click",'.jstree-anchor',function(e){
 						$('#jstree_container').jstree(true).toggle_node(e.target);	
 						
@@ -32,7 +31,6 @@ $(document).ready(function(){
 									console.log(op);//move_node
 									console.log(node);//실제 select 한node
 									console.log(par);// select node 사위 헐 여기서 나옴 childe
-	
 									console.log("선택 node 의 id 값");
 									console.log(node.id);
 									var dragnode = node.id;
@@ -61,6 +59,17 @@ $(document).ready(function(){
 									console.log(par);
 								
 									return true;
+								}else if(op == "copy_node"){
+									$.ajax({										
+										url : 'dropNode.do',
+										type : 'POST',
+										data : {dragnode : node.id, dropnode : par.id},
+										success : function(){
+											$('#jstree_container').jstree().deselect_all(true);											
+											$('#jstree_container').jstree(true).select_node(par.id);											
+										}
+									});
+									return false;	
 								}
 								return true;	
 							}
@@ -213,8 +222,6 @@ $(document).ready(function(){
 							
 							console.log(head);
 							console.log(data);
-							//$("#"+head+"_anchor").addClass("added");
-							
 					})
 				.bind("select_node.jstree", function (e, data) {
 					
@@ -263,8 +270,6 @@ $(document).ready(function(){
 			    		console.log("dom 선택 불러오는 중");
 			    		console.log(obj);
 			    		console.log(stric);
-			    		//console.log(this);
-			    		//console.log(this.get_node(obj,true));
 			    		
 			    	})
 			    	.bind('delete_node.jstree',function(event,data){
@@ -310,10 +315,6 @@ $(document).ready(function(){
 					  }
 				  })
 			})
-			
-			
-			
-			
 			
 			$("#addurl").on("click",function(){
 				
@@ -367,13 +368,6 @@ $(document).ready(function(){
     			}) 
 				
 			});
-					
-					
-	
-					
-					
-					
-			
 					
 			$("#jstree_container_child").jstree({
 					
@@ -432,11 +426,7 @@ $(document).ready(function(){
 												"action" : function(obj){
 													console.log("d이름수정");
 								                	tree_child.edit($node);
-													
-													
-													
 												}
-						            		  
 						            	  },
 						            	  
 						            	  "editurl" : {
@@ -475,7 +465,6 @@ $(document).ready(function(){
 									                	 }) 
 								                	 })
 						                		}
-						            		  
 						            	  }
 						              }
 								},
@@ -534,11 +523,7 @@ $(document).ready(function(){
 													"action" : function(obj){
 														console.log("d이름수정");
 									                	tree_child.edit($node);
-														
-														
-														
 													}
-							            		  
 							            	  },
 							            	  
 							            	  "editurl" : {
@@ -577,12 +562,10 @@ $(document).ready(function(){
 										                	 }) 
 									                	 })
 							                		}
-							            		  
 							            	  }
 							              }
 									},
 									
-						            
 						            "remove": {
 						            	"icon" : "fa fa-trash",
 						                "separator_before": false,
@@ -614,7 +597,6 @@ $(document).ready(function(){
 							                	success : function(data){
 							                		
 							                		console.log(data);
-							                		
 							                	}
 							                })
 						                }
@@ -649,15 +631,10 @@ $(document).ready(function(){
 																	data: {ubid: id },
 																	success:function(data){
 																		console.log(data);
-																		
-																	}
-																	
-																	
-																})
-																
-							                			
+																		}
+																	})
+							                				}
 							                		}
-							                	}
 							                	
 							                }
 						            }
@@ -712,22 +689,21 @@ $(document).ready(function(){
 	});   
 })
 
-$("#jstree_container").on('select_node.jstree',function(e,data){
-	console.log("clicked 호ㅓㅏㄱ읺");
-	console.log(e);
-	console.log(data);
-})
-$("#jstree_container").on('open_node.jstree', function(e,data){
-	//data.instance.set_type(data.node,'f-open');
-	$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder-open")
-	//colorfold
-	/* $('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().addClass('colorfold'); */
-})
-$("#jstree_container").on('close_node.jstree', function(e,data){
-	$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
-	$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().removeClass('colorfold');
-})
+	$("#jstree_container").on('select_node.jstree',function(e,data){
+		console.log("clicked 호ㅓㅏㄱ읺");
+		console.log(e);
+		console.log(data);
+	})
+	$("#jstree_container").on('open_node.jstree', function(e,data){
+		//data.instance.set_type(data.node,'f-open');
+		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder-open")
+		//colorfold
+		/* $('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().addClass('colorfold'); */
+	})
+	$("#jstree_container").on('close_node.jstree', function(e,data){
+		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
+		$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().removeClass('colorfold');
+	})
 
-
-		});
+});
 
