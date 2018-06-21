@@ -66,8 +66,8 @@
 </div><!-- /.modal -->
 
 <!-- social 개인 북마크 가져가기 div START -->
-<div id="socialindiModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialGroupModalLabel">
-	<div class="modal-dialog" role="document">
+<div id="socialIndiModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialIndiModalLabel">
+		<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -76,26 +76,57 @@
 				<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
 			</div>
 			<div class="modal-body">
-				<div class="row">
-					<div class="col-sm-9">
-					
-						url : <input type="text" value="ㅇㅇㅇㅇ">
-						<div class="row">
-							<div class="col-xs-8 col-sm-6">Level 2: .col-xs-8 .col-sm-6
-							</div>
-							<div class="col-xs-4 col-sm-6">Level 2: .col-xs-4 .col-sm-6
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="completed-modal-left">
+	                <h4 class="completed-modal-from"><b>URL :</b>
+	                <input type="text" class="indishare-url" value="유알엘 주소를 주세염"> </h4>
+	
+	                <div id="jstree-from-left">
+	
+	                </div>
+	            </div>
+	            <hr>
+	            <div class="completed-modal-left">
+	                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
+	
+	                <!-- Dropdown -->
+	                <div class="dropdown completed-modal-dropdown">
+	                    <button class="btn btn-secondary indishare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                    Click <span class="caret"></span>
+	                    </button>
+	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	                        <li id="completed-modal-mybook" class="dropdown-item" href="#">My Book</li>
+	                        <hr class="divider-hr">
+	                        <li class="dropdown-item dropdown-submenu">
+	                            <a tabindex="-1" href="#">Group</a>
+	                            <ul class="dropdown-menu">
+	                              <li class="dropdown-group-item"><span tabindex="-1">희준이의 꼬봉들</span></li>
+	                              <li class="dropdown-group-item"><span>나는 노예다</span></li>
+	                              <li class="dropdown-group-item"><span>니꺼 니꺼 내꺼 니꺼</span></li>
+	                            </ul>
+	                        </li>
+	                    </div>
+	                    <script type="text/javascript">
+	                        $('#completed-modal-mybook').click(function() {
+	                            $('#dropdownMenuButton').text($(this).text());
+	                        });
+	                        $('.dropdown-group-item').click(function() {
+	                            $('#dropdownMenuButton').text($(this).text());
+	                        });
+	                    </script>
+	                </div>
+	
+	                <div id="jstree-to-right">
+	
+	                </div>
+	            </div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary">확인</button>
 			</div>
-		</div>
-	</div>
-</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- social 개인 북마크 가져가기 div END -->
 
 <section class="ranking-div">
@@ -239,7 +270,7 @@
 									<td class="table-write"><a>${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
-									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialindiModal"><i class="fa fa-share"></i></td>
+									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialIndiModal"><i class="fa fa-share"></i></td>
 								</tr>
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->

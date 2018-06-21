@@ -7,17 +7,46 @@
   padding: 15px 15px 10px 15px;
   border-bottom: 2px solid #a94442;
 }
+
+.modal-footer{
+	margin-top : 15px;
+}
+
+.modal-footer .btn.btn-default.indishare{
+	border : 1px solid #ccc;
+}
+.dropdown.completed-modal-dropdown .btn.btn-secondary.indishare.dropdown-toggle{
+	background-color: #fff;
+	color: #081971;
+	width: 100px;
+}
+
+.indishare-url{
+	margin-left: 10px;
+	border : none;
+	border-bottom: 1px solid #000;
+	color: #000;
+	width: 90%;
+}
 .modal-title { font-weight: 900; }
 .modal-body { padding-bottom: 40px; }
-.completed-modal-from { float: left; color: #dc3500; }
-.completed-modal-to { float: left; margin-right: 10px; color: #081971; }
+.completed-modal-from { 
+	color: #dc3500; 
+	font-size : 15px;
+}
+.completed-modal-to { 
+	float: left; 
+	margin-right: 10px; 
+	color: #081971; 
+	font-size : 15px;
+	}
 .completed-modal-hr { margin-top: 2px; border-top: 2px solid #a94442; }
 .divider-hr { margin: 0px; border-top: 1px dashed #bdb4b4; }
 .float-clear-hr { margin-top: 38px 0px 0px 0px; border-top: 2px solid #a94442; }
 .completed-modal-content { margin-bottom: 10px; }
 .completed-modal-left {
   padding-left: 10px;
-  width: 50%;
+  width: 100%;
   float: left;
 }
 .completed-modal-right {
@@ -31,10 +60,10 @@
   margin-top: 1px;
   width: 235px;
   color: #fff;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   background: #005188;
-  border: 2px solid #00366b;
+  border: 1px solid #00366b;
   border-radius: 5px;
 }
 

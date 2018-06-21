@@ -72,6 +72,7 @@ table .fa {
        
 table tr:hover .fa {
    display: block;
+   cursor:pointer;
 }
 
 table tr td a{
