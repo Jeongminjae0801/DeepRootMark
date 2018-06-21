@@ -9,45 +9,42 @@
 <head>
 <meta charset="UTF-8">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--  CSS START -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
-<!-- Font Awesome CSS STARAT -->
-
- <!-- Font Awesome CSS END -->
-<!--  -->
- 	<link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/animate.min.css" rel="stylesheet">
-<!-- Header Footer -->
-    <link href="../css/mainpage/header.css" rel="stylesheet">
-    <link href="../css/mainpage/footer.css" rel="stylesheet">
-    <!-- <link href="../css/mainpage/list_table.css" rel="stylesheet"> -->
+	<!-- Latest compiled Bootstrap Common CSS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Bootstrap Common CSS END -->
     
-    <link href="../css/mainpage/responsive.css" rel="stylesheet">
-<!-- Google Icon CDN -->
- <link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<!-- Google Icon CDN END -->
-<!-- Script START -->
-<script  src="${pageContext.request.contextPath}/resources/assets/jquery-1.10.2.min.js"></script>
-<script  src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script>
-<!-- Script END -->
+    <!-- jQuery Confirm START -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+	<!-- jQuery Confirm END -->
 
-<script type="text/javascript" src="../js/jquery.js"></script>
-<script src="../js/script.js"></script>
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+	<!-- Common Script START -->
+    <!-- Latest compiled JavaScript & CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Script Common JavaScript & CSS END -->
 
-<!-- jQuery Confirm START -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-<!-- jQuery Confirm END -->
+	<!--  jsTree CSS & JS START -->
+	<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
+	<script  src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script> --%>
+	
+	<!-- Header Footer -->
+    <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
+    <!-- Header Footer END -->
+    
+	<!-- Google Icon CDN -->
+	<link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<!-- Google Icon CDN END -->
+
 
 <title>my BookMark</title>
 </head>
 <body>
-
-<!-- Script -->
-<script type="text/javascript"  src="../js/mypage/mycategory.js"></script>
+	<!-- Script -->
+	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/mypage/mycategory.js"></script>
 	
 	<div id="main-header">
 		<tiles:insertAttribute name="header" />
@@ -258,11 +255,9 @@
 			</div>
 		</div>
 	</div>
-<i class="jstree-icon jstree-themeicon jstree-themeicon-custom" role="presentation" style="background-image: url(&quot;https://www.google.com/s2/favicons?domain=https://colorscripter.com/&quot;); background-position: center center; background-size: auto;"></i>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 
 </body>
-<!-- MY Page CSS -->
-<link rel="stylesheet" href="../css/mypage/mypage.css?ver=2" />
-<!-- MY Page CSS END -->
+	<!-- MY Page CSS -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage/mypage.css?ver=2" />
+	<!-- MY Page CSS END -->
 </html>

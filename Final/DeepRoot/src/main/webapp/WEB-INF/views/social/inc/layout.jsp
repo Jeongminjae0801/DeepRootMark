@@ -11,14 +11,24 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>뿌리깊은마크</title>
-
-    <!-- Bootstrap Common CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/animate.min.css" rel="stylesheet">
+	
+	<!-- Latest compiled Bootstrap Common CSS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Bootstrap Common CSS END -->
+    
+    <!-- jQuery Confirm START -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+	<!-- jQuery Confirm END -->
 
-    <!-- Social Page CSS -->
+	<!-- Common Script START -->
+    <!-- Latest compiled JavaScript & CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Script Common JavaScript & CSS END -->
+
+	<!-- Social Page CSS -->
     <link href="../css/social/social.css" rel="stylesheet">
     <link href="../css/mainpage/header.css" rel="stylesheet">
     <link href="../css/mainpage/footer.css" rel="stylesheet">
@@ -29,12 +39,9 @@
     <!-- Social Page CSS END -->
 
     <!--Script Start -->
-    <script type="text/javascript" src="../js/jquery.js"></script>
     <script src="../js/social/social.js"></script>
     <script src="../js/social/jquery.dataTables.min.js"></script>
     <script src="../js/social/dataTables.bootstrap.min.js"></script>
-    <script src="../js/script.js"></script>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- Script END -->
 
     <script>
