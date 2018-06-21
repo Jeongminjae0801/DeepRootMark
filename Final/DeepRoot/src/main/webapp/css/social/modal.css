@@ -15,10 +15,42 @@
 .modal-footer .btn.btn-default.indishare{
 	border : 1px solid #ccc;
 }
+.modal-footer .btn.btn-default.indishare:hover{
+	background-color: #565656;
+	color:#fff;
+}
+
+.modal-footer .btn.btn-default.groupshare{
+	border : 1px solid #ccc;
+}
+
+.modal-footer .btn.btn-default.groupshare:hover{
+	background-color: #565656;
+	color:#fff;
+}
+
+/* 개인 북마크 가져가기 */
 .dropdown.completed-modal-dropdown .btn.btn-secondary.indishare.dropdown-toggle{
 	background-color: #fff;
 	color: #081971;
 	width: 100px;
+}
+
+.dropdown.completed-modal-dropdown .btn.btn-secondary.indishare.dropdown-toggle:hover,
+.dropdown.completed-modal-dropdown .btn.btn-secondary.indishare.dropdown-toggle:focus{
+	background-color:#081971;
+	color:#fff;
+}
+/* 그룹 가져가기 */
+.dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle{
+	background-color: #fff;
+	color: #081971;
+	width: 100px;
+}
+.dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:hover,
+.dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:focus{
+	background-color:#081971;
+	color:#fff;
 }
 
 .indishare-url{
@@ -44,12 +76,12 @@
 .divider-hr { margin: 0px; border-top: 1px dashed #bdb4b4; }
 .float-clear-hr { margin-top: 38px 0px 0px 0px; border-top: 2px solid #a94442; }
 .completed-modal-content { margin-bottom: 10px; }
-.completed-modal-left {
+.completed-modal-left.groupshare {
   padding-left: 10px;
-  width: 100%;
+  width: 50%;
   float: left;
 }
-.completed-modal-right {
+.completed-modal-right.groupshare {
   padding-left: 10px;
   width: 50%;
   border-left: 1px dashed #000;

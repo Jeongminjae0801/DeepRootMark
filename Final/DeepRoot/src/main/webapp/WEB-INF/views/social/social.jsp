@@ -14,20 +14,20 @@
 				<h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
 			</div>
 			<div class="modal-body">
-				<div class="completed-modal-left">
+				<div class="completed-modal-left groupshare">
 	                <h4 class="completed-modal-from"><b>From : <span id="from-text"></span></b></h4>
 	
 	                <div id="jstree-from-left">
 	
 	                </div>
 	            </div>
-	            <div class="completed-modal-right">
+	            <div class="completed-modal-right groupshare">
 	                <h4 class="completed-modal-to"><b>To : </b></h4>
 	
 	                <!-- Dropdown -->
 	                <div class="dropdown completed-modal-dropdown">
-	                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                        Dropdown button <span class="caret"></span>
+	                    <button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                        Click <span class="caret"></span>
 	                    </button>
 	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 	                        <li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
@@ -56,10 +56,9 @@
 	                </div>
 	            </div>
 			</div>
-			<hr class="float-clear-hr">
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-default groupshare" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary groupshare">Save changes</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
