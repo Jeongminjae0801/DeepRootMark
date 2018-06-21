@@ -139,14 +139,11 @@ jQuery(function($) {
 /* 민재 onclick END */
 
 /* 태웅이 onclick */
-$('#socialGroupModal').on('shown.bs.modal', function(){
-	
-});
 
-$('.table-icon').on('dblclick', function(){ return });
-$('.table-icon').on('click', function(){
+$('.indi-share').on('dblclick', function(){ return });
+$('.indi-share').on('click', function(){
 	var title = $(this).data('title');
-	$('#from-text').text(title);
+	$('.indishare-url').val(title);
 });
 
 /* 태웅이 onclick END */

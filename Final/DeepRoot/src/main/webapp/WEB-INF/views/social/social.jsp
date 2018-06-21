@@ -78,8 +78,8 @@
 			<div class="modal-body">
 				<div class="completed-modal-left">
 	                <h4 class="completed-modal-from"><b>URL :</b>
-	                <input type="text" class="indishare-url" value="유알엘 주소를 주세염"> </h4>
-	
+	                	<input type="text" class="indishare-url" value="유알엘 주소를 주세염" readonly>
+	                </h4>
 	                <div id="jstree-from-left">
 	
 	                </div>
@@ -270,7 +270,11 @@
 									<td class="table-write"><a>${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
-									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialIndiModal"><i class="fa fa-share"></i></td>
+									<!-- 가져오기 icon -->
+									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}">
+										<i class="fa fa-share"></i>
+									</td>
+									<!-- 가져오기 icon -->
 								</tr>
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->
@@ -309,7 +313,9 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click"></td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}"><i class="fa fa-share"></i></td>
+									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}">
+										<i class="fa fa-share"></i>
+									</td>
 									<!-- 가져오기 icon -->
 								</tr>
 							</c:forEach>
