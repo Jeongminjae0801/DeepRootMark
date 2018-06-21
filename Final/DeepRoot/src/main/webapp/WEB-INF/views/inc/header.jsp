@@ -122,7 +122,7 @@
                    <!-- Notice Alarm END -->
                    <!-- USER INFO START -->
                    <li>
-                       <a href="#">
+                       <a class="username" href="#">
                        <img class="dropdown header-ico" 
                        		src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}"
                        		onerror="<%= request.getContextPath() %>/images/profile.png"> ${sessionScope.info_usernname}</a>

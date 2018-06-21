@@ -6,59 +6,58 @@
 <!-- 소셜 페이지 완료 그룹 가져오기 Modal -->
 <div id="socialGroupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialGroupModalLabel">
 	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<div class="modal-content social">
+			<div class="modal-header groupshare">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
+			</button>
+					<h4 class="modal-title" id="gridSystemModalLabel">그룹 가져가기</h4>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body row">
 				<div class="completed-modal-left groupshare">
-	                <h4 class="completed-modal-from"><b>From : <span id="from-text"></span></b></h4>
-	
-	                <div id="jstree-from-left">
-	
+	                <h4 class="completed-modal-from"><b>From : <span id="from-text">난 안듣는다 태웅이 말을</span></b></h4>
+	                <div class="jstree-from" id="jstree-from-left">
+	                	제이트리 뿌려줘염
 	                </div>
-	            </div>
+	            </div>   
 	            <div class="completed-modal-right groupshare">
-	                <h4 class="completed-modal-to"><b>To : </b></h4>
-	
-	                <!-- Dropdown -->
-	                <div class="dropdown completed-modal-dropdown">
-	                    <button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                        Click <span class="caret"></span>
-	                    </button>
-	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-	                        <li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
-	                        <hr class="divider-hr">
-	                        <li class="dropdown-item dropdown-submenu">
-	                            <a tabindex="-1" href="#">나의 그룹북마크</a>
-	                            <ul class="dropdown-menu">
-	                              <li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
-	                              <li class="dropdown-group-item"><span>Group 2</span></li>
-	                              <li class="dropdown-group-item"><span>Group 3</span></li>
-	                            </ul>
-	                        </li>
-	                    </div>
-	                    <script type="text/javascript">
-	                        $('#completed-modal-mybook').click(function() {
-	                            $('#dropdownMenuButton').text($(this).text());
-	                        });
-	                        $('.dropdown-group-item').click(function() {
-	                            $('#dropdownMenuButton').text($(this).text());
-	                        });
-	                    </script>
+
+               	<h4 class="completed-modal-to"><b>To : </b></h4>
+               	<!-- Dropdown -->
+               	<div class="dropdown completed-modal-dropdown">
+                   	<button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       	Click <span class="caret"></span>
+                   	</button>
+                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                       	<li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
+                       	<hr class="divider-hr">
+                       	<li class="dropdown-item dropdown-submenu">
+                           	<a tabindex="-1" href="#">나의 그룹북마크</a>
+                           	<ul class="dropdown-menu">
+                             	<li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
+                             	<li class="dropdown-group-item"><span>Group 2</span></li>
+                             	<li class="dropdown-group-item"><span>Group 3</span></li>
+                           	</ul>
+                       	</li>
+                   	</div>
+                   		<script type="text/javascript">
+                       	$('#completed-modal-mybook').click(function() {
+                           	$('#dropdownMenuButton').text($(this).text());
+                       	});
+                       	$('.dropdown-group-item').click(function() {
+                           	$('#dropdownMenuButton').text($(this).text());
+                       	});
+                   		</script>
 	                </div>
-	
-	                <div id="jstree-to-right">
-	
+	                
+	                <div class="jstree-to" id="jstree-to-right" style="clear:both;">
+	                	제이트리 뿌려줘염
 	                </div>
 	            </div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default groupshare" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary groupshare">Save changes</button>
+			<div class="modal-footer groupshare">
+				<button type="button" class="btn btn-default groupshare" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary groupshare">확인</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -310,7 +309,7 @@
 									<td class="table-tag">"${g_booklist.htag}"</td>
 									<td class="table-write">${g_booklist.nname}</td>
 									<td class="table-date">${g_booklist.duedate}</td>
-									<td class="table-click"></td>
+									<td class="table-click">${g_booklist.view}</td>
 									<!-- 가져오기 icon -->
 									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}">
 										<i class="fa fa-share"></i>

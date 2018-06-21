@@ -1,4 +1,15 @@
+.modal-body{
+	padding-top:0;
+}
 
+.completed-modal-left.groupshare{
+	border-right: 2px dashed #ccc;
+	padding-top: 10px;
+}
+.completed-modal-right.groupshare{
+	border-left: 2px solid #ccc;
+	padding-top: 10px;
+}
 
 .modal > a {
   margin: 22px 40px 0px 0px;
@@ -8,7 +19,14 @@
   border-bottom: 2px solid #a94442;
 }
 
-.modal-footer{
+.modal-header.groupshare {
+  border-bottom: 1px solid #ccc;
+  padding-top : 10px;
+  padding-bottom: 5px;
+}
+
+
+.modal-footer.groupshare{
 	margin-top : 15px;
 }
 
@@ -61,14 +79,14 @@
 	width: 90%;
 }
 .modal-title { font-weight: 900; }
-.modal-body { padding-bottom: 40px; }
+
 .completed-modal-from { 
 	color: #dc3500; 
 	font-size : 15px;
 }
 .completed-modal-to { 
 	float: left; 
-	margin-right: 10px; 
+	margin-right: 10px;
 	color: #081971; 
 	font-size : 15px;
 	}
@@ -76,6 +94,7 @@
 .divider-hr { margin: 0px; border-top: 1px dashed #bdb4b4; }
 .float-clear-hr { margin-top: 38px 0px 0px 0px; border-top: 2px solid #a94442; }
 .completed-modal-content { margin-bottom: 10px; }
+
 .completed-modal-left.groupshare {
   padding-left: 10px;
   width: 50%;
@@ -84,9 +103,9 @@
 .completed-modal-right.groupshare {
   padding-left: 10px;
   width: 50%;
-  border-left: 1px dashed #000;
   float: left;
 }
+
 .completed-modal-dropdown { float: left; }
 .completed-modal-dropdown .btn {
   margin-top: 1px;
