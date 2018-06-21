@@ -176,6 +176,10 @@
 					},
 					"plugins" : ["checkbox" ]
 					
+				}).
+				bind("loaded.jstree",function(event,data){
+					$('#group_bookmark_modal').jstree("open_all");
+					
 				})
 				
 			}
