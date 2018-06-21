@@ -125,7 +125,9 @@ font-family: 'Gamja Flower', cursive;
     font-size: 15px;
     font-weight:800;
 }
-
+#jstree_container{ /* jstree padding 패딩 */
+	padding: 10px;
+}
 .vakata-context,
 .vakata-context ul {
   position: absolute;

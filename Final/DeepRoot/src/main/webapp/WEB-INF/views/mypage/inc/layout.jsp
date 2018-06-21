@@ -58,8 +58,6 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
 
-
-
 	<div class="modal fade" id="linkAdd" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -172,16 +170,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	<div class="modal fade" id="folderAdd" role="dialog">
 		<div class="modal-dialog">
@@ -218,7 +206,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<div class="modal fade" id="editurl" role="dialog">
 		<div class="modal-dialog">
