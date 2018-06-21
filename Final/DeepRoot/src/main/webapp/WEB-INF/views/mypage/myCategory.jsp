@@ -163,8 +163,6 @@
 			success : function(obj){
 				
 				console.log(obj);
-				$('#group_bookmark_modal').jstree(true).settings.core.data = obj;
-				$('#group_bookmark_modal').jstree(true).refresh();
 				
 				$("#group_bookmark_modal").jstree({
 					
@@ -176,7 +174,7 @@
 							'dots' : false,
 						}
 					},
-					"plugins" : ["checkbox" , "wholerow"]
+					"plugins" : ["checkbox" ]
 					
 				})
 				
