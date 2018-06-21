@@ -85,7 +85,8 @@
   margin-right: 0;
 }
 .jstree-wholerow-ul {
-  position: relative;
+  position: absolute;
+  left: 0px;
   display: inline-block;
   min-width: 100%;
 }
@@ -96,6 +97,10 @@
 .jstree-wholerow-ul .jstree-icon {
   position: relative;
 }
+#jstree_container_child{	/* 패딩 오른쪽 */
+	padding : 10px;
+}
+
 .jstree-wholerow-ul .jstree-wholerow {
   width: 100%;
   cursor: pointer;
@@ -120,12 +125,14 @@ font-family: 'Gamja Flower', cursive;
 */
 @import url('https://fonts.googleapis.com/css?family=Gugi|Jua');
 @import url('https://fonts.googleapis.com/css?family=Cute+Font|Gamja+Flower|Jua|Song+Myung|Stylish');
-body{
+.jstree {
 	font-family:   'Stylish', sans-serif; /* 폰트 */
     font-size: 15px;
     font-weight:800;
 }
-
+#jstree_container{ /* jstree padding 패딩 */
+	padding: 10px;
+}
 .vakata-context,
 .vakata-context ul {
   position: absolute;
