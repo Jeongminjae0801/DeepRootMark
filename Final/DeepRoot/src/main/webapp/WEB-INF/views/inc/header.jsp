@@ -114,7 +114,7 @@
                        		src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}"
                        		onerror="<%= request.getContextPath() %>/images/profile.png"> ${sessionScope.info_usernname}</a>
                        <ul role="menu" class="sub-menu">
-                           <li><a href="myInfo.do">회원정보수정</a></li>
+                           <li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
                            <li><a href='security/logout'>Logout</a></li>
                        </ul>
                    </li>

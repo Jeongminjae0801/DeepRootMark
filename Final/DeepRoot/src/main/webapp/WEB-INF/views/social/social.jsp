@@ -140,7 +140,7 @@
 								<tr>
 									<td><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
-									<td>${u_booklist.uid}</td>
+									<td>${u_booklist.nname}</td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
 									<td><i class="fa fa-share" onclick="addUrl()"></i></td>
