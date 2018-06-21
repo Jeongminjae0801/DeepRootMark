@@ -3,11 +3,17 @@
 .modal > a {
   margin: 22px 40px 0px 0px;
 }
-.completed-modal-title { margin: 0px; }
+.modal-header {
+  padding: 15px 15px 10px 15px;
+  border-bottom: 2px solid #a94442;
+}
+.modal-title { font-weight: 900; }
+.modal-body { padding-bottom: 40px; }
 .completed-modal-from { float: left; color: #dc3500; }
 .completed-modal-to { float: left; margin-right: 10px; color: #081971; }
 .completed-modal-hr { margin-top: 2px; border-top: 2px solid #a94442; }
 .divider-hr { margin: 0px; border-top: 1px dashed #bdb4b4; }
+.float-clear-hr { margin-top: 38px 0px 0px 0px; border-top: 2px solid #a94442; }
 .completed-modal-content { margin-bottom: 10px; }
 .completed-modal-left {
   padding-left: 10px;
@@ -39,7 +45,7 @@
   float: right;
 }
 
-.dropdown-menu { z-index: 1000; }
+.dropdown-menu { z-index: 5; width: 235px; }
 .dropdown-menu > li { padding: 5px 10px 5px 10px; background-color: #fff; }
 .dropdown-menu > li > a { padding: 0px; }
 .dropdown-menu > li:hover {

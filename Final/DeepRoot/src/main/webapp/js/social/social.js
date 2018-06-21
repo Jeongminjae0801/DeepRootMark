@@ -146,7 +146,8 @@ function indi_share_bookmark(){
 
 
 /* 태웅이 onclick */
-$('#socialGroupModal').on('shown.bs.modal', function () {
-	console.log("ㅅㅂ");
+$('#socialGroupModal').on('shown.bs.modal', function(){
+	console.log($(this));
+	console.log($('#listTable2 > tbody > tr > .table-groupname').text());
 });
 /* 태웅이 onclick END */

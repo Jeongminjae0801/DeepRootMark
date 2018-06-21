@@ -14,18 +14,49 @@
 				<h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
 			</div>
 			<div class="modal-body">
-				<div class="row">
-					<div class="col-sm-9">
-						Level 1: .col-sm-9
-						<div class="row">
-							<div class="col-xs-8 col-sm-6">Level 2: .col-xs-8 .col-sm-6
-							</div>
-							<div class="col-xs-4 col-sm-6">Level 2: .col-xs-4 .col-sm-6
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="completed-modal-left">
+	                <h4 class="completed-modal-from"><b>From : </b></h4>
+	
+	                <div id="jstree-from-left">
+	
+	                </div>
+	            </div>
+	            <div class="completed-modal-right">
+	                <h4 class="completed-modal-to"><b>To : </b></h4>
+	
+	                <!-- Dropdown -->
+	                <div class="dropdown completed-modal-dropdown">
+	                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                        Dropdown button <span class="caret"></span>
+	                    </button>
+	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	                        <li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
+	                        <hr class="divider-hr">
+	                        <li class="dropdown-item dropdown-submenu">
+	                            <a tabindex="-1" href="#">나의 그룹북마크</a>
+	                            <ul class="dropdown-menu">
+	                              <li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
+	                              <li class="dropdown-group-item"><span>Group 2</span></li>
+	                              <li class="dropdown-group-item"><span>Group 3</span></li>
+	                            </ul>
+	                        </li>
+	                    </div>
+	                    <script type="text/javascript">
+	                        $('#completed-modal-mybook').click(function() {
+	                            $('#dropdownMenuButton').text($(this).text());
+	                        });
+	                        $('.dropdown-group-item').click(function() {
+	                            $('#dropdownMenuButton').text($(this).text());
+	                        });
+	                    </script>
+	                </div>
+	
+	                <div id="jstree-to-right">
+	
+	                </div>
+	            </div>
 			</div>
+			<hr class="float-clear-hr">
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary">Save changes</button>
