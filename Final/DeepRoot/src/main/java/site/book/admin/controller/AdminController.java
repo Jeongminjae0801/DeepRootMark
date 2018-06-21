@@ -359,8 +359,6 @@ public class AdminController {
 		return jsonview;
 	}
 
-	////////////////////////////////////////
-	
 	@RequestMapping("noticeReg.do")
 	public String noticeReg(String ncontent) {
 		System.out.println("공지사항 쓰기");
@@ -368,7 +366,7 @@ public class AdminController {
 
 		notice_service.noticeReg(ncontent);
 
-		return "redirect:admin.do";
+		return "redirect:main.do";
 	}
 
 }

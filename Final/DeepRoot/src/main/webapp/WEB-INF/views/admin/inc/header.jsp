@@ -1,12 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<script>
+	$(function() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/getNotices.do",
+			type : "post",
+			success : function(data) {
+				var html = "";
+				console.log(data.noticeList);
+				for ( var key in data.noticeList) {
+					console.log(data.noticeList[key]);
+					html += '<li class="header"><a>'+ data.noticeList[key].ncontent+ '</a></li>';
+				}
+				html += '<li class="header" onclick="headerNoticeReg();"><a><i class="fa fa-plus-circle" style="color: #f39c12;"></i> 공지사항 등록</a></li>';
+				$("#headerNoticeDropdown").append(html);
+			}
+		});
+	});
 	
+	function headerNoticeReg() {
+		$.confirm({
+		    title: '공지사항 등록',
+		    content: '' +
+		    '<form id="noticeRegForm" action="${pageContext.request.contextPath}/admin/noticeReg.do" class="formName" method="post">' +
+		    '<div class="form-group">' +
+		    '<label>공지사항 내용</label>' +
+		    '<input type="text" name="ncontent" placeholder="공지사항 내용" class="name form-control" required />' +
+		    '</div>' +
+		    '</form>',
+		    theme: 'dark',
+			type: 'orange',
+		    closeIcon: true,
+		    buttons: {
+		        formSubmit: {
+		            text: '등록',
+		            btnClass: 'btn-orange',
+		            action: function () {
+		                var name = this.$content.find('.name').val();
+		                if(!name){
+		                    $.alert('공지사항 내용을 입력해주세요');
+		                    return false;
+		                }
+		                $("#noticeRegForm").submit();
+		                
+		            }
+		        },
+		                    취소: {
+		            btnClass: 'btn-red',
+		            action: function () {
+		            //close
+		            }
+		        },
+		    }
+
+		});
+	}
+</script>
+
+
 
 <div id="app">
 	<div class="wrapper">
 
 		<header class="main-header">
-			<span class="logo-mini"><a href="${pageContext.request.contextPath}/index.do"
+			<span class="logo-mini"><a
+				href="${pageContext.request.contextPath}/index.do"
 				data-duration="0.2s"><span
 					class="img-responsive center-block logo">뿌리깊은마크</span></a> </span>
 			<!-- header menu bar START -->
@@ -18,8 +77,8 @@
 					<ul class="nav navbar-nav">
 						<li class="dropdown messages-menu"><a href="javascript:;"
 							data-toggle="dropdown" class="dropdown-toggle"><i
-								class="fas fa-envelope"></i> <span class="label label-success">3</span></a>
-							<!-- Message Alarm START -->
+								class="fas fa-envelope fa-lg admin-mail"></i> <span
+								class="label label-success">3</span></a> <!-- Message Alarm START -->
 							<ul class="dropdown-menu">
 								<li class="header">You have 1 message(s)</li>
 								<li>
@@ -39,10 +98,10 @@
 						<!-- Notice Alarm START -->
 						<li class="dropdown notifications-menu"><a
 							href="javascript:;" data-toggle="dropdown"
-							class="dropdown-toggle"><i class="fas fa-bell fa-lg"></i> <span
-								class="label label-warning">0</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 0 notification(s)</li>
+							class="dropdown-toggle"><i
+								class="fas fa-bell fa-lg admin-notice"></i></a>
+							<ul id="headerNoticeDropdown" class="dropdown-menu">
+								<!-- <li class="header">You have 0 notification(s)</li> -->
 							</ul></li>
 						<!-- Notice Alarm END -->
 
@@ -56,6 +115,7 @@
 					</ul>
 				</div>
 			</nav>
+
 			<!-- header menu bar END -->
 		</header>
 
@@ -84,9 +144,11 @@
 					<!-- Sidemenu List START -->
 					<li class="header"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;List</li>
 					<li class="pageLink"><a href="groupListTable.do">&nbsp;&nbsp;&nbsp;<i
-							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;Group List</span></a></li>
+							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;Group
+								List</span></a></li>
 					<li class="pageLink"><a href="userListTable.do">&nbsp;&nbsp;&nbsp;<i
-							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;User List</span></a></li>
+							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;User
+								List</span></a></li>
 					<!-- Sidemenu List END -->
 				</ul>
 			</section>

@@ -259,34 +259,38 @@
                         }
                         
                         function editAdminCategory() {
-                        	$.confirm({
-            					title : '카테고리 수정',
-            					content : '수정하시겠습니까?',
-            					theme: 'dark',
-            					type: 'orange',
-            					backgroundDismiss: true,
-            					closeIcon: true,
-            					buttons: {
-            				        '수정': {
-            				        	btnClass : 'btn-danger',
-            				        	keys: ['enter'],
-            				        	action : function () {
-            				        		$("#editCategoryForm").submit();
-            	              		 		$("#editCategoryForm")[0].reset();
-            	              		 		setTimeout(function() {
-            	              	            	$('#editCategoryForm').modal('hide');
-            	              	            }, 230);
-            				        	}
-            				        },
-            				     
-            				        '취소': {
-            				        	btnClass : 'btn-success',
-            				        	action : function() {
-            				        		
-            				        	}
-            				        }
-            				    }
-            				});
+                        	if($("#acname2").val().trim() == ""){
+                        		$.alert("카테고리명을 입력해주세요");
+                        	}else {
+                        		$.confirm({
+                					title : '카테고리 수정',
+                					content : '수정하시겠습니까?',
+                					theme: 'dark',
+                					type: 'orange',
+                					backgroundDismiss: true,
+                					closeIcon: true,
+                					buttons: {
+                				        '수정': {
+                				        	btnClass : 'btn-danger',
+                				        	keys: ['enter'],
+                				        	action : function () {
+                				        		$("#editCategoryForm").submit();
+                	              		 		$("#editCategoryForm")[0].reset();
+                	              		 		setTimeout(function() {
+                	              	            	$('#editCategoryForm').modal('hide');
+                	              	            }, 230);
+                				        	}
+                				        },
+                				     
+                				        '취소': {
+                				        	btnClass : 'btn-success',
+                				        	action : function() {
+                				        		
+                				        	}
+                				        }
+                				    }
+                				});
+                        	}
                         }
                     </script>
 		<!--categoryEditModal script end-->
@@ -447,8 +451,9 @@
                         	var url = $("#url").val().trim();
                         	
 	                       	if(url == ""){
-	                     		$("#url").focus();
+	                     		$.alert("URL을 입력해주세요");
 	                     	}else {
+	                     		
 	                     		preview(url);
              		 	   	}
                         }
@@ -460,9 +465,17 @@
                 				data : {
                 					url : url // 북마크 ID
                 				},
+                				beforeSend: function() {
+                					$(".bookmark-loader").css("visibility", "visible");
+    	                     		$("#addUrlname").val("");
+    	                     		showUrlStep2Form();
+                	            },
+                	            complete: function() {
+                	            	$(".bookmark-loader").css("visibility", "hidden");
+                	            },
                 				success : function(data){
                 					$("#addUrlname").val(data.title);
-                					showUrlStep2Form();
+                					
                 				},
                         	});
                         }
@@ -497,7 +510,7 @@
 							var urlname = $("#addUrlname").val().trim();
                         	
 	                       	if(urlname == ""){
-	                     		$("#addUrlname").focus();
+	                     		$.alert("사이트명을 입력해주세요")
 	                     	}else {
 	                     		$("#addUrlForm").submit();
 	                     		$("#addUrlForm")[0].reset();
@@ -538,9 +551,12 @@
 								<!--2단계 카테고리 선택-->
 								<div class="categoryBox" style="display: none;">
 									<div class="form">
-										<label class="control-label" for="urlname">제목</label> <input
-											id="addUrlname" class="form-control" type="text"
-											placeholder="URLNAME" name="urlname"><br> <label
+										<label class="control-label" for="urlname">제목</label>
+										<span class="bookmark-loader">
+											<span>loading title</span>&nbsp;&nbsp;<i class="fas fa-spinner fa-spin"></i>
+										</span>
+										<input id="addUrlname" class="form-control" type="text" placeholder="URL명" name="urlname">
+										<br> <label
 											class="control-label" for="acname4">선택된 카테고리</label>&nbsp; <input
 											id="acname4" class="form-control" type="text"
 											placeholder="선택된 카테고리 (readonly)" name="acname" readonly><br>
@@ -586,7 +602,7 @@
                         	var url = $("#editurl").val().trim();
                         	
 	                       	if(url == ""){
-	                     		$("#editurl").focus();
+	                     		$.alert("URL을 입력해주세요");
 	                     	}else {
 	                     		editUrlPreview(url);
              		 	   	}
@@ -599,6 +615,14 @@
                 				data : {
                 					url : url // 북마크 ID
                 				},
+                				beforeSend: function() {
+                					$(".bookmark-loader").css("visibility", "visible");
+    	                     		$("#editUrlname").val("");
+    	                     		showUrlEditStep2Form();
+                	            },
+                	            complete: function() {
+                	            	$(".bookmark-loader").css("visibility", "hidden");
+                	            },
                 				success : function(data){
                 					$("#editUrlname").val(data.title);
                 					showUrlEditStep2Form();
@@ -702,12 +726,13 @@
 								<!--2단계 카테고리 선택-->
 								<div class="categoryBox" style="display: none;">
 									<div class="form">
-										<label class="control-label" for="urlname">제목</label> <input
-											id="editUrlname" class="form-control" type="text"
-											placeholder="URLNAME" name="urlname"><br> <label
-											class="control-label" for="acname5">선택된 카테고리</label>&nbsp; <input
-											id="acname5" class="form-control" type="text"
-											placeholder="선택된 카테고리 (readonly)" name="acname" readonly><br>
+										<label class="control-label" for="urlname">제목</label>
+										<span class="bookmark-loader">
+											<span>loading title</span>&nbsp;&nbsp;<i class="fas fa-spinner fa-spin"></i>
+										</span>
+										<input id="editUrlname" class="form-control" type="text" placeholder="URL명" name="urlname"><br> 
+										<label class="control-label" for="acname5">선택된 카테고리</label>&nbsp; 
+										<input id="acname5" class="form-control" type="text" placeholder="선택된 카테고리 (readonly)" name="acname" readonly><br>
 									</div>
 								</div>
 							</div>

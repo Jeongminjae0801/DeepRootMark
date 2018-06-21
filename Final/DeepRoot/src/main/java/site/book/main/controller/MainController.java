@@ -39,8 +39,10 @@ import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
+import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
+import site.book.admin.service.NoticeService;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.service.TeamService;
 import site.book.user.dto.EmailAuthDTO;
@@ -76,6 +78,10 @@ public class MainController {
 	
 	@Autowired
 	private TeamService teamservice;
+	
+	@Autowired
+	private NoticeService notice_service;
+	
 	// 명수
 	
 	// 변수 End
@@ -352,10 +358,11 @@ public class MainController {
 		return jsonview;
 	}
 	
-	@RequestMapping("/categoryList.do")
-	public View getCategoryList(Model model) {
-		List<A_CategoryDTO> categoryList = a_category_service.getCategorys();
-		model.addAttribute("categoryList", categoryList);
+	@RequestMapping("/getNotices.do")
+	public View getNotices(Model model) {
+		
+		List<NoticeDTO> noticeList = notice_service.getNotices();
+		model.addAttribute("noticeList", noticeList);
 		
 		return jsonview;
 	}
