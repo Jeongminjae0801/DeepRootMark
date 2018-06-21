@@ -135,3 +135,10 @@ jQuery(function($) {
     }).scroll();
   });
 });
+
+
+/* 민재 onclick */
+
+
+
+/* 태웅이 onclick */
