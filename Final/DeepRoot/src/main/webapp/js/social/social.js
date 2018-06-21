@@ -1,4 +1,3 @@
-
 jQuery(function($) {
 	'use strict';
 
@@ -53,12 +52,12 @@ jQuery(function($) {
 		}
 	});
 
-
-	  $('.timer').each(count);
+	$('.timer').each(count);
 
 	function count(options) {
 		var $this = $(this);
-		options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+		options = $.extend({}, options || {}, $this.data('countToOptions')
+				|| {});
 		$this.countTo(options);
 	}
 
@@ -69,18 +68,30 @@ jQuery(function($) {
 
 	// Contact form
 	var form = $('#main-contact-form');
-	form.submit(function(event) {
-		event.preventDefault();
-		var form_status = $('<div class="form_status"></div>');
-		$.ajax({
-			url: $(this).attr('action'),
-			beforeSend: function() {
-				form.prepend(form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn());
-			}
-		}).done(function(data) {
-			form_status.html('<p class="text-success">Thank you for contact us. As early as possible  we will contact you</p>').delay(3000).fadeOut();
-		});
-	});
+	form
+			.submit(function(event) {
+				event.preventDefault();
+				var form_status = $('<div class="form_status"></div>');
+				$
+						.ajax(
+								{
+									url : $(this).attr('action'),
+									beforeSend : function() {
+										form
+												.prepend(form_status
+														.html(
+																'<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>')
+														.fadeIn());
+									}
+								})
+						.done(
+								function(data) {
+									form_status
+											.html(
+													'<p class="text-success">Thank you for contact us. As early as possible  we will contact you</p>')
+											.delay(3000).fadeOut();
+								});
+			});
 
 	// Progress Bar
 	$.each($('div.progress-bar'), function() {
@@ -90,7 +101,7 @@ jQuery(function($) {
 	if ($('#gmap').length) {
 		var map;
 
-	    map = new GMaps({
+		map = new GMaps({
 			el : '#gmap',
 			lat : 43.04446,
 			lng : -76.130791,
@@ -102,9 +113,9 @@ jQuery(function($) {
 			mapTypeControl : false,
 			overviewMapControl : false,
 			clickable : false
-	    });
+		});
 
-	    map.addMarker({
+		map.addMarker({
 			lat : 43.04446,
 			lng : -76.130791,
 			animation : google.maps.Animation.DROP,
@@ -113,62 +124,50 @@ jQuery(function($) {
 			backgroundColor : '#3e8bff',
 		});
 	}
-	
+
 	$(document).ready(function() {
 		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 		var floatPosition = parseInt($("#floatMenu").css('top'));
 		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-	
+
 		$(window).scroll(function() {
 			// 현재 스크롤 위치를 가져온다.
 			var scrollTop = $(window).scrollTop();
 			var newPosition = scrollTop + floatPosition - 400 + "px";
 			var fixedpositon = floatPosition + "px";
-		
+
 			// 애니메이션 없이 바로 따라감
 			if ($(this).scrollTop() <= 400)
 				scrollTop.toFixed();
 			else
 				$("#floatMenu").css('top', newPosition);
-		
+
 		}).scroll();
 	});
-	
-	
-<<<<<<< HEAD
-		/* 태웅이 onclick */
-		$('.fa-share').dblclick(function() {});
-		$('.fa-share').click(function(event) {
-			console.log("하하하");
-			$('#get-completed-group').modal();
-			$('#get-completed-group').parent().css('z-index', '500');
-			});
-		});
-		/* 태웅이 onclick END */
-	
-=======
-});
->>>>>>> 14726b25a3d31a432ee106269d9f24c6ef222d6b
 
-	
+	/* 태웅이 onclick */
+	$('.fa-share').dblclick(function() {
+	});
+	$('.fa-share').click(function(event) {
+		console.log("하하하");
+		$('#get-completed-group').modal();
+		$('#get-completed-group').parent().css('z-index', '500');
+	});
 });
+/* 태웅이 onclick END */
 
 /* 민재 onclick */
-function indi_share_bookmark(){
+function indi_share_bookmark() {
 	console.log("호잇호잇");
 	$('#get-completed-group').modal();
 	$('#get-completed-group').parent().css('z-index', '500');
 }
 
 /* 민재 onclick END */
-<<<<<<< HEAD
-=======
-
 
 /* 태웅이 onclick */
-$('#socialGroupModal').on('shown.bs.modal', function () {
+$('#socialGroupModal').on('shown.bs.modal', function() {
 	console.log("ㅅㅂ");
 });
 /* 태웅이 onclick END */
 
->>>>>>> 14726b25a3d31a432ee106269d9f24c6ef222d6b
