@@ -23,8 +23,10 @@ import org.springframework.web.servlet.View;
 
 import com.gargoylesoftware.htmlunit.javascript.host.Console;
 
+import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.TeamDTO;
+import site.book.team.service.G_BookService;
 import site.book.team.service.G_MemberService;
 import site.book.team.service.TeamService;
 import site.book.user.dto.U_BookDTO;
@@ -58,6 +60,8 @@ public class UserController {
 	@Autowired
 	private MailSender mailSender;
 	
+	@Autowired
+	G_BookService g_bookservice;
 	// 변수 End
 	
 	// 함수 Start
@@ -409,5 +413,46 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping("getCompletedTeamBookmark.do")
+	public void getCompletedTeamBookmark(HttpServletResponse res, int gid) {
+		
+		res.setCharacterEncoding("UTF-8");
+		System.out.println("너 들어오니");
+		System.out.println(gid);
+		
+		JSONArray jsonArray = new JSONArray();	
+		List<G_BookDTO> list = g_bookservice.getCompletedTeamBookmark(gid);
+		
+		System.out.println(list);
+		
+		for(int i =0; i<list.size(); i++) {
+			
+			JSONObject jsonobject = new JSONObject();
+			
+			String parentid = String.valueOf(list.get(i).getPid());
+			
+			if(parentid.equals("0") || parentid.equals(""))
+				jsonobject.put("parent", "#");
+			else
+				jsonobject.put("parent", parentid);
+			
+			if(list.get(i).getUrl() == null)
+				jsonobject.put("icon", "fa fa-folder");
+			else
+				jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());
+			
+			jsonobject.put("id", list.get(i).getGbid());
+			jsonobject.put("text", list.get(i).getUrlname());
+			
+			jsonArray.put(jsonobject);
+		}
+		
+		try {
+			res.getWriter().println(jsonArray);
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
+		
+	}
 	// 함수 End
 }

@@ -602,7 +602,7 @@ $(document).ready(function(){
 													"separator_after"	: false,
 							                		"label": "수정하기",
 							                		"action" : function(data){
-							                			
+///////////공유 수정하							                			
 							                		}
 							                	},
 							                	"dimiss" :{
@@ -695,5 +695,8 @@ $(document).ready(function(){
 		$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().removeClass('colorfold');
 	})
 
+	
+	
+	
 });
 
