@@ -29,19 +29,19 @@
     <!-- Script Common JavaScript & CSS END -->
 
 	<!-- Social Page CSS -->
-    <link href="../css/social/social.css" rel="stylesheet">
-    <link href="../css/mainpage/header.css" rel="stylesheet">
-    <link href="../css/mainpage/footer.css" rel="stylesheet">
-    <link href="../css/mainpage/list_table.css" rel="stylesheet">
-    <link href="../css/mainpage/responsive.css" rel="stylesheet">
-    <link href="../css/mainpage/login-register.css" rel="stylesheet" />
-    <link href="../css/social/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/social/social.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/list_table.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/login-register.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/css/social/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Social Page CSS END -->
 
     <!--Script Start -->
-    <script src="../js/social/social.js"></script>
-    <script src="../js/social/jquery.dataTables.min.js"></script>
-    <script src="../js/social/dataTables.bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/social/social.js?ver=2"></script>
+    <script src="${pageContext.request.contextPath}/js/social/jquery.dataTables.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/social/dataTables.bootstrap.min.js"></script>
     <!-- Script END -->
 
     <script>
@@ -124,14 +124,14 @@
 	</div>
 	
 	
-	 <!-- Common Script START -->
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/wow.min.js"></script>
+	<!-- Common Script START -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/wow.min.js"></script>
     <!-- Common Script END -->
 
     <!-- Custom Script START -->
-    <script type="text/javascript" src="../js/social/social.js"></script>
-    <script type="text/javascript" src="../js/login.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/social/social.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
     <!-- Custom Script END -->
 </body>
 </html>
