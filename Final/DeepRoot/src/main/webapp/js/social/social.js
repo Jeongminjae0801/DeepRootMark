@@ -132,16 +132,9 @@ jQuery(function($) {
 				$("#floatMenu").css('top', newPosition);
 		
 		}).scroll();
+	});
 	
-		/* 태웅이 onclick */
-		$('.fa-share').dblclick(function() {});
-		$('.fa-share').click(function(event) {
-			console.log("하하하");
-			$('#get-completed-group').modal();
-			$('#get-completed-group').parent().css('z-index', '500');
-			});
-		});
-		/* 태웅이 onclick END */
+	
 });
 
 
@@ -149,4 +142,11 @@ jQuery(function($) {
 
 
 /* 민재 onclick END */
+
+
+/* 태웅이 onclick */
+$('#socialGroupModal').on('shown.bs.modal', function () {
+	console.log("ㅅㅂ");
+});
+/* 태웅이 onclick END */
 

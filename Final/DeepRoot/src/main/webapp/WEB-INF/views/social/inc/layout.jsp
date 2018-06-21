@@ -30,6 +30,7 @@
 
 	<!-- Social Page CSS -->
     <link href="${pageContext.request.contextPath}/css/social/social.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/social/modal.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/list_table.css" rel="stylesheet">
@@ -39,7 +40,6 @@
     <!-- Social Page CSS END -->
 
     <!--Script Start -->
-    <script src="${pageContext.request.contextPath}/js/social/social.js?ver=2"></script>
     <script src="${pageContext.request.contextPath}/js/social/jquery.dataTables.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/social/dataTables.bootstrap.min.js"></script>
     <!-- Script END -->
@@ -97,23 +97,14 @@
             });
         });
         /* ******************** Table Search END *************************** */
-
-        $(function() {
-            $("#myModal").on('show.bs.modal', function(event) {
-                var button = $(event.relatedTarget); // Button that triggered the modal
-                var titleData = button.data('title'); // Extract value from data-* attributes
-                $(this).find('.modal-title').text(titleData + ' Form');
-            });
-        });
     </script>
 
 </head>
 <body>
 
-<div id="main-header">
+	<div id="main-header">
 		<tiles:insertAttribute name="header" />
 	</div>
-	
 	
 	<div id="main">
 		<tiles:insertAttribute name="content" />
@@ -125,13 +116,11 @@
 	
 	
 	<!-- Common Script START -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/wow.min.js"></script>
     <!-- Common Script END -->
 
     <!-- Custom Script START -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/social/social.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login.js"></script>
     <!-- Custom Script END -->
 </body>
 </html>
