@@ -480,7 +480,7 @@ table.table-hover tbody tr:hover {
     padding-left: 50px;    
 }
 
-.dropdown-menu {
+.dropdown-menu.category {
     transform: translate3d(325px, -35px, 0px);
 }
 

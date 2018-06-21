@@ -23,7 +23,23 @@
 		    	html += '</ul>';
 		    	$("#groupDropdown").append(html);
 		    }
-		})
+		});
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/getNotices.do",
+		    type: "post",
+		    success : function(data){
+		    	var html = '<ul role="menu" class="sub-menu">';
+		    	console.log(data.noticeList);
+		    	for(var key in data.noticeList){
+		    		console.log(data.noticeList[key]);
+		    		html += '<li><a href="#">' + data.noticeList[key].ncontent + '</a></li>';
+		    	}
+		    	html += '</ul>';
+		    	$("#noticeDropdown").append(html);
+		    }
+		});
+		
 	});
 	
 	function headerAddGroup(gid) {
@@ -99,12 +115,9 @@
                         </ul>
                     </li>
                     <!-- Notice Alarm START -->
-                   <li class="dropdown">
+                   <li id="noticeDropdown" class="dropdown">
                        <a href="#">
                        <img src="<%= request.getContextPath() %>/icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a>
-                       <ul role="menu" class="sub-menu">
-                           <li>토요일 12pm~6pm 서버 점검 예정</li>
-                       </ul>
                    </li>
                    <!-- Notice Alarm END -->
                    <!-- USER INFO START -->
