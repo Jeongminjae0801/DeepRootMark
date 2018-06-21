@@ -26,8 +26,8 @@
     <!-- Script Common JavaScript & CSS END -->
 
 	<!--  jsTree CSS & JS START -->
-	<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/dist/themes/proton/style.css" />
-	<script  src="${pageContext.request.contextPath}/resources/assets/dist/jstree.min.js"></script> --%>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+	<script  src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
 	
 	<!-- Header Footer -->
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
