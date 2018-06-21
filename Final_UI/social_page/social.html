@@ -179,7 +179,7 @@
                             <tbody>
                                 <tr>
                                     <td class="rank"><img class="rankimg" src="icon/gold.png">1</td>
-                                    <td class="team"><a href="http://www.naver.com" target="_blank">네이버</a></td>
+                                    <td class="team">네이버</td>
                                     <td>1053</td>
                                 </tr>
                                 <tr>
@@ -643,81 +643,41 @@
     </section>
     <!-- Share Bookmark div END -->
 
-    <!-- Surfing Modal Script START -->
-    <!-- <script>
-        function surfingModal() {
-            showCategoryForm();
-            setTimeout(function() {
-                $('#surfingModal').modal('show');
-            }, 230);
-        }
-    </script>-->
-    <!-- Surfing Modal Script END -->
-
     <!-- Modal HTML -->
-    <div id="myModal" class="modal fade">
-        <div class="modal-dialog">
+
+<section>
+    <!-- The modal -->
+    <div class="" id="flipFlop" tabindex="1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-                    <h4 class="modal-title">Bookmark 가져가기</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalLabel">북마크 가져가기</h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form">
-                        <div class="form-group">
-                            <label for="recipient-name" class="control-label">URL</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="form-group dropright">
-                            <button class="control-label dropdown-toggle dtn-secondary" type="button" data-toggle="dropdown">가져갈 곳</button>
-                            <ul class="dropdown-menu">
-                                <li><a data-toggle="modal" onclick="">My Page</a></li>
-                                <li><a data-toggle="modal" onclick="">Group</a></li>
-                            </ul>
-                        </div>
-                    </form>
+                    <select class="selectpicker">
+                        <optgroup label="MyPage">
+                            <option>Mustard</option>
+                            <option>Ketchup</option>
+                            <option>Relish</option>
+                        </optgroup>
+                        <optgroup label="Group">
+                            <option>Tent</option>
+                            <option>Flashlight</option>
+                            <option>Toilet Paper</option>
+                        </optgroup>
+                    </select>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Send</button>
+                    <button type="button" class="btn btn-secondary share-check">확인</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Surfing Modal START -->
-
-
-
-
-    <!--<div class="modal fade addCategory" id="surfingModal">
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-                <form name="surfingURL" method="post" action="/addCategory" accept-charset="UTF-8">
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title"></h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <div class="box">
-                            카테고리명 입력
-                            <div class="form addCategoryBox">
-                                <label class="control-label" for="acname">추가할 카테고리명을 입력하세요</label>
-                                <input id="acname1" class="form-control" type="text" placeholder="acname" name="acname" /><br>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>-->
-    <!-- Surfing Modal END -->
-
-    <!-- Footer START -->
+</section>    <!-- Footer START -->
     <footer id="footer">
         <div class="footer">
             Bitcamp Java 104th Team2, 2018

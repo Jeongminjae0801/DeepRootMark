@@ -142,11 +142,16 @@ jQuery(function($) {
 			});
 		});
 		/* 태웅이 onclick END */
+	
+
+	
 });
 
-
 /* 민재 onclick */
-
+function indi_share_bookmark(){
+	console.log("호잇호잇");
+	$('#get-completed-group').modal();
+	$('#get-completed-group').parent().css('z-index', '500');
+}
 
 /* 민재 onclick END */
-
