@@ -133,24 +133,6 @@ jQuery(function($) {
 		
 		}).scroll();
 	});
-	
-	
-<<<<<<< HEAD
-		/* 태웅이 onclick */
-		$('.fa-share').dblclick(function() {});
-		$('.fa-share').click(function(event) {
-			console.log("하하하");
-			$('#get-completed-group').modal();
-			$('#get-completed-group').parent().css('z-index', '500');
-			});
-		});
-		/* 태웅이 onclick END */
-	
-=======
-});
->>>>>>> 14726b25a3d31a432ee106269d9f24c6ef222d6b
-
-	
 });
 
 /* 민재 onclick */
@@ -161,8 +143,6 @@ function indi_share_bookmark(){
 }
 
 /* 민재 onclick END */
-<<<<<<< HEAD
-=======
 
 
 /* 태웅이 onclick */
@@ -170,5 +150,3 @@ $('#socialGroupModal').on('shown.bs.modal', function () {
 	console.log("ㅅㅂ");
 });
 /* 태웅이 onclick END */
-
->>>>>>> 14726b25a3d31a432ee106269d9f24c6ef222d6b
