@@ -15,9 +15,9 @@
 			title : '회원 삭제',
 			content : '삭제하시겠습니까?',
 			theme: 'dark',
+			type: 'orange',
 			backgroundDismiss: true,
 			closeIcon: true,
-		    closeIconClass: 'fa fa-close',
 			buttons: {
 		        '삭제': {
 		        	btnClass : 'btn-danger',
@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="panel">
-						<div class="panel-heading">회원목록</div>
+						<div class="panel-heading">회원 목록</div>
 						<!-- /.panel-heading -->
 						<div class="panel-body">
 							<table width="100%" class="table table-hover" id="userListTable">
@@ -82,8 +82,7 @@
 									<tr id="${user.nname}">
 										<td>${user.nname}</td>
 										<td>${user.uid}</td>
-										<td><input class="btn btn-danger" type="button"
-											value="삭제" onclick="deleteUser('${user.uid}','${user.nname}')"></td>
+										<td><i class="fas fa-trash-alt url-action" onclick="deleteUser('${user.uid}','${user.nname}')"></i></td>
 									</tr>
 									</c:forEach>
 								</tbody>

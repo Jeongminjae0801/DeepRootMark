@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- adminTable CSS START -->
-<link rel="stylesheet" href="/bit/css/admin/mainbooklist.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/mainbooklist.css">
 <!-- adminTable CSS END -->
 
 
@@ -20,20 +20,33 @@
 		// console.log(categorylist);
 		// DataTable 적용
 		$.each(categorylist, function(index, element){
-			console.log(element);
+			//console.log(element);
 			$('table[id="'+ element[0] + '"]').DataTable({
 				responsive: true
 			});
 			
-			$('span[id="'+ element[0] + '"]').css("color", element[1]);
+			// ColorPicker
+			
+			var color = element[1];
+			if(color == "#000"){
+				color = "#FFFFFF";
+			}
+			
+			$('span[id="'+ element[0] + '"]').css("color", color);
+			console.log(color);
 			
 			$(".categoryColor"+element[0]).colorPick({
 	            'initialColor': element[1],
 	            'onColorSelected': function() {
+	            	var selectColor = this.color;
+	            	if(selectColor == "#000"){
+	            		selectColor = "#FFFFFF";
+	    			}
 	                this.element.css({
 	                    'backgroundColor': this.color,
 	                    'color': this.color
 	                });
+	                
 	                $.ajax({
 	            		url: "editCategoryCclor.do",
 	    				type: "post",
@@ -46,20 +59,13 @@
 	    				}
 	            	});
 	                
-	                $('span[id="'+ element[0] + '"]').css("color", this.color);
+	                $('span[id="'+ element[0] + '"]').css("color", selectColor);
 	            }
 	        });
 		});
-		
-		/* $('.grid').masonry({
-			  itemSelector: '.grid-item',
-		}); */
 	});
 	
-	
 </script>
-
-
 
 <!-- Main Content START -->
 <div class="content-wrapper" style="min-height: 913px;">
@@ -96,7 +102,7 @@
 				</button>
 				<ul class="dropdown-menu categorylist">
 					<c:forEach items="${categorylist}" var="category">
-						<li><a href="#${category.acname}">${category.acname}</a></li>
+						<li><a href="#${category.acid}">${category.acname}</a></li>
 					</c:forEach>
 				</ul>
 				<!-- Category lsit Dropdown END -->
@@ -121,7 +127,7 @@
 								<!--color picker START -->
 								<button class="colorPickSelector categoryColor${hashmap.key.acid}"></button>
 								<!--color picker END -->
-								<i class="fa fa-pencil" data-toggle="modal"
+								<i class="fas fa-pencil-alt" data-toggle="modal"
 									onclick="openCategoryEditModal(${hashmap.key.acid}, '${hashmap.key.acname}');"></i>
 								<div class="pull-right">
 									<i class="fa fa-plus-circle i-plus-circle" data-toggle="modal"
@@ -147,8 +153,8 @@
 											<tr id="${book.abid}">
 												<td>${book.urlname}</td>
 												<td><a href="${book.url}" target="_blank">${book.url}</a></td>
-												<td><i class="fa fa-pencil url-action" onclick="openUrlEditModal(${hashmap.key.acid}, '${hashmap.key.acname}', '${book.url}', ${book.abid});"></i><i
-													class="fa fa-trash-o url-action"
+												<td><i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(${hashmap.key.acid}, '${hashmap.key.acname}', '${book.url}', ${book.abid});"></i><i
+													class="fas fa-trash-alt url-action"
 													onclick="deleteUrl(${book.abid})"></i></td>
 											</tr>
 										</c:forEach>
@@ -183,6 +189,7 @@
         	   //console.log("click");
         	   //console.log($("#acname1").val().trim());
         	   if($("#acname1").val().trim() == ""){
+        		   $.alert("카테고리 명을 입력해주세요");
         		   $("#acname1").focus();
 		 	   }else {
 		 		  $("#addCategoryForm").submit();
@@ -256,9 +263,9 @@
             					title : '카테고리 수정',
             					content : '수정하시겠습니까?',
             					theme: 'dark',
+            					type: 'orange',
             					backgroundDismiss: true,
             					closeIcon: true,
-            				    closeIconClass: 'fa fa-close',
             					buttons: {
             				        '수정': {
             				        	btnClass : 'btn-danger',
@@ -340,13 +347,13 @@
                         }
                         
                         function deleteAdminCategory() {
-                        	$.confirm({
+                        	var js = $.confirm({
             					title : '카테고리 삭제',
             					content : '삭제하시겠습니까?',
+            					closeIcon: true,
+            					type: 'orange',
             					theme: 'dark',
             					backgroundDismiss: true,
-            					closeIcon: true,
-            				    closeIconClass: 'fa fa-close',
             					buttons: {
             				        '삭제': {
             				        	btnClass : 'btn-danger',
@@ -366,7 +373,12 @@
             				        		
             				        	}
             				        }
+            				    },
+            				    
+            				    onContentReady: function(){
+            				    	jc.$icon.css("color: white");
             				    }
+            				    
             				});
                         	
                         }
@@ -631,10 +643,10 @@
 	                     		$.confirm({
 	            					title : 'URL 수정',
 	            					content : '수정하시겠습니까?',
+	            					type: 'orange',
 	            					theme: 'dark',
 	            					backgroundDismiss: true,
 	            					closeIcon: true,
-	            				    closeIconClass: 'fa fa-close',
 	            					buttons: {
 	            				        '수정': {
 	            				        	btnClass : 'btn-danger',
@@ -727,9 +739,9 @@
 					title : 'URL 삭제',
 					content : '삭제하시겠습니까?',
 					theme: 'dark',
+					type: 'orange',
 					backgroundDismiss: true,
 					closeIcon: true,
-				    closeIconClass: 'fa fa-close',
 					buttons: {
 				        '삭제': {
 				        	btnClass : 'btn-danger',

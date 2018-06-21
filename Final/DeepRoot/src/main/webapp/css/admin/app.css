@@ -243,14 +243,20 @@ table.dataTable thead .sorting_desc:after {
 }
 
 table.dataTable thead .sorting:after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
     content: "\F0DC"
 }
 
 table.dataTable thead .sorting_asc:after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
     content: "\F0DD"
 }
 
 table.dataTable thead .sorting_desc:after {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
     content: "\F0DE"
 }
 
@@ -390,3 +396,21 @@ table.dataTable thead .sorting_desc:after {
     padding-right: 0;
     padding-left: 0
 }
+ 
+/* Category Insert button CSS END */
+
+.url-action{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color:#8aa4af;
+}
+
+.url-action:hover,
+.url-action:focus,
+.url-action:active{
+    cursor: pointer;
+    color:#fff;
+}
+/* category CSS END */
