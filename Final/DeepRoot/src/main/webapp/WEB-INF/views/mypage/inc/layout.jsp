@@ -26,6 +26,7 @@
     <!-- Script Common JavaScript & CSS END -->
 
 	<!--  jsTree CSS & JS START -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/social/modal.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
 	<script  src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
 	
@@ -36,7 +37,7 @@
     <!-- Header Footer END -->
     
 	<!-- Google Icon CDN -->
-	<link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<!-- Google Icon CDN END -->
 
 
