@@ -695,6 +695,17 @@ $(document).ready(function(){
 		$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().removeClass('colorfold');
 	})
 
+		$("#group_bookmark_modal").on('open_node.jstree', function(e,data){
+		//data.instance.set_type(data.node,'f-open');
+		$.jstree.reference('#group_bookmark_modal').set_icon(data.node, "fa fa-folder-open")
+		//colorfold
+		/* $('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().addClass('colorfold'); */
+	})
+	$("#group_bookmark_modal").on('close_node.jstree', function(e,data){
+		$.jstree.reference('#group_bookmark_modal').set_icon(data.node, "fa fa-folder")
+		$('#'+data.node.id).find('i.jstree-icon.jstree-themeicon').first().removeClass('colorfold');
+	})
+	
 	
 	
 	

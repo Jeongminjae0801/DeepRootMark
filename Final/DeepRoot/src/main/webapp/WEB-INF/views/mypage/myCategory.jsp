@@ -148,8 +148,8 @@
 		    
 		});
 	}
-	
 
+<<<<<<< HEAD
 	function testing_modal(d){
 		console.log(d.id);
 		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
@@ -188,6 +188,9 @@
 		$('#completedGroupModal').modal();
 		
 	}
+=======
+	
+>>>>>>> feature/jstree_checkbox
 </script>
 <div class="container">
 	<div class="row" style="padding-top: 150px;"></div>
@@ -277,7 +280,7 @@
 				<div class="panel-body-scroll">
 					<ul class="group-list-list">
 						<c:forEach items="${completedTeamList}" var="completedTeam">
-							<li id="${completedTeam.gid}" class="list-group-item" onclick="testing_modal(this)" >
+							<li id="${completedTeam.gid}" class="list-group-item" onclick="testing_modal(this)">
 								<label class="my-group-list"> ${completedTeam.gname} </label>
 								<div class="pull-right action-buttons">
 									<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(${completedTeam.gid})"></span></a>
@@ -348,7 +351,7 @@
 					<div id="group_bookmark_modal"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary" onclick="submitgroupurl()">Save changes</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
