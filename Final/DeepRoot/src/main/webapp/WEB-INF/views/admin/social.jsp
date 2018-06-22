@@ -117,7 +117,7 @@
 				<!-- u_booklist start -->
 				<div class="col-sm-6">
 					<div class="panel">
-						<div class="panel-heading">소셜 개인 북마크 목록</div>
+						<div class="panel-heading"><i class="fa fa-arrow-right social-content-head"></i>소셜 개인 북마크 목록</div>
 						<div class="panel-body">
 							<table class="table table-hover" id="socialUserBookmarkTable">
 								<thead>
@@ -155,7 +155,7 @@
 				<!-- Group Share Bookmark START -->
 				<div class="col-sm-6">
 					<div class="panel">
-						<div class="panel-heading">소셜 그룹 북마크 목록</div>
+						<div class="panel-heading"><i class="fa fa-arrow-right social-content-head"></i>소셜 그룹 북마크 목록</div>
 						<div class="panel-body">
 							<table class="table table-hover" id="socialGroupBookmarkTable">
 								<thead>
@@ -187,7 +187,6 @@
 							</table>
 						</div>
 					</div>
-
 				</div>
 				<!-- Group Share Bookmark END -->
 			</div>

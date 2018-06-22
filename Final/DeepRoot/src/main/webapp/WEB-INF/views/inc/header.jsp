@@ -42,6 +42,7 @@
 		
 	});
 	
+	// header에 있는 그룹 추가 버튼 클릭 이벤트
 	function headerAddGroup(gid) {
 		$.confirm({
 		    title: '그룹 추가',
@@ -52,13 +53,13 @@
 		    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
 		    '</div>' +
 		    '</form>',
+		    type: 'green',
 		    closeIcon: true,
-		    closeIconClass: 'fa fa-close',
 		    
 		    buttons: {
 		        formSubmit: {
 		            text: '추가',
-		            btnClass: 'btn-blue',
+		            btnClass: 'btn-green',
 		            action: function () {
 		                var name = this.$content.find('.name').val();
 		                if(!name){
@@ -69,7 +70,9 @@
 		                
 		            }
 		        },
-		                    취소: function () {
+		        '취소': {
+		            btnClass: 'btn-red',
+		        	action : function () {}
 		            //close
 		        },
 		    }

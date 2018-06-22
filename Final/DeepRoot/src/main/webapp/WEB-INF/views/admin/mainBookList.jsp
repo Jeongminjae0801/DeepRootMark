@@ -6,8 +6,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/mainbooklist.css">
 <!-- adminTable CSS END -->
 
-
-
 <script type="text/javascript">
 	
 	$(function(){
@@ -33,7 +31,7 @@
 			}
 			
 			$('span[id="'+ element[0] + '"]').css("color", color);
-			console.log(color);
+			//console.log(color);
 			
 			$(".categoryColor"+element[0]).colorPick({
 	            'initialColor': element[1],
@@ -55,7 +53,7 @@
 	    					color : this.color // 카테고리 색상
 	    				},
 	    				success : function(data){
-	    					console.log(data);
+	    					//console.log(data);
 	    				}
 	            	});
 	                
@@ -102,7 +100,7 @@
 				</button>
 				<ul class="dropdown-menu categorylist">
 					<c:forEach items="${categorylist}" var="category">
-						<li><a href="#${category.acid}">${category.acname}</a></li>
+						<li><a href="#panel${category.acid}">${category.acname}</a></li>
 					</c:forEach>
 				</ul>
 				<!-- Category lsit Dropdown END -->
@@ -119,7 +117,7 @@
 				<c:forEach items="${url_by_category}" var="list">
 					<c:forEach items="${list}" var="hashmap">
 						<div class="col-sm-6">
-						<div class="panel">
+						<div id="panel${hashmap.key.acid}" class="panel">
 							<!-- Category Name & edit & insert START -->
 
 							<div class="panel-heading">
@@ -127,11 +125,9 @@
 								<!--color picker START -->
 								<button class="colorPickSelector categoryColor${hashmap.key.acid}"></button>
 								<!--color picker END -->
-								<i class="fas fa-pencil-alt" data-toggle="modal"
-									onclick="openCategoryEditModal(${hashmap.key.acid}, '${hashmap.key.acname}');"></i>
+								<i class="fas fa-pencil-alt" data-toggle="modal" onclick="openCategoryEditModal(${hashmap.key.acid}, '${hashmap.key.acname}');"></i>
 								<div class="pull-right">
-									<i class="fa fa-plus-circle i-plus-circle" data-toggle="modal"
-										onclick="openUrlModal(${hashmap.key.acid}, '${hashmap.key.acname}');"></i>
+									<i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal(${hashmap.key.acid}, '${hashmap.key.acname}');"></i>
 								</div>
 							</div>
 							<!-- /.panel-heading -->
@@ -241,68 +237,62 @@
 
 		<!--categoryEditModal script start-->
 		<script>
-                        /*카테고리 수정 모달 바로열기*/
-                        function showCategoryEditForm() {
-                            $('.editCategoryBox').fadeIn('fast');
-                            $('.editCategory-footer').fadeIn('fast');
-                            $('.modal-title').html('카테고리 수정');
-                        }
+			/*카테고리 수정 모달 바로열기*/
+			function showCategoryEditForm() {
+				$('.editCategoryBox').fadeIn('fast');
+				$('.editCategory-footer').fadeIn('fast');
+				$('.modal-title').html('카테고리 수정');
+			}
 
-                        function openCategoryEditModal(acid, acname) {
-                        	$("#editCategoryID").val(acid); // 카테고리 ID hidden type에 넣어주기
-                        	$("#acname2").val(acname); // 카테고리 명 미리 입력해주기
+			function openCategoryEditModal(acid, acname) {
+ 				$("#editCategoryID").val(acid); // 카테고리 ID hidden type에 넣어주기
+				$("#acname2").val(acname); // 카테고리 명 미리 입력해주기
                         	
-                            showCategoryEditForm();
-                            setTimeout(function() {
-                                $('#editCategoryModal').modal('show');
-                            }, 230);
-                        }
+				showCategoryEditForm();
+				setTimeout(function() {
+					$('#editCategoryModal').modal('show');
+				}, 230);
+			}
                         
-                        function editAdminCategory() {
-                        	if($("#acname2").val().trim() == ""){
-                        		$.alert("카테고리명을 입력해주세요");
-                        	}else {
-                        		$.confirm({
-                					title : '카테고리 수정',
-                					content : '수정하시겠습니까?',
-                					theme: 'dark',
-                					type: 'orange',
-                					backgroundDismiss: true,
-                					closeIcon: true,
-                					buttons: {
-                				        '수정': {
-                				        	btnClass : 'btn-danger',
-                				        	keys: ['enter'],
-                				        	action : function () {
-                				        		$("#editCategoryForm").submit();
-                	              		 		$("#editCategoryForm")[0].reset();
-                	              		 		setTimeout(function() {
-                	              	            	$('#editCategoryForm').modal('hide');
-                	              	            }, 230);
-                				        	}
-                				        },
-                				     
-                				        '취소': {
-                				        	btnClass : 'btn-success',
-                				        	action : function() {
-                				        		
-                				        	}
-                				        }
-                				    }
-                				});
-                        	}
-                        }
-                    </script>
+			function editAdminCategory() {
+				if($("#acname2").val().trim() == ""){
+					$.alert("카테고리명을 입력해주세요");
+				}else {
+					$.confirm({
+						title : '카테고리 수정',
+						content : '수정하시겠습니까?',
+						theme: 'dark',
+						type: 'orange',
+						backgroundDismiss: true,
+						closeIcon: true,
+						buttons: {
+							'수정': {
+								btnClass : 'btn-danger',
+								keys: ['enter'],
+								action : function () {
+									$("#editCategoryForm").submit();
+									$("#editCategoryForm")[0].reset();
+									setTimeout(function() {
+										$('#editCategoryForm').modal('hide');
+									}, 230);
+								}
+						},
+							'취소': {
+								btnClass : 'btn-success',
+								action : function() {}
+							}
+						}
+					});
+				}
+			}
+		</script>
 		<!--categoryEditModal script end-->
 
 		<!--categoryEditModal start-->
 		<div class="modal fade editCategory" id="editCategoryModal">
 			<div class="modal-dialog">
-
 				<div class="modal-content">
-					<form id="editCategoryForm" name="editCategory" method="post" action="editCategory.do"
-						accept-charset="UTF-8">
-
+					<form id="editCategoryForm" name="editCategory" method="post" action="editCategory.do" accept-charset="UTF-8">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal"
 								aria-hidden="true">&times;</button>
@@ -314,17 +304,15 @@
 								<!--카테고리명 입력-->
 								<div class="form editCategoryBox">
 									<input type="hidden" id="editCategoryID" name="acid">
-									<label class="control-label" for="acname">카테고리명을
-										입력하세요</label> <input id="acname2" class="form-control" type="text"
-										placeholder="acname" name="acname"><br>
+									<label class="control-label" for="acname">카테고리명을 입력하세요</label>
+									<input id="acname2" class="form-control" type="text" placeholder="acname" name="acname"><br>
 								</div>
 							</div>
 						</div>
 
 						<div class="modal-footer">
 							<div class="editCategory-footer">
-								<input class="btn btn-default btn-comp" type="button" value="수정"
-									onclick="editAdminCategory();">
+								<input class="btn btn-default btn-comp" type="button" value="수정" onclick="editAdminCategory();">
 							</div>
 						</div>
 					</form>
@@ -335,59 +323,49 @@
 
 		<!--categoryDeleteModal script start-->
 		<script>
-                        /*카테고리 삭제 모달 바로열기*/
-                        function showCategoryDeleteForm() {
-                            $('.deleteCategoryBox').fadeIn('fast');
-                            $('.deleteCategory-footer').fadeIn('fast');
-                            $('.modal-title').html('카테고리 삭제');
-                        }
+			/*카테고리 삭제 모달 바로열기*/
+			function showCategoryDeleteForm() {
+				$('.deleteCategoryBox').fadeIn('fast');
+				$('.deleteCategory-footer').fadeIn('fast');
+				$('.modal-title').html('카테고리 삭제');
+			}
 
-                        function openCategoryDeleteModal() {
-                            showCategoryDeleteForm();
-                            setTimeout(function() {
-                                $('#deleteCategoryModal').modal('show');
-                            }, 230);
+			function openCategoryDeleteModal() {
+				showCategoryDeleteForm();
+				setTimeout(function() {
+					$('#deleteCategoryModal').modal('show');
+				}, 230);
+			}
+                        
+			function deleteAdminCategory() {
+				var js = $.confirm({
+					title : '카테고리 삭제',
+					content : '삭제하시겠습니까?',
+					closeIcon: true,
+					type: 'orange',
+					theme: 'dark',
+					backgroundDismiss: true,
+					buttons: {
+						'삭제': {
+							btnClass : 'btn-danger',
+							keys: ['enter'],
+							action : function () {
+								$("#deleteCategoryForm").submit();
+								$("#deleteCategoryForm")[0].reset();
+								setTimeout(function() {
+									$('#deleteCategoryModal').modal('hide');
+								}, 230);
+							}
+						},
+						'취소': {
+							btnClass : 'btn-success',
+							action : function() {}
+            			}
+					},
+				});
+			}
 
-                        }
-                        
-                        function deleteAdminCategory() {
-                        	var js = $.confirm({
-            					title : '카테고리 삭제',
-            					content : '삭제하시겠습니까?',
-            					closeIcon: true,
-            					type: 'orange',
-            					theme: 'dark',
-            					backgroundDismiss: true,
-            					buttons: {
-            				        '삭제': {
-            				        	btnClass : 'btn-danger',
-            				        	keys: ['enter'],
-            				        	action : function () {
-            				        		$("#deleteCategoryForm").submit();
-            	              		 		$("#deleteCategoryForm")[0].reset();
-            	              		 		setTimeout(function() {
-            	              	            	$('#deleteCategoryModal').modal('hide');
-            	              	            }, 230);
-            				        	}
-            				        },
-            				     
-            				        '취소': {
-            				        	btnClass : 'btn-success',
-            				        	action : function() {
-            				        		
-            				        	}
-            				        }
-            				    },
-            				    
-            				    onContentReady: function(){
-            				    	jc.$icon.css("color: white");
-            				    }
-            				    
-            				});
-                        	
-                        }
-                        
-                    </script>
+		</script>
 		<!--categoryDeleteModal script end-->
 
 		<!--categoryDeleteModal start-->
@@ -395,12 +373,10 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form id="deleteCategoryForm" name="deleteCategory" method="post" action="deleteCategory.do"
-						accept-charset="UTF-8">
+					<form id="deleteCategoryForm" name="deleteCategory" method="post" action="deleteCategory.do" accept-charset="UTF-8">
 
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title"></h4>
 						</div>
 
@@ -408,22 +384,19 @@
 							<div class="box">
 								<!--카테고리명 입력-->
 								<div class="form deleteCategoryBox">
-									<label class="control-label" for="acnameList2">삭제할
-										카테고리를 선택하세요</label>&nbsp; <select id="acnameList2"
-										class="form-control" name="acid">
+									<label class="control-label" for="acnameList2">삭제할 카테고리를 선택하세요</label>&nbsp;
+									<select id="acnameList2" class="form-control" name="acid">
 										<c:forEach items="${categorylist}" var="category">
 											<option value="${category.acid}">${category.acname}</option>
 										</c:forEach>
-									</select><br> <input id="acname3" class="form-control"
-										type="hidden" name="acname"><br>
+									</select><br> <input id="acname3" class="form-control" type="hidden" name="acname"><br>
 								</div>
 							</div>
 						</div>
 
 						<div class="modal-footer">
 							<div class="deleteCategory-footer">
-								<input class="btn btn-default btn-comp" type="button" value="삭제"
-									onclick="deleteAdminCategory();">
+								<input class="btn btn-default btn-comp" type="button" value="삭제" onclick="deleteAdminCategory();">
 							</div>
 						</div>
 					</form>
@@ -434,93 +407,90 @@
 
 		<!--urlAddModal script start-->
 		<script>
-                        /*URL 추가 1단계 모달*/
-                        function showUrlForm() {
-                            $('.categoryBox').fadeOut('fast', function() {
-                                $('.addUrlBox').fadeIn('fast');
-                                $('.category_unshared-footer').fadeOut('fast', function() {
-                                    $('.url-footer').fadeIn('fast')
-                                })
-                            });
-                            $('.modal-title').html('1단계');
-
-                        }
+			/*URL 추가 1단계 모달*/
+			function showUrlForm() {
+				$('.categoryBox').fadeOut('fast', function() {
+					$('.addUrlBox').fadeIn('fast');
+					$('.category_unshared-footer').fadeOut('fast', function() {
+						$('.url-footer').fadeIn('fast')
+					})
+				});
+				$('.modal-title').html('1단계');
+			}
                         
-                        /* URL 1단계에서 다음 눌렀을 때 WebCrawling을 통해 비동기로 타이틀 가져오기 */
-                        function getTitleWithWebCrawling() {
-                        	var url = $("#url").val().trim();
+			/* URL 1단계에서 다음 눌렀을 때 WebCrawling을 통해 비동기로 타이틀 가져오기 */
+			function getTitleWithWebCrawling() {
+				var url = $("#url").val().trim();
+				
+				// URL를 입력 안한 경우 alert 창을 띄운다.
+				if(url == ""){
+					$.alert("URL을 입력해주세요");
+				}else {
+					preview(url);
+				}
+			}
+			
+			// 비동기로 제목 가져오는 함수
+			function preview(url){
+				$.ajax({
+					url: "preview.do",
+					type: "post",
+					data : {
+						url : url // 북마크 ID
+					},
+					beforeSend: function() {
+						$(".bookmark-loader").css("visibility", "visible");
+						$("#addUrlname").val("");
+						showUrlStep2Form();
+					},
+					complete: function() {
+						$(".bookmark-loader").css("visibility", "hidden");
+					},
+					success : function(data){
+						$("#addUrlname").val(data.title);
+					},
+				});
+			}
+                        
+			/*URL 추가 2단계 모달*/
+			function showUrlStep2Form() {
+				$('.addUrlBox').fadeOut('fast', function() {
+					$('.categoryBox').fadeIn('fast');
+					$('.url-footer').fadeOut('fast', function() {
+						$('.category_unshared-footer').fadeIn('fast')
+					});
+				});
+				$('.modal-title').html('2단계');
+			}
+
+			/*URL 추가 1단계 모달 바로열기*/
+			function openUrlModal(acid, acname) {
+				$("#acname4").val(acname);
+				$("#adminCategoryID").val(acid);
                         	
-	                       	if(url == ""){
-	                     		$.alert("URL을 입력해주세요");
-	                     	}else {
-	                     		
-	                     		preview(url);
-             		 	   	}
-                        }
+				showUrlForm();
+				setTimeout(function() {
+					$('#addUrlModal').modal('show');
+				}, 230);
+			}
                         
-                        function preview(url){
-                        	$.ajax({
-                        		url: "preview.do",
-                				type: "post",
-                				data : {
-                					url : url // 북마크 ID
-                				},
-                				beforeSend: function() {
-                					$(".bookmark-loader").css("visibility", "visible");
-    	                     		$("#addUrlname").val("");
-    	                     		showUrlStep2Form();
-                	            },
-                	            complete: function() {
-                	            	$(".bookmark-loader").css("visibility", "hidden");
-                	            },
-                				success : function(data){
-                					$("#addUrlname").val(data.title);
-                					
-                				},
-                        	});
-                        }
-                        
-                        /*URL 추가 2단계 모달*/
-                        function showUrlStep2Form() {
-                            $('.addUrlBox').fadeOut('fast', function() {
-                                $('.categoryBox').fadeIn('fast');
-                                $('.url-footer').fadeOut('fast', function() {
-                                    $('.category_unshared-footer').fadeIn('fast')
-
-                                });
-                            });
-                            $('.modal-title').html('2단계');
-
-                        }
-
-                        /*URL 추가 1단계 모달 바로열기*/
-                        function openUrlModal(acid, acname) {
-                        	$("#acname4").val(acname);
-                        	$("#adminCategoryID").val(acid);
-                        	
-                            showUrlForm();
-                            setTimeout(function() {
-                                $('#addUrlModal').modal('show');
-                            }, 230);
-
-                        }
-                        
-                        /* URL 추가 */
-                        function addBookmarkButton() {
-							var urlname = $("#addUrlname").val().trim();
-                        	
-	                       	if(urlname == ""){
-	                     		$.alert("사이트명을 입력해주세요")
-	                     	}else {
-	                     		$("#addUrlForm").submit();
-	                     		$("#addUrlForm")[0].reset();
-	              		 		setTimeout(function() {
-	              	            	$('#addUrlModal').modal('hide');
-	              	            }, 230);
-             		 	   	}
-                        }
-                                    
-                    </script>
+			/* URL 추가 */
+			function addBookmarkButton() {
+				var urlname = $("#addUrlname").val().trim();
+				
+				// 사이트명을 입력하지 않은 경우 alert창을 띄운다.
+				if(urlname == ""){
+					$.alert("사이트명을 입력해주세요")
+				}else {
+					$("#addUrlForm").submit();
+					$("#addUrlForm")[0].reset();
+					setTimeout(function() {
+						$('#addUrlModal').modal('hide');
+					}, 230);
+				}
+			}
+			
+		</script>
 
 		<!--urlAddModal script end-->
 		<!--urlAddModal start-->
@@ -528,11 +498,9 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form id="addUrlForm" name="addUrl" method="post" action="addUrl.do"
-						accept-charset="UTF-8">
+					<form id="addUrlForm" name="addUrl" method="post" action="addUrl.do" accept-charset="UTF-8">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title"></h4>
 						</div>
 
@@ -540,9 +508,8 @@
 							<div class="box">
 								<!--1단계 URL 입력-->
 								<div class="form addUrlBox">
-									<label class="control-label" for="url">URL을 입력하세요</label> <input
-										id="url" class="form-control" type="text" placeholder="URL"
-										name="url"><br>
+									<label class="control-label" for="url">URL을 입력하세요</label>
+									<input id="url" class="form-control" type="text" placeholder="URL" name="url"><br>
 									<input type="hidden" id="adminCategoryID" name="acid">
 								</div>
 							</div>
@@ -556,10 +523,8 @@
 											<span>loading title</span>&nbsp;&nbsp;<i class="fas fa-spinner fa-spin"></i>
 										</span>
 										<input id="addUrlname" class="form-control" type="text" placeholder="URL명" name="urlname">
-										<br> <label
-											class="control-label" for="acname4">선택된 카테고리</label>&nbsp; <input
-											id="acname4" class="form-control" type="text"
-											placeholder="선택된 카테고리 (readonly)" name="acname" readonly><br>
+										<br> <label class="control-label" for="acname4">선택된 카테고리</label>&nbsp;
+										<input id="acname4" class="form-control" type="text" placeholder="선택된 카테고리 (readonly)" name="acname" readonly><br>
 									</div>
 								</div>
 							</div>
@@ -567,14 +532,11 @@
 
 						<div class="modal-footer">
 							<div class="url-footer">
-								<input class="btn btn-default btn-next" type="button" value="다음"
-									onclick="getTitleWithWebCrawling()">
+								<input class="btn btn-default btn-next" type="button" value="다음" onclick="getTitleWithWebCrawling()">
 							</div>
 							<div class="category_unshared-footer" style="display: none">
-								<input class="btn btn-default btn-prev" type="button" value="이전"
-									onclick="showUrlForm()"> <input
-									class="btn btn-default btn-comp" type="button" value="등록"
-									onclick="addBookmarkButton()">
+								<input class="btn btn-default btn-prev" type="button" value="이전" onclick="showUrlForm()">
+								<input class="btn btn-default btn-comp" type="button" value="등록" onclick="addBookmarkButton()">
 							</div>
 						</div>
 					</form>
@@ -585,116 +547,111 @@
 		
 		<!--urlEditModal script start-->
 		<script>
-                        /*URL 수정 1단계 모달*/
-                        function showEditUrlForm() {
-                            $('.categoryBox').fadeOut('fast', function() {
-                                $('.editUrlBox').fadeIn('fast');
-                                $('.category_unshared-footer').fadeOut('fast', function() {
-                                    $('.url-footer').fadeIn('fast')
-                                })
-                            });
-                            $('.modal-title').html('1단계');
-
-                        }
+			/*URL 수정 1단계 모달*/
+			function showEditUrlForm() {
+				$('.categoryBox').fadeOut('fast', function() {
+					$('.editUrlBox').fadeIn('fast');
+					$('.category_unshared-footer').fadeOut('fast', function() {
+						$('.url-footer').fadeIn('fast')
+					});
+				});
+				$('.modal-title').html('1단계');
+			}
                         
-                        /* URL 1단계에서 다음 눌렀을 때 WebCrawling을 통해 비동기로 타이틀 가져오기 */
-                        function getTitleEditUrl() {
-                        	var url = $("#editurl").val().trim();
-                        	
-	                       	if(url == ""){
-	                     		$.alert("URL을 입력해주세요");
-	                     	}else {
-	                     		editUrlPreview(url);
-             		 	   	}
-                        }
+			/* URL 1단계에서 다음 눌렀을 때 WebCrawling을 통해 비동기로 타이틀 가져오기 */
+			function getTitleEditUrl() {
+				var url = $("#editurl").val().trim();
+				
+				// URL을 입력하지 않은 경우 alert창을 띄운다.
+				if(url == ""){
+					$.alert("URL을 입력해주세요");
+				}else {
+					editUrlPreview(url);
+				}
+			}
                         
-                        function editUrlPreview(url){
-                        	$.ajax({
-                        		url: "preview.do",
-                				type: "post",
-                				data : {
-                					url : url // 북마크 ID
-                				},
-                				beforeSend: function() {
-                					$(".bookmark-loader").css("visibility", "visible");
-    	                     		$("#editUrlname").val("");
-    	                     		showUrlEditStep2Form();
-                	            },
-                	            complete: function() {
-                	            	$(".bookmark-loader").css("visibility", "hidden");
-                	            },
-                				success : function(data){
-                					$("#editUrlname").val(data.title);
-                					showUrlEditStep2Form();
-                				}
-                        	});
-                        };
+			function editUrlPreview(url){
+				$.ajax({
+					url: "preview.do",
+					type: "post",
+					data : {
+						url : url // 북마크 ID
+					},
+					beforeSend: function() {
+						$(".bookmark-loader").css("visibility", "visible");
+						$("#editUrlname").val("");
+						showUrlEditStep2Form();
+					},
+					complete: function() {
+						$(".bookmark-loader").css("visibility", "hidden");
+					},
+					success : function(data){
+						$("#editUrlname").val(data.title);
+						showUrlEditStep2Form();
+					}
+				});
+			};
+			
+			/*URL 수정 2단계 모달*/
+			function showUrlEditStep2Form() {
+				$('.editUrlBox').fadeOut('fast', function() {
+					$('.categoryBox').fadeIn('fast');
+					$('.url-footer').fadeOut('fast', function() {
+						$('.category_unshared-footer').fadeIn('fast')
+					});
+				});
+				$('.modal-title').html('2단계');
+			}
+
+			/*URL 수정 1단계 모달 바로열기*/
+			function openUrlEditModal(acid, acname, url, abid) {
+				$("#editurl").val(url);
+				$("#acname5").val(acname);
+				$("#editAdminCategoryID").val(acid);
+				$("#editUrlID").val(abid);
+				
+				showEditUrlForm();
+				setTimeout(function() {
+					$('#editUrlModal').modal('show');
+				}, 230);
+			}
                         
-                        /*URL 수정 2단계 모달*/
-                        function showUrlEditStep2Form() {
-                            $('.editUrlBox').fadeOut('fast', function() {
-                                $('.categoryBox').fadeIn('fast');
-                                $('.url-footer').fadeOut('fast', function() {
-                                    $('.category_unshared-footer').fadeIn('fast')
+			/* URL 수정  */
+			function editBookmarkButton() {
+				var urlname = $("#editUrlname").val().trim();
 
-                                });
-                            });
-                            $('.modal-title').html('2단계');
-
-                        }
-
-                        /*URL 수정 1단계 모달 바로열기*/
-                        function openUrlEditModal(acid, acname, url, abid) {
-                        	$("#editurl").val(url);
-                        	$("#acname5").val(acname);
-                        	$("#editAdminCategoryID").val(acid);
-                        	$("#editUrlID").val(abid);
-                        	
-                        	showEditUrlForm();
-                            setTimeout(function() {
-                                $('#editUrlModal').modal('show');
-                            }, 230);
-
-                        }
-                        
-                        /* URL 수정  */
-                        function editBookmarkButton() {
-							var urlname = $("#editUrlname").val().trim();
-                        	
-	                       	if(urlname == ""){
-	                     		$("#editUrlname").focus();
-	                     	}else {
-	                     		$.confirm({
-	            					title : 'URL 수정',
-	            					content : '수정하시겠습니까?',
-	            					type: 'orange',
-	            					theme: 'dark',
-	            					backgroundDismiss: true,
-	            					closeIcon: true,
-	            					buttons: {
-	            				        '수정': {
-	            				        	btnClass : 'btn-danger',
-	            				        	keys: ['enter'],
-	            				        	action : function () {
-	            				        		$("#editUrlForm").submit();
-	            	                     		$("#editUrlForm")[0].reset();
-	            	              		 		setTimeout(function() {
-	            	              	            	$('#editUrlModal').modal('hide');
-	            	              	            }, 230);
-	            				        	}
-	            				        },
-	            				     
-	            				        '취소': {
-	            				        	btnClass : 'btn-success',
-	            				        	action : function() {
-	            				        	}
-	            				        }
-	            				    }
-	            				});
-             		 	   	}
-                        }
-                                    
-                    </script>
+				// 사이트명을 입력하지 않은 경우 alert창을 띄운다.
+				if(urlname == ""){
+					$("#editUrlname").focus();
+				}else {
+					$.confirm({
+						title : 'URL 수정',
+						content : '수정하시겠습니까?',
+						type: 'orange',
+						theme: 'dark',
+						backgroundDismiss: true,
+						closeIcon: true,
+						buttons: {
+							'수정': {
+								btnClass : 'btn-danger',
+								keys: ['enter'],
+								action : function () {
+									$("#editUrlForm").submit();
+									$("#editUrlForm")[0].reset();
+									setTimeout(function() {
+										$('#editUrlModal').modal('hide');
+									}, 230);
+								}
+							},
+							'취소': {
+								btnClass : 'btn-success',
+								action : function() {}
+							}
+						}
+					});
+				}
+			}
+		</script>
 		<!--urlEditModal script end-->
 		
 		<!--urlEditModal start-->
@@ -702,11 +659,9 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form id="editUrlForm" name="editUrl" method="post" action="editUrl.do"
-						accept-charset="UTF-8">
+					<form id="editUrlForm" name="editUrl" method="post" action="editUrl.do" accept-charset="UTF-8">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title"></h4>
 						</div>
 
@@ -714,9 +669,8 @@
 							<div class="box">
 								<!--1단계 URL 입력-->
 								<div class="form editUrlBox">
-									<label class="control-label" for="editurl">URL을 입력하세요</label> <input
-										id="editurl" class="form-control" type="text" placeholder="URL"
-										name="url"><br>
+									<label class="control-label" for="editurl">URL을 입력하세요</label>
+									<input id="editurl" class="form-control" type="text" placeholder="URL" name="url"><br>
 									<input type="hidden" id="editAdminCategoryID" name="acid">
 									<input type="hidden" id="editUrlID" name="abid">
 								</div>
@@ -740,14 +694,11 @@
 
 						<div class="modal-footer">
 							<div class="url-footer">
-								<input class="btn btn-default btn-next" type="button" value="다음"
-									onclick="getTitleEditUrl()">
+								<input class="btn btn-default btn-next" type="button" value="다음" onclick="getTitleEditUrl()">
 							</div>
 							<div class="category_unshared-footer" style="display: none">
-								<input class="btn btn-default btn-prev" type="button" value="이전"
-									onclick="showEditUrlForm()"> <input
-									class="btn btn-default btn-comp" type="button" value="수정"
-									onclick="editBookmarkButton()">
+								<input class="btn btn-default btn-prev" type="button" value="이전" onclick="showEditUrlForm()">
+								<input class="btn btn-default btn-comp" type="button" value="수정" onclick="editBookmarkButton()">
 							</div>
 						</div>
 					</form>
@@ -755,7 +706,6 @@
 			</div>
 		</div>
 		<!--urlEditModal end-->
-		
 		
 		<!-- urlDelete script Start -->
 		<script type="text/javascript">

@@ -80,6 +80,12 @@ public class U_BookService {
 		
 		try {
 			list = bookDAO.socialBookmarkList();
+			for(S_U_BookDTO book : list) {
+				if(book.getSname().length() > 10) {
+					book.setSname(book.getSname().substring(0, 9) + "..");
+				}
+			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -188,6 +194,14 @@ public class U_BookService {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
 		int result = dao.shareUrlEdit(dto);
+		return result;
+	}
+
+	public int insertUrlFromCompletedGroup(U_BookDTO dto) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = dao.insertUrlFromCompletedGroup(dto);
+		
 		return result;
 	}
 

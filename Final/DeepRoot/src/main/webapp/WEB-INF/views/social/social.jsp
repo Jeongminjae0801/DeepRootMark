@@ -15,7 +15,7 @@
 			</div>
 			<div class="modal-body row">
 				<div class="completed-modal-left groupshare">
-	                <h4 class="completed-modal-from"><b>From : <span class="groupshare-url" id="from-text"> </span></b></h4>
+	                <h4 class="completed-modal-from"><b>From : <span class="groupshare-name" id="from-text"> </span></b></h4>
 	                <div class="jstree-from" id="jstree-from-left">
 	                	제이트리 뿌려줘염
 	                </div>
@@ -91,8 +91,11 @@
 	                    <button class="btn btn-secondary indishare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                    Click <span class="caret"></span>
 	                    </button>
+	                    <button class="btn btn-secondary indishare dropdown-toggle gogosing" type="button">
+	                    My Book
+	                    </button>
 	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-	                        <li id="completed-modal-mybook" class="dropdown-item" href="#">My Book</li>
+	                        <li id="completed-modal-mybook" class="dropdown-item" href="#"> <!-- onclick="mycategory();" -->My Book</li>
 	                        <hr class="divider-hr">
 	                        <li class="dropdown-item dropdown-submenu">
 	                            <a tabindex="-1" href="#">Group</a>
@@ -112,9 +115,9 @@
 	                        });
 	                    </script>
 	                </div>
-	
-	                <div id="jstree-to-right">
-	
+					<hr>
+	                <div id="indi-jstree-to-right">
+                	난 너가 떠 줬으면 좋겠어
 	                </div>
 	            </div>
 			</div>

@@ -49,90 +49,6 @@
 	<script type="text/javascript">
 	
 	
- 	function testing_modal(d){
- 		
-		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
-		
-		$.ajax({
-			
-			url : "getCompletedTeamBookmark.do",
-			type : "POST",
-			data : {gid : gid},	
-			dataType :"json",
-			success : function(obj){
-				first_data=obj;
-				$('#group_bookmark_modal').jstree().deselect_all(true);			
-				$("#group_bookmark_modal").jstree(true).settings.core.data = obj;
-				$("#group_bookmark_modal").jstree(true).refresh();
-			}	
-		})
-		
-		$('#completedGroupModal').modal();
-	} 
- 	
- 	// 내 북마크로 가져오기 버튼 클릭시
-	function submitgroupurl(){
-		
-		var checked_ids = []; 
-		var submit_url_ids = [];
-		var submit_obj = [];
-		
-		checked_ids = $('#group_bookmark_modal').jstree("get_checked",null,true);
-		
-		// url 있는 것만 골라내기
-		$.each(checked_ids,function(key,value){
-			var checknode_href = $('#group_bookmark_modal').jstree(true).get_node(value).a_attr.href;
-			var checknode_urlname =  $('#group_bookmark_modal').jstree(true).get_node(value).text;
-			if(checknode_href != '#'){
-				console.log(checknode_href);
-				submit_url_ids.push(value);
-				submit_obj.push({url : checknode_href , urlname : checknode_urlname , ubid: 162 });
-			}
-		})
-		console.log(submit_obj); //[3,4]
-		
-		$.ajax({
-		
-			url : "insertGroupUrl.do",
-			type : "POST",
-			data : {obj : submit_obj},
-			success : function(){
-			}
-		})
-	}
-	
-	$(document).ready(function(){
-	
-	var first_data = null;
-
-	$("#group_bookmark_modal").on('click','.jstree-anchor',function(e){
-		$('#group_bookmark_modal').jstree(true).toggle_node(e.target);
-		
-	}).jstree({
-			
-			"core" : {
-				"dblclick_toggle" : false,
-				'data' : first_data,
-				'themes':{
-					'name' : 'proton',
-					'responsive' : true,
-					'dots' : false,
-				}
-			},
-			"plugins" : ["checkbox" ]
-			
-		}).bind("loaded.jstree",function(event,data){
-			console.log("ready");
-			 $('#group_bookmark_modal').jstree("open_all"); 
-			
-		}).bind("select_node.jstree",function(event,data){
-				console.log($('#group_bookmark_modal').jstree("get_checked",null,true));
-		})
-
-
-	
-	})
-	
 	</script>
 	
 	<div id="main-header">
@@ -262,12 +178,12 @@
 						<!-- type="submit" value="Submit" -->
 						<button type="button" class="btn btn-default btn-sm addUrlLevel1" onclick="openAddUrlLevel2()">다음</button>
 						<button type="button" class="btn btn-default btn-sm addUrlLevel2" onclick="addUrlLevel1()">이전</button>
-						<button type="button" class="btn btn-default btn-sm addUrlLevel2-1" id="addUrlNotShare_btn">추가</button>
+						<button type="button" class="btn btn-default btn-sm addUrlLevel2-1" onclick="addUrlNotShare()">추가</button>
 						<button type="button" class="btn btn-default btn-sm addUrlLevel2-2" onclick="openAddUrlLevel3()">다음</button>
 						<button type="button" class="btn btn-default btn-sm addUrlLevel3" onclick="addUrlLevel2_1();">이전</button>
 						<!-- <button type="button" class="btn btn-default btn-sm"
 							data-dismiss="modal">취소</button> -->
-						<button class="btn btn-default btn-sm addUrlLevel3" id="linkAddSubmit_btn">추가하기</button>
+						<button class="btn btn-default btn-sm addUrlLevel3" onclick="addUrlShare()">추가하기</button>
 					</div>
 				</div>
 			</div>
