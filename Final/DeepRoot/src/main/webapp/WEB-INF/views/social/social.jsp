@@ -127,6 +127,67 @@
 </div><!-- /.modal -->
 <!-- social 개인 북마크 가져가기 div END -->
 
+<!-- social 작성자 파도타기 start -->
+<div id="socialSurfingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialSurfingModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content social">
+			<div class="modal-header surfingshare">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+			</button>
+					<h4 class="modal-title" id="gridSystemModalLabel">회원 URL 파도타기</h4>
+			</div>
+			<div class="modal-body row">
+				<div class="completed-modal-left surfingshare">
+	                <h4 class="completed-modal-from"><b>From : <span id="from-text">[회원이름]</span></b></h4>
+	                <div class="jstree-from" id="jstree-from-left">
+	                	제이트리 뿌려주곻
+	                </div>
+	            </div>   
+	            <div class="completed-modal-right surfingshare">
+
+               	<h4 class="completed-modal-to"><b>To : </b></h4>
+               	<!-- Dropdown -->
+               	<div class="dropdown completed-modal-dropdown">
+                   	<button class="btn btn-secondary surfingshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       	Click <span class="caret"></span>
+                   	</button>
+                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                       	<li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
+                       	<hr class="divider-hr">
+                       	<li class="dropdown-item dropdown-submenu">
+                           	<a tabindex="-1" href="#">나의 그룹북마크</a>
+                           	<ul class="dropdown-menu">
+                             	<li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
+                             	<li class="dropdown-group-item"><span>Group 2</span></li>
+                             	<li class="dropdown-group-item"><span>Group 3</span></li>
+                           	</ul>
+                       	</li>
+                   	</div>
+                   		<script type="text/javascript">
+                       	$('#completed-modal-mybook').click(function() {
+                           	$('#dropdownMenuButton').text($(this).text());
+                       	});
+                       	$('.dropdown-group-item').click(function() {
+                           	$('#dropdownMenuButton').text($(this).text());
+                       	});
+                   		</script>
+	                </div>
+	                
+	                <div class="jstree-to" id="jstree-to-right" style="clear:both;">
+	                	제이트리 뿌려줘염
+	                </div>
+	            </div>
+			</div>
+			<div class="modal-footer surfingshare">
+				<button type="button" class="btn btn-default surfingshare" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary surfingshare">확인</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- social 작성자 파도타기 end -->
+
 <section class="ranking-div">
 	<div class="container">
 		<div class="row">
@@ -262,10 +323,11 @@
 						<tbody>
 							<c:forEach items="${u_list}" var="u_booklist">
 							<!-- 개인 북마크 공유 -->
+								<!-- working start -->
 								<tr>
 									<td class="table-site"><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
-									<td class="table-write"><a>${u_booklist.nname}</a></td>
+									<td class="table-write" data-toggle="modal" data-target="#socialSurfingModal" data-title="${u_booklist.nname}"><a>${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
@@ -274,6 +336,7 @@
 									</td>
 									<!-- 가져오기 icon -->
 								</tr>
+								<!-- working end -->
 							</c:forEach>
 							<!-- 개인 북마크 공유 -->
 						</tbody>

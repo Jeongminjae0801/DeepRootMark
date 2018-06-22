@@ -12,6 +12,15 @@
 	border-left: 2px solid #ccc;
 	padding-top: 10px;
 }
+/* surfingshare */
+.completed-modal-left.surfingshare{
+	border-right: 2px dashed #ccc;
+	padding-top: 10px;
+}
+.completed-modal-right.surfingshare{
+	border-left: 2px solid #ccc;
+	padding-top: 10px;
+}
 
 .modal > a {
   margin: 22px 40px 0px 0px;
@@ -32,6 +41,19 @@
 	margin-top : 15px;
 }
 
+/* surfingshare */
+.modal-header.surfingshare {
+  border-bottom: 1px solid #ccc;
+  padding-top : 10px;
+  padding-bottom: 5px;
+}
+
+
+.modal-footer.surfingshare{
+	margin-top : 15px;
+}
+
+
 .modal-footer .btn.btn-default.indishare{
 	border : 1px solid #ccc;
 }
@@ -48,6 +70,17 @@
 	background-color: #565656;
 	color:#fff;
 }
+
+/* surfingshare */
+.modal-footer .btn.btn-default.surfingshare{
+	border : 1px solid #ccc;
+}
+
+.modal-footer .btn.btn-default.surfingshare:hover{
+	background-color: #565656;
+	color:#fff;
+}
+
 
 /* 개인 북마크 가져가기 */
 .dropdown.completed-modal-dropdown .btn.btn-secondary.indishare.dropdown-toggle{
@@ -69,6 +102,18 @@
 }
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:hover,
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:focus{
+	background-color:#081971;
+	color:#fff;
+}
+
+/* surfingshare */
+.dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle{
+	background-color: #fff;
+	color: #081971;
+	width: 100px;
+}
+.dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle:hover,
+.dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle:focus{
 	background-color:#081971;
 	color:#fff;
 }
@@ -103,6 +148,18 @@
   float: left;
 }
 .completed-modal-right.groupshare {
+  padding-left: 10px;
+  width: 50%;
+  float: left;
+}
+
+/* surfingshare */
+.completed-modal-left.surfingshare {
+  padding-left: 10px;
+  width: 50%;
+  float: left;
+}
+.completed-modal-right.surfingshare {
   padding-left: 10px;
   width: 50%;
   float: left;
