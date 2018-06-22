@@ -164,12 +164,14 @@
 				type: "post",
 				data : { abid : abid },// 북마크 ID
 				beforeSend: function() {
-	                $('#sub-domain').html('<img id="loading-img" src="${pageContext.request.contextPath}/images/loading/loading.gif"/>');
+	                $('#ajax-loading-div').html('<img id="loading-img" src="${pageContext.request.contextPath}/images/loading/loading.gif" style="width:35%; ma"/>');
 	            },
 	            complete: function() {
-	            	$('#sub-domain').html('');
+	            	$('#ajax-loading-div').html('');
 	            },
 				success : function(data){
+					$('#world-ranking-visitor').html('');
+		        	$('#url-sub-domain').html('');
 		        	var ranking = "<i class='fas fa-globe' style='color: #1192e8;'><p class='detail-text'>Global Rank</p></i>"
 		        		 			+ "<span id='world-ranking'>";
 		        	var visitors = "<i class='fas fa-eye' style='color: #e46100;'><p class='detail-text'>Daily Visitors</p></i>" 
@@ -178,7 +180,7 @@
 		        					+ "<span>";
 		
 		        	if(data.rank != "" && data.rank != null) {
-		        		ranking += data.rank + "</span><br>";
+		        		ranking += numberWithCommas(data.rank) + "</span><br>";
 		        	}else {
 		        		ranking += "Not supported</span><br>";
 		        	}

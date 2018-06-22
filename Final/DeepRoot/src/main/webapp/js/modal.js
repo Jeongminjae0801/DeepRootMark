@@ -27,7 +27,8 @@ jQuery(function($) {
 			    					+ "'" + data.teamlist[key].gname + "'" + ');"><span tabindex="-1">'
 			    					+ data.teamlist[key].gname + '</span></li><hr class="divider-hr">';
 			    		}else {
-			    			html += '<li class="dropdown-group-item"><span>'+ data.teamlist[key].gname + '</span></li><hr class="divider-hr">';
+			    			html += '<li class="dropdown-group-item" onclick="seletedGroup(' 
+		    						+ "'" + data.teamlist[key].gname + "'" + ');"><span>'+ data.teamlist[key].gname + '</span></li><hr class="divider-hr">';
 			    		}
 			    		index += 1;
 			    	}
