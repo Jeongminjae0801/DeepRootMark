@@ -21,6 +21,7 @@
     <!-- Common Script START -->
     <!-- Latest compiled JavaScript & CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Script Common JavaScript & CSS END -->
 
     <!-- Main Page CSS -->

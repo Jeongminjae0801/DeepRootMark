@@ -314,6 +314,7 @@ h2 {
   background-color: #F8FAFF; 
   color: #353866;
   border-radius: 0px 0px 10px 10px;
+  overflow-y: scroll; 
 }
 #comment > img {
 	margin: auto;
@@ -338,7 +339,7 @@ h2 {
 	font-size: 17px;
 }
 #world-ranking, #world-visitor {
-	padding-left: 50px;
+	padding-left: 30px;
 	color: #000;
 	font-size: 17px;
 	float: right;
