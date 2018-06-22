@@ -15,11 +15,7 @@
 			</div>
 			<div class="modal-body row">
 				<div class="completed-modal-left groupshare">
-<<<<<<< HEAD
-	                <h4 class="completed-modal-from"><b>From : <span id="from-text">난 안듣는다 태웅이 말을</span></b></h4>
-=======
 	                <h4 class="completed-modal-from"><b>From : <span class="groupshare-name" id="from-text"> </span></b></h4>
->>>>>>> 49b9e31f052ae151b9418e473b7f78a2a14dee21
 	                <div class="jstree-from" id="jstree-from-left">
 	                	제이트리 뿌려줘염
 	                </div>
