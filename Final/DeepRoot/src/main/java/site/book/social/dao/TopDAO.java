@@ -37,8 +37,12 @@ public interface TopDAO {
 	public List<TopDTO> selectATop5() throws ClassNotFoundException, SQLException;
 	
 	// 전체 Top5 Urlname 가져오기
+<<<<<<< HEAD
 	public String selectATop5Urlname(String url) throws ClassNotFoundException, SQLException;	
 	// 작성자 파도타기 카테고리 및 URL 가져오기
 	public List<U_BookDTO> getCategoryList(String uid);
+=======
+	public String selectATop5Urlname(String url) throws ClassNotFoundException, SQLException;
+>>>>>>> 49b9e31f052ae151b9418e473b7f78a2a14dee21
 	
 }

@@ -310,6 +310,57 @@ public class MainController {
 		return jsonview;
 	}
 	/* 비밀번호 찾기 END */
+	
+	// 미리보기 기능 추가 상세정보 웹크롤링(World Ranking, Sub-URL)
+	@RequestMapping("previewdetail.do")
+	public View WebCrawling2(String abid, Model model) {
+		A_BookDTO book = a_book_service.getBook(Integer.parseInt(abid));
+		String url = book.getUrl();
+	
+		try {
+			/* <Woong> Web Crawling - SubURL & Daily Visitor & World Rank */
+			String fixed_suburl = "https://www.alexa.com/siteinfo/"; // subURL Top5
+			String fixed_visitor = "http://website.informer.com/";	// Daily Visitor & World Rank
+			
+			// subURL Top5 START
+			Document document = Jsoup.connect(fixed_suburl+url).get();
+			Element content = document.getElementById("subdomain_table");
+			Elements subURL = content.getElementsByClass("word-wrap");
+			Elements percent = content.getElementsByClass("text-right");
+			
+			List<List<String>> url_percent = new ArrayList<>();
+			
+			try {
+				for(int i = 0; i < 5; i++) {
+					List<String> temp = new ArrayList<>();
+					String sub = subURL.get(i).select("span").text();
+					String rate = percent.get(i+1).select("span").text();
+					temp.add(sub);
+					temp.add(rate);
+					url_percent.add(temp);
+				}
+			}catch (Exception e) {
+				
+			}
+			model.addAttribute("suburl", url_percent);
+			
+			// Daily Visitor & World Rank Top5 START
+			document = Jsoup.connect(fixed_visitor+url).get();
+			content = document.getElementById("whois");
+			Element visitor_content = content.getElementById("visitors");
+			Element rank_content = content.getElementById("alexa_rank");
+			
+			String visitor = visitor_content.select("b").text().trim().replace(" ", ",");
+			String rank = rank_content.select("b").text().trim();
+
+			model.addAttribute("visitor", visitor);
+			model.addAttribute("rank", rank);
+			
+		} catch (Exception e) {
+			/*e.printStackTrace();*/
+		}
+		return jsonview;
+	}
 
 	// 희준
 	@RequestMapping("preview.do")
@@ -352,45 +403,7 @@ public class MainController {
 				}
 			}
 			for (String s : result.keySet()) {model.addAttribute(s.substring(3), result.get(s));}
-			
-			/* <Woong> Web Crawling - SubURL & Daily Visitor & World Rank */
-			String fixed_suburl = "https://www.alexa.com/siteinfo/"; // subURL Top5
-			String fixed_visitor = "http://website.informer.com/";	// Daily Visitor & World Rank
-			
-			// subURL Top5 START
-			Document document = Jsoup.connect(fixed_suburl+url).get();
-			Element content = document.getElementById("subdomain_table");
-			Elements subURL = content.getElementsByClass("word-wrap");
-			Elements percent = content.getElementsByClass("text-right");
-			
-			List<List<String>> url_percent = new ArrayList<>();
-			
-			try {
-				for(int i = 0; i < 5; i++) {
-					List<String> temp = new ArrayList<>();
-					String sub = subURL.get(i).select("span").text();
-					String rate = percent.get(i+1).select("span").text();
-					temp.add(sub);
-					temp.add(rate);
-					url_percent.add(temp);
-				}
-			}catch (Exception e) {
-				
-			}
-			model.addAttribute("suburl", url_percent);
-			
-			// Daily Visitor & World Rank Top5 START
-			document = Jsoup.connect(fixed_visitor+url).get();
-			content = document.getElementById("whois");
-			Element visitor_content = content.getElementById("visitors");
-			Element rank_content = content.getElementById("alexa_rank");
-			
-			String visitor = visitor_content.select("b").text().trim().replace(" ", ",");
-			String rank = rank_content.select("b").text().trim();
 
-			model.addAttribute("visitor", visitor);
-			model.addAttribute("rank", rank);
-			
 		} catch (Exception e) {
 			/*e.printStackTrace();*/
 		}

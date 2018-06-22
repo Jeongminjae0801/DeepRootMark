@@ -45,7 +45,18 @@ public class U_BookService {
 	// 함수 Start
 	
 	// 태웅
-	
+	public int addToMyBookmark(U_BookDTO book) {
+		U_BookDAO bookDAO = sqlsession.getMapper(U_BookDAO.class);
+		int result = 0;
+		
+		try {
+			result = bookDAO.insertToMyBookmark(book);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 	// 희준
 	

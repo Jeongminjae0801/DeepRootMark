@@ -90,6 +90,24 @@ public class UserController {
 		
 		return jsonview;
 	}
+	
+	// 공유 체크 하지 않은 URL 추가하기
+	@RequestMapping("addtomybookmark.do")
+	public View addUrlNotShare(U_BookDTO book ,HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        book.setUid(uid);
+        
+        int result = u_bookservice.addToMyBookmark(book);
+		if(result > 0) {
+			model.addAttribute("result", "success");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		
+		return jsonview;
+	}
+	
 	// 희준
 	
 	// 그룹 나가기
@@ -185,7 +203,7 @@ public class UserController {
 			JSONObject jsonobject = new JSONObject();
 			
 			// max(ubid) +1 한 값이다.
-			int ubid = u_bookservice.getmaxid();	
+			int ubid = u_bookservice.getmaxid();
 			// 처음 가입자는 첫 카테고리를  생성해 준다.
 			int result = u_bookservice.insertRootFolder(ubid, uid);
 			

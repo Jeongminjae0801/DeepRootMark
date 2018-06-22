@@ -3,7 +3,9 @@
 
 <mapper namespace="site.book.user.dao.U_BookDAO">
 	<!-- 태웅 -->
-	
+	<insert id="insertToMyBookmark">
+		INSERT INTO U_BOOK(URL, URLNAME, REGDATE, UID, PID, ABID) VALUES(#{url}, #{urlname}, SYSDATE(), #{uid}, #{pid}, #{abid});
+	</insert>
 	
 	<!-- 희준 -->
 	<select id="numOfBookByDate" resultType="java.util.HashMap">
@@ -19,7 +21,7 @@
 	</delete>
 	
 	<insert id="addUrlNotShare">
-		INSERT INTO U_BOOK(URL, URLNAME, REGDATE, UID, PID, ABID) VALUES(#{url}, #{urlname}, SYSDATE(), #{uid}, #{pid}, #{abid})
+		INSERT INTO U_BOOK(URL, URLNAME, REGDATE, UID, PID) VALUES(#{url}, #{urlname}, SYSDATE(), #{uid}, #{pid})
 	</insert>
 	
 	<!-- 명수 -->

@@ -75,7 +75,7 @@ public class TeamController {
 		String uid = (String)session.getAttribute("info_userid");
 		
 		List<TeamDTO> teamlist = teamservice.getTeamList(uid);
-		
+
 		model.addAttribute("teamlist", teamlist);
 		return jsonview;
 	}
