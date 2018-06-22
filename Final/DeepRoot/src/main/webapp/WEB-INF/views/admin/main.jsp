@@ -32,8 +32,9 @@
 				$('.loader-circle').addClass('exit');
 				window.setTimeout(function() {
 					window.location = href
-					}, time)
-				});
+				}, time)
+			}
+		);
 	});
 </script>
 <!-- 페이지 전환 Script END -->

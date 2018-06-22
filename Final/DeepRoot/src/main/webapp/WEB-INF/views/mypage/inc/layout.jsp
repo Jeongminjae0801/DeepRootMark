@@ -262,12 +262,12 @@
 						<!-- type="submit" value="Submit" -->
 						<button type="button" class="btn btn-default btn-sm addUrlLevel1" onclick="openAddUrlLevel2()">다음</button>
 						<button type="button" class="btn btn-default btn-sm addUrlLevel2" onclick="addUrlLevel1()">이전</button>
-						<button type="button" class="btn btn-default btn-sm addUrlLevel2-1" id="addUrlNotShare_btn">추가</button>
+						<button type="button" class="btn btn-default btn-sm addUrlLevel2-1" onclick="addUrlNotShare()">추가</button>
 						<button type="button" class="btn btn-default btn-sm addUrlLevel2-2" onclick="openAddUrlLevel3()">다음</button>
 						<button type="button" class="btn btn-default btn-sm addUrlLevel3" onclick="addUrlLevel2_1();">이전</button>
 						<!-- <button type="button" class="btn btn-default btn-sm"
 							data-dismiss="modal">취소</button> -->
-						<button class="btn btn-default btn-sm addUrlLevel3" id="linkAddSubmit_btn">추가하기</button>
+						<button class="btn btn-default btn-sm addUrlLevel3" onclick="addUrlShare()">추가하기</button>
 					</div>
 				</div>
 			</div>

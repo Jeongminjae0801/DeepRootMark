@@ -203,9 +203,6 @@ public class AdminController {
 	// 그룹 삭제
 	@RequestMapping("deleteGroup.do")
 	public View deleteSGroup(String gid, Model model) {
-		System.out.println("그룹 삭제");
-		System.out.println("그룹 번호: " + gid);
-
 		int row = team_service.deleteGroup(Integer.parseInt(gid));
 		String data = (row == 1) ? "성공" : "실패";
 		model.addAttribute("data", data);
@@ -216,9 +213,6 @@ public class AdminController {
 	// 블랙리스트 등록
 	@RequestMapping("blacklist.do")
 	public View blacklist(String uid, Model model) {
-		System.out.println("블랙리스트 등록");
-		System.out.println("회원 아이디: " + uid);
-
 		int row = user_service.blacklist(uid);
 		String data = (row == 1) ? "성공" : "실패";
 		
@@ -230,9 +224,6 @@ public class AdminController {
 	// 카테고리 추가
 	@RequestMapping("addCategory.do")
 	public String addCategory(A_CategoryDTO category, Model model) {
-		System.out.println("관리자 카테고리 추가");
-		System.out.println("관리자 카테고리\n" + category.toString());
-
 		int row = a_category_service.addCategory(category);
 		String data = (row == 1) ? "성공" : "실패";
 		
@@ -245,9 +236,6 @@ public class AdminController {
 	// 카테고리 삭제
 	@RequestMapping("deleteCategory.do")
 	public String deleteCategory(String acid) {
-		System.out.println("관리자 카테고리 삭제");
-		System.out.println("관리자 카테고리 번호: " + acid);
-
 		a_category_service.deleteCategory(Integer.parseInt(acid));
 
 		return "redirect:mainBookList.do";
@@ -256,9 +244,6 @@ public class AdminController {
 	// 카테고리 수정
 	@RequestMapping("editCategory.do")
 	public String updateCategory(A_CategoryDTO category) {
-		System.out.println("관리자 카테고리 수정");
-		System.out.println("관리자 카테고리\n" + category.toString());
-
 		a_category_service.updateCategory(category);
 
 		return "redirect:mainBookList.do";
@@ -302,9 +287,6 @@ public class AdminController {
 	// URL 추가하기
 	@RequestMapping("addUrl.do")
 	public String addBook(A_BookDTO book) {
-		System.out.println("관리자 URL 추가");
-		System.out.println("관리자 카테고리 \n" + book.toString());
-
 		a_book_service.addBook(book);
 
 		return "redirect:mainBookList.do";
@@ -313,13 +295,8 @@ public class AdminController {
 	// URL 삭제하기
 	@RequestMapping("deleteUrl.do")
 	public View deleteBook(String abid, Model model) {
-		System.out.println("관리자 URL 삭제");
-		System.out.println("관리자 카테고리  번호: " + abid);
-
 		int row = a_book_service.deleteBook(Integer.parseInt(abid));
-		
 		String data = (row == 1) ? "성공" : "실패";
-		
 		model.addAttribute("data", data);
 
 		return jsonview;
@@ -328,9 +305,6 @@ public class AdminController {
 	// URL 수정하기
 	@RequestMapping("editUrl.do")
 	public String updateBook(A_BookDTO book) {
-		System.out.println("관리자 URL 수정");
-		System.out.println("관리자 카테고리 \n" + book.toString());
-
 		a_book_service.updateBook(book);
 
 		return "redirect:mainBookList.do";
@@ -349,9 +323,6 @@ public class AdminController {
 	// 소셜 개인 북마크 삭제하기
 	@RequestMapping("deleteSUBook.do")
 	public View deleteSUBook(String ubid, Model model) {
-		System.out.println("소셜 개인 URL 삭제");
-		System.out.println("소셜 개인 URL 번호: " + ubid);
-
 		int row = u_book_service.deleteSocialBookmark(Integer.parseInt(ubid));
 		String data = (row == 1) ? "성공" : "실패";
 		model.addAttribute("data", data);
@@ -361,9 +332,6 @@ public class AdminController {
 
 	@RequestMapping("noticeReg.do")
 	public String noticeReg(String ncontent) {
-		System.out.println("공지사항 쓰기");
-		System.out.println("공지사항 내용: " + ncontent);
-
 		notice_service.noticeReg(ncontent);
 
 		return "redirect:main.do";

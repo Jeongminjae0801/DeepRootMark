@@ -46,7 +46,7 @@
 		                
 		            }
 		        },
-		                    취소: {
+		        '취소': {
 		            btnClass: 'btn-red',
 		            action: function () {
 		            //close
@@ -64,21 +64,16 @@
 	<div class="wrapper">
 
 		<header class="main-header">
-			<span class="logo-mini"><a
-				href="${pageContext.request.contextPath}/index.do"
-				data-duration="0.2s"><span
-					class="img-responsive center-block logo">뿌리깊은마크</span></a> </span>
+			<span class="logo-mini"><a href="${pageContext.request.contextPath}/index.do" data-duration="0.2s">
+				<span class="img-responsive center-block logo">뿌리깊은마크</span></a>
+			</span>
 			<!-- header menu bar START -->
 			<nav role="navigation" class="navbar navbar-static-top">
-				<a href="javascript:;" data-toggle="offcanvas" role="button"
-					class="sidebar-toggle"><span class="sr-only">Toggle
-						navigation</span></a>
+				<a href="javascript:;" data-toggle="offcanvas" role="button" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span></a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
-						<li class="dropdown messages-menu"><a href="javascript:;"
-							data-toggle="dropdown" class="dropdown-toggle"><i
-								class="fas fa-envelope fa-lg admin-mail"></i> <span
-								class="label label-success">3</span></a> <!-- Message Alarm START -->
+						<li class="dropdown messages-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+						<i class="fas fa-envelope fa-lg admin-mail"></i> <span class="label label-success">3</span></a> <!-- Message Alarm START -->
 							<ul class="dropdown-menu">
 								<li class="header">You have 1 message(s)</li>
 								<li>
@@ -92,25 +87,26 @@
 										</a></li>
 									</ul>
 								</li>
-								<li class="footer"><a href="javascript:;">See All
-										Messages</a></li>
+								<li class="footer"><a href="javascript:;">See All Messages</a></li>
 							</ul> <!-- Message Alarm END --></li>
 						<!-- Notice Alarm START -->
-						<li class="dropdown notifications-menu"><a
-							href="javascript:;" data-toggle="dropdown"
-							class="dropdown-toggle"><i
-								class="fas fa-bell fa-lg admin-notice"></i></a>
+						<li class="dropdown notifications-menu">
+							<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+								<i class="fas fa-bell fa-lg admin-notice"></i>
+							</a>
 							<ul id="headerNoticeDropdown" class="dropdown-menu">
 								<!-- <li class="header">You have 0 notification(s)</li> -->
-							</ul></li>
+							</ul>
+						</li>
 						<!-- Notice Alarm END -->
 
 						<!-- Admin Infomation START -->
-						<li class="dropdown user user-menu"><a href="javascript:;"
-							data-toggle="dropdown" class="dropdown-toggle"><img
-								src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg"
-								alt="User Image" class="user-image"> <span
-								class="hidden-xs">관리자(Admin)</span></a></li>
+						<li class="dropdown user user-menu">
+							<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+								<img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
+								<span class="hidden-xs">${sessionScope.info_usernname}</span>
+							</a>
+						</li>
 						<!-- Admin Infomation END -->
 					</ul>
 				</div>
@@ -125,30 +121,24 @@
 				<ul class="sidebar-menu">
 					<!-- Sidemenu Chart START -->
 					<li class="header"><i class="fas fa-chart-area"></i>&nbsp;&nbsp;CHART</li>
-					<li class="pageLink router-link-active"><a href="main.do"
-						class="transition">&nbsp;&nbsp;&nbsp;<i
-							class="fas fa-chart-line"></i> <span class="page">&nbsp;&nbsp;Chart</span></a></li>
+					<li class="pageLink router-link-active">
+						<a href="main.do" class="transition">&nbsp;&nbsp;&nbsp;
+							<i class="fas fa-chart-line"></i> 
+							<span class="page">&nbsp;&nbsp;Chart</span>
+						</a>
+					</li>
 					<!-- Sidemenu Chart END -->
 
 					<!-- Sidemenu Pages Bookmark list START -->
-					<li class="header"><i class="fas fa-book"></i>&nbsp;&nbsp;Bookmark
-						List</li>
-					<li class="pageLink"><a href="mainBookList.do">&nbsp;&nbsp;&nbsp;<i
-							class="fas fa-bookmark fa-fw"></i><span class="page">&nbsp;&nbsp;Main
-								Page Bookmark</span></a></li>
-					<li class="pageLink"><a href="social.do">&nbsp;&nbsp;&nbsp;<i
-							class="fas fa-bookmark fa-fw"></i><span class="page">&nbsp;&nbsp;Social
-								Page Bookmark</span></a></li>
+					<li class="header"><i class="fas fa-book"></i>&nbsp;&nbsp;Bookmark List</li>
+					<li class="pageLink"><a href="mainBookList.do">&nbsp;&nbsp;&nbsp;<i class="fas fa-bookmark fa-fw"></i><span class="page">&nbsp;&nbsp;Main Page Bookmark</span></a></li>
+					<li class="pageLink"><a href="social.do">&nbsp;&nbsp;&nbsp;<i class="fas fa-bookmark fa-fw"></i><span class="page">&nbsp;&nbsp;Social Page Bookmark</span></a></li>
 					<!-- Sidemenu Pages Bookmark list END -->
 
 					<!-- Sidemenu List START -->
 					<li class="header"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;List</li>
-					<li class="pageLink"><a href="groupListTable.do">&nbsp;&nbsp;&nbsp;<i
-							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;Group
-								List</span></a></li>
-					<li class="pageLink"><a href="userListTable.do">&nbsp;&nbsp;&nbsp;<i
-							class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;User
-								List</span></a></li>
+					<li class="pageLink"><a href="groupListTable.do">&nbsp;&nbsp;&nbsp;<i class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;Group List</span></a></li>
+					<li class="pageLink"><a href="userListTable.do">&nbsp;&nbsp;&nbsp;<i class="fas fa-list-ul"></i><span class="page">&nbsp;&nbsp;User List</span></a></li>
 					<!-- Sidemenu List END -->
 				</ul>
 			</section>
