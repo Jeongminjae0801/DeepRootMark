@@ -15,7 +15,7 @@
 			</div>
 			<div class="modal-body row">
 				<div class="completed-modal-left groupshare">
-	                <h4 class="completed-modal-from"><b>From : <span id="from-text">난 안듣는다 태웅이 말을</span></b></h4>
+	                <h4 class="completed-modal-from"><b>From : <span class="groupshare-url" id="from-text"> </span></b></h4>
 	                <div class="jstree-from" id="jstree-from-left">
 	                	제이트리 뿌려줘염
 	                </div>
@@ -76,7 +76,7 @@
 			<div class="modal-body">
 				<div class="completed-modal-left">
 	                <h4 class="completed-modal-from"><b>URL :</b>
-	                	<input type="text" class="indishare-url" value="유알엘 주소를 주세염" readonly>
+	                	<input type="text" class="indishare-url" value="" readonly>
 	                </h4>
 	                <div id="jstree-from-left">
 	
@@ -97,9 +97,9 @@
 	                        <li class="dropdown-item dropdown-submenu">
 	                            <a tabindex="-1" href="#">Group</a>
 	                            <ul class="dropdown-menu">
-	                              <li class="dropdown-group-item"><span tabindex="-1">희준이의 꼬봉들</span></li>
-	                              <li class="dropdown-group-item"><span>나는 노예다</span></li>
-	                              <li class="dropdown-group-item"><span>니꺼 니꺼 내꺼 니꺼</span></li>
+	                              <li class="dropdown-group-item"><span tabindex="-1"> </span></li>
+	                              <li class="dropdown-group-item"><span> </span></li>
+	                              <li class="dropdown-group-item"><span> </span></li>
 	                            </ul>
 	                        </li>
 	                    </div>
@@ -374,7 +374,7 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}">
+									<td class="table-icon group-share" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}">
 										<i class="fa fa-share"></i>
 									</td>
 									<!-- 가져오기 icon -->

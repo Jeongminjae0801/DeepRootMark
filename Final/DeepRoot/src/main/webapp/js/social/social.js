@@ -146,6 +146,13 @@ $('.indi-share').on('click', function(){
 	$('.indishare-url').val(title);
 });
 
+
+$('.group-share').on('dblclick', function(){ return });
+$('.group-share').on('click', function(){
+	var title = $(this).data('title');
+	$('.groupshare-url').text(title);
+});
+
 /* 태웅이 onclick END */
 	
 	
