@@ -172,6 +172,39 @@
 		$('#completedGroupModal').modal();
 		
 	}
+	
+	//완료된 그룹 url 선택후 save 버튼 클릭시
+	function submitgroupurl(){
+		
+		var checked_ids = [];
+		var submit_obj = [];
+		
+		checked_ids = $('#group_bookmark_modal').jstree("get_checked",null,true);
+		if(checked_ids == null) return false;
+		
+		$.each(checked_ids,function(key,value){
+			var checked_url = $('#group_bookmark_modal').jstree(true).get_node(value).a_attr.href;
+			var urlname = $('#group_bookmark_modal').jstree(true).get_node(value).text;
+			if(checked_url !='#'){
+				submit_obj.push({url : checked_url , urlname : urlname, ubid : 162}) 
+			}
+		})
+		
+		console.log(submit_obj);
+		
+		$.ajax({
+			
+			url : "insertGroupUrl.do",
+			type : "POST",
+			data : {obj : submit_obj},
+			success : function(){}
+			
+		})
+		
+		
+		
+		
+	}
 
 </script>
 <div class="container">

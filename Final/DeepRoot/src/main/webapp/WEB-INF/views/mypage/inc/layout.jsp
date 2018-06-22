@@ -147,6 +147,7 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
 
+	<!-- 왼쪽 폴더에서 우클릭해서 url 추가시 뜨는 모달창 -->
 	<div class="modal fade" id="linkAdd" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
