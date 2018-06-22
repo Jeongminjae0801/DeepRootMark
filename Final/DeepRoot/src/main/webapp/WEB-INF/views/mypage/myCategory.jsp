@@ -151,11 +151,12 @@
 	
 	var selected_node_id = 0;
 
+///완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
 	function open_completed_group_modal(d){
 		
-		console.log(d.id);
 		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
-		
+
+		//완료된 그룹 북마크 가져오기
 		$.ajax({
 			
 			url : "getCompletedTeamBookmark.do",
@@ -163,43 +164,43 @@
 			data : {gid : gid},	/* group id 를 넣어야 한다. */
 			dataType :"json",
 			success : function(obj){
-
+//모달 왼쪽 jstree에 data 넣어주기
 				first_data = obj;
 				$('#jstree-from-left').jstree().deselect_all(true);
 				$('#jstree-from-left').jstree(true).settings.core.data = obj;
 				$('#jstree-from-left').jstree(true).refresh();
 			}
 		})
+//모달 오른쪽 selected 된거 없애기
 		$('#jstree-to-right').jstree().deselect_all(true);
+//완료 그룹 모달 띄우기
 		$('#completedGroupModal').modal();
 	};
 	
 //완료된 그룹 url 선택후 save 버튼 클릭시
 	function submitgroupurl(){
-		console.log("clicked");
 		var checked_ids = [];
 		var submit_obj = [];
 		
 		checked_ids = $('#jstree-from-left').jstree("get_checked",null,true);
-		console.log("dddddd");
-		console.log(checked_ids);
 		
-		if(checked_ids == null) return false;
-		console.log(selected_node_id);
-		if(selected_node_id == 0) return false;
+		if(checked_ids == null){
+			alert("선택한 URL이 없습니다.")
+			return false};
+		if(selected_node_id == 0) {
+			alert("가져가기 할 폴더를 선택하지 않았습니다.")
+			return false};
 		
 		$.each(checked_ids,function(key,value){
+			//폴더가 아닌 url만 골라 가져가기
 			var checked_url = $('#jstree-from-left').jstree(true).get_node(value).a_attr.href;
 			var urlname = $('#jstree-from-left').jstree(true).get_node(value).text;
-			console.log(">"+selected_node_id+ "<");
 			if(checked_url !='#'){
 				submit_obj.push({url : checked_url , urlname : urlname, pid : selected_node_id}) 
 			}
 		})
 		
-		console.log(submit_obj);
 		var submit_obj_json = JSON.stringify(submit_obj);
-		console.log(submit_obj_json);
 		$.ajax({
 			
 			url : "insertGroupUrl.do",
