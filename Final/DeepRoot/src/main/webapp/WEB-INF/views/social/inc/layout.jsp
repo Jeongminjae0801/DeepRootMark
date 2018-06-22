@@ -29,6 +29,8 @@
     <!-- Script Common JavaScript & CSS END -->
 
 	<!-- Social Page CSS -->
+	<!-- jstree.css 추가 -->
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/social/social.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/social/modal.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
@@ -40,6 +42,8 @@
     <!-- Social Page CSS END -->
 
     <!--Script Start -->
+    <!-- jstree.js 추가 -->
+    <script  src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/social/jquery.dataTables.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/social/dataTables.bootstrap.min.js"></script>
     <!-- Script END -->
