@@ -1,8 +1,10 @@
+var urlpid = null;	//왼쪽 클릭된 폴더의 id
+var firstclick = 0;	//왼쪽 폴더 클릭 되었는지 확인용
+var child_data = null;	//오른쪽 url jstree data 담을 변수
+
 $(document).ready(function(){
 			
-			var urlpid = null;	//왼쪽 클릭된 폴더의 id
-			var firstclick = 0;	//왼쪽 폴더 클릭 되었는지 확인용
-			var child_data = null;	//오른쪽 url jstree data 담을 변수
+			
 			
 /* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
 			$.ajax({
@@ -273,14 +275,16 @@ $(document).ready(function(){
 					  }
 				  })
 			})
+
 /*오른쪽 위에 url 추가하기 버튼 클릭시 실행 됨*/			
+
 			$("#addurl").on("click",function(){
 				
 				var tree_child = $("#jstree_container_child").jstree(true);
 				
 				//왼쪽 폴더 선택 안하고 클릭한 것을 방지한다.
 				if(urlpid == null){
-					alert("노드를 선택해 주세요");
+					$.alert("URL을 추가할 카테고리를 선택해주세요");
 					return false;
 				}
 
@@ -289,35 +293,79 @@ $(document).ready(function(){
           	  
           	  $('#linkAdd_btn').modal(); // url 추가하는 modal 창이 나온다.
           	  
+          	  addUrlLevel1();
+          	  
           	  var par =urlpid; // 내가 우 클릭한 node의 id를 새로 생성하는 url의 부모로 지정
           	  
+          	  // 공유하지 않은 URL 추가하기
+	          	$('#addUrlNotShare_btn').on("click",function(){ // modal에서 보내기 선택한 것임
+	       		   
+	        		  var url = $('#url_btn').val(); //추가 url 값
+	        		  var title = $('#title_btn').val(); // 추가 url 명값
+	        		  // var parent = par;
+	        		  console.log(url,title,par); //확인
+	        		  
+	        		  if(title == ""){
+	        			 $.alert("제목을 입력해주세요")
+	        		  }else {
+	          			  	var form = {url : url , urlname : title , pid : urlpid};
+		          			$.ajax({
+		            			  url: "addUrlNotShare.do",
+		            			  type :"POST",
+		            			  data : form,
+		            			  success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기	
+		            				  $('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
+		            				  console.log(data);	//id 확인
+		            				  var node_id = $.trim(data);
+		            				  tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+		            					  console.log(new_node.id);
+		          				 });
+		          			  }
+		      			  });
+	          		  }
+	        		  
+	  			});
+          	  
+          	  
+          	  
            	  $('#linkAddSubmit_btn').on("click",function(){ // modal에서 보내기 선택한 것임
-          		  
+          		   
           		  var url = $('#url_btn').val(); //추가 url 값
           		  var title = $('#title_btn').val(); // 추가 url 명값
           		  var htag = $('#htag_btn').val();
         		  var sname = $.trim($('#sname_btn').val());
-          		 // var parent = par;
+          		  // var parent = par;
           		  console.log(url,title,par,sname,htag); //확인
           		  
-          		  if($.trim($('#htag_btn').val())==""){
-          		  var form = {url : url , urlname : title , pid : urlpid};
-          		  }else{
-          			var form = {url : url , urlname : title , pid : urlpid , htag : htag , sname : sname};
+          		  if(sname == ""){
+          			 $.alert("공유제목을 입력해주세요")
+          		  }else if(htag == ""){
+          			  $.alert("해시태그를 하나 이상 입력해주세요")
+          		  }else {
+          			  var result = $("#share").prop("checked"); //공유 체크여부 확인
+            		  
+            		  if($.trim($('#htag_btn').val())==""){
+            			  var form = {url : url , urlname : title , pid : urlpid};
+            		  }else{
+            			var form = {url : url , urlname : title , pid : urlpid , htag : htag , sname : sname};
+            		  }
+            		  
+            		  $.ajax({
+              			  url: "addFolderOrUrl.do",
+              			  type :"POST",
+              			  data : form,
+              			  success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기	
+              				  $('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
+              				  console.log(data);	//id 확인
+              				  var node_id = $.trim(data);
+              				  tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+              					  console.log(new_node.id);
+            				 });
+            			  }
+        			  });
           		  }
-          		  $.ajax({
-          			  url: "addFolderOrUrl.do",
-          			  type :"POST",
-          			  data : form,
-          			  success : function(data){
-          				  $('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
-          					var node_id = $.trim(data);
-          					//오른쪽 url 생성해 주기
-          					tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
-        				 	});
-        			  }
-    			  })
-    			}) 
+          		  
+    			});
 				
 			});
 
@@ -647,4 +695,108 @@ $(document).ready(function(){
 	})
 	
 });
+
+
+
+
+
+
+
+// 희준
+// URL 추가 함수
+
+function addUrlLevel1() {
+	$(".addUrlLevel1").show();
+	$(".addUrlLevel2").hide();
+	$(".addUrlLevel2-1").hide();
+	$(".addUrlLevel2-2").hide();
+	$(".addUrlLevel3").hide();
+}
+
+function openAddUrlLevel2() {
+	
+	$("#share_btn").change(function(){
+		if($("#share_btn").is(":checked")){
+			$(".addUrlLevel2-1").hide();
+			$(".addUrlLevel2-2").show();
+		}else {
+			$(".addUrlLevel2-2").hide();
+			$(".addUrlLevel2-1").show();
+		}
+	});
+	
+	var url = $("#url_btn").val().trim();
+	if(url == ""){
+		$.alert("URL을 입력해주세요");
+	}else {
+		$.ajax({
+    		url: "/bit/admin/preview.do",
+			type: "post",
+			data : {
+				url : url // URL 주소
+			},
+			beforeSend: function() {
+				$("#title_btn").css("cursor", "wait ");
+         		$("#title_btn").val("");
+         		console.log("부모 ID : " + urlpid);
+         		
+         		var text = $('#jstree_container').jstree(true).get_node(urlpid).text;
+         		console.log("카테고리 : " + text + "/////")
+         		$("#category_btn").val(text);
+         		addUrlLevel2();
+            },
+            complete: function() {
+            	$("#title_btn").css("cursor", "default");
+            },
+			success : function(data){
+				$("#title_btn").val(data.title);
+				
+			},
+    	});
+	}
+	
+	
+}
+
+// 2단계 폼 보여주기
+function addUrlLevel2() {
+	$(".addUrlLevel2").show();
+	$(".addUrlLevel2-1").show();
+	$(".addUrlLevel1").hide();
+	$(".addUrlLevel2-2").hide();
+	$(".addUrlLevel3").hide();
+}
+
+// 3단계에서 이전 버튼을 눌렀을 때
+function addUrlLevel2_1() {
+	$(".addUrlLevel2").show();
+	$(".addUrlLevel2-1").hide();
+	$(".addUrlLevel1").hide();
+	$(".addUrlLevel2-2").show();
+	$(".addUrlLevel3").hide();
+}
+
+// 2단계에서 다음 버튼 눌렀을 때
+function openAddUrlLevel3() {
+	var url = $("#title_btn").val().trim();
+	
+	if(url == ""){
+		$.alert("제목을 입력해주세요");
+	}else {
+		$("#sname_btn").val($("#title_btn").val());
+		addUrlLevel3();
+	}
+	
+}
+
+function addUrlLevel3() {
+	$(".addUrlLevel1").hide();
+	$(".addUrlLevel2").hide();
+	$(".addUrlLevel2-1").hide();
+	$(".addUrlLevel2-2").hide();
+	$(".addUrlLevel3").show();
+}
+
+
+
 

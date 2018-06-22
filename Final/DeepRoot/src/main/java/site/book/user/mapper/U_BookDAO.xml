@@ -18,6 +18,10 @@
 		DELETE FROM U_BOOK WHERE UBID = #{ubid} AND HTAG IS NOT NULL
 	</delete>
 	
+	<insert id="addUrlNotShare">
+		INSERT INTO U_BOOK(URL, URLNAME, REGDATE, UID, PID, ABID) VALUES(#{url}, #{urlname}, SYSDATE(), #{uid}, #{pid}, #{abid})
+	</insert>
+	
 	<!-- 명수 -->
 	<select id="getCategoryList" resultType="site.book.user.dto.U_BookDTO">
 		SELECT * FROM U_BOOK WHERE UID=#{uid}  AND URL IS NULL  

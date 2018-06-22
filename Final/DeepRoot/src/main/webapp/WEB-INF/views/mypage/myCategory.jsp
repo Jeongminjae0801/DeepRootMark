@@ -147,7 +147,7 @@
 		    }
 		    
 		});
-	}
+	};
 
 	function testing_modal(d){
 		
@@ -170,8 +170,7 @@
 		})
 		
 		$('#completedGroupModal').modal();
-		
-	}
+	};
 	
 	//완료된 그룹 url 선택후 save 버튼 클릭시
 	function submitgroupurl(){
@@ -207,6 +206,7 @@
 	}
 
 </script>
+
 <div class="container">
 	<div class="row" style="padding-top: 100px;"></div>
 	<div class="row my-row-bg">

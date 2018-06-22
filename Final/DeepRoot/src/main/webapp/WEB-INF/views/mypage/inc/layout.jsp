@@ -204,8 +204,8 @@
 		</div>
 	</div>
 	
-	
-		<div class="modal fade" id="linkAdd_btn" role="dialog">
+	<!-- URL 추가 모달 -->
+	<div class="modal fade" id="linkAdd_btn" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -223,38 +223,51 @@
 								<col width="30%">
 								<col width="70%">
 							</colgroup>
-							<tr>
+							<tr class="addUrlLevel1">
 								<td class="info" style="vertical-align: middle;">URL :</td>
 								<td><input type="text" id="url_btn" name="url_btn"
 									class="form-control"></td>
 							</tr>
-							<tr>
+							<tr class="addUrlLevel2">
 								<td class="info" style="vertical-align: middle;">제목 :</td>
 								<td><input type="text" id="title_btn" name="title_btn"
 									class="form-control"></td>
 							</tr>
-							<tr>
-								<td class="info" style="vertical-align: middle;">해시태그 :</td>
-								<td><input type="text" id="htag_btn" name="htag_btn"
-									class="form-control"></td>
+							<tr class="addUrlLevel2">
+								<td class="info" style="vertical-align: middle;">카테고리 :</td>
+								<td><input type="text" id="category_btn" name="category_btn"
+									class="form-control" readonly="readonly"></td>
 							</tr>
-							<tr>
+							<tr class="addUrlLevel3">
 								<td class="info" style="vertical-align: middle;">공유제목 :</td>
 								<td><input type="text" id="sname_btn" name="sname_btn"
 									class="form-control"></td>
 							</tr>
-							<tr>
-								<td><input type="checkbox" id="share"> <label
-									for="share">공유하기</label></td>
+							<tr class="addUrlLevel3">
+								<td class="info" style="vertical-align: middle;">해시태그 :</td>
+								<td><input type="text" id="htag_btn" name="htag_btn"
+									class="form-control"></td>
+							</tr>
+							<tr class="addUrlLevel2">
+								<td><input type="checkbox" id="share_btn"> <label
+									for="share_btn">공유하기</label></td>
 								<td></td>
+							</tr>
+							<tr class="addUrlLevel3">
+								<td colspan="2"><p style="color: red; width: 100%;">※ 회원님께서 공유하신 정보는 소셜 북마크 페이지에 자동으로 올라가게 되며, 다른 사용자가 해당 사이트를 공유할 수 있습니다. 또한, 저희 사이트 역시 해당 사이트를 데이터 수집 차원에서 사용하고 있습니다. 이 점을 숙지해주시길 바랍니다.</p></td>
 							</tr>
 						</table>
 					</form>
 					<div class="modal-footer">
 						<!-- type="submit" value="Submit" -->
-						<button type="button" class="btn btn-default btn-sm"
-							data-dismiss="modal">취소</button>
-						<button class="btn btn-default btn-sm" id="linkAddSubmit_btn">추가하기</button>
+						<button type="button" class="btn btn-default btn-sm addUrlLevel1" onclick="openAddUrlLevel2()">다음</button>
+						<button type="button" class="btn btn-default btn-sm addUrlLevel2" onclick="addUrlLevel1()">이전</button>
+						<button type="button" class="btn btn-default btn-sm addUrlLevel2-1" id="addUrlNotShare_btn">추가</button>
+						<button type="button" class="btn btn-default btn-sm addUrlLevel2-2" onclick="openAddUrlLevel3()">다음</button>
+						<button type="button" class="btn btn-default btn-sm addUrlLevel3" onclick="addUrlLevel2_1();">이전</button>
+						<!-- <button type="button" class="btn btn-default btn-sm"
+							data-dismiss="modal">취소</button> -->
+						<button class="btn btn-default btn-sm addUrlLevel3" id="linkAddSubmit_btn">추가하기</button>
 					</div>
 				</div>
 			</div>
