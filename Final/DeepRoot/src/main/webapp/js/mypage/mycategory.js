@@ -18,8 +18,8 @@ $(document).ready(function(){
 					$("#jstree_container").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
 						$('#jstree_container').jstree(true).toggle_node(e.target);	
 						
-					}).
-					jstree({	
+					})
+					.jstree({	
 							"core": {
 								"dblclick_toggle" : false, // 두번 클릭해서 폴더여는거 false
 							'data' : data, //ajax로 가져온 json data jstree에 넣어주기
@@ -447,7 +447,6 @@ $(document).ready(function(){
 							            	  }
 							              }
 									},
-									
 						            "remove": {
 						            	"icon" : "fa fa-trash",
 						                "separator_before": false,
@@ -455,7 +454,6 @@ $(document).ready(function(){
 						                "label": "삭제",
 						                "action": function (obj) { 
 						                	
-						                  	console.log("누름");
 						                  	tree_child.delete_node($node);
 						                }
 						            },
@@ -495,7 +493,7 @@ $(document).ready(function(){
 													"separator_after"	: false,
 							                		"label": "수정하기",
 							                		"action" : function(data){
-///////////공유 수정하							                			
+///////////공유 수정하기////////////////							                			
 							                		}
 							                	},
 							                	"dimiss" :{
@@ -529,16 +527,14 @@ $(document).ready(function(){
 				.bind("select_node.jstree",function(e,data){
 					var href = data.node.a_attr.href;
 					
-					console.log(href);
-					
 					window.open(href); 
 					$('#jstree_container_child').jstree().deselect_all(true);			
 					
 				}) 
 				.bind("delete_node.jstree",function(event,data){
-
-    			var node_id = data.node.id;
-    			var form = {node : node_id}
+					
+					var node_id = data.node.id;
+					var form = {node : node_id}
 	
 					$.ajax({
 					url:'deleteNode.do',
@@ -566,8 +562,8 @@ $(document).ready(function(){
 						alert('수정되었습니다.');
 					else
 						alert('수정 실패');
-				}
-			});   
+														}
+					});   
 		})
 
 	$("#jstree_container").on('select_node.jstree',function(e,data){
@@ -581,11 +577,18 @@ $(document).ready(function(){
 		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
 	})
 
-		$("#group_bookmark_modal").on('open_node.jstree', function(e,data){
-		$.jstree.reference('#group_bookmark_modal').set_icon(data.node, "fa fa-folder-open")
+	$("#jstree-from-left").on('open_node.jstree', function(e,data){
+	$.jstree.reference('#jstree-from-left').set_icon(data.node, "fa fa-folder-open")
 	})
-	$("#group_bookmark_modal").on('close_node.jstree', function(e,data){
-		$.jstree.reference('#group_bookmark_modal').set_icon(data.node, "fa fa-folder")
+	$("#jstree-from-left").on('close_node.jstree', function(e,data){
+		$.jstree.reference('#jstree-from-left').set_icon(data.node, "fa fa-folder")
+	})
+	
+	$("#jstree-to-right").on('open_node.jstree', function(e,data){
+	$.jstree.reference('#jstree-to-right').set_icon(data.node, "fa fa-folder-open")
+	})
+	$("#jstree-to-right").on('close_node.jstree', function(e,data){
+		$.jstree.reference('#jstree-to-right').set_icon(data.node, "fa fa-folder")
 	})
 	
 });

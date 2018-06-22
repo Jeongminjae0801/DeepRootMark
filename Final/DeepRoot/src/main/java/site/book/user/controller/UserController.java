@@ -1,7 +1,6 @@
 package site.book.user.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
-
-import com.gargoylesoftware.htmlunit.javascript.host.Console;
 
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_MemberDTO;
@@ -465,10 +462,33 @@ public class UserController {
 		
 	}
 	
+	//완료된 그룹 url 내 것으로 보내기
 	@RequestMapping("insertGroupUrl.do")
-	public void insertGroupUrl( @RequestParam(value="obj[]") List<HashMap<String, String>> param , HttpServletResponse res) {
-		System.out.println("dd");
-		System.out.println(param);
+	public View insertGroupUrl( HttpServletRequest req , HttpServletResponse res) {
+		
+		U_BookDTO dto = new U_BookDTO();
+		
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+
+        JSONArray jarr = new JSONArray();
+		jarr = new JSONArray(req.getParameter("obj"));
+		System.out.println(jarr);
+		System.out.println(jarr.length());
+		int result;
+		
+			for(int i = 0 ; i< jarr.length() ; i++) {
+				dto.setUrl((String)jarr.getJSONObject(i).get("url"));
+				dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
+				dto.setPid((int)jarr.getJSONObject(i).get("pid"));
+				dto.setUid(uid);
+				
+				result = u_bookservice.insertUrlFromCompletedGroup(dto);
+				System.out.println(result);
+				System.out.println(dto.toString());
+			}
+			
+		return jsonview;
 	}
 	// 함수 End
 }

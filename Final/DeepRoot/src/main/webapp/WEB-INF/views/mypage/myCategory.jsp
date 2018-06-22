@@ -147,8 +147,15 @@
 		    }
 		    
 		});
+<<<<<<< HEAD
 	};
 
+=======
+	}
+	
+	var selected_node_id = 0;
+	
+>>>>>>> feature/완료_그룹_마이북마크로
 	function testing_modal(d){
 		
 		console.log(d.id);
@@ -163,9 +170,9 @@
 			success : function(obj){
 
 				first_data = obj;
-				$('#group_bookmark_modal').jstree().deselect_all(true);
-				$('#group_bookmark_modal').jstree(true).settings.core.data = obj;
-				$('#group_bookmark_modal').jstree(true).refresh();
+				$('#jstree-from-left').jstree().deselect_all(true);
+				$('#jstree-from-left').jstree(true).settings.core.data = obj;
+				$('#jstree-from-left').jstree(true).refresh();
 			}
 		})
 		
@@ -174,37 +181,94 @@
 	
 	//완료된 그룹 url 선택후 save 버튼 클릭시
 	function submitgroupurl(){
-		
+		console.log("clicked");
 		var checked_ids = [];
 		var submit_obj = [];
 		
-		checked_ids = $('#group_bookmark_modal').jstree("get_checked",null,true);
+		checked_ids = $('#jstree-from-left').jstree("get_checked",null,true);
+		console.log("dddddd");
+		console.log(checked_ids);
+		
 		if(checked_ids == null) return false;
+		console.log(selected_node_id);
+		if(selected_node_id == 0) return false;
 		
 		$.each(checked_ids,function(key,value){
-			var checked_url = $('#group_bookmark_modal').jstree(true).get_node(value).a_attr.href;
-			var urlname = $('#group_bookmark_modal').jstree(true).get_node(value).text;
+			var checked_url = $('#jstree-from-left').jstree(true).get_node(value).a_attr.href;
+			var urlname = $('#jstree-from-left').jstree(true).get_node(value).text;
 			if(checked_url !='#'){
-				submit_obj.push({url : checked_url , urlname : urlname, ubid : 162}) 
+				submit_obj.push({url : checked_url , urlname : urlname, pid : selected_node_id}) 
 			}
 		})
 		
 		console.log(submit_obj);
-		
+		var submit_obj_json = JSON.stringify(submit_obj);
+		console.log(submit_obj_json);
 		$.ajax({
 			
 			url : "insertGroupUrl.do",
 			type : "POST",
-			data : {obj : submit_obj},
-			success : function(){}
+			data : {obj : submit_obj_json},
+			success : function(){
+				
+				  $('#completedGroupModal').modal("toggle"); 
+				$('#jstree_container').jstree().deselect_all(true);
+				$('#jstree_container').jstree(true).select_node(selected_node_id);			
+				selected_node_id = 0;
+			}
 			
 		})
-		
-		
-		
-		
 	}
+	$(document).ready(function(){
+		
+		var first_data = null;
+		var right_data = null;
 
+		$("#jstree-from-left").on('click','.jstree-anchor',function(e){
+			$('#jstree-from-left').jstree(true).toggle_node(e.target);
+			
+		}).jstree({
+				
+				"core" : {
+					"dblclick_toggle" : false,
+					'data' : first_data,
+					'themes':{
+						'name' : 'proton',
+						'responsive' : true,
+						'dots' : false,
+					}
+				},
+				"plugins" : ["checkbox" ]
+				
+			}).bind("loaded.jstree",function(event,data){
+				console.log("ready");
+				 $('#group_bookmark_modal').jstree("open_all"); 
+				
+			}).bind("select_node.jstree",function(event,data){
+			})
+
+
+			$('#jstree-to-right').on('click','.jstree-anchor',function(e){
+				$('#jstree-to-right').jstree(true).toggle_node(e.target);
+				
+			}).jstree({
+				"core" : {
+					"dblclick_toggle" : false,
+					'data' : right_data,
+					'themes':{
+						'name' : 'proton',
+						'responsive' : true,
+						'dots' : false,
+					}
+				}
+			})
+			.bind("select_node.jstree",function(e,data){
+				selected_node_id= data.node.id;
+				console.log(data.node.id);
+				
+			})
+		})
+		
 </script>
 
 <div class="container">
@@ -313,26 +377,26 @@
 	<div id="completedGroupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialGroupModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header mypage">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
 				</div>
-				<div class="modal-body">
-					<div class="completed-modal-left">
+				<div class="modal-body mypage">
+					<div class="completed-modal-left mypage">
 		                <h4 class="completed-modal-from"><b>From : </b></h4>
 		
 		                <div id="jstree-from-left">
 		
 		                </div>
 		            </div>
-		            <div class="completed-modal-right">
-		                <h4 class="completed-modal-to"><b>To : </b></h4>
+		            <div class="completed-modal-right mypage ">
+		            <h4 class="completed-modal-to"><b>To : </b></h4>
 		
 		                <!-- Dropdown -->
 		                <div class="dropdown completed-modal-dropdown">
-		                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                    <button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		                        Dropdown button <span class="caret"></span>
 		                    </button>
 		                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -350,6 +414,20 @@
 		                    <script type="text/javascript">
 		                        $('#completed-modal-mybook').click(function() {
 		                            $('#dropdownMenuButton').text($(this).text());
+		                            
+		                        	$.ajax({
+		                				url : "getCategoryList.do",
+		                				type:"POST",
+		                				dataType:"json",
+		                				success : function(data){
+		                					right_data = data;
+		                					
+		                					$('#jstree-to-right').jstree(true).settings.core.data = data;
+		                					$('#jstree-to-right').jstree(true).refresh();
+		                					$('#jstree-to-right').jstree("open_all");
+		                					
+		                					}
+		                				})
 		                        });
 		                        $('.dropdown-group-item').click(function() {
 		                            $('#dropdownMenuButton').text($(this).text());
@@ -362,11 +440,9 @@
 		                </div>
 		            </div>
 				</div>
-				<hr class="float-clear-hr">
-					<div id="group_bookmark_modal"></div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" onclick="submitgroupurl()">Save changes</button>
+				<div class="modal-footer mypage">
+					<button type="button" class="btn btn-default groupshare" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary groupshare" onclick="submitgroupurl()">Save changes</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

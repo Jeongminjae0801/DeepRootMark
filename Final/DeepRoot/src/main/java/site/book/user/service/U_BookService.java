@@ -186,6 +186,14 @@ public class U_BookService {
 		return result;
 	}
 
+	public int insertUrlFromCompletedGroup(U_BookDTO dto) {
+
+		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = dao.insertUrlFromCompletedGroup(dto);
+		
+		return result;
+	}
+
 
 	// 함수 End
 }
