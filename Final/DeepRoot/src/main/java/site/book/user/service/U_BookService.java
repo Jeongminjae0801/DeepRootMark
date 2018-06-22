@@ -88,6 +88,20 @@ public class U_BookService {
 		return row;
 	}
 	
+	// 공유하지 않은 URL 추가하기
+	public int addUrlNotShare(U_BookDTO book) {
+		U_BookDAO bookDAO = sqlsession.getMapper(U_BookDAO.class);
+		int row = 0;
+		
+		try {
+			row = bookDAO.addUrlNotShare(book);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return row;
+	}
+	
 	// 명수
 	public List<U_BookDTO> getCategoryList(String uid) {	//해당
 		

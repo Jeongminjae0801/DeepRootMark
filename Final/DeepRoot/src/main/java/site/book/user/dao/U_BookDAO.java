@@ -31,6 +31,9 @@ public interface U_BookDAO {
 	// 소셜 개인 북마크 삭제
 	public int deleteSocialBookmark(int ubid) throws ClassNotFoundException, SQLException;
 	
+	// 공유하지 않는 URL 추가
+	public int addUrlNotShare(U_BookDTO book) throws ClassNotFoundException, SQLException;
+	
 	// 명수
 	public List<U_BookDTO> getCategoryList(String uid);
 

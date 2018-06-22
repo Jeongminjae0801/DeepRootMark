@@ -147,9 +147,8 @@
 		    }
 		    
 		});
-	}
+	};
 
-<<<<<<< HEAD
 	function testing_modal(d){
 		console.log(d.id);
 		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
@@ -186,12 +185,9 @@
 		})
 		
 		$('#completedGroupModal').modal();
-		
 	}
-=======
-	
->>>>>>> feature/jstree_checkbox
 </script>
+
 <div class="container">
 	<div class="row" style="padding-top: 150px;"></div>
 	<div class="row my-row-bg">

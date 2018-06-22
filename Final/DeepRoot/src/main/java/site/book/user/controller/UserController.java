@@ -95,6 +95,7 @@ public class UserController {
 	}
 	// 희준
 	
+	// 그룹 나가기
 	@RequestMapping("leaveGroup.do")
 	public View leaveGroup(HttpServletRequest req, G_MemberDTO member, Model model) {
 		HttpSession session = req.getSession();
@@ -109,6 +110,7 @@ public class UserController {
 		return jsonview;
 	}
 	
+	// 그룹 추가
 	@RequestMapping("addGroup.do")
 	public String addGroup(HttpServletRequest req, String gname) {
 		System.out.println("그룹 추가");
@@ -124,12 +126,33 @@ public class UserController {
 		return "redirect:mybookmark.do";
 	}
 	
+	// 그룹 완료
 	@RequestMapping("completedGroup.do")
 	public String completedGroup(TeamDTO team) {
 		
 		teamservice.completedGroup(team);
 		
 		return "redirect:mybookmark.do";
+	}
+	
+	// 공유 체크 하지 않은 URL 추가하기
+	@RequestMapping("addUrlNotShare.do")
+	public void addUrlNotShare(U_BookDTO dto ,HttpServletRequest req, HttpServletResponse res) {
+		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        dto.setUbid(ubid);
+        dto.setUid(uid);
+        
+		System.out.println(dto.toString());
+		int result = u_bookservice.addFolderOrUrl(dto);
+		
+		try {
+			res.getWriter().println(ubid);
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
 	}
 	
 	
