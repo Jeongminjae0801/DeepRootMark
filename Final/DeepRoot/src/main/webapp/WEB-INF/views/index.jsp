@@ -279,11 +279,11 @@
                             	<div id="comment-detail">
                             		설명 Details
                             	</div>
+                            	<div id="ajax-loading-div">
+                            	</div>
                             	<div id="world-ranking-visitor">
-                            		
                             	</div>
                             	<div id="url-sub-domain">
-                            		
                             	</div>
                             </div>
                         </div>

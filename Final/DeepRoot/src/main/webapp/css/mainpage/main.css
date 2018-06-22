@@ -321,9 +321,13 @@ h2 {
   background-color: #F8FAFF; 
   color: #353866;
   border-radius: 0px 0px 10px 10px;
+<<<<<<< HEAD
   border : 2px solid #575b5f;
   border-top:none;
   box-shadow: 7px 4px 10px 5px #bbb;
+=======
+  overflow-y: auto; 
+>>>>>>> d82d53aa8eb4595c84061471957338b806c443a9
 }
 #comment > img {
 	margin: auto;
@@ -332,6 +336,11 @@ h2 {
 #comment-detail {
 	width: 100%;
 	margin-bottom: 10px;
+}
+#ajax-loading-div {
+	width: 100%;
+	margin: auto;
+	text-align: center;
 }
 #world-ranking-visitor {
 	padding: 10px;
@@ -348,7 +357,7 @@ h2 {
 	font-size: 17px;
 }
 #world-ranking, #world-visitor {
-	padding-left: 50px;
+	padding-left: 30px;
 	color: #000;
 	font-size: 17px;
 	float: right;
