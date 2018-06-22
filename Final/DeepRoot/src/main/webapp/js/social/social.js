@@ -1,6 +1,7 @@
 
 jQuery(function($) {
 	'use strict';
+	var first_data = null;
 
 	// Responsive Nav
 	$('li.dropdown').find('.fa-angle-down').each(function() {
@@ -202,5 +203,60 @@ $('.group-share').on('click', function(){
 });
 
 /* 태웅이 onclick END */
+
+/*진수 start*/
+function testing_modal(d){
+	
+	console.log(d.id);
+	$('.abc').text(d.id);
+	var uid = d.id; // 클릭한 작성자 id 입니다.
+	
+	$.ajax({
+		
+		url : "getCategoryList.do",
+		type : "POST",
+		data : {uid : uid},	/* group id 를 넣어야 한다. */
+		dataType :"json",
+		success : function(obj){
+
+			first_data = obj;
+			$('#jstree-from-left-all').jstree(true).settings.core.data = obj;
+			$('#jstree-from-left-all').jstree(true).refresh();
+		}
+	})
+	
+	$('#socialSurfingModal').modal();
+};
+
+
+
+$(document).ready(function(){
+    
+    var first_data = null;
+    
+//완료 그룹 모달 왼쪽 jstree
+    $("#jstree-from-left-all").on('click','.jstree-anchor',function(e){
+    $('#jstree-from-left-all').jstree(true).toggle_node(e.target);
+        
+    }).jstree({
+            
+            "core" : {
+                "dblclick_toggle" : false,
+                'data' : first_data,
+                'themes':{
+                    'name' : 'proton',
+                    'responsive' : true,
+                    'dots' : false,
+                }
+            }
+            
+        }).bind("select_node.jstree",function(event,data){
+        	console.log(data.node.id);
+        })
+
+//완료 그룹 모달 오른쪽 jstree
+       
+    })
+/*진수 end*/
 	
 	

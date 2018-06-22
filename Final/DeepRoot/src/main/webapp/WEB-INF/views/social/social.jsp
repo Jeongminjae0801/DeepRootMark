@@ -76,7 +76,7 @@
 			<div class="modal-body">
 				<div class="completed-modal-left">
 	                <h4 class="completed-modal-from"><b>URL :</b>
-	                	<input type="text" class="indishare-url" value="" readonly>
+	                	<input type="text" class="indishare-url" value="유알엘 주소를 주세염" readonly>
 	                </h4>
 	                <div id="jstree-from-left">
 	
@@ -91,6 +91,7 @@
 	                    <button class="btn btn-secondary indishare dropdown-toggle getmygroup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                    My Group</button>
 	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<<<<<<< HEAD
 	                    <c:forEach items="${teamlist}" var="teamlist" varStatus="status">
 	                		 <c:choose>
 										<c:when test="${status.count == '1'}">
@@ -101,6 +102,18 @@
 										</c:when>
 							</c:choose>
 	                    </c:forEach>
+=======
+	                        <li id="completed-modal-mybook" class="dropdown-item" href="#"> <!-- onclick="mycategory();" -->My Book</li>
+	                        <hr class="divider-hr">
+	                        <li class="dropdown-item dropdown-submenu">
+	                            <a tabindex="-1" href="#">Group</a>
+	                            <ul class="dropdown-menu">
+	                              <li class="dropdown-group-item"><span tabindex="-1">희준이의 꼬봉들</span></li>
+	                              <li class="dropdown-group-item"><span>나는 노예다</span></li>
+	                              <li class="dropdown-group-item"><span>니꺼 니꺼 내꺼 니꺼</span></li>
+	                            </ul>
+	                        </li>
+>>>>>>> 4409bbb8e5eae9217c254dd39126c056482670c5
 	                    </div>
 	                    <button class="btn btn-secondary indishare dropdown-toggle getmybook" type="button">
 	                    My Book</button>
@@ -140,8 +153,8 @@
 			</div>
 			<div class="modal-body row">
 				<div class="completed-modal-left surfingshare">
-	                <h4 class="completed-modal-from"><b>From : <span id="from-text">[회원이름]</span></b></h4>
-	                <div class="jstree-from" id="jstree-from-left">
+	                <h4 class="completed-modal-from"><b>From : <span id="from-text" class="abc">[회원이름]</span></b></h4>
+	                <div class="jstree-from" id="jstree-from-left-all">
 	                	제이트리 뿌려주곻
 	                </div>
 	            </div>   
@@ -328,7 +341,7 @@
 								<tr>
 									<td class="table-site"><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
-									<td class="table-write" data-toggle="modal" data-target="#socialSurfingModal" data-title="${u_booklist.nname}"><a>${u_booklist.nname}</a></td>
+									<td class="table-write" id="${u_booklist.uid}" onclick="testing_modal(this)"><a>${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
@@ -375,7 +388,7 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon group-share" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}">
+									<td class="table-icon" data-toggle="modal" data-target="#socialGroupModal" data-title="${g_booklist.gname}">
 										<i class="fa fa-share"></i>
 									</td>
 									<!-- 가져오기 icon -->

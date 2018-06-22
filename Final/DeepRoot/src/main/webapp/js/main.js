@@ -53,6 +53,17 @@ jQuery(function($) {
     }
 
   });
+  
+  /* scroll overflow controller */
+  $(window).scroll(function(){
+	  if($(window).scrollTop() == ($(document).height()-$(window).height())){
+		  //스크롤 끝에 닿으면 이벤트 발생
+		  var overflowPosition = $("#floatMenu");
+		  overflowPosition.data('extenddiv',overflowPosition.css('top')).animate({top:1185 + "px"});
+		  //끝에 닿는 순간 해당 좌표로 이동..
+	
+	  }
+  });
 
 
   $('.timer').each(count);
