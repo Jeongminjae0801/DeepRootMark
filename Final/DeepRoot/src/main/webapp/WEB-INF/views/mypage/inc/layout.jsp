@@ -79,6 +79,7 @@
 		
 		checked_ids = $('#group_bookmark_modal').jstree("get_checked",null,true);
 		
+		// url 있는 것만 골라내기
 		$.each(checked_ids,function(key,value){
 			var checknode_href = $('#group_bookmark_modal').jstree(true).get_node(value).a_attr.href;
 			var checknode_urlname =  $('#group_bookmark_modal').jstree(true).get_node(value).text;
@@ -122,7 +123,7 @@
 			
 		}).bind("loaded.jstree",function(event,data){
 			console.log("ready");
-			/* $('#group_bookmark_modal').jstree("open_all"); */
+			 $('#group_bookmark_modal').jstree("open_all"); 
 			
 		}).bind("select_node.jstree",function(event,data){
 				console.log($('#group_bookmark_modal').jstree("get_checked",null,true));
@@ -130,8 +131,6 @@
 
 
 	
-	
-
 	})
 	
 	</script>

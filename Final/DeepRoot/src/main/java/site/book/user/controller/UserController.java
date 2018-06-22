@@ -443,9 +443,9 @@ public class UserController {
 	}
 	
 	@RequestMapping("insertGroupUrl.do")
-	public void insertGroupUrl( @RequestParam(value="gbid[]") List<String> gbid , HttpServletResponse res) {
+	public void insertGroupUrl( @RequestParam(value="obj[]") List<HashMap<String, String>> param , HttpServletResponse res) {
 		System.out.println("dd");
-		System.out.println(gbid);
+		System.out.println(param);
 	}
 	// 함수 End
 }

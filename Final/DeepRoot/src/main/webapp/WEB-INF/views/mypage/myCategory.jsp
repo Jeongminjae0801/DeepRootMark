@@ -150,6 +150,7 @@
 	}
 
 	function testing_modal(d){
+		
 		console.log(d.id);
 		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
 		
@@ -160,27 +161,11 @@
 			data : {gid : gid},	/* group id 를 넣어야 한다. */
 			dataType :"json",
 			success : function(obj){
-				
-				console.log(obj);
-				
-				$("#group_bookmark_modal").jstree({
-					
-					"core" : {
-						'data' : obj,
-						'themes':{
-							'name' : 'proton',
-							'responsive' : true,
-							'dots' : false,
-						}
-					},
-					"plugins" : ["checkbox" ]
-					
-				}).
-				bind("loaded.jstree",function(event,data){
-					$('#group_bookmark_modal').jstree("open_all");
-					
-				})
-				
+
+				first_data = obj;
+				$('#group_bookmark_modal').jstree().deselect_all(true);
+				$('#group_bookmark_modal').jstree(true).settings.core.data = obj;
+				$('#group_bookmark_modal').jstree(true).refresh();
 			}
 		})
 		
