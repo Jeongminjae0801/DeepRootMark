@@ -180,7 +180,7 @@
 		        					+ "<span>";
 		
 		        	if(data.rank != "" && data.rank != null) {
-		        		ranking += data.rank + "</span><br>";
+		        		ranking += numberWithCommas(data.rank) + "</span><br>";
 		        	}else {
 		        		ranking += "Not supported</span><br>";
 		        	}
