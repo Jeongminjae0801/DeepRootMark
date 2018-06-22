@@ -1,7 +1,9 @@
-.modal-body{
+.modal-body {
 	padding-top:0;
 }
-
+.modal-footer {
+	clear: both;
+}
 .completed-modal-left.groupshare{
 	border-right: 2px dashed #ccc;
 	padding-top: 10px;
