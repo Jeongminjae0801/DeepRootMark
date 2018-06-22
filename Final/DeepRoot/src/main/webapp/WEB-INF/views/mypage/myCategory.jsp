@@ -147,15 +147,10 @@
 		    }
 		    
 		});
-<<<<<<< HEAD
 	};
 
-=======
-	}
 	
 	var selected_node_id = 0;
-	
->>>>>>> feature/완료_그룹_마이북마크로
 	function testing_modal(d){
 		
 		console.log(d.id);

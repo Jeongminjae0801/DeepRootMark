@@ -46,4 +46,9 @@ END //
 		group by a.urlname 
 		order by count(*) desc limit 1
 	</select>
+	<!-- 작성자 파도타기 카테고리 및 URL 가져오기 start -->
+	<select id="getCategoryList" resultType="site.book.user.dto.U_BookDTO">
+		SELECT * FROM U_BOOK WHERE UID=#{uid} AND ((URL is null) or (HTAG is not null));
+	</select>
+	<!-- 작성자 파도타기 카테고리 및 URL 가져오기 end -->
 </mapper>
