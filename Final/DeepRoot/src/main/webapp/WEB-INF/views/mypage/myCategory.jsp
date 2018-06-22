@@ -147,16 +147,11 @@
 		    }
 		    
 		});
-<<<<<<< HEAD
-	};
-
-=======
 	}
 	
 	var selected_node_id = 0;
-	
->>>>>>> feature/완료_그룹_마이북마크로
-	function testing_modal(d){
+
+	function open_completed_group_modal(d){
 		
 		console.log(d.id);
 		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
@@ -175,11 +170,11 @@
 				$('#jstree-from-left').jstree(true).refresh();
 			}
 		})
-		
+		$('#jstree-to-right').jstree().deselect_all(true);
 		$('#completedGroupModal').modal();
 	};
 	
-	//완료된 그룹 url 선택후 save 버튼 클릭시
+//완료된 그룹 url 선택후 save 버튼 클릭시
 	function submitgroupurl(){
 		console.log("clicked");
 		var checked_ids = [];
@@ -196,6 +191,7 @@
 		$.each(checked_ids,function(key,value){
 			var checked_url = $('#jstree-from-left').jstree(true).get_node(value).a_attr.href;
 			var urlname = $('#jstree-from-left').jstree(true).get_node(value).text;
+			console.log(">"+selected_node_id+ "<");
 			if(checked_url !='#'){
 				submit_obj.push({url : checked_url , urlname : urlname, pid : selected_node_id}) 
 			}
@@ -211,7 +207,7 @@
 			data : {obj : submit_obj_json},
 			success : function(){
 				
-				  $('#completedGroupModal').modal("toggle"); 
+			    $('#completedGroupModal').modal("toggle"); 
 				$('#jstree_container').jstree().deselect_all(true);
 				$('#jstree_container').jstree(true).select_node(selected_node_id);			
 				selected_node_id = 0;
@@ -223,7 +219,8 @@
 		
 		var first_data = null;
 		var right_data = null;
-
+		
+//완료 그룹 모달 왼쪽 jstree
 		$("#jstree-from-left").on('click','.jstree-anchor',function(e){
 			$('#jstree-from-left').jstree(true).toggle_node(e.target);
 			
@@ -247,7 +244,7 @@
 			}).bind("select_node.jstree",function(event,data){
 			})
 
-
+//완료 그룹 모달 오른쪽 jstree
 			$('#jstree-to-right').on('click','.jstree-anchor',function(e){
 				$('#jstree-to-right').jstree(true).toggle_node(e.target);
 				
@@ -359,7 +356,7 @@
 				<div class="panel-body-scroll">
 					<ul class="group-list-list">
 						<c:forEach items="${completedTeamList}" var="completedTeam">
-							<li id="${completedTeam.gid}" class="list-group-item" onclick="testing_modal(this)">
+							<li id="${completedTeam.gid}" class="list-group-item" onclick="open_completed_group_modal(this)">
 								<label class="my-group-list"> ${completedTeam.gname} </label>
 								<div class="pull-right action-buttons">
 									<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(${completedTeam.gid})"></span></a>
@@ -412,6 +409,7 @@
 		                        </li>
 		                    </div>
 		                    <script type="text/javascript">
+//완료된 그룹 모달 > 오른쪽 > 내 그룹 클릭시
 		                        $('#completed-modal-mybook').click(function() {
 		                            $('#dropdownMenuButton').text($(this).text());
 		                            
