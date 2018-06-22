@@ -498,7 +498,7 @@ public class UserController {
 			for(int i = 0 ; i< jarr.length() ; i++) {
 				dto.setUrl((String)jarr.getJSONObject(i).get("url"));
 				dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
-				dto.setPid((int)jarr.getJSONObject(i).get("pid"));
+				dto.setPid(Integer.valueOf((String)jarr.getJSONObject(i).get("pid")));
 				dto.setUid(uid);
 				
 				result = u_bookservice.insertUrlFromCompletedGroup(dto);
