@@ -214,7 +214,7 @@
                           </span>
                         </div>
                         <div id="category-display" class="col-sm-12 category-items">
-                            <div id="showall" class="category reddiv" style="background-color: #7bbfa8">
+                            <div id="showall" class="category reddiv" style="background-color: #008B8B">
                                 <span class="category-title">Show All</span></div>
                             <c:forEach items="${categoryList}" var="cList">
                             	<div id="${cList.acid}" data-category="${cList.acname}" class="category" style="background-color: ${cList.color}">
