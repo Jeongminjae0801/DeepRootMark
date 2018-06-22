@@ -137,18 +137,13 @@ jQuery(function($) {
 
 /* 민재 onclick */
 /* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
-/*$('#completed-modal-mybook').on('dblclick', function(){ return });*/
-
-
-/*function mycategory(){*/
-$('.gogosing').on('click', function(){
-	console.log("쉣");
+$('.getmybook').on('dblclick', function(){ return });
+$('.getmybook').on('click', function(){
 	$.ajax({
-		url : "getCategoryList.do",
+		url : "../user/getCategoryList.do",
 		type:"POST",
 		dataType:"json",
 		success : function(data){	
-		console.log("들어오긴해?");
 		console.log(data);
 		/* jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다. */					
 		$("#indi-jstree-to-right").on("click",'.jstree-anchor',function(e){
@@ -172,15 +167,16 @@ $('.gogosing').on('click', function(){
 					urlpid = id;
 					// 선택된 노드(폴더)아래에 있는 url 가져오기
 					$.ajax({
-						url : "getUrl.do",
+						url : "../user/getUrl.do",
 						type : "POST",
 						dataType:"json",
 						data : {ubid : id},
 						success : function(data){
+							console.log(data);
 							child_data = data;
 							// 오른쪽에 있는 jstree 값 새로 넣어주고 refresh해주기
 							$("#indi-jstree-to-right").jstree(true).settings.core.data = data;
-							$("#indi-jstree-to-right").jstree(true).refresh();
+							
 						}
 					})
 			})

@@ -88,24 +88,22 @@
 	
 	                <!-- Dropdown -->
 	                <div class="dropdown completed-modal-dropdown">
-	                    <button class="btn btn-secondary indishare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                    Click <span class="caret"></span>
-	                    </button>
-	                    <button class="btn btn-secondary indishare dropdown-toggle gogosing" type="button">
-	                    My Book
-	                    </button>
+	                    <button class="btn btn-secondary indishare dropdown-toggle getmygroup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                    My Group</button>
 	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-	                        <li id="completed-modal-mybook" class="dropdown-item" href="#"> <!-- onclick="mycategory();" -->My Book</li>
-	                        <hr class="divider-hr">
-	                        <li class="dropdown-item dropdown-submenu">
-	                            <a tabindex="-1" href="#">Group</a>
-	                            <ul class="dropdown-menu">
-	                              <li class="dropdown-group-item"><span tabindex="-1"> </span></li>
-	                              <li class="dropdown-group-item"><span> </span></li>
-	                              <li class="dropdown-group-item"><span> </span></li>
-	                            </ul>
-	                        </li>
+	                    <c:forEach items="${teamlist}" var="teamlist" varStatus="status">
+	                		 <c:choose>
+										<c:when test="${status.count == '1'}">
+											<li class="dropdown-group-item"><span tabindex="-1">${teamlist.gname}</span></li>
+										</c:when>
+										<c:when test="${status.count != '1'}">
+											<li class="dropdown-group-item"><span>${teamlist.gname}</span></li>
+										</c:when>
+							</c:choose>
+	                    </c:forEach>
 	                    </div>
+	                    <button class="btn btn-secondary indishare dropdown-toggle getmybook" type="button">
+	                    My Book</button>
 	                    <script type="text/javascript">
 	                        $('#completed-modal-mybook').click(function() {
 	                            $('#dropdownMenuButton').text($(this).text());
