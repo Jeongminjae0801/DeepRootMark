@@ -91,18 +91,7 @@
 	                    <button class="btn btn-secondary indishare dropdown-toggle getmygroup" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	                    My Group</button>
 	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<<<<<<< HEAD
-	                    <c:forEach items="${teamlist}" var="teamlist" varStatus="status">
-	                		 <c:choose>
-										<c:when test="${status.count == '1'}">
-											<li class="dropdown-group-item"><span tabindex="-1">${teamlist.gname}</span></li>
-										</c:when>
-										<c:when test="${status.count != '1'}">
-											<li class="dropdown-group-item"><span>${teamlist.gname}</span></li>
-										</c:when>
-							</c:choose>
-	                    </c:forEach>
-=======
+	                 
 	                        <li id="completed-modal-mybook" class="dropdown-item" href="#"> <!-- onclick="mycategory();" -->My Book</li>
 	                        <hr class="divider-hr">
 	                        <li class="dropdown-item dropdown-submenu">
@@ -113,7 +102,6 @@
 	                              <li class="dropdown-group-item"><span>니꺼 니꺼 내꺼 니꺼</span></li>
 	                            </ul>
 	                        </li>
->>>>>>> 4409bbb8e5eae9217c254dd39126c056482670c5
 	                    </div>
 	                    <button class="btn btn-secondary indishare dropdown-toggle getmybook" type="button">
 	                    My Book</button>
