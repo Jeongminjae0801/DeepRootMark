@@ -50,7 +50,7 @@
 	
 	
  	function testing_modal(d){
-		console.log(d.id);
+ 		
 		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
 		
 		$.ajax({
@@ -70,30 +70,31 @@
 		$('#completedGroupModal').modal();
 	} 
  	
+ 	// 내 북마크로 가져오기 버튼 클릭시
 	function submitgroupurl(){
 		
 		var checked_ids = []; 
 		var submit_url_ids = [];
+		var submit_obj = [];
+		
 		checked_ids = $('#group_bookmark_modal').jstree("get_checked",null,true);
-		console.log("check");
-		console.log(checked_ids);
 		
 		$.each(checked_ids,function(key,value){
-			console.log(value);
 			var checknode_href = $('#group_bookmark_modal').jstree(true).get_node(value).a_attr.href;
-			
+			var checknode_urlname =  $('#group_bookmark_modal').jstree(true).get_node(value).text;
 			if(checknode_href != '#'){
 				console.log(checknode_href);
 				submit_url_ids.push(value);
+				submit_obj.push({url : checknode_href , urlname : checknode_urlname , ubid: 162 });
 			}
 		})
-		console.log(submit_url_ids); //[3,4]
+		console.log(submit_obj); //[3,4]
 		
 		$.ajax({
 		
 			url : "insertGroupUrl.do",
 			type : "POST",
-			data : {gbid : submit_url_ids},
+			data : {obj : submit_obj},
 			success : function(){
 			}
 		})
