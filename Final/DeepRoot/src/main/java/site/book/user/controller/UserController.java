@@ -138,7 +138,6 @@ public class UserController {
 	public String mybookmark(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
 		String uid = (String)session.getAttribute("info_userid");
-		System.out.println("uid : " + uid);
 		
 		List<TeamDTO> teamList = teamservice.getTeamList(uid);
 		model.addAttribute("teamList", teamList);
@@ -158,19 +157,16 @@ public class UserController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         
-        System.out.println("uid : " + uid);
-		
-		
 		JSONArray jsonArray = new JSONArray();	
 		List<U_BookDTO> list = u_bookservice.getCategoryList(uid);
-		
-		System.out.println(list);
 		
 		if(list.size() ==0) {
 			
 			JSONObject jsonobject = new JSONObject();
 			
-			int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
+			// max(ubid) +1 한 값이다.
+			int ubid = u_bookservice.getmaxid();	
+			// 처음 가입자는 첫 카테고리를  생성해 준다.
 			int result = u_bookservice.insertRootFolder(ubid, uid);
 			
 			//처음 가입한 유저일 경우 root폴더 생성해 준다.
@@ -244,15 +240,12 @@ public class UserController {
 			jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
 			
 			String htag = String.valueOf(list.get(i).getHtag());
-			System.out.println("아래에");
-			System.out.println(htag);
 			
+			// 공유 된 url 인지 아닌지 구분함
 			if(htag.equals("") || htag.equals("null")) {
-				System.out.println("없는서");
 				jsonobject.put("sname", "#");
 				jsonobject.put("htag", "#");
 			}else {
-				System.out.println("잇는거");
 				jsonobject.put("sname", list.get(i).getSname());
 				jsonobject.put("htag", list.get(i).getHtag());
 			}
@@ -263,7 +256,6 @@ public class UserController {
 			jsonArray.put(jsonobject);
 			
 		}
-		
 		try {
 			res.getWriter().println(jsonArray);
 		} catch (IOException e) {			
@@ -277,7 +269,6 @@ public class UserController {
 	public void updateNodeText(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
 		
 		int result = u_bookservice.updateNodeText(param);
-		System.out.println(param);
 		
 		try {
 			res.getWriter().println(result);
@@ -297,7 +288,6 @@ public class UserController {
         dto.setUbid(ubid);
         dto.setUid(uid);
         
-		System.out.println(dto.toString());
 		int result = u_bookservice.addFolderOrUrl(dto);
 		
 		try {
@@ -311,7 +301,6 @@ public class UserController {
 	@RequestMapping("deleteNode.do")	
 	public void deleNode(HttpServletRequest req , HttpServletResponse res) {
 		res.setCharacterEncoding("UTF-8");
-		System.out.println("ddd");
 		String nodeid = req.getParameter("node");
 		u_bookservice.deleteFolderOrUrl(nodeid);
 		
@@ -343,8 +332,6 @@ public class UserController {
 	public void dropNode(HttpServletResponse res , @RequestParam HashMap<String, String> param) {
 		
 		res.setCharacterEncoding("UTF-8");
-		System.out.println("아래에 param");
-		System.out.println(param);
 		int result = u_bookservice.dropNode(param);
 		
 		try {
@@ -400,7 +387,6 @@ public class UserController {
 		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
-        System.out.println("uid : " + uid);
         
 		int ubid = u_bookservice.getmaxid();
 		int result = u_bookservice.insertRootFolder(ubid, uid);
@@ -414,18 +400,15 @@ public class UserController {
 		}
 	}
 	
+	//완료된 그룹의 북마크 가져오기
 	@RequestMapping("getCompletedTeamBookmark.do")
 	public void getCompletedTeamBookmark(HttpServletResponse res, int gid) {
 		
 		res.setCharacterEncoding("UTF-8");
-		System.out.println("너 들어오니");
-		System.out.println(gid);
 		
 		JSONArray jsonArray = new JSONArray();	
 		HashMap<String, String> href = new HashMap();
 		List<G_BookDTO> list = g_bookservice.getCompletedTeamBookmark(gid);
-		
-		System.out.println(list);
 		
 		for(int i =0; i<list.size(); i++) {
 			
