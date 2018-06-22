@@ -25,6 +25,7 @@
 
     <!-- Main Page CSS -->
     <link href="css/mainpage/main.css?ver=2" rel="stylesheet">
+    <link href="css/mainpage/modal.css?ver=2" rel="stylesheet">
     <link href="css/mainpage/header.css" rel="stylesheet">
     <link href="css/mainpage/footer.css" rel="stylesheet">
     <link href="css/mainpage/list_table.css?ver=1" rel="stylesheet">
@@ -41,6 +42,10 @@
     <!-- Login / roll-in Modal Script Start -->
     <script src="js/script.js"></script>
     <!-- Login / roll-in Modal Script Start END -->
+    
+    <!-- URL Bookmark Modal Script Start -->
+    <script src="js/modal.js"></script>
+    <!--  URL Bookmark Modal Script END -->
 
     <!-- Category Input Script START -->
     <script src="js/category_insert.js"></script>
@@ -56,6 +61,10 @@
     <script type="text/javascript" src="js/wow.min.js"></script>
     <script type="text/javascript" src="js/login.js?ver=2"></script>
     <!-- Custom Script END -->
+    
+    <!-- jstree css & javascript -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+    <script src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
     
     <script>
         /**************************  Table Start  **********************************/
@@ -80,15 +89,6 @@
                     $(this).children('button').css('display', 'none')
                 }
             });
-            /* $(document).on("click", ".fa-folder-open", function() {
-                if ($(this).attr('src') == 'icon/all_show.png') {
-                    $(this).attr('src', 'icon/all_close.png');
-                    $(this).parent().parent().children('ul').hide(500);
-                } else {
-                    $(this).attr('src', 'icon/all_show.png');
-                    $(this).parent().parent().children('ul').show(500);
-                }
-            }); */
             $(document).on("click", ".fa-folder-open", function() {
                 $(this).parent().parent().children('ul').hide(500);
                 $(this).removeClass("fa-folder-open");
@@ -119,26 +119,24 @@
         
         /**************************  Preview Start  **********************************/
     	function preview(abid){
-    		var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
-    		$('#preview_content').fadeOut(10, function(){
-	    		$('#preview_content').fadeIn(1000);
-	        	$("#layout").html(layout);
-    		});
-        	
+        	$('#world-ranking-visitor').html('');
+        	$('#url-sub-domain').html('');
         	$.ajax({
         		url: "preview.do",
 				type: "post",
 				data : { abid : abid },// 북마크 ID
 				beforeSend: function() {
-	                $('#comment').html('<img src="${pageContext.request.contextPath}/images/loading/preview.gif" style="margin-top: 0;"/>');
+	                $('#layout').html('<img src="${pageContext.request.contextPath}/images/loading/preview.gif" style="margin-top: 0;"/>');
 	            },
 	            complete: function() {
-	            	$('#comment').html('');
+	            	$('#layout').html('');
 	            },
 				success : function(data){
 					//console.log(data);
 					$('#comment').fadeOut(10, function(){
-						// console.log(data);
+						var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
+			    		$("#layout").html(layout);
+			    		
 			        	var comment = "";
 			        	if(data.title != "" && data.title != null){
 			        		comment = "<b>" + data.title + "</b>";
@@ -149,28 +147,65 @@
 			        	if(data.description != "" && data.description != null){
 			        		comment += "<br> <p>" + data.description + "</p>";
 			        	}
-			        	$("#comment").html(comment);
-			        	
-			        	var detail = "";
-			        	if(data.rank != "" && data.rank != null) {
-			        		detail += "<br><span>World Rank: " + data.rank + "</span>";
-			        	}
-			        	if(data.visitor != "" && data.visitor != null) {
-			        		detail += "<br><span>Daily Visitor: " + data.visitor + "</span>";
-			        	}
-			        	if(data.suburl != "" && data.suburl != null) {
-			        		for(index in data.suburl) {
-			        			detail += "<br><span>" + data.suburl[index][0] + " >> " + data.suburl[index][1] + "</span>";
-			        		}
-			        	}
-			        	$("#comment").append(detail);
-						
+			        	$("#comment-detail").html(comment);
                         $('#comment').fadeIn(1000);
                         
+                        previewDetail(abid);
                     });
 				}
         	});
         };
+        
+        // Preview Details: Rank, Sub String
+        function previewDetail(abid) {
+        	$.ajax({
+        		url: "previewdetail.do",
+				type: "post",
+				data : { abid : abid },// 북마크 ID
+				beforeSend: function() {
+	                $('#sub-domain').html('<img id="loading-img" src="${pageContext.request.contextPath}/images/loading/loading.gif"/>');
+	            },
+	            complete: function() {
+	            	$('#sub-domain').html('');
+	            },
+				success : function(data){
+		        	var ranking = "<i class='fas fa-globe' style='color: #1192e8;'><p class='detail-text'>Global Rank</p></i>"
+		        		 			+ "<span id='world-ranking'>";
+		        	var visitors = "<i class='fas fa-eye' style='color: #e46100;'><p class='detail-text'>Daily Visitors</p></i>" 
+		        					+ "<span id='world-visitor'>";
+		        	var sub_domain = "<i class='fas fa-link' style='color: #328618;'><p class='detail-text'>Subdomains</p></i><br>"
+		        					+ "<span>";
+		
+		        	if(data.rank != "" && data.rank != null) {
+		        		ranking += data.rank + "</span><br>";
+		        	}else {
+		        		ranking += "Not supported</span><br>";
+		        	}
+		        	if(data.visitor != "" && data.visitor != null) {
+		        		visitors += data.visitor + "</span>";;
+		        	}else {
+		        		visitors += "Not supported</span>"
+		        	}
+		        	if(data.suburl != "" && data.suburl != null) {
+		        		var i = 1;
+		        		for(index in data.suburl) {
+		        			//console.log(data.suburl[index][0]);
+		        			//console.log(data.suburl[index][1]);
+		        			sub_domain += (i++) + ". " + data.suburl[index][0] + "</span>";
+		        			sub_domain += "<div class='progress'><div class='progress-bar' role='progressbar' "
+		        							+ "style='width: " + data.suburl[index][1] + "' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>"
+		        							+ data.suburl[index][1] + "</div></div>";
+		        		}
+		        	}else {
+		        		sub_domain += "Not supported</span>";
+		        	}
+		        	console.log(sub_domain);
+		        	$("#world-ranking-visitor").append(ranking);
+		        	$("#world-ranking-visitor").append(visitors);
+		        	$("#url-sub-domain").html(sub_domain);
+				}
+        	});
+        }
         
         /**************************  Preview End  **********************************/
         

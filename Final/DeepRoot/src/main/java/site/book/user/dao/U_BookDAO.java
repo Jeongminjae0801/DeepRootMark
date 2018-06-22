@@ -18,7 +18,8 @@ import site.book.user.dto.U_BookDTO;
 public interface U_BookDAO {
 	
 	// 태웅
-	
+	// 메인 URL 내 북마크로 추가
+	public int insertToMyBookmark(U_BookDTO book) throws ClassNotFoundException, SQLException;
 	
 	// 희준
 	
