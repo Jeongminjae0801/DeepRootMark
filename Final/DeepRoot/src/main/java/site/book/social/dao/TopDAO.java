@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import site.book.social.dto.TopDTO;
+import site.book.user.dto.U_BookDTO;
 
 /**
  * @Class : TopDAO.java
@@ -36,6 +37,6 @@ public interface TopDAO {
 	public List<TopDTO> selectATop5() throws ClassNotFoundException, SQLException;
 	
 	// 전체 Top5 Urlname 가져오기
-	public String selectATop5Urlname(String url) throws ClassNotFoundException, SQLException;	
+	public String selectATop5Urlname(String url) throws ClassNotFoundException, SQLException;
 	
 }

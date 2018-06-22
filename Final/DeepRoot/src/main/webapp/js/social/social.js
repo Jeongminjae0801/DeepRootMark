@@ -136,6 +136,58 @@ jQuery(function($) {
 });
 
 /* 민재 onclick */
+/* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
+/*$('#completed-modal-mybook').on('dblclick', function(){ return });*/
+
+
+/*function mycategory(){*/
+$('.gogosing').on('click', function(){
+	console.log("쉣");
+	$.ajax({
+		url : "getCategoryList.do",
+		type:"POST",
+		dataType:"json",
+		success : function(data){	
+		console.log("들어오긴해?");
+		console.log(data);
+		/* jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다. */					
+		$("#indi-jstree-to-right").on("click",'.jstree-anchor',function(e){
+			$('#indi-jstree-to-right').jstree(true).toggle_node(e.target);	
+			})
+			.jstree({	
+					"core": {
+						"dblclick_toggle" : false, // 두번 클릭해서 폴더여는거 false
+					'data' : data, // ajax로 가져온 json data jstree에 넣어주기
+				},    
+			})	
+			.bind("loaded.jstree", function (event, data) {
+				$('#indi-jstree-to-right').jstree("open_all");
+					console.log("loaded jstree");
+					var test = data.instance._model.data
+					var head = 0;
+			})
+			.bind("select_node.jstree", function (e, data) {
+					/* 노드(폴더)가 선택시 실행되는 함수 */					
+					var id = data.node.id;
+					urlpid = id;
+					// 선택된 노드(폴더)아래에 있는 url 가져오기
+					$.ajax({
+						url : "getUrl.do",
+						type : "POST",
+						dataType:"json",
+						data : {ubid : id},
+						success : function(data){
+							child_data = data;
+							// 오른쪽에 있는 jstree 값 새로 넣어주고 refresh해주기
+							$("#indi-jstree-to-right").jstree(true).settings.core.data = data;
+							$("#indi-jstree-to-right").jstree(true).refresh();
+						}
+					})
+			})
+		}
+	})
+});
+
 /* 민재 onclick END */
 
 /* 태웅이 onclick */
@@ -150,7 +202,7 @@ $('.indi-share').on('click', function(){
 $('.group-share').on('dblclick', function(){ return });
 $('.group-share').on('click', function(){
 	var title = $(this).data('title');
-	$('.groupshare-url').text(title);
+	$('.groupshare-name').text(title);
 });
 
 /* 태웅이 onclick END */

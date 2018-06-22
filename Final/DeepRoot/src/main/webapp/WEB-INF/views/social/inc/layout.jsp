@@ -44,6 +44,8 @@
     <script src="${pageContext.request.contextPath}/js/social/dataTables.bootstrap.min.js"></script>
     <!-- Script END -->
 
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
+    <script  src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
     <script>
         /*****************  Table Start **********************/
         $(function() {
