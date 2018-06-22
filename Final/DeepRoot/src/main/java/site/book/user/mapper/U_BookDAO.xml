@@ -79,4 +79,9 @@
 		</choose>
 	</update>
 	
+	<insert id="insertUrlFromCompletedGroup" parameterType="site.book.user.dto.U_BookDTO">
+		INSERT INTO U_BOOK(URL,URLNAME,REGDATE,VIEW,UID,PID)
+			VALUES(#{url},#{urlname},SYSDATE(),0,#{uid},#{pid})
+	</insert>
+	
 </mapper>

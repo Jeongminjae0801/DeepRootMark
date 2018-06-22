@@ -4,10 +4,12 @@
 .modal-footer {
 	clear: both;
 }
+.completed-modal-right.mypage,
 .completed-modal-left.groupshare{
 	border-right: 2px dashed #ccc;
 	padding-top: 10px;
 }
+.completed-modal-right.mypage,
 .completed-modal-right.groupshare{
 	border-left: 2px solid #ccc;
 	padding-top: 10px;
@@ -30,13 +32,14 @@
   border-bottom: 2px solid #a94442;
 }
 
+.modal-header.mypage,
 .modal-header.groupshare {
   border-bottom: 1px solid #ccc;
   padding-top : 10px;
   padding-bottom: 5px;
 }
 
-
+.modal-footer.mypage,
 .modal-footer.groupshare{
 	margin-top : 15px;
 }
@@ -142,11 +145,13 @@
 .float-clear-hr { margin-top: 38px 0px 0px 0px; border-top: 2px solid #a94442; }
 .completed-modal-content { margin-bottom: 10px; }
 
+.completed-modal-left.mypage,
 .completed-modal-left.groupshare {
   padding-left: 10px;
   width: 50%;
   float: left;
 }
+.completed-modal-right.mypage,
 .completed-modal-right.groupshare {
   padding-left: 10px;
   width: 50%;
