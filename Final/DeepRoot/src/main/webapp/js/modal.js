@@ -82,13 +82,28 @@ jQuery(function($) {
 				dataType:"json",
 				success : function(data){
 					if(data.result == "success") {
-						$.alert("MYBOOKMARK에 추가 되었습니다.");
+						swal("Thank you!", "북마크에 추가되었습니다!", "success");
 						$('#mainIndiModal').modal("toggle");
 					}else {
-						$.alert("잠시후 다시 시도해주세요.");
+						swal({
+							  title: "목적지 폴더를 확인하셨나요?",
+							  text: "잠시후 다시 시도해주세요!",
+							  icon: "warning",
+							  buttons: true,
+							  dangerMode: true,
+						});
 						$('#mainIndiModal').modal("toggle");
 					}
-				}
+				},
+				error : function(error) {
+					swal({
+						  title: "목적지 폴더를 확인하셨나요?",
+						  text: "잠시후 다시 시도해주세요!",
+						  icon: "warning",
+						  buttons: true,
+						  dangerMode: true,
+					});
+			    }
 			});
 	    	
 	    });
