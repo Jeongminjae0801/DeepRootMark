@@ -67,7 +67,7 @@
 						<a href="#">Group <i class="fa fa-angle-down"></i></a>
 						<ul role="menu" class="sub-menu">
 						<c:choose>
-							<c:when test="${headerTeamList ne null}">
+							<c:when test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 								<c:forEach items="${headerTeamList}" var="headerTeam" varStatus="status">
 									<li><a href="#">${headerTeam.gname}</a></li>
 									<c:if test="${status.last}">
@@ -102,7 +102,7 @@
 						<i class="far fa-bell fa-lg notice-alarm" style="margin-top: -3px;"></i>
 						<%-- <img src="<%= request.getContextPath() %>/icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a> --%>
 						</a>
-						<c:if test="${headerNoticeList ne null}">
+						<c:if test="${(headerNoticeList ne null) && (!empty headerNoticeList)}">
 							<ul role="menu" class="sub-menu">
 							<c:forEach items="${headerNoticeList}" var="headerNotice">
 								<li><a href="#">${headerNotice.ncontent}</a></li>

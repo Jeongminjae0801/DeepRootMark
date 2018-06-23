@@ -10,6 +10,7 @@
 	
 	$(function(){
 		var categorylist = new Array(); 
+		var dataTableList = new Array();
 		
 		<c:forEach items="${categorylist}" var="category" varStatus="status">
 			categorylist.push(new Array("${category.acid}", "${category.color}"));
@@ -19,9 +20,10 @@
 		// DataTable 적용
 		$.each(categorylist, function(index, element){
 			//console.log(element);
-			$('table[id="'+ element[0] + '"]').DataTable({
+			var dataTable = $('#table'+ element[0]).DataTable({
 				responsive: true
 			});
+			dataTableList[element[0]] = dataTable;
 			
 			// ColorPicker
 			
@@ -61,6 +63,39 @@
 	            }
 	        });
 		});
+		
+		// ajax Form 설정
+		$("#addUrlForm").ajaxForm({
+			success: function(data, statusText, xhr, $form){
+				console.log(data.newBook);
+				dataTableList[data.newBook.acid].row.add([
+					data.newBook.urlname,
+					'<a href="' + data.newBook.url + '" target="_blank">' + data.newBook.url + '</a>',
+					'<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(' + data.newBook.acid + ", '" + data.newBook.acname + "', '" + data.newBook.url + "', " + data.newBook.abid + ');"></i>' 
+					+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.newBook.abid + ')"></i>'
+				]).node().id = data.newBook.abid;
+				
+				dataTableList[data.newBook.acid].draw(false);
+			}
+		});
+		
+		$("#editUrlForm").ajaxForm({
+			success: function(data, statusText, xhr, $form){
+				console.log(data.updateBook);
+				var tr = $("#table" + data.updateBook.acid + " tbody tr[id=" + data.updateBook.abid + "]");
+				tr.find('td:eq(0)').html(data.updateBook.urlname);
+				tr.find('td:eq(1)').html('<a href="' + data.updateBook.url + '" target="_blank">' + data.updateBook.url + '</a>');
+				tr.find('td:eq(2)').html('<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(' + data.updateBook.acid + ", '" + data.updateBook.acname + "', '" + data.updateBook.url + "', " + data.updateBook.abid + ');"></i>' 
+						+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.updateBook.abid + ')"></i>');
+				
+				dataTableList[data.updateBook.acid].row(tr).invalidate().draw();
+				
+			}
+		});
+		
+		
+		
+		
 	});
 	
 </script>
@@ -136,7 +171,7 @@
 							<!-- Category Name & edit & insert END -->
 							<div class="panel-body">
 								<table width="100%" class="table table-hover"
-									id="${hashmap.key.acid}">
+									id= "table${hashmap.key.acid}">
 									<thead>
 										<tr>
 											<th>사이트명</th>
@@ -149,9 +184,10 @@
 											<tr id="${book.abid}">
 												<td>${book.urlname}</td>
 												<td><a href="${book.url}" target="_blank">${book.url}</a></td>
-												<td><i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(${hashmap.key.acid}, '${hashmap.key.acname}', '${book.url}', ${book.abid});"></i><i
-													class="fas fa-trash-alt url-action"
-													onclick="deleteUrl(${book.abid})"></i></td>
+												<td>
+													<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(${hashmap.key.acid}, '${hashmap.key.acname}', '${book.url}', ${book.abid});"></i>
+													<i class="fas fa-trash-alt url-action" onclick="deleteUrl(${book.abid})"></i>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -498,7 +534,7 @@
 			<div class="modal-dialog">
 
 				<div class="modal-content">
-					<form id="addUrlForm" name="addUrl" method="post" action="addUrl.do" accept-charset="UTF-8">
+					<form id="addUrlForm" name="addUrl" method="post" action="${pageContext.request.contextPath}/admin/addUrl.do" accept-charset="UTF-8">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							<h4 class="modal-title"></h4>

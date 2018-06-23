@@ -160,6 +160,7 @@ public class AdminController {
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
 		model.addAttribute("headerNoticeList", headerNoticeList);
 
+		
 		return "admin.main";
 	}
 
@@ -309,10 +310,13 @@ public class AdminController {
 	
 	// URL 추가하기
 	@RequestMapping("addUrl.do")
-	public String addBook(A_BookDTO book) {
-		a_book_service.addBook(book);
-
-		return "redirect:mainBookList.do";
+	public View addBook(A_BookDTO book, Model model) {
+		//System.out.println("addURL");
+		
+		A_BookDTO newBook = a_book_service.addBook(book);
+		model.addAttribute("newBook", newBook);
+		
+		return jsonview;
 	}
 	
 	// URL 삭제하기
@@ -327,10 +331,12 @@ public class AdminController {
 	
 	// URL 수정하기
 	@RequestMapping("editUrl.do")
-	public String updateBook(A_BookDTO book) {
+	public View updateBook(A_BookDTO book, Model model) {
 		a_book_service.updateBook(book);
 
-		return "redirect:mainBookList.do";
+		model.addAttribute("updateBook", book);
+		
+		return jsonview;
 	}
 	
 	// 카테고리 색상 변경하기

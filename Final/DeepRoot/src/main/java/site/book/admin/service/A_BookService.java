@@ -64,12 +64,11 @@ public class A_BookService {
 	
 	// URL 추가하기
 	@Transactional
-	public int addBook(A_BookDTO book) {
+	public A_BookDTO addBook(A_BookDTO book) {
 		A_BookDAO bookDAO = sqlsession.getMapper(A_BookDAO.class);
-		int row = 0;
 		
 		try {
-			row = bookDAO.insertBook(book);
+			bookDAO.insertBook(book);
 			int abid = bookDAO.getMaxABID();
 			book.setAbid(abid);
 			screenshot(book);
@@ -77,7 +76,7 @@ public class A_BookService {
 			e.printStackTrace();
 		}
 		
-		return row;
+		return book;
 	}
 	
 	// URL 수정하기
@@ -124,15 +123,16 @@ public class A_BookService {
 	}
 	
 	public void screenshot(A_BookDTO book) {
+		System.out.println("스케줄러 시작");
 		
 		String path = this.getClass().getResource("").getPath();
 		
 		int index = path.indexOf("WEB-INF");
-		System.out.println(path);
+		//System.out.println(path);
 		
 		String realpath = path.substring(0, index);
 		
-		System.out.println(realpath);
+		//System.out.println(realpath);
 		
 		String exePath = realpath + "\\resources\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", exePath);

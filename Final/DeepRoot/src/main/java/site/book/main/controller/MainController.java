@@ -107,12 +107,7 @@ public class MainController {
 		
 		if(uid != null) {
 			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
-			System.out.println("userid : " + uid);
-			
-			if(!headerTeamList.isEmpty()) {
-				model.addAttribute("headerTeamList", headerTeamList);
-				System.out.println("headerTeamList" + headerTeamList);
-			}
+			model.addAttribute("headerTeamList", headerTeamList);
 		}
 		
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
