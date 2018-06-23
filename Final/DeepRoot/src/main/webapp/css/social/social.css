@@ -3,13 +3,12 @@
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 /* 한글 폰트*/
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-@import url('https://fonts.googleapis.com/css?family=Gothic+A1');
-
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 /* Social Page CSS START */
 .ranking-div{
     padding-top: 150px;
     text-align: left;
-    font-family: 'Gothic A1','Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
     padding-left:30px;
     padding-right:30px;
 }
@@ -42,7 +41,7 @@
 /* RANK, Share Img END */
 
 .bookmark-share-div{
-    font-family: 'Gothic A1','Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
     padding-top: 30px;
     padding-left:30px;
     padding-right:30px;
@@ -199,7 +198,7 @@ a:focus {
 }
 
 a {
-    font-family: 'Gothic A1','Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
     color: #000;
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
@@ -212,7 +211,7 @@ table {
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
     font-weight: 300;
 }
 

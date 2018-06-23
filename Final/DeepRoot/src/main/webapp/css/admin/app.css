@@ -168,7 +168,7 @@ hr.visible-xs-block {
 body,
 html {
     height: 94.8%;
-    background-color: #282b30 !important; /*모달실행시 스크롤바 중복생성 영역의 색상*/
+    background-color: #222d32; /*모달실행시 스크롤바 중복생성 영역의 색상*/
 }
 
 .container-table {

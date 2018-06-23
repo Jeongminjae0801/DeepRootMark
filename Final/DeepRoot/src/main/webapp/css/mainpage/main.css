@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 /* 한글 폰트*/
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-@import url('https://fonts.googleapis.com/css?family=Gothic+A1');
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 /*************************
 *******Home Page******
 **************************/
@@ -33,7 +33,7 @@ a:focus {
 }
 
 a {
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
     color: #000;
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
@@ -50,7 +50,7 @@ table {
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
     font-weight: 300;
 }
 
@@ -75,7 +75,7 @@ h2 {
 }
 
 .bookmark-category {
-    font-family: 'Lato', 'Spoqa Han Sans';
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans';
     font-size: 25px;
     font-weight: 500;
 }
@@ -89,12 +89,12 @@ h2 {
     margin-left: 10px;
     margin-right:  15px;
     font-size: 15px;
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
 }
 
 .main-admin-category {
     margin-top: 25px;
-    font-family: 'Lato','Spoqa Han Sans', sans-serif;
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
     overflow: hidden;
 }
 
@@ -108,7 +108,7 @@ h2 {
 
 /* 카테고리 영역 */
 .category {
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
     height: 30px;
     width: 106px;
     margin-bottom: 10px;
@@ -125,7 +125,7 @@ h2 {
     
 }
 .category-title {
-	font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
+	font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
 	font-weight: 900;
 }
 
@@ -146,7 +146,7 @@ h2 {
 
 
 .bookmark-title {
-   font-family: 'Lato', 'Spoqa Han Sans';
+   font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans';
    margin-right: 30px;
    padding-top: 5px;
    padding-bottom: 5px;
@@ -160,7 +160,7 @@ h2 {
 }
 
 .search-input {
-   font-family: 'Lato', 'Spoqa Han Sans';
+   font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans';
    width: 200px;
    box-sizing: border-box;
    border: 1px solid #ccc;
@@ -197,7 +197,7 @@ h2 {
     font-size: 14px;
     color: #0099ae;
     border: 2px solid #0099ae;
-    font-family: 'Lato','Spoqa Han Sans', sans-serif;
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans';
     font-weight: 300;
     padding: 10px 25px;
 }
@@ -240,7 +240,7 @@ h2 {
     left: 0;
     width: 500px;
     text-align: right;
-    font-family: 'Lato', 'Spoqa Han Sans';
+    font-family: 'Lato', 'Spoqa Han Sans', 'Noto Sans KR';
     font-size: 25px;
     font-weight: 500;
     margin-top: 100px;
@@ -249,7 +249,7 @@ h2 {
 }
 
 #home-slider .slide-text .introduce-text{
-    font-family: 'Lato', 'Spoqa Han Sans';
+    font-family: 'Lato', 'Spoqa Han Sans', 'Noto Sans KR';
     text-align: left;
     padding-left: 20px;
 }
@@ -288,7 +288,7 @@ h2 {
 }
 
 .ul-table {
-	font-family: 'Gothic A1', 'Lato', 'Spoqa Han Sans';
+	font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans';
 	min-height: 550px !important;
 }
 
@@ -322,7 +322,7 @@ h2 {
 }
 
 #comment {
-  font-family: 'Gothic A1', 'Lato', 'Spoqa Han Sans';
+  font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans';
   padding: 10px;
   float: left;
   width: 100%;
@@ -341,7 +341,7 @@ h2 {
 	text-align: center;
 }
 #comment-detail {
-	font-family: 'Gothic A1', 'Lato', 'Spoqa Han Sans';
+	font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans';
 	width: 100%;
 	margin-bottom: 10px;
 	padding-left: 10px;
