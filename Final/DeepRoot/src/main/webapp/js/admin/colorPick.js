@@ -40,7 +40,7 @@
         'allowRecent': true,
         'recentMax': 5,
         'allowCustomColor': false,
-        'palette': ["#1abc9c", "#c5f0a4", "#00ffff", "#3498db", "#9b59b6", "#ff4057", "#fd75b3", "#84b9ef", "#f1c40f", "#fb93b1", "#ff8000",  "#000"],
+        'palette': ["#1abc9c", "#E9967A", "#191970", "#3498db", "#9b59b6", "#ff4057", "#fd75b3", "#84b9ef", "#f1c40f", "#fb93b1", "#ff6347",  "#000"],
         'onColorSelected': function() {
             this.element.css({'backgroundColor': this.color, 'color': this.color});
         
