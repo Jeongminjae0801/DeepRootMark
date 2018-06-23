@@ -1,24 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script>
-	$(function() {
-		$.ajax({
-			url : "${pageContext.request.contextPath}/getNotices.do",
-			type : "post",
-			success : function(data) {
-				var html = "";
-				console.log(data.noticeList);
-				for ( var key in data.noticeList) {
-					console.log(data.noticeList[key]);
-					html += '<li class="header"><a>'+ data.noticeList[key].ncontent+ '</a></li>';
-				}
-				html += '<li class="header" onclick="headerNoticeReg();"><a><i class="fa fa-plus-circle" style="color: #f39c12;"></i> 공지사항 등록</a></li>';
-				$("#headerNoticeDropdown").append(html);
-			}
-		});
-	});
-	
 	function headerNoticeReg() {
 		$.confirm({
 		    title: '공지사항 등록',
@@ -58,11 +42,8 @@
 	}
 </script>
 
-
-
 <div id="app">
 	<div class="wrapper">
-
 		<header class="main-header">
 			<span class="logo-mini"><a href="${pageContext.request.contextPath}/index.do" data-duration="0.2s">
 				<span class="img-responsive center-block logo">뿌리깊은마크</span></a>
@@ -94,8 +75,11 @@
 							<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
 								<i class="fas fa-bell fa-lg admin-notice"></i>
 							</a>
-							<ul id="headerNoticeDropdown" class="dropdown-menu">
-								<!-- <li class="header">You have 0 notification(s)</li> -->
+							<ul class="dropdown-menu">
+								<c:forEach items="${headerNoticeList}" var="headerNotice" >
+									<li class="header"><a href="#">${headerNotice.ncontent}</a></li>
+								</c:forEach>
+								<li class="header" onclick="headerNoticeReg();"><a><i class="fa fa-plus-circle" style="color: #f39c12;"></i> 공지사항 등록</a></li>
 							</ul>
 						</li>
 						<!-- Notice Alarm END -->

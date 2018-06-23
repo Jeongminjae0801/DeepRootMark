@@ -146,9 +146,14 @@ public class TeamService {
 
 	// 내 그룹 리스트 가져오기
 	public List<TeamDTO> getTeamList(String uid) {
-
 		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
-		List<TeamDTO> dtolist = teamDAO.getTeamList(uid);
+		List<TeamDTO> dtolist = null;
+				
+		try {
+			dtolist = teamDAO.getTeamList(uid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		return dtolist;
 	}
 	
