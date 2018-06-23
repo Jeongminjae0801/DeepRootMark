@@ -28,6 +28,10 @@
 			var color = element[1];
 			if(color == "#000"){
 				color = "#FFFFFF";
+			}else if (color == "#191970"){
+				color = "#c9c9ff";
+			}else if (color == "#696969"){
+				color = "#d1d1d1";
 			}
 			
 			$('span[id="'+ element[0] + '"]').css("color", color);
@@ -39,7 +43,12 @@
 	            	var selectColor = this.color;
 	            	if(selectColor == "#000"){
 	            		selectColor = "#FFFFFF";
+	    			}else if (selectColor == "#191970"){
+	    				selectColor = "#c9c9ff";
+	    			}else if (selectColor == "#696969"){
+	    				selectColor = "#d1d1d1";
 	    			}
+	            	
 	                this.element.css({
 	                    'backgroundColor': this.color,
 	                    'color': this.color
