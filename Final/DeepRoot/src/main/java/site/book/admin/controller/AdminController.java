@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -27,6 +29,7 @@ import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.A_BookDTO;
 import site.book.admin.dto.A_CategoryDTO;
+import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
 import site.book.admin.service.NoticeService;
@@ -84,7 +87,7 @@ public class AdminController {
 	
 	// 메인 페이지
 	@RequestMapping("main.do")
-	public String main(Model model) {
+	public String main(HttpServletRequest req, Model model) {
 		// System.out.println("관리자 메인 페이지");
 
 		// Visit Chart Data
@@ -152,6 +155,10 @@ public class AdminController {
 			group_bookmark_chartdata.put(jsonobject);
 		}
 		model.addAttribute("group_bookmark_chartdata", group_bookmark_chartdata);
+		
+		// 공지사항 리스트 가져오기
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
 
 		return "admin.main";
 	}
@@ -164,6 +171,10 @@ public class AdminController {
 		
 		List<HashMap<A_CategoryDTO, List<A_BookDTO>>> url_by_category = a_category_service.urlByCategory();
 		model.addAttribute("url_by_category", url_by_category);
+		
+		// 공지사항 리스트 가져오기
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
 		
 		return "admin.mainBookList";
 	}
@@ -178,6 +189,10 @@ public class AdminController {
 		List<S_TeamDTO> g_list=teamservice.getSocialGroupList();
 		model.addAttribute("g_list", g_list);
 		
+		// 공지사항 리스트 가져오기
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
+		
 		return "admin.social";
 	}
 	
@@ -188,6 +203,10 @@ public class AdminController {
 		List<UserDTO> userlist = user_service.getUserList();
 		model.addAttribute("userlist", userlist);
 		
+		// 공지사항 리스트 가져오기
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
+		
 		return "admin.userListTable";
 	}
 	
@@ -196,6 +215,10 @@ public class AdminController {
 	public String groupListTable(Model model) {
 		List<TeamDTO> grouplist = team_service.getGroupList();
 		model.addAttribute("grouplist", grouplist);
+		
+		// 공지사항 리스트 가져오기
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
 		
 		return "admin.groupListTable";
 	}

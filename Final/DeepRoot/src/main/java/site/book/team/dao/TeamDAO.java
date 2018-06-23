@@ -49,7 +49,7 @@ public interface TeamDAO {
 	public List<TeamDTO> getCompletedTeamList(String uid);
 	
 	// 완료 되지 않은 내 그룹 리스트 가져오기
-	public List<TeamDTO> getTeamList(String uid);
+	public List<TeamDTO> getTeamList(String uid) throws ClassNotFoundException, SQLException;
 
 	// 완료된 그룹 삭제하기
 	public int deleteCompletedTeam(String uid);
