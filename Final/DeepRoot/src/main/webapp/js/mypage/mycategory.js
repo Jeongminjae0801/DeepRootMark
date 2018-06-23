@@ -184,9 +184,18 @@ $(document).ready(function(){
 		        			data: {'id' : node_id, 'text' : node_text},
 		        			success : function(result){
 		        				if(result == 1)
-		        					alert('수정되었습니다.');
+		        					$.alert({
+		        						backgroundDismiss : true,
+		        						title : '수정 확인',
+		        						content: '수정이 완료 되었습니다',
+		        						keys: ['enter']
+		        					})
 		        				else
-		        					alert('수정 실패');
+		        					$.alert({
+		        						backgroundDismiss : true,
+		        						title : '수정 확인',
+		        						content: '수정이 실패 되었습니다'
+		        					})
 		        						}
 		        					});   
 			    	})
@@ -486,6 +495,9 @@ $(document).ready(function(){
 																	type: 'POST',
 																	data: {ubid: id },
 																	success:function(data){
+																		var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
+																		$('#jstree_container').jstree().deselect_all(true);											
+																		$('#jstree_container').jstree(true).select_node(selected_node_left);											
 																		console.log(data);
 																				}
 																			})
@@ -532,7 +544,7 @@ $(document).ready(function(){
 				data: {'id' : node_id, 'text' : node_text},
 				success : function(result){
 					if(result == 1)
-						alert('수정되었습니다.');
+						$.alert('수정되었습니다.');
 					else
 						alert('수정 실패');
 														}
