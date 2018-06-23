@@ -35,6 +35,10 @@ public class TeamService {
 	private SqlSession sqlsession;
 	
 	
+	//태웅
+	
+	
+	
 	// 희준
 	
 	// 소셜 그룹 리스트 가져오기

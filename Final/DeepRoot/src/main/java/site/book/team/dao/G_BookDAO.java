@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import site.book.team.dto.G_BookDTO;
+import site.book.user.dto.U_BookDTO;
 
 /**
  * @Class : G_BookDAO.java
@@ -20,7 +21,7 @@ import site.book.team.dto.G_BookDTO;
  * @Author : 김희준
  */
 public interface G_BookDAO {
-	
+	//희준
 	// 그룹이 추가한 북마크 수
 	public List<HashMap<String, String>> numOfBookByDate() throws ClassNotFoundException, SQLException;
 
@@ -32,4 +33,12 @@ public interface G_BookDAO {
 	
 	// 그룹의 총 조회수 가져오기
 	public int selectGroupViews(int gid) throws ClassNotFoundException, SQLException;
+	
+	//태웅
+	// 그룹 북마크 중 카테고리만 가져오기(메인 링크 -> 진행중인 그룹 북마크로 가져오기)
+	public List<G_BookDTO> getGroupCategoryList(String uid);
+	// 현재  GBID(Group Bookmark ID)의  max + 1  
+	public int getMaxGBID();
+	// 그룹 처음 생성시 루트 폴더 생성
+	public int insertRootFolder(int ubid, String uid);
 }

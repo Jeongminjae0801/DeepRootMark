@@ -73,7 +73,41 @@ jQuery(function($) {
 			});
 	    });
 	    
-	    // 나의 북마크로 추가 했을 때, 
+	    // 진행중인 그룹 중 하나를 선택했을 때, 
+	    $('.dropdown-group-item').on('dblclick', function(){});
+	    $('.dropdown-group-item').on('click', function(){
+	    	$('#jstree-to-bottom').remove();
+	    	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
+
+	    	$.ajax({
+				url : "user/getCategoryList.do",
+				type:"POST",
+				dataType:"json",
+				success : function(data){
+					/*jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/	
+					$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
+						$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
+					}).jstree({	
+							"core": {
+								"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
+								'data' : data, 				//ajax로 가져온 json data jstree에 넣어주기
+								'themes':{
+									'name' : 'proton', 		//테마 이름
+									'responsive' : true,
+									"dots": false, 			// 연결선 없애기
+								}
+							}
+					}).bind("select_node.jstree", function (e, data) {
+						/*노드(폴더)가 선택시 실행되는 함수*/					
+	 					var id = data.node.id;
+	 					$('.indishare-userpid').val(id);
+	 					
+					});
+				}
+			});
+	    });
+	    
+	    // 나의 북마크로 추가 확인 버튼 클릭했을 때, 
 	    $('#into-my-bookmark').on('dblclick', function(){});
 	    $('#into-my-bookmark').on('click', function(){
 	    	var params = $("#form-to-mybookmark").serialize();
