@@ -36,9 +36,9 @@ public interface G_BookDAO {
 	
 	//태웅
 	// 그룹 북마크 중 카테고리만 가져오기(메인 링크 -> 진행중인 그룹 북마크로 가져오기)
-	public List<G_BookDTO> getGroupCategoryList(String uid);
+	public List<G_BookDTO> getGroupCategoryList(String gid);
 	// 현재  GBID(Group Bookmark ID)의  max + 1  
 	public int getMaxGBID();
 	// 그룹 처음 생성시 루트 폴더 생성
-	public int insertRootFolder(int ubid, String uid);
+	public int insertRootFolder(String gid, String uid);
 }

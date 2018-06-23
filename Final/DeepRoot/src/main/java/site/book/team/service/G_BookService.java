@@ -63,9 +63,14 @@ public class G_BookService {
 	
 	//태웅
 	// 진행중인 그룹에서 카테고리만 가져오기
-	public List<G_BookDTO> getGroupCategoryList(String uid) {
+	public List<G_BookDTO> getGroupCategoryList(String gid) {
 		G_BookDAO dao = sqlsession.getMapper(G_BookDAO.class);
-		List<G_BookDTO> list = dao.getGroupCategoryList(uid);
+		List<G_BookDTO> list = null;
+		try {
+			list = dao.getGroupCategoryList(gid);
+		}catch (Exception e) {
+			/*e.printStackTrace();*/
+		}
 		
 		return list;
 	}
@@ -73,16 +78,20 @@ public class G_BookService {
 	// 현재  GBID(Group Bookmark ID)의  max + 1  
 	// 그룹 처음 생성 시, 루트 폴더 생성
 	@Transactional
-	public int getMaxIDandInsertRootFolder(String uid) {
+	public int getMaxIDandInsertRootFolder(String gid, String uid) {
 		G_BookDAO dao = sqlsession.getMapper(G_BookDAO.class);
 		int isInsert = 0;
-		
-		int gbid = dao.getMaxGBID();
-		isInsert = dao.insertRootFolder(gbid, uid);
-		// Root 폴터 생성 성공이라면, 
-		if(isInsert > 0) {
-			isInsert = gbid; // GBID return;
+		try {
+			int gbid = dao.getMaxGBID();
+			isInsert = dao.insertRootFolder(gid, uid);
+			// Root 폴터 생성 성공이라면, 
+			if(isInsert > 0) {
+				isInsert = gbid; // GBID return;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 		return isInsert;
 	}
 }
