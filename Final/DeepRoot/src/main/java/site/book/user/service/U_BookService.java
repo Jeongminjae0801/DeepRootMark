@@ -120,87 +120,149 @@ public class U_BookService {
 	}
 	
 	// 명수
+	// 마이북마크 왼쪽 폴더들만 보이는 JSTREE
 	public List<U_BookDTO> getCategoryList(String uid) {	//해당
 		
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		List<U_BookDTO> list = dao.getCategoryList(uid);
+		List<U_BookDTO> list = null;
+		try {
+			list = dao.getCategoryList(uid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} 
 		
 		return list;
 	}
 
+	// 마이북마크 왼쪽 JSTREE에서 root 카테고리 추가
 	public int insertRootFolder(int ubid, String uid) {
 		
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.insertRootFolder(ubid, uid);
+		int result = 0;
+		try {
+			result = dao.insertRootFolder(ubid, uid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return result;
 	}
 
+	// JSTREE 노드 생성시 db 처리와 노드 뿌리는처리에서 id 값 가져오기
 	public int getmaxid() {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int maxid = dao.getMaxId();
+		int maxid = 0;
+		try {
+			maxid = dao.getMaxId();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return maxid;
 	}
 
+	// JSTREE 폴더 혹은 URL 추가
 	public int addFolderOrUrl(U_BookDTO dto) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.addFolderOrUrl(dto);
+		int result = 0;
+		try {
+			result = dao.addFolderOrUrl(dto);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return result;
 	}
 
+	// JSTREE 폴더 혹은 URL 삭제
 	public void deleteFolderOrUrl(String str) {
 		
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		dao.deleteFolderOrUrl(str);
-		
+		try {
+			dao.deleteFolderOrUrl(str);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 
 	public int editUrl(U_BookDTO dto) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.editUrl(dto);
+		int result = 0;
+		try {
+			result = dao.editUrl(dto);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} 
 		
 		return result;
 	}
-
+	
+	// 왼쪽 폴더(노드) 클릭시 하위 URL 리스트
 	public List<U_BookDTO> getUrl(int ubid) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		List<U_BookDTO> list = dao.getUrl(ubid);
+		List<U_BookDTO> list = null;
+		try {
+			list = dao.getUrl(ubid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return list;
 	}
 
-
+	// DND 처리 하기
 	public int dropNode(HashMap<String, String> param) {
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.dropNode(param);
+		int result = 0;
+		try {
+			result = dao.dropNode(param);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
+	// 마이북마크 노드 이름 수정
 	public int updateNodeText(HashMap<String, String> param) {
 		
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.updateNodeText(param);
+		int result = 0;
+		try {
+			result = dao.updateNodeText(param);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return result;
 	}
 
+	// URL 공유 수정 삭제 추가
 	public int shareUrlEdit(U_BookDTO dto) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.shareUrlEdit(dto);
+		int result = 0;
+		try {
+			result = dao.shareUrlEdit(dto);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		return result;
 	}
 
+	// 완료된 그룹 URL 추가
 	public int insertUrlFromCompletedGroup(U_BookDTO dto) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
-		int result = dao.insertUrlFromCompletedGroup(dto);
+		int result = 0;
+		try {
+			result = dao.insertUrlFromCompletedGroup(dto);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return result;
 	}
