@@ -143,10 +143,10 @@
 			        		comment = "<b>" + data.title + "</b>";
 			        	}
 			        	if(data.url != "" && data.url != null){
-			        		comment += "&nbsp;-&nbsp;<a href='" + data.url + "' target='_blank'><font style='color : #1bc9c4; text-decoration : underline'>" + data.url + "</font></a>";
+			        		comment += "&nbsp;-&nbsp;<a href='" + data.url + "' target='_blank'>" + data.url + "</a>";
 			        	}
 			        	if(data.description != "" && data.description != null){
-			        		comment += "<br> <p>" + data.description + "</p>";
+			        		comment += "<br> <p>&nbsp;&nbsp;" + data.description + "</p>";
 			        	}
 			        	$("#comment-detail").html(comment);
                         $('#comment').fadeIn(1000);

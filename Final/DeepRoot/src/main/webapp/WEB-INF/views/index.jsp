@@ -278,8 +278,8 @@
                         <div id="preview_content" >
                             <div id="layout">미리보기: Page Image</div>
                             <div id="comment" >
-                            	<div id="comment-detail">
-                            		설명 Details
+                            	<div id="comment-detail" >
+                            		설명 Detail
                             	</div>
                             	<div id="ajax-loading-div">
                             	</div>

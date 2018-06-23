@@ -30,6 +30,7 @@ ul > li{
     padding-bottom: 2px;
     transform: scale(1);
     transition: .3s ease-in-out;
+    border: none;
 }
 
 .zoom_img:hover {
@@ -68,6 +69,7 @@ ul > li{
     color: black;
     text-decoration:none;
     overflow: hidden;
+    cursor:pointer;
 }
 
 .url:hover {
@@ -84,18 +86,28 @@ ul > li{
 }
 
 .url_link_btn {
-    height: 14px;
-    width: 14px;
-    margin: 7px 5px 0px 0px;
+    height: 17px;
+    width: 17px;
+    margin: 7px 7px 0px 0px;
     display: none;
     float: right;
+    border: none;
 }
 
 .url_hover_btn {
     display: none;
     padding: 0px 2px 0px 2px;
     background-color: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 0;
     float: right;
+    border: none;
+    margin-right: 4px;
 }
+/* 
+.url_link_btn:focus,
+.url_link_btn:active,
+.url_hover_btn:focus,
+.url_hover_btn:active,
+.zoom_img:active,
+.zoom_img:focus{
+	border: none;
+} */
