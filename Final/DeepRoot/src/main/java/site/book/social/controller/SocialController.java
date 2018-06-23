@@ -22,10 +22,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import site.book.admin.dto.NoticeDTO;
+import site.book.admin.service.NoticeService;
 import site.book.social.dto.TopDTO;
 import site.book.social.service.SurfingService;
 import site.book.social.service.TopService;
 import site.book.team.dto.S_TeamDTO;
+import site.book.team.dto.TeamDTO;
 import site.book.team.service.TeamService;
 import site.book.user.dto.S_U_BookDTO;
 import site.book.user.dto.U_BookDTO;
@@ -51,10 +54,13 @@ public class SocialController {
 	@Autowired
 	private SurfingService surfingservice;
 	
+	/* 희준 파라미터 */
+	@Autowired
+	private NoticeService notice_service;
 	
 	/* 민재 & 진수 함수 */
 	@RequestMapping("social.do")
-	public String social(Model model) {
+	public String social(HttpServletRequest req, Model model) {
 		
 		List<TopDTO> u_top5 = top_service.getUTop5();
 		model.addAttribute("u_top5", u_top5);
@@ -70,6 +76,17 @@ public class SocialController {
 		
 		List<S_TeamDTO> g_list=teamservice.getSocialGroupList();
 		model.addAttribute("g_list", g_list);
+		
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		
+		if(uid != null) {
+			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
+			model.addAttribute("headerTeamList", headerTeamList);
+		}
+		
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
 		
 		return "social.social";
 	}

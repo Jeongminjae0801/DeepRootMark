@@ -44,6 +44,7 @@ import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
 import site.book.admin.service.NoticeService;
 import site.book.team.dto.G_MemberDTO;
+import site.book.team.dto.TeamDTO;
 import site.book.team.service.TeamService;
 import site.book.user.dto.EmailAuthDTO;
 import site.book.user.dto.UserDTO;
@@ -92,7 +93,7 @@ public class MainController {
 	
 	/*메인 화면 데이터 출력*/
 	@RequestMapping(value="/index.do", method=RequestMethod.GET)
-	public String initMain(Model model) {
+	public String initMain(HttpServletRequest req, Model model) {
 		//System.out.println("홈: 메인 페이지");
 		
 		List<A_CategoryDTO> categoryList = a_category_service.getCategorys();
@@ -100,6 +101,22 @@ public class MainController {
 		
 		List<A_BookDTO> bookList = a_book_service.getMainBooks();
 		model.addAttribute("bookList", bookList);
+		
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		
+		if(uid != null) {
+			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
+			System.out.println("userid : " + uid);
+			
+			if(!headerTeamList.isEmpty()) {
+				model.addAttribute("headerTeamList", headerTeamList);
+				System.out.println("headerTeamList" + headerTeamList);
+			}
+		}
+		
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
 		
 		return "home.index";
 	}

@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getTeamList" resultType="site.book.team.dto.TeamDTO">
-		SELECT * FROM TEAM T JOIN G_MEMBER GM ON T.GID = GM.GID WHERE UID = #{0} AND HTAG IS NULL;
+		SELECT * FROM TEAM T JOIN G_MEMBER GM ON T.GID = GM.GID WHERE UID = #{0} AND HTAG IS NULL
 	</select>
 	
 	<delete id="deleteCompletedTeam">
