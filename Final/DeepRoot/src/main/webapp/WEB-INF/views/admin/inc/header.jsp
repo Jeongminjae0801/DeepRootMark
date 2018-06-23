@@ -76,9 +76,11 @@
 								<i class="fas fa-bell fa-lg admin-notice"></i>
 							</a>
 							<ul class="dropdown-menu">
-								<c:forEach items="${headerNoticeList}" var="headerNotice" >
-									<li class="header"><a href="#">${headerNotice.ncontent}</a></li>
-								</c:forEach>
+								<c:if test="${(headerNoticeList ne null) && (!empty headerNoticeList)}">
+									<c:forEach items="${headerNoticeList}" var="headerNotice" >
+										<li class="header"><a href="#">${headerNotice.ncontent}</a></li>
+									</c:forEach>
+								</c:if>
 								<li class="header" onclick="headerNoticeReg();"><a><i class="fa fa-plus-circle" style="color: #f39c12;"></i> 공지사항 등록</a></li>
 							</ul>
 						</li>
