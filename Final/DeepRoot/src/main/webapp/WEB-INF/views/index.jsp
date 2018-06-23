@@ -244,8 +244,10 @@
                                			<li>
 	                                        <button class="url_hover_btn" type="button" data-toggle="modal" data-target="#mainIndiModal">
 	                                        	<img class="zoom_img" src="icon/url_save.png"><!-- data-toggle="modal" onclick="openUrlModal()" --></button>
+	                                        <se:authorize access="isAuthenticated()">
 	                                        <button class="url_hover_btn" type="button">
 	                                        	<img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
+	                                        </se:authorize>
 	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}" alt="">
 	                                        <p class="url" data-abid="${bList.abid}"
 	                                        			   data-url="${bList.url}"

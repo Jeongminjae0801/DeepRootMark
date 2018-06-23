@@ -73,6 +73,7 @@ jQuery(function($) {
 			});
 	    });
 	    
+	    // 나의 북마크로 추가 했을 때, 
 	    $('#into-my-bookmark').on('dblclick', function(){});
 	    $('#into-my-bookmark').on('click', function(){
 	    	var params = $("#form-to-mybookmark").serialize();
@@ -82,46 +83,27 @@ jQuery(function($) {
 				data: params,
 				dataType:"json",
 				success : function(data){
+					console.log(data.result);
 					if(data.result == "success") {
 						swal("Thank you!", "북마크에 추가되었습니다!", "success");
 						$('#mainIndiModal').modal("toggle");
 					}else {
-						$.confirm({
-						    title: 'Insert into your bookmark Error!',
-						    content: '목적지 폴더를 확인하셨나요?',
-						    type: 'red',
-						    typeAnimated: true,
-						    buttons: {
-						        tryAgain: {
-						            text: 'Try again',
-						            btnClass: 'btn-red',
-						            action: function(){
-						            }
-						        },
-						        close: function () {
-						        	$('#mainIndiModal').modal("toggle");
-						        }
-						    }
+                        swal({
+                            title: "목적지 폴더를 확인하셨나요?",
+                            text: "잠시후 다시 시도해주세요!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true
 						});
 					}
 				},
 				error : function(error) {
-					$.confirm({
-					    title: 'Insert into your bookmark Error!',
-					    content: '목적지 폴더를 확인하셨나요?',
-					    type: 'red',
-					    typeAnimated: true,
-					    buttons: {
-					        tryAgain: {
-					            text: 'Try again',
-					            btnClass: 'btn-red',
-					            action: function(){
-					            }
-					        },
-					        close: function () {
-					        	$('#mainIndiModal').modal("toggle");
-					        }
-					    }
+					swal({
+                        title: "목적지 폴더를 확인하셨나요?",
+                        text: "잠시후 다시 시도해주세요!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true
 					});
 			    }
 			});
