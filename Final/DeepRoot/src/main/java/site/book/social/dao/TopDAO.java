@@ -41,4 +41,6 @@ public interface TopDAO {
 	// 작성자 파도타기 카테고리 및 URL 가져오기
 	public List<U_BookDTO> getCategoryList(String uid);
 	
+	// 민재, 개인 북마크 공유 URL 내 카테고리에 추가하기
+	public int addUrlNotShare(U_BookDTO book) throws ClassNotFoundException, SQLException;
 }

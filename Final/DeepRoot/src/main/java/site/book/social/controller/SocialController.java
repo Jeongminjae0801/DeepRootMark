@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
@@ -45,6 +46,8 @@ public class SocialController {
 	/* 민재 파라미터 */
 	@Autowired
 	private TopService top_service;
+	@Autowired
+    private View jsonview;
 	
 	/* 진수햄 파라미터 */
 	@Autowired
@@ -139,4 +142,23 @@ public class SocialController {
 			}
 		}
 		/*해당 회원 북마크 가져오기 end*/
+		
+		
+		// 민재 개인 북마크 공유 내 카테고리 추가
+		// 공유 체크 하지 않은 URL 추가하기
+		@RequestMapping("addtomybookmark.do")
+		public View addUrlNotShare(U_BookDTO book ,HttpServletRequest req, Model model) {
+			HttpSession session = req.getSession();
+	        String uid = (String)session.getAttribute("info_userid");
+	        book.setUid(uid);
+	        
+	        int result = u_bookservice.addToMyBookmark(book);
+			if(result > 0) {
+				model.addAttribute("result", "success");
+			}else {
+				model.addAttribute("result", "fail");
+			}
+			
+			return jsonview;
+		}
 }
