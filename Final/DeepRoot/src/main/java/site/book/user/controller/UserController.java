@@ -417,7 +417,7 @@ public class UserController {
 		
 	}
 	
-	//url 공유하기 위에 눌렀을 경우 & url 공유 취소 했을 경우 & url 공유 수정 했을 경우
+	//url 공유하기 눌렀을 경우 & url 공유 취소 했을 경우 & url 공유 수정 했을 경우
 	@RequestMapping("shareUrlEdit.do")
 	public void shareUrlEdit(U_BookDTO dto , HttpServletResponse res) {	
 		
