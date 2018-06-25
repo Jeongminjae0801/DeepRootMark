@@ -155,9 +155,7 @@ public class SocialController {
 			HttpSession session = req.getSession();
 	        String uid = (String)session.getAttribute("info_userid");
 	        book.setUid(uid);
-	        System.out.println("ㅎㅇㅎㅇ???");
 	        
-	        System.out.println(book);
 	        int result = u_bookservice.insertUrlFromCompletedGroup(book);
 			if(result > 0) {
 				model.addAttribute("result", "success");
