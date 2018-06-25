@@ -130,7 +130,7 @@
 	                	제이트리 뿌려주곻
 	                </div>
 	            </div>   
-	            <div class="completed-modal-right surfingshare">
+	            <div class="completed-modal-right-all surfingshare">
 
                	<h4 class="completed-modal-to"><b>To : </b></h4>
                	<!-- Dropdown -->
@@ -139,35 +139,22 @@
                        	Click <span class="caret"></span>
                    	</button>
                    	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       	<li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
+                       	<li id="dropdown-my-bookmark" class="dropdown-item">My Bookmark</li>
                        	<hr class="divider-hr">
                        	<li class="dropdown-item dropdown-submenu">
-                           	<a tabindex="-1" href="#">나의 그룹북마크</a>
-                           	<ul class="dropdown-menu">
-                             	<li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
-                             	<li class="dropdown-group-item"><span>Group 2</span></li>
-                             	<li class="dropdown-group-item"><span>Group 3</span></li>
-                           	</ul>
-                       	</li>
+		                	<a tabindex="-1">Group</a>
+		                </li>
                    	</div>
-                   		<script type="text/javascript">
-                       	$('#completed-modal-mybook').click(function() {
-                           	$('#dropdownMenuButton').text($(this).text());
-                       	});
-                       	$('.dropdown-group-item').click(function() {
-                           	$('#dropdownMenuButton').text($(this).text());
-                       	});
-                   		</script>
-	                </div>
-	                
-	                <div class="jstree-to" id="jstree-to-right" style="clear:both;">
+	      		</div>
+	                <div class="jstree-to" id="jstree-to-right-all" style="float:right;">
 	                	제이트리 뿌려줘염
 	                </div>
 	            </div>
 			</div>
 			<div class="modal-footer surfingshare">
 				<button type="button" class="btn btn-default surfingshare" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary surfingshare">확인</button>
+				<button id="into-my-bookmark-btn" type="button" class="btn btn-primary surfingshare">확인</button>
+				<button id="into-group-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: none;">확인</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

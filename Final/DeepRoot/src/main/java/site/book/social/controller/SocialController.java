@@ -96,7 +96,7 @@ public class SocialController {
 	
 	/*u_booklist end*/
 	
-	/*해당 회원 북마크 가져오기 start*/
+	/*진수 해당 회원 북마크 가져오기 start*/
 	//해당 유저의 카테고리를 보내준다.
 		@RequestMapping("getCategoryList.do")	
 		public void getCategoryList(HttpServletRequest req , HttpServletResponse res, String uid) {

@@ -22,6 +22,7 @@ jQuery(function($) {
 			    	
 			    	var index = 0;
 			    	for(var key in data.teamlist){
+			    		console.log(data.teamlist[key]);
 			    		if(index == 0){
 			    			html += '<li class="dropdown-group-item" onclick="seletedGroup('
 			    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
@@ -85,42 +86,7 @@ jQuery(function($) {
 	    	var params = $("#form-to-mybookmark").serialize();
     		$.ajax({
 				url : "user/addtomybookmark.do",
-				type: "POST",
-				data: params,
-				dataType:"json",
-				success : function(data){
-					if(data.result == "success") {
-						swal("Thank you!", "북마크에 추가되었습니다!", "success");
-						$('#mainIndiModal').modal("toggle");
-					}else {
-                        swal({
-                            title: "목적지 폴더를 확인하셨나요?",
-                            text: "잠시후 다시 시도해주세요!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true
-						});
-					}
-				},
-				error : function(error) {
-					swal({
-                        title: "목적지 폴더를 확인하셨나요?",
-                        text: "잠시후 다시 시도해주세요!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true
-					});
-			    }
-			});
-	    });
-	    // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
-	    $('#into-group-bookmark').on('dblclick', function(){});
-	    $('#into-group-bookmark').on('click', function(){
-	    	var params = $("#form-to-mybookmark").serialize();
-	    	console.log(params);
-    		$.ajax({
-				url : "team/addGroupBookmark.do",
-				type: "POST",
+				type:"POST",
 				data: params,
 				dataType:"json",
 				success : function(data){
@@ -149,6 +115,43 @@ jQuery(function($) {
 			    }
 			});
 	    });
+	    // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
+	    $('#into-group-bookmark').on('dblclick', function(){});
+	    $('#into-group-bookmark').on('click', function(){
+	    	var params = $("#form-to-mybookmark").serialize();
+	    	console.log($(this));
+	    	/* 요기 까지 했음...  */
+    		/*$.ajax({
+				url : "user/addtoGroupBookmark.do",
+				type:"POST",
+				data: params,
+				dataType:"json",
+				success : function(data){
+					console.log(data.result);
+					if(data.result == "success") {
+						swal("Thank you!", "북마크에 추가되었습니다!", "success");
+						$('#mainIndiModal').modal("toggle");
+					}else {
+                        swal({
+                            title: "목적지 폴더를 확인하셨나요?",
+                            text: "잠시후 다시 시도해주세요!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true
+						});
+					}
+				},
+				error : function(error) {
+					swal({
+                        title: "목적지 폴더를 확인하셨나요?",
+                        text: "잠시후 다시 시도해주세요!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true
+					});
+			    }
+			});*/
+	    });
 	});
 });
 
@@ -156,7 +159,6 @@ jQuery(function($) {
 function seletedGroup(group, gid) {
 	// Modal Init()
 	$('#dropdownMenuButton').text(group);
-	$('.indishare-gid').val(gid);
 	$('#into-my-bookmark').css('display', 'none');
 	$('#into-group-bookmark').css('display', 'block');
 	$('#jstree-to-bottom').remove();
@@ -168,6 +170,7 @@ function seletedGroup(group, gid) {
 		data: {gid: gid},
 		dataType:"json",
 		success : function(data){
+			console.log(data.data);
 			// jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.	
 			$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
 				$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
@@ -184,7 +187,7 @@ function seletedGroup(group, gid) {
 			}).bind("select_node.jstree", function (e, data) {
 			//노드(폴더)가 선택시 실행되는 함수
 				var id = data.node.id;
-				//console.log(id);//PID
+				console.log(id);
 				$('.indishare-userpid').val(id);
 					
 			});
