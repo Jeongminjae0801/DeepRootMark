@@ -177,14 +177,16 @@ public class U_BookService {
 	}
 
 	// JSTREE 폴더 혹은 URL 삭제
-	public void deleteFolderOrUrl(String str) {
+	public int deleteFolderOrUrl(String str) {
 		
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		int result = 0;
 		try {
-			dao.deleteFolderOrUrl(str);
+			result = dao.deleteFolderOrUrl(str);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} 
+		return result;
 	}
 
 	public int editUrl(U_BookDTO dto) {
