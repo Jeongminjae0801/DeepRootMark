@@ -22,8 +22,8 @@
 		$.confirm({
 			title : '소셜 개인 북마크 삭제',
 			content : '삭제하시겠습니까?',
-			theme: 'dark',
-			type: 'orange',
+			theme: 'green',
+			type: 'light',
 			backgroundDismiss: true,
 			closeIcon: true,
 			buttons: {
@@ -60,8 +60,8 @@
 		$.confirm({
 			title : '소셜 그룹 북마크 삭제',
 			content : '삭제하시겠습니까?',
-			theme: 'dark',
-			type: 'orange',
+			theme: 'light',
+			type: 'green',
 			backgroundDismiss: true,
 			closeIcon: true,
 			buttons: {

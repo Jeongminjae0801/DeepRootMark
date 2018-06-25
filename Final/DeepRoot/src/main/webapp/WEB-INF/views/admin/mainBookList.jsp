@@ -339,6 +339,7 @@
             }
         	
             function openCategoryModal() {
+            	$("#addCategoryForm")[0].reset();
             	showCategoryForm();
                 setTimeout(function() {
                 	$('#addCategoryModal').modal('show');
@@ -353,7 +354,6 @@
         		   $("#acname1").focus();
 		 	   }else {
 		 		  $("#addCategoryForm").submit();
-		 		  $("#addCategoryForm")[0].reset();
 		 		  setTimeout(function() {
 	               	$('#addCategoryModal').modal('hide');
 	              }, 230);
@@ -409,6 +409,7 @@
 			}
 
 			function openCategoryEditModal(acid, acname) {
+				$("#editCategoryForm")[0].reset();
  				$("#editCategoryID").val(acid); // 카테고리 ID hidden type에 넣어주기
 				$("#acname2").val($("#categoryName"+acid).text()); // 카테고리 명 미리 입력해주기
                         	
@@ -425,8 +426,8 @@
 					$.confirm({
 						title : '카테고리 수정',
 						content : '수정하시겠습니까?',
-						theme: 'dark',
-						type: 'orange',
+						theme: 'light',
+						type: 'green',
 						backgroundDismiss: true,
 						closeIcon: true,
 						buttons: {
@@ -435,7 +436,6 @@
 								keys: ['enter'],
 								action : function () {
 									$("#editCategoryForm").submit();
-									$("#editCategoryForm")[0].reset();
 									setTimeout(function() {
 										$('#editCategoryModal').modal('hide');
 									}, 230);
@@ -495,6 +495,7 @@
 			}
 
 			function openCategoryDeleteModal() {
+				$("#deleteCategoryForm")[0].reset();
 				showCategoryDeleteForm();
 				setTimeout(function() {
 					$('#deleteCategoryModal').modal('show');
@@ -506,8 +507,8 @@
 					title : '카테고리 삭제',
 					content : '삭제하시겠습니까?',
 					closeIcon: true,
-					type: 'orange',
-					theme: 'dark',
+					type: 'green',
+					theme: 'light',
 					backgroundDismiss: true,
 					buttons: {
 						'삭제': {
@@ -515,7 +516,6 @@
 							keys: ['enter'],
 							action : function () {
 								$("#deleteCategoryForm").submit();
-								$("#deleteCategoryForm")[0].reset();
 								setTimeout(function() {
 									$('#deleteCategoryModal').modal('hide');
 								}, 230);
@@ -629,6 +629,7 @@
 
 			/*URL 추가 1단계 모달 바로열기*/
 			function openUrlModal(acid, acname) {
+				$("#addUrlForm")[0].reset();
 				$("#acname4").val($("#categoryName"+acid).text());
 				$("#adminCategoryID").val(acid);
                         	
@@ -647,7 +648,6 @@
 					$.alert("사이트명을 입력해주세요")
 				}else {
 					$("#addUrlForm").submit();
-					$("#addUrlForm")[0].reset();
 					setTimeout(function() {
 						$('#addUrlModal').modal('hide');
 					}, 230);
@@ -769,6 +769,7 @@
 
 			/*URL 수정 1단계 모달 바로열기*/
 			function openUrlEditModal(acid, acname, url, abid) {
+				$("#editUrlForm")[0].reset();
 				$("#editurl").val(url);
 				$("#acname5").val($("#categoryName"+acid).text());
 				$("#editAdminCategoryID").val(acid);
@@ -791,8 +792,8 @@
 					$.confirm({
 						title : 'URL 수정',
 						content : '수정하시겠습니까?',
-						type: 'orange',
-						theme: 'dark',
+						type: 'light',
+						theme: 'green',
 						backgroundDismiss: true,
 						closeIcon: true,
 						buttons: {
@@ -801,7 +802,6 @@
 								keys: ['enter'],
 								action : function () {
 									$("#editUrlForm").submit();
-									$("#editUrlForm")[0].reset();
 									setTimeout(function() {
 										$('#editUrlModal').modal('hide');
 									}, 230);
@@ -877,8 +877,8 @@
 				$.confirm({
 					title : 'URL 삭제',
 					content : '삭제하시겠습니까?',
-					theme: 'dark',
-					type: 'orange',
+					theme: 'light',
+					type: 'green',
 					backgroundDismiss: true,
 					closeIcon: true,
 					buttons: {
