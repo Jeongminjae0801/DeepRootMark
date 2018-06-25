@@ -1,6 +1,129 @@
+
+$.fn.serializeObject = function(){
+	    var o = {};
+	    var a = this.serializeArray();
+	    $.each(a, function() {
+	    	var name = $.trim(this.name),
+	    		value = $.trim(this.value);
+	    	
+	        if (o[name]) {
+	            if (!o[name].push) {
+	                o[name] = [o[name]];
+	            }
+	            o[name].push(value || '');
+	        } else {
+	            o[name] = value || '';
+	        }
+	    });
+	    return o;
+	};
+
 jQuery(function($) {
+	'use strict';
+	var first_data = null;
+
+	// Responsive Nav
+	$('li.dropdown').find('.fa-angle-down').each(function() {
+		$(this).on('click', function() {
+			if ($(window).width() < 768) {
+				$(this).parent().next().slideToggle();
+			}
+			return false;
+		});
+	});
+
+	// Fit Vids
+	if ($('#video-container').length) {
+		$("#video-container").fitVids();
+	}
+
+	// Initiat WOW JS
+	new WOW().init();
+
+
+
+
+	function count(options) {
+		var $this = $(this);
+		options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+		$this.countTo(options);
+	}
+
+	// Search
+	$('.fa-search').on('click', function() {
+		$('.field-toggle').fadeToggle(200);
+	});
+
+	// Contact form
+	var form = $('#main-contact-form');
+	form.submit(function(event) {
+		event.preventDefault();
+		var form_status = $('<div class="form_status"></div>');
+		$.ajax({
+			url: $(this).attr('action'),
+			beforeSend: function() {
+				form.prepend(form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn());
+			}
+		}).done(function(data) {
+			form_status.html('<p class="text-success">Thank you for contact us. As early as possible  we will contact you</p>').delay(3000).fadeOut();
+		});
+	});
+
+	// Progress Bar
+	$.each($('div.progress-bar'), function() {
+		$(this).css('width', $(this).attr('data-transition') + '%');
+	});
+
+	if ($('#gmap').length) {
+		var map;
+
+	    map = new GMaps({
+			el : '#gmap',
+			lat : 43.04446,
+			lng : -76.130791,
+			scrollwheel : false,
+			zoom : 16,
+			zoomControl : false,
+			panControl : false,
+			streetViewControl : false,
+			mapTypeControl : false,
+			overviewMapControl : false,
+			clickable : false
+	    });
+
+	    map.addMarker({
+			lat : 43.04446,
+			lng : -76.130791,
+			animation : google.maps.Animation.DROP,
+			verticalAlign : 'bottom',
+			horizontalAlign : 'center',
+			backgroundColor : '#3e8bff',
+		});
+	}
+	
+	$(document).ready(function() {
+		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+		var floatPosition = parseInt($("#floatMenu").css('top'));
+		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+	
+		$(window).scroll(function() {
+			// 현재 스크롤 위치를 가져온다.
+			var scrollTop = $(window).scrollTop();
+			var newPosition = scrollTop + floatPosition - 400 + "px";
+			var fixedpositon = floatPosition + "px";
+		
+			// 애니메이션 없이 바로 따라감
+			if ($(this).scrollTop() <= 400)
+				scrollTop.toFixed();
+			else
+				$("#floatMenu").css('top', newPosition);
+		
+		}).scroll();
+	});
+});
 
 /* 민재 onclick */
+
 $(function() {
 	// 링크 내 북마크로 가져가기 버튼 클릭
 	$('.getbookmark').on('dblclick', function(){});
@@ -198,7 +321,7 @@ function seletedGroup(group, gid) {
 			});
 		}
 	});
-};
+}
 
 /* 민재 onclick END */
 
@@ -327,6 +450,9 @@ $(document).ready(function(){
 	    	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
 	    	$('#jstree-to-right-all').html('');
 	    	$('#dropdown-empty-area').remove();	// 모달 초기화 END
+	    	$('.indishare-url-surfing').val("");
+	    	$('.indishare-urlname-left').val("");
+	    	$('.indishare-abid-left').val("");
 	    	
 	    	// 진행중인 팀 리스트 가져오기
 	    	$.ajax({
@@ -458,7 +584,7 @@ $(document).ready(function(){
 	    });
         
        
-    });
+    })
     
 // 내의 그룹리스트 중 하나를 선택 했을 때,
 function seletedGroup(group, gid) {
@@ -498,9 +624,8 @@ function seletedGroup(group, gid) {
 			});
 		}
 	});
-};
-
+}
 
 /*진수 end*/
-});	
+	
 	
