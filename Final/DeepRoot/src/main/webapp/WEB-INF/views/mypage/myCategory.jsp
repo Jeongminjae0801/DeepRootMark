@@ -304,6 +304,7 @@
 				<i class="material-icons md-32 pull-left">view_list</i><span
 					class="mypage-title pull-left">리스트</span> <span
 					class="mypage-title">&nbsp;</span>
+				<span class="mypage-title pull-left"><div id="loading"></div></span>
 				<button type="button" class="my-boomark-btn" id="addurl">Add
 					URL</button>
 			</div>
