@@ -21,6 +21,7 @@
 							<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
 							<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
 							<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
+							<input type="hidden" class="indishare-gid" value="" name="gid" readonly>
 						</form>
 		            </div>
 		            <hr>
@@ -46,7 +47,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
-					<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
+					<button id="into-my-bookmark" type="button" class="btn btn-primary" style="display: block;">확인</button>
+					<button id="into-group-bookmark" type="button" class="btn btn-primary" style="display: none;">확인</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -242,12 +244,12 @@
                                 	<c:choose>
                                 		<c:when test="${cList.acid == bList.acid}">
                                			<li>
+                               				<se:authorize access="isAuthenticated()">
 	                                        <button class="url_hover_btn" type="button" data-toggle="modal" data-target="#mainIndiModal">
 	                                        	<img class="zoom_img" src="icon/url_save.png"><!-- data-toggle="modal" onclick="openUrlModal()" --></button>
-	                                        <se:authorize access="isAuthenticated()">
+	                                       	</se:authorize>
 	                                        <button class="url_hover_btn" type="button">
 	                                        	<img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
-	                                        </se:authorize>
 	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}" alt="">
 	                                        <p class="url" data-abid="${bList.abid}"
 	                                        			   data-url="${bList.url}"

@@ -20,7 +20,7 @@ public interface U_BookDAO {
 	// 태웅
 	// 메인 URL 내 북마크로 추가
 	public int insertToMyBookmark(U_BookDTO book) throws ClassNotFoundException, SQLException;
-	
+
 	// 희준
 	
 	// 개인이 추가한 북마크수

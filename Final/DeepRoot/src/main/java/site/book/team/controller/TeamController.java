@@ -8,11 +8,10 @@
 
 package site.book.team.controller;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
@@ -23,7 +22,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import site.book.team.dto.G_BookDTO;
+import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.TeamDTO;
 import site.book.team.service.G_BookService;
 import site.book.team.service.TeamService;
@@ -47,7 +50,8 @@ public class TeamController {
 	
 	//태웅
 	
-	
+	@Autowired
+	G_BookService gbookservice;
 	
 	
 	
@@ -92,7 +96,56 @@ public class TeamController {
 
 	
 	//태웅
-	
+	//해당 유저의 진행중인 그룹의 카테고리만를 보내준다.
+	@RequestMapping("getGroupCategoryList.do")	
+	public View getGroupCategoryList(HttpServletRequest req, Model model, String gid) {
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+		List<G_BookDTO> list = gbookservice.getGroupCategoryList(gid);
+		JSONArray jsonArray = new JSONArray();
+		
+		// ROOT Folder가 없을 경우
+		if(list.size() == 0) {
+			G_JstreeDTO gtree = new G_JstreeDTO();
+			// Transacional
+			// result[0] : max(ubid) +1 한 값
+			// result[1] : 그룹에 카테고리가 없을 경우, 기본 카테고리를  생성해 결과 값
+			int result = gbookservice.getMaxIDandInsertRootFolder(gid, uid);
+			
+			if(result > 0 ) {	
+				gtree.setId(result);
+				gtree.setParent("#");
+				gtree.setText("ROOT");
+				gtree.setIcon("fa fa-folder");
+				gtree.setUid(uid);
+
+				jsonArray.put(gtree);
+			}
+		}else {
+			for(int i=0; i<list.size(); i++) {
+				G_JstreeDTO gtree = new G_JstreeDTO();
+				String parentid = String.valueOf(list.get(i).getPid());
+				
+				//parent category  or child category
+				if(parentid.equals("0") || parentid.equals("")) {
+					gtree.setParent("#");
+				}else {
+					gtree.setParent(parentid);
+				}
+				//Folder favicon 추가 & jsTree Form (JSON data)
+				gtree.setId(list.get(i).getGbid());
+				gtree.setText(list.get(i).getUrlname());
+				gtree.setIcon("fa fa-folder");
+				gtree.setUid(uid);
+
+				jsonArray.put(gtree);
+			}
+		}
+		
+		model.addAttribute("data", jsonArray);
+		return jsonview;
+	}
 	
 	
 	//함수 END
