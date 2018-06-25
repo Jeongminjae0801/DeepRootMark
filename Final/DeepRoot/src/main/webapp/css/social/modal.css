@@ -1,3 +1,21 @@
+
+#socialIndiModal {
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+#socialSurfingModal {
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.main-modal-controller { display: table-row; width: 100%; }
+.main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
+.modal { z-index: -10; }
+.modal-open .modal { z-index: 1111; }
+
 #into-my-bookmark {
 	display: block;
 	float: right;
@@ -106,7 +124,7 @@
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle{
 	background-color: #fff;
 	color: #081971;
-	width: 100px;
+	width: 235px;
 }
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:hover,
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:focus{
@@ -118,7 +136,7 @@
 .dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle{
 	background-color: #fff;
 	color: #081971;
-	width: 100px;
+	width: 235px;
 }
 .dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle:hover,
 .dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle:focus{
