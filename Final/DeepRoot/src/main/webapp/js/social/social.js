@@ -402,7 +402,7 @@ $(document).ready(function(){
 	    	$('#into-my-bookmark-btn').css('display', 'block');
 	    	$('#into-group-bookmark-btn').css('display', 'none');
 	    	$('#jstree-to-right-all').remove();
-	    	$('.completed-modal-right-all').append('<div id="jstree-to-right-all" style="float:right;"></div>');
+	    	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
 	    	
 	    	$.ajax({
 				url : "../user/getCategoryList.do",
@@ -560,7 +560,7 @@ function seletedGroup(group, gid) {
 	$('#into-my-bookmark-btn').css('display', 'none');
 	$('#into-group-bookmark-btn').css('display', 'block');
 	$('#jstree-to-right-all').remove();
-	$('.completed-modal-right-all').append('<div id="jstree-to-right-all" style="float:right;"></div>');
+	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
 	
 	$.ajax({
 		url : "../team/getGroupCategoryList.do",
