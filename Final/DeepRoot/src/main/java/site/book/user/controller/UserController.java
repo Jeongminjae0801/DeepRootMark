@@ -158,18 +158,15 @@ public class UserController {
 	// 공유 체크 하지 않은 URL 추가하기
 	@RequestMapping("addUrlNotShare.do")
 	public void addUrlNotShare(U_BookDTO dto ,HttpServletRequest req, HttpServletResponse res) {
-		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         
-        dto.setUbid(ubid);
         dto.setUid(uid);
         
-		System.out.println(dto.toString());
 		int result = u_bookservice.addFolderOrUrl(dto);
 		
 		try {
-			res.getWriter().println(ubid);
+			res.getWriter().println(result);
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}
@@ -215,23 +212,18 @@ public class UserController {
 			
 			JSONObject jsonobject = new JSONObject();
 			
-			// max(ubid) +1 한 값이다.
-			int ubid = u_bookservice.getmaxid();
 			// 처음 가입자는 첫 카테고리를  생성해 준다.
-			int result = u_bookservice.insertRootFolder(ubid, uid);
+			int ubid = u_bookservice.insertRootFolder(uid);
 			
 			//처음 가입한 유저일 경우 root폴더 생성해 준다.
-			if(result ==1 ) {	
 				
-				jsonobject.put("id", ubid);
-				jsonobject.put("parent", "#");
-				jsonobject.put("text", "첫 카테고리");
-				jsonobject.put("icon", "fa fa-folder");
-				jsonobject.put("uid", uid);
+			jsonobject.put("id", ubid);
+			jsonobject.put("parent", "#");
+			jsonobject.put("text", "첫 카테고리");
+			jsonobject.put("icon", "fa fa-folder");
+			jsonobject.put("uid", uid);
+			jsonArray.put(jsonobject);
 				
-				jsonArray.put(jsonobject);
-				
-			}
 		}else {
 			
 			for(int i =0;i<list.size();i++) {
@@ -330,36 +322,27 @@ public class UserController {
 	
 	//폴더 & url & 공유일 경우 공유로 추가
 	@RequestMapping("addFolderOrUrl.do")
-	public void addFolder(U_BookDTO dto ,HttpServletRequest req, HttpServletResponse res) {
+	public View addFolder(U_BookDTO dto ,HttpServletRequest req, Model model ) {
 		
-		int ubid = u_bookservice.getmaxid();	// max(ubid) +1 한 값이다.
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         
-        dto.setUbid(ubid);
         dto.setUid(uid);
-        
 		int result = u_bookservice.addFolderOrUrl(dto);
+		model.addAttribute("ubid", result);
 		
-		try {
-			res.getWriter().println(ubid);
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
+		return jsonview;
 	}
 	
 	//url 혹은 폴더 삭제
 	@RequestMapping("deleteNode.do")	
-	public void deleNode(HttpServletRequest req , HttpServletResponse res) {
-		res.setCharacterEncoding("UTF-8");
+	public View deleNode(HttpServletRequest req , Model model ) {
+
 		String nodeid = req.getParameter("node");
 		int result = u_bookservice.deleteFolderOrUrl(nodeid);
+		model.addAttribute("result",result);
 		
-		try {
-			res.getWriter().println(result);
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
+		return jsonview;
 	}
 	
 	//url update
@@ -391,7 +374,6 @@ public class UserController {
 			// TODO: handle exception
 		}
 		
-		
 	}
 	
 	// email 보내기 받는 사람 주소 변경하기
@@ -417,38 +399,26 @@ public class UserController {
 	
 	//url 공유하기 눌렀을 경우 & url 공유 취소 했을 경우 & url 공유 수정 했을 경우
 	@RequestMapping("shareUrlEdit.do")
-	public void shareUrlEdit(U_BookDTO dto , HttpServletResponse res) {	
+	public View shareUrlEdit(U_BookDTO dto , Model model) {	
 		
-		res.setCharacterEncoding("UTF-8");
 		int result = u_bookservice.shareUrlEdit(dto);
+		model.addAttribute("result",result);
 		
-		try {
-			res.getWriter().println(result);
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
+		return jsonview;
 		
 	}
 	
 	//ROOT 카테고리 추가 
 	@RequestMapping("addRoot.do")
-	public void addRoot(HttpServletRequest req , HttpServletResponse res) {
-		
-		res.setCharacterEncoding("UTF-8");
+	public View addRoot(HttpServletRequest req , Model model) {
 		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
-        
-		int ubid = u_bookservice.getmaxid();
-		int result = u_bookservice.insertRootFolder(ubid, uid);
+		int ubid = u_bookservice.insertRootFolder(uid);
 		
-		if(result == 1) {
-			try {
-				res.getWriter().println(ubid);
-			} catch (IOException e) {			
-				e.printStackTrace();
-			}
-		}
+		model.addAttribute("ubid",ubid);
+		
+		return jsonview;
 	}
 	
 	//완료된 그룹의 북마크 가져오기
