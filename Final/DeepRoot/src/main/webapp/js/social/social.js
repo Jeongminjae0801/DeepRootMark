@@ -343,9 +343,9 @@ $('.group-share').on('click', function(){
 /* 태웅이 onclick END */
 
 /*진수 start*/
+var first_data = null;
+
 function testing_modal(d){
-	console.log(d);
-	console.log(d.id);
 	$('.nname').text(d.id);
 	var nname = d.id; // 클릭한 작성자 id 입니다.
 	
@@ -356,7 +356,7 @@ function testing_modal(d){
 		data : {nname : nname},	/* group id 를 넣어야 한다. */
 		dataType :"json",
 		success : function(obj){
-
+			console.log(obj);
 			first_data = obj;
 			$('#jstree-from-left-all').jstree(true).settings.core.data = obj;
 			$('#jstree-from-left-all').jstree(true).refresh();
@@ -366,15 +366,11 @@ function testing_modal(d){
 	$('#socialSurfingModal').modal();
 };
 
-
-
 $(document).ready(function(){
     
-    var first_data = null;
-    
-//완료 그룹 모달 왼쪽 jstree
+	//완료 그룹 모달 왼쪽 jstree
     $("#jstree-from-left-all").on('click','.jstree-anchor',function(e){
-    $('#jstree-from-left-all').jstree(true).toggle_node(e.target);
+    	$('#jstree-from-left-all').jstree(true).toggle_node(e.target);
         
     }).jstree({
             
@@ -401,7 +397,7 @@ $(document).ready(function(){
 	    	
         })
 
-//완료 그룹 모달 오른쪽 jstree
+        //완료 그룹 모달 오른쪽 jstree
      // 나의 북마크 선택했을 때, 
 	    $('#dropdown-my-bookmark').on('dblclick', function(){});
 	    $('#dropdown-my-bookmark').on('click', function(){
