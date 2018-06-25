@@ -36,9 +36,11 @@ public interface G_BookDAO {
 	
 	//태웅
 	// 그룹 북마크 중 카테고리만 가져오기(메인 링크 -> 진행중인 그룹 북마크로 가져오기)
-	public List<G_BookDTO> getGroupCategoryList(String gid);
+	public List<G_BookDTO> getGroupCategoryList(String gid) throws ClassNotFoundException, SQLException;
 	// 현재  GBID(Group Bookmark ID)의  max + 1  
-	public int getMaxGBID();
+	public int getMaxGBID() throws ClassNotFoundException, SQLException;
 	// 그룹 처음 생성시 루트 폴더 생성
-	public int insertRootFolder(String gid, String uid);
+	public int insertRootFolder(String gid, String uid) throws ClassNotFoundException, SQLException;
+	// 그룹 북마크로 URL 하나 insert
+	public int insertGroupBookmark(G_BookDTO gbook) throws ClassNotFoundException, SQLException;
 }
