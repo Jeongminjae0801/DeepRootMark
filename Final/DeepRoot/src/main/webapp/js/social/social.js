@@ -479,6 +479,9 @@ $(document).ready(function(){
             
         }).bind("select_node.jstree",function(event,data){
         	console.log(data.node.id);
+        	var abcd = $(this).parent().parent().children().eq(0).children('a').text();
+        	console.log(abcd);
+	    	$('.indishare-url-surfing').val('111');
         })
 
 //완료 그룹 모달 오른쪽 jstree
@@ -487,6 +490,7 @@ $(document).ready(function(){
 	    $('#dropdown-my-bookmark').on('click', function(){
 	    	// Modal init()
 	    	$('#dropdownMenuButton').text($(this).text());
+	    	$('#into-my-bookmark-btn').css('display', 'block');
 	    	$('#into-group-bookmark-btn').css('display', 'none');
 	    	$('#jstree-to-right-all').remove();
 	    	$('.completed-modal-right-all').append('<div id="jstree-to-right-all" style="float:right;"></div>');
@@ -561,6 +565,80 @@ $(document).ready(function(){
 			    }
 			});
 	    });
+	    
+	    
+	 // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
+	    $('#into-my-bookmark-btn').on('dblclick', function(){});
+	    $('#into-my-bookmark-btn').on('click', function(){
+	    	var params = $("#form-to-mybookmark-left").serialize();
+    		$.ajax({
+				url : "../user/addtomybookmark.do",
+				type:"POST",
+				data: params,
+				/*dataType:"json",*/
+				success : function(data){
+					console.log(data.result);
+					if(data.result == "success") {
+						swal("Thank you!", "북마크에 추가되었습니다!", "success");
+						$('#mainIndiModal').modal("toggle");
+					}else {
+                        swal({
+                            title: "목적지 폴더를 확인하셨나요?",
+                            text: "잠시후 다시 시도해주세요!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true
+						});
+					}
+				},
+				error : function(error) {
+					swal({
+                        title: "목적지 폴더를 확인하셨나요?",
+                        text: "잠시후 다시 시도해주세요!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true
+					});
+			    }
+			});
+	    });
+	    
+	 // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
+	    $('#into-group-bookmark-btn').on('dblclick', function(){});
+	    $('#into-group-bookmark-btn').on('click', function(){
+	    	var params = $("#form-to-mybookmark-left").serialize();
+            console.log(params);
+           $.ajax({
+                url : "../team/addGroupBookmark.do",
+                type: "POST",
+                data: params,
+                /*dataType:"json",*/
+                success : function(data){
+                    console.log(data.result);
+                    if(data.result == "success") {
+                        swal("Thank you!", "북마크에 추가되었습니다!", "success");
+                        $('#mainIndiModal').modal("toggle");
+                    }else {
+                       swal({
+                           title: "목적지 폴더를 확인하셨나요?",
+                           text: "잠시후 다시 시도해주세요!",
+                           icon: "warning",
+                           buttons: true,
+                           dangerMode: true
+                        });
+                    }
+                },
+                error : function(error) {
+                    swal({
+                       title: "목적지 폴더를 확인하셨나요?",
+                       text: "잠시후 다시 시도해주세요!",
+                       icon: "warning",
+                       buttons: true,
+                       dangerMode: true
+                    });
+                }
+            });
+	    });
         
        
     })
@@ -570,8 +648,8 @@ function seletedGroup(group, gid) {
 	// Modal Init()
 	$('#dropdownMenuButton').text(group);
 	$('.indishare-gid').val(gid);
-	$('#into-my-bookmark').css('display', 'none');
-	$('#into-group-bookmark').css('display', 'block');
+	$('#into-my-bookmark-btn').css('display', 'none');
+	$('#into-group-bookmark-btn').css('display', 'block');
 	$('#jstree-to-right-all').remove();
 	$('.completed-modal-right-all').append('<div id="jstree-to-right-all" style="float:right;"></div>');
 	

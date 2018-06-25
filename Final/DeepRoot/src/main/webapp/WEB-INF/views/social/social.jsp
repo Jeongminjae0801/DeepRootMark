@@ -128,26 +128,36 @@
 			<div class="modal-body row">
 				<div class="completed-modal-left surfingshare">
 	                <h4 class="completed-modal-from"><b>From : <span id="from-text" class="abc">[회원이름]</span></b></h4>
-	                <div class="jstree-from" id="jstree-from-left-all">
-	                	제이트리 뿌려주곻
-	                </div>
+	                
+	                <form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
+		                <h4 class="completed-modal-from"><b>URL :</b>
+				                	<input type="text" class="indishare-url-surfing" value="" name="url" readonly></h4>
+		                <div class="jstree-from" id="jstree-from-left-all">
+		                	제이트리 뿌려주곻
+		                </div>
+		                
+						<input type="hidden" class="indishare-urlname-left" value="" name="urlname" readonly>
+						<input type="hidden" class="indishare-userpid-left" value="" name="pid" readonly>
+						<input type="hidden" class="indishare-abid-left" value="" name="abid" readonly>
+						<input type="hidden" class="indishare-gid-left" value="" name="gid" readonly>
+					</form>
 	            </div>   
 	            <div class="completed-modal-right-all surfingshare">
 
-               	<h4 class="completed-modal-to"><b>To : </b></h4>
-               	<!-- Dropdown -->
-               	<div class="dropdown completed-modal-dropdown">
-                   	<button class="btn btn-secondary surfingshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       	Click <span class="caret"></span>
-                   	</button>
-                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       	<li id="dropdown-my-bookmark" class="dropdown-item">My Bookmark</li>
-                       	<hr class="divider-hr">
-                       	<li class="dropdown-item dropdown-submenu">
-		                	<a tabindex="-1">Group</a>
-		                </li>
-                   	</div>
-	      		</div>
+	               	<h4 class="completed-modal-to"><b>To : </b></h4>
+	               	<!-- Dropdown -->
+	               	<div class="dropdown completed-modal-dropdown">
+	                   	<button class="btn btn-secondary surfingshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                       	Click <span class="caret"></span>
+	                   	</button>
+	                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	                       	<li id="dropdown-my-bookmark" class="dropdown-item">My Bookmark</li>
+	                       	<hr class="divider-hr">
+	                       	<li class="dropdown-item dropdown-submenu">
+			                	<a tabindex="-1">Group</a>
+			                </li>
+	                   	</div>
+		      		</div>
 	                <div class="jstree-to" id="jstree-to-right-all" style="float:right;">
 	                	제이트리 뿌려줘염
 	                </div>
@@ -155,7 +165,7 @@
 			</div>
 			<div class="modal-footer surfingshare">
 				<button type="button" class="btn btn-default surfingshare" data-dismiss="modal">취소</button>
-				<button id="into-my-bookmark-btn" type="button" class="btn btn-primary surfingshare">확인</button>
+				<button id="into-my-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: block;">확인</button>
 				<button id="into-group-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: none;">확인</button>
 			</div>
 		</div><!-- /.modal-content -->
