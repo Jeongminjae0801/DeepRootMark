@@ -344,7 +344,7 @@ $('.group-share').on('click', function(){
 
 /*진수 start*/
 function testing_modal(d){
-	
+	console.log(d);
 	console.log(d.id);
 	$('.abc').text(d.id);
 	var uid = d.id; // 클릭한 작성자 id 입니다.
@@ -390,8 +390,6 @@ $(document).ready(function(){
             
         }).bind("select_node.jstree",function(event,data){
         	console.log(data.node.id);
-        	var abcd = $(this).parent().parent().children().eq(0).children('a').text();
-        	console.log(abcd);
 	    	$('.indishare-url-surfing').val('111');
         })
 
