@@ -87,7 +87,7 @@
 									<tr id="${user.nname}">
 										<td>${user.nname}</td>
 										<td>${user.uid}</td>
-										<td><i class="fas fa-trash-alt url-action"></i></td>
+										<td><i class="fas fa-trash-alt url-action" onclick="deleteUser('${user.uid}','${user.nname}')"></i></td>
 									</tr>
 									</c:forEach>
 								</tbody>
