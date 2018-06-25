@@ -17,7 +17,7 @@
 				<div class="completed-modal-left groupshare">
 	                <h4 class="completed-modal-from"><b>From : <span class="groupshare-name" id="from-text"> </span></b></h4>
 	                <div class="jstree-from" id="jstree-from-left">
-	                	
+	                	제이트리 뿌려줘염
 	                </div>
 	            </div>   
 	            <div class="completed-modal-right groupshare">
@@ -29,14 +29,14 @@
                        	Click <span class="caret"></span>
                    	</button>
                    	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       	<li id="completed-modal-mybook" class="dropdown-item" href="#">My Bookmark</li>
+                       	<li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
                        	<hr class="divider-hr">
                        	<li class="dropdown-item dropdown-submenu">
-                           	<a tabindex="-1" href="#">My Group</a>
+                           	<a tabindex="-1" href="#">나의 그룹북마크</a>
                            	<ul class="dropdown-menu">
-                             	<li class="dropdown-group-item"><span tabindex="-1"></span></li>
-                             	<li class="dropdown-group-item"><span></span></li>
-                             	<li class="dropdown-group-item"><span></span></li>
+                             	<li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
+                             	<li class="dropdown-group-item"><span>Group 2</span></li>
+                             	<li class="dropdown-group-item"><span>Group 3</span></li>
                            	</ul>
                        	</li>
                    	</div>
@@ -51,14 +51,13 @@
 	                </div>
 	                
 	                <div class="jstree-to" id="jstree-to-right" style="clear:both;">
-	                	
+	                	제이트리 뿌려줘염
 	                </div>
 	            </div>
 			</div>
 			<div class="modal-footer groupshare">
 				<button type="button" class="btn btn-default groupshare" data-dismiss="modal">취소</button>
-				<button id="group-into-my-bookmark" type="button" class="btn btn-primary groupshare">확인</button>
-				<button id="group-into-group-bookmark" type="button" class="btn btn-primary groupshare" style="display: none;">확인</button>
+				<button type="button" class="btn btn-primary groupshare">확인</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -79,10 +78,10 @@
 						<form id="form-to-getmybookmark" action="getmybookmark.do" method="post">
 			                <h4 class="completed-modal-from"><b>URL :</b>
 			                	<input type="text" class="indishare-url" name="url" readonly></h4>
-								<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
-								<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
-								<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
-								<input type="hidden" class="indishare-gid" value="" name="gid" readonly>
+								<input type="hidden" class="indishare-urlname" name="urlname" readonly>
+								<input type="hidden" class="indishare-userpid" name="pid" readonly>
+								<input type="hidden" class="indishare-abid" name="abid" readonly>
+								<input type="hidden" class="indishare-gid" name="gid" readonly>
 						</form>
 		            </div>
 		            <hr>

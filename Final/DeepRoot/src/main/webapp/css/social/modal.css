@@ -167,13 +167,9 @@
   width: 50%;
   float: left;
 }
-.completed-modal-right-all.surfingshare {
-  padding: 10px 0px 0px 10px;
+.completed-modal-right.surfingshare {
+  padding-left: 10px;
   width: 50%;
-  float: right;
-}
-#jstree-to-right-all {
-  clear: both;
   float: left;
 }
 
