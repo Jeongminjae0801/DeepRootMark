@@ -119,38 +119,37 @@ jQuery(function($) {
 	    $('#into-group-bookmark').on('dblclick', function(){});
 	    $('#into-group-bookmark').on('click', function(){
 	    	var params = $("#form-to-mybookmark").serialize();
-	    	console.log($(this));
-	    	/* 요기 까지 했음...  */
-    		/*$.ajax({
-				url : "user/addtoGroupBookmark.do",
-				type:"POST",
-				data: params,
-				dataType:"json",
-				success : function(data){
-					console.log(data.result);
-					if(data.result == "success") {
-						swal("Thank you!", "북마크에 추가되었습니다!", "success");
-						$('#mainIndiModal').modal("toggle");
-					}else {
-                        swal({
-                            title: "목적지 폴더를 확인하셨나요?",
-                            text: "잠시후 다시 시도해주세요!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true
-						});
-					}
-				},
-				error : function(error) {
-					swal({
-                        title: "목적지 폴더를 확인하셨나요?",
-                        text: "잠시후 다시 시도해주세요!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true
-					});
-			    }
-			});*/
+            console.log(params);
+           $.ajax({
+                url : "team/addGroupBookmark.do",
+                type: "POST",
+                data: params,
+                dataType:"json",
+                success : function(data){
+                    console.log(data.result);
+                    if(data.result == "success") {
+                        swal("Thank you!", "북마크에 추가되었습니다!", "success");
+                        $('#mainIndiModal').modal("toggle");
+                    }else {
+                       swal({
+                           title: "목적지 폴더를 확인하셨나요?",
+                           text: "잠시후 다시 시도해주세요!",
+                           icon: "warning",
+                           buttons: true,
+                           dangerMode: true
+                        });
+                    }
+                },
+                error : function(error) {
+                    swal({
+                       title: "목적지 폴더를 확인하셨나요?",
+                       text: "잠시후 다시 시도해주세요!",
+                       icon: "warning",
+                       buttons: true,
+                       dangerMode: true
+                    });
+                }
+            });
 	    });
 	});
 });
