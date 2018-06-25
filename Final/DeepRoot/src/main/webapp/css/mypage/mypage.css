@@ -59,6 +59,13 @@ a {
   position: relative;
   right: 20px;
 }
+.loading_text{
+	font-size: 15px;
+	position: relative;
+	left: 10px;
+	right: 20px;
+	font-family: 'Jua', 'Jua';
+}
 .spring {
   position: relative;
   z-index: 1;

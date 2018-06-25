@@ -353,10 +353,10 @@ public class UserController {
 	public void deleNode(HttpServletRequest req , HttpServletResponse res) {
 		res.setCharacterEncoding("UTF-8");
 		String nodeid = req.getParameter("node");
-		u_bookservice.deleteFolderOrUrl(nodeid);
+		int result = u_bookservice.deleteFolderOrUrl(nodeid);
 		
 		try {
-			res.getWriter().println("success");
+			res.getWriter().println(result);
 		} catch (IOException e) {			
 			e.printStackTrace();
 		}
