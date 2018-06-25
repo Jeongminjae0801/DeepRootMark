@@ -152,20 +152,24 @@ $('.getmybook').on('click', function(){
 	
 	// 진행중인 팀 리스트 가져오기
 	$.ajax({
-		url: "team/getTeamList.do",
+		url: "/bit/team/getTeamList.do",
 	    type: "post",
 	    success : function(data){
 	    	var html = '<ul class="dropdown-menu">';
 	    	
 	    	var index = 0;
 	    	for(var key in data.teamlist){
+	    		console.log(data.teamlist[key]);
 	    		if(index == 0){
-	    			html += '<li class="dropdown-group-item" onclick="seletedGroup(' 
-	    					+ "'" + data.teamlist[key].gname + "'" + ');"><span tabindex="-1">'
-	    					+ data.teamlist[key].gname + '</span></li><hr class="divider-hr">';
+	    			html += '<li class="dropdown-group-item" onclick="seletedGroup('
+	    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
+	    					+ "');" + '"><span tabindex="-1">' + data.teamlist[key].gname
+	    					+ '</span></li><hr class="divider-hr">';
 	    		}else {
-	    			html += '<li class="dropdown-group-item" onclick="seletedGroup(' 
-    						+ "'" + data.teamlist[key].gname + "'" + ');"><span>'+ data.teamlist[key].gname + '</span></li><hr class="divider-hr">';
+	    			html += '<li class="dropdown-group-item" onclick="seletedGroup('
+	    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
+	    					+ "');" + '"><span>' + data.teamlist[key].gname
+	    					+ '</span></li><hr class="divider-hr">';
 	    		}
 	    		index += 1;
 	    	}
@@ -183,7 +187,7 @@ $('#dropdown-my-book').on('click', function(){
 	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
 
 	$.ajax({
-		url : "../user/getCategoryList.do",
+		url : "/bit/user/getCategoryList.do",
 		type:"POST",
 		dataType:"json",
 		success : function(data){
@@ -210,19 +214,55 @@ $('#dropdown-my-book').on('click', function(){
 	});
 });
 
-// 나의 북마크로 추가 했을 때, 
+//나의 북마크 선택했을 때, 
+$('#dropdown-my-book').on('dblclick', function(){});
+$('#dropdown-my-book').on('click', function(){
+	// Modal init()
+	$('#dropdownMenuButton').text($(this).text());
+	$('#into-my-bookmark').css('display', 'block');
+	$('#into-group-bookmark').css('display', 'none');
+	$('#jstree-to-bottom').remove();
+	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
+	
+	$.ajax({
+		url : "/bit/user/getCategoryList.do",
+		type:"POST",
+		dataType:"json",
+		success : function(data){
+			/*jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/	
+			$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
+				$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
+			}).jstree({	
+					"core": {
+						"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
+						'data' : data, 				//ajax로 가져온 json data jstree에 넣어주기
+						'themes':{
+							'name' : 'proton', 		//테마 이름
+							'responsive' : true,
+							"dots": false, 			// 연결선 없애기
+						}
+					}
+			}).bind("select_node.jstree", function (e, data) {
+				/*노드(폴더)가 선택시 실행되는 함수*/					
+					var id = data.node.id;
+					$('.indishare-userpid').val(id);
+					
+			});
+		}
+	});
+});
+
+// [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
 $('#into-my-bookmark').on('dblclick', function(){});
 $('#into-my-bookmark').on('click', function(){
 	var params = $("#form-to-mybookmark").serialize();
-	console.log("들어오긴 해????");
 	$.ajax({
-		url : "addtomybookmark.do",
+		url : "/bit/user/addtomybookmark.do",
 		type:"POST",
 		data: params,
 		dataType:"json",
 		success : function(data){
 			console.log(data.result);
-			console.log("오냐?");
 			if(data.result == "success") {
 				swal("Thank you!", "북마크에 추가되었습니다!", "success");
 				$('#socialIndiModal').modal("toggle");
@@ -237,7 +277,6 @@ $('#into-my-bookmark').on('click', function(){
 			}
 		},
 		error : function(error) {
-			console.log("오냐?????");
 			swal({
                 title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
@@ -247,19 +286,47 @@ $('#into-my-bookmark').on('click', function(){
 			});
 	    }
 	});
-	
 });
 
 //내의 그룹리스트 중 하나를 선택 했을 때,
-function seletedGroup(group) {
-$('#dropdownMenuButton').text(group);
+function seletedGroup(group, gid) {
+	// Modal Init()
+	$('#dropdownMenuButton').text(group);
+	$('#into-my-bookmark').css('display', 'none');
+	$('#into-group-bookmark').css('display', 'block');
+	$('#jstree-to-bottom').remove();
+	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
+	
+	$.ajax({
+		url : "team/getGroupCategoryList.do",
+		type:"POST",
+		data: {gid: gid},
+		dataType:"json",
+		success : function(data){
+			console.log(data.data);
+			// jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.	
+			$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
+				$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
+			}).jstree({	
+					"core": {
+						"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
+						'data' : data.data, 		// ajax로 가져온 json data jstree에 넣어주기
+						'themes':{
+							'name' : 'proton', 		// 테마 이름
+							'responsive' : true,
+							"dots": false, 			// 연결선 없애기
+						}
+					}
+			}).bind("select_node.jstree", function (e, data) {
+			//노드(폴더)가 선택시 실행되는 함수
+				var id = data.node.id;
+				console.log(id);
+				$('.indishare-userpid').val(id);
+					
+			});
+		}
+	});
 }
-
-
-
-
-
-
 
 /* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
 /*

@@ -1,15 +1,21 @@
+#into-my-bookmark {
+	display: block;
+	float: right;
+}
+#into-group-bookmark{
+	display: none;
+	float: right;	
+}
 .modal-body {
 	padding-top:0;
 }
 .modal-footer {
 	clear: both;
 }
-.completed-modal-right.mypage,
 .completed-modal-left.groupshare{
 	border-right: 2px dashed #ccc;
 	padding-top: 10px;
 }
-.completed-modal-right.mypage,
 .completed-modal-right.groupshare{
 	border-left: 2px solid #ccc;
 	padding-top: 10px;
@@ -32,14 +38,13 @@
   border-bottom: 2px solid #a94442;
 }
 
-.modal-header.mypage,
 .modal-header.groupshare {
   border-bottom: 1px solid #ccc;
   padding-top : 10px;
   padding-bottom: 5px;
 }
 
-.modal-footer.mypage,
+
 .modal-footer.groupshare{
 	margin-top : 15px;
 }
@@ -89,7 +94,7 @@
 .dropdown.completed-modal-dropdown .btn.btn-secondary.indishare.dropdown-toggle{
 	background-color: #fff;
 	color: #081971;
-	width: 100px;
+	width: 235px;
 }
 
 .dropdown.completed-modal-dropdown .btn.btn-secondary.indishare.dropdown-toggle:hover,
@@ -145,13 +150,11 @@
 .float-clear-hr { margin-top: 38px 0px 0px 0px; border-top: 2px solid #a94442; }
 .completed-modal-content { margin-bottom: 10px; }
 
-.completed-modal-left.mypage,
 .completed-modal-left.groupshare {
   padding-left: 10px;
   width: 50%;
   float: left;
 }
-.completed-modal-right.mypage,
 .completed-modal-right.groupshare {
   padding-left: 10px;
   width: 50%;

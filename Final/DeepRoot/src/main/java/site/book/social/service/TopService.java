@@ -99,18 +99,5 @@ public class TopService {
 		return list;
 	}
 	
-	// 민재 , 개인 북마크 공유 내 카테고리 추가
-	// 공유하지 않은 URL 추가하기
-		public int addUrlNotShare(U_BookDTO book) {
-			U_BookDAO bookDAO = sqlsession.getMapper(U_BookDAO.class);
-			int row = 0;
-			
-			try {
-				row = bookDAO.addUrlNotShare(book);
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
-			
-			return row;
-		}
+	
 }
