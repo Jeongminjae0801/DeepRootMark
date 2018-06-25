@@ -74,7 +74,8 @@
 	        });
 		});
 		
-		// ajax Form 설정
+		// ajax Form 설정 Start
+		// URL 추가
 		$("#addUrlForm").ajaxForm({
 			success: function(data, statusText, xhr, $form){
 				console.log(data.newBook);
@@ -89,6 +90,7 @@
 			}
 		});
 		
+		// URL 수정
 		$("#editUrlForm").ajaxForm({
 			success: function(data, statusText, xhr, $form){
 				console.log(data.updateBook.urlname);
@@ -97,23 +99,130 @@
 				tableData[0] = data.updateBook.urlname;
 				tableData[1] = '<a href="' + data.updateBook.url + '" target="_blank">' + data.updateBook.url + '</a>';
 				tableData[2] = '<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(' + data.updateBook.acid + ", '" + data.updateBook.acname + "', '" + data.updateBook.url + "', " + data.updateBook.abid + ');"></i>' 
-						+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.updateBook.abid + ", " + data.updateBook.acid + "'" + ')"></i>';
-				
-				
-				/* tr.find('td:eq(0)').html(data.updateBook.urlname);
-				tr.find('td:eq(1)').html('<a href="' + data.updateBook.url + '" target="_blank">' + data.updateBook.url + '</a>');
-				tr.find('td:eq(2)').html('<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(' + data.updateBook.acid + ", '" + data.updateBook.acname + "', '" + data.updateBook.url + "', " + data.updateBook.abid + ');"></i>' 
-						+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.updateBook.abid + ", " + data.updateBook.acid + "'" + ')"></i>');
-				
-				dataTableList[data.updateBook.acid].row(tr).invalidate().draw(); */
+						+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.updateBook.abid + ", " + data.updateBook.acid + ')"></i>';
 				
 				dataTableList[data.updateBook.acid].row(tr).data(tableData).draw();
+			}
+		});
+		
+		// 카테고리 추가
+		$("#addCategoryForm").ajaxForm({
+			success: function(data, statusText, xhr, $form) {
+				console.log(data.newCategory);
+				
+				// content row에 테이블 추가
+				var html = '<div class="col-sm-6">';
+				html += '<div id="panel' + data.newCategory.acid + '" class="panel">';
+				html += '<div class="panel-heading">';
+				html += '<span id="categoryName' + data.newCategory.acid + '"> '+ data.newCategory.acname + '</span>';
+				html += '<button class="colorPickSelector categoryColor'+ data.newCategory.acid + '"></button>';
+				html += '<i class="fas fa-pencil-alt" data-toggle="modal" onclick="openCategoryEditModal('+ data.newCategory.acid + ", '" + data.newCategory.acname + "'" + ');"></i>';
+				html += '<div class="pull-right">';
+				html += '<i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal(' + data.newCategory.acid + ", '" + data.newCategory.acname + "'" +');"></i>';
+				html += '</div>'
+				html += '<div class="panel-body">';
+				html += '<table width="100%" class="table table-hover" id="table' + data.newCategory.acid + '">';
+				html += '<thead>';
+				html += '<tr>';
+				html += '<th>사이트명</th>';
+				html += '<th>URL 주소</th>';
+				html += '<th>Actions</th>';
+				html += '</tr>';
+				html += '</thead>';
+				html += '</table>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				
+				$(".content>#page-wrapper>.row").append(html);
+				
+				
+				// DataTable 적용
+				var dataTable = $('#table'+ data.newCategory.acid).DataTable({
+					responsive: true
+				});
+				dataTableList[data.newCategory.acid] = dataTable;
+				
+				// ColorPicker
+				categorylist.push(new Array(data.newCategory.acid, data.newCategory.color));
+				
+				var color = data.newCategory.color;
+				if(color == "#000"){
+					color = "#FFFFFF";
+				}else if (color == "#191970"){
+					color = "#c9c9ff";
+				}else if (color == "#696969"){
+					color = "#d1d1d1";
+				}
+				
+				$('span[id="'+ data.newCategory.acid + '"]').css("color", color);
+				
+				$(".categoryColor"+data.newCategory.acid).colorPick({
+		            'initialColor': data.newCategory.color,
+		            'onColorSelected': function() {
+		            	var selectColor = this.color;
+		            	if(selectColor == "#000"){
+		            		selectColor = "#FFFFFF";
+		    			}else if (selectColor == "#191970"){
+		    				selectColor = "#c9c9ff";
+		    			}else if (selectColor == "#696969"){
+		    				selectColor = "#d1d1d1";
+		    			}
+		            	
+		                this.element.css({
+		                    'backgroundColor': this.color,
+		                    'color': this.color
+		                });
+		                
+		                $.ajax({
+		            		url: "editCategoryCclor.do",
+		    				type: "post",
+		    				data : {
+		    					acid : data.newCategory.acid, // 카테고리 ID
+		    					color : this.color // 카테고리 색상
+		    				},
+		    				success : function(data){
+		    				}
+		            	});
+		                
+		                $('span[id="'+ data.newCategory.acid + '"]').css("color", selectColor);
+		            }
+		        });
+				
+				// 카테고리 리스트 추가
+				var category = '<li id="dropDownCategoryList' + data.newCategory.acid + '"><a href="#panel' + data.newCategory.acid + '">' + data.newCategory.acname + '</a></li>';
+				$("#dropDownCategoryList").append(category);
+				
+				var deleteCategory = '<option id="deleteCategoryList' + data.newCategory.acid + '" value="' + data.newCategory.acid + '">' + data.newCategory.acname + '</option>';
+				$("#acnameList2").append(deleteCategory);
 				
 			}
 		});
 		
+		// 카테고리 수정
+		$("#editCategoryForm").ajaxForm({
+			success: function(data, statusText, xhr, $form) {
+				$("#categoryName" + data.editCategory.acid).text(data.editCategory.acname);
+				
+				$("#deleteCategoryList" + data.editCategory.acid).text(data.editCategory.acname);
+				
+				$("#dropDownCategoryList" + data.editCategory.acid).children('a').text(data.editCategory.acname);
+			}
 		
+		});
 		
+		// 카테고리 삭제
+		$("#deleteCategoryForm").ajaxForm({
+			success: function(data, statusText, xhr, $form) {
+				$("#panel" + data.acid).remove();
+				
+				$("#deleteCategoryList" + data.acid).remove();
+				
+				$("#dropDownCategoryList" + data.acid).remove();
+			}
+		});
+		
+		// ajax Form 설정 End
 		
 	});
 	
@@ -152,9 +261,9 @@
 					type="button">
 					카테고리<i class="fa fa-caret-right"></i>
 				</button>
-				<ul class="dropdown-menu categorylist">
+				<ul id="dropDownCategoryList" class="dropdown-menu categorylist">
 					<c:forEach items="${categorylist}" var="category">
-						<li><a href="#panel${category.acid}">${category.acname}</a></li>
+						<li id="dropDownCategoryList${category.acid}"><a href="#panel${category.acid}">${category.acname}</a></li>
 					</c:forEach>
 				</ul>
 				<!-- Category lsit Dropdown END -->
@@ -170,12 +279,12 @@
 				<!-- Category List Table START -->
 				<c:forEach items="${url_by_category}" var="list">
 					<c:forEach items="${list}" var="hashmap">
-						<div class="col-sm-6">
-						<div id="panel${hashmap.key.acid}" class="panel">
+						<div id="panel${hashmap.key.acid}" class="col-sm-6">
+						<div class="panel">
 							<!-- Category Name & edit & insert START -->
 
 							<div class="panel-heading">
-								<span id="${hashmap.key.acid}"> ${hashmap.key.acname}</span>
+								<span id="categoryName${hashmap.key.acid}"> ${hashmap.key.acname}</span>
 								<!--color picker START -->
 								<button class="colorPickSelector categoryColor${hashmap.key.acid}"></button>
 								<!--color picker END -->
@@ -301,7 +410,7 @@
 
 			function openCategoryEditModal(acid, acname) {
  				$("#editCategoryID").val(acid); // 카테고리 ID hidden type에 넣어주기
-				$("#acname2").val(acname); // 카테고리 명 미리 입력해주기
+				$("#acname2").val($("#categoryName"+acid).text()); // 카테고리 명 미리 입력해주기
                         	
 				showCategoryEditForm();
 				setTimeout(function() {
@@ -328,10 +437,10 @@
 									$("#editCategoryForm").submit();
 									$("#editCategoryForm")[0].reset();
 									setTimeout(function() {
-										$('#editCategoryForm').modal('hide');
+										$('#editCategoryModal').modal('hide');
 									}, 230);
 								}
-						},
+							},
 							'취소': {
 								btnClass : 'btn-success',
 								action : function() {}
@@ -442,7 +551,7 @@
 									<label class="control-label" for="acnameList2">삭제할 카테고리를 선택하세요</label>&nbsp;
 									<select id="acnameList2" class="form-control" name="acid">
 										<c:forEach items="${categorylist}" var="category">
-											<option value="${category.acid}">${category.acname}</option>
+											<option id="deleteCategoryList${category.acid}" value="${category.acid}">${category.acname}</option>
 										</c:forEach>
 									</select><br> <input id="acname3" class="form-control" type="hidden" name="acname"><br>
 								</div>
@@ -520,7 +629,7 @@
 
 			/*URL 추가 1단계 모달 바로열기*/
 			function openUrlModal(acid, acname) {
-				$("#acname4").val(acname);
+				$("#acname4").val($("#categoryName"+acid).text());
 				$("#adminCategoryID").val(acid);
                         	
 				showUrlForm();
@@ -661,7 +770,7 @@
 			/*URL 수정 1단계 모달 바로열기*/
 			function openUrlEditModal(acid, acname, url, abid) {
 				$("#editurl").val(url);
-				$("#acname5").val(acname);
+				$("#acname5").val($("#categoryName"+acid).text());
 				$("#editAdminCategoryID").val(acid);
 				$("#editUrlID").val(abid);
 				

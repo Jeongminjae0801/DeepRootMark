@@ -8,6 +8,7 @@
 package site.book.social.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -103,15 +104,15 @@ public class SocialController {
 	/*진수 해당 회원 북마크 가져오기 start*/
 	//해당 유저의 카테고리를 보내준다.
 		@RequestMapping("getCategoryList.do")	
-		public void getCategoryList(HttpServletRequest req , HttpServletResponse res, String uid) {
+		public void getCategoryList(HttpServletRequest req , HttpServletResponse res, String nname) {
 			
 			res.setCharacterEncoding("UTF-8");
 			
 			HttpSession session = req.getSession();
 	        
 			JSONArray jsonArray = new JSONArray();	
-			List<U_BookDTO> list = surfingservice.getCategoryList(uid);
-			
+			List<U_BookDTO> list = surfingservice.getCategoryList(nname);
+			HashMap<String, String> href = new HashMap();
 
 			for(int i =0;i<list.size();i++) {
 				
@@ -129,12 +130,13 @@ public class SocialController {
 				else {
 					jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
 				}
+				href.put("href", list.get(i).getUrl());
 				jsonobject.put("id", list.get(i).getUbid());
 				jsonobject.put("text", list.get(i).getUrlname());
-				jsonobject.put("uid",uid);
+				jsonobject.put("nname",nname);
 				jsonobject.put("sname", list.get(i).getSname());
 				jsonobject.put("htag", list.get(i).getHtag());
-				
+				jsonobject.put("a_attr", href);
 				jsonArray.put(jsonobject);
 				
 			}

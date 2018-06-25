@@ -347,13 +347,13 @@ function testing_modal(d){
 	console.log(d);
 	console.log(d.id);
 	$('.abc').text(d.id);
-	var uid = d.id; // 클릭한 작성자 id 입니다.
+	var nname = d.id; // 클릭한 작성자 id 입니다.
 	
 	$.ajax({
 		
 		url : "getCategoryList.do",
 		type : "POST",
-		data : {uid : uid},	/* group id 를 넣어야 한다. */
+		data : {nname : nname},	/* group id 를 넣어야 한다. */
 		dataType :"json",
 		success : function(obj){
 
@@ -390,7 +390,15 @@ $(document).ready(function(){
             
         }).bind("select_node.jstree",function(event,data){
         	console.log(data.node.id);
-	    	$('.indishare-url-surfing').val('111');
+	    	
+	    	
+            var url = $('#jstree-from-left-all').jstree(true).get_node(data.node.id).a_attr.href;
+            $('.indishare-url-surfing').text(url);
+            var urlname = $(this).eq(-1).text();
+            console.log(urlname);
+            $('.indishare-urlname-left').val(urlname);
+            console.log(url);
+	    	
         })
 
 //완료 그룹 모달 오른쪽 jstree
@@ -425,7 +433,7 @@ $(document).ready(function(){
 					}).bind("select_node.jstree", function (e, data) {
 						/*노드(폴더)가 선택시 실행되는 함수*/					
 	 					var id = data.node.id;
-	 					$('.indishare-userpid').val(id);
+	 					$('.indishare-userpid-left').val(id);
 	 					console.log(data.node.id);
 	 					
 					});
@@ -479,17 +487,22 @@ $(document).ready(function(){
 	 // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
 	    $('#into-my-bookmark-btn').on('dblclick', function(){});
 	    $('#into-my-bookmark-btn').on('click', function(){
-	    	var params = $("#form-to-mybookmark-left").serialize();
+	    	var asd = $('.indishare-url-surfing').text();
     		$.ajax({
-				url : "../user/addtomybookmark.do",
+				url : "getmybookmark.do",
 				type:"POST",
-				data: params,
+				data: {
+					url: $('.indishare-url-surfing').text(),
+					urlname: $('.indishare-urlname-left').val(),
+					pid: $('.indishare-userpid-left').val()
+					
+				},
 				/*dataType:"json",*/
 				success : function(data){
 					console.log(data.result);
 					if(data.result == "success") {
 						swal("Thank you!", "북마크에 추가되었습니다!", "success");
-						$('#mainIndiModal').modal("toggle");
+						$('#socialSurfingModal').modal("toggle");
 					}else {
                         swal({
                             title: "목적지 폴더를 확인하셨나요?",

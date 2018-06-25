@@ -24,10 +24,10 @@ public class SurfingService {
 	private SqlSession sqlsession;
 	
 	//해당 회원 북마크 가져오기
-	public List<U_BookDTO> getCategoryList(String uid) {
+	public List<U_BookDTO> getCategoryList(String nname) {
 		
 		TopDAO dao = sqlsession.getMapper(TopDAO.class);
-		List<U_BookDTO> list = dao.getCategoryList(uid);
+		List<U_BookDTO> list = dao.getCategoryList(nname);
 		
 		return list;
 	}

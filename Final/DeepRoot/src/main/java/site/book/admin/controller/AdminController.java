@@ -247,30 +247,32 @@ public class AdminController {
 	
 	// 카테고리 추가
 	@RequestMapping("addCategory.do")
-	public String addCategory(A_CategoryDTO category, Model model) {
-		int row = a_category_service.addCategory(category);
-		String data = (row == 1) ? "성공" : "실패";
+	public View addCategory(A_CategoryDTO category, Model model) {
+		A_CategoryDTO newCategory = a_category_service.addCategory(category);
 		
-		model.addAttribute("data", data);
+		model.addAttribute("newCategory", newCategory);
 		
-		return "redirect:mainBookList.do";
+		return jsonview;
 
 	}
 	
 	// 카테고리 삭제
 	@RequestMapping("deleteCategory.do")
-	public String deleteCategory(String acid) {
+	public View deleteCategory(String acid, Model model) {
 		a_category_service.deleteCategory(Integer.parseInt(acid));
 
-		return "redirect:mainBookList.do";
+		model.addAttribute("acid", acid);
+		
+		return jsonview;
 	}
 	
 	// 카테고리 수정
 	@RequestMapping("editCategory.do")
-	public String updateCategory(A_CategoryDTO category) {
-		a_category_service.updateCategory(category);
-
-		return "redirect:mainBookList.do";
+	public View updateCategory(A_CategoryDTO category, Model model) {
+		A_CategoryDTO editCategory = a_category_service.updateCategory(category);
+		model.addAttribute("editCategory", editCategory);
+		
+		return jsonview;
 	}
 	
 	// URL 추가시 타이틀 가져오기
