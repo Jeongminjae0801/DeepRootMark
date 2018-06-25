@@ -159,7 +159,7 @@ $('.gogosing').on('click', function(){
 					"core": {
 						"dblclick_toggle" : false, // 두번 클릭해서 폴더여는거 false
 					'data' : data, // ajax로 가져온 json data jstree에 넣어주기
-				},    
+				},
 			})	
 			.bind("loaded.jstree", function (event, data) {
 				$('#indi-jstree-to-right').jstree("open_all");
