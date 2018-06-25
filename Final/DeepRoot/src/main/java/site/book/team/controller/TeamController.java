@@ -147,7 +147,25 @@ public class TeamController {
 		return jsonview;
 	}
 	
-	
+	//선택한 그룹으로 해당 URL 추가
+	@RequestMapping("addGroupBookmark.do")	
+	public View addGroupBookmark(HttpServletRequest req, Model model, G_BookDTO g_book) {
+        
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        g_book.setUid(uid);
+        
+		//System.out.println(g_book);
+        int result = gbookservice.insertGroupBookmark(g_book);
+        
+		if(result > 0) {
+			model.addAttribute("result", "success");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		
+		return jsonview;
+	}
 	//함수 END
 	
 }

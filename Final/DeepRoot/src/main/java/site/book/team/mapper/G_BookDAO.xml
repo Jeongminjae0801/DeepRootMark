@@ -34,4 +34,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMaxGBID" resultType="int">
 		select max(GBID) +1 from G_BOOK
 	</select>
+	
+	<insert id="insertGroupBookmark" parameterType="site.book.team.dto.G_BookDTO">
+	<choose>
+		<when test="abid != null">
+			INSERT INTO G_BOOK (URL, URLNAME, REGDATE, GID, PID, ABID, UID)
+			VALUES (#{url}, #{urlname}, SYSDATE(), #{gid}, #{pid}, #{abid}, #{uid})
+		</when>
+		<otherwise>
+			INSERT INTO G_BOOK (URL, URLNAME, REGDATE, GID, PID, UID)
+			VALUES (#{url}, #{urlname}, SYSDATE(), #{gid}, #{pid}, #{uid})
+		</otherwise>
+	</choose>
+	</insert>
 </mapper>

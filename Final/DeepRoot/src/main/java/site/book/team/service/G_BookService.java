@@ -94,4 +94,19 @@ public class G_BookService {
 		
 		return isInsert;
 	}
+	
+	// 한 URL을 자신의 그룹 북마크에 추가 
+	public int insertGroupBookmark(G_BookDTO gbook) {
+		G_BookDAO dao = sqlsession.getMapper(G_BookDAO.class);
+		int result = 0;
+		
+		try {
+			result = dao.insertGroupBookmark(gbook);
+		}catch (Exception e) {
+			/*e.printStackTrace();*/
+		}
+		
+		return result;
+	}
+	
 }
