@@ -16,8 +16,8 @@
 		$.confirm({
 			title : '회원 삭제',
 			content : '삭제하시겠습니까?',
-			theme: 'dark',
-			type: 'orange',
+			theme: 'light',
+			type: 'green',
 			backgroundDismiss: true,
 			closeIcon: true,
 			buttons: {
