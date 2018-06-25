@@ -1,4 +1,23 @@
 
+$.fn.serializeObject = function(){
+	    var o = {};
+	    var a = this.serializeArray();
+	    $.each(a, function() {
+	    	var name = $.trim(this.name),
+	    		value = $.trim(this.value);
+	    	
+	        if (o[name]) {
+	            if (!o[name].push) {
+	                o[name] = [o[name]];
+	            }
+	            o[name].push(value || '');
+	        } else {
+	            o[name] = value || '';
+	        }
+	    });
+	    return o;
+	};
+
 jQuery(function($) {
 	'use strict';
 	var first_data = null;
@@ -21,41 +40,8 @@ jQuery(function($) {
 	// Initiat WOW JS
 	new WOW().init();
 
-	// portfolio filter
-	$(window).load(function() {
-
-		$('.main-slider').addClass('animate-in');
-		$('.preloader').remove();
-		// End Preloader
-
-		if ($('.masonery_area').length) {
-			$('.masonery_area').masonry(); // Masonry
-		}
-
-		var $portfolio_selectors = $('.portfolio-filter >li>a');
-
-		if ($portfolio_selectors.length) {
-
-			var $portfolio = $('.portfolio-items');
-			$portfolio.isotope({
-				itemSelector : '.portfolio-item',
-				layoutMode : 'fitRows'
-			});
-
-			$portfolio_selectors.on('click', function() {
-				$portfolio_selectors.removeClass('active');
-				$(this).addClass('active');
-				var selector = $(this).attr('data-filter');
-				$portfolio.isotope({
-					filter : selector
-				});
-				return false;
-			});
-		}
-	});
 
 
-	  $('.timer').each(count);
 
 	function count(options) {
 		var $this = $(this);
@@ -138,92 +124,99 @@ jQuery(function($) {
 
 /* 민재 onclick */
 
-//링크 내 북마크로 가져가기 버튼 클릭
-$('.getmybook').on('dblclick', function(){});
-$('.getmybook').on('click', function(){
-	// 모달 초기화 START
-	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
-	$('#jstree-to-bottom').html('');
-	$('#dropdown-empty-area').remove();	// 모달 초기화 END
-	var url = $(this).parent().children('p').data('url');
-	$('.indishare-url').val(url);
-	$('.indishare-urlname').val($(this).parent().children('p').text());
-	$('.indishare-abid').val( $(this).parent().children('p').data('abid'));
-	
-	// 진행중인 팀 리스트 가져오기
-	$.ajax({
-		url: "team/getTeamList.do",
-	    type: "post",
-	    success : function(data){
-	    	var html = '<ul class="dropdown-menu">';
-	    	
-	    	var index = 0;
-	    	for(var key in data.teamlist){
-	    		if(index == 0){
-	    			html += '<li class="dropdown-group-item" onclick="seletedGroup(' 
-	    					+ "'" + data.teamlist[key].gname + "'" + ');"><span tabindex="-1">'
-	    					+ data.teamlist[key].gname + '</span></li><hr class="divider-hr">';
-	    		}else {
-	    			html += '<li class="dropdown-group-item" onclick="seletedGroup(' 
-    						+ "'" + data.teamlist[key].gname + "'" + ');"><span>'+ data.teamlist[key].gname + '</span></li><hr class="divider-hr">';
-	    		}
-	    		index += 1;
-	    	}
-	    	html += '</ul>';
-	    	$(".dropdown-item").append(html);
-	    }
-	});
-});
-
-// 나의 북마크 선택했을 때, 
-$('#dropdown-my-book').on('dblclick', function(){});
-$('#dropdown-my-book').on('click', function(){
-	$('#dropdownMenuButton').text($(this).text());
-	$('#jstree-to-bottom').remove();
-	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
-
-	$.ajax({
-		url : "../user/getCategoryList.do",
-		type:"POST",
-		dataType:"json",
-		success : function(data){
-			/*jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/	
-			$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
-				$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
-			}).jstree({	
-					"core": {
-						"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
-						'data' : data, 				//ajax로 가져온 json data jstree에 넣어주기
-						'themes':{
-							'name' : 'proton', 		//테마 이름
-							'responsive' : true,
-							"dots": false, 			// 연결선 없애기
+$(function() {
+	// 링크 내 북마크로 가져가기 버튼 클릭
+	$('.getbookmark').on('dblclick', function(){});
+    $('.getbookmark').on('click', function(){
+    	// 모달 초기화 START
+    	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
+    	$('#jstree-to-bottom').html('');
+    	$('#dropdown-empty-area').remove();	// 모달 초기화 END
+    	var url = $(this).parent().children('p').data('url');
+    	$('.indishare-url').val(url);
+    	$('.indishare-urlname').val($(this).parent().children('p').text());
+    	$('.indishare-abid').val( $(this).parent().children('p').data('abid'));
+    	
+    	// 진행중인 팀 리스트 가져오기
+    	$.ajax({
+			url: "/bit/team/getTeamList.do",
+		    type: "post",
+		    success : function(data){
+		    	var html = '<ul class="dropdown-menu">';
+		    	
+		    	var index = 0;
+		    	for(var key in data.teamlist){
+		    		if(index == 0){
+		    			html += '<li class="dropdown-group-item" onclick="seletedGroup('
+		    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
+		    					+ "');" + '"><span tabindex="-1">' + data.teamlist[key].gname
+		    					+ '</span></li><hr class="divider-hr">';
+		    		}else {
+		    			html += '<li class="dropdown-group-item" onclick="seletedGroup('
+		    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
+		    					+ "');" + '"><span>' + data.teamlist[key].gname
+		    					+ '</span></li><hr class="divider-hr">';
+		    		}
+		    		index += 1;
+		    	}
+		    	html += '</ul>';
+		    	$(".dropdown-item").append(html);
+		    }
+		});
+    });
+    
+    // 나의 북마크 선택했을 때, 
+    $('#dropdown-my-book').on('dblclick', function(){});
+    $('#dropdown-my-book').on('click', function(){
+    	// Modal init()
+    	$('#dropdownMenuButton').text($(this).text());
+    	$('#into-my-bookmark').css('display', 'block');
+    	$('#into-group-bookmark').css('display', 'none');
+    	$('#jstree-to-bottom').remove();
+    	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
+    	
+    	$.ajax({
+			url : "/bit/user/getCategoryList.do",
+			type:"POST",
+			dataType:"json",
+			success : function(data){
+				/*jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/	
+				$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
+					$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
+				}).jstree({	
+						"core": {
+							"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
+							'data' : data, 				//ajax로 가져온 json data jstree에 넣어주기
+							'themes':{
+								'name' : 'proton', 		//테마 이름
+								'responsive' : true,
+								"dots": false, 			// 연결선 없애기
+							}
 						}
-					}
-			}).bind("select_node.jstree", function (e, data) {
-				/*노드(폴더)가 선택시 실행되는 함수*/					
-					var id = data.node.id;
-					$('.indishare-userpid').val(id);
-					
-			});
-		}
-	});
-});
-
-// 나의 북마크로 추가 했을 때, 
-$('#into-my-bookmark').on('dblclick', function(){});
-$('#into-my-bookmark').on('click', function(){
-	var params = $("#form-to-mybookmark").serialize();
-	console.log("들어오긴 해????");
-	$.ajax({
-		url : "addtomybookmark.do",
-		type:"POST",
-		data: params,
-		dataType:"json",
-		success : function(data){
+				}).bind("select_node.jstree", function (e, data) {
+					/*노드(폴더)가 선택시 실행되는 함수*/					
+ 					var id = data.node.id;
+ 					$('.indishare-userpid').val(id);
+ 					
+				});
+			}
+		});
+    });
+    
+    $("#form-to-getmybookmark").ajaxForm({
+    	beforesend : function(){
+    		console.log($(".indishare-url").val());
+    		console.log($(".indishare-urlname").val());
+    		console.log($(".indishare-userpid").val());
+    		console.log($(".indishare-abid").val());
+    		console.log($(".indishare-gid").val());
+    		
+    	},
+    	success: function(data, statusText, xhr, $form){
 			console.log(data.result);
-			console.log("오냐?");
+			
 			if(data.result == "success") {
+				
 				swal("Thank you!", "북마크에 추가되었습니다!", "success");
 				$('#socialIndiModal').modal("toggle");
 			}else {
@@ -237,7 +230,6 @@ $('#into-my-bookmark').on('click', function(){
 			}
 		},
 		error : function(error) {
-			console.log("오냐?????");
 			swal({
                 title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
@@ -246,20 +238,130 @@ $('#into-my-bookmark').on('click', function(){
                 dangerMode: true
 			});
 	    }
-	});
-	
+    });
+    
+    // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
+    $('#into-my-bookmark').on('dblclick', function(){});
+    $('#into-my-bookmark').on('click', function(){
+    	
+    		console.log($(".indishare-url").val());
+    		console.log($(".indishare-urlname").val());
+    		console.log($(".indishare-userpid").val());
+    		console.log($(".indishare-abid").val());
+    		console.log($(".indishare-gid").val());
+    		
+    	
+    	$("#form-to-getmybookmark").submit();
+    	
+    	/*var params = $("#form-to-mybookmark").serialize();
+    	console.log(params);
+    	$.ajax({
+			url : "/bit/user/addtomybookmark.do",
+			type: "POST",
+			data: params,
+			dataType:"json",
+			success : function(data){
+				if(data.result == "success") {
+					swal("Thank you!", "북마크에 추가되었습니다!", "success");
+					$('#socialIndiModal').modal("toggle");
+				}else {
+                    swal({
+                        title: "목적지 폴더를 확인하셨나요?",
+                        text: "잠시후 다시 시도해주세요!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true
+					});
+				}
+			},
+			error : function(error) {
+				swal({
+                    title: "목적지 폴더를 확인하셨나요?",
+                    text: "잠시후 다시 시도해주세요!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+				});
+		    }
+		});*/
+    });
+    // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
+    $('#into-group-bookmark').on('dblclick', function(){});
+    $('#into-group-bookmark').on('click', function(){
+    	/*var params = $("#form-to-mybookmark").serialize();
+    	console.log(params);*/
+		$.ajax({
+			url : "/bit/team/addGroupBookmark.do",
+			type: "POST",
+			data: params,
+			dataType:"json",
+			success : function(data){
+				console.log(data.result);
+				if(data.result == "success") {
+					swal("Thank you!", "북마크에 추가되었습니다!", "success");
+					$('#mainIndiModal').modal("toggle");
+				}else {
+                    swal({
+                        title: "목적지 폴더를 확인하셨나요?",
+                        text: "잠시후 다시 시도해주세요!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true
+					});
+				}
+			},
+			error : function(error) {
+				swal({
+                    title: "목적지 폴더를 확인하셨나요?",
+                    text: "잠시후 다시 시도해주세요!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+				});
+		    }
+		});
+    });
 });
 
 //내의 그룹리스트 중 하나를 선택 했을 때,
-function seletedGroup(group) {
-$('#dropdownMenuButton').text(group);
+function seletedGroup(group, gid) {
+	// Modal Init()
+	$('#dropdownMenuButton').text(group);
+	$('.indishare-gid').val(gid);
+	$('#into-my-bookmark').css('display', 'none');
+	$('#into-group-bookmark').css('display', 'block');
+	$('#jstree-to-bottom').remove();
+	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
+	
+	$.ajax({
+		url : "/bit/team/getGroupCategoryList.do",
+		type:"POST",
+		data: {gid: gid},
+		dataType:"json",
+		success : function(data){
+			// jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.	
+			$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
+				$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
+			}).jstree({	
+					"core": {
+						"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
+						'data' : data.data, 		// ajax로 가져온 json data jstree에 넣어주기
+						'themes':{
+							'name' : 'proton', 		// 테마 이름
+							'responsive' : true,
+							"dots": false, 			// 연결선 없애기
+						}
+					}
+			}).bind("select_node.jstree", function (e, data) {
+			//노드(폴더)가 선택시 실행되는 함수
+				var id = data.node.id;
+				//console.log(id);//PID
+				$('.indishare-userpid').val(id);
+					
+			});
+		}
+	});
 }
-
-
-
-
-
-
 
 /* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
 /*

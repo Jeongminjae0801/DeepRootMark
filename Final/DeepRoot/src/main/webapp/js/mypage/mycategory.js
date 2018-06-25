@@ -1,6 +1,7 @@
 var urlpid = null;	//왼쪽 클릭된 폴더의 id
 var firstclick = 0;	//왼쪽 폴더 클릭 되었는지 확인용
 var child_data = null;	//오른쪽 url jstree data 담을 변수
+var edit_htag_node_id = null;
 
 $(document).ready(function(){
 			
@@ -354,6 +355,27 @@ $(document).ready(function(){
 						                  	tree_child.delete_node($node);
 						                }
 						            },
+						            "sharing"	:{
+						            	"separator_before": false,
+						                "separator_after": false,
+						                "label": "공유하기",
+						                "icon" : "fa fa-share",
+						                "action": function (obj) { 
+						                	
+						                	var inst = $.jstree.reference(obj.reference);
+				                			var id = inst.get_node(obj.reference).id;
+				                			var sname =  inst.get_node(obj.reference).text;
+				                			var htagStartPoint = 1;
+				                			edithashtagList = [];	//htag list reset
+				                			edit_htag_node_id = id;
+				                			
+				                			$('#edit_htag_append').empty();	//기존 모달에 있던 htag button 없애기
+				                			$('#edit_htag').modal();	//htag 수정하기 모달
+				                			$('#edit_sname_btn').val(sname);	//sname 넣어주기
+						                	
+						                }
+						            	
+						            },
 						            "recommend" :{
 						            	"separator_before": false,
 						                "separator_after": false,
@@ -477,8 +499,26 @@ $(document).ready(function(){
 							                		"separator_before"	: false,
 													"separator_after"	: false,
 							                		"label": "수정하기",
-							                		"action" : function(data){
-///////////공유 수정하기////////////////							                			
+							                		"action" : function(obj){
+///////////공유 수정하기////////////////							          
+							                			var inst = $.jstree.reference(obj.reference);
+							                			var id = inst.get_node(obj.reference).id;
+							                			var sname =  inst.get_node(obj.reference).original.sname;
+							                			var htags =  inst.get_node(obj.reference).original.htag
+							                			var htag_split = htags.split('#');
+							                			var htagStartPoint = 1;
+							                			edithashtagList = [];	//htag list reset
+							                			edit_htag_node_id = id;
+							                			
+							                			$('#edit_htag_append').empty();	//기존 모달에 있던 htag button 없애기
+							                			$('#edit_htag').modal();	//htag 수정하기 모달
+							                			$('#edit_sname_btn').val(sname);	//sname 넣어주기
+							                			
+							                			for(var i = 1; i<htag_split.length ; i++){
+							                				edithashtagList.push("#"+htag_split[i]); //배열에 기존 htag 저장
+							                				$('#edit_htag_append').append("<input class='btn btn-default btn-hash' id='btnEditHash" + htagStartPoint + "' type='button' value='#" + htag_split[i] + "' onclick='edit_deleteHashtag(this)'>");
+							                				htagStartPoint +=1;
+							                			}
 							                		}
 							                	},
 							                	"dimiss" :{
@@ -577,10 +617,79 @@ $(document).ready(function(){
 	})
 	
 });
+var edithashtagList = [];
+var hashtagList = [];
+var hashtagStartPoint = 0;
+var check_htag = '';
 
+/*URL 해시태그 추가*/ 
+function addHashtag() {
+  if (event.keyCode == 13 || event.keyCode == 32 ) {
+    hashtagList.push("#"+$.trim($('#htag_btn').val()));
+    var hashtag = $.trim($('#htag_btn').val());
+    console.log(hashtag);
+    $('#htag_btn').val('');
+    $('#htag_btn').focus();
+    $('#htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag(this)'>");
+    hashtagStartPoint++;
+  }
+}
 
+/*해시태그 수정*/
+function edit_addHashtag() {
+	  if (event.keyCode == 13 || event.keyCode == 32 ) {
+		  edithashtagList.push("#"+$.trim($('#edit_htag_btn').val()));
+	    var hashtag = $.trim($('#edit_htag_btn').val());
+	    $('#edit_htag_btn').val('');
+	    $('#edit_htag_btn').focus();
+	    $('#edit_htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='edit_deleteHashtag(this)'>");
+	    hashtagStartPoint++;
+	  }
+	}
 
+/*해시태그 삭제*/
+function deleteHashtag(data) {
+  var str = $(data).attr('id');
+  $('#' + str).remove();
+  var val = $(data).val();
+  hashtagList.splice($.inArray(val, hashtagList), 1);
+}
 
+/*해시태그 수정에서 삭제*/
+function edit_deleteHashtag(data) {
+  var str = $(data).attr('id');
+  $('#' + str).remove();	//버튼 삭제
+  var val = $(data).val();
+  edithashtagList.splice($.inArray(val, edithashtagList), 1);
+}
+
+/*해시태그 수정에서 submit*/
+function edit_htag_submit(){
+	var sname = $('#edit_sname_btn').val();
+	var htag = '';
+	$.each(edithashtagList , function(index,data){
+	   	htag += data;
+	   })
+	    
+	if(sname == ""){
+		$.alert("공유제목을 입력해주세요")
+	}else if(htag == ""){
+		$.alert("해시태그를 하나 이상 입력해주세요")
+	}else{
+		
+		var form = {ubid : edit_htag_node_id , sname : sname , htag : htag}
+		
+		$.ajax({
+			url : 'shareUrlEdit.do',
+			type : 'POST',
+			data : form,
+			success : function(data){
+				$('#edit_htag').modal("toggle");
+					}
+				})
+		
+	}
+}
 
 
 
@@ -673,6 +782,8 @@ function openAddUrlLevel3() {
 
 // 3단계 화면 보여주기
 function addUrlLevel3() {
+	$('#htag_append').empty();
+	hashtagList = [];
 	$(".addUrlLevel1").hide();
 	$(".addUrlLevel2").hide();
 	$(".addUrlLevel2-1").hide();
@@ -711,9 +822,13 @@ function addUrlNotShare() {
 function addUrlShare() {
 	var url = $('#url_btn').val(); //추가 url 값
 	var title = $('#title_btn').val(); // 추가 url 명값
-	var htag = $('#htag_btn').val();
+	var htag='';
 	var sname = $.trim($('#sname_btn').val());
 	var tree_child = $("#jstree_container_child").jstree(true);
+	
+	 $.each(hashtagList , function(index,data){
+	    	htag += data;
+	    })
 	
 	// var parent = par;
 	//console.log(url,title,par,sname,htag); //확인
@@ -721,20 +836,21 @@ function addUrlShare() {
 		$.alert("공유제목을 입력해주세요")
 	}else if(htag == ""){
 		$.alert("해시태그를 하나 이상 입력해주세요")
+	}else{
+		var form = {url : url , urlname : title , pid : urlpid , htag : htag , sname : sname};
+		$.ajax({
+			url: "addFolderOrUrl.do",
+			type :"POST",
+			data : form,
+			success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기	
+				$('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
+				//console.log(data);	//id 확인
+				var node_id = $.trim(data);
+				tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+					//console.log(new_node.id);
+				});
+			}
+		});
 	}
-	var form = {url : url , urlname : title , pid : urlpid , htag : htag , sname : sname};
-	$.ajax({
-		url: "addFolderOrUrl.do",
-		type :"POST",
-		data : form,
-		success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기	
-			$('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
-			//console.log(data);	//id 확인
-			var node_id = $.trim(data);
-			tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
-				//console.log(new_node.id);
-			});
-		}
-	});
 }
 

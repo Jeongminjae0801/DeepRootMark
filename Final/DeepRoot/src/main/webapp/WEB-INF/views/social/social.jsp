@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
 <!-- 소셜 페이지 완료 그룹 가져오기 Modal -->
 <div id="socialGroupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialGroupModalLabel">
@@ -75,12 +75,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="completed-modal-left">
-						<form id="form-to-mybookmark" action="addtomybookmark.do" method="post">
+						<form id="form-to-getmybookmark" action="${pageContext.request.contextPath}/user/addtomybookmark.do" method="post">
 			                <h4 class="completed-modal-from"><b>URL :</b>
-			                	<input type="text" class="indishare-url" value="" name="url" readonly></h4>
-							<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
-							<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
-							<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
+			                	<input type="text" class="indishare-url" value="1" name="url" readonly></h4>
+							<input type="hidden" class="indishare-urlname" value="2" name="urlname" readonly>
+							<input type="hidden" class="indishare-userpid" value="3" name="pid" readonly>
+							<input type="hidden" class="indishare-abid" value="4" name="abid" readonly>
+							<input type="hidden" class="indishare-gid" value="5" name="gid" readonly>
 						</form>
 		            </div>
 		            <hr>
@@ -107,6 +108,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
 					<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
+					<button id="into-group-bookmark" type="button" class="btn btn-primary" style="display: none;">확인</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -305,7 +307,7 @@
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
 									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}">
-										<i class="fa fa-share"></i>
+										<i class="fa fa-share getbookmark"></i>
 									</td>
 									<!-- 가져오기 icon -->
 								</tr>

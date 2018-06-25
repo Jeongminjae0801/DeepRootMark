@@ -6,11 +6,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/mainbooklist.css">
 <!-- adminTable CSS END -->
 
+
+
 <script type="text/javascript">
-	
+	var dataTableList = new Array();
 	$(function(){
 		var categorylist = new Array(); 
-		var dataTableList = new Array();
 		
 		<c:forEach items="${categorylist}" var="category" varStatus="status">
 			categorylist.push(new Array("${category.acid}", "${category.color}"));
@@ -81,7 +82,7 @@
 					data.newBook.urlname,
 					'<a href="' + data.newBook.url + '" target="_blank">' + data.newBook.url + '</a>',
 					'<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(' + data.newBook.acid + ", '" + data.newBook.acname + "', '" + data.newBook.url + "', " + data.newBook.abid + ');"></i>' 
-					+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.newBook.abid + ')"></i>'
+					+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.newBook.abid + ", '" + data.newBook.acid + "'" + ')"></i>'
 				]).node().id = data.newBook.abid;
 				
 				dataTableList[data.newBook.acid].draw(false);
@@ -90,14 +91,23 @@
 		
 		$("#editUrlForm").ajaxForm({
 			success: function(data, statusText, xhr, $form){
-				console.log(data.updateBook);
+				console.log(data.updateBook.urlname);
 				var tr = $("#table" + data.updateBook.acid + " tbody tr[id=" + data.updateBook.abid + "]");
-				tr.find('td:eq(0)').html(data.updateBook.urlname);
+				var tableData = dataTableList[data.updateBook.acid].row(tr);
+				tableData[0] = data.updateBook.urlname;
+				tableData[1] = '<a href="' + data.updateBook.url + '" target="_blank">' + data.updateBook.url + '</a>';
+				tableData[2] = '<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(' + data.updateBook.acid + ", '" + data.updateBook.acname + "', '" + data.updateBook.url + "', " + data.updateBook.abid + ');"></i>' 
+						+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.updateBook.abid + ", " + data.updateBook.acid + "'" + ')"></i>';
+				
+				
+				/* tr.find('td:eq(0)').html(data.updateBook.urlname);
 				tr.find('td:eq(1)').html('<a href="' + data.updateBook.url + '" target="_blank">' + data.updateBook.url + '</a>');
 				tr.find('td:eq(2)').html('<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(' + data.updateBook.acid + ", '" + data.updateBook.acname + "', '" + data.updateBook.url + "', " + data.updateBook.abid + ');"></i>' 
-						+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.updateBook.abid + ')"></i>');
+						+ '<i class="fas fa-trash-alt url-action" onclick="deleteUrl(' + data.updateBook.abid + ", " + data.updateBook.acid + "'" + ')"></i>');
 				
-				dataTableList[data.updateBook.acid].row(tr).invalidate().draw();
+				dataTableList[data.updateBook.acid].row(tr).invalidate().draw(); */
+				
+				dataTableList[data.updateBook.acid].row(tr).data(tableData).draw();
 				
 			}
 		});
@@ -195,7 +205,7 @@
 												<td><a href="${book.url}" target="_blank">${book.url}</a></td>
 												<td>
 													<i class="fas fa-pencil-alt url-action" onclick="openUrlEditModal(${hashmap.key.acid}, '${hashmap.key.acname}', '${book.url}', ${book.abid});"></i>
-													<i class="fas fa-trash-alt url-action" onclick="deleteUrl(${book.abid})"></i>
+													<i class="fas fa-trash-alt url-action" onclick="deleteUrl(${book.abid}, ${hashmap.key.acid})"></i>
 												</td>
 											</tr>
 										</c:forEach>
@@ -754,7 +764,7 @@
 		
 		<!-- urlDelete script Start -->
 		<script type="text/javascript">
-			function deleteUrl(abid) {
+			function deleteUrl(abid, acid) {
 				$.confirm({
 					title : 'URL 삭제',
 					content : '삭제하시겠습니까?',
@@ -767,7 +777,9 @@
 				        	btnClass : 'btn-danger',
 				        	keys: ['enter'],
 				        	action : function () {
-				        		$("#" + abid).remove(); // dataTable에서 지우기
+				        		//$("#" + abid).remove(); // dataTable에서 지우기
+				        		dataTableList[acid].row($('tr[id=' + abid + ']')).remove().draw();
+				        		
 								$.ajax({
 									url: "deleteUrl.do",
 									type: "post",
