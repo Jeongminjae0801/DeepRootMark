@@ -155,7 +155,7 @@ public class TeamController {
         String uid = (String)session.getAttribute("info_userid");
         g_book.setUid(uid);
         
-		System.out.println(g_book);
+		//System.out.println(g_book);
         int result = gbookservice.insertGroupBookmark(g_book);
         
 		if(result > 0) {
