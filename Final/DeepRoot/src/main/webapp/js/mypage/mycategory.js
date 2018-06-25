@@ -12,7 +12,7 @@ $(document).ready(function(){
 				dataType:"json",
 				success : function(data){	
 
-/*jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/					
+/*왼쪽 jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/					
 					$("#jstree_container").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
 					$('#jstree_container').jstree(true).toggle_node(e.target);	
 					})
@@ -38,7 +38,11 @@ $(document).ready(function(){
 										url : 'dropNode.do',
 										type : 'POST',
 										data : form,
+										beforeSend : function(){
+				                			 $('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+				     					},
 										success : function(data){
+											$('#loading').html("");
 											console.log(data);
 														}
 												})
@@ -53,7 +57,11 @@ $(document).ready(function(){
 										url : 'dropNode.do',
 										type : 'POST',
 										data : {dragnode : node.id, dropnode : par.id},
+										beforeSend : function(){
+				                			 $('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+				     					},
 										success : function(){
+											$('#loading').html("");
 											$('#jstree_container').jstree().deselect_all(true);											
 											$('#jstree_container').jstree(true).select_node(par.id);											
 												}
@@ -69,7 +77,7 @@ $(document).ready(function(){
 							
 						"select_node" : false, // 우클릭 했을 경우 왼클릭되는거 막음
 							
-/*우클릭시 생성되는 메뉴 구성하기 START*/
+/*왼쪽 jstree  우클릭시 생성되는 메뉴 구성하기 START*/
 							
 						"items" : function($node){ //우클릭된 node(폴더)의 정보를 가져온다.
 						    	
@@ -113,10 +121,13 @@ $(document).ready(function(){
 								            			  url: "addFolderOrUrl.do",
 								            			  type :"POST",
 								            			  data : form,
+								            			  beforeSend : function(){
+									                			 $('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+									     					},
 								            			  success : function(data){
-								            				  
+								            				  $('#loading').html("");
 								            				 var node_id = $.trim(data)
-/*새폴더 생성과 동시에 이름 수정하게 하기*/ 
+/*왼쪽 jstree 새폴더 생성과 동시에 이름 수정하게 하기*/ 
 								            				 tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder"} ,"last",function(new_node){
 								            				 new_node.id = node_id;
 								            				 tree.edit(new_node);
@@ -131,7 +142,7 @@ $(document).ready(function(){
 								                "separator_after": false,
 								                "label": "이름 수정",
 								                "action": function (obj) { 		
-/*이름 수정하기 아래에 함수 있음*/
+/*왼쪽 jstree 이름 수정하기 아래에 함수 있음*/
 								                	tree.edit($node);			
 								                }
 								            },                         
@@ -155,7 +166,7 @@ $(document).ready(function(){
 						var head = 0;
 					})
 					.bind("select_node.jstree", function (e, data) {
-/*노드(폴더)가 선택시 실행되는 함수*/					
+/*왼쪽 jstree 노드(폴더)가 선택시 실행되는 함수*/					
 	 					var id = data.node.id;
 	 					urlpid = id;
 	 					
@@ -167,7 +178,6 @@ $(document).ready(function(){
 	 						dataType:"json",
 	 						data : {ubid : id},
 	 						success : function(data){
-
 	 							child_data = data;
 	 							//오른쪽에 있는 jstree 값 새로 넣어주고 refresh해주기
 	 							$("#jstree_container_child").jstree(true).settings.core.data = data;
@@ -178,40 +188,36 @@ $(document).ready(function(){
 			    	.bind('rename_node.jstree', function(event, data){
 			    		var node_id = data.node.id;
 			    		var node_text = data.text;
-/*이름 수정하기*/			    		
+/*왼쪽 jstree 폴더 이름 수정하기*/			    		
 			    		$.ajax({
 		        			url : 'updateNodeText.do',
 		        			type: 'POST',
 		        			data: {'id' : node_id, 'text' : node_text},
+		        			beforeSend : function(){
+	                			 $('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+	     					},
 		        			success : function(result){
-		        				if(result == 1)
-		        					$.alert({
-		        						backgroundDismiss : true,
-		        						title : '수정 확인',
-		        						content: '수정이 완료 되었습니다',
-		        						keys: ['enter']
-		        					})
-		        				else
-		        					$.alert({
-		        						backgroundDismiss : true,
-		        						title : '수정 확인',
-		        						content: '수정이 실패 되었습니다'
-		        					})
+		        				$('#loading').html("");
 		        						}
 		        					});   
 			    	})
 			    	.bind('delete_node.jstree',function(event,data){
-/*삭제하기*/
+/*왼쪽 jstree 폴더 삭제하기*/
 			    		var node_id = data.node.id;
 			    		var form = {node : node_id}
-			    		
+			    		console.log("제거 들어오니");
 	 		    		$.ajax({
 			    			url:'deleteNode.do',
 			    			type:'POST',
 			    			dataType : "json",
 			    			data: form,
-			    			success:function(result){
-			    				console.log(result);
+			    			beforeSend : function(){
+	                			$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+	     					},
+/////////////////////삭제 success 안들어옴	     					
+	     					success : function(result){
+			    				$('#loading').html("");
+			    				console.log("왼쪽 jstree 폴더 삭제");
 			    						}
 	 		    					})  
 			    	})	;
@@ -227,8 +233,11 @@ $(document).ready(function(){
 						
 					  url : "addRoot.do",
 					  type : "POST",
+					  beforeSend : function(){
+             			 $('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+  					},
 					  success : function(data){
-						  
+						  $('#loading').html("");
 						  var ubid = $.trim(data);
 						  //root 카테로기 생성
 						  tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fa fa-folder"} ,"last",function(new_node){
@@ -289,7 +298,6 @@ $(document).ready(function(){
 							if(htag == '#'){
 							
 							return{
-////////////////////////////////////공유하기 버튼 만들기								
 								"edit" : {
 									"icon" : "fa fa-edit",
 									 "separator_before": false,
@@ -297,16 +305,16 @@ $(document).ready(function(){
 						              "label" : "수정",
 						              "action" : false,
 						              "submenu" :{
+/*오른쪽 jstree 이름 수정*/						            	  
 						            	  "rename" : {
 						            		  "separator_before"	: false,
 												"separator_after"	: false,
 												"label" : "이름 수정",
 												"action" : function(obj){
-													console.log("d이름수정");
 								                	tree_child.edit($node);
 												}
 						            	  },
-						            	  
+/*오른쪽 jstree url 수정*/						            	  
 						            	  "editurl" : {
 						            		  "separator_before"	: false,
 												"separator_after"	: false,
@@ -334,10 +342,12 @@ $(document).ready(function(){
 									                		 url: "editUrl.do",
 									                		 type: "POST",
 									                		 data: form ,
+									                		 beforeSend : function(){
+									                			 $('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+									     					},
 									                		 success: function(data){
-									                			 console.log(data);
+									                			 $('#loading').html("");
 									                			 $('#editurl').modal("toggle");
-									                			 
 									                		 			}
 									                	 			}) 
 								                	 })
@@ -345,6 +355,7 @@ $(document).ready(function(){
 						            	  }
 						              }
 								},
+/*오른쪽 jstree 삭제*/								
 						            "remove": {
 						            	"icon" : "fa fa-trash",
 						                "separator_before": false,
@@ -355,6 +366,7 @@ $(document).ready(function(){
 						                  	tree_child.delete_node($node);
 						                }
 						            },
+/*오른쪽 jstree 공유하기*/
 						            "sharing"	:{
 						            	"separator_before": false,
 						                "separator_after": false,
@@ -374,8 +386,8 @@ $(document).ready(function(){
 				                			$('#edit_sname_btn').val(sname);	//sname 넣어주기
 						                	
 						                }
-						            	
 						            },
+/*오른쪽 jstree url 관리자 추천 email*/						            
 						            "recommend" :{
 						            	"separator_before": false,
 						                "separator_after": false,
@@ -393,18 +405,21 @@ $(document).ready(function(){
 							                	url : "recommend.do",
 							                	type : "POST",
 							                	data : form,
+							                	beforeSend : function(){
+							                		$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+												},
 							                	success : function(data){
+							                		$('#loading').html("");
 							                		console.log(data);
-							                		
 							                			}
 							                		})
 						                }
 						            }
 				                 }		
 							}else{
-								
+/*오른쪽 jstree 공유된 url*/									
 								return{
-									
+/*오른쪽 jstree 수정*/								
 									"edit" : {
 										"icon" : "fa fa-edit",
 										 "separator_before": false,
@@ -420,7 +435,7 @@ $(document).ready(function(){
 									                	tree_child.edit($node);
 													}
 							            	  },
-							            	  
+/*오른쪽 공유된 jstree url 수정*/							            	  
 							            	  "editurl" : {
 							            		  "separator_before"	: false,
 													"separator_after"	: false,
@@ -445,8 +460,11 @@ $(document).ready(function(){
 										                		 url: "editUrl.do",
 										                		 type: "POST",
 										                		 data: form ,
+										                		 beforeSend : function(){
+										                			 $('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+										     					},
 										                		 success: function(data){
-										                			 console.log(data);
+										                			 $('#loading').html("");
 										                			 $('#editurl').modal("toggle");
 										                		 		}
 										                	 		}) 
@@ -455,6 +473,7 @@ $(document).ready(function(){
 							            	  }
 							              }
 									},
+/*오른쪽 공유된 jstree 삭제*/									
 						            "remove": {
 						            	"icon" : "fa fa-trash",
 						                "separator_before": false,
@@ -465,6 +484,7 @@ $(document).ready(function(){
 						                  	tree_child.delete_node($node);
 						                }
 						            },
+						            
 						            "recommend" :{
 						            	"separator_before": false,
 						                "separator_after": false,
@@ -482,12 +502,17 @@ $(document).ready(function(){
 							                	url : "recommend.do",
 							                	type : "POST",
 							                	data : form,
+							                	beforeSend : function(){
+							                		$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+												},
 							                	success : function(data){
+							                		$('#loading').html("");
 							                		console.log(data);
 							                	}
 							                })
 						                }
 						            },
+/*오른쪽 공유된 jstree 공유 */
 						            "share":{
 						            	   "icon" : "fa fa-share",
 						            	   "separator_before": true,
@@ -495,12 +520,13 @@ $(document).ready(function(){
 							                "label": "공유",
 							                "action"			: false,
 							                "submenu" :{
+/*오른쪽 공유된 jstree 공유 수정하기*/							                	
 							                	"editing" :{
 							                		"separator_before"	: false,
 													"separator_after"	: false,
 							                		"label": "수정하기",
 							                		"action" : function(obj){
-///////////공유 수정하기////////////////							          
+							                			
 							                			var inst = $.jstree.reference(obj.reference);
 							                			var id = inst.get_node(obj.reference).id;
 							                			var sname =  inst.get_node(obj.reference).original.sname;
@@ -521,6 +547,7 @@ $(document).ready(function(){
 							                			}
 							                		}
 							                	},
+/*오른쪽 공유된 jstree 공유 취소하기*/
 							                	"dimiss" :{
 							                		"separator_before"	: false,
 													"separator_after"	: false,
@@ -534,7 +561,11 @@ $(document).ready(function(){
 																	url: 'shareUrlEdit.do',
 																	type: 'POST',
 																	data: {ubid: id },
+																	beforeSend : function(){
+																		$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+																	},
 																	success:function(data){
+																		$('#loading').html("");
 																		var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
 																		$('#jstree_container').jstree().deselect_all(true);											
 																		$('#jstree_container').jstree(true).select_node(selected_node_left);											
@@ -568,7 +599,7 @@ $(document).ready(function(){
 					dataType : "json",
 					data: form,
 					beforeSend : function(){
-						$('#loading').html("<img src='../images/throbber.gif' />");
+						$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
 					},
 					success:function(result){
 						$('#loading').html("");
@@ -585,7 +616,7 @@ $(document).ready(function(){
 				type: 'POST',
 				data: {'id' : node_id, 'text' : node_text},
 				beforeSend : function(){
-					$('#loading').html("<img src='../images/throbber.gif' />");
+					$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
 				},
 				success : function(result){
 					$('#loading').html("");

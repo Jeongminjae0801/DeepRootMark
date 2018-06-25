@@ -49,7 +49,7 @@ public interface U_BookDAO {
 	public int addFolderOrUrl(U_BookDTO dto) throws ClassNotFoundException, SQLException;
 
 	// JSTREE 폴더 혹은 URL 삭제
-	public void deleteFolderOrUrl(String str) throws ClassNotFoundException, SQLException;
+	public int deleteFolderOrUrl(String str) throws ClassNotFoundException, SQLException;
 
 	// 마이북마크 URL 있는 오른쪽 JSTREE URL 수정
 	public int editUrl(U_BookDTO dto) throws ClassNotFoundException, SQLException;
