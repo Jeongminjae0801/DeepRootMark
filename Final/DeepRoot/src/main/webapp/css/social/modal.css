@@ -106,7 +106,7 @@
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle{
 	background-color: #fff;
 	color: #081971;
-	width: 235px;
+	width: 100px;
 }
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:hover,
 .dropdown.completed-modal-dropdown .btn.btn-secondary.groupshare.dropdown-toggle:focus{
@@ -118,7 +118,7 @@
 .dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle{
 	background-color: #fff;
 	color: #081971;
-	width: 235px;
+	width: 100px;
 }
 .dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle:hover,
 .dropdown.completed-modal-dropdown .btn.btn-secondary.surfingshare.dropdown-toggle:focus{
@@ -167,9 +167,13 @@
   width: 50%;
   float: left;
 }
-.completed-modal-right.surfingshare {
-  padding-left: 10px;
+.completed-modal-right-all.surfingshare {
+  padding: 10px 0px 0px 10px;
   width: 50%;
+  float: right;
+}
+#jstree-to-right-all {
+  clear: both;
   float: left;
 }
 
