@@ -126,7 +126,7 @@ $(document).ready(function(){
 									     					},
 								            			  success : function(data){
 								            				  $('#loading').html("");
-								            				 var node_id = $.trim(data)
+								            				 var node_id = $.trim(data.ubid);
 /*왼쪽 jstree 새폴더 생성과 동시에 이름 수정하게 하기*/ 
 								            				 tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder"} ,"last",function(new_node){
 								            				 new_node.id = node_id;
@@ -238,7 +238,7 @@ $(document).ready(function(){
   					},
 					  success : function(data){
 						  $('#loading').html("");
-						  var ubid = $.trim(data);
+						  var ubid = $.trim(data.ubid);
 						  //root 카테로기 생성
 						  tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fa fa-folder"} ,"last",function(new_node){
 						  new_node = ubid;
@@ -569,7 +569,7 @@ $(document).ready(function(){
 																		var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
 																		$('#jstree_container').jstree().deselect_all(true);											
 																		$('#jstree_container').jstree(true).select_node(selected_node_left);											
-																		console.log(data);
+																		console.log(data.result);
 																				}
 																			})
 									                				}
@@ -603,7 +603,7 @@ $(document).ready(function(){
 					},
 					success:function(result){
 						$('#loading').html("");
-						console.log(result);
+						console.log(result.result);
 								}
 							})  
 		})
@@ -625,28 +625,47 @@ $(document).ready(function(){
 							}
 					});   
 		})
-
-	$("#jstree_container").on('select_node.jstree',function(e,data){
-	})
-/*폴더 열렸을 경우 아이콘 변경해 주기*/	
+		.bind("loaded.jstree", function (event, data) {
+						console.log("loading 이 되는 지 ");
+						var test = data.instance._model.data
+						var head = 0;
+					})
+		.bind("changed.jstree",function(event,data){
+			console.log("changed.jstree");
+		})
+		.bind("load_node.jstree",function(event,data){
+			console.log(data.node);
+			var node_ids = [];
+			node_ids = data.node.children;
+			for(var i in node_ids){
+				var sname = $('#jstree_container_child').jstree(true).get_node(node_ids[i]).original.sname;
+				if(sname != "#"){
+					$('#'+ node_ids[i]).addClass("shared_url");
+				}
+			}
+			console.log("load_node.jstree");
+		})
+/*왼쪽 jstree 폴더 열렸을 경우 아이콘 변경해 주기*/	
 	$("#jstree_container").on('open_node.jstree', function(e,data){
 		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder-open")
 	})
-/*폴더 닫혔을 경우 아이콘 변경해 주기*/
+/*왼쪽 jstree 폴더 닫혔을 경우 아이콘 변경해 주기*/
 	$("#jstree_container").on('close_node.jstree', function(e,data){
 		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
 	})
-
+/*완료 그룹 모달창 왼쪽 jstree 폴더 열렸을 경우 아이콘 변경해 주기*/	
 	$("#jstree-from-left").on('open_node.jstree', function(e,data){
 	$.jstree.reference('#jstree-from-left').set_icon(data.node, "fa fa-folder-open")
 	})
+/*완료 그룹 모달창 왼쪽 jstree 폴더 닫혔을 경우 아이콘 변경해 주기*/
 	$("#jstree-from-left").on('close_node.jstree', function(e,data){
 		$.jstree.reference('#jstree-from-left').set_icon(data.node, "fa fa-folder")
 	})
-	
+/*완료 그룹 모달창 오른쪽 jstree 폴더 열렸을 경우 아이콘 변경해 주기*/		
 	$("#jstree-to-right").on('open_node.jstree', function(e,data){
 	$.jstree.reference('#jstree-to-right').set_icon(data.node, "fa fa-folder-open")
 	})
+/*완료 그룹 모달창 오른쪽 jstree 폴더 닫혔을 경우 아이콘 변경해 주기*/	
 	$("#jstree-to-right").on('close_node.jstree', function(e,data){
 		$.jstree.reference('#jstree-to-right').set_icon(data.node, "fa fa-folder")
 	})
@@ -880,7 +899,7 @@ function addUrlShare() {
 			success : function(data){//나중에 sequence 나 autoincrement 사용해서 하나 올린 값을 받아서 insert 해주고 data 보내주어 view단 node 생성해주기	
 				$('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
 				//console.log(data);	//id 확인
-				var node_id = $.trim(data);
+				var node_id = $.trim(data.ubid);
 				tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
 					//console.log(new_node.id);
 				});

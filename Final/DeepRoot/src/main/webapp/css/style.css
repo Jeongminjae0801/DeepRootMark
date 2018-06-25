@@ -360,6 +360,12 @@ font-family: 'Gamja Flower', cursive;
  .jstree-proton-responsive .jstree-wholerow-clicked { /* 전체 클릭*/
     background: #FFFF7E;
   }
+ .shared_url{ /*공유 된거*/
+ 	background-size: 15px 15px !important;
+ 	background-position: center right 30px !important;
+ 	background-repeat:   no-repeat !important;
+ 	background-image: url("../images/mypage/shared.png")  !important;
+ }
 .jstree-proton .jstree-clicked { /* 그냥 클릭 됨 */
   background: #FFFF7E;
   color: #353866;
