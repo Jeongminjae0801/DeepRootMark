@@ -1,6 +1,6 @@
 
 /* Modal Center Controller */
-#mainIndiModal{
+/* #mainIndiModal{
 	perspective-origin: center center;
     display: table;
     width: 100%;
@@ -9,7 +9,8 @@
 #main-modal-controller { display: table-row; width: 100%; }
 #main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
 .modal { z-index: 0; }
-.modal-open .modal { z-index: 1050; }
+.modal-open .modal { z-index: 1050; } */
+/* Modal Center Controller END */
 
 #into-my-bookmark {
 	display: block;
