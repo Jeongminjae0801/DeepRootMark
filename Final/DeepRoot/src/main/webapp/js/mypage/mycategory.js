@@ -567,7 +567,11 @@ $(document).ready(function(){
 					type:'POST',
 					dataType : "json",
 					data: form,
+					beforeSend : function(){
+						$('#loading').html("<img src='../images/throbber.gif' />");
+					},
 					success:function(result){
+						$('#loading').html("");
 						console.log(result);
 								}
 							})  
@@ -575,19 +579,19 @@ $(document).ready(function(){
 		.bind('rename_node.jstree', function(event, data){
 			 var node_id = data.node.id;
 			var node_text = data.text;
-			console.log(node_id);
-			console.log(node_text);
 			
 			$.ajax({
 				url : 'updateNodeText.do',
 				type: 'POST',
 				data: {'id' : node_id, 'text' : node_text},
+				beforeSend : function(){
+					$('#loading').html("<img src='../images/throbber.gif' />");
+				},
 				success : function(result){
-					if(result == 1)
-						$.alert('수정되었습니다.');
-					else
+					$('#loading').html("");
+					if(result != 1)
 						alert('수정 실패');
-														}
+							}
 					});   
 		})
 
