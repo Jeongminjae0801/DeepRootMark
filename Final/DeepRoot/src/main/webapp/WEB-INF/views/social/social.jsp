@@ -75,12 +75,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="completed-modal-left">
-						<form id="form-to-mybookmark" action="${pageContext.request.contextPath}/user/addtomybookmark.do" method="post">
+						<form id="form-to-getmybookmark" action="${pageContext.request.contextPath}/user/addtomybookmark.do" method="post">
 			                <h4 class="completed-modal-from"><b>URL :</b>
-			                	<input type="text" class="indishare-url" value="" name="url" readonly></h4>
-							<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
-							<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
-							<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
+			                	<input type="text" class="indishare-url" value="1" name="url" readonly></h4>
+							<input type="hidden" class="indishare-urlname" value="2" name="urlname" readonly>
+							<input type="hidden" class="indishare-userpid" value="3" name="pid" readonly>
+							<input type="hidden" class="indishare-abid" value="4" name="abid" readonly>
+							<input type="hidden" class="indishare-gid" value="5" name="gid" readonly>
 						</form>
 		            </div>
 		            <hr>
@@ -319,7 +320,7 @@
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
 									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}">
-										<i class="fa fa-share"></i>
+										<i class="fa fa-share getbookmark"></i>
 									</td>
 									<!-- 가져오기 icon -->
 								</tr>

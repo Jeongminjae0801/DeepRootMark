@@ -102,7 +102,9 @@ public class UserController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         book.setUid(uid);
+        System.out.println("ㅎㅇㅎㅇ???");
         
+        System.out.println(book);
         int result = u_bookservice.addToMyBookmark(book);
 		if(result > 0) {
 			model.addAttribute("result", "success");
