@@ -127,11 +127,10 @@
 			</div>
 			<div class="modal-body row">
 				<div class="completed-modal-left surfingshare">
-	                <h4 class="completed-modal-from"><b>From : <span id="from-text" class="abc">[회원이름]</span></b></h4>
-	                
-	                <form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
+					<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
 		                <h4 class="completed-modal-from"><b>URL :</b>
-				                	<input type="text" class="indishare-url-surfing" value="" name="url" readonly></h4>
+				                	<a class="indishare-url-surfing" name="url"></a></h4>
+				        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="abc">[회원이름]</span></b></h4>
 		                <div class="jstree-from" id="jstree-from-left-all">
 		                	제이트리 뿌려주곻
 		                </div>
@@ -312,7 +311,7 @@
 								<tr>
 									<td class="table-site"><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
-									<td class="table-write" id="${u_booklist.uid}" onclick="testing_modal(this)"><a>${u_booklist.nname}</a></td>
+									<td class="table-write"><a onclick="testing_modal(this)" id="${u_booklist.nname}">${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
@@ -355,7 +354,7 @@
 								<!-- 그룹 공유  -->
 									<td class="table-groupname"><a href="#">${g_booklist.gname}</a></td>
 									<td class="table-tag">"${g_booklist.htag}"</td>
-									<td class="table-write">${g_booklist.nname}</td>
+									<td class="table-write"><a onclick="testing_modal(this)" id="${g_booklist.nname}">${g_booklist.nname}</a></td>
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<!-- 가져오기 icon -->
