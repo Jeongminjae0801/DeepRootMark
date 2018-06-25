@@ -1,3 +1,16 @@
+
+/* Modal Center Controller */
+#mainIndiModal{
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+#main-modal-controller { display: table-row; width: 100%; }
+#main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
+.modal { z-index: 0; }
+.modal-open .modal { z-index: 1050; }
+
 #into-my-bookmark {
 	display: block;
 	float: right;
@@ -29,7 +42,6 @@
 	border-left: 2px solid #ccc;
 	padding-top: 10px;
 }
-
 .modal > a {
   margin: 22px 40px 0px 0px;
 }

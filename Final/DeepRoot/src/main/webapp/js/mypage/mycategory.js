@@ -87,7 +87,7 @@ $(document).ready(function(){
 								                "label": "URL 추가",
 								                "action": function (obj) { 
 								                	
-								                	  $('#form')[0].reset();// modal input text 창 초기화
+								                	  $('#form_btn')[0].reset();// modal input text 창 초기화
 								                	  
 									            	  var inst = $.jstree.reference(obj.reference); // 내가 우 클릭한 node의 정보
 									            	  

@@ -5,55 +5,59 @@
 
 	<!-- Main에서 개인 북마크로 가져가기 모달 START -->
 	<div id="mainIndiModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mainIndiModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
-				</div>
-				<div class="modal-body">
-					<div class="completed-modal-left">
-						<form id="form-to-mybookmark" action="user/addtomybookmark.do" method="post">
-			                <h4 class="completed-modal-from"><b>URL :</b>
-			                	<input type="text" class="indishare-url" value="" name="url" readonly></h4>
-							<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
-							<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
-							<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
-							<input type="hidden" class="indishare-gid" value="" name="gid" readonly>
-						</form>
-		            </div>
-		            <hr>
-		            <div class="completed-modal-left">
-		                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
-		
-		                <!-- Dropdown -->
-		                <div class="dropdown completed-modal-dropdown">
-		                    <button id="dropdownMenuButton" class="btn btn-secondary indishare dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		                    	Click <span class="caret"></span>
-		                    </button>
-		                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		                        <li id="dropdown-my-book" class="dropdown-i-tem">My Bookmark</li>
-		                        <hr class="divider-hr">
-		                        <li class="dropdown-item dropdown-submenu">
-		                            <a tabindex="-1">Group</a>
-		                        </li>
-		                    </div>
-		                </div>
-		
-		                <div id="jstree-to-bottom" style="clear: both;"></div>
-		            </div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
-					<button id="into-my-bookmark" type="button" class="btn btn-primary" style="display: block;">확인</button>
-					<button id="into-group-bookmark" type="button" class="btn btn-primary" style="display: none;">확인</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-	<!-- social 개인 북마크 가져가기 div END -->
+		<div id="main-modal-controller">
+			<div id="main-modal-center">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
+						</div>
+						<div class="modal-body">
+							<div class="completed-modal-left">
+								<form id="form-to-mybookmark" action="user/addtomybookmark.do" method="post">
+					                <h4 class="completed-modal-from"><b>URL :</b>
+					                	<input type="text" class="indishare-url" value="" name="url" readonly></h4>
+									<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
+									<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
+									<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
+									<input type="hidden" class="indishare-gid" value="" name="gid" readonly>
+								</form>
+				            </div>
+				            <hr>
+				            <div class="completed-modal-left">
+				                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
+				
+				                <!-- Dropdown -->
+				                <div class="dropdown completed-modal-dropdown">
+				                    <button id="dropdownMenuButton" class="btn btn-secondary indishare dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				                    	Click <span class="caret"></span>
+				                    </button>
+				                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				                        <li id="dropdown-my-book" class="dropdown-i-tem">My Bookmark</li>
+				                        <hr class="divider-hr">
+				                        <li class="dropdown-item dropdown-submenu">
+				                            <a tabindex="-1">Group</a>
+				                        </li>
+				                    </div>
+				                </div>
+				
+				                <div id="jstree-to-bottom" style="clear: both;"></div>
+				            </div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
+							<button id="into-my-bookmark" type="button" class="btn btn-primary" style="display: block;">확인</button>
+							<button id="into-group-bookmark" type="button" class="btn btn-primary" style="display: none;">확인</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+		</div>
+	</div>
+	<!-- MAIN to MY BOOK 가져가기 div END -->
 
 	<!-- Home slider START-->
     <section id="home-slider">

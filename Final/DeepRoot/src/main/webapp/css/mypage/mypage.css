@@ -15,26 +15,16 @@
 .material-icons.md-48 { float: left;font-size: 48px; }
 
 
-/* a:hover {
-    outline: none;
-    text-decoration: none;
-    color: #7bbfa8;
+.modal { z-index: -10; }
+.modal-open .modal { z-index: 1050; }
+#linkAdd_btn {
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
 }
-
-a:focus {
-    outline: none;
-    outline-offset: 0;
-}
-
-a {
-    font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
-    color: #000;
-    -webkit-transition: 300ms;
-    -moz-transition: 300ms;
-    -o-transition: 300ms;
-    transition: 300ms;
-} */
-
+#main-modal-controller { display: table-row; width: 100%; }
+#main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
 
 .bg-img {
   position: fixed;
