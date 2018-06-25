@@ -13,7 +13,8 @@
     <title>뿌리깊은마크</title>
 	
 	<!-- Latest compiled Bootstrap Common CSS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
