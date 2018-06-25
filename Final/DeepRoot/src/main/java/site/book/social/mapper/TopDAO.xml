@@ -51,4 +51,9 @@ END //
 		SELECT * FROM U_BOOK WHERE UID=#{uid} AND ((URL is null) or (HTAG is not null));
 	</select>
 	<!-- 작성자 파도타기 카테고리 및 URL 가져오기 end -->
+	
+	<!-- 민재, 개인 북마크 공유 내 카테고리 추가하기 -->
+	<insert id="addUrlNotShare">
+		INSERT INTO U_BOOK(URL, URLNAME, REGDATE, UID, PID) VALUES(#{url}, #{urlname}, SYSDATE(), #{uid}, #{pid})
+	</insert>
 </mapper>

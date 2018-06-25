@@ -3,8 +3,11 @@
 
 <mapper namespace="site.book.user.dao.U_BookDAO">
 	<!-- 태웅 -->
+	<!-- From Admin Bookmark to My Bookmark -->
 	<insert id="insertToMyBookmark">
+		<if test="abid != 0 or pid != 0">
 		INSERT INTO U_BOOK(URL, URLNAME, REGDATE, UID, PID, ABID) VALUES(#{url}, #{urlname}, SYSDATE(), #{uid}, #{pid}, #{abid});
+		</if>
 	</insert>
 	
 	<!-- 희준 -->

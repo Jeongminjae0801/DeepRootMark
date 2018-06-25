@@ -21,6 +21,7 @@
 							<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
 							<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
 							<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
+							<input type="hidden" class="indishare-gid" value="" name="gid" readonly>
 						</form>
 		            </div>
 		            <hr>
@@ -46,7 +47,8 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
-					<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
+					<button id="into-my-bookmark" type="button" class="btn btn-primary" style="display: block;">확인</button>
+					<button id="into-group-bookmark" type="button" class="btn btn-primary" style="display: none;">확인</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -214,7 +216,7 @@
                           </span>
                         </div>
                         <div id="category-display" class="col-sm-12 category-items">
-                            <div id="showall" class="category reddiv" style="background-color: #7bbfa8">
+                            <div id="showall" class="category reddiv" style="background-color: #008B8B">
                                 <span class="category-title">Show All</span></div>
                             <c:forEach items="${categoryList}" var="cList">
                             	<div id="${cList.acid}" data-category="${cList.acname}" class="category" style="background-color: ${cList.color}">
@@ -242,8 +244,10 @@
                                 	<c:choose>
                                 		<c:when test="${cList.acid == bList.acid}">
                                			<li>
+                               				<se:authorize access="isAuthenticated()">
 	                                        <button class="url_hover_btn" type="button" data-toggle="modal" data-target="#mainIndiModal">
 	                                        	<img class="zoom_img" src="icon/url_save.png"><!-- data-toggle="modal" onclick="openUrlModal()" --></button>
+	                                       	</se:authorize>
 	                                        <button class="url_hover_btn" type="button">
 	                                        	<img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
 	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}" alt="">
@@ -276,14 +280,14 @@
                         <div id="preview_content" >
                             <div id="layout">미리보기: Page Image</div>
                             <div id="comment" >
-                            	<div id="comment-detail">
-                            		설명 Details
+                            	<div id="comment-detail" >
+                            		설명 Detail
+                            	</div>
+                            	<div id="ajax-loading-div">
                             	</div>
                             	<div id="world-ranking-visitor">
-                            		
                             	</div>
                             	<div id="url-sub-domain">
-                            		
                             	</div>
                             </div>
                         </div>

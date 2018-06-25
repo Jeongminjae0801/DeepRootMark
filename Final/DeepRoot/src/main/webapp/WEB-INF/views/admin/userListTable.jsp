@@ -3,10 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
+
 	$(function(){
-		$("#userListTable").DataTable({
+		var table = $("#userListTable").DataTable({
 			responsive: true
 		});
+		
 	});
 	
 	/*회원삭제  스크립트 START*/
@@ -33,6 +35,7 @@
 		    				success : function(data){
 		    					console.log(data);
 		    				}
+		    			
 		    			});
 		        	}
 		        },
@@ -47,6 +50,8 @@
 		});
 	};
     /*회원삭제  스크립트 END*/
+	
+	
 </script>
 
 <!-- Main Content START -->
@@ -82,7 +87,7 @@
 									<tr id="${user.nname}">
 										<td>${user.nname}</td>
 										<td>${user.uid}</td>
-										<td><i class="fas fa-trash-alt url-action" onclick="deleteUser('${user.uid}','${user.nname}')"></i></td>
+										<td><i class="fas fa-trash-alt url-action"></i></td>
 									</tr>
 									</c:forEach>
 								</tbody>

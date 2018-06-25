@@ -208,8 +208,8 @@ font-family: 'Gamja Flower', cursive;
 
 .vakata-context li > a:hover { /* 호버 contextmenu  */
   position: relative;
-  color: #ffffff;
-  background-color: #ffbbd6;
+  color: #000;
+  background-color: #fbffb9;
   -moz-box-shadow: 0 0 2px #fab1ce;
   -webkit-box-shadow: 0 0 2px #fab1ce;
   box-shadow: 0 0 2px #fab1ce;
@@ -224,7 +224,8 @@ font-family: 'Gamja Flower', cursive;
 }
 .vakata-context .vakata-context-hover > a {
   position: relative;
-  background-color: #ffbbd6;
+  color: #000;
+  background-color: #fbffb9;
   -moz-box-shadow: 0 0 2px #fab1ce;
   -webkit-box-shadow: 0 0 2px #fab1ce;
   box-shadow: 0 0 2px #fab1ce;

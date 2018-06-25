@@ -21,6 +21,7 @@
     <!-- Common Script START -->
     <!-- Latest compiled JavaScript & CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Script Common JavaScript & CSS END -->
 
     <!-- Main Page CSS -->
@@ -142,10 +143,10 @@
 			        		comment = "<b>" + data.title + "</b>";
 			        	}
 			        	if(data.url != "" && data.url != null){
-			        		comment += "&nbsp;-&nbsp;<a href='" + data.url + "' target='_blank'><font style='color : #1bc9c4; text-decoration : underline'>" + data.url + "</font></a>";
+			        		comment += "&nbsp;-&nbsp;<a href='" + data.url + "' target='_blank'>" + data.url + "</a>";
 			        	}
 			        	if(data.description != "" && data.description != null){
-			        		comment += "<br> <p>" + data.description + "</p>";
+			        		comment += "<br> <p>&nbsp;&nbsp;" + data.description + "</p>";
 			        	}
 			        	$("#comment-detail").html(comment);
                         $('#comment').fadeIn(1000);
@@ -163,12 +164,14 @@
 				type: "post",
 				data : { abid : abid },// 북마크 ID
 				beforeSend: function() {
-	                $('#sub-domain').html('<img id="loading-img" src="${pageContext.request.contextPath}/images/loading/loading.gif"/>');
+	                $('#ajax-loading-div').html('<img id="loading-img" src="${pageContext.request.contextPath}/images/loading/loading.gif" style="width:35%; ma"/>');
 	            },
 	            complete: function() {
-	            	$('#sub-domain').html('');
+	            	$('#ajax-loading-div').html('');
 	            },
 				success : function(data){
+					$('#world-ranking-visitor').html('');
+		        	$('#url-sub-domain').html('');
 		        	var ranking = "<i class='fas fa-globe' style='color: #1192e8;'><p class='detail-text'>Global Rank</p></i>"
 		        		 			+ "<span id='world-ranking'>";
 		        	var visitors = "<i class='fas fa-eye' style='color: #e46100;'><p class='detail-text'>Daily Visitors</p></i>" 
@@ -177,7 +180,7 @@
 		        					+ "<span>";
 		
 		        	if(data.rank != "" && data.rank != null) {
-		        		ranking += data.rank + "</span><br>";
+		        		ranking += numberWithCommas(data.rank) + "</span><br>";
 		        	}else {
 		        		ranking += "Not supported</span><br>";
 		        	}

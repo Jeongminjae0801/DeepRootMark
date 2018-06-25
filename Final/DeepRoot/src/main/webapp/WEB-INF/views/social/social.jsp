@@ -66,69 +66,52 @@
 <!-- social 개인 북마크 가져가기 div START -->
 <div id="socialIndiModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialIndiModalLabel">
 		<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
-			</div>
-			<div class="modal-body">
-				<div class="completed-modal-left">
-	                <h4 class="completed-modal-from"><b>URL :</b>
-	                	<input type="text" class="indishare-url" value="유알엘 주소를 주세염" readonly>
-	                </h4>
-	                <div id="jstree-from-left">
-	
-	                </div>
-	            </div>
-	            <hr>
-	            <div class="completed-modal-left">
-	                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
-	
-	                <!-- Dropdown -->
-	                <div class="dropdown completed-modal-dropdown">
-	                    <button class="btn btn-secondary indishare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                    Click <span class="caret"></span>
-	                    </button>
-	                    <button class="btn btn-secondary indishare dropdown-toggle gogosing" type="button">
-	                    My Book
-	                    </button>
-	                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-	                        <li id="completed-modal-mybook" class="dropdown-item" href="#"> <!-- onclick="mycategory();" -->My Book</li>
-	                        <hr class="divider-hr">
-	                        <li class="dropdown-item dropdown-submenu">
-	                            <a tabindex="-1" href="#">Group</a>
-	                            <ul class="dropdown-menu">
-	                              <li class="dropdown-group-item"><span tabindex="-1">희준이의 꼬봉들</span></li>
-	                              <li class="dropdown-group-item"><span>나는 노예다</span></li>
-	                              <li class="dropdown-group-item"><span>니꺼 니꺼 내꺼 니꺼</span></li>
-	                            </ul>
-	                        </li>
-	                    </div>
-	                    <script type="text/javascript">
-	                        $('#completed-modal-mybook').click(function() {
-	                            $('#dropdownMenuButton').text($(this).text());
-	                        });
-	                        $('.dropdown-group-item').click(function() {
-	                            $('#dropdownMenuButton').text($(this).text());
-	                        });
-	                    </script>
-	                </div>
-					<hr>
-	                <div id="indi-jstree-to-right">
-                	난 너가 떠 줬으면 좋겠어
-	                </div>
-	            </div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary">확인</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- social 개인 북마크 가져가기 div END -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
+				</div>
+				<div class="modal-body">
+					<div class="completed-modal-left">
+						<form id="form-to-mybookmark" action="addtomybookmark.do" method="post">
+			                <h4 class="completed-modal-from"><b>URL :</b>
+			                	<input type="text" class="indishare-url" value="" name="url" readonly></h4>
+							<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
+							<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
+							<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
+						</form>
+		            </div>
+		            <hr>
+		            <div class="completed-modal-left">
+		                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
+		
+		                <!-- Dropdown -->
+		                <div class="dropdown completed-modal-dropdown">
+		                    <button id="dropdownMenuButton" class="btn btn-secondary indishare dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                    	Click <span class="caret"></span>
+		                    </button>
+		                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		                        <li id="dropdown-my-book" class="dropdown-i-tem">My Bookmark</li>
+		                        <hr class="divider-hr">
+		                        <li class="dropdown-item dropdown-submenu">
+		                            <a tabindex="-1">Group</a>
+		                        </li>
+		                    </div>
+		                </div>
+		
+		                <div id="jstree-to-bottom" style="clear: both;"></div>
+		            </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
+					<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<!-- social 개인 북마크 가져가기 div END -->
 
 <!-- social 작성자 파도타기 start -->
 <div id="socialSurfingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialSurfingModalLabel">
@@ -198,7 +181,7 @@
 			<!-- top5 list start -->
 			<div class="col-sm-5">
 				<div class="panel-body rank-table">
-					<span class="ranktitle"><img src="../icon/trophy.png"
+					<span class="ranktitle"><img src="<%=request.getContextPath()%>/icon/trophy.png"
 						class="rankimg">개인 Top 5</span>
 					<table>
 						<thead>

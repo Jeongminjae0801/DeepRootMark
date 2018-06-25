@@ -20,7 +20,7 @@ public interface U_BookDAO {
 	// 태웅
 	// 메인 URL 내 북마크로 추가
 	public int insertToMyBookmark(U_BookDTO book) throws ClassNotFoundException, SQLException;
-	
+
 	// 희준
 	
 	// 개인이 추가한 북마크수
@@ -36,27 +36,38 @@ public interface U_BookDAO {
 	public int addUrlNotShare(U_BookDTO book) throws ClassNotFoundException, SQLException;
 	
 	// 명수
-	public List<U_BookDTO> getCategoryList(String uid);
+	// 마이북마크 왼쪽 폴더들만 보이는 JSTREE
+	public List<U_BookDTO> getCategoryList(String uid) throws ClassNotFoundException, SQLException;
 
-	public int insertRootFolder(int ubid, String uid);
+	// 마이북마크 왼쪽 JSTREE에서 root 카테고리 추가
+	public int insertRootFolder(int ubid, String uid) throws ClassNotFoundException, SQLException;
 
-	public int getMaxId();
+	// JSTREE 노드 생성시 db 처리와 노드 뿌리는처리에서 id 값 가져오기
+	public int getMaxId() throws ClassNotFoundException, SQLException;
 
-	public int addFolderOrUrl(U_BookDTO dto);
+	// JSTREE 폴더 혹은 URL 추가
+	public int addFolderOrUrl(U_BookDTO dto) throws ClassNotFoundException, SQLException;
 
-	public void deleteFolderOrUrl(String str);
+	// JSTREE 폴더 혹은 URL 삭제
+	public void deleteFolderOrUrl(String str) throws ClassNotFoundException, SQLException;
 
-	public int editUrl(U_BookDTO dto);
+	// 마이북마크 URL 있는 오른쪽 JSTREE URL 수정
+	public int editUrl(U_BookDTO dto) throws ClassNotFoundException, SQLException;
 
-	public List<U_BookDTO> getUrl(int ubid);
+	// 왼쪽 폴더(노드) 클릭시 하위 URL 리스트
+	public List<U_BookDTO> getUrl(int ubid) throws ClassNotFoundException, SQLException;
 
-	public int dropNode(HashMap<String, String> param);
+	// DND 처리 하기
+	public int dropNode(HashMap<String, String> param) throws ClassNotFoundException, SQLException;
 
-	public int updateNodeText(HashMap<String, String> param);
+	// 마이북마크 노드 이름 수정
+	public int updateNodeText(HashMap<String, String> param) throws ClassNotFoundException, SQLException;
 
-	public int shareUrlEdit(U_BookDTO dto);
+	// URL 공유 수정 삭제 추가
+	public int shareUrlEdit(U_BookDTO dto)  throws ClassNotFoundException, SQLException;
 
-	public int insertUrlFromCompletedGroup(U_BookDTO dto);
+	// 완료된 그룹 URL 추가
+	public int insertUrlFromCompletedGroup(U_BookDTO dto)  throws ClassNotFoundException, SQLException;
 
 
 }

@@ -1,3 +1,11 @@
+#into-my-bookmark {
+	display: block;
+	float: right;
+}
+#into-group-bookmark{
+	display: none;
+	float: right;	
+}
 .modal-body {
 	padding-top:0;
 }

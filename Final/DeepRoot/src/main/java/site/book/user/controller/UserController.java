@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
+import site.book.admin.dto.NoticeDTO;
+import site.book.admin.service.NoticeService;
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.TeamDTO;
@@ -43,13 +45,16 @@ public class UserController {
 	
 	@Autowired
 	private UserService userservice;
-	// 희준
 	
+	// 희준
 	@Autowired
 	private TeamService teamservice;
 	
 	@Autowired
 	private G_MemberService g_memberservice;
+	
+	@Autowired
+	private NoticeService notice_service;
 	
 	// 명수
 	@Autowired
@@ -182,6 +187,14 @@ public class UserController {
 		
 		List<TeamDTO> completedTeamList = teamservice.getCompletedTeamList(uid);
 		model.addAttribute("completedTeamList", completedTeamList);
+		
+		if(uid != null) {
+			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
+			model.addAttribute("headerTeamList", headerTeamList);
+		}
+		
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
 		
 		return "mypage.myCategory";
 	}
@@ -498,7 +511,7 @@ public class UserController {
 			for(int i = 0 ; i< jarr.length() ; i++) {
 				dto.setUrl((String)jarr.getJSONObject(i).get("url"));
 				dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
-				dto.setPid((int)jarr.getJSONObject(i).get("pid"));
+				dto.setPid(Integer.valueOf((String)jarr.getJSONObject(i).get("pid")));
 				dto.setUid(uid);
 				
 				result = u_bookservice.insertUrlFromCompletedGroup(dto);
