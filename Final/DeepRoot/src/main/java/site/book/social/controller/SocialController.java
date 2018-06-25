@@ -143,4 +143,23 @@ public class SocialController {
 		}
 		/*해당 회원 북마크 가져오기 end*/
 		
+		// 민재 , 개인 북마크 내 카테고리로 가져가기
+		@RequestMapping("getmybookmark.do")
+		public View getSharemark(U_BookDTO book ,HttpServletRequest req, Model model) {
+			HttpSession session = req.getSession();
+	        String uid = (String)session.getAttribute("info_userid");
+	        book.setUid(uid);
+	        System.out.println("ㅎㅇㅎㅇ???");
+	        
+	        System.out.println(book);
+	        int result = u_bookservice.insertUrlFromCompletedGroup(book);
+			if(result > 0) {
+				model.addAttribute("result", "success");
+			}else {
+				model.addAttribute("result", "fail");
+			}
+			
+			return jsonview;
+		}
+		
 }

@@ -75,13 +75,13 @@
 				</div>
 				<div class="modal-body">
 					<div class="completed-modal-left">
-						<form id="form-to-getmybookmark" action="${pageContext.request.contextPath}/user/addtomybookmark.do" method="post">
+						<form id="form-to-getmybookmark" action="getmybookmark.do" method="post">
 			                <h4 class="completed-modal-from"><b>URL :</b>
-			                	<input type="text" class="indishare-url" value="1" name="url" readonly></h4>
-							<input type="hidden" class="indishare-urlname" value="2" name="urlname" readonly>
-							<input type="hidden" class="indishare-userpid" value="3" name="pid" readonly>
-							<input type="hidden" class="indishare-abid" value="4" name="abid" readonly>
-							<input type="hidden" class="indishare-gid" value="5" name="gid" readonly>
+			                	<input type="text" class="indishare-url" name="url" readonly></h4>
+								<input type="hidden" class="indishare-urlname" value="" name="urlname" readonly>
+								<input type="hidden" class="indishare-userpid" value="" name="pid" readonly>
+								<input type="hidden" class="indishare-abid" value="" name="abid" readonly>
+								<input type="hidden" class="indishare-gid" value="" name="gid" readonly>
 						</form>
 		            </div>
 		            <hr>
@@ -107,7 +107,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
-					<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
+					<button id="into-my-bookmark2" type="button" class="btn btn-primary">확인</button>
 					<button id="into-group-bookmark" type="button" class="btn btn-primary" style="display: none;">확인</button>
 				</div>
 			</div><!-- /.modal-content -->

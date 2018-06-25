@@ -132,10 +132,10 @@ $(function() {
     	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
     	$('#jstree-to-bottom').html('');
     	$('#dropdown-empty-area').remove();	// 모달 초기화 END
+    	
     	var url = $(this).parent().children('p').data('url');
     	$('.indishare-url').val(url);
-    	$('.indishare-urlname').val($(this).parent().children('p').text());
-    	$('.indishare-abid').val( $(this).parent().children('p').data('abid'));
+    	$('.indishare-urlname').val($(this).parent().parent().children().eq(0).children('a').text());
     	
     	// 진행중인 팀 리스트 가져오기
     	$.ajax({
@@ -202,64 +202,21 @@ $(function() {
 			}
 		});
     });
-    
-    $("#form-to-getmybookmark").ajaxForm({
-    	beforesend : function(){
-    		console.log($(".indishare-url").val());
-    		console.log($(".indishare-urlname").val());
-    		console.log($(".indishare-userpid").val());
-    		console.log($(".indishare-abid").val());
-    		console.log($(".indishare-gid").val());
-    		
-    	},
-    	success: function(data, statusText, xhr, $form){
-			console.log(data.result);
-			
-			if(data.result == "success") {
-				
-				swal("Thank you!", "북마크에 추가되었습니다!", "success");
-				$('#socialIndiModal').modal("toggle");
-			}else {
-                swal({
-                    title: "목적지 폴더를 확인하셨나요?",
-                    text: "잠시후 다시 시도해주세요!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true
-				});
-			}
-		},
-		error : function(error) {
-			swal({
-                title: "목적지 폴더를 확인하셨나요?",
-                text: "잠시후 다시 시도해주세요!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true
-			});
-	    }
-    });
-    
+ 
     // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
-    $('#into-my-bookmark').on('dblclick', function(){});
-    $('#into-my-bookmark').on('click', function(){
+    $('#into-my-bookmark2').on('dblclick', function(){});
+    $('#into-my-bookmark2').on('click', function(){
     	
-    		console.log($(".indishare-url").val());
-    		console.log($(".indishare-urlname").val());
-    		console.log($(".indishare-userpid").val());
-    		console.log($(".indishare-abid").val());
-    		console.log($(".indishare-gid").val());
-    		
-    	
-    	$("#form-to-getmybookmark").submit();
-    	
-    	/*var params = $("#form-to-mybookmark").serialize();
-    	console.log(params);
-    	$.ajax({
-			url : "/bit/user/addtomybookmark.do",
-			type: "POST",
-			data: params,
-			dataType:"json",
+    	/*var params = $("#form-to-getmybookmark").serialize();*/
+		$.ajax({
+			url : "getmybookmark.do",
+			type: "post",
+			data: {
+				"url": $(".indishare-url").val(),
+				urlname : $(".indishare-urlname").val(),
+				"pid": $(".indishare-userpid").val()
+			},
+			//dataType: "json",
 			success : function(data){
 				if(data.result == "success") {
 					swal("Thank you!", "북마크에 추가되었습니다!", "success");
@@ -283,8 +240,9 @@ $(function() {
                     dangerMode: true
 				});
 		    }
-		});*/
+		});
     });
+    
     // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
     $('#into-group-bookmark').on('dblclick', function(){});
     $('#into-group-bookmark').on('click', function(){
@@ -362,55 +320,6 @@ function seletedGroup(group, gid) {
 		}
 	});
 }
-
-/* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
-/*
-$('.getmybook').on('dblclick', function(){ return });
-$('.getmybook').on('click', function(){
-	$.ajax({
-		url : "../user/getCategoryList.do",
-		type:"POST",
-		dataType:"json",
-		success : function(data){	
-		console.log(data);
-		 jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다. 					
-		$("#indi-jstree-to-right").on("click",'.jstree-anchor',function(e){
-			$('#indi-jstree-to-right').jstree(true).toggle_node(e.target);	
-			})
-			.jstree({	
-					"core": {
-						"dblclick_toggle" : false, // 두번 클릭해서 폴더여는거 false
-					'data' : data, // ajax로 가져온 json data jstree에 넣어주기
-				},
-			})	
-			.bind("loaded.jstree", function (event, data) {
-				$('#indi-jstree-to-right').jstree("open_all");
-					console.log("loaded jstree");
-					var test = data.instance._model.data
-					var head = 0;
-			})
-			.bind("select_node.jstree", function (e, data) {
-					 노드(폴더)가 선택시 실행되는 함수 					
-					var id = data.node.id;
-					urlpid = id;
-					// 선택된 노드(폴더)아래에 있는 url 가져오기
-					$.ajax({
-						url : "../user/getUrl.do",
-						type : "POST",
-						dataType:"json",
-						data : {ubid : id},
-						success : function(data){
-							console.log(data);
-							child_data = data;
-							// 오른쪽에 있는 jstree 값 새로 넣어주고 refresh해주기
-							$("#indi-jstree-to-right").jstree(true).settings.core.data = data;
-							
-						}
-					})
-			})
-		}
-	})
-});*/
 
 /* 민재 onclick END */
 
