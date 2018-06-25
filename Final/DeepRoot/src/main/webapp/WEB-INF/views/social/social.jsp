@@ -107,7 +107,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
-					<button id="into-my-bookmark2" type="button" class="btn btn-primary">확인</button>
+					<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
 					<button id="into-group-bookmark" type="button" class="btn btn-primary" style="display: none;">확인</button>
 				</div>
 			</div><!-- /.modal-content -->

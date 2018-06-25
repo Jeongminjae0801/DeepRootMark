@@ -1,15 +1,14 @@
 package site.book.social.service;
 
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import site.book.social.dao.S_BookmarkDAO;
 import site.book.social.dao.TopDAO;
-import site.book.user.dto.S_U_BookDTO;
+import site.book.team.dto.G_BookDTO;
 import site.book.user.dto.U_BookDTO;
 
 /**
@@ -31,6 +30,21 @@ public class SurfingService {
 		List<U_BookDTO> list = dao.getCategoryList(uid);
 		
 		return list;
+	}
+	
+	// 민재
+	// 한 URL을 자신의 그룹 북마크에 추가 
+	public int insertGroupBookmark(G_BookDTO gbook) {
+		S_BookmarkDAO dao = sqlsession.getMapper(S_BookmarkDAO.class);
+		int result = 0;
+		
+		try {
+			result = dao.insertGroupBookmark(gbook);
+		}catch (Exception e) {
+			/*e.printStackTrace();*/
+		}
+		
+		return result;
 	}
 	
 }

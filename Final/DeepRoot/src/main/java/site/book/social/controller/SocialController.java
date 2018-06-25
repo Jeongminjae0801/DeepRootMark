@@ -28,8 +28,10 @@ import site.book.admin.service.NoticeService;
 import site.book.social.dto.TopDTO;
 import site.book.social.service.SurfingService;
 import site.book.social.service.TopService;
+import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.S_TeamDTO;
 import site.book.team.dto.TeamDTO;
+import site.book.team.service.G_BookService;
 import site.book.team.service.TeamService;
 import site.book.user.dto.S_U_BookDTO;
 import site.book.user.dto.U_BookDTO;
@@ -46,8 +48,10 @@ public class SocialController {
 	/* 민재 파라미터 */
 	@Autowired
 	private TopService top_service;
+	
 	@Autowired
     private View jsonview;
+	
 	
 	/* 진수햄 파라미터 */
 	@Autowired
@@ -153,6 +157,26 @@ public class SocialController {
 	        
 	        System.out.println(book);
 	        int result = u_bookservice.insertUrlFromCompletedGroup(book);
+			if(result > 0) {
+				model.addAttribute("result", "success");
+			}else {
+				model.addAttribute("result", "fail");
+			}
+			
+			return jsonview;
+		}
+		
+		// 민재 , 개인 북마크 내 그룹으로 가져가기
+		@RequestMapping("getGroupBook.do")	
+		public View addGroupBookmark(HttpServletRequest req, Model model, G_BookDTO g_book) {
+	        
+			HttpSession session = req.getSession();
+	        String uid = (String)session.getAttribute("info_userid");
+	        g_book.setUid(uid);
+	        System.out.println(g_book);
+	        
+	        int result = surfingservice.insertGroupBookmark(g_book);
+	        
 			if(result > 0) {
 				model.addAttribute("result", "success");
 			}else {

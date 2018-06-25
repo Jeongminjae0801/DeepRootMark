@@ -131,11 +131,9 @@ $(function() {
     	// 모달 초기화 START
     	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
     	$('#jstree-to-bottom').html('');
-    	$('#dropdown-empty-area').remove();	// 모달 초기화 END
-    	
-    	var url = $(this).parent().children('p').data('url');
-    	$('.indishare-url').val(url);
-    	$('.indishare-urlname').val($(this).parent().parent().children().eq(0).children('a').text());
+    	$('#dropdown-empty-area').remove();	
+    	$('.indishare-urlname').val($(this).parent().parent().children().eq(0).children('a').text()); 
+    	// 모달 초기화 END
     	
     	// 진행중인 팀 리스트 가져오기
     	$.ajax({
@@ -197,15 +195,14 @@ $(function() {
 					/*노드(폴더)가 선택시 실행되는 함수*/					
  					var id = data.node.id;
  					$('.indishare-userpid').val(id);
- 					
 				});
 			}
 		});
     });
  
     // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
-    $('#into-my-bookmark2').on('dblclick', function(){});
-    $('#into-my-bookmark2').on('click', function(){
+    $('#into-my-bookmark').on('dblclick', function(){});
+    $('#into-my-bookmark').on('click', function(){
     	
     	/*var params = $("#form-to-getmybookmark").serialize();*/
 		$.ajax({
@@ -213,7 +210,7 @@ $(function() {
 			type: "post",
 			data: {
 				"url": $(".indishare-url").val(),
-				urlname : $(".indishare-urlname").val(),
+				"urlname" : $(".indishare-urlname").val(),
 				"pid": $(".indishare-userpid").val()
 			},
 			//dataType: "json",
@@ -249,15 +246,20 @@ $(function() {
     	/*var params = $("#form-to-mybookmark").serialize();
     	console.log(params);*/
 		$.ajax({
-			url : "/bit/team/addGroupBookmark.do",
+			url : "getGroupBook.do",
 			type: "POST",
-			data: params,
+			data: {
+				"url": $(".indishare-url").val(),
+				"urlname" : $(".indishare-urlname").val(),
+				"pid": $(".indishare-userpid").val(), 
+				"gid": $(".indishare-gid").val()
+			},
 			dataType:"json",
 			success : function(data){
 				console.log(data.result);
 				if(data.result == "success") {
 					swal("Thank you!", "북마크에 추가되었습니다!", "success");
-					$('#mainIndiModal').modal("toggle");
+					$('#socialIndiModal').modal("toggle");
 				}else {
                     swal({
                         title: "목적지 폴더를 확인하셨나요?",
@@ -290,7 +292,7 @@ function seletedGroup(group, gid) {
 	$('#into-group-bookmark').css('display', 'block');
 	$('#jstree-to-bottom').remove();
 	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
-	
+
 	$.ajax({
 		url : "/bit/team/getGroupCategoryList.do",
 		type:"POST",

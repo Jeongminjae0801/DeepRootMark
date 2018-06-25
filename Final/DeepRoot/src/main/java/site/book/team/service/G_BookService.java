@@ -103,7 +103,7 @@ public class G_BookService {
 		try {
 			result = dao.insertGroupBookmark(gbook);
 		}catch (Exception e) {
-			/*e.printStackTrace();*/
+			e.printStackTrace();
 		}
 		
 		return result;
