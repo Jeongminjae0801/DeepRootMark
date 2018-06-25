@@ -346,7 +346,7 @@ $('.group-share').on('click', function(){
 function testing_modal(d){
 	console.log(d);
 	console.log(d.id);
-	$('.abc').text(d.id);
+	$('.nname').text(d.id);
 	var nname = d.id; // 클릭한 작성자 id 입니다.
 	
 	$.ajax({
@@ -394,7 +394,7 @@ $(document).ready(function(){
 	    	
             var url = $('#jstree-from-left-all').jstree(true).get_node(data.node.id).a_attr.href;
             $('.indishare-url-surfing').text(url);
-            var urlname = $(this).eq(-1).text();
+            var urlname = $('#jstree-from-left-all').jstree(true).get_node(data.node.id).original.text;
             console.log(urlname);
             $('.indishare-urlname-left').val(urlname);
             console.log(url);
@@ -407,7 +407,7 @@ $(document).ready(function(){
 	    $('#dropdown-my-bookmark').on('click', function(){
 	    	// Modal init()
 	    	$('#dropdownMenuButton').text($(this).text());
-	    	$('#into-my-bookmark-btn').css('display', 'block');
+	    	$('#into-my-bookmark-btn').css('display', 'inline');
 	    	$('#into-group-bookmark-btn').css('display', 'none');
 	    	$('#jstree-to-right-all').remove();
 	    	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
@@ -450,10 +450,6 @@ $(document).ready(function(){
 	    	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
 	    	$('#jstree-to-right-all').html('');
 	    	$('#dropdown-empty-area').remove();	// 모달 초기화 END
-	    	var url = $(this).parent().children('p').data('url');
-	    	$('.indishare-url').val(url);
-	    	$('.indishare-urlname').val($(this).parent().children('p').text());
-	    	$('.indishare-abid').val( $(this).parent().children('p').data('abid'));
 	    	
 	    	// 진행중인 팀 리스트 가져오기
 	    	$.ajax({
@@ -487,7 +483,16 @@ $(document).ready(function(){
 	 // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
 	    $('#into-my-bookmark-btn').on('dblclick', function(){});
 	    $('#into-my-bookmark-btn').on('click', function(){
-	    	var asd = $('.indishare-url-surfing').text();
+	    	if($('.indishare-url-surfing').text() == '#'){
+	    		swal({
+                    title: "목적지 폴더를 확인하셨나요?",
+                    text: "잠시후 다시 시도해주세요!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+				});
+	    		return;
+	    	}
     		$.ajax({
 				url : "getmybookmark.do",
 				type:"POST",
@@ -528,18 +533,31 @@ $(document).ready(function(){
 	 // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
 	    $('#into-group-bookmark-btn').on('dblclick', function(){});
 	    $('#into-group-bookmark-btn').on('click', function(){
-	    	var params = $("#form-to-mybookmark-left").serialize();
-            console.log(params);
+	    	if($('.indishare-url-surfing').text() == '#'){
+	    		swal({
+                    title: "목적지 폴더를 확인하셨나요?",
+                    text: "잠시후 다시 시도해주세요!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+				});
+	    		return;
+	    	}
            $.ajax({
-                url : "../team/addGroupBookmark.do",
-                type: "POST",
-                data: params,
+        	   	url : "getGroupBook.do",
+   				type: "POST",
+   				data: {
+   					url: $('.indishare-url-surfing').text(),
+   					urlname: $('.indishare-urlname-left').val(),
+					pid: $('.indishare-userpid-left').val(), 
+	   				gid: $('.indishare-gid-left').val()
+   				},
                 /*dataType:"json",*/
                 success : function(data){
                     console.log(data.result);
                     if(data.result == "success") {
                         swal("Thank you!", "북마크에 추가되었습니다!", "success");
-                        $('#mainIndiModal').modal("toggle");
+                        $('#socialSurfingModal').modal("toggle");
                     }else {
                        swal({
                            title: "목적지 폴더를 확인하셨나요?",
@@ -569,9 +587,9 @@ $(document).ready(function(){
 function seletedGroup(group, gid) {
 	// Modal Init()
 	$('#dropdownMenuButton').text(group);
-	$('.indishare-gid').val(gid);
+	$('.indishare-gid-left').val(gid);
 	$('#into-my-bookmark-btn').css('display', 'none');
-	$('#into-group-bookmark-btn').css('display', 'block');
+	$('#into-group-bookmark-btn').css('display', 'inline');
 	$('#jstree-to-right-all').remove();
 	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
 	
@@ -598,7 +616,7 @@ function seletedGroup(group, gid) {
 			//노드(폴더)가 선택시 실행되는 함수
 				var id = data.node.id;
 				//console.log(id);//PID
-				$('.indishare-userpid').val(id);
+				$('.indishare-userpid-left').val(id);
 				console.log(data.node.id);
 			});
 		}

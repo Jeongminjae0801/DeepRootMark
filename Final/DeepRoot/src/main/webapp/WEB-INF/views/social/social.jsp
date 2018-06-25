@@ -130,7 +130,7 @@
 					<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
 		                <h4 class="completed-modal-from"><b>URL :</b>
 				                	<a class="indishare-url-surfing" name="url"></a></h4>
-				        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="abc">[회원이름]</span></b></h4>
+				        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="nname">[회원이름]</span></b></h4>
 		                <div class="jstree-from" id="jstree-from-left-all">
 		                	제이트리 뿌려주곻
 		                </div>
@@ -164,7 +164,7 @@
 			</div>
 			<div class="modal-footer surfingshare">
 				<button type="button" class="btn btn-default surfingshare" data-dismiss="modal">취소</button>
-				<button id="into-my-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: block;">확인</button>
+				<button id="into-my-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: inline;">확인</button>
 				<button id="into-group-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: none;">확인</button>
 			</div>
 		</div><!-- /.modal-content -->
