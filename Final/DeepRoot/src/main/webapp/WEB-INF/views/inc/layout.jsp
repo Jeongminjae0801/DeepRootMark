@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Script Common JavaScript & CSS END -->
+    
+    <!-- Google Icon CDN -->
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<!-- Google Icon CDN END -->
 
     <!-- Main Page CSS -->
     <link href="css/mainpage/main.css?ver=2" rel="stylesheet">
