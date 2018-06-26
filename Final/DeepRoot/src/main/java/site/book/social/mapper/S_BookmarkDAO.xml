@@ -10,9 +10,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO G_BOOK (URL, URLNAME, REGDATE, GID, PID, UID) 
 		VALUES (#{url}, #{urlname}, SYSDATE(), #{gid}, #{pid}, #{uid})
 	</insert>
-
-	<insert id="" parameterType="site.book.team.dto.G_BookDTO">
-		
 	
-	</insert>
 </mapper>

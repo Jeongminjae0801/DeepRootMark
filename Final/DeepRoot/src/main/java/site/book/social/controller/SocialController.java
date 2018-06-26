@@ -41,7 +41,7 @@ import site.book.user.service.U_BookService;
 /**
  * @Class : SocialController.java
  * @Date : 2018. 6. 14.
- * @Author : 김희준
+ * @Author : 김희준 , 정민재 , 정진수
  */
 @Controller
 @RequestMapping("/social/")
@@ -77,8 +77,6 @@ public class SocialController {
 		List<TopDTO> g_top5 = top_service.getGTop5();
 		model.addAttribute("g_top5", g_top5);
 		
-		/*List<TopDTO> a_top5 = top_service.getATop5();
-		model.addAttribute("a_top5", a_top5);*/
 		/*u_booklist start*/
 		List<S_U_BookDTO> u_list= u_bookservice.getSocialBookmarkList();
 		model.addAttribute("u_list",u_list);
@@ -96,11 +94,10 @@ public class SocialController {
 		
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
 		model.addAttribute("headerNoticeList", headerNoticeList);
+		/*u_booklist end*/
 		
 		return "social.social";
 	}
-	
-	/*u_booklist end*/
 	
 	/*진수 해당 회원 북마크 가져오기 start*/
 	//해당 유저의 카테고리를 보내준다.
@@ -150,7 +147,7 @@ public class SocialController {
 	}
 	/*해당 회원 북마크 가져오기 end*/
 	
-	// 민재 , 개인 북마크 내 카테고리로 가져가기
+	// 민재 , 개인 공유 북마크 내 카테고리로 가져가기
 	@RequestMapping("getmybookmark.do")
 	public View getSharemark(U_BookDTO book ,HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
@@ -167,7 +164,7 @@ public class SocialController {
 		return jsonview;
 	}
 	
-	// 민재 , 개인 북마크 내 그룹으로 가져가기
+	// 민재 , 개인 공유 북마크 내 그룹으로 가져가기
 	@RequestMapping("getGroupBook.do")	
 	public View addGroupBookmark(HttpServletRequest req, Model model, G_BookDTO g_book) {
         
