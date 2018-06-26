@@ -56,7 +56,13 @@ public class G_BookService {
 	public List<G_BookDTO> getCompletedTeamBookmark(int gid) {
 		
 		G_BookDAO bookDAO = sqlsession.getMapper(G_BookDAO.class);
-		List<G_BookDTO> list = bookDAO.getCompletedTeamBookmark(gid);
+		List<G_BookDTO> list = null;
+		
+		try {
+			list = bookDAO.getCompletedTeamBookmark(gid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return list;
 	}
