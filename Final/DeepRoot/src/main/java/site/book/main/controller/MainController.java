@@ -8,10 +8,6 @@
 
 package site.book.main.controller;
 
-import java.io.File; 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -34,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.A_BookDTO;

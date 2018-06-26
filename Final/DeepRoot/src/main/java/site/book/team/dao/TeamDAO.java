@@ -17,7 +17,7 @@ import site.book.team.dto.TeamDTO;
 /**
  * @Class : TeamDAO.java
  * @Date : 2018. 6. 8.
- * @Author : 김희준
+ * @Author : 김희준, 김명수
  */
 public interface TeamDAO {
 	

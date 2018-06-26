@@ -18,7 +18,7 @@ import site.book.user.dto.U_BookDTO;
 /**
  * @Class : G_BookDAO.java
  * @Date : 2018. 6. 7.
- * @Author : 김희준
+ * @Author : 김희준, 김태웅
  */
 public interface G_BookDAO {
 	//희준
