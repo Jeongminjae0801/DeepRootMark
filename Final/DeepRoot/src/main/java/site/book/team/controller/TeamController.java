@@ -2,7 +2,7 @@
  * @Project : DeepRoot
  * @FileName : TeamController.java
  * @Date : 2018. 6. 5.
- * @Author : 김희준
+ * @Author : 김희준, 김태웅
 */
 
 
@@ -31,6 +31,11 @@ import site.book.team.dto.TeamDTO;
 import site.book.team.service.G_BookService;
 import site.book.team.service.TeamService;
 
+/**
+ * @Class : SocialController.java
+ * @Date : 2018. 6. 24.
+ * @Author : 김희준, 김태웅
+ */
 @Controller
 @RequestMapping("/team/")
 public class TeamController {

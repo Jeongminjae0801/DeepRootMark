@@ -1,5 +1,17 @@
+/*
+ * @Project : DeepRoot
+ * @FileName : G_JstreeDTO.java
+ * @Date : 2018. 6. 24.
+ * @Author : 김태웅
+*/
+
 package site.book.team.dto;
 
+/**
+ * @Class : G_JstreeDTO.java
+ * @Date : 2018. 6. 24.
+ * @Author : 김태웅
+ */
 public class G_JstreeDTO {
 	private int id;
 	private String uid;

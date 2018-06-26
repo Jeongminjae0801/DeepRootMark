@@ -46,7 +46,7 @@ import site.book.user.service.UserService;
 /**
  * @Class : AdminController.java
  * @Date : 2018. 6. 7.
- * @Author : 김희준
+ * @Author : 김희준, 김태웅
  */
 @Controller
 @RequestMapping("/admin/")
