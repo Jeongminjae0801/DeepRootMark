@@ -2,313 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script>
-	function deleteGroup(gid) {
-		$.confirm({
-			title : '그룹 삭제',
-			content : '삭제하시겠습니까?',
-			theme: 'light',
-			backgroundDismiss: true,
-			closeIcon: true,
-		    closeIconClass: 'fa fa-close',
-			buttons: {
-		        '삭제': {
-		        	btnClass : 'btn-danger',
-		        	keys: ['enter'],
-		        	action : function () {
-		        		$("#"+gid).remove(); // 그룹리스트에서 지우기
-		    			$.ajax({
-		    				url: "leaveGroup.do",
-		    				type: "post",
-		    				data : {
-		    					gid : gid // 그룹 ID
-		    				},
-		    				success : function(data){
-		    					console.log(data);
-		    				}
-		    			});
-		        	}
-		        },
-		     
-		        '취소': {
-		        	btnClass : 'btn-success',
-		        	action : function() {
-		        		
-		        	}
-		        }
-		    }
-		});
-	}
-	
-	function deleteCompletedGroup(gid) {
-		$.confirm({
-			title : '완료된 그룹 삭제',
-			content : '삭제하시겠습니까?',
-			theme: 'light',
-			backgroundDismiss: true,
-			closeIcon: true,
-		    closeIconClass: 'fa fa-close',
-			buttons: {
-		        '삭제': {
-		        	btnClass : 'btn-danger',
-		        	keys: ['enter'],
-		        	action : function () {
-		        		$("#completed"+gid).remove(); // 완료된 그룹리스트에서 지우기
-		    			$.ajax({
-		    				url: "leaveGroup.do",
-		    				type: "post",
-		    				data : {
-		    					gid : gid // 그룹 ID
-		    				},
-		    				success : function(data){
-		    					console.log(data);
-		    				}
-		    			});
-		        	}
-		        },
-		     
-		        '취소': {
-		        	btnClass : 'btn-success',
-		        	action : function() {
-		        		
-		        	}
-		        }
-		    }
-		});
-	}
-	
-	function addGroup() {
-		$.confirm({
-		    title: '그룹 추가',
-		    content: '' +
-		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/addGroup.do" class="formName" method="post">' +
-		    '<div class="form-group">' +
-		    '<label>그룹명</label>' +
-		    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
-		    '</div>' +
-		    '</form>',
-		    closeIcon: true,
-		    closeIconClass: 'fa fa-close',
-		    
-		    buttons: {
-		        formSubmit: {
-		            text: '추가',
-		            btnClass: 'btn-success',
-		            keys: ['enter'],
-		            action: function () {
-		                var name = this.$content.find('.name').val();
-		                if(!name){
-		                    $.alert('그룹명을 적어주세요');
-		                    return false;
-		                }
-		                $("#addGroupForm").ajaxForm({
-		                	success: function(data, statusText, xhr, $form){
-		                		var group = '<li id="${team.gid}" class="list-group-item">';
-		                		group += '<label class="my-group-list">' + data.newTeam.gname + '</label>';
-		                		group += '<div class="pull-right action-buttons">';
-		                		group += '<a class="completed">';
-		                		group += '<span class="glyphicon glyphicon-check" onclick="completedGroup(' + data.newTeam.gid + ')"></span>';
-								group += '</a>';
-								group += '</div>';
-								group += '</li>';
-								
-	                			$("#participatingGroupList").children().last().before(group);
-		                	}
-		                });
-		                
-		                $("#addGroupForm").submit();
-		                
-		            }
-		        },
-		        '취소': {
-		        	btnClass : 'btn-danger',
-	        		action : function() {
-	        		
-	        		}
-		        },
-		    }
-
-		});
-	}
-	
-	function completedGroup(gid) {
-		$.confirm({
-		    title: '그룹 완료',
-		    content: '' +
-		    '<form id="completedGroupForm" action="${pageContext.request.contextPath}/user/completedGroup.do" class="formName" method="post">' +
-		    '<div class="form-group">' +
-		    '<label>해시태그</label>' +
-		    '<input type="text" name="htag" placeholder="#해쉬태그" class="name form-control" required />' +
-		    '<input type="hidden" class="gid" name="gid" />' + 
-		    '</div>' +
-		    '</form>',
-		    closeIcon: true,
-		    closeIconClass: 'fa fa-close',
-		    
-		    buttons: {
-		        formSubmit: {
-		            text: '완료',
-		            btnClass: 'btn-success',
-		            action: function () {
-		                var name = this.$content.find('.name').val();
-		                this.$content.find('.gid').val(gid);
-		                if(!name){
-		                    $.alert('해시태그를 적어주세요');
-		                    return false;
-		                }
-		                
-		                $("#completedGroupForm").ajaxForm({
-		                	success: function(data, statusText, xhr, $form){
-		                		$("#"+ data.completedGroup.gid).remove();
-		                		
-		                		var addCompletedGroup = "";
-		                		addCompletedGroup += '<li id="' + data.completedGroup.gid + '" class="list-group-item">';
-		                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal('+ data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
-		                		addCompletedGroup += '<div class="pull-right action-buttons">';
-		                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + data.completedGroup.gid + ')"></span></a>';
-		                		addCompletedGroup += '</div>';
-		                		addCompletedGroup += '</li>';
-		                		
-		                		$("#completedGroupList").append(addCompletedGroup);
-		                	}
-		                });
-		                
-		                $("#completedGroupForm").submit();
-		                
-		            }
-		        },
-		        '취소': {
-		        	btnClass : 'btn-danger',
-	        		action : function() {
-	        		}
-		        },
-		    }
-		    
-		});
-	}
-	
-	var selected_node_id = 0;
-
-///완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
-	function open_completed_group_modal(gid){
-		
-		//완료된 그룹 북마크 가져오기
-		$.ajax({
-			url : "getCompletedTeamBookmark.do",
-			type : "POST",
-			data : {gid : gid},	/* group id 를 넣어야 한다. */
-			dataType :"json",
-			success : function(obj){
-				//모달 왼쪽 jstree에 data 넣어주기
-				first_data = obj;
-				$('#jstree-from-left').jstree().deselect_all(true);
-				$('#jstree-from-left').jstree(true).settings.core.data = obj;
-				$('#jstree-from-left').jstree(true).refresh();
-			}
-		})
-		//모달 오른쪽 selected 된거 없애기
-		$('#jstree-to-right').jstree().deselect_all(true);
-		//완료 그룹 모달 띄우기
-		$('#completedGroupModal').modal();
-	};
-	
-	//완료된 그룹 url 선택후 save 버튼 클릭시
-	function submitgroupurl(){
-		var checked_ids = [];
-		var submit_obj = [];
-		
-		checked_ids = $('#jstree-from-left').jstree("get_checked",null,true);
-		
-		if(checked_ids == null){
-			alert("선택한 URL이 없습니다.")
-			return false
-		};
-		if(selected_node_id == 0) {
-			alert("가져가기 할 폴더를 선택하지 않았습니다.")
-			return false
-		};
-		
-		$.each(checked_ids,function(key,value){
-			//폴더가 아닌 url만 골라 가져가기
-			var checked_url = $('#jstree-from-left').jstree(true).get_node(value).a_attr.href;
-			var urlname = $('#jstree-from-left').jstree(true).get_node(value).text;
-			if(checked_url !='#'){
-				submit_obj.push({url : checked_url , urlname : urlname, pid : selected_node_id}) 
-			}
-		})
-		
-		var submit_obj_json = JSON.stringify(submit_obj);
-		$.ajax({
-			
-			url : "insertGroupUrl.do",
-			type : "POST",
-			data : {obj : submit_obj_json},
-			success : function(){
-				
-			    $('#completedGroupModal').modal("toggle"); 
-				$('#jstree_container').jstree().deselect_all(true);
-				$('#jstree_container').jstree(true).select_node(selected_node_id);			
-				selected_node_id = 0;
-			}
-		})
-	}
-	$(document).ready(function(){
-		
-		var first_data = null;
-		var right_data = null;
-		
-		//완료 그룹 모달 왼쪽 jstree
-		$("#jstree-from-left")
-			.on('click','.jstree-anchor',function(e){
-				$('#jstree-from-left').jstree(true).toggle_node(e.target);
-			})
-			.jstree({
-				
-				"core" : {
-					"dblclick_toggle" : false,
-					'data' : first_data,
-					'themes':{
-						'name' : 'proton',
-						'responsive' : true,
-						'dots' : false,
-					}
-				},
-				// 체크 박스 클릭시에만 checked 되기				
-				"checkbox" : {
-					"whole_node" : false,
-					"tie_selection" : false
-				},
-				"plugins" : ["checkbox" ]
-			})
-			.bind("loaded.jstree",function(event,data){
-				 $('#group_bookmark_modal').jstree("open_all"); 
-			})
-			.bind("select_node.jstree",function(event,data){
-			})
-
-			//완료 그룹 모달 오른쪽 jstree
-			$('#jstree-to-right')
-				.on('click','.jstree-anchor',function(e){
-					$('#jstree-to-right').jstree(true).toggle_node(e.target);
-				})
-				.jstree({
-				"core" : {
-					"dblclick_toggle" : false,
-					'data' : right_data,
-					'themes':{
-						'name' : 'proton',
-						'responsive' : true,
-						'dots' : false,
-					}
-				}
-			})
-			.bind("select_node.jstree",function(e,data){
-				selected_node_id= data.node.id;
-			})
-		})
-		
-</script>
-
 <div class="container">
 	<div class="row" style="padding-top: 100px;"></div>
 	<div class="row my-row-bg">
@@ -417,77 +110,81 @@
 
 	<!-- 완료된 그룹 가져오기 Modal -->
 	<div id="completedGroupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialGroupModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header mypage">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
-				</div>
-				<div class="modal-body mypage">
-					<div class="completed-modal-left mypage">
-		                <h4 class="completed-modal-from"><b>From : </b></h4>
-		
-		                <div id="jstree-from-left">
-		
-		                </div>
-		            </div>
-		            <div class="completed-modal-right mypage ">
-		            <h4 class="completed-modal-to"><b>To : </b></h4>
-		
-		                <!-- Dropdown -->
-		                <div class="dropdown completed-modal-dropdown">
-		                    <button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		                        Dropdown button <span class="caret"></span>
-		                    </button>
-		                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-		                        <li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
-		                        <hr class="divider-hr">
-		                        <li class="dropdown-item dropdown-submenu">
-		                            <a tabindex="-1" href="#">나의 그룹북마크</a>
-		                            <ul class="dropdown-menu">
-		                              <li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
-		                              <li class="dropdown-group-item"><span>Group 2</span></li>
-		                              <li class="dropdown-group-item"><span>Group 3</span></li>
-		                            </ul>
-		                        </li>
-		                    </div>
-		                    <script type="text/javascript">
-//완료된 그룹 모달 > 오른쪽 > 내 그룹 클릭시
-		                        $('#completed-modal-mybook').click(function() {
-		                            $('#dropdownMenuButton').text($(this).text());
-		                            
-		                        	$.ajax({
-		                				url : "getCategoryList.do",
-		                				type:"POST",
-		                				dataType:"json",
-		                				success : function(data){
-		                					right_data = data;
-		                					
-		                					$('#jstree-to-right').jstree(true).settings.core.data = data;
-		                					$('#jstree-to-right').jstree(true).refresh();
-		                					$('#jstree-to-right').jstree("open_all");
-		                					
-		                					}
-		                				})
-		                        });
-		                        $('.dropdown-group-item').click(function() {
-		                            $('#dropdownMenuButton').text($(this).text());
-		                        });
-		                    </script>
-		                </div>
-		
-		                <div id="jstree-to-right">
-		
-		                </div>
-		            </div>
-				</div>
-				<div class="modal-footer mypage">
-					<button type="button" class="btn btn-default groupshare" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary groupshare" onclick="submitgroupurl()">Save changes</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
+		<div class="main-modal-controller">
+			<div class="main-modal-center">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header mypage">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
+						</div>
+						<div class="modal-body mypage">
+							<div class="completed-modal-left mypage">
+				                <h4 class="completed-modal-from"><b>From : </b></h4>
+				
+				                <div id="jstree-from-left">
+				
+				                </div>
+				            </div>
+				            <div class="completed-modal-right mypage ">
+				            <h4 class="completed-modal-to"><b>To : </b></h4>
+				
+				                <!-- Dropdown -->
+				                <div class="dropdown completed-modal-dropdown">
+				                    <button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				                        Dropdown button <span class="caret"></span>
+				                    </button>
+				                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				                        <li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
+				                        <hr class="divider-hr">
+				                        <li class="dropdown-item dropdown-submenu">
+				                            <a tabindex="-1" href="#">나의 그룹북마크</a>
+				                            <ul class="dropdown-menu">
+				                              <li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
+				                              <li class="dropdown-group-item"><span>Group 2</span></li>
+				                              <li class="dropdown-group-item"><span>Group 3</span></li>
+				                            </ul>
+				                        </li>
+				                    </div>
+				                    <script type="text/javascript">
+										//완료된 그룹 모달 > 오른쪽 > 내 그룹 클릭시
+				                        $('#completed-modal-mybook').click(function() {
+				                            $('#dropdownMenuButton').text($(this).text());
+				                            
+				                        	$.ajax({
+				                				url : "getCategoryList.do",
+				                				type:"POST",
+				                				dataType:"json",
+				                				success : function(data){
+				                					right_data = data;
+				                					
+				                					$('#jstree-to-right').jstree(true).settings.core.data = data;
+				                					$('#jstree-to-right').jstree(true).refresh();
+				                					$('#jstree-to-right').jstree("open_all");
+				                					
+				                					}
+				                				})
+				                        });
+				                        $('.dropdown-group-item').click(function() {
+				                            $('#dropdownMenuButton').text($(this).text());
+				                        });
+				                    </script>
+				                </div>
+				
+				                <div id="jstree-to-right">
+				
+				                </div>
+				            </div>
+						</div>
+						<div class="modal-footer mypage">
+							<button type="button" class="btn btn-default groupshare" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary groupshare" onclick="submitgroupurl()">Save changes</button>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div>
+		</div>
 	</div><!-- /.modal -->
 </div>

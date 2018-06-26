@@ -10,7 +10,7 @@ jQuery(function($) {
 	    	$('#dropdown-empty-area').remove();	// 모달 초기화 END
 	    	var url = $(this).parent().children('p').data('url');
 	    	$('.indishare-url').val(url);
-	    	$('.indishare-urlname').val($(this).parent().children('p').text());
+	    	$('.indishare-urlname').val($(this).parent().children('p').data('urlname'));
 	    	$('.indishare-abid').val( $(this).parent().children('p').data('abid'));
 	    	
 	    	// 진행중인 팀 리스트 가져오기
@@ -22,7 +22,7 @@ jQuery(function($) {
 			    	
 			    	var index = 0;
 			    	for(var key in data.teamlist){
-			    		console.log(data.teamlist[key]);
+			    		//console.log(data.teamlist[key]);
 			    		if(index == 0){
 			    			html += '<li class="dropdown-group-item" onclick="seletedGroup('
 			    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
@@ -87,7 +87,7 @@ jQuery(function($) {
 				data: params,
 				dataType:"json",
 				success : function(data){
-					console.log(data.result);
+					//console.log(data.result);
 					if(data.result == "success") {
 						swal("Thank you!", "북마크에 추가되었습니다!", "success");
 						$('#mainIndiModal').modal("toggle");
@@ -115,15 +115,19 @@ jQuery(function($) {
 	    // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
 	    $('#into-group-bookmark').on('dblclick', function(){});
 	    $('#into-group-bookmark').on('click', function(){
-	    	var params = $("#form-to-mybookmark").serialize();
-            console.log(params);
            $.ajax({
                 url : "team/addGroupBookmark.do",
                 type: "POST",
-                data: params,
+                data: {
+                	url: $('.indishare-url').val(),
+                	urlname: $('.indishare-urlname').val(),
+                	pid: $('.indishare-userpid').val(),
+                	abid: $('.indishare-abid').val(),
+                	gid: $('.indishare-gid').val()
+                },
                 dataType:"json",
                 success : function(data){
-                    console.log(data.result);
+                    //console.log(data.result);
                     if(data.result == "success") {
                         swal("Thank you!", "북마크에 추가되었습니다!", "success");
                         $('#mainIndiModal').modal("toggle");
@@ -154,6 +158,7 @@ jQuery(function($) {
 // 내의 그룹리스트 중 하나를 선택 했을 때,
 function seletedGroup(group, gid) {
 	// Modal Init()
+	$('.indishare-gid').val(gid);
 	$('#dropdownMenuButton').text(group);
 	$('#into-my-bookmark').css('display', 'none');
 	$('#into-group-bookmark').css('display', 'block');
@@ -166,7 +171,7 @@ function seletedGroup(group, gid) {
 		data: {gid: gid},
 		dataType:"json",
 		success : function(data){
-			console.log(data.data);
+			//console.log(data.data);
 			// jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.	
 			$("#jstree-to-bottom").jstree({	
 					"core": {
@@ -180,9 +185,8 @@ function seletedGroup(group, gid) {
 			}).bind("select_node.jstree", function (e, data) {
 			//노드(폴더)가 선택시 실행되는 함수
 				var id = data.node.id;
-				console.log(id);
+				//console.log(id);
 				$('.indishare-userpid').val(id);
-					
 			});
 		}
 	});

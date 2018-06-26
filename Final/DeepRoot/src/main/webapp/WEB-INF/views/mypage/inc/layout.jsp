@@ -22,11 +22,11 @@
 
 	<!-- Common Script START -->
     <!-- Latest compiled JavaScript & CSS -->
+    <script  src="${pageContext.request.contextPath}/js/mypage/modal.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <!-- Script Common JavaScript & CSS END -->
 
 	<!--  jsTree CSS & JS START -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/social/modal.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
 	<script  src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
 	
@@ -68,8 +68,8 @@
 
 	<!-- URL 추가 모달 -->
 	<div id="linkAdd_btn" class="modal fade" role="dialog">
-		<div id="main-modal-controller">
-			<div id="main-modal-center">
+		<div class="main-modal-controller">
+			<div class="main-modal-center">
 				<div class="modal-dialog">
 					<!-- Modal content-->
 					<div class="modal-content">
@@ -263,5 +263,6 @@
 </body>
 	<!-- MY Page CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/mypage/mypage.css?ver=2" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/social/modal.css" />
 	<!-- MY Page CSS END -->
 </html>

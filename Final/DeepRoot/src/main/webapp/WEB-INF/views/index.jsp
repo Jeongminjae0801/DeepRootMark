@@ -257,9 +257,11 @@
 	                                        	<img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
 	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}" alt="">
 	                                        <p class="url ${bList.abid}" data-abid="${bList.abid}"
-	                                        			   data-url="${bList.url}"
-	                                        			   data-regdate="${bList.regdate}"
-	                                        			   data-views="${bList.view}">${bList.urlname}<img class="url_link_btn" src="icon/open_link.png">
+				                                        			     data-url="${bList.url}"
+				                                        			     data-regdate="${bList.regdate}"
+				                                        			     data-views="${bList.view}"
+				                                        			     data-urlname="${bList.urlname}">${bList.urlname}
+	                                        			   <img class="url_link_btn" src="icon/open_link.png">
 	                                        			   <c:if test="${index <= 2}">
 	                                        			   		<i class="fas fa-h-square" style="color: #ff5400;"></i>
 	                                        			   		<c:set var="index" value="${index + 1}"></c:set>
