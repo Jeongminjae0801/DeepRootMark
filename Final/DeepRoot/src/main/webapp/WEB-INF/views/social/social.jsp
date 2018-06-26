@@ -262,7 +262,7 @@
 								<tr>
 									<td class="table-site"><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
-									<td class="table-write"><a onclick="testing_modal(this)" id="${u_booklist.nname}">${u_booklist.nname}</a></td>
+									<td class="table-write"><a onclick="surfing_modal(this)" id="${u_booklist.nname}">${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
@@ -306,7 +306,7 @@
 								<!-- 그룹 공유  -->
 									<td class="table-groupname"><a href="#">${g_booklist.gname}</a></td>
 									<td class="table-tag">"${g_booklist.htag}"</td>
-									<td class="table-write"><a onclick="testing_modal(this)" id="${g_booklist.nname}">${g_booklist.nname}</a></td>
+									<td class="table-write"><a onclick="surfing_modal(this)" id="${g_booklist.nname}">${g_booklist.nname}</a></td>
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<!-- 가져오기 icon -->
