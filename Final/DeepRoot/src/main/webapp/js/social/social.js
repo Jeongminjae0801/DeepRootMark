@@ -473,8 +473,13 @@ $(document).ready(function(){
     			'responsive' : true,
     			'dots' : false,
     		}
-    	}
-    
+    	},
+    	"checkbox" : { // 체크 박스 클릭시에만 checked 되기
+    		"whole_node" : false,
+            "tie_selection" : false
+          },
+          "plugins" : ["checkbox" ]
+          
     }).bind("select_node.jstree",function(event,data){
 	    var url = $('#jstree-from-left-all').jstree(true).get_node(data.node.id).a_attr.href;
 	    $('.indishare-url-surfing').text(url);
@@ -557,8 +562,8 @@ $(document).ready(function(){
     });
     
     //[버튼]:나의 북마크로 추가 버튼 클릭했을 때
-    $('#into-my-bookmark-btn').on('dblclick', function(){});
-    $('#into-my-bookmark-btn').on('click', function(){
+    $('#into-my-bookmark-btn5').on('dblclick', function(){});
+    $('#into-my-bookmark-btn5').on('click', function(){
     	if($('.indishare-url-surfing').text() == '#'){
     		swal({
     			title: "목적지 폴더를 확인하셨나요?",
@@ -569,18 +574,35 @@ $(document).ready(function(){
     		});
     		return;
     	}
+    	
+    	
+    	var checked_ids = [];
+        var submit_obj = [];
+        var selected_node_id = $('.indishare-userpid-left').val();
+        checked_ids = $('#jstree-from-left-all').jstree("get_checked",null,true);
+        
+        $.each(checked_ids,function(key,value) {
+            //폴더가 아닌 url만 골라 가져가기
+            var checked_url = $('#jstree-from-left-all').jstree(true).get_node(value).a_attr.href;
+            var urlname = $('#jstree-from-left-all').jstree(true).get_node(value).text;
+            if(checked_url !='#'){
+                submit_obj.push({url : checked_url , urlname : urlname, pid : selected_node_id}) 
+            }
+        });
+        var submit_obj_json = JSON.stringify(submit_obj);
+    	
+    	
     	$.ajax({
-    		url : "getmybookmark.do",
+    		url : "../user/insertGroupUrl.do",
     		type:"POST",
     		data: {
-    			url: $('.indishare-url-surfing').text(),
-				urlname: $('.indishare-urlname-left').val(),
-				pid: $('.indishare-userpid-left').val()
+    			obj : submit_obj_json
     		},
     		success : function(data){
     			if(data.result == "success") {
     				swal("Thank you!", "북마크에 추가되었습니다!", "success");
     				$('#socialSurfingModal').modal("toggle");
+    				selected_node_id=0;
     			} else {
     				swal({
     					title: "목적지 폴더를 확인하셨나요?",

@@ -177,7 +177,7 @@
 					</div>
 					<div class="modal-footer surfingshare">
 						<button type="button" class="btn btn-default surfingshare" data-dismiss="modal">취소</button>
-						<button id="into-my-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: inline;">확인</button>
+						<button id="into-my-bookmark-btn5" type="button" class="btn btn-primary surfingshare" style="display: inline;">확인</button>
 						<button id="into-group-bookmark-btn" type="button" class="btn btn-primary surfingshare" style="display: none;">확인</button>
 					</div>
 				</div><!-- /.modal-content -->
