@@ -1,3 +1,16 @@
+$('.indi-share').on('dblclick', function(){ return });
+$('.indi-share').on('click', function(){
+	var title = $(this).data('title');
+	$('.indishare-url').val(title);
+});
+
+
+$('.group-share').on('dblclick', function(){ return });
+$('.group-share').on('click', function(){
+	var title = $(this).data('title');
+	$('.groupshare-name').text(title);
+});
+
 /* 민재 onclick */
 // 개인 북마크 목록 가져가기 START
 $(function() {
@@ -241,7 +254,6 @@ $(document).ready(function(){
 							"dots": false, 			//연결선 없애기
 						}
 					}
-				
 				//노드(폴더)가 선택시 실행되는 함수
 				}).bind("select_node.jstree", function (e, data) {
 	 				var id = data.node.id;
@@ -293,7 +305,6 @@ $(document).ready(function(){
     //[버튼]:나의 북마크로 추가 버튼 클릭했을 때
     $('#into-my-bookmark-getgroup-btn').on('dblclick', function(){});
     $('#into-my-bookmark-getgroup-btn').on('click', function(){
-    	console.log("ㅎㅇ");
     	if($('.groupshare-url').text() == '#'){
     		swal({
     			title: "목적지 폴더를 확인하셨나요?",
@@ -343,7 +354,6 @@ $(document).ready(function(){
     			console.log(submit_obj_json);
     		},
     		success : function(data){
-    			console.log("ㅎㅇ55");
     			if(data.result == "success") {
     				swal("Thank you!", "북마크에 추가되었습니다!", "success");
     				$('#socialGroupModal').modal("toggle");
@@ -453,35 +463,15 @@ function selectedGroupget(group, gid) {
 		}
 	});
 }
-
-
 /* 민재 onclick END */
-
-/* 태웅이 onclick */
-
-$('.indi-share').on('dblclick', function(){ return });
-$('.indi-share').on('click', function(){
-	var title = $(this).data('title');
-	$('.indishare-url').val(title);
-});
-
-
-$('.group-share').on('dblclick', function(){ return });
-$('.group-share').on('click', function(){
-	var title = $(this).data('title');
-	$('.groupshare-name').text(title);
-});
-
-/* 태웅이 onclick END */
 
 /*진수 start*/
 var first_data = null;
 
 function surfing_modal(d){
 	$('.nname').text(d.id);
-	//클릭한 작성자 닉네임
-	var nname = d.id;
-	
+	var nname = d.id; 	//클릭한 작성자 닉네임
+
 	$.ajax({
 		url : "getCategoryList.do",
 		type : "POST",
@@ -532,7 +522,7 @@ $(document).ready(function(){
     	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
 
     	$.ajax({
-    		url : "bit/user/getCategoryList.do",
+    		url : "/bit/user/getCategoryList.do",
 			type:"POST",
 			dataType:"json",
 			success : function(data){
@@ -546,7 +536,6 @@ $(document).ready(function(){
 							"dots": false, 			//연결선 없애기
 						}
 					}
-				
 				//노드(폴더)가 선택시 실행되는 함수
 				}).bind("select_node.jstree", function (e, data) {
 	 				var id = data.node.id;
@@ -569,7 +558,7 @@ $(document).ready(function(){
 	    
 	    //진행중인 팀 리스트 가져오기
 	    $.ajax({
-	    	url: "bit/team/getTeamList.do",
+	    	url: "/bit/team/getTeamList.do",
 	    	type: "post",
 	    	success : function(data){
 	    		var html = '<ul class="dropdown-menu">';
@@ -628,9 +617,8 @@ $(document).ready(function(){
         });
         var submit_obj_json = JSON.stringify(submit_obj);
     	
-    	
     	$.ajax({
-    		url : "bit/user/insertGroupUrl.do",
+    		url : "/bit/user/insertGroupUrl.do",
     		type:"POST",
     		data: {
     			obj : submit_obj_json
@@ -721,7 +709,7 @@ function seletedGroup(group, gid) {
 	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
 	
 	$.ajax({
-		url : "bit/team/getGroupCategoryList.do",
+		url : "/bit/team/getGroupCategoryList.do",
 		type:"POST",
 		data: {gid: gid},
 		dataType:"json",

@@ -88,9 +88,9 @@
 					<div class="modal-body row">
 						<div class="completed-modal-left group">
 							<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
-				                <h4 class="completed-modal-from"><b>URL :</b>
+				                <h4 class="completed-modal-from" hidden="true"><b>URL :</b>
 						        	<a class="groupshare-url" name="url"></a></h4>
-						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="groupname">그룹 이름 뿌려</span></b></h4>
+						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="groupname"> </span></b></h4>
 				                <div class="jstree-from" id="jstree-from-left-group">
 				                </div>
 								<input type="hidden" class="groupshare-urlname-left" value="" name="urlname" readonly>
@@ -145,7 +145,7 @@
 					<div class="modal-body row">
 						<div class="completed-modal-left surfingshare">
 							<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
-				                <h4 class="completed-modal-from"><b>URL :</b>
+				                <h4 class="completed-modal-from" hidden="true"><b>URL :</b>
 						        	<a class="indishare-url-surfing" name="url"></a></h4>
 						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="nname">[회원이름]</span></b></h4>
 				                <div class="jstree-from" id="jstree-from-left-all">
