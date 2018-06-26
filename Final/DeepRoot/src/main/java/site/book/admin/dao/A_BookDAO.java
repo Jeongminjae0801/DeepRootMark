@@ -46,4 +46,7 @@ public interface A_BookDAO {
 	/* 2018-06-11(MON): 김태웅 추가 */
 	// Main에서 URL 전체 보기
 	public List<A_BookDTO> selectAllBookMain() throws ClassNotFoundException, SQLException;
+	
+	// URL 클릭시, +1
+	public int clickURL(int abid) throws ClassNotFoundException, SQLException;
 }

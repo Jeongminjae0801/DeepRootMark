@@ -116,6 +116,22 @@ public class MainController {
 		return "home.index";
 	}
 	
+	/* URL Click Function */
+	@RequestMapping(value="/clickurl.do")
+	public View clickURL(HttpServletRequest req, Model model, String abid) {
+		
+		System.out.println(abid);
+		int result = a_book_service.clickURL(abid);
+		
+		if(result > 0) {
+			model.addAttribute("click", "1");
+		}else {
+			model.addAttribute("click", "0");
+		}
+		
+		return jsonview;
+	}
+	
 	/* Log in */
 	@RequestMapping(value="/joinus/login.do")
 	public View login(HttpServletRequest request, HttpServletResponse response, 
