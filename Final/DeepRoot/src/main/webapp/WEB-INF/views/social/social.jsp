@@ -92,6 +92,7 @@
 						        	<a class="groupshare-url" name="url"></a></h4>
 						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="groupname"> </span></b></h4>
 				                <div class="jstree-from" id="jstree-from-left-group">
+				                
 				                </div>
 								<input type="hidden" class="groupshare-urlname-left" value="" name="urlname" readonly>
 								<input type="hidden" class="groupshare-userpid-left" value="" name="pid" readonly>
@@ -115,6 +116,7 @@
 			                   	</div>
 				      		</div>
 			                <div class="jstree-to" id="jstree-to-right-group" style="float:right;">
+			                
 			                </div>
 			            </div>
 					</div>
