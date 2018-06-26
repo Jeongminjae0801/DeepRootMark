@@ -633,7 +633,8 @@ $(document).ready(function(){
 			"plugins" : ["checkbox" ]
 			
 		})
-		.bind("select_node.jstree",function(event,data){  });
+		.bind("select_node.jstree",function(event,data){  
+		});
 	
 			//완료 그룹 모달 오른쪽 jstree
 	$('#jstree-to-right')
