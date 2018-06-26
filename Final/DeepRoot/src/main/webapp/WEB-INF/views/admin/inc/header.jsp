@@ -26,6 +26,18 @@
 		                    $.alert('공지사항 내용을 입력해주세요');
 		                    return false;
 		                }
+		                $("#noticeRegForm").ajaxForm({
+		                	success: function(data, statusText, xhr, $form){
+		                		var newNotice = '<li class="header"><a href="#">' + data.newNotice.ncontent + '</a></li>';
+		                		$("#noticeDropdownMenu").prepend(newNotice);
+		                		console.log(("#noticeDropdownMenu").length);
+		                		if(("#noticeDropdownMenu").length > 4){
+		                			console.log(("#noticeDropdownMenu").length);
+		                			$("#noticeDropdownMenu").children().eq(3).remove();
+		                		}
+		                	}
+		                });
+		                
 		                $("#noticeRegForm").submit();
 		                
 		            }
@@ -75,7 +87,7 @@
 							<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
 								<i class="fas fa-bell fa-lg admin-notice"></i>
 							</a>
-							<ul class="dropdown-menu">
+							<ul id="noticeDropdownMenu" class="dropdown-menu">
 								<c:if test="${(headerNoticeList ne null) && (!empty headerNoticeList)}">
 									<c:forEach items="${headerNoticeList}" var="headerNotice" >
 										<li class="header"><a href="#">${headerNotice.ncontent}</a></li>

@@ -362,10 +362,11 @@ public class AdminController {
 	}
 
 	@RequestMapping("noticeReg.do")
-	public String noticeReg(String ncontent) {
-		notice_service.noticeReg(ncontent);
-
-		return "redirect:main.do";
+	public View noticeReg(String ncontent, Model model) {
+		NoticeDTO newNotice = notice_service.noticeReg(ncontent);
+		model.addAttribute("newNotice", newNotice);
+		
+		return jsonview;
 	}
 
 }

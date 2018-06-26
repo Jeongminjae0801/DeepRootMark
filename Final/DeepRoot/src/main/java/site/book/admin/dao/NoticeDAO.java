@@ -26,5 +26,10 @@ public interface NoticeDAO {
 	// 공지사항 가져오기
 	public List<NoticeDTO> selectAllNotices() throws ClassNotFoundException, SQLException;
 	
+	// 공지사항 마지막 번호 가져오기
+	public int getMaxNID() throws ClassNotFoundException, SQLException;
+	
+	// 공지사항 하나 가져오기
+	public NoticeDTO selectNotice(int nid) throws ClassNotFoundException, SQLException;
 	
 }
