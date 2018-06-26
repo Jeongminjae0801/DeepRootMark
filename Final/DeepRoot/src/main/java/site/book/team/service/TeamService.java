@@ -105,22 +105,22 @@ public class TeamService {
 	
 	// 그룹 추가하기
 	@Transactional
-	public int addGroup(String gname, G_MemberDTO member) {
+	public TeamDTO addGroup(String gname, G_MemberDTO member) {
 		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
 		G_MemberDAO g_memberDAO = sqlsession.getMapper(G_MemberDAO.class);
-		
-		int row = 0;
+		TeamDTO team = null;
 		
 		try {
-			row = teamDAO.insertGroup(gname);
+			teamDAO.insertGroup(gname);
 			int gid = teamDAO.selectLastGroupID();
 			member.setGid(gid);
-			row = g_memberDAO.insertGMember(member);
+			g_memberDAO.insertGMember(member);
+			team = teamDAO.selectGroup(gid);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return row;
+		return team;
 	}
 	
 	// 그룹 완료하기

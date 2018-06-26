@@ -44,6 +44,9 @@ public interface TeamDAO {
 	// 그룹 완료
 	public int completedGroup(TeamDTO team) throws ClassNotFoundException, SQLException;
 	
+	// 그룹 하나 가져오기
+	public TeamDTO selectGroup(int gid) throws ClassNotFoundException, SQLException;
+	
 	// 명수
 	// 완료 그룹 리스트 가져오기
 	public List<TeamDTO> getCompletedTeamList(String uid);
