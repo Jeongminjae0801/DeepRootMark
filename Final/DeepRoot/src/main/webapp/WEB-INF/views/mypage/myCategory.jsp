@@ -151,7 +151,7 @@
 	
 	var selected_node_id = 0;
 
-///완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
+	//완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
 	function open_completed_group_modal(d){
 		
 		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
@@ -164,20 +164,20 @@
 			data : {gid : gid},	/* group id 를 넣어야 한다. */
 			dataType :"json",
 			success : function(obj){
-//모달 왼쪽 jstree에 data 넣어주기
+				//모달 왼쪽 jstree에 data 넣어주기
 				first_data = obj;
 				$('#jstree-from-left').jstree().deselect_all(true);
 				$('#jstree-from-left').jstree(true).settings.core.data = obj;
 				$('#jstree-from-left').jstree(true).refresh();
 			}
 		})
-//모달 오른쪽 selected 된거 없애기
+		//모달 오른쪽 selected 된거 없애기
 		$('#jstree-to-right').jstree().deselect_all(true);
-//완료 그룹 모달 띄우기
+		//완료 그룹 모달 띄우기
 		$('#completedGroupModal').modal();
 	};
 	
-//완료된 그룹 url 선택후 save 버튼 클릭시
+	//완료된 그룹 url 선택후 save 버튼 클릭시
 	function submitgroupurl(){
 		var checked_ids = [];
 		var submit_obj = [];
@@ -186,10 +186,12 @@
 		
 		if(checked_ids == null){
 			alert("선택한 URL이 없습니다.")
-			return false};
+			return false
+		};
 		if(selected_node_id == 0) {
 			alert("가져가기 할 폴더를 선택하지 않았습니다.")
-			return false};
+			return false
+		};
 		
 		$.each(checked_ids,function(key,value){
 			//폴더가 아닌 url만 골라 가져가기
@@ -213,7 +215,6 @@
 				$('#jstree_container').jstree(true).select_node(selected_node_id);			
 				selected_node_id = 0;
 			}
-			
 		})
 	}
 	$(document).ready(function(){
@@ -221,11 +222,12 @@
 		var first_data = null;
 		var right_data = null;
 		
-//완료 그룹 모달 왼쪽 jstree
-		$("#jstree-from-left").on('click','.jstree-anchor',function(e){
-			$('#jstree-from-left').jstree(true).toggle_node(e.target);
-			
-		}).jstree({
+		//완료 그룹 모달 왼쪽 jstree
+		$("#jstree-from-left")
+			.on('click','.jstree-anchor',function(e){
+				$('#jstree-from-left').jstree(true).toggle_node(e.target);
+			})
+			.jstree({
 				
 				"core" : {
 					"dblclick_toggle" : false,
@@ -236,25 +238,25 @@
 						'dots' : false,
 					}
 				},
-// 체크 박스 클릭시에만 checked 되기				
+				// 체크 박스 클릭시에만 checked 되기				
 				"checkbox" : {
 					"whole_node" : false,
 					"tie_selection" : false
 				},
 				"plugins" : ["checkbox" ]
-				
-			}).bind("loaded.jstree",function(event,data){
-				console.log("ready");
+			})
+			.bind("loaded.jstree",function(event,data){
 				 $('#group_bookmark_modal').jstree("open_all"); 
-				
-			}).bind("select_node.jstree",function(event,data){
+			})
+			.bind("select_node.jstree",function(event,data){
 			})
 
-//완료 그룹 모달 오른쪽 jstree
-			$('#jstree-to-right').on('click','.jstree-anchor',function(e){
-				$('#jstree-to-right').jstree(true).toggle_node(e.target);
-				
-			}).jstree({
+			//완료 그룹 모달 오른쪽 jstree
+			$('#jstree-to-right')
+				.on('click','.jstree-anchor',function(e){
+					$('#jstree-to-right').jstree(true).toggle_node(e.target);
+				})
+				.jstree({
 				"core" : {
 					"dblclick_toggle" : false,
 					'data' : right_data,
@@ -267,7 +269,6 @@
 			})
 			.bind("select_node.jstree",function(e,data){
 				selected_node_id= data.node.id;
-				
 			})
 		})
 		

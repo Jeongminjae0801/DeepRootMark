@@ -361,6 +361,7 @@ $(document).ready(function(){
 								edit_htag_node_id = id;
 				                			
 								$('#edit_htag_append').empty();	//기존 모달에 있던 htag button 없애기
+								$('#edit_htag_btn').empty();
 								$('#edit_htag').modal();	//htag 수정하기 모달
 								$('#edit_sname_btn').val(sname);	//sname 넣어주기
 						                	
@@ -513,6 +514,7 @@ $(document).ready(function(){
 										edit_htag_node_id = id;
 							                			
 										$('#edit_htag_append').empty();	//기존 모달에 있던 htag button 없애기
+										$('#edit_htag_btn').empty();
 										$('#edit_htag').modal();	//htag 수정하기 모달
 										$('#edit_sname_btn').val(sname);	//sname 넣어주기
 							                			
@@ -593,7 +595,7 @@ $(document).ready(function(){
 			},
 			success : function(result){
 				$('#loading').html("");
-				if(result != 1)
+				if(result.result != 1)
 					alert('수정 실패');
 			}
 		});   
@@ -694,7 +696,10 @@ function edit_htag_submit(){
 		$.alert("공유제목을 입력해주세요")
 	}else if(htag == ""){
 		$.alert("해시태그를 하나 이상 입력해주세요")
+	}else if(edithashtagList.length >10){
+		$.alert("해시태그를 10개 까지만 입력 가능합니다");
 	}else{
+	
 		
 		var form = {ubid : edit_htag_node_id , sname : sname , htag : htag}
 		
@@ -853,6 +858,8 @@ function addUrlShare() {
 		$.alert("공유제목을 입력해주세요")
 	}else if(htag == ""){
 		$.alert("해시태그를 하나 이상 입력해주세요")
+	}else if(hashtagList.length >10){
+		$.alert("해시태그는 10개까지만 입력 가능합니다.");
 	}else{
 		var form = {url : url , urlname : title , pid : urlpid , htag : htag , sname : sname};
 		$.ajax({

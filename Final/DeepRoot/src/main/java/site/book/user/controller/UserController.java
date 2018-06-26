@@ -266,7 +266,7 @@ public class UserController {
 		res.setCharacterEncoding("UTF-8");
 		
 		List<U_BookDTO> list = u_bookservice.getUrl(ubid);
-		System.out.println(list);
+		//System.out.println(list);
 		JSONArray jsonArray = new JSONArray();	
 		HashMap<String, String> href = new HashMap();
 		
@@ -309,15 +309,12 @@ public class UserController {
 	
 	//urlname 수정
 	@RequestMapping("updateNodeText.do")	
-	public void updateNodeText(@RequestParam HashMap<String, String> param, HttpServletResponse res) {
+	public View updateNodeText(@RequestParam HashMap<String, String> param , Model model ) {
 		
 		int result = u_bookservice.updateNodeText(param);
+		model.addAttribute("result",result);
 		
-		try {
-			res.getWriter().println(result);
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
+		return jsonview;
 	}
 	
 	//폴더 & url & 공유일 경우 공유로 추가
@@ -347,38 +344,28 @@ public class UserController {
 	
 	//url update
 	@RequestMapping("editUrl.do")	
-	public void editUrl(U_BookDTO dto , HttpServletResponse res) {
-		
-		res.setCharacterEncoding("UTF-8");
+	public View editUrl(U_BookDTO dto , Model model) {
 		
 		int result = u_bookservice.editUrl(dto);
+		model.addAttribute("result",result);
 		
-		try {
-			res.getWriter().println(result);
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
-		
+		return jsonview;
 	}
 	
 	//드래그 드랍 했을 경우 부모 id 바꾸기
 	@RequestMapping("dropNode.do")	
-	public void dropNode(HttpServletResponse res , @RequestParam HashMap<String, String> param) {
+	public View dropNode( @RequestParam HashMap<String, String> param , Model model) {
 		
-		res.setCharacterEncoding("UTF-8");
 		int result = u_bookservice.dropNode(param);
+		model.addAttribute("result",result);
 		
-		try {
-			res.getWriter().println(result);
-		}catch (Exception e) {
-			// TODO: handle exception
-		}
+		return jsonview;
 		
 	}
 	
 	// email 보내기 받는 사람 주소 변경하기
 	@RequestMapping("recommend.do")
-	public void recommend(HttpServletResponse res, String url , String text) {	
+	public View recommend( String url , String text , Model model) {	
 			// 내용 알 맞게 변경하기
 		
 		SimpleMailMessage message = new SimpleMailMessage();
@@ -387,13 +374,9 @@ public class UserController {
 		message.setText(url +" "+ text);
 		message.setTo("sonmit002@naver.com");
 		
-		try {
-			 mailSender.send(message);
-			 res.getWriter().println("메일보내기 성공");
-			
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+		model.addAttribute("result","메일 전송");
+		
+		return jsonview;
 		
 	}
 	
@@ -474,8 +457,8 @@ public class UserController {
 
         JSONArray jarr = new JSONArray();
 		jarr = new JSONArray(req.getParameter("obj"));
-		System.out.println(jarr);
-		System.out.println(jarr.length());
+		//System.out.println(jarr);
+		//System.out.println(jarr.length());
 		int result;
 		
 			for(int i = 0 ; i< jarr.length() ; i++) {
@@ -485,8 +468,8 @@ public class UserController {
 				dto.setUid(uid);
 				
 				result = u_bookservice.insertUrlFromCompletedGroup(dto);
-				System.out.println(result);
-				System.out.println(dto.toString());
+				//System.out.println(result);
+				//System.out.println(dto.toString());
 			}
 			
 		return jsonview;
