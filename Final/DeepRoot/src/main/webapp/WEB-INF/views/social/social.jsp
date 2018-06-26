@@ -266,9 +266,9 @@
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
-									<%-- data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}" --%>
-									<td class="table-icon indi-share">
-										<i class="fa fa-share getbookmark" onclick="get_IndiModal();"></i>
+									<%--  --%>
+									<td class="table-icon indi-share getbookmark" data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}">
+										<i class="fa fa-share "></i>
 									</td>
 									<!-- 가져오기 icon -->
 								</tr>
