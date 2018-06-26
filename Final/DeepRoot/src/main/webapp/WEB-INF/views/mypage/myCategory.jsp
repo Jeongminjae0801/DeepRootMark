@@ -284,12 +284,8 @@
 
 			//완료 그룹 모달 오른쪽 jstree
 			$('#jstree-to-right')
-				.on('click','.jstree-anchor',function(e){
-					$('#jstree-to-right').jstree(true).toggle_node(e.target);
-				})
 				.jstree({
 				"core" : {
-					"dblclick_toggle" : false,
 					'data' : right_data,
 					'themes':{
 						'name' : 'proton',
