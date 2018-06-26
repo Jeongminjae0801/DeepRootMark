@@ -5,16 +5,16 @@ var edit_htag_node_id = null;
 
 $(document).ready(function(){
 			
-/* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
-			$.ajax({
-				url : "getCategoryList.do",
-				type:"POST",
-				dataType:"json",
-				success : function(data){	
+	/* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
+	$.ajax({
+		url : "getCategoryList.do",
+		type:"POST",
+		dataType:"json",
+		success : function(data){	
 
 /*왼쪽 jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/					
 					$("#jstree_container").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
-					$('#jstree_container').jstree(true).toggle_node(e.target);	
+						$('#jstree_container').jstree(true).toggle_node(e.target);	
 					})
 					.jstree({	
 							"core": {
@@ -64,8 +64,8 @@ $(document).ready(function(){
 											$('#loading').html("");
 											$('#jstree_container').jstree().deselect_all(true);											
 											$('#jstree_container').jstree(true).select_node(par.id);											
-												}
-											});
+										}
+									});
 									return false;	
 								}
 								return true;	
@@ -127,7 +127,7 @@ $(document).ready(function(){
 								            			  success : function(data){
 								            				  $('#loading').html("");
 								            				 var node_id = $.trim(data.ubid);
-/*왼쪽 jstree 새폴더 생성과 동시에 이름 수정하게 하기*/ 
+								            				 /*왼쪽 jstree 새폴더 생성과 동시에 이름 수정하게 하기*/ 
 								            				 tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder"} ,"last",function(new_node){
 								            				 new_node.id = node_id;
 								            				 tree.edit(new_node);

@@ -41,6 +41,8 @@
 			                        <hr class="divider-hr">
 			                        <li class="dropdown-item dropdown-submenu">
 			                            <a tabindex="-1">Group</a>
+			                            
+			                            
 			                        </li>
 			                    </div>
 			                </div>
@@ -264,8 +266,9 @@
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon indi-share" data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}">
-										<i class="fa fa-share getbookmark"></i>
+									<%-- data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}" --%>
+									<td class="table-icon indi-share">
+										<i class="fa fa-share getbookmark" onclick="get_IndiModal();"></i>
 									</td>
 									<!-- 가져오기 icon -->
 								</tr>
@@ -307,8 +310,8 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon" data-toggle="modal" data-target="#socialSurfingModal" data-title="${g_booklist.gname}">
-										<i class="fa fa-share"></i>
+									<td class="table-icon" <%-- data-toggle="modal" data-target="#socialSurfingModal" data-title="${g_booklist.gname}" --%>>
+										<i class="fa fa-share" onclick="get_groupbookmark"></i>
 									</td>
 									<!-- 가져오기 icon -->
 								</tr>
