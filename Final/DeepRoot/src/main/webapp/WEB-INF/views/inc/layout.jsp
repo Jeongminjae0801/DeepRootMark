@@ -68,56 +68,6 @@
     <script src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
     
     <script>
-        /**************************  Table Start  **********************************/
-        $(function() {
-        	$(document).on("dblclick", ".url", function() {
-        		window.open(this.dataset.url, '_blank'); 
-        	});
-            $(document).on("click", ".url", function() { });
-            $('.url').on({
-                mouseover: function() {
-                    $(this).children('.url_link_btn').css('display', 'block')
-                },
-                mouseleave: function() {
-                    $(this).children('.url_link_btn').css('display', 'none')
-                }
-            });
-            $('li').on({
-                mouseover: function() {
-                    $(this).children('button').css('display', 'block')
-                },
-                mouseleave: function() {
-                    $(this).children('button').css('display', 'none')
-                }
-            });
-            $(document).on("click", ".fa-folder-open", function() {
-                $(this).parent().parent().children('ul').hide(500);
-                $(this).removeClass("fa-folder-open");
-                $(this).addClass("fa-folder");
-            });
-            $(document).on("click", ".fa-folder", function() {
-                $(this).parent().parent().children('ul').show(500);
-                $(this).removeClass("fa-folder");
-                $(this).addClass("fa-folder-open");
-            });
-        });
-        /**************************  Table END  **********************************/
-
-        /* ******************** Scroll Shadow Start *************************** */
-        $(function() {
-            var header = $('#header');
-            $(window).scroll(function(e) {
-                if (header.offset().top !== 0) {
-                    if (!header.hasClass('shadow')) {
-                        header.addClass('shadow');
-                    }
-                } else {
-                    header.removeClass('shadow');
-                }
-            })
-        });
-        /* ******************** Scroll Shadow END *************************** */
-        
         /**************************  Preview Start  **********************************/
     	function preview(abid){
         	$('#world-ranking-visitor').html('');

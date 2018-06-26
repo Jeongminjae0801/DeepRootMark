@@ -172,10 +172,22 @@ public class A_BookService {
 		try {
 			list = bookDAO.selectAllBookMain();
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			/*e.printStackTrace();*/
 		}
 		
 		return list;
 	}
-	
+	// Main Table URL Click +1
+	public int clickURL(String abid) {
+		A_BookDAO bookDAO = sqlsession.getMapper(A_BookDAO.class);
+		int result = 0;
+		
+		try {
+			result = bookDAO.clickURL(Integer.parseInt(abid));
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

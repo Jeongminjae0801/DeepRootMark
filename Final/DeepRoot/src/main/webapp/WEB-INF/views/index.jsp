@@ -250,7 +250,7 @@
                                			<li>
                                				<se:authorize access="isAuthenticated()">
 	                                        <button class="url_hover_btn" type="button" data-toggle="modal" data-target="#mainIndiModal">
-	                                        	<img class="zoom_img" src="icon/url_save.png"><!-- data-toggle="modal" onclick="openUrlModal()" --></button>
+	                                        	<img class="zoom_img" src="icon/url_save.png"></button>
 	                                       	</se:authorize>
 	                                        <button class="url_hover_btn" type="button">
 	                                        	<img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
