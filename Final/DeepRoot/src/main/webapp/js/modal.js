@@ -58,11 +58,8 @@ jQuery(function($) {
 				dataType:"json",
 				success : function(data){
 					/*jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.*/	
-					$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
-						$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
-					}).jstree({	
+					$("#jstree-to-bottom").jstree({	
 							"core": {
-								"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
 								'data' : data, 				//ajax로 가져온 json data jstree에 넣어주기
 								'themes':{
 									'name' : 'proton', 		//테마 이름
@@ -171,11 +168,8 @@ function seletedGroup(group, gid) {
 		success : function(data){
 			console.log(data.data);
 			// jstree 시작하기 jstree 생성하고 싶은 div의 id를 적어준다.	
-			$("#jstree-to-bottom").on("click",'.jstree-anchor',function(e){// 한번만 클릭해서 폴더 열기
-				$('#jstree-to-bottom').jstree(true).toggle_node(e.target);
-			}).jstree({	
+			$("#jstree-to-bottom").jstree({	
 					"core": {
-						"dblclick_toggle" : false, 	// 두번 클릭해서 폴더여는거 false
 						'data' : data.data, 		// ajax로 가져온 json data jstree에 넣어주기
 						'themes':{
 							'name' : 'proton', 		// 테마 이름

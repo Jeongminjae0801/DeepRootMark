@@ -244,7 +244,8 @@
                                     <span class="title">${cList.acname}</span>
                                 </h2>
                                 <ul>
-                                	<c:forEach items="${bookList}" var="bList">
+                                	<c:set var="index">1</c:set>
+                                	<c:forEach items="${bookList}" var="bList" varStatus="status">
                                 	<c:choose>
                                 		<c:when test="${cList.acid == bList.acid}">
                                			<li>
@@ -255,10 +256,19 @@
 	                                        <button class="url_hover_btn" type="button">
 	                                        	<img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
 	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}" alt="">
-	                                        <p class="url" data-abid="${bList.abid}"
+	                                        <p class="url ${bList.abid}" data-abid="${bList.abid}"
 	                                        			   data-url="${bList.url}"
 	                                        			   data-regdate="${bList.regdate}"
-	                                        			   data-views="${bList.view}">${bList.urlname}<img class="url_link_btn" src="icon/open_link.png"></p>
+	                                        			   data-views="${bList.view}">${bList.urlname}<img class="url_link_btn" src="icon/open_link.png">
+	                                        			   <c:if test="${index <= 2}">
+	                                        			   		<i class="fas fa-h-square" style="color: #ff5400;"></i>
+	                                        			   		<c:set var="index" value="${index + 1}"></c:set>
+	                                        			   		
+	                                        			   </c:if>
+	                                        			   <script type="text/javascript">
+	                                        			   		isNewURL("${bList.abid}", "${bList.regdate}");
+	                                        			   </script>
+	                                        </p>
 	                                    </li>
                                 		</c:when>
                                 	</c:choose>
