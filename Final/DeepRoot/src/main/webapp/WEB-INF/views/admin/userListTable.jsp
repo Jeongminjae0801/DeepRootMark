@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
-
+	var userListTable = null;
 	$(function(){
-		var table = $("#userListTable").DataTable({
+		userListTable = $("#userListTable").DataTable({
 			responsive: true
 		});
 		
@@ -25,7 +25,8 @@
 		        	btnClass : 'btn-danger',
 		        	keys: ['enter'],
 		        	action : function () {
-		        		$("#" + nname).remove(); // dataTable에서 지우기
+		        		userListTable.row($('tr[id=' + nname + ']')).remove().draw(); // dataTable에서 지우기
+		        		
 		    			$.ajax({
 		    				url: "blacklist.do",
 		    				type: "post",

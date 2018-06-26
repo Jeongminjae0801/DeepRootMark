@@ -4,8 +4,10 @@
 
 <!-- 페이지 전환 Script START -->
 <script type="text/javascript">
+	var groupListTable = null;
+	
 	$(document).ready(function() {
-    	$('#groupListTable').DataTable({
+    	groupListTable = $('#groupListTable').DataTable({
 			responsive: true
 		});
     });
@@ -24,7 +26,8 @@
 		        	btnClass : 'btn-danger',
 		        	keys: ['enter'],
 		        	action : function () {
-		        		$("#"+gid).remove(); // dataTable에서 지우기
+		        		groupListTable.row($('tr[id=' + gid + ']')).remove().draw(); // dataTable에서 지우기
+		        		
 		    			$.ajax({
 		    				url: "deleteGroup.do",
 		    				type: "post",
@@ -76,6 +79,7 @@
 										<th>GroupId</th>
 										<th>GroupName</th>
 										<th>GroupHashTag</th>
+										<th>GroupHead</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -85,6 +89,7 @@
 											<td>${group.gid}</td>
 											<td>${group.gname}</td>
 											<td>${group.htag}</td>
+											<td>${group.nname}</td>
 											<td><i class="fas fa-trash-alt url-action" onclick="deleteGroup(${group.gid})"></i></td>
 										</tr>
 									</c:forEach>
