@@ -277,6 +277,7 @@
 			
 		}).bind("select_node.jstree",function(event,data){  });
 
+<<<<<<< HEAD
 		//완료 그룹 모달 오른쪽 jstree
 		$('#jstree-to-right').on('click','.jstree-anchor',function(e){
 			$('#jstree-to-right').jstree(true).toggle_node(e.target);
@@ -289,6 +290,18 @@
 					'name' : 'proton',
 					'responsive' : true,
 					'dots' : false,
+=======
+			//완료 그룹 모달 오른쪽 jstree
+			$('#jstree-to-right')
+				.jstree({
+				"core" : {
+					'data' : right_data,
+					'themes':{
+						'name' : 'proton',
+						'responsive' : true,
+						'dots' : false,
+					}
+>>>>>>> a595eb7b93eb2a0af12fe8672ca0bc7d9895d4d1
 				}
 			}
 		
