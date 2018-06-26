@@ -46,6 +46,7 @@ import site.book.user.service.U_BookService;
 @Controller
 @RequestMapping("/social/")
 public class SocialController {
+	
 	/* 민재 파라미터 */
 	@Autowired
 	private TopService top_service;
@@ -103,87 +104,87 @@ public class SocialController {
 	
 	/*진수 해당 회원 북마크 가져오기 start*/
 	//해당 유저의 카테고리를 보내준다.
-		@RequestMapping("getCategoryList.do")	
-		public void getCategoryList(HttpServletRequest req , HttpServletResponse res, String nname) {
-			
-			res.setCharacterEncoding("UTF-8");
-			
-			HttpSession session = req.getSession();
-	        
-			JSONArray jsonArray = new JSONArray();	
-			List<U_BookDTO> list = surfingservice.getCategoryList(nname);
-			HashMap<String, String> href = new HashMap();
+	@RequestMapping("getCategoryList.do")	
+	public void getCategoryList(HttpServletRequest req , HttpServletResponse res, String nname) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		HttpSession session = req.getSession();
+        
+		JSONArray jsonArray = new JSONArray();	
+		List<U_BookDTO> list = surfingservice.getCategoryList(nname);
+		HashMap<String, String> href = new HashMap();
 
-			for(int i =0;i<list.size();i++) {
-				
-				JSONObject jsonobject = new JSONObject();
-				
-				String parentid = String.valueOf(list.get(i).getPid());
-				
-				if(parentid.equals("0") || parentid.equals(""))
-					jsonobject.put("parent", "#");
-				else
-					jsonobject.put("parent", parentid);
-				
-				if(list.get(i).getUrl() == null)
-					jsonobject.put("icon", "fa fa-folder");	//favicon 추가
-				else {
-					jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
-				}
-				href.put("href", list.get(i).getUrl());
-				jsonobject.put("id", list.get(i).getUbid());
-				jsonobject.put("text", list.get(i).getUrlname());
-				jsonobject.put("nname",nname);
-				jsonobject.put("sname", list.get(i).getSname());
-				jsonobject.put("htag", list.get(i).getHtag());
-				jsonobject.put("a_attr", href);
-				jsonArray.put(jsonobject);
-				
-			}
+		for(int i =0;i<list.size();i++) {
 			
-			try {
-				res.getWriter().println(jsonArray);
-			}catch (JSONException | IOException e) {
-				e.printStackTrace();
-			}
-		}
-		/*해당 회원 북마크 가져오기 end*/
-		
-		// 민재 , 개인 북마크 내 카테고리로 가져가기
-		@RequestMapping("getmybookmark.do")
-		public View getSharemark(U_BookDTO book ,HttpServletRequest req, Model model) {
-			HttpSession session = req.getSession();
-	        String uid = (String)session.getAttribute("info_userid");
-	        book.setUid(uid);
-	        
-	        int result = u_bookservice.insertUrlFromCompletedGroup(book);
-			if(result > 0) {
-				model.addAttribute("result", "success");
-			}else {
-				model.addAttribute("result", "fail");
-			}
+			JSONObject jsonobject = new JSONObject();
 			
-			return jsonview;
+			String parentid = String.valueOf(list.get(i).getPid());
+			
+			if(parentid.equals("0") || parentid.equals(""))
+				jsonobject.put("parent", "#");
+			else
+				jsonobject.put("parent", parentid);
+			
+			if(list.get(i).getUrl() == null)
+				jsonobject.put("icon", "fa fa-folder");	//favicon 추가
+			else {
+				jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
+			}
+			href.put("href", list.get(i).getUrl());
+			jsonobject.put("id", list.get(i).getUbid());
+			jsonobject.put("text", list.get(i).getUrlname());
+			jsonobject.put("nname",nname);
+			jsonobject.put("sname", list.get(i).getSname());
+			jsonobject.put("htag", list.get(i).getHtag());
+			jsonobject.put("a_attr", href);
+			jsonArray.put(jsonobject);
+			
 		}
 		
-		// 민재 , 개인 북마크 내 그룹으로 가져가기
-		@RequestMapping("getGroupBook.do")	
-		public View addGroupBookmark(HttpServletRequest req, Model model, G_BookDTO g_book) {
-	        
-			HttpSession session = req.getSession();
-	        String uid = (String)session.getAttribute("info_userid");
-	        g_book.setUid(uid);
-	        System.out.println(g_book);
-	        
-	        int result = surfingservice.insertGroupBookmark(g_book);
-	        
-			if(result > 0) {
-				model.addAttribute("result", "success");
-			}else {
-				model.addAttribute("result", "fail");
-			}
-			
-			return jsonview;
+		try {
+			res.getWriter().println(jsonArray);
+		}catch (JSONException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/*해당 회원 북마크 가져오기 end*/
+	
+	// 민재 , 개인 북마크 내 카테고리로 가져가기
+	@RequestMapping("getmybookmark.do")
+	public View getSharemark(U_BookDTO book ,HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        book.setUid(uid);
+        
+        int result = u_bookservice.insertUrlFromCompletedGroup(book);
+		if(result > 0) {
+			model.addAttribute("result", "success");
+		}else {
+			model.addAttribute("result", "fail");
 		}
 		
+		return jsonview;
+	}
+	
+	// 민재 , 개인 북마크 내 그룹으로 가져가기
+	@RequestMapping("getGroupBook.do")	
+	public View addGroupBookmark(HttpServletRequest req, Model model, G_BookDTO g_book) {
+        
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        g_book.setUid(uid);
+        System.out.println(g_book);
+        
+        int result = surfingservice.insertGroupBookmark(g_book);
+        
+		if(result > 0) {
+			model.addAttribute("result", "success");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		
+		return jsonview;
+	}
+	
 }
