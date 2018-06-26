@@ -81,7 +81,7 @@
 		$.confirm({
 		    title: '그룹 추가',
 		    content: '' +
-		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/user/addGroup.do" class="formName" method="post">' +
+		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/addGroup.do" class="formName" method="post">' +
 		    '<div class="form-group">' +
 		    '<label>그룹명</label>' +
 		    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
@@ -93,19 +93,38 @@
 		    buttons: {
 		        formSubmit: {
 		            text: '추가',
-		            btnClass: 'btn-blue',
+		            btnClass: 'btn-success',
+		            keys: ['enter'],
 		            action: function () {
 		                var name = this.$content.find('.name').val();
 		                if(!name){
 		                    $.alert('그룹명을 적어주세요');
 		                    return false;
 		                }
+		                $("#addGroupForm").ajaxForm({
+		                	success: function(data, statusText, xhr, $form){
+		                		var group = '<li id="${team.gid}" class="list-group-item">';
+		                		group += '<label class="my-group-list">' + data.newTeam.gname + '</label>';
+		                		group += '<div class="pull-right action-buttons">';
+		                		group += '<a class="completed">';
+		                		group += '<span class="glyphicon glyphicon-check" onclick="completedGroup(' + data.newTeam.gid + ')"></span>';
+								group += '</a>';
+								group += '</div>';
+								group += '</li>';
+								
+	                			$("#participatingGroupList").children().last().before(group);
+		                	}
+		                });
+		                
 		                $("#addGroupForm").submit();
 		                
 		            }
 		        },
-		                    취소: function () {
-		            //close
+		        '취소': {
+		        	btnClass : 'btn-danger',
+	        		action : function() {
+	        		
+	        		}
 		        },
 		    }
 
@@ -129,7 +148,7 @@
 		    buttons: {
 		        formSubmit: {
 		            text: '완료',
-		            btnClass: 'btn-blue',
+		            btnClass: 'btn-success',
 		            action: function () {
 		                var name = this.$content.find('.name').val();
 		                this.$content.find('.gid').val(gid);
@@ -137,12 +156,31 @@
 		                    $.alert('해시태그를 적어주세요');
 		                    return false;
 		                }
+		                
+		                $("#completedGroupForm").ajaxForm({
+		                	success: function(data, statusText, xhr, $form){
+		                		$("#"+ data.completedGroup.gid).remove();
+		                		
+		                		var addCompletedGroup = "";
+		                		addCompletedGroup += '<li id="' + data.completedGroup.gid + '" class="list-group-item">';
+		                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal('+ data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
+		                		addCompletedGroup += '<div class="pull-right action-buttons">';
+		                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + data.completedGroup.gid + ')"></span></a>';
+		                		addCompletedGroup += '</div>';
+		                		addCompletedGroup += '</li>';
+		                		
+		                		$("#completedGroupList").append(addCompletedGroup);
+		                	}
+		                });
+		                
 		                $("#completedGroupForm").submit();
 		                
 		            }
 		        },
-		                    취소: function () {
-		            //close
+		        '취소': {
+		        	btnClass : 'btn-danger',
+	        		action : function() {
+	        		}
 		        },
 		    }
 		    
@@ -152,13 +190,10 @@
 	var selected_node_id = 0;
 
 ///완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
-	function open_completed_group_modal(d){
+	function open_completed_group_modal(gid){
 		
-		var gid = d.id; // 클릭한 완료된 그룹의 id 입니다.
-
 		//완료된 그룹 북마크 가져오기
 		$.ajax({
-			
 			url : "getCompletedTeamBookmark.do",
 			type : "POST",
 			data : {gid : gid},	/* group id 를 넣어야 한다. */
@@ -327,23 +362,26 @@
 						class="mypage-title">그룹리스트</span>
 				</div>
 				<div class="panel-body">
-					<ul class="group-list-list">
+					<ul id="participatingGroupList" class="group-list-list">
 						<c:forEach items="${teamList}" var="team">
-							<li id="${team.gid}" class="list-group-item"><label
-								class="my-group-list"> ${team.gname} </label>
+							<li id="${team.gid}" class="list-group-item">
+								<label class="my-group-list"> ${team.gname} </label>
 								<div class="pull-right action-buttons">
 									<c:choose>
 										<c:when test="${team.grid == '1'}">
-											<a class="completed"><span
-												class="glyphicon glyphicon-check"
-												onclick="completedGroup(${team.gid})"></span></a>
+											<a class="completed">
+												<span class="glyphicon glyphicon-check" onclick="completedGroup(${team.gid})"></span>
+											</a>
 										</c:when>
 										<c:otherwise>
-											<a class="trash"><span class="glyphicon glyphicon-trash"
-												onclick="deleteGroup(${team.gid})"></span></a>
+											<a class="trash">
+												<span class="glyphicon glyphicon-trash" onclick="deleteGroup(${team.gid})">
+												</span>
+											</a>
 										</c:otherwise>
 									</c:choose>
-								</div></li>
+								</div>
+							</li>
 						</c:forEach>
 						<li class="list-group-item"><a class="plus"><span
 								class="glyphicon glyphicon-plus-sign" onclick="addGroup()"></span></a>
@@ -360,10 +398,10 @@
 						class="mypage-title">완료된 그룹</span>
 				</div>
 				<div class="panel-body-scroll">
-					<ul class="group-list-list">
+					<ul id="completedGroupList" class="group-list-list">
 						<c:forEach items="${completedTeamList}" var="completedTeam">
-							<li id="${completedTeam.gid}" class="list-group-item" onclick="open_completed_group_modal(this)">
-								<label class="my-group-list"> ${completedTeam.gname} </label>
+							<li id="${completedTeam.gid}" class="list-group-item">
+								<label class="my-group-list" onclick="open_completed_group_modal(${completedTeam.gid})"> ${completedTeam.gname} </label>
 								<div class="pull-right action-buttons">
 									<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(${completedTeam.gid})"></span></a>
 								</div>

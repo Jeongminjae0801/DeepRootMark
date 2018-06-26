@@ -40,7 +40,10 @@
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<!-- Google Icon CDN END -->
 
-
+	<!-- jQuery Ajax Form START -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+	<!-- jQuery Ajax Form END -->
+	
 <title>my BookMark</title>
 </head>
 <body>

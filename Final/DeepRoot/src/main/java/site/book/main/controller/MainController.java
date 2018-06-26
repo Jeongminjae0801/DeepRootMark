@@ -447,6 +447,21 @@ public class MainController {
 		return jsonview;
 	}
 	
+	@RequestMapping("/addGroup.do")
+	public View addGroup(HttpServletRequest req, String gname, Model model) {
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		
+		G_MemberDTO member = new G_MemberDTO();
+		member.setUid(uid);
+		member.setGrid(1);
+		
+		TeamDTO newTeam = teamservice.addGroup(gname, member);
+		model.addAttribute("newTeam", newTeam);
+		
+		return jsonview;
+	}
+	
 	// 명수
 	
 	

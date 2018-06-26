@@ -744,6 +744,7 @@ function openAddUrlLevel2() {
 				url : url // URL 주소
 			},
 			beforeSend: function() {
+				
 				$("#title_btn").css("cursor", "wait ");
          		$("#title_btn").val("");
          		//console.log("부모 ID : " + urlpid);
@@ -833,6 +834,7 @@ function addUrlNotShare() {
 			 }
 		 });
 	}
+
 }
 
 // 공유버튼 누르고 URL 추가하기

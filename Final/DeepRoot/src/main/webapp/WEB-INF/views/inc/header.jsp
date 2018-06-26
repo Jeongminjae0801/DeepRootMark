@@ -9,7 +9,7 @@
 		$.confirm({
 		    title: '그룹 추가',
 		    content: '' +
-		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/user/addGroup.do" class="formName" method="post">' +
+		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/addGroup.do" class="formName" method="post">' +
 		    '<div class="form-group">' +
 		    '<label>그룹명</label>' +
 		    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
@@ -17,7 +17,6 @@
 		    '</form>',
 		    type: 'green',
 		    closeIcon: true,
-		    
 		    buttons: {
 		        formSubmit: {
 		            text: '추가',
@@ -28,6 +27,15 @@
 		                    $.alert('그룹명을 적어주세요');
 		                    return false;
 		                }
+		                $("#addGroupForm").ajaxForm({
+		                	success: function(data, statusText, xhr, $form){
+		                		var group = '<li><a href="#">' + data.newTeam.gname + '</a></li>';
+	                			$("#groupDropdownMenu").children().last().before(group);
+		                		if(("#groupDropdownMenu").length > 10){
+		                			$("#groupDropdownMenu").children().last().remove();
+		                		}
+		                	}
+		                });
 		                $("#addGroupForm").submit();
 		                
 		            }
@@ -63,9 +71,10 @@
 					<li>
 						<a href="<%= request.getContextPath() %>/user/mybookmark.do">MyBookmark</a>
 					</li>
+					<!-- Group Menu START -->
 					<li id="groupDropdown" class="dropdown">
 						<a href="#">Group <i class="fa fa-angle-down"></i></a>
-						<ul role="menu" class="sub-menu">
+						<ul id="groupDropdownMenu" role="menu" class="sub-menu">
 						<c:choose>
 							<c:when test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 								<c:forEach items="${headerTeamList}" var="headerTeam" varStatus="status">
@@ -84,6 +93,7 @@
 						</ul> 
 					</li>
 					<li>
+					<!-- Group Menu END -->
 					<!-- Social Link  -->
 					<a href="<%= request.getContextPath() %>/social/social.do">Social</a>
 					<!-- Social Link  -->
