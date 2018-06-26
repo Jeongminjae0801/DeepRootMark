@@ -1,5 +1,10 @@
 package site.book.user.service;
 
+/**
+ * @Class : SocialController.java
+ * @Date : 2018. 6. 10.
+ * @Author : 김희준, 김태웅
+ */
 import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.HashMap;

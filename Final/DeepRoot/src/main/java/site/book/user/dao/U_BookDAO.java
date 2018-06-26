@@ -5,9 +5,13 @@
  * @Author : 김희준
 */
 
-
 package site.book.user.dao;
 
+/**
+ * @Class : SocialController.java
+ * @Date : 2018. 6. 6.
+ * @Author : 김명수, 김희준, 김태웅
+ */
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
