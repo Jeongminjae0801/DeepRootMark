@@ -41,8 +41,24 @@
 			                        <hr class="divider-hr">
 			                        <li class="dropdown-item dropdown-submenu">
 			                            <a tabindex="-1">Group</a>
-			                            
-			                            
+			                            <!--  -->
+			                        	<c:if test="${(headerTeamList ne null) && (!empty headerTeamList)}">
+											<ul class="dropdown-menu">
+											<c:forEach items="${headerTeamList}" var="TeamList" varStatus="status">
+												<c:choose>
+													<c:when test="${ status.index == 0}">
+														<li class="dropdown-group-item" onclick="selectedGroup('${TeamList.gname}', ${TeamList.gid})">
+														<span tabindex="-1">${TeamList.gname}</span></li><hr class="divider-hr">
+													</c:when>
+													<c:otherwise>
+														<li class="dropdown-group-item" onclick="selectedGroup('${TeamList.gname}', ${TeamList.gid})">
+														<span>${TeamList.gname}</span></li><hr class="divider-hr">
+													</c:otherwise>													
+												</c:choose>
+											</c:forEach>
+											</ul>
+										</c:if>
+			                            <!--  -->
 			                        </li>
 			                    </div>
 			                </div>
@@ -61,6 +77,64 @@
 	</div>
 </div><!-- /.modal -->
 <!-- social 개인 북마크 가져가기 div END -->
+
+<!-- social 그룹 북마크 가져가기 start -->
+<div id="socialGroupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialGroupModalLabel">
+	<div class="main-modal-controller">
+		<div class="main-modal-center">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content social">
+					<div class="modal-header group">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+					</button>
+							<h4 class="modal-title" id="gridSystemModalLabel">그룹 북마크 가져가기</h4>
+					</div>
+					<div class="modal-body row">
+						<div class="completed-modal-left group">
+							<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
+				                <h4 class="completed-modal-from"><b>URL :</b>
+						        	<a class="indishare-url-surfing" name="url"></a></h4>
+						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="nname">[회원이름]</span></b></h4>
+				                <div class="jstree-from" id="jstree-from-left">
+				                </div>
+								<input type="hidden" class="indishare-urlname-left" value="" name="urlname" readonly>
+								<input type="hidden" class="indishare-userpid-left" value="" name="pid" readonly>
+								<input type="hidden" class="indishare-abid-left" value="" name="abid" readonly>
+								<input type="hidden" class="indishare-gid-left" value="" name="gid" readonly>
+							</form>
+			            </div>   
+			            <div class="completed-modal-right">
+		
+			               	<h4 class="completed-modal-to"><b>To : </b></h4>
+			               	<!-- Dropdown -->
+			               	<div class="dropdown completed-modal-dropdown">
+			                   	<button class="btn btn-secondary surfingshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			                       	Click <span class="caret"></span>
+			                   	</button>
+			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			                       	<li id="dropdown-my-bookmark" class="dropdown-item">My Bookmark</li>
+			                       	<hr class="divider-hr">
+			                       	<li class="dropdown-item dropdown-submenu">
+					                	<a tabindex="-1">Group</a>
+					                </li>
+			                   	</div>
+				      		</div>
+			                <div class="jstree-to" id="jstree-to-right" style="float:right;">
+			                </div>
+			            </div>
+					</div>
+					<div class="modal-footer ">
+						<button type="button" class="btn btn-default " data-dismiss="modal">취소</button>
+						<button id="into-my-bookmark-btn" type="button" class="btn btn-primary " style="display: inline;">확인</button>
+						<button id="into-group-bookmark-btn" type="button" class="btn btn-primary " style="display: none;">확인</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div>
+	</div>
+</div><!-- /.modal -->
+<!-- social 그룹 북마크 가져가기 end  -->
 
 <!-- social 작성자 파도타기 start -->
 <div id="socialSurfingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialSurfingModalLabel">
@@ -310,7 +384,7 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<!-- 가져오기 icon -->
-									<td class="table-icon" <%-- data-toggle="modal" data-target="#socialSurfingModal" data-title="${g_booklist.gname}" --%>>
+									<td class="table-icon">
 										<i class="fa fa-share" onclick="get_groupbookmark"></i>
 									</td>
 									<!-- 가져오기 icon -->
