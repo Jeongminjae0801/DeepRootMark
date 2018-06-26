@@ -91,12 +91,12 @@
 				                <h4 class="completed-modal-from"><b>URL :</b>
 						        	<a class="indishare-url-surfing" name="url"></a></h4>
 						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="nname">[회원이름]</span></b></h4>
-				                <div class="jstree-from" id="jstree-from-left">
+				                <div class="jstree-from" id="jstree-from-left-group">
 				                </div>
-								<input type="hidden" class="indishare-urlname-left" value="" name="urlname" readonly>
-								<input type="hidden" class="indishare-userpid-left" value="" name="pid" readonly>
-								<input type="hidden" class="indishare-abid-left" value="" name="abid" readonly>
-								<input type="hidden" class="indishare-gid-left" value="" name="gid" readonly>
+								<input type="hidden" class="groupshare-urlname-left" value="" name="urlname" readonly>
+								<input type="hidden" class="groupshare-userpid-left" value="" name="pid" readonly>
+								<input type="hidden" class="groupshare-abid-left" value="" name="abid" readonly>
+								<input type="hidden" class="groupshare-gid-left" value="" name="gid" readonly>
 							</form>
 			            </div>   
 			            <div class="completed-modal-right">
@@ -114,7 +114,7 @@
 					                </li>
 			                   	</div>
 				      		</div>
-			                <div class="jstree-to" id="jstree-to-right" style="float:right;">
+			                <div class="jstree-to" id="jstree-to-right-group" style="float:right;">
 			                </div>
 			            </div>
 					</div>
