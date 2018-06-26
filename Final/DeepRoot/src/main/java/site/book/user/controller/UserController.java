@@ -21,6 +21,7 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -456,7 +457,7 @@ public class UserController {
 	
 	//완료된 그룹 url 내 것으로 보내기
 	@RequestMapping("insertGroupUrl.do")
-	public View insertGroupUrl( HttpServletRequest req , HttpServletResponse res) {
+	public View insertGroupUrl( HttpServletRequest req , Model model) {
 		
 		U_BookDTO dto = new U_BookDTO();
 		
@@ -465,7 +466,7 @@ public class UserController {
 
         JSONArray jarr = new JSONArray();
 		jarr = new JSONArray(req.getParameter("obj"));
-		//System.out.println(jarr);
+		System.out.println(jarr);
 		//System.out.println(jarr.length());
 		int result;
 		
@@ -479,6 +480,7 @@ public class UserController {
 				//System.out.println(result);
 				//System.out.println(dto.toString());
 			}
+			model.addAttribute("result", "success");
 			
 		return jsonview;
 	}
