@@ -236,6 +236,7 @@
 						'dots' : false,
 					}
 				},
+// 체크 박스 클릭시에만 checked 되기				
 				"checkbox" : {
 					"whole_node" : false,
 					"tie_selection" : false
@@ -266,7 +267,6 @@
 			})
 			.bind("select_node.jstree",function(e,data){
 				selected_node_id= data.node.id;
-				console.log(data.node.id);
 				
 			})
 		})
