@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
-
 <!-- social 개인 북마크 가져가기 div START -->
 <div id="socialIndiModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="socialIndiModalLabel">
 	<div class="main-modal-controller">
@@ -30,7 +29,6 @@
 			            <hr>
 			            <div class="completed-modal-left">
 			                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
-			
 			                <!-- Dropdown -->
 			                <div class="dropdown completed-modal-dropdown">
 			                    <button id="dropdownMenuButton" class="btn btn-secondary indishare dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,7 +39,6 @@
 			                        <hr class="divider-hr">
 			                        <li class="dropdown-item dropdown-submenu">
 			                            <a tabindex="-1">Group</a>
-			                            <!--  -->
 			                        	<c:if test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 											<ul class="dropdown-menu">
 											<c:forEach items="${headerTeamList}" var="TeamList" varStatus="status">
@@ -58,11 +55,9 @@
 											</c:forEach>
 											</ul>
 										</c:if>
-			                            <!--  -->
 			                        </li>
 			                    </div>
 			                </div>
-			
 			                <div id="jstree-to-bottom" style="clear: both;"></div>
 			            </div>
 					</div>
@@ -105,7 +100,6 @@
 							</form>
 			            </div>   
 			            <div class="completed-modal-right">
-		
 			               	<h4 class="completed-modal-to"><b>To : </b></h4>
 			               	<!-- Dropdown -->
 			               	<div class="dropdown completed-modal-dropdown">
@@ -152,20 +146,17 @@
 						<div class="completed-modal-left surfingshare">
 							<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
 				                <h4 class="completed-modal-from"><b>URL :</b>
-						                	<a class="indishare-url-surfing" name="url"></a></h4>
+						        	<a class="indishare-url-surfing" name="url"></a></h4>
 						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="nname">[회원이름]</span></b></h4>
 				                <div class="jstree-from" id="jstree-from-left-all">
-				                	제이트리 뿌려주곻
 				                </div>
-				                
 								<input type="hidden" class="indishare-urlname-left" value="" name="urlname" readonly>
 								<input type="hidden" class="indishare-userpid-left" value="" name="pid" readonly>
 								<input type="hidden" class="indishare-abid-left" value="" name="abid" readonly>
 								<input type="hidden" class="indishare-gid-left" value="" name="gid" readonly>
 							</form>
 			            </div>   
-			            <div class="completed-modal-right-all surfingshare">
-		
+			            <div class="completed-modal-right-all surfingshare">=
 			               	<h4 class="completed-modal-to"><b>To : </b></h4>
 			               	<!-- Dropdown -->
 			               	<div class="dropdown completed-modal-dropdown">
@@ -181,7 +172,6 @@
 			                   	</div>
 				      		</div>
 			                <div class="jstree-to" id="jstree-to-right-all" style="float:right;">
-			                	제이트리 뿌려줘염
 			                </div>
 			            </div>
 					</div>
@@ -250,7 +240,7 @@
 			<!-- top5 list end -->
 			<!-- Individual TOP5 DIV END -->
 			<div class="col-sm-2"></div>
-
+			
 			<!-- Group TOP5 DIV START -->
 			<!-- Gtop5 list start -->
 			<div class="col-sm-5">
@@ -266,7 +256,6 @@
 							</tr>
 						</thead>
 						<tbody>
-						
 							<c:forEach items="${g_top5}" var="group_top" varStatus="status">
 								<tr>
 									<c:choose>
@@ -329,27 +318,22 @@
 								<th class="table-icon"></th>
 							</tr>
 						</thead>
+						<!-- 개인 북마크 공유 목록 START -->
 						<tbody>
 							<c:forEach items="${u_list}" var="u_booklist">
-							<!-- 개인 북마크 공유 -->
-								<!-- working start -->
 								<tr>
 									<td class="table-site"><a href="${u_booklist.url}" target="_blank">${u_booklist.sname}</a></td>
 									<td class="table-tag">"${u_booklist.htag}"</td>
 									<td class="table-write"><a onclick="surfing_modal(this)" id="${u_booklist.nname}">${u_booklist.nname}</a></td>
 									<td class="table-date">${u_booklist.sdate}</td>
 									<td class="table-click">${u_booklist.view}</td>
-									<!-- 가져오기 icon -->
-									<%--  --%>
 									<td class="table-icon indi-share getbookmark" data-toggle="modal" data-target="#socialIndiModal" data-title="${u_booklist.url}">
 										<i class="fa fa-share "></i>
 									</td>
-									<!-- 가져오기 icon -->
 								</tr>
-								<!-- working end -->
 							</c:forEach>
-							<!-- 개인 북마크 공유 -->
 						</tbody>
+						<!-- 개인 북마크 공유 목록 END -->
 					</table>
 				</div>
 			</div>
@@ -372,27 +356,22 @@
 								<th class="table-icon"></th>
 							</tr>
 						</thead>
-						<!-- g_list start -->
+						<!-- 그룹 북마크 공유 목록 start -->
 						<tbody>
-							<!-- 그룹 공유   -->
 							<c:forEach items="${g_list}" var="g_booklist">
 								<tr>
-								<!-- 그룹 공유  -->
 									<td class="table-groupname"><a href="#">${g_booklist.gname}</a></td>
 									<td class="table-tag">"${g_booklist.htag}"</td>
 									<td class="table-write"><a onclick="surfing_modal(this)" id="${g_booklist.nname}">${g_booklist.nname}</a></td>
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
-									<!-- 가져오기 icon -->
 									<td class="table-icon">
 										<i class="fa fa-share" onclick="get_groupbookmark"></i>
 									</td>
-									<!-- 가져오기 icon -->
 								</tr>
 							</c:forEach>
-							<!-- 그룹 공유   -->
 						</tbody>
-						<!-- g_list end -->
+						<!-- 그룹 북마크 공유 목록 end -->
 					</table>
 				</div>
 			</div>

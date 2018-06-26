@@ -134,33 +134,6 @@ $(function() {
     	$('#dropdown-empty-area').remove();	
     	$('.indishare-urlname').val($(this).parent().parent().children().eq(0).children('a').text()); 
     	// 모달 초기화 END
-    	
-    	// 진행중인 팀 리스트 가져오기
-    	$.ajax({
-			url: "/bit/team/getTeamList.do",
-		    type: "post",
-		    success : function(data){
-		    	var html = '<ul class="dropdown-menu">';
-		    	
-		    	var index = 0;
-		    	for(var key in data.teamlist){
-		    		if(index == 0){
-		    			html += '<li class="dropdown-group-item" onclick="selectedGroup('
-		    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
-		    					+ "');" + '"><span tabindex="-1">' + data.teamlist[key].gname
-		    					+ '</span></li><hr class="divider-hr">';
-		    		}else {
-		    			html += '<li class="dropdown-group-item" onclick="selectedGroup('
-		    					+ "'" + data.teamlist[key].gname + "', '" + data.teamlist[key].gid
-		    					+ "');" + '"><span>' + data.teamlist[key].gname
-		    					+ '</span></li><hr class="divider-hr">';
-		    		}
-		    		index += 1;
-		    	}
-		    	html += '</ul>';
-		    	$(".dropdown-item").append(html);
-		    }
-		});
     });
     
     // 나의 북마크 선택했을 때, 
