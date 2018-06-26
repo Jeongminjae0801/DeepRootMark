@@ -285,7 +285,7 @@ public class MainController {
 	public String rolloutMember(HttpServletRequest request, Model model) {
 		
 		String uid = (String)request.getParameter("uid");
-		System.out.println(uid);
+		//System.out.println(uid);
 		int result = user_service.deleteMember(uid);
 
 		if(result > 0) {

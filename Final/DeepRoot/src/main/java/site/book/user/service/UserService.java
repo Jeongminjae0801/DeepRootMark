@@ -164,7 +164,7 @@ public class UserService {
 		UserDAO userDAO = sqlsession.getMapper(UserDAO.class);
 		int result = 0;
 		String changed_file_name = "";
-		System.out.println(user);
+		//System.out.println(user);
 		//업로드한 파일이 있다면,
 		if (file != null) {
 			String filename = file.getOriginalFilename();
