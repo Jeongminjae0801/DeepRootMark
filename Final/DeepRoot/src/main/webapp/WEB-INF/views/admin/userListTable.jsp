@@ -51,8 +51,6 @@
 		});
 	};
     /*회원삭제  스크립트 END*/
-	
-	
 </script>
 
 <!-- Main Content START -->

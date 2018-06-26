@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 페이지 전환 Script START -->
 <script type="text/javascript">
 	var groupListTable = null;
 	
@@ -52,7 +51,6 @@
 	}
     /*그룹삭제  스크립트 END*/
 </script>
-<!-- 페이지 전환 Script END -->
 
 <!-- Main Content START -->
 <div class="content-wrapper" style="min-height: 913px;">
