@@ -29,7 +29,7 @@ public interface G_BookDAO {
 	public int deleteGroupBook(String uid) throws ClassNotFoundException, SQLException;
 
 	// 완료된 그룹의 북마크 가져오기
-	public List<G_BookDTO> getCompletedTeamBookmark(int gid);
+	public List<G_BookDTO> getCompletedTeamBookmark(int gid) throws ClassNotFoundException, SQLException;
 	
 	// 그룹의 총 조회수 가져오기
 	public int selectGroupViews(int gid) throws ClassNotFoundException, SQLException;

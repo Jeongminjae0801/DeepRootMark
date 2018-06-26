@@ -124,17 +124,17 @@ public class TeamService {
 	}
 	
 	// 그룹 완료하기
-	public int completedGroup(TeamDTO team) {
+	public TeamDTO completedGroup(TeamDTO team) {
 		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
-		int row = 0;
-		
+		TeamDTO completedTeam = null;
 		try {
-			row = teamDAO.completedGroup(team);
+			teamDAO.completedGroup(team);
+			completedTeam = teamDAO.selectGroup(team.getGid());
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return row;
+		return completedTeam;
 	}
 	
 	

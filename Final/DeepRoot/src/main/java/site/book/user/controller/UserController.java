@@ -148,12 +148,15 @@ public class UserController {
 	
 	// 그룹 완료
 	@RequestMapping("completedGroup.do")
-	public String completedGroup(TeamDTO team) {
+	public View completedGroup(TeamDTO team, Model model) {
 		
-		teamservice.completedGroup(team);
+		TeamDTO completedGroup = teamservice.completedGroup(team);
 		
-		return "redirect:mybookmark.do";
+		model.addAttribute("completedGroup", completedGroup);
+		
+		return jsonview;
 	}
+	
 	
 	// 공유 체크 하지 않은 URL 추가하기
 	@RequestMapping("addUrlNotShare.do")
@@ -423,13 +426,13 @@ public class UserController {
 	
 	//완료된 그룹의 북마크 가져오기
 	@RequestMapping("getCompletedTeamBookmark.do")
-	public void getCompletedTeamBookmark(HttpServletResponse res, int gid) {
+	public void getCompletedTeamBookmark(HttpServletResponse res, String gid) {
 		
 		res.setCharacterEncoding("UTF-8");
 		
 		JSONArray jsonArray = new JSONArray();	
 		HashMap<String, String> href = new HashMap();
-		List<G_BookDTO> list = g_bookservice.getCompletedTeamBookmark(gid);
+		List<G_BookDTO> list = g_bookservice.getCompletedTeamBookmark(Integer.parseInt(gid));
 		
 		for(int i =0; i<list.size(); i++) {
 			
