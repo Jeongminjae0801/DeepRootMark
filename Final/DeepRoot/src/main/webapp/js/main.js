@@ -210,3 +210,96 @@ jQuery(function($) {
 		}).scroll();
 	});
 });
+
+/**************************  Preview Start  **********************************/
+function preview(abid){
+	$('#world-ranking-visitor').html('');
+	$('#url-sub-domain').html('');
+	$.ajax({
+		url: "preview.do",
+		type: "post",
+		data : { abid : abid },// 북마크 ID
+		beforeSend: function() {
+			$('#layout').html('<img src="${pageContext.request.contextPath}/images/loading/preview.gif" style="margin-top: 0;"/>');
+		},
+		complete: function() {
+			$('#layout').html('');
+		},
+		success : function(data){
+			//console.log(data);
+			$('#comment').fadeOut(10, function(){
+				var layout = '<img src="${pageContext.request.contextPath}/images/homepage/' + abid + '.png" style="width:100%; height:100%">';
+				$("#layout").html(layout);
+				
+				var comment = "";
+				if(data.title != "" && data.title != null){
+					comment = "<b>" + data.title + "</b>";
+				}
+				if(data.url != "" && data.url != null){
+					comment += "&nbsp;-&nbsp;<a href='" + data.url + "' target='_blank'>" + data.url + "</a>";
+				}
+				if(data.description != "" && data.description != null){
+					comment += "<br> <p>&nbsp;&nbsp;" + data.description + "</p>";
+				}
+				$("#comment-detail").html(comment);
+				$('#comment').fadeIn(1000);
+				
+				previewDetail(abid);
+			});
+		}
+	});
+};
+
+// Preview Details: Rank, Sub String
+function previewDetail(abid) {
+	$.ajax({
+		url: "previewdetail.do",
+		type: "post",
+		data : { abid : abid },// 북마크 ID
+		beforeSend: function() {
+			$('#ajax-loading-div').html('<img id="loading-img" src="${pageContext.request.contextPath}/images/loading/loading.gif" style="width:35%; ma"/>');
+		},
+		complete: function() {
+			$('#ajax-loading-div').html('');
+		},
+		success : function(data){
+			$('#world-ranking-visitor').html('');
+			$('#url-sub-domain').html('');
+			var ranking = "<i class='fas fa-globe' style='color: #1192e8;'><p class='detail-text'>Global Rank</p></i>" 
+						+ "<span id='world-ranking'>";
+			var visitors = "<i class='fas fa-eye' style='color: #e46100;'><p class='detail-text'>Daily Visitors</p></i>" 
+						+ "<span id='world-visitor'>";
+			var sub_domain = "<i class='fas fa-link' style='color: #328618;'><p class='detail-text'>Subdomains</p></i><br>" 
+						+ "<span>";
+			
+			if(data.rank != "" && data.rank != null) {
+				ranking += numberWithCommas(data.rank) + "</span><br>";
+			}else {
+				ranking += "Not supported</span><br>";
+			}
+			if(data.visitor != "" && data.visitor != null) {
+				visitors += data.visitor + "</span>";
+			}else {
+				visitors += "Not supported</span>";
+			}
+			if(data.suburl != "" && data.suburl != null) {
+				var i = 1;
+				for(index in data.suburl) {
+					//console.log(data.suburl[index][0]);
+					//console.log(data.suburl[index][1]);
+					sub_domain += (i++) + ". " + data.suburl[index][0] + "</span>";
+					sub_domain += "<div class='progress'><div class='progress-bar' role='progressbar' "
+								+ "style='width: " + data.suburl[index][1] + "' aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>"
+								+ data.suburl[index][1] + "</div></div>";
+        		}
+			}else {
+				sub_domain += "Not supported</span>";
+			}
+			console.log(sub_domain);
+			$("#world-ranking-visitor").append(ranking);
+			$("#world-ranking-visitor").append(visitors);
+			$("#url-sub-domain").html(sub_domain);
+		}
+	});
+}
+/**************************  Preview End  **********************************/
