@@ -54,7 +54,6 @@ $(function() {
     $('#into-my-bookmark').on('dblclick', function(){});
     $('#into-my-bookmark').on('click', function(){
     	
-    	/*var params = $("#form-to-getmybookmark").serialize();*/
 		$.ajax({
 			url : "getmybookmark.do",
 			type: "post",
@@ -93,8 +92,6 @@ $(function() {
     // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
     $('#into-group-bookmark').on('dblclick', function(){});
     $('#into-group-bookmark').on('click', function(){
-    	/*var params = $("#form-to-mybookmark").serialize();
-    	console.log(params);*/
 		$.ajax({
 			url : "getGroupBook.do",
 			type: "POST",
@@ -166,7 +163,6 @@ function selectedGroup(group, gid) {
 			}).bind("select_node.jstree", function (e, data) {
 			//노드(폴더)가 선택시 실행되는 함수
 				var id = data.node.id;
-				//console.log(id);//PID
 				$('.indishare-userpid').val(id);
 					
 			});
@@ -182,9 +178,8 @@ function get_groupbook(group){
 	$('.groupname').text(group.id);
 	//클릭한 작성자 닉네임
 	var groupname = group.id;
-	console.log(groupname);
 	$.ajax({
-		url : "../user/getCompletedTeamBookmark.do",
+		url : "/bit/user/getCompletedTeamBookmark.do",
 		type : "POST",
 		data : {gid : groupname},
 		dataType :"json",
@@ -208,25 +203,31 @@ $(document).ready(function(){
     			'responsive' : true,
     			'dots' : false,
     		}
-    	}
-    }).bind("select_node.jstree",function(event,data){
+    	},
+    	"checkbox" : { // 체크 박스 클릭시에만 checked 되기
+    		"whole_node" : false,
+    		"tie_selection" : false
+	    },
+	    "plugins" : ["checkbox" ]
+    
+	}).bind("select_node.jstree",function(event,data){
 	    var url = $('#jstree-from-left-group').jstree(true).get_node(data.node.id).a_attr.href;
 	    $('.groupshare-url').text(url);
         var urlname = $('#jstree-from-left-group').jstree(true).get_node(data.node.id).original.text;
         $('.groupshare-urlname-left').val(urlname);
-    })
-
+    });
+    
     //나의 북마크 선택했을 때
     $('#dropdown-my-bookmark-getgroup').on('dblclick', function(){});
     $('#dropdown-my-bookmark-getgroup').on('click', function(){
     	$('#dropdownMenuButton').text($(this).text());
-    	$('#into-my-bookmark-btn').css('display', 'inline');
-    	$('#into-group-bookmark-btn').css('display', 'none');
+    	$('#into-my-bookmark-getgroup-btn').css('display', 'inline');
+    	$('#into-group-bookmark-getgroup-btn').css('display', 'none');
     	$('#jstree-to-right-group').remove();
     	$('.completed-modal-right-group').append('<div id="jstree-to-right-group"></div>');
 
     	$.ajax({
-    		url : "../user/getCategoryList.do",
+    		url : "/bit/user/getCategoryList.do",
 			type:"POST",
 			dataType:"json",
 			success : function(data){
@@ -263,7 +264,7 @@ $(document).ready(function(){
 	    
 	    //진행중인 팀 리스트 가져오기
 	    $.ajax({
-	    	url: "../team/getTeamList.do",
+	    	url: "/bit/team/getTeamList.do",
 	    	type: "post",
 	    	success : function(data){
 	    		var html = '<ul class="dropdown-menu">';
@@ -288,10 +289,11 @@ $(document).ready(function(){
 	    	}
 	    });
     });
-    
+  
     //[버튼]:나의 북마크로 추가 버튼 클릭했을 때
-    $('#into-my-bookmark-btn').on('dblclick', function(){});
-    $('#into-my-bookmark-btn').on('click', function(){
+    $('#into-my-bookmark-getgroup-btn').on('dblclick', function(){});
+    $('#into-my-bookmark-getgroup-btn').on('click', function(){
+    	console.log("ㅎㅇ");
     	if($('.groupshare-url').text() == '#'){
     		swal({
     			title: "목적지 폴더를 확인하셨나요?",
@@ -302,19 +304,52 @@ $(document).ready(function(){
     		});
     		return;
     	}
+    	
+    	var checked_ids = [];
+    	var submit_obj = [];
+    	var selected_node_id = $('.groupshare-userpid-left').val();
+	    checked_ids = $('#jstree-from-left-group').jstree("get_checked",null,true);
+	    
+	    if(checked_ids == null){
+	        alert("선택한 URL이 없습니다.")
+	        return false
+	    };
+	    
+	    if(selected_node_id == 0) {
+	        alert("가져가기 할 폴더를 선택하지 않았습니다.")
+	        return false
+	    };
+	    
+	    $.each(checked_ids,function(key,value) {
+	    	console.log("ㅎㅇ2");
+	        //폴더가 아닌 url만 골라 가져가기
+	        var checked_url = $('#jstree-from-left-group').jstree(true).get_node(value).a_attr.href;
+	        var urlname = $('#jstree-from-left-group').jstree(true).get_node(value).text;
+	        if(checked_url !='#'){
+	            submit_obj.push({
+	            	url : checked_url,
+	            	urlname : urlname,
+	            	pid : selected_node_id
+	            }) 
+	        }
+	     });
+	    
+	    var submit_obj_json = JSON.stringify(submit_obj);
+
     	$.ajax({
-    		url : "getmybookmark.do",
+    		url : "/bit/user/insertGroupUrl.do",
     		type:"POST",
-    		data: {
-    			url: $('.groupshare-url').text(),
-				urlname: $('.groupshare-urlname-left').val(),
-				pid: $('.groupshare-userpid-left').val()
+    		data: {obj : submit_obj_json},
+    		beforeSend : function(){
+    			console.log(submit_obj_json);
     		},
     		success : function(data){
+    			console.log("ㅎㅇ55");
     			if(data.result == "success") {
     				swal("Thank you!", "북마크에 추가되었습니다!", "success");
     				$('#socialGroupModal').modal("toggle");
     				$('#socialGroupModal').css({"z-index":"0"});
+    				selected_node_id = 0;
     			} else {
     				swal({
     					title: "목적지 폴더를 확인하셨나요?",
@@ -334,12 +369,12 @@ $(document).ready(function(){
                     dangerMode: true
     			});
     		}
-		});
+		})
     });
     
     //[버튼]:그룹 북마크로 추가 버튼 클릭했을 때
-    $('#into-group-bookmark-btn').on('dblclick', function(){});
-	$('#into-group-bookmark-btn').on('click', function(){
+    $('#into-group-bookmark-getgroup-btn').on('dblclick', function(){});
+	$('#into-group-bookmark-getgroup-btn').on('click', function(){
 		if($('.groupshare-url').text() == '#'){
 			swal({
 				title: "목적지 폴더를 확인하셨나요?",
@@ -391,13 +426,13 @@ $(document).ready(function(){
 function selectedGroupget(group, gid) {
 	$('#dropdownMenuButton').text(group);
 	$('.groupshare-gid-left').val(gid);
-	$('#into-my-bookmark-btn').css('display', 'none');
-	$('#into-group-bookmark-btn').css('display', 'inline');
+	$('#into-my-bookmark-getgroup-btn').css('display', 'none');
+	$('#into-group-bookmark-getgroup-btn').css('display', 'inline');
 	$('#jstree-to-right-group').remove();
 	$('.completed-modal-right-group').append('<div id="jstree-to-right-group"></div>');
 	
 	$.ajax({
-		url : "../team/getGroupCategoryList.do",
+		url : "/bit/team/getGroupCategoryList.do",
 		type:"POST",
 		data: {gid: gid},
 		dataType:"json",
