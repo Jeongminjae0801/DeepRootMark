@@ -189,9 +189,9 @@
 	
 	var selected_node_id = 0;
 
-///완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
+	//완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
 	function open_completed_group_modal(gid){
-		
+		$('#completedGroupModal').css({"z-index":"9999"});
 		//완료된 그룹 북마크 가져오기
 		$.ajax({
 			url : "getCompletedTeamBookmark.do",
@@ -213,7 +213,7 @@
 	};
 	
 	//완료된 그룹 url 선택후 save 버튼 클릭시
-	function submitgroupurl(){
+	function submitgroupurl() {
 		var checked_ids = [];
 		var submit_obj = [];
 		
@@ -228,14 +228,14 @@
 			return false
 		};
 		
-		$.each(checked_ids,function(key,value){
+		$.each(checked_ids,function(key,value) {
 			//폴더가 아닌 url만 골라 가져가기
 			var checked_url = $('#jstree-from-left').jstree(true).get_node(value).a_attr.href;
 			var urlname = $('#jstree-from-left').jstree(true).get_node(value).text;
 			if(checked_url !='#'){
 				submit_obj.push({url : checked_url , urlname : urlname, pid : selected_node_id}) 
 			}
-		})
+		});
 		
 		var submit_obj_json = JSON.stringify(submit_obj);
 		$.ajax({
@@ -250,59 +250,52 @@
 				$('#jstree_container').jstree(true).select_node(selected_node_id);			
 				selected_node_id = 0;
 			}
-		})
-	}
-	$(document).ready(function(){
+		});
 		
+		$('#completedGroupModal').css({"z-index":"-10"});
+	}
+	
+	$(document).ready(function() {
 		var first_data = null;
 		var right_data = null;
 		
 		//완료 그룹 모달 왼쪽 jstree
-		$("#jstree-from-left")
-			.jstree({
-				
-				"core" : {
+		$("#jstree-from-left").jstree({
+			"core" : {
 					'data' : first_data,
 					'themes':{
 						'name' : 'proton',
 						'responsive' : true,
 						'dots' : false,
 					}
-				},
-				// 체크 박스 클릭시에만 checked 되기				
-				"checkbox" : {
-					"whole_node" : false,
-					"tie_selection" : false
-				},
-				"plugins" : ["checkbox" ]
-			})
-			.bind("loaded.jstree",function(event,data){
-				 $('#group_bookmark_modal').jstree("open_all"); 
-			})
-			.bind("select_node.jstree",function(event,data){
-			})
+			},
+			"checkbox" : { // 체크 박스 클릭시에만 checked 되기
+				"whole_node" : false,
+				"tie_selection" : false
+			},
+			"plugins" : ["checkbox" ]
+			
+		}).bind("select_node.jstree",function(event,data){  });
 
-			//완료 그룹 모달 오른쪽 jstree
-			$('#jstree-to-right')
-				.on('click','.jstree-anchor',function(e){
-					$('#jstree-to-right').jstree(true).toggle_node(e.target);
-				})
-				.jstree({
-				"core" : {
-					"dblclick_toggle" : false,
-					'data' : right_data,
-					'themes':{
-						'name' : 'proton',
-						'responsive' : true,
-						'dots' : false,
-					}
+		//완료 그룹 모달 오른쪽 jstree
+		$('#jstree-to-right').on('click','.jstree-anchor',function(e){
+			$('#jstree-to-right').jstree(true).toggle_node(e.target);
+				
+		}).jstree({
+			"core" : {
+				"dblclick_toggle" : false,
+				'data' : right_data,
+				'themes':{
+					'name' : 'proton',
+					'responsive' : true,
+					'dots' : false,
 				}
-			})
-			.bind("select_node.jstree",function(e,data){
-				selected_node_id= data.node.id;
-			})
-		})
+			}
 		
+		}).bind("select_node.jstree",function(e,data){
+			selected_node_id= data.node.id;
+		});
+	})
 </script>
 
 <div class="container">
