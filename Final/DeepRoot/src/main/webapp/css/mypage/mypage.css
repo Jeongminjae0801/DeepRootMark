@@ -23,9 +23,18 @@
     width: 100%;
     height: 100%;
 }
-#main-modal-controller { display: table-row; width: 100%; }
-#main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
+#completedGroupModal {
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.main-modal-controller { display: table-row; width: 100%; }
+.main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
 
+#jstree-to-right {
+	clear: both;
+}
 .bg-img {
   position: fixed;
 
