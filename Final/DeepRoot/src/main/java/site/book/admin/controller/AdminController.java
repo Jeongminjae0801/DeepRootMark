@@ -214,7 +214,7 @@ public class AdminController {
 	// groupListTable 페이지
 	@RequestMapping("groupListTable.do")
 	public String groupListTable(Model model) {
-		List<TeamDTO> grouplist = team_service.getGroupList();
+		List<S_TeamDTO> grouplist = team_service.getSocialGroupList();
 		model.addAttribute("grouplist", grouplist);
 		
 		// 공지사항 리스트 가져오기
