@@ -11,6 +11,13 @@
     width: 100%;
     height: 100%;
 }
+#socialGroupModal{
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
 .main-modal-controller { display: table-row; width: 100%; }
 .main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
 .modal { z-index: -10; }
@@ -30,11 +37,11 @@
 .modal-footer {
 	clear: both;
 }
-.completed-modal-left.groupshare{
+.completed-modal-left.group{
 	border-right: 2px dashed #ccc;
 	padding-top: 10px;
 }
-.completed-modal-right.groupshare{
+.completed-modal-right.group{
 	border-left: 2px solid #ccc;
 	padding-top: 10px;
 }
@@ -56,14 +63,14 @@
   border-bottom: 2px solid #a94442;
 }
 
-.modal-header.groupshare {
+.modal-header.group {
   border-bottom: 1px solid #ccc;
   padding-top : 10px;
   padding-bottom: 5px;
 }
 
 
-.modal-footer.groupshare{
+.modal-footer.group{
 	margin-top : 15px;
 }
 
@@ -88,11 +95,11 @@
 	color:#fff;
 }
 
-.modal-footer .btn.btn-default.groupshare{
+.modal-footer .btn.btn-default.group{
 	border : 1px solid #ccc;
 }
 
-.modal-footer .btn.btn-default.groupshare:hover{
+.modal-footer .btn.btn-default.group:hover{
 	background-color: #565656;
 	color:#fff;
 }
@@ -168,15 +175,26 @@
 .float-clear-hr { margin-top: 38px 0px 0px 0px; border-top: 2px solid #a94442; }
 .completed-modal-content { margin-bottom: 10px; }
 
-.completed-modal-left.groupshare {
+.completed-modal-left-group {
   padding-left: 10px;
   width: 50%;
   float: left;
 }
-.completed-modal-right.groupshare {
+.completed-modal-right-group {
   padding-left: 10px;
   width: 50%;
   float: left;
+}
+
+.completed-modal-left.group {
+  padding-left: 10px;
+  width: 50%;
+  float: left;
+}
+.completed-modal-right.group {
+  padding: 35px 0px 0px 10px;
+  width: 50%;
+  float: right;
 }
 
 /* surfingshare */
@@ -190,6 +208,7 @@
   width: 50%;
   float: right;
 }
+#jstree-to-right-group,
 #jstree-to-right-all {
   clear: both;
   float: left;

@@ -76,8 +76,8 @@ public class SocialController {
 		List<TopDTO> g_top5 = top_service.getGTop5();
 		model.addAttribute("g_top5", g_top5);
 		
-		List<TopDTO> a_top5 = top_service.getATop5();
-		model.addAttribute("a_top5", a_top5);
+		/*List<TopDTO> a_top5 = top_service.getATop5();
+		model.addAttribute("a_top5", a_top5);*/
 		/*u_booklist start*/
 		List<S_U_BookDTO> u_list= u_bookservice.getSocialBookmarkList();
 		model.addAttribute("u_list",u_list);

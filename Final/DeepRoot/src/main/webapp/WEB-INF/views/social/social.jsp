@@ -90,7 +90,7 @@
 							<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
 				                <h4 class="completed-modal-from"><b>URL :</b>
 						        	<a class="groupshare-url" name="url"></a></h4>
-						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="nname">[회원이름]</span></b></h4>
+						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="groupname">그룹 이름 뿌려</span></b></h4>
 				                <div class="jstree-from" id="jstree-from-left-group">
 				                </div>
 								<input type="hidden" class="groupshare-urlname-left" value="" name="urlname" readonly>
@@ -99,7 +99,7 @@
 								<input type="hidden" class="groupshare-gid-left" value="" name="gid" readonly>
 							</form>
 			            </div>   
-			            <div class="completed-modal-right">
+			            <div class="completed-modal-right-group">
 			               	<h4 class="completed-modal-to"><b>To : </b></h4>
 			               	<!-- Dropdown -->
 			               	<div class="dropdown completed-modal-dropdown">
@@ -107,7 +107,7 @@
 			                       	Click <span class="caret"></span>
 			                   	</button>
 			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			                       	<li id="dropdown-my-bookmark" class="dropdown-item">My Bookmark</li>
+			                       	<li id="dropdown-my-bookmark-getgroup" class="dropdown-item">My Bookmark</li>
 			                       	<hr class="divider-hr">
 			                       	<li class="dropdown-item dropdown-submenu">
 					                	<a tabindex="-1">Group</a>
@@ -118,10 +118,10 @@
 			                </div>
 			            </div>
 					</div>
-					<div class="modal-footer ">
-						<button type="button" class="btn btn-default " data-dismiss="modal">취소</button>
-						<button id="into-my-bookmark-btn" type="button" class="btn btn-primary " style="display: inline;">확인</button>
-						<button id="into-group-bookmark-btn" type="button" class="btn btn-primary " style="display: none;">확인</button>
+					<div class="modal-footer group">
+						<button type="button" class="btn btn-default group" data-dismiss="modal">취소</button>
+						<button id="into-my-bookmark-btn" type="button" class="btn btn-primary group" style="display: inline;">확인</button>
+						<button id="into-group-bookmark-btn" type="button" class="btn btn-primary group" style="display: none;">확인</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -366,7 +366,7 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<td class="table-icon">
-										<i class="fa fa-share" onclick="get_groupbookmark"></i>
+										<a onclick="get_groupbook(this)" id="${g_booklist.gid }"><i class="fa fa-share get_groupbook"></i></a>
 									</td>
 								</tr>
 							</c:forEach>
