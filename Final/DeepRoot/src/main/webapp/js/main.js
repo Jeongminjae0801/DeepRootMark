@@ -6,7 +6,6 @@ function isNewURL(abid, url_regdate) {
 	var today = new Date();
 	today.setDate(today.getDate() - 15); // 30 일 전
 	if(reg_date > today) {
-		console.log($(this));
 		$(".url"+"."+abid).append('<i class="material-icons" style="color: #66bfff; font-size: 20px; vertical-align: bottom;">new_releases</i>');
 	}
 	return;
