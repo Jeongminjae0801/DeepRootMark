@@ -89,7 +89,7 @@
 						<div class="completed-modal-left group">
 							<form id="form-to-mybookmark-left" action="../user/addtomybookmark.do" method="post">
 				                <h4 class="completed-modal-from"><b>URL :</b>
-						        	<a class="indishare-url-surfing" name="url"></a></h4>
+						        	<a class="groupshare-url" name="url"></a></h4>
 						        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="nname">[회원이름]</span></b></h4>
 				                <div class="jstree-from" id="jstree-from-left-group">
 				                </div>
@@ -103,7 +103,7 @@
 			               	<h4 class="completed-modal-to"><b>To : </b></h4>
 			               	<!-- Dropdown -->
 			               	<div class="dropdown completed-modal-dropdown">
-			                   	<button class="btn btn-secondary surfingshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			                   	<button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                       	Click <span class="caret"></span>
 			                   	</button>
 			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -156,7 +156,7 @@
 								<input type="hidden" class="indishare-gid-left" value="" name="gid" readonly>
 							</form>
 			            </div>   
-			            <div class="completed-modal-right-all surfingshare">=
+			            <div class="completed-modal-right-all surfingshare">
 			               	<h4 class="completed-modal-to"><b>To : </b></h4>
 			               	<!-- Dropdown -->
 			               	<div class="dropdown completed-modal-dropdown">
