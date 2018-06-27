@@ -34,7 +34,10 @@
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/group.css" rel="stylesheet">
     <!-- Group Page CSS END -->
-
+    
+    <!-- Group Page Js START -->
+    <script src="/js/member_insert.js"></script>
+    <!-- Group Page Js END -->
 </head>
 <body>
     <!-- Header START-->
@@ -111,17 +114,7 @@
                     </div>
                     <div class="col-sm-5 option">
                         <span class="option-ico">
-                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
-                                <i class="fas fa-plus-circle team-ico team-insert dropdown"></i>
-                            </a>
-				                <ul id="teaminsert" class="dropdown-menu">
-                                    <form>
-                                        <label>&nbsp;추가 할 멤버의 이메일을 입력하세요</label>
-                                        <input type="text" value="야야야" name="">
-                                        <hr>
-                                    </form>
-                                     <button class="btn btn-success insert-btn" type="">초대</button>
-				                </ul>
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert()"></i>
 						    <!--<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
                                 <i class="fas fa-minus-circle team-ico team-ban dropdown"></i>
                             </a>
@@ -321,7 +314,7 @@
             <!-- Group Chart div END -->
 
             <!-- Group Member div START -->
-            <section class="col-sm-3 group-member">
+            <section class="col-sm-2 group-member">
                 <div class="group-member-content">
                     <div class="online-content">
                         <div class="online">
@@ -362,5 +355,6 @@
 
     <!-- footer END -->
 
+    
 </body>
 </html>

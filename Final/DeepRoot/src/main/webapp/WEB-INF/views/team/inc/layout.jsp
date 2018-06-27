@@ -41,16 +41,14 @@
     
     <!--Script Start -->
     <script src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/team/stomp.min.js"></script>
     <!-- Script END -->
     
     <!-- jQuery Ajax Form START -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 	<!-- jQuery Ajax Form START -->
 	
-	<!-- SocketJS START -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-	<!-- SocketJS START -->
 </head>
 <body>
 

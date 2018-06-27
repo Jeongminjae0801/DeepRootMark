@@ -8,12 +8,10 @@
 
 package site.book.socket;
 
-import java.time.LocalDateTime;
-
 public class ChatMessage {
 	private String nname;
 	private String content;
-	private LocalDateTime datetime;
+	private String datetime;
 	private String profile;
 	
 	// Getters and Setters
@@ -21,8 +19,8 @@ public class ChatMessage {
 	public void setNname(String nname) {this.nname = nname;}
 	public String getContent() {return content;}
 	public void setContent(String content) {this.content = content;}
-	public LocalDateTime getDatetime() {return datetime;}
-	public void setDatetime(LocalDateTime datetime) {this.datetime = datetime;}
+	public String getDatetime() {return datetime;}
+	public void setDatetime(String datetime) {this.datetime = datetime;}
 	public String getProfile() {return profile;}
 	public void setProfile(String profile) {this.profile = profile;}
 	

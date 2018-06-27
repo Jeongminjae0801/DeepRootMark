@@ -31,5 +31,13 @@ bdoy .container-fluid{
 	height: 30px;
 }
 
+#chatt-input {
+	width: 80%;
+	margin-right: 0px;
+}
+
+#sendBtn {
+	width: 20%
+}
 
 /* Chat CSS END */
