@@ -32,6 +32,8 @@ import site.book.team.dto.TeamDTO;
 import site.book.team.service.G_BookService;
 import site.book.team.service.G_MemberService;
 import site.book.team.service.TeamService;
+import site.book.user.dto.UserDTO;
+import site.book.user.service.UserService;
 
 /**
  * @Class : SocialController.java
@@ -52,7 +54,9 @@ public class TeamController {
 	@Autowired
     private View jsonview;
 	
-
+	//희준
+	@Autowired
+	private UserService userservice;
 	
 	
 	//태웅
@@ -178,12 +182,19 @@ public class TeamController {
 	//준석
 	//그룹 페이지  이동
 	@RequestMapping("main.do")
-	public String movegroup(String gid, Model model) {
+	public String movegroup(String gid, Model model, HttpServletRequest req) {
 		
 		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
 		
 		model.addAttribute("gmemberlist",gmemberlist);
+		model.addAttribute("gid", gid);
 		
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        UserDTO user = userservice.getMember(uid);
+        model.addAttribute("nname", user.getNname());
+        model.addAttribute("profile", user.getProfile());
 		
 		return "team.team";
 	}
