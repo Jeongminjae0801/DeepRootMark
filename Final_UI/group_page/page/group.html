@@ -34,8 +34,7 @@
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/group.css" rel="stylesheet">
     <!-- Group Page CSS END -->
-
-
+    
 </head>
 <body>
     <!-- Header START-->
@@ -107,9 +106,38 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-
+                    <div class="col-sm-7">
                          위에 뭐가 뜨는 영역
-
+                    </div>
+                    <div class="col-sm-5 option">
+                        <span class="option-ico">
+                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown"></i>
+                            </a>
+				                <ul id="teaminsert" class="dropdown-menu">
+                                    <form>
+                                        <label>&nbsp;추가 할 멤버의 이메일을 입력하세요</label>
+                                        <input type="text" value="야야야" name="">
+                                        <hr>
+                                    </form>
+                                     <button class="btn btn-success insert-btn" type="">초대</button>
+				                </ul>
+						    <!--<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+                                <i class="fas fa-minus-circle team-ico team-ban dropdown"></i>
+                            </a>
+                                <ul id="teamban" class="dropdown-menu">
+								    <li class=""><a href="#"></a></li>
+								    <li class="" ><a>멤버 강퇴</a></li>
+							    </ul>
+                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+                                <i class="fas fa-cog team-ico team-option dropdown"></i>
+                            </a>
+                                <ul id="teamoption" class="dropdown-menu">
+								    <li class=""><a>그룹 탈퇴</a></li>
+                                    <li class=""><a>그룹 완료</a></li>
+				                </ul>-->
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -156,26 +184,34 @@
 
             <!-- Group Member div START -->
             <section class="col-sm-3 group-member">
-                <div class="online-member">
-                    <span class="col-sm-3 online"><i class="fas fa-toggle-on"></i>online</span>
-                    
-                    <span class="col-sm-3 member">
-                        <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
-                    </span>
-                    <span class="col-sm-3 member">
-                        <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
-                    </span>
-                    <span class="col-sm-3 member">
-                        <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
-                    </span>
-                </div>
+                <div class="group-member-content">
+                    <div class="online-content">
+                        <div class="online">
+                            <span><i class="fas fa-toggle-on"></i>online</span>
+                        </div>
+                        <div class="online-member">
+                            <p class="member">
+                                <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
+                            </p>
+                            <p class="member">
+                                <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
+                            </p>
+                            <p class="member">
+                                <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
+                            </p>
+                        </div>
+                    </div>
 
-                <div class="offline-member">
-                    <span class="col-sm-3 offline"><i class="fas fa-toggle-off"></i>offline</span>
-
-                    <span class="col-sm-3 member"><img class="member-ico" src="/images/offline2.png">정진수</span>
-                    <span class="col-sm-3 member"><img class="member-ico" src="/images/offline2.png">김명수</span>
-                    <span class="col-sm-3 member"><img class="member-ico" src="/images/offline2.png">방준석</span>
+                    <div class="offline-content">
+                        <div class="offline">
+                            <span><i class="fas fa-toggle-off"></i>offline</span>
+                        </div>
+                        <div class="offline-member">
+                            <p class="member"><img class="member-ico" src="/images/offline2.png">정진수</p>
+                            <p class="member"><img class="member-ico" src="/images/offline2.png">김명수</p>
+                            <p class="member"><img class="member-ico" src="/images/offline2.png">방준석</p>
+                        </div>
+                    </div>
                 </div>
             </section>
             <!-- Group Member div END -->

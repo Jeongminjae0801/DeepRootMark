@@ -3,8 +3,8 @@
     margin-top: 100px;
     margin-bottom: 20px;
     text-align: center;
-    font-size: 20px;
-    height: 150px;
+    font-size: 15px;
+    height: 70px;
     border : 1px solid #222d32;
 }
 
@@ -15,29 +15,64 @@ bdoy .container-fluid{
     padding-right: 110px;
 }
 /* group-member css START */
+.group-member-content{ height: 600px; width: 100% }
+.online-content{ height: 70%; width: 100% }
+.offline-content{ height: 30%; width: 100% }
+
 .col-sm-3.group-member{
     padding-left: 0px;
     padding-right: 0px;
-    border: 2px solid #8aa4af;
+    border: 2px solid #222d32;
+    
+}
+
+.online{
+    padding-left : 15px;
+    padding-top : 5px;
+    padding-bottom : 5px;
+    font-size: 22px;
+    width: 100%;
+    border-bottom: 2px solid #8aa4af;
+}
+
+.offline{
+    padding-left : 20px;
+    padding-top : 5px;
+    padding-bottom : 5px;
+    font-size: 22px;
+    width: 100%;
+    border-bottom: 2px solid #8aa4af;
+    border-top : 2px solid #8aa4af;
+}
+/****** height 벗어나면 수정 필요 *****/
+.online-member,
+.offline-member{
     height: 100%;
+    padding-top: 10px;
+    overflow-y: auto;
+}
+/****** height 벗어나면 수정 필요 *****/
+
+.member{
+    width:100%;
+    font-size: 15px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+
 }
 
 .fas.fa-toggle-on{
     color: #7bbfa8;
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
+    font-size: 25px;
     margin-right: 8px;
-    margin-bottom: 5px;
+    vertical-align: middle;
 }
 
 .fas.fa-toggle-off{
     color: #222d32;
-    font-size: 20px;
-    width: 20px;
-    height: 20px;
+    font-size: 25px;
     margin-right: 8px;
-    margin-bottom: 5px;
+    vertical-align: middle;
 }
 
 .member-ico{
@@ -48,33 +83,79 @@ bdoy .container-fluid{
     margin-right: 5px;
 }
 
-.col-sm-3.online{
-    padding-left : 20px;
-    padding-top : 15px;
-    font-size: 18px;
-    width: 100%;
-    border-bottom: 2px solid #8aa4af;
-    margin-bottom: 10px;
+/******/
+.col-sm-12{ height: 100%; vertical-align: middle}
+.col-sm-12 .col-sm-7{ height: 100%;}
+.col-sm-12 .col-sm-5.option{ 
+    height: 100%;
+    padding-left: 0px;
+    padding-right: 10px; 
+    padding-top: 25px;
+    text-align: right;
+    vertical-align: middle;
+}
+.team-ico{ 
+    font-size: 25px;
+    margin-right: 10px;
+    color: #424242;
+}
+.team-insert,
+.team-ban,
+.team-option{
+    
 }
 
-.col-sm-3.offline{
-    padding-left : 20px;
-    padding-top : 15px;
-    font-size: 18px;
-    width: 100%;
-    border-bottom: 2px solid #8aa4af;
-    border-top : 2px solid #8aa4af;
-    margin-bottom: 10px;
+.col-sm-5.option .option-ico a{
+    text-decoration: none;
 }
 
-.col-sm-3.member{
-    width:100%;
-    text-align: left;
-    font-size: 15px;
-    margin-bottom: 5px;
-
+#teaminsert{
+    right: 80px;
+    left: auto;
+    top:80%;
+    text-align: right;
+    width: 50%;
+    border: 1px solid #222d32;
 }
 
+#teaminsert form{
+    text-align: center;
+}
+
+#teaminsert input{
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 95% !important;
+    border: 1px solid #00a65a;
+    border-radius: 8px 8px 8px 8px;
+    padding-left: 3px;
+}
+
+#teaminsert hr{
+    margin: 10px 0px;
+    border-color: #ccc;
+}
+
+.insert-btn{
+    margin-right: 10px;
+}
+
+#teamban{
+    right: 55px;
+    left: auto;
+    top: 80%;
+}
+
+#teamoption{
+    right: 15px;
+    left: auto;
+    top:80%;
+}
+
+.insert-btn{
+    background-color: #7bbfa8;
+}
+/******/
 
 /* group-member css END */
 
