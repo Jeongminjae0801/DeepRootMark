@@ -72,7 +72,7 @@ bdoy .container-fluid{
     text-align: left;
     font-size: 15px;
     margin-bottom: 5px;
-    
+
 }
 
 
@@ -82,8 +82,45 @@ bdoy .container-fluid{
 
 
 /* group-chart CSS START */
+.chat { padding: 0px 10px 0px 10px; }
+.chat-content-div { height: 100%; }
+.chat-element { padding: 10px 0px 0px 0px; }
 
+h2 {
+    margin: 0px;
+    font: 20px sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+}
 
+h2.no-background {
+    position: relative;
+    overflow: hidden;
+}
+/* 채팅 한번 치면 일어나는 놈들 */
+.chatting-contents {
+    padding-top: 10px;
+}
+.chatting-text-div { margin-left: 50px; }
+.chatting-userid { margin: 0px; }
+.chatting-profile-img {
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    float: left;
+}
+.chatting-userid {
+    font-size: 16px;
+    font-weight: 600;
+}
+.chatting-time {
+    color: #848080;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* 채팅 한번 치면 일어나는 놈들 */
 
 
 
@@ -107,6 +144,3 @@ bdoy .container-fluid{
 }
 
 /* team CSSS END */
-
-
-
