@@ -15,11 +15,11 @@ bdoy .container-fluid{
     padding-right: 110px;
 }
 /* group-member css START */
-.group-member-content{ height: 600px; width: 100% }
+.group-member-content{ height: 500px; width: 100% }
 .online-content{ height: 70%; width: 100% }
 .offline-content{ height: 30%; width: 100% }
 
-.col-sm-3.group-member{
+.col-sm-2.group-member{
     padding-left: 0px;
     padding-right: 0px;
     border: 2px solid #222d32;
