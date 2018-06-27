@@ -183,7 +183,7 @@ public class TeamController {
 		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
 		
 		model.addAttribute("gmemberlist",gmemberlist);
-		
+		model.addAttribute("gid", gid);
 		
 		return "team.team";
 	}
