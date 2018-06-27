@@ -15,6 +15,7 @@ package site.book.user.dao;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import site.book.user.dto.S_U_BookDTO;
 import site.book.user.dto.U_BookDTO;
@@ -71,7 +72,7 @@ public interface U_BookDAO {
 	public int shareUrlEdit(U_BookDTO dto)  throws ClassNotFoundException, SQLException;
 
 	// 완료된 그룹 URL 추가
-	public int insertUrlFromCompletedGroup(U_BookDTO dto)  throws ClassNotFoundException, SQLException;
+	public int insertUrlFromCompletedGroup(Map<String,Object> map)  throws ClassNotFoundException, SQLException;
 
 
 }

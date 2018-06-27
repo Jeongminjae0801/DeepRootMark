@@ -95,7 +95,7 @@
 					<ul id="completedGroupList" class="group-list-list">
 						<c:forEach items="${completedTeamList}" var="completedTeam">
 							<li id="${completedTeam.gid}" class="list-group-item">
-								<label class="my-group-list" onclick="open_completed_group_modal(${completedTeam.gid})"> ${completedTeam.gname} </label>
+								<label class="my-group-list" onclick="open_completed_group_modal('${completedTeam.gname}', ${completedTeam.gid})"> ${completedTeam.gname} </label>
 								<div class="pull-right action-buttons">
 									<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(${completedTeam.gid})"></span></a>
 								</div>
@@ -113,74 +113,53 @@
 		<div class="main-modal-controller">
 			<div class="main-modal-center">
 				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header mypage">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<div class="modal-content social">
+						<div class="modal-header group">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
-							</button>
-							<h4 class="modal-title" id="gridSystemModalLabel">Title</h4>
+						</button>
+						<h4 class="modal-title" id="gridSystemModalLabel">그룹 북마크 가져가기</h4>
 						</div>
-						<div class="modal-body mypage">
-							<div class="completed-modal-left mypage">
-				                <h4 class="completed-modal-from"><b>From : </b></h4>
-				
-				                <div id="jstree-from-left">
-				
-				                </div>
-				            </div>
-				            <div class="completed-modal-right mypage ">
-				            <h4 class="completed-modal-to"><b>To : </b></h4>
-				
-				                <!-- Dropdown -->
-				                <div class="dropdown completed-modal-dropdown">
-				                    <button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				                        Dropdown button <span class="caret"></span>
-				                    </button>
-				                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<div class="modal-body row">
+							<div class="completed-modal-left-group">
+								<form id="form-to-mybookmark-left" action="user/addtomybookmark.do" method="post">
+					                <h4 class="completed-modal-from" hidden="true"><b>URL :</b>
+							        	<a class="groupshare-url" name="url"></a></h4>
+							        <h4 class="completed-modal-from"><b>From : <span id="from-text" class="groupname"> </span></b></h4>
+					                <div class="jstree-from" id="jstree-from-left">
+					                
+					                </div>
+									<input type="hidden" class="groupshare-urlname-left" value="" name="urlname" readonly>
+									<input type="hidden" class="groupshare-userpid-left" value="" name="pid" readonly>
+									<input type="hidden" class="groupshare-abid-left" value="" name="abid" readonly>
+									<input type="hidden" class="groupshare-gid-left" value="" name="gid" readonly>
+								</form>
+				            </div>   
+				            <div class="completed-modal-right-group">
+				               	<h4 class="completed-modal-to"><b>To : </b></h4>
+				               	<!-- Dropdown -->
+				               	<div class="dropdown completed-modal-dropdown">
+				                   	<button id="dropdownMenuButton" class="btn btn-secondary groupshare dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				                       	Click <span class="caret"></span>
+				                   	</button>
+				                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				                        <li id="completed-modal-mybook" class="dropdown-item" href="#">나의 북마크</li>
 				                        <hr class="divider-hr">
 				                        <li class="dropdown-item dropdown-submenu">
 				                            <a tabindex="-1" href="#">나의 그룹북마크</a>
-				                            <ul class="dropdown-menu">
-				                              <li class="dropdown-group-item"><span tabindex="-1">Group 1</span></li>
-				                              <li class="dropdown-group-item"><span>Group 2</span></li>
-				                              <li class="dropdown-group-item"><span>Group 3</span></li>
-				                            </ul>
 				                        </li>
 				                    </div>
-				                    <script type="text/javascript">
-										//완료된 그룹 모달 > 오른쪽 > 내 그룹 클릭시
-				                        $('#completed-modal-mybook').click(function() {
-				                            $('#dropdownMenuButton').text($(this).text());
-				                            
-				                        	$.ajax({
-				                				url : "getCategoryList.do",
-				                				type:"POST",
-				                				dataType:"json",
-				                				success : function(data){
-				                					right_data = data;
-				                					
-				                					$('#jstree-to-right').jstree(true).settings.core.data = data;
-				                					$('#jstree-to-right').jstree(true).refresh();
-				                					$('#jstree-to-right').jstree("open_all");
-				                					
-				                					}
-				                				})
-				                        });
-				                        $('.dropdown-group-item').click(function() {
-				                            $('#dropdownMenuButton').text($(this).text());
-				                        });
-				                    </script>
-				                </div>
-				
-				                <div id="jstree-to-right">
-				
+					      		</div>
+					      		
+				                <div id="jstree-to-right" class="jstree-to" style="float: left;">
+				                
 				                </div>
 				            </div>
 						</div>
-						<div class="modal-footer mypage">
-							<button type="button" class="btn btn-default groupshare" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary groupshare" onclick="submitgroupurl()">Save changes</button>
+						<div class="modal-footer group">
+							<button type="button" class="btn btn-default group" data-dismiss="modal">취소</button>
+							<button id="into-my-bookmark-getgroup-btn" type="button" class="btn btn-primary group" style="display: inline;">확인</button>
+							<button id="into-group-bookmark-getgroup-btn" type="button" class="btn btn-primary group" style="display: none;">확인</button>
 						</div>
 					</div><!-- /.modal-content -->
 				</div><!-- /.modal-dialog -->

@@ -305,16 +305,6 @@ $(document).ready(function(){
     //[버튼]:나의 북마크로 추가 버튼 클릭했을 때
     $('#into-my-bookmark-getgroup-btn').on('dblclick', function(){});
     $('#into-my-bookmark-getgroup-btn').on('click', function(){
-    	if($('.groupshare-url').text() == '#'){
-    		swal({
-    			title: "목적지 폴더를 확인하셨나요?",
-    			text: "잠시후 다시 시도해주세요!",
-    			icon: "warning",
-    			buttons: true,
-    			dangerMode: true
-    		});
-    		return;
-    	}
     	
     	var checked_ids = [];
     	var submit_obj = [];

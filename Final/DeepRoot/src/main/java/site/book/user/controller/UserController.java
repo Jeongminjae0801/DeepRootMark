@@ -6,8 +6,10 @@ package site.book.user.controller;
  * @Author : 김명수, 김희준, 김태웅
  */
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -459,28 +461,33 @@ public class UserController {
 	@RequestMapping("insertGroupUrl.do")
 	public View insertGroupUrl( HttpServletRequest req , Model model) {
 		
-		U_BookDTO dto = new U_BookDTO();
-		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
 
         JSONArray jarr = new JSONArray();
 		jarr = new JSONArray(req.getParameter("obj"));
-		System.out.println(jarr);
+		//System.out.println(jarr);
 		//System.out.println(jarr.length());
-		int result;
+		List<U_BookDTO> list = new ArrayList<U_BookDTO>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-			for(int i = 0 ; i< jarr.length() ; i++) {
-				dto.setUrl((String)jarr.getJSONObject(i).get("url"));
-				dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
-				dto.setPid(Integer.valueOf((String)jarr.getJSONObject(i).get("pid")));
-				dto.setUid(uid);
-				
-				result = u_bookservice.insertUrlFromCompletedGroup(dto);
-				//System.out.println(result);
-				//System.out.println(dto.toString());
-			}
-			model.addAttribute("result", "success");
+		
+		int length = jarr.length();
+		for(int i = 0 ; i< length ; i++) {
+			U_BookDTO dto = new U_BookDTO();
+			
+			dto.setUrl((String)jarr.getJSONObject(i).get("url"));
+			dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
+			dto.setPid(Integer.valueOf((String)jarr.getJSONObject(i).get("pid")));
+			dto.setUid(uid);
+			
+			list.add(dto);
+		}
+		//System.out.println(list.toString());
+		map.put("list", list);
+		u_bookservice.insertUrlFromCompletedGroup(map);
+		
+		model.addAttribute("result", "success");
 			
 		return jsonview;
 	}
