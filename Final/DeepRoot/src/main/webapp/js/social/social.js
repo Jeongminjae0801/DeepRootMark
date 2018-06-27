@@ -66,7 +66,8 @@ $(function() {
     // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
     $('#into-my-bookmark').on('dblclick', function(){});
     $('#into-my-bookmark').on('click', function(){
-    	
+    	var urlname= $(".indishare-urlname").val();
+    	console.log(urlname);
 		$.ajax({
 			url : "getmybookmark.do",
 			type: "post",
