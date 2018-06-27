@@ -92,22 +92,38 @@
         
         <!-- Group Chart div START -->
         <section class="col-sm-5 chatt">
-          	채팅창 영역
-          	<div id="chatt-atea">
-          	
-          	</div>
-          	
-          	<div id="chatt-input">
-          		<ol class="list-inline">
-          			<li><img class="chatt-profile" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="<%= request.getContextPath() %>/images/profile.png">
-          			<li>
-          				<ul class="chatt-content-area">
-          					<li>${sessionScope.info_usernname}</li>
-          					<li>채팅내용 블라블라블라</li>
-          				</ul>		
-          			</li>
-          		</ol>
-          	</div>
+          	<div class="chat-content-div">
+	            <div class="chat-element">
+	                <!-- 날짜 변경되면 나오는 친구 -->
+	                <div class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
+	                <div class="chatting-contents">
+	                    <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+	
+	                    <div class="chatting-text-div">
+	                        <p class="chatting-userid">
+	                           	정민재 <span class="chatting-time">12시 27분</span>
+	                        </p>
+	                        <span class="chatting-text">
+					                            희준이는 토게피<br>
+					                            아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+	                        </span>
+	                    </div>
+	                </div>
+	            </div>
+	
+	            <div class="chat-inputbox-div">
+	                <div class="chat-inputbox-bg">
+	                    <div class="chat-textbox">
+	                        <div id="chat-textbox-text">
+	
+	                        </div>
+	                        <div id="chat-textbox-icon">
+	                            <i class="fas fa-share-square"></i>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
           	
           	<div class="row">
           		<input id="chatt_input" type="text">
