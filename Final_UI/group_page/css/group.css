@@ -163,14 +163,38 @@ bdoy .container-fluid{
 
 
 /* group-chart CSS START */
+.chat-element::-webkit-scrollbar{width: 10px;}
+.chat-element::-webkit-scrollbar-track {background-color:#f1f1f1;}
+.chat-element::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
+.chat-element::-webkit-scrollbar-thumb:hover {background: #466b5e;}
+.chat-element::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+    width: 5px;
+    height: 5px;
+    background: #fff;
+}
+
 .chat {
     padding: 0px 10px 0px 10px;
-    height: 600px;
+    height: 800px;
 }
 .chat-content-div { height: 100%; }
+.chat-header {
+    height: 45px;
+    border-bottom: 1px solid #888;
+}
+.user-status .fa-circle {
+    font-size: 10px;
+    color: #7bbfa8;
+    float: left;
+}
+.user-status > span {
+    font-size: 14px;
+    color: #888888;
+    float: left;
+}
 .chat-element {
     padding: 10px 0px 10px 0px;
-    height: 90%;
+    height: 75%;
     overflow-y: auto;
 }
 
