@@ -82,21 +82,28 @@ bdoy .container-fluid{
 
 
 /* group-chart CSS START */
-.chat { padding: 0px 10px 0px 10px; }
+.chat {
+    padding: 0px 10px 0px 10px;
+    height: 600px;
+}
 .chat-content-div { height: 100%; }
-.chat-element { padding: 10px 0px 0px 0px; }
-
-h2 {
-    margin: 0px;
-    font: 20px sans-serif;
-    text-align: center;
-    text-transform: uppercase;
+.chat-element {
+    padding: 10px 0px 10px 0px;
+    height: 90%;
+    overflow-y: auto;
 }
 
-h2.no-background {
+.divider { width:100%; text-align:center; }
+.divider span { font: 20px sans-serif; text-transform: uppercase; }
+.divider hr { margin: 0px; width:40%; }
+.divider .left { float:left; }
+.divider .right { float:right; }
+.divider .left, .divider .right {
     position: relative;
-    overflow: hidden;
+    top: 15px;
+    border-color: #000;
 }
+
 /* 채팅 한번 치면 일어나는 놈들 */
 .chatting-contents {
     padding-top: 10px;
@@ -119,7 +126,30 @@ h2.no-background {
     font-size: 11px;
     font-weight: 600;
 }
-
+.chat-inputbox-div {
+    height: 10%;
+}
+.chat-inputbox-bg {
+    padding: 10px 10px 0px 10px;
+    height: 100%;
+    width: 100%;
+}
+.chat-textbox {
+    padding: 10px 5px 10px 5px;
+    height: 45px;
+    width: 100%;
+    border: 3px solid #888888;
+    border-radius: 5px;
+    float: left;
+}
+#chat-textbox-icon { text-align: center; }
+#chat-textbox-icon > i {
+    color: #888888;
+    float: right;
+}
+.chat-textbox #chat-textbox-text { width: 92%; height: 100%; float: left; }
+.chat-textbox #chat-textbox-text:focus { outline: none; }
+.chat-textbox #chat-textbox-icon { width: 8%; float: right; text-align: center;}
 /* 채팅 한번 치면 일어나는 놈들 */
 
 
