@@ -88,9 +88,12 @@
 		</choose>
 	</update>
 	
-	<insert id="insertUrlFromCompletedGroup" parameterType="site.book.user.dto.U_BookDTO">
+	<insert id="insertUrlFromCompletedGroup" parameterType="java.util.Map">
 		INSERT INTO U_BOOK(URL,URLNAME,REGDATE,VIEW,UID,PID)
-			VALUES(#{url},#{urlname},SYSDATE(),0,#{uid},#{pid})
+			VALUES
+			<foreach separator="," item="item" collection="list">
+			(#{item.url},#{item.urlname},SYSDATE(),0,#{item.uid},#{item.pid})
+			</foreach>
 	</insert>
 	
 </mapper>

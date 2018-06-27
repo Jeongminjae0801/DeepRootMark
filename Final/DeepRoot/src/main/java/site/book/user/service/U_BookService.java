@@ -11,6 +11,7 @@ package site.book.user.service;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -262,12 +263,12 @@ public class U_BookService {
 	}
 
 	// 완료된 그룹 URL 추가
-	public int insertUrlFromCompletedGroup(U_BookDTO dto) {
+	public int insertUrlFromCompletedGroup(Map<String,Object> map) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
 		int result = 0;
 		try {
-			result = dao.insertUrlFromCompletedGroup(dto);
+			result = dao.insertUrlFromCompletedGroup(map);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
