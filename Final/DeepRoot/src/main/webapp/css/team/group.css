@@ -1,0 +1,177 @@
+/* team CSSS START */
+.my .container-fluid .row{
+    margin-top: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    height: 150px;
+    border : 1px solid #222d32;
+}
+
+.my .container-fluid,
+.container-fluid,
+bdoy .container-fluid{
+    padding-left: 110px;
+    padding-right: 110px;
+}
+/* group-member css START */
+.col-sm-3.group-member{
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 2px solid #8aa4af;
+    height: 100%;
+}
+
+.fas.fa-toggle-on{
+    color: #7bbfa8;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.fas.fa-toggle-off{
+    color: #222d32;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.member-ico{
+    border: 1px solid #fff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+}
+
+.col-sm-3.online{
+    padding-left : 20px;
+    padding-top : 15px;
+    font-size: 18px;
+    width: 100%;
+    border-bottom: 2px solid #8aa4af;
+    margin-bottom: 10px;
+}
+
+.col-sm-3.offline{
+    padding-left : 20px;
+    padding-top : 15px;
+    font-size: 18px;
+    width: 100%;
+    border-bottom: 2px solid #8aa4af;
+    border-top : 2px solid #8aa4af;
+    margin-bottom: 10px;
+}
+
+.col-sm-3.member{
+    width:100%;
+    text-align: left;
+    font-size: 15px;
+    margin-bottom: 5px;
+
+}
+
+
+/* group-member css END */
+
+
+
+
+/* group-chart CSS START */
+.chat {
+    padding: 0px 10px 0px 10px;
+    height: 600px;
+}
+.chat-content-div { height: 100%; }
+.chat-element {
+    padding: 10px 0px 10px 0px;
+    height: 90%;
+    overflow-y: auto;
+}
+
+.divider { width:100%; text-align:center; }
+.divider span { font: 20px sans-serif; text-transform: uppercase; }
+.divider hr { margin: 0px; width:40%; }
+.divider .left { float:left; }
+.divider .right { float:right; }
+.divider .left, .divider .right {
+    position: relative;
+    top: 15px;
+    border-color: #000;
+}
+
+/* 채팅 한번 치면 일어나는 놈들 */
+.chatting-contents {
+    padding-top: 10px;
+}
+.chatting-text-div { margin-left: 50px; }
+.chatting-userid { margin: 0px; }
+.chatting-profile-img {
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    float: left;
+}
+.chatting-userid {
+    font-size: 16px;
+    font-weight: 600;
+}
+.chatting-time {
+    color: #848080;
+    font-size: 11px;
+    font-weight: 600;
+}
+.chat-inputbox-div {
+    height: 10%;
+}
+.chat-inputbox-bg {
+    padding: 10px 10px 0px 10px;
+    height: 100%;
+    width: 100%;
+}
+.chat-textbox {
+    padding: 10px 5px 10px 5px;
+    height: 45px;
+    width: 100%;
+    border: 3px solid #888888;
+    border-radius: 5px;
+    float: left;
+}
+#chat-textbox-icon { text-align: center; }
+#chat-textbox-icon > i {
+    color: #888888;
+    float: right;
+}
+.chat-textbox #chat-textbox-text { width: 92%; height: 100%; float: left; }
+.chat-textbox #chat-textbox-text:focus { outline: none; }
+.chat-textbox #chat-textbox-icon { width: 8%; float: right; text-align: center;}
+/* 채팅 한번 치면 일어나는 놈들 */
+
+
+
+
+
+/* group-chart CSS END  */
+
+
+
+/* group-category CSS START */
+
+.col-sm-4.group-category{
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 2px solid #8aa4af;
+    height: 100%;
+}
+
+
+
+/* group-category CSS END */
+
+
+/* team CSSS END */
