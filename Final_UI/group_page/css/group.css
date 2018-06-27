@@ -136,20 +136,25 @@ bdoy .container-fluid{
 }
 .chat-textbox {
     padding: 10px 5px 10px 5px;
-    height: 45px;
+    height: auto;
     width: 100%;
     border: 3px solid #888888;
     border-radius: 5px;
-    float: left;
+    display: flex;
 }
 #chat-textbox-icon { text-align: center; }
 #chat-textbox-icon > i {
     color: #888888;
     float: right;
 }
-.chat-textbox #chat-textbox-text { width: 92%; height: 100%; float: left; }
+.chat-textbox #chat-textbox-text { width: 92%; height: 100%; }
 .chat-textbox #chat-textbox-text:focus { outline: none; }
-.chat-textbox #chat-textbox-icon { width: 8%; float: right; text-align: center;}
+.chat-textbox #chat-textbox-icon {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 2px;
+    width: 8%;
+}
 /* 채팅 한번 치면 일어나는 놈들 */
 
 
