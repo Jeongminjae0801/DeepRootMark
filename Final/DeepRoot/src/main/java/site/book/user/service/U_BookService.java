@@ -9,11 +9,13 @@
 package site.book.user.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -263,10 +265,28 @@ public class U_BookService {
 	}
 
 	// 완료된 그룹 URL 추가
-	public int insertUrlFromCompletedGroup(Map<String,Object> map) {
+	public int insertUrlFromCompletedGroup(JSONArray jarr , String uid ) {
 
 		U_BookDAO dao = sqlsession.getMapper(U_BookDAO.class);
+		
+		List<U_BookDTO> list = new ArrayList<U_BookDTO>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		int length = jarr.length();
 		int result = 0;
+		
+		for(int i = 0 ; i< length ; i++) {
+			U_BookDTO dto = new U_BookDTO();
+			
+			dto.setUrl((String)jarr.getJSONObject(i).get("url"));
+			dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
+			dto.setPid(Integer.valueOf((String)jarr.getJSONObject(i).get("pid")));
+			dto.setUid(uid);
+			
+			list.add(dto);
+		}
+		//System.out.println(list.toString());
+		map.put("list", list);
+		
 		try {
 			result = dao.insertUrlFromCompletedGroup(map);
 		} catch (ClassNotFoundException | SQLException e) {
