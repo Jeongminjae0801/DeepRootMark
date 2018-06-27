@@ -149,13 +149,12 @@ public class SocialController {
 	
 	// 민재 , 개인 공유 북마크 내 카테고리로 가져가기
 	@RequestMapping("getmybookmark.do")
-	public View getSharemark(U_BookDTO book ,HttpServletRequest req, Model model) {
+	public View getSharemark(HttpServletRequest req, Model model) {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
-        book.setUid(uid);
         
         JSONArray jarr = new JSONArray();
-        jarr = new JSONArray(book);
+		jarr = new JSONArray(req.getParameter("obj"));
         
         int result = u_bookservice.insertUrlFromCompletedGroup(jarr,uid);
 		if(result > 0) {

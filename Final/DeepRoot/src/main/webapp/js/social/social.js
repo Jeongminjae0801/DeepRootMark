@@ -70,10 +70,11 @@ $(function() {
 		$.ajax({
 			url : "getmybookmark.do",
 			type: "post",
-			data: {
+			data: {obj :{
 				"url": $(".indishare-url").val(),
 				"urlname" : $(".indishare-urlname").val(),
 				"pid": $(".indishare-userpid").val()
+			}
 			},
 			//dataType: "json",
 			success : function(data){
