@@ -275,20 +275,25 @@ public class U_BookService {
 		int result = 0;
 		
 		for(int i = 0 ; i< length ; i++) {
-			U_BookDTO dto = new U_BookDTO();
-			
-			dto.setUrl((String)jarr.getJSONObject(i).get("url"));
-			dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
-			dto.setPid(Integer.valueOf((String)jarr.getJSONObject(i).get("pid")));
-			dto.setUid(uid);
-			
-			list.add(dto);
+			String url = (String)jarr.getJSONObject(i).get("url");
+			if ( url != null) {
+				U_BookDTO dto = new U_BookDTO();
+				
+				dto.setUrl(url);
+				dto.setUrlname((String)jarr.getJSONObject(i).get("urlname"));
+				dto.setPid(Integer.valueOf((String)jarr.getJSONObject(i).get("pid")));
+				dto.setUid(uid);
+				
+				list.add(dto);
+			}
 		}
-		//System.out.println(list.toString());
+		System.out.println(list.toString());
 		map.put("list", list);
 		
 		try {
-			result = dao.insertUrlFromCompletedGroup(map);
+			if(list.size()!=0) {
+				result = dao.insertUrlFromCompletedGroup(map);
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

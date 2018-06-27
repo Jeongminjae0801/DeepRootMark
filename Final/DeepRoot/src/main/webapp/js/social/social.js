@@ -494,11 +494,6 @@ $(document).ready(function(){
           },
           "plugins" : ["checkbox" ]
           
-    }).bind("select_node.jstree",function(event,data){
-	    var url = $('#jstree-from-left-all').jstree(true).get_node(data.node.id).a_attr.href;
-	    $('.indishare-url-surfing').text(url);
-        var urlname = $('#jstree-from-left-all').jstree(true).get_node(data.node.id).original.text;
-        $('.indishare-urlname-left').val(urlname);
     })
         
     //파도타기 모달 오른쪽 jstree

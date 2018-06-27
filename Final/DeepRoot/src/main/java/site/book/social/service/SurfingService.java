@@ -46,22 +46,25 @@ public class SurfingService {
 		List<Map<String, Object>> url_data_list = new ArrayList<>();
 		
 		for (int i = 0 ; i< obj.length() ; i++) { 
-			Map<String, Object> dataList = new HashMap<>();
-			
-			dataList.put("gid", Integer.valueOf((String)obj.getJSONObject(i).get("gid")));
-			dataList.put("pid", Integer.valueOf((String)obj.getJSONObject(i).get("pid")));
-			dataList.put("uid", uid);
-			dataList.put("url", (String)obj.getJSONObject(i).get("url"));
-			dataList.put("urlname", (String)obj.getJSONObject(i).get("urlname"));
-			
-			url_data_list.add(dataList);
+			String url = (String)obj.getJSONObject(i).get("url");
+			if( url != null ) {
+				Map<String, Object> dataList = new HashMap<>();
+				
+				dataList.put("gid", Integer.valueOf((String)obj.getJSONObject(i).get("gid")));
+				dataList.put("pid", Integer.valueOf((String)obj.getJSONObject(i).get("pid")));
+				dataList.put("uid", uid);
+				dataList.put("url", url);
+				dataList.put("urlname", (String)obj.getJSONObject(i).get("urlname"));
+				
+				url_data_list.add(dataList);
+			}
 		}
-		System.out.println(url_data_list.toString());
-		
 		
 		try {
-			result = dao.insertGroupBookmarkList(url_data_list);
-		}catch (Exception e) {
+			if(url_data_list.size()!=0) {
+				result = dao.insertGroupBookmarkList(url_data_list);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -77,8 +80,8 @@ public class SurfingService {
 		
 		try {
 			result = dao.insertGroupBookmark(gbook);
-		}catch (Exception e) {
-			/*e.printStackTrace();*/
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return result;
