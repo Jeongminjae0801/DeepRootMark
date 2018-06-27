@@ -1,9 +1,12 @@
+var urlname =null;
 $('.indi-share').on('dblclick', function(){ return });
 $('.indi-share').on('click', function(){
 	var title = $(this).data('title');
+	urlname= $(this).data('urlname');
 	$('.indishare-url').val(title);
+	console.log(urlname);
 });
-
+  
 
 $('.group-share').on('dblclick', function(){ return });
 $('.group-share').on('click', function(){
@@ -66,17 +69,19 @@ $(function() {
     // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
     $('#into-my-bookmark').on('dblclick', function(){});
     $('#into-my-bookmark').on('click', function(){
-    	var urlname= $(".indishare-urlname").val();
-    	console.log(urlname);
+    	var submit_obj = [];
+    	submit_obj.push({
+    			"url": $(".indishare-url").val(),
+				"urlname" : urlname,
+				"pid": $(".indishare-userpid").val()
+    			});
+    	console.log(submit_obj);
+    	var submit_obj_json = JSON.stringify(submit_obj);
+    	
 		$.ajax({
 			url : "getmybookmark.do",
 			type: "post",
-			data: {obj :{
-				"url": $(".indishare-url").val(),
-				"urlname" : $(".indishare-urlname").val(),
-				"pid": $(".indishare-userpid").val()
-			}
-			},
+			data: {obj : submit_obj_json},
 			//dataType: "json",
 			success : function(data){
 				if(data.result == "success") {
@@ -112,7 +117,7 @@ $(function() {
 			type: "POST",
 			data: {
 				"url": $(".indishare-url").val(),
-				"urlname" : $(".indishare-urlname").val(),
+				"urlname" : urlname,
 				"pid": $(".indishare-userpid").val(), 
 				"gid": $(".indishare-gid").val()
 			},
