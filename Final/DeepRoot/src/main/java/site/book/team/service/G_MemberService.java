@@ -9,6 +9,7 @@
 package site.book.team.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,23 @@ public class G_MemberService {
 		}
 		
 		return row;
+	}
+	//준석
+	//그룹원 리스트 가져오기
+	public List<G_MemberDTO> selectGMemberlist(String gid){
+		G_MemberDAO g_MemberDAO = sqlsession.getMapper(G_MemberDAO.class);
+		List<G_MemberDTO> selectgmemberlist = null;
+		
+		try {
+			selectgmemberlist = g_MemberDAO.selectGMemberlist(gid);
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return selectgmemberlist;
+		
+		
 	}
 	
 }
