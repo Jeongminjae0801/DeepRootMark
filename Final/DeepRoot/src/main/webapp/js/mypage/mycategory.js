@@ -6,7 +6,7 @@ var first_data = null;	//완료 그룹 모달 왼쪽 jstree
 var right_data = null;	//완료 그룹 모달 오른쪽 jstree
 
 $(document).ready(function(){
-			
+
 	/* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
 	$.ajax({
 		url : "getCategoryList.do",
@@ -234,7 +234,6 @@ $(document).ready(function(){
 		})
 
 	/*오른쪽 위에 url 추가하기 버튼 클릭시 실행 됨*/			
-	
 	$("#addurl")
 		.on("click",function(){
 			var tree_child = $("#jstree_container_child").jstree(true);
@@ -557,15 +556,13 @@ $(document).ready(function(){
 					}
 				}
 			}
-		})
-		.bind("select_node.jstree",function(e,data){
+		}).bind("select_node.jstree",function(e,data){
 			var href = data.node.a_attr.href;
 			
 			window.open(href); 
 			$('#jstree_container_child').jstree().deselect_all(true);			
 			
-		}) 
-		.bind("delete_node.jstree",function(event,data){
+		}).bind("delete_node.jstree",function(event,data){
 			
 			var node_id = data.node.id;
 			var form = {node : node_id}
@@ -582,8 +579,7 @@ $(document).ready(function(){
 					$('#loading').html("");
 				}
 			})  
-		})
-		.bind('rename_node.jstree', function(event, data){
+		}).bind('rename_node.jstree', function(event, data){
 			var node_id = data.node.id;
 			var node_text = data.text;
 			
@@ -600,8 +596,7 @@ $(document).ready(function(){
 						alert('수정 실패');
 				}
 			});   
-		})
-		.bind("load_node.jstree",function(event,data){
+		}).bind("load_node.jstree",function(event,data){
 			var node_ids = [];
 			var create_icon = document.createElement("i");
 			create_icon.setAttribute("class","fas fa-share-alt");
@@ -615,9 +610,8 @@ $(document).ready(function(){
 			}
 		})
 		
-		//완료 그룹 모달 왼쪽 jstree
-	$("#jstree-from-left")
-		.jstree({
+	//완료 그룹 모달 왼쪽 jstree
+	$("#jstree-from-left").jstree({
 			"core" : {
 					'data' : first_data,
 					'themes':{
@@ -630,15 +624,12 @@ $(document).ready(function(){
 				"whole_node" : false,
 				"tie_selection" : false
 			},
-			"plugins" : ["checkbox" ]
+			"plugins" : ["checkbox"]
 			
-		})
-		.bind("select_node.jstree",function(event,data){  
-		});
+	}).bind("select_node.jstree",function(event,data){  });
 	
-			//완료 그룹 모달 오른쪽 jstree
-	$('#jstree-to-right')
-		.jstree({
+	//완료 그룹 모달 오른쪽 jstree
+	$('#jstree-to-right').jstree({
 			"core" : {
 				'data' : right_data,
 				'themes':{
@@ -647,10 +638,10 @@ $(document).ready(function(){
 					'dots' : false,
 				}
 			}
-		})
-	.bind("select_node.jstree",function(e,data){
-		selected_node_id= data.node.id;
-	});	
+	}).bind("select_node.jstree", function (e, data) {
+		var id = data.node.id;
+		$('.groupshare-userpid-left').val(id);
+	});
 		
 	
 	/*왼쪽 jstree 폴더 열렸을 경우 아이콘 변경해 주기*/	
@@ -1080,7 +1071,7 @@ function completedGroup(gid) {
 	                		
 	                		var addCompletedGroup = "";
 	                		addCompletedGroup += '<li id="' + data.completedGroup.gid + '" class="list-group-item">';
-	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal('+ data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
+	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal('+ data.completedGroup.gname + "','" + data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
 	                		addCompletedGroup += '<div class="pull-right action-buttons">';
 	                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + data.completedGroup.gid + ')"></span></a>';
 	                		addCompletedGroup += '</div>';
@@ -1104,70 +1095,5 @@ function completedGroup(gid) {
 	});
 }
 
-var selected_node_id = 0;
 
-//완료된 그룹 리스트 클릭시 해당 그룹의 북마크 가져온다.
-function open_completed_group_modal(gid){
-	$('#completedGroupModal').css({"z-index":"9999"});
-	//완료된 그룹 북마크 가져오기
-	$.ajax({
-		url : "getCompletedTeamBookmark.do",
-		type : "POST",
-		data : {gid : gid},	/* group id 를 넣어야 한다. */
-		dataType :"json",
-		success : function(obj){
-			//모달 왼쪽 jstree에 data 넣어주기
-			first_data = obj;
-			$('#jstree-from-left').jstree().deselect_all(true);
-			$('#jstree-from-left').jstree(true).settings.core.data = obj;
-			$('#jstree-from-left').jstree(true).refresh();
-		}
-	})
-	//모달 오른쪽 selected 된거 없애기
-	$('#jstree-to-right').jstree().deselect_all(true);
-	//완료 그룹 모달 띄우기
-	$('#completedGroupModal').modal();
-};
 
-//완료된 그룹 url 선택후 save 버튼 클릭시
-function submitgroupurl() {
-	var checked_ids = [];
-	var submit_obj = [];
-	
-	checked_ids = $('#jstree-from-left').jstree("get_checked",null,true);
-	
-	if(checked_ids == null){
-		alert("선택한 URL이 없습니다.")
-		return false
-	};
-	if(selected_node_id == 0) {
-		alert("가져가기 할 폴더를 선택하지 않았습니다.")
-		return false
-	};
-	
-	$.each(checked_ids,function(key,value) {
-		//폴더가 아닌 url만 골라 가져가기
-		var checked_url = $('#jstree-from-left').jstree(true).get_node(value).a_attr.href;
-		var urlname = $('#jstree-from-left').jstree(true).get_node(value).text;
-		if(checked_url !='#'){
-			submit_obj.push({url : checked_url , urlname : urlname, pid : selected_node_id}) 
-		}
-	});
-	
-	var submit_obj_json = JSON.stringify(submit_obj);
-	$.ajax({
-		
-		url : "insertGroupUrl.do",
-		type : "POST",
-		data : {obj : submit_obj_json},
-		success : function(){
-			
-		    $('#completedGroupModal').modal("toggle"); 
-			$('#jstree_container').jstree().deselect_all(true);
-			$('#jstree_container').jstree(true).select_node(selected_node_id);			
-			selected_node_id = 0;
-		}
-	});
-	
-	$('#completedGroupModal').css({"z-index":"-10"});
-}

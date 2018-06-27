@@ -29,6 +29,7 @@
     width: 100%;
     height: 100%;
 }
+#form-to-mybookmark-left { padding-top: 10px; }
 .main-modal-controller { display: table-row; width: 100%; }
 .main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
 
