@@ -33,6 +33,7 @@
     <!-- Group Page CSS START -->
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/team/team.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/team/group.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
@@ -68,6 +69,8 @@
 	<!-- Custom Script START -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js"></script>
     <!-- Custom Script END -->
-
+	
+	
+    <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
 </body>
 </html>
