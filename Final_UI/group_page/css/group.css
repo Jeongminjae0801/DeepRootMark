@@ -23,7 +23,7 @@ bdoy .container-fluid{
     padding-left: 0px;
     padding-right: 0px;
     border: 2px solid #222d32;
-    
+
 }
 
 .online{
@@ -86,15 +86,15 @@ bdoy .container-fluid{
 /******/
 .col-sm-12{ height: 100%; vertical-align: middle}
 .col-sm-12 .col-sm-7{ height: 100%;}
-.col-sm-12 .col-sm-5.option{ 
+.col-sm-12 .col-sm-5.option{
     height: 100%;
     padding-left: 0px;
-    padding-right: 10px; 
+    padding-right: 10px;
     padding-top: 25px;
     text-align: right;
     vertical-align: middle;
 }
-.team-ico{ 
+.team-ico{
     font-size: 25px;
     margin-right: 10px;
     color: #424242;
@@ -102,7 +102,7 @@ bdoy .container-fluid{
 .team-insert,
 .team-ban,
 .team-option{
-    
+
 }
 
 .col-sm-5.option .option-ico a{
