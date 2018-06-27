@@ -22,10 +22,19 @@ bdoy .container-fluid{
     width: 35px;
     height: 35px;
 }
-.online{
+.col-sm-3.online{
     text-align: left;
     font-size: 16px;
     width: 100%;
+    border-bottom: 2px solid #ccc;
+}
+
+.col-sm-3.member{
+    width:100%;
+    text-align: left;
+    font-size: 15px;
+    margin-bottom: 5px;
+    
 }
 
 
