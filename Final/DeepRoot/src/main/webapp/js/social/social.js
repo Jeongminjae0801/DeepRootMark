@@ -506,8 +506,8 @@ $(document).ready(function(){
     $('#dropdown-my-bookmark').on('dblclick', function(){});
     $('#dropdown-my-bookmark').on('click', function(){
     	$('#dropdownMenuButton').text($(this).text());
-    	$('#into-my-bookmark-btn').css('display', 'inline');
-    	$('#into-group-bookmark-btn').css('display', 'none');
+    	$('#into-my-bookmark-surfing-btn').css('display', 'inline');
+    	$('#into-group-bookmark-surfing-btn').css('display', 'none');
     	$('#jstree-to-right-all').remove();
     	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
 
@@ -653,19 +653,39 @@ $(document).ready(function(){
 			});
 			return;
 		}
+		
+		var checked_ids = [];
+        var submit_obj = [];
+        var selected_node_id = $('.indishare-userpid-left').val();
+        checked_ids = $('#jstree-from-left-all').jstree("get_checked",null,true);
+		
+        $.each(checked_ids,function(key,value) {
+            //폴더가 아닌 url만 골라 가져가기
+            var checked_url = $('#jstree-from-left-all').jstree(true).get_node(value).a_attr.href;
+            var urlname = $('#jstree-from-left-all').jstree(true).get_node(value).text;
+            var gid = $('.indishare-gid-left').val();
+            if(checked_url !='#'){
+            	submit_obj.push({
+	            	url : checked_url,
+	            	urlname : urlname,
+	            	pid : selected_node_id,
+	            	gid : gid
+	            }) 
+            }
+        });
+        var submit_obj_json = JSON.stringify(submit_obj);
+        
 		$.ajax({
-			url : "getGroupBook.do",
+			url : "getGroupBookList.do",
 			type: "POST",
 			data: {
-				url: $('.indishare-url-surfing').text(),
-				urlname: $('.indishare-urlname-left').val(),
-				pid: $('.indishare-userpid-left').val(), 
-   				gid: $('.indishare-gid-left').val()
+				obj : submit_obj_json
 			},
 			success : function(data){
 				if(data.result == "success") {
 					swal("Thank you!", "북마크에 추가되었습니다!", "success");
 					$('#socialSurfingModal').modal("toggle");
+					selected_node_id=0;
 				} else {
 					swal({
 						title: "목적지 폴더를 확인하셨나요?",
@@ -693,8 +713,8 @@ $(document).ready(function(){
 function seletedGroup(group, gid) {
 	$('#dropdownMenuButton').text(group);
 	$('.indishare-gid-left').val(gid);
-	$('#into-my-bookmark-btn').css('display', 'none');
-	$('#into-group-bookmark-btn').css('display', 'inline');
+	$('#into-my-bookmark-surfing-btn').css('display', 'none');
+	$('#into-group-bookmark-surfing-btn').css('display', 'inline');
 	$('#jstree-to-right-all').remove();
 	$('.completed-modal-right-all').append('<div id="jstree-to-right-all"></div>');
 	

@@ -184,4 +184,25 @@ public class SocialController {
 		return jsonview;
 	}
 	
+	// 진수, 개인 공유 북마크&파도타기 북마크 배열에 담아 내 그룹으로 가져가기
+		@RequestMapping("getGroupBookList.do")	
+		public View addGroupBookmarkList(HttpServletRequest req, Model model) {
+	        
+			HttpSession session = req.getSession();
+	        String uid = (String)session.getAttribute("info_userid");
+	        
+	        JSONArray jarr = new JSONArray();
+			jarr = new JSONArray(req.getParameter("obj"));
+	        
+	        int result = surfingservice.insertGroupBookmarkList(jarr, uid);
+	        
+			if(result > 0) {
+				model.addAttribute("result", "success");
+			}else {
+				model.addAttribute("result", "fail");
+			}
+			
+			return jsonview;
+		}
+	
 }
