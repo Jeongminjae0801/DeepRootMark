@@ -7,6 +7,9 @@
 	/* Chatting Start */
 	var stompClient = null;
 	var gid = '<c:out value="${gid}"/>';
+	var nname = '<c:out value="${nname}"/>';
+	var profile = '<c:out value="${profile}"/>';
+	
 	console.log(gid);
 	$(function(){
 		connect();
@@ -33,9 +36,24 @@
 	        // 메세지 구독
 	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 subscribe prefix("/subscribe")를 사용해야 함
 	        stompClient.subscribe('/subscribe/chat/' + gid, function(message) {
-	        	console.log(message.body);
-	            /* var data = JSON.parse(message.body);
-	            alert(data.nname + ":" + data.content); */
+	        	//console.log(message.body);
+	        	
+	        	var new_chat = JSON.parse(message.body);
+	        	//console.log(new_chat.nname);
+	        	var chat_div = "";
+	        	chat_div += '<img class="chatting_profile_img" src="${pageContext.request.contextPath}/images/profile/' + new_chat.profile + '">';
+	        	chat_div += '<div class="chatting_text_div">';
+	        	chat_div += '<p class="chatting_userid">';
+	        	chat_div += new_chat.nname + '<span class="chatting_time">' + new_chat.datetime + '</span>';
+	        	chat_div += '</p>';
+	        	chat_div += '<span class="chatting_text">';
+                chat_div += new_chat.content;
+                chat_div += '</span>';
+                chat_div += '</div>';  	
+
+                console.log(chat_div);
+                $(".chatting_contents").append(chat_div);
+	        	
 	        });        
 	    });
 	    
@@ -45,17 +63,18 @@
 	function sendMessage() {
 		console.log("click");
 		
-	    var str = $("#chatt_input").val();
+	    var str = $("#chat_textbox_text").text();
 	    str = str.replace(/ /gi, '&nbsp;')
 	    str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
 	    console.log(str);
 	    if(str.length > 0) {
 	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
 	        stompClient.send("/socket/chat/" + gid, {}, JSON.stringify({
-	           	content: str
+	           	content: str,
+	           	nname: nname,
+	           	profile: profile
 	        }));
 	    }
-	    $("#chatt_input").val('');
 	}
 	 
 	// 채팅방 연결 끊기
@@ -92,18 +111,30 @@
         
         <!-- Group Chart div START -->
         <section class="col-sm-5 chatt">
-          	<div class="chat-content-div">
-	            <div class="chat-element">
+          	<div class="chat_content_div">
+	            <div class="chat_element">
 	                <!-- 날짜 변경되면 나오는 친구 -->
 	                <div class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
-	                <div class="chatting-contents">
-	                    <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+	                <div class="chatting_contents">
+	                    <img class="chatting_profile_img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
 	
-	                    <div class="chatting-text-div">
-	                        <p class="chatting-userid">
-	                           	정민재 <span class="chatting-time">12시 27분</span>
+	                    <div class="chatting_text_div">
+	                        <p class="chatting_userid">
+	                           	정민재 <span class="chatting_time">12시 27분</span>
 	                        </p>
-	                        <span class="chatting-text">
+	                        <span class="chatting_text">
+					                            희준이는 토게피<br>
+					                            아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+	                        </span>
+	                    </div>
+	                    
+	                    <img class="chatting_profile_img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+	
+	                    <div class="chatting_text_div">
+	                        <p class="chatting_userid">
+	                           	정민재 <span class="chatting_time">12시 27분</span>
+	                        </p>
+	                        <span class="chatting_text">
 					                            희준이는 토게피<br>
 					                            아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
 	                        </span>
@@ -111,25 +142,19 @@
 	                </div>
 	            </div>
 	
-	            <div class="chat-inputbox-div">
-	                <div class="chat-inputbox-bg">
-	                    <div class="chat-textbox">
-	                        <div id="chat-textbox-text">
+	            <div class="chat_inputbox_div">
+	                <div class="chat_inputbox_bg">
+	                    <div class="chat_textbox">
+	                        <div id="chat_textbox_text">
 	
 	                        </div>
-	                        <div id="chat-textbox-icon">
+	                        <div id="chat_textbox_icon">
 	                            <i class="fas fa-share-square"></i>
 	                        </div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-          	
-          	<div class="row">
-          		<input id="chatt_input" type="text">
-          		<button type="button" id="sendBtn" class="btn btn-default">전송</button>
-          	</div>
-          	
         </section>
         <!-- Group Chart div END -->
         

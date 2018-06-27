@@ -10,6 +10,7 @@ package site.book.socket;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,8 +40,9 @@ public class ChatController {
     @MessageMapping("/chat/{room}")
     @SendTo("/subscribe/chat/{room}")
     public ChatMessage sendChatMessage(@DestinationVariable("room") String room, ChatMessage message, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
-    	System.out.println("들어옴!!!!!!!!!!!!!!!!");
         
+    	message.setDatetime(LocalTime.now().getHour() + "시 " + LocalTime.now().getMinute() + "분");
+    	
         return message;
     }
 	

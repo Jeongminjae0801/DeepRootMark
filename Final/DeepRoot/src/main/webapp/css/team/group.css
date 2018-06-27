@@ -86,8 +86,8 @@ bdoy .container-fluid{
     padding: 0px 10px 0px 10px;
     height: 600px;
 }
-.chat-content-div { height: 100%; }
-.chat-element {
+.chat_content-div { height: 100%; }
+.chat_element {
     padding: 10px 0px 10px 0px;
     height: 90%;
     overflow-y: auto;
@@ -105,36 +105,37 @@ bdoy .container-fluid{
 }
 
 /* 채팅 한번 치면 일어나는 놈들 */
-.chatting-contents {
+.chatting_contents {
     padding-top: 10px;
+    height: 520px;
 }
-.chatting-text-div { margin-left: 50px; }
-.chatting-userid { margin: 0px; }
-.chatting-profile-img {
+.chatting_text_div { margin-left: 50px; }
+.chatting_userid { margin: 0px; }
+.chatting_profile_img {
     margin-right: 5px;
     width: 40px;
     height: 40px;
     border-radius: 10px;
     float: left;
 }
-.chatting-userid {
+.chatting_userid {
     font-size: 16px;
     font-weight: 600;
 }
-.chatting-time {
+.chatting_time {
     color: #848080;
     font-size: 11px;
     font-weight: 600;
 }
-.chat-inputbox-div {
+.chat_inputbox_div {
     height: 10%;
 }
-.chat-inputbox-bg {
+.chat_inputbox_bg {
     padding: 10px 10px 0px 10px;
     height: 100%;
     width: 100%;
 }
-.chat-textbox {
+.chat_textbox {
     padding: 10px 5px 10px 5px;
     height: 45px;
     width: 100%;
@@ -142,14 +143,14 @@ bdoy .container-fluid{
     border-radius: 5px;
     float: left;
 }
-#chat-textbox-icon { text-align: center; }
-#chat-textbox-icon > i {
+#chat_textbox_icon { text-align: center; }
+#chat_textbox_icon > i {
     color: #888888;
     float: right;
 }
-.chat-textbox #chat-textbox-text { width: 92%; height: 100%; float: left; }
-.chat-textbox #chat-textbox-text:focus { outline: none; }
-.chat-textbox #chat-textbox-icon { width: 8%; float: right; text-align: center;}
+.chat_textbox #chat_textbox_text { width: 92%; height: 100%; float: left; }
+.chat_textbox #chat_textbox_text:focus { outline: none; }
+.chat_textbox #chat_textbox_icon { width: 8%; float: right; text-align: center;}
 /* 채팅 한번 치면 일어나는 놈들 */
 
 
