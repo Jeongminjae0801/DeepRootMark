@@ -27,8 +27,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
+import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.TeamDTO;
 import site.book.team.service.G_BookService;
+import site.book.team.service.G_MemberService;
 import site.book.team.service.TeamService;
 
 /**
@@ -58,7 +60,9 @@ public class TeamController {
 	@Autowired
 	G_BookService gbookservice;
 	
-	
+	//준석
+	@Autowired
+	G_MemberService g_memberservice;
 	
 	
 	
@@ -171,6 +175,19 @@ public class TeamController {
 		
 		return jsonview;
 	}
+	//준석
+	//그룹 페이지  이동
+	@RequestMapping("main.do")
+	public String movegroup(String gid, Model model) {
+		
+		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
+		
+		model.addAttribute("gmemberlist",gmemberlist);
+		
+		
+		return "team.team";
+	}
+	
 	//함수 END
 	
 }

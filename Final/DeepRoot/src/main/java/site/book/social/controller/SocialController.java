@@ -154,7 +154,10 @@ public class SocialController {
         String uid = (String)session.getAttribute("info_userid");
         book.setUid(uid);
         
-        int result = u_bookservice.insertUrlFromCompletedGroup(book);
+        JSONArray jarr = new JSONArray();
+        jarr = new JSONArray(book);
+        
+        int result = u_bookservice.insertUrlFromCompletedGroup(jarr,uid);
 		if(result > 0) {
 			model.addAttribute("result", "success");
 		}else {

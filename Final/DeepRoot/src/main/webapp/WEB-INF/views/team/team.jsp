@@ -34,7 +34,10 @@
         
         <!-- Group Member div START -->
         <section class="col-sm-3 group-member">
-            	그룹원 영역
+            <c:forEach items="${gmemberlist}" var="gmember">
+            	<p>${gmember.nname}</p>           
+            
+            </c:forEach>
         </section>
         <!-- Group Member div END -->
         

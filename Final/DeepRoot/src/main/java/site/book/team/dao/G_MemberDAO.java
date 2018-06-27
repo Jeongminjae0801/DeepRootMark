@@ -9,6 +9,7 @@
 package site.book.team.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import site.book.team.dto.G_MemberDTO;
 
@@ -27,4 +28,7 @@ public interface G_MemberDAO {
 	
 	// 그룹원 추가
 	public int insertGMember(G_MemberDTO member) throws ClassNotFoundException, SQLException;
+	//준석
+	//그룹원 리스트 가져오기
+	public List<G_MemberDTO> selectGMemberlist(String gid)throws ClassNotFoundException, SQLException;
 }
