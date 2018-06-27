@@ -29,6 +29,22 @@
         <!-- Group Chart div START -->
         <section class="col-sm-5 chatt">
           	채팅창 영역
+          	<div id="chatt-atea">
+          	
+          	</div>
+          	
+          	<div id="chatt-input">
+          		<ol class="list-inline">
+          			<li><img class="chatt-profile" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="<%= request.getContextPath() %>/images/profile.png">
+          			<li>
+          				<ul class="chatt-content-area">
+          					<li>${sessionScope.info_usernname}</li>
+          					<li>채팅내용 블라블라블라</li>
+          				</ul>		
+          			</li>
+          		</ol>
+          	</div>
+          	
         </section>
         <!-- Group Chart div END -->
         
