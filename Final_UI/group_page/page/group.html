@@ -123,51 +123,25 @@
                     </div>
                     <div class="col-sm-5 option">
                         <span class="option-ico">
+<<<<<<< HEAD
                                 <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert()"></i>
 
                                 <i class="fas fa-minus-circle team-ico team-ban dropdown"></i>
 
                                 <i class="fas fa-cog team-ico team-option"></i>
+=======
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert();"></i>
+
+                                <i class="fas fa-minus-circle team-ico team-ban dropdown" onclick="group_leave();"></i>
+
+                                <i class="fas fa-cog team-ico team-option dropdown"  onclick="group_complete();"></i>
+>>>>>>> 73cb0f91b48e40f765c84c3974ba8ff6918ee386
                         </span>
                     </div>
                 </div>
             </div>
         </div>
      </section>
-
-    <script>
-    function member_insert(){
-$.confirm({
-		    title: '멤버 초대',
-		    content: '' +
-		    '<form " action="" class="" method="post">' +
-		    '<label>추가 할 멤버의 이메일을 입력하세요</label>' +
-		    '<input type="text" name="" class="member_insert_input"/>' +
-		    '</form>',
-		    theme: 'light',
-			type: 'green',
-		    closeIcon: true,
-		    buttons: {
-		        formSubmit: {
-		            text: '초대',
-		            btnClass: 'btn-green',
-		            action: function () {
-		                var name = this.$content.find('.name').val();
-
-		                $("#form id 적어줘").submit();
-
-		            }
-		        },
-		        '취소': {
-		            btnClass: 'btn-red',
-		            action: function () {
-		            //close
-		            }
-		        },
-		    }
-		});
-}
-    </script>
     <!-- body TOP div END -->
 
     <!-- body Content START -->
