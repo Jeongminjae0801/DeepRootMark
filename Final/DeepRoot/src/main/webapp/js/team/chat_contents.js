@@ -1,22 +1,47 @@
 
+
 // 화면 전환시 채팅 스크롤 최하단으로 위치
-$(".chat-element").scrollTop($(".chat-element").height());
-$('#chat_textbox_text').each(function() {
+$(".chat-element").scrollTop($(".chat-content-div").height());
+$('#chat-textbox-text').each(function() {
     this.contentEditable = true;
 });
-$('#chat_textbox_text').click(function() {
-    $('#chat_textbox_text').focus()
+$('#chat-textbox-text').click(function() {
+    $('#chat-textbox-text').focus()
 });
-$('#chat_textbox_text').keydown(function (e) {
-    if ( e.ctrlKey && e.keyCode == 13 ) {
-        return
-    } else if( e.shiftKey && e.keyCode == 13 ) {
-        $('#chat_textbox_text').append('<br>');
+$('#chat-textbox-text').keyup(function (e) {return});
+$('#chat-textbox-text').keydown(function (e) {
+    if( e.shiftKey && e.keyCode == 13 ) {
+        e.stopPropagation();
+        $('#chat-textbox-text').append('\n');
         console.log("Input Shift + Enter");
     } else if(e.keyCode == 13) { // Ctrl-Enter pressed
         event.preventDefault();
-        sendMessage();
-        $('#chat_textbox_text').html('');
+        $('#chat-textbox-text').html('');
         console.log("Input Enter");
     }
+});
+
+$(function() {
+    var scrollPos = $('.chat-element').scrollTop();
+    var date_eq = $(".chat-element").children(".divider").length - 1;
+
+    $('.chat-element').scroll(function() {
+        var curScrollPos = $(this).scrollTop();
+        var date_line = $(".divider:eq(" + date_eq + ")").position().top;
+
+        if (curScrollPos > scrollPos) { //Scrolling Down
+            if(date_line <= 35 ) {
+                var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                $("#header-date").text(temp);
+                if( date_eq < $(".chat-element").children(".divider").length - 1 ) { date_eq += 1; }
+            }
+        } else { //Scrolling Up
+            if(date_line > 30 ) {
+                if( date_eq > 0 ) { date_eq -= 1; }
+                var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                $("#header-date").text(temp);
+            }
+        }
+        scrollPos = curScrollPos;
+    });
 });
