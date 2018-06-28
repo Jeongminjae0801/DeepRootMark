@@ -97,11 +97,11 @@
             <div class="row">
                 <div class="col-sm-12 top-content">
                     <div class="col-sm-7">
-                         위에 뭐가 뜨는 영역
+                         	위에 뭐가 뜨는 영역
                     </div>
                     <div class="col-sm-5 option">
                         <span class="option-ico">
-                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert();"></i>
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown"></i>
 
                                 <i class="fas fa-minus-circle team-ico team-ban dropdown" onclick="group_leave();"></i>
 
@@ -197,7 +197,7 @@
                 <div class="group-member-content">
                     <div>
                         <div class="group-member-header">
-                            <p><i class="far fa-address-card"></i> Member <i class="fas fa-user-plus"></i></p>
+                            <p><i class="far fa-address-card"></i> Member <i class="fas fa-user-plus" onclick="member_insert();"></i></p>
                         </div>
                     </div>
                     <div class="onoffline-content">
