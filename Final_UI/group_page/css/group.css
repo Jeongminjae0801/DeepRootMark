@@ -341,19 +341,17 @@ bdoy .container-fluid{
 
 
 .group-category {
-
     height: 100%;
-    border: 1px solid #8aa4af;
-    border-radius: 15px 15px 48px 15px;
-    box-shadow: 5px 6px 10px 3px;
-    padding-right: 5px;
-    padding-left: 5px;
-    padding-bottom: 25px;
-    margin-right: 15px;
+    padding: 5px;
+    background-color: #fff0;
 }
 
 .group-category-div {
     height: 100%;
+    border: 1px solid #8aa4af;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 5px 6px 10px 3px;
+    background-color: #fff;
 }
 
 .group-category-header {
