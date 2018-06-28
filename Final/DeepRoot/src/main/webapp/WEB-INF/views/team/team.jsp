@@ -217,7 +217,7 @@
             <section class="col-sm-6 chat">
                 <div class="chat-content-div">
                     <div class="chat-header">
-                        <span class="chatting-roomname"><i class="far fa-comments"></i>ALL</span>
+                        <span class="chatting-roomname"><i class="far fa-comments"></i>&nbsp;&nbsp;ALL</span>
                         <div class="user-status">
                             <span><i class="far fa-star"></i></span>
                         </div>
@@ -444,9 +444,9 @@
                                 <span><i class="fas fa-toggle-off"></i>offline</span>
                             </div>
                             <div class="offline-member">
-                                <p class="member"><img class="member-ico" src="/images/offline2.png">정진수</p>
-                                <p class="member"><img class="member-ico" src="/images/offline2.png">김명수</p>
-                                <p class="member"><img class="member-ico" src="/images/offline2.png">방준석</p>
+                                <p class="member"><img class="member-ico" src="<%= request.getContextPath() %>/images/team/offline.png">정진수</p>
+                                <p class="member"><img class="member-ico" src="<%= request.getContextPath() %>/images/team/offline.png">김명수</p>
+                                <p class="member"><img class="member-ico" src="<%= request.getContextPath() %>/images/team/offline.png">방준석</p>
                             </div>
                         </div>
                     </div>    
