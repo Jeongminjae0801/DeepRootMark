@@ -150,12 +150,7 @@ bdoy .container-fluid{
 }
 .col-sm-12 .col-sm-7{ height: 100%;}
 .col-sm-12 .col-sm-5.option{
-    height: 100%;
-    padding-left: 0px;
-    padding-right: 10px;
-    padding-top: 25px;
     text-align: right;
-    vertical-align: middle;
 }
 .team-ico{
     font-size: 25px;
