@@ -367,12 +367,9 @@
                                 <div id="chat-textbox-text">
 
                                 </div>
-                                <div id="chat-textbox-icon">
-                                    <div class="flexbox">
-
-                                    </div>
-                                    <i class="fas fa-share-square"></i>
-                                </div>
+                            </div>
+                            <div id="chat-textbox-icon">
+                                <i class="fas fa-share-square"></i>
                             </div>
                         </div>
                     </div>

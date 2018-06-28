@@ -13,11 +13,9 @@ $('#chat-textbox-text').keydown(function (e) {
     if( e.shiftKey && e.keyCode == 13 ) {
         e.stopPropagation();
         $('#chat-textbox-text').append('\n');
-        console.log("Input Shift + Enter");
     } else if(e.keyCode == 13) { // Ctrl-Enter pressed
         event.preventDefault();
         $('#chat-textbox-text').html('');
-        console.log("Input Enter");
     }
 });
 
