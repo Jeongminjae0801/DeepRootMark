@@ -123,6 +123,17 @@ public class TeamController {
 		return jsonview;
 	}
 	
+	//해당 그룹 카테고리 리스트
+	@RequestMapping("getTeamJstree.do")
+	public View getTeamJstree(HttpServletRequest req, Model model, String gid) {
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        JSONArray jsonarray = gbookservice.getTeamJstree(gid,uid);
+        model.addAttribute("data", jsonarray);
+		
+		return jsonview;
+	}
 
 	
 	//태웅
@@ -221,6 +232,7 @@ public class TeamController {
 			e.printStackTrace();
 		}
         model.addAttribute("filecontentlist", filecontentlist);
+		model.addAttribute("enabled", user.getEnabled());
 		
 		return "team.team";
 	}
