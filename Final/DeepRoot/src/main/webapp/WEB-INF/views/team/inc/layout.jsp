@@ -33,17 +33,11 @@
     <!-- Group Page CSS START -->
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/team/team.css?ver=2" rel="stylesheet">
-    <%-- <link href="${pageContext.request.contextPath}/css/team/group.css?ver=2" rel="stylesheet"> --%>
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jstreeTeam.css" />
     <!-- Group Page CSS START -->
-    
-    <!-- Group Page Js START -->
-    <script src="/js/member_insert.js"></script>
-    <script src="/js/table_height.js"></script>
-    <!-- Group Page Js END -->
     
     <!--Script Start -->
     <script src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
