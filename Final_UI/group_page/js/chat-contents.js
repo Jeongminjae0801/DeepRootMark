@@ -20,3 +20,28 @@ $('#chat-textbox-text').keydown(function (e) {
         console.log("Input Enter");
     }
 });
+
+$(function() {
+    var scrollPos = $('.chat-element').scrollTop();
+    var date_eq = $(".chat-element").children(".divider").length - 1;
+
+    $('.chat-element').scroll(function() {
+        var curScrollPos = $(this).scrollTop();
+        var date_line = $(".divider:eq(" + date_eq + ")").position().top;
+
+        if (curScrollPos > scrollPos) { //Scrolling Down
+            if(date_line <= 35 ) {
+                var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                $("#header-date").text(temp);
+                if( date_eq < $(".chat-element").children(".divider").length - 1 ) { date_eq += 1; }
+            }
+        } else { //Scrolling Up
+            if(date_line > 30 ) {
+                if( date_eq > 0 ) { date_eq -= 1; }
+                var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                $("#header-date").text(temp);
+            }
+        }
+        scrollPos = curScrollPos;
+    });
+});

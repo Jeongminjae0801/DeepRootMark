@@ -154,13 +154,31 @@ bdoy .container-fluid{
     padding: 5px;
     min-height: 45px;
     max-height: 45px;
-    border-bottom: 1px solid #888;
 }
 .chat-header .chatting-roomname {
     font-size: 20px;
     font-weight: 600;
     float: left;
 }
+.header-divider {
+    position: relative;
+    top: -10px;
+    left: -5px;
+    width:100%;
+    text-align:center;
+    background-color: #fff;
+    clear: both;
+}
+.header-divider span { font: 15px sans-serif; text-transform: uppercase; }
+.header-divider hr { margin: 0px; width:40%; }
+.header-divider .left { float:left; }
+.header-divider .right { float:right; }
+.header-divider .left, .header-divider .right {
+    position: relative;
+    top: 15px;
+    border-color: #888;
+}
+
 .user-status {
     height: -webkit-fill-available;
     float: left;
@@ -182,15 +200,15 @@ bdoy .container-fluid{
     overflow-y: auto;
 }
 
-.divider { width:100%; text-align:center; }
-.divider span { font: 20px sans-serif; text-transform: uppercase; }
+.divider { width:100%; text-align:center; clear: both; }
+.divider span { font: 15px sans-serif; text-transform: uppercase; }
 .divider hr { margin: 0px; width:40%; }
 .divider .left { float:left; }
 .divider .right { float:right; }
 .divider .left, .divider .right {
     position: relative;
     top: 15px;
-    border-color: #000;
+    border-color: #888;
 }
 
 /* 채팅 한번 치면 일어나는 놈들 */
@@ -273,8 +291,8 @@ bdoy .container-fluid{
     height: 800px;
 }
 
-.group-category-div { 
-    height: 100%; 
+.group-category-div {
+    height: 100%;
 }
 
 .group-category-header {
