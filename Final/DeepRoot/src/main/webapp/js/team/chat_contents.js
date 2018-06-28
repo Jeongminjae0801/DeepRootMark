@@ -15,6 +15,7 @@ $('#chat-textbox-text').keydown(function (e) {
         $('#chat-textbox-text').append('\n');
     } else if(e.keyCode == 13) { // Ctrl-Enter pressed
         event.preventDefault();
+        sendMessage();
         $('#chat-textbox-text').html('');
     }
 });

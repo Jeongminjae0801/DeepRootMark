@@ -247,19 +247,21 @@ public class TeamController {
 		spath = spath.substring(0, index);
 		spath += "team/chat/" + gid +".txt";
     	String fileName = spath;
-    	//Path path = Paths.get(fileName);
+    	Path path = Paths.get(fileName);
     	
-    	FileInputStream fileInputStream = new FileInputStream(fileName);
-    	
-    	InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
-		
-    	try(BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
-    		String line;
-    		while((line = bufferedReader.readLine()) != null) {
-    			list.add(line);
-    		}
+    	if(Files.exists(path)) {
+    		FileInputStream fileInputStream = new FileInputStream(fileName);
+        	
+        	InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+    		
+        	try(BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+        		String line;
+        		while((line = bufferedReader.readLine()) != null) {
+        			list.add(line);
+        		}
+        	}
     	}
-    	
+
     	/*List<String> fileLinesList = Files.readAllLines(path, StandardCharsets.UTF_8);
     	
     	for(String line : fileLinesList) {
