@@ -3,8 +3,8 @@ function member_insert(){
 $.confirm({
 		    title: '멤버 초대',
 		    content: '' +
-		    '<form " action="" class="" method="post">' +
-		    '<label>추가 할 멤버의 이메일을 입력하세요</label>' +
+		    '<form id="" action="" class="" method="post">' +
+		    '<label>추가 할 멤버의 닉네임 입력하세요</label>' +
 		    '<input type="text" name="" class="member_insert_input"/>' +
 		    '</form>',
 		    theme: 'light',
@@ -32,7 +32,7 @@ $.confirm({
 }
 
 /* 그룹 탈퇴 */
-function(){
+function group_out(){
 $.confirm({
 		    title: '그룹 탈퇴',
 		    content: '' +
