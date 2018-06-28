@@ -43,4 +43,11 @@ public interface G_BookDAO {
 	public int insertRootFolder(String gid, String uid) throws ClassNotFoundException, SQLException;
 	// 그룹 북마크로 URL 하나 insert
 	public int insertGroupBookmark(G_BookDTO gbook) throws ClassNotFoundException, SQLException;
+	
+	
+	//명수
+	//그룹 페이지 jstree 가져오기
+	public List<G_BookDTO> getTeamJstree(String gid) throws ClassNotFoundException, SQLException;
+	//현재 GBID max
+	public int getCurrentGBID() throws ClassNotFoundException, SQLException;
 }

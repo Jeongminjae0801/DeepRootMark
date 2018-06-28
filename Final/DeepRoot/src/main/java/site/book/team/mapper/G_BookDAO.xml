@@ -47,4 +47,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</otherwise>
 	</choose>
 	</insert>
+	
+	<!-- 명수 -->
+	<select id="getTeamJstree" resultType="site.book.team.dto.G_BookDTO">
+		SELECT * FROM G_BOOK WHERE GID=#{gid}
+	</select>
+	
+	<select id="getCurrentGBID" resultType="int">
+		select max(GBID) from G_BOOK
+	</select>
 </mapper>
