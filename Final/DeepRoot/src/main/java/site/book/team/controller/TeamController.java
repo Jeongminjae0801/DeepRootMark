@@ -8,8 +8,24 @@
 
 package site.book.team.controller;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.AsynchronousFileChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Future;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,6 +40,7 @@ import org.springframework.web.servlet.View;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.common.base.Charsets;
 
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
@@ -206,9 +223,53 @@ public class TeamController {
         UserDTO user = userservice.getMember(uid);
         model.addAttribute("nname", user.getNname());
         model.addAttribute("profile", user.getProfile());
+        
+        List<String> filecontentlist = null;
+        try {
+			filecontentlist = fileRead(gid);
+//			Collections.reverse(filecontentlist);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        model.addAttribute("filecontentlist", filecontentlist);
 		model.addAttribute("enabled", user.getEnabled());
 		
 		return "team.team";
+	}
+	
+	// 파일  읽기
+	public List<String> fileRead(String gid) throws IOException{
+		List<String> list = new ArrayList<String>();
+		
+		String spath = this.getClass().getResource("").getPath();
+    	spath = spath.substring(1);
+		int index = spath.indexOf("WEB-INF");
+		spath = spath.substring(0, index);
+		spath += "team/chat/" + gid +".txt";
+    	String fileName = spath;
+    	Path path = Paths.get(fileName);
+    	
+    	if(Files.exists(path)) {
+    		FileInputStream fileInputStream = new FileInputStream(fileName);
+        	
+        	InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+    		
+        	try(BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
+        		String line;
+        		while((line = bufferedReader.readLine()) != null) {
+        			list.add(line);
+        		}
+        	}
+    	}
+
+    	/*List<String> fileLinesList = Files.readAllLines(path, StandardCharsets.UTF_8);
+    	
+    	for(String line : fileLinesList) {
+    		list.add(line);
+    		System.out.println(line);
+    	}*/
+    	
+		return list;
 	}
 	
 	//함수 END

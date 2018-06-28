@@ -67,6 +67,7 @@
 	<!-- Custom Script START -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js"></script>
     <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
+    <script src="${pageContext.request.contextPath}/js/team/member_insert.js"></script>
     <!-- Custom Script END -->
     
 </body>
