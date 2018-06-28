@@ -272,12 +272,55 @@ bdoy .container-fluid{
 
 /* group-category CSS START */
 
-.col-sm-4.group-category{
+.jstree-from::-webkit-scrollbar{width: 10px;}
+.jstree-from::-webkit-scrollbar-track {background-color:#f1f1f1;}
+.jstree-from::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
+.jstree-from::-webkit-scrollbar-thumb:hover {background: #466b5e;}
+.jstree-from::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+    width: 5px;
+    height: 5px;
+    background: #fff;
+}
+
+.group-category {
+    padding: 0px 10px 0px 10px;
+    height: 800px;
+}
+
+.group-category-div { 
+    height: 100%; 
+}
+
+.group-category-header{
+    height: 45px;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 22px;
+    width: 100%;
+    border-bottom: 2px solid #8aa4af;
+}
+
+.col-sm-4.group-category {
     padding-left: 0px;
     padding-right: 0px;
     border: 2px solid #8aa4af;
     height: 100%;
 }
+
+.jstree-from {
+    padding: 10px 0px 10px 0px;
+    height: 75%;
+    max-height: 650px;
+    overflow-y: auto;
+}
+
+/*임시 jstree css, JSP로 넘어갈때 지우세요*/
+.jstree-from > ul, .jstree-from > ul > ul{
+    list-style : none;
+}
+
+
 
 
 
