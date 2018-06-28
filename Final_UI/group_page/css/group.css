@@ -150,8 +150,8 @@ bdoy .container-fluid{
     vertical-align: middle;
     background-image: url('https://data.ac-illust.com/data/thumbnails/fa/fa2a672a7db92d77b1df1d650b6b0806_w.jpeg');
 }
-.col-sm-12 .col-sm-7{ height: 100%;}
-.col-sm-12 .col-sm-5.option{
+.top-content-left{ height: 100%;}
+.option{
     height: 100%;
     padding-left: 0px;
     padding-right: 10px;
