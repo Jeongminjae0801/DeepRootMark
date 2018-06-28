@@ -37,6 +37,7 @@
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jstreeTeam.css" />
     <!-- Group Page CSS START -->
     
     <!-- Group Page Js START -->
