@@ -1,18 +1,55 @@
 /* team CSSS START */
-.my .container-fluid .row{
+/*.my .container-fluid .row{
     margin-top: 100px;
     margin-bottom: 20px;
     text-align: center;
     font-size: 15px;
     height: 70px;
     border : 1px solid #222d32;
+}*/
+
+.container-fluid.team-container{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    
+}
+.container-fluid.team-container > .row > .col-sm-12{
+    margin-top:85px;
+}
+.container-fluid.team-container .row .col-sm-12{
+    border : 5px double #000;
+    margin-bottom: 0px;
+    height: 100%;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    background-color: #e3d1b9;
 }
 
-.my .container-fluid,
+.container-fluid.top{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff;
+}
+
+.container-fluid.content{
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.my .container-fluid.top .row .col-sm-12,
+.col-sm-3,
+.col-sm-6,
+.col-sm-2{
+    background-color: #fff;
+}
+
+.col-sm-6{width:55%;}
+
 .container-fluid,
 bdoy .container-fluid{
-    padding-left: 110px;
-    padding-right: 110px;
+    padding-left: 80px;
+    padding-right: 55px;
 }
 /* group-member css START */
 .group-member-content{ height: 500px; width: 100% }
@@ -34,10 +71,6 @@ bdoy .container-fluid{
 .online-content{ height: 70%; width: 100% }
 .offline-content{ height: 30%; width: 100% }
 
-.col-sm-2.group-member{
-    padding-left: 0px;
-    padding-right: 0px;
-}
 
 .online{
     padding-left : 15px;
@@ -143,14 +176,6 @@ bdoy .container-fluid{
     padding-left: 5px;
     margin-right: 15px;
 }
-.group-category{
-    border: 1px solid #8aa4af;
-    border-radius: 15px 15px 48px 15px;
-    box-shadow: 5px 6px 10px 3px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin-right: 15px;
-}
 /* group-member css END */
 
 
@@ -168,9 +193,16 @@ bdoy .container-fluid{
 }
 
 .chat {
-    padding: 0px 10px 0px 10px;
-    height: 800px;
+    
+    height: 700px;
+    border: 1px solid #8aa4af;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 5px 7px 10px 1px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: 15px;
 }
+
 .chat-content-div { height: 100%; }
 .chat-header {
     padding: 5px;
@@ -309,8 +341,14 @@ bdoy .container-fluid{
 }
 
 .group-category {
-    padding: 0px 10px 0px 10px;
-    height: 800px;
+   /* padding: 0px 10px 0px 10px;
+    height: 800px;*/
+    border: 1px solid #8aa4af;
+    border-radius: 15px 15px 48px 15px;
+    box-shadow: 5px 6px 10px 3px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: 15px;
 }
 
 .group-category-div {
