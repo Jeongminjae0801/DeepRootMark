@@ -12,7 +12,7 @@ $('#chat-textbox-text').keyup(function (e) {return});
 $('#chat-textbox-text').keydown(function (e) {
     if( e.shiftKey && e.keyCode == 13 ) {
         e.stopPropagation();
-        $('#chat-textbox-text').append('\n');
+        $('#chat-textbox-text').append('<br>');
     } else if(e.keyCode == 13) { // Ctrl-Enter pressed
         event.preventDefault();
         sendMessage();

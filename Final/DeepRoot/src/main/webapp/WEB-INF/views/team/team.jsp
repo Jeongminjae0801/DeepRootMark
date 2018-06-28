@@ -15,22 +15,9 @@
 		chatList.push("${filecontent}");
 	</c:forEach>
 	
-	
-	
 	//console.log(gid);
 	$(function(){
 		connect();
-		
-		$('#chatt_input').keypress(function(event) {
-			var keycode = (event.keyCode ? event.keyCode : event.which);
-			if (keycode == '13') {
-				sendMessage();
-			}
-			event.stopPropagation();
-		});
-		$('#sendBtn').click(function() {
-			sendMessage();
-		});
 		
 		$.each(chatList, function(index, value){
 			chatList[index] = chatList[index].split('|');
@@ -38,7 +25,6 @@
 			var chatListIndex = chatList[index]
 			
 			var chat_list_div = "";
-			chat_list_div += '<div class="chatting-contents">';
 			chat_list_div += '<img class="chatting-profile-img" src="${pageContext.request.contextPath}/images/profile/' + chatListIndex[0] + '">';
 			chat_list_div += '<div class="chatting-text-div">';
 			chat_list_div += '<p class="chatting-userid">';
@@ -48,7 +34,6 @@
 			chat_list_div += chatListIndex[3];
 			chat_list_div += '</span>';
 			chat_list_div += '</div>';  	
-			chat_list_div += '</div>';
 			
             //console.log(chat_list_div);
             $(".chatting-contents").append(chat_list_div);
@@ -60,18 +45,17 @@
 	function connect() {
 	    //console.log("connect");
 	    // WebSocketMessageBrokerConfigurer의 registerStompEndpoints() 메소드에서 설정한 endpoint("/endpoint")를 파라미터로 전달
-	    var ws = new SockJS("http://localhost:8090/bit/endpoint");
+	    var ws = new SockJS("http://192.168.0.21:8090/bit/endpoint");
 	    stompClient = Stomp.over(ws);
 	    stompClient.connect({}, function(frame) {
 	        // 메세지 구독
 	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 subscribe prefix("/subscribe")를 사용해야 함
 	        stompClient.subscribe('/subscribe/chat/' + gid, function(message) {
-	        	//console.log(message.body);
+	        	console.log(message.body);
 	        	
 	        	var new_chat = JSON.parse(message.body);
 	        	//console.log(new_chat.nname);
 	        	var chat_div = "";
-	        	chat_div += '<div class="chatting-contents">';
 	        	chat_div += '<img class="chatting-profile-img" src="${pageContext.request.contextPath}/images/profile/' + new_chat.profile + '">';
 	        	chat_div += '<div class="chatting-text-div">';
 	        	chat_div += '<p class="chatting-userid">';
@@ -81,8 +65,6 @@
                 chat_div += new_chat.content;
                 chat_div += '</span>';
                 chat_div += '</div>';  	
-                chat_div += '</div>';
-                console.log(chat_div);
                 $(".chatting-contents").append(chat_div);
                 
 	        });
@@ -96,10 +78,10 @@
 	function sendMessage() {
 		//console.log("click");
 		
-	    var str = $("#chat-textbox-text").html();
+	    var str = $("#chat-textbox-text").html().trim();
 	    str = str.replace(/ /gi, '&nbsp;')
 	    str = str.replace(/\n|\r/g, '<br>');
-	    //console.log(str);
+	    console.log(str);
 	    if(str.length > 0) {
 	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
 	        stompClient.send("/chat/" + gid, {}, JSON.stringify({
