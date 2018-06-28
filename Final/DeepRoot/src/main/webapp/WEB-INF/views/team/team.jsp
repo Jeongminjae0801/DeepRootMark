@@ -9,6 +9,13 @@
 	var gid = '<c:out value="${gid}"/>';
 	var nname = '<c:out value="${nname}"/>';
 	var profile = '<c:out value="${profile}"/>';
+	var chatList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+	
+	<c:forEach items="${filecontentlist}" var="filecontent">
+		chatList.push("${filecontent}");
+	</c:forEach>
+	
+	
 	
 	console.log(gid);
 	$(function(){
@@ -23,6 +30,27 @@
 		});
 		$('#sendBtn').click(function() {
 			sendMessage();
+		});
+		
+		$.each(chatList, function(index, value){
+			chatList[index] = chatList[index].split('|');
+			console.log(chatList[index]);
+			var chatListIndex = chatList[index]
+			
+			var chat_list_div = "";
+			chat_list_div += '<img class="chatting_profile_img" src="${pageContext.request.contextPath}/images/profile/' + chatListIndex[0] + '">';
+			chat_list_div += '<div class="chatting_text_div">';
+			chat_list_div += '<p class="chatting_userid">';
+			chat_list_div += chatListIndex[1] + '<span class="chatting_time">' + chatListIndex[2] + '</span>';
+			chat_list_div += '</p>';
+			chat_list_div += '<span class="chatting_text">';
+			chat_list_div += chatListIndex[3];
+			chat_list_div += '</span>';
+			chat_list_div += '</div>';  	
+
+            console.log(chat_list_div);
+            $(".chatting_contents").append(chat_list_div);
+			
 		});
 	});
 	
@@ -54,7 +82,9 @@
                 console.log(chat_div);
                 $(".chatting_contents").append(chat_div);
 	        	
-	        });        
+	        });
+	        
+	        
 	    });
 	    
 	}
@@ -63,9 +93,9 @@
 	function sendMessage() {
 		console.log("click");
 		
-	    var str = $("#chat_textbox_text").text();
+	    var str = $("#chat_textbox_text").html();
 	    str = str.replace(/ /gi, '&nbsp;')
-	    str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+	    str = str.replace(/\n|\r/g, '<br>');
 	    console.log(str);
 	    if(str.length > 0) {
 	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
@@ -116,29 +146,17 @@
 	                <!-- 날짜 변경되면 나오는 친구 -->
 	                <div class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
 	                <div class="chatting_contents">
-	                    <img class="chatting_profile_img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
-	
-	                    <div class="chatting_text_div">
+	                	<%-- <c:forEach items="${filecontentlist}" var="filecontent">
+	                		<img class="chatting_profile_img" src="${pageContext.request.contextPath}/images/profile/${filecontent.profile}">
+	                		<div class="chatting_text_div">
 	                        <p class="chatting_userid">
-	                           	정민재 <span class="chatting_time">12시 27분</span>
+	                           	${filecontent.nname}<span class="chatting_time">${filecontent.datetime}</span>
 	                        </p>
 	                        <span class="chatting_text">
-					                            희준이는 토게피<br>
-					                            아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+	                        	${filecontent.content}
 	                        </span>
 	                    </div>
-	                    
-	                    <img class="chatting_profile_img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
-	
-	                    <div class="chatting_text_div">
-	                        <p class="chatting_userid">
-	                           	정민재 <span class="chatting_time">12시 27분</span>
-	                        </p>
-	                        <span class="chatting_text">
-					                            희준이는 토게피<br>
-					                            아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
-	                        </span>
-	                    </div>
+	                	</c:forEach> --%>
 	                </div>
 	            </div>
 	
