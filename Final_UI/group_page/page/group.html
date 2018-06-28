@@ -34,9 +34,14 @@
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/group.css" rel="stylesheet">
     <!-- Group Page CSS END -->
-    
+
+    <!-- Group Page 임시 CSS START -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Group Page 임시 CSS END -->
+
     <!-- Group Page Js START -->
     <script src="/js/member_insert.js"></script>
+    <script src="/js/table_height.js"></script>
     <!-- Group Page Js END -->
 </head>
 <body>
@@ -104,31 +109,27 @@
     </header>
     <!-- Header END-->
 
+    
+    <!-- 전체 Body Div START -->
+    <div class="container-fluid team-container">
+        <div id="main-row" class="row">
+            <div class="col-sm-12 whole-body">
+
     <!-- body TOP div START -->
     <section class="my">
-        <div class="container-fluid">
+        <div class="container-fluid top">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 top-content">
                     <div class="col-sm-7">
                          위에 뭐가 뜨는 영역
                     </div>
                     <div class="col-sm-5 option">
                         <span class="option-ico">
-                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert()"></i>
-						    <!--<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
-                                <i class="fas fa-minus-circle team-ico team-ban dropdown"></i>
-                            </a>
-                                <ul id="teamban" class="dropdown-menu">
-								    <li class=""><a href="#"></a></li>
-								    <li class="" ><a>멤버 강퇴</a></li>
-							    </ul>
-                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
-                                <i class="fas fa-cog team-ico team-option dropdown"></i>
-                            </a>
-                                <ul id="teamoption" class="dropdown-menu">
-								    <li class=""><a>그룹 탈퇴</a></li>
-                                    <li class=""><a>그룹 완료</a></li>
-				                </ul>-->
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert();"></i>
+
+                                <i class="fas fa-minus-circle team-ico team-ban dropdown" onclick="group_leave();"></i>
+
+                                <i class="fas fa-cog team-ico team-option dropdown"  onclick="group_complete();"></i>
                         </span>
                     </div>
                 </div>
@@ -138,16 +139,66 @@
     <!-- body TOP div END -->
 
     <!-- body Content START -->
-    <div class="container-fluid">
+    <div class="container-fluid content">
         <div class="row">
             <!-- Group Category div START -->
-            <section class="col-sm-4 group-category">
+            <section class="col-sm-3 group-category">
                 <div class="group-category-div">
                     <div class="group-category-header">
-                        <h4 class="group-category-title" id="">그룹 카테고리 및 URL</h4>
+                        <span><i class="fas fa-chalkboard-teacher"></i> Group Category</span>
                     </div>
                     <div class="group-category-body">
+                        <div class="jstree-from">
+                            <ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
 
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
+
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
+
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="group-category-footer">
 
@@ -160,21 +211,67 @@
             <section class="col-sm-6 chat">
                 <div class="chat-content-div">
                     <div class="chat-header">
-                        <p class="chatting-userid">정민재</p>
+                        <span class="chatting-roomname"><i class="far fa-comments"></i>ALL</span>
                         <div class="user-status">
-                            <i class="fas fa-circle"></i><span>active</span>
+                            <span><i class="far fa-star"></i></span>
                         </div>
+                        <div class="header-divider"><hr class="left"/><span id="header-date">today</span><hr class="right"/></div>
                     </div>
 
                     <div class="chat-element">
                         <!-- 날짜 변경되면 나오는 친구 -->
-                        <div class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
+                        <div id="2018-06-25" class="divider"><hr class="left"/><span>2018-06-25</span><hr class="right"/></div>
                         <div class="chatting-contents">
                             <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
 
                             <div class="chatting-text-div">
                                 <p class="chatting-userid">
-                                   정민재 <span class="chatting-time">12시 27분</span>
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="2018-06-26" class="divider"><hr class="left"/><span>2018-06-26</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="2018-06-28" class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
                                 </p>
                                 <span class="chatting-text">
                                     희준이는 토게피<br>
@@ -308,53 +405,61 @@
 
 
             </section>
-            <script type="text/javascript" src="../js/chat-contents.js">
-
-            </script>
+            <script type="text/javascript" src="../js/chat_contents.js"></script>
             <!-- Group Chart div END -->
 
             <!-- Group Member div START -->
             <section class="col-sm-2 group-member">
                 <div class="group-member-content">
-                    <div class="online-content">
-                        <div class="online">
-                            <span><i class="fas fa-toggle-on"></i>online</span>
-                        </div>
-                        <div class="online-member">
-                            <p class="member">
-                                <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
-                            </p>
-                            <p class="member">
-                                <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
-                            </p>
-                            <p class="member">
-                                <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
-                            </p>
+                    <div>
+                        <div class="group-member-header">
+                            <p><i class="far fa-address-card"></i> Member <i class="fas fa-user-plus"></i></p>
                         </div>
                     </div>
-                </div>
-                <div class="offline-member">
-                    <div class="offline-content">
-                        <div class="offline">
-                            <span><i class="fas fa-toggle-off"></i>offline</span>
+                    <div class="onoffline-content">
+                        <div class="online-content">
+                            <div class="online">
+                                <span><i class="fas fa-toggle-on"></i>online</span>
+                            </div>
+                            <div class="online-member">
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
+                                </p>
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
+                                </p>
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
+                                </p>
+                            </div>
                         </div>
-                        <div class="offline-member">
-                            <p class="member"><img class="member-ico" src="/images/offline2.png">정진수</p>
-                            <p class="member"><img class="member-ico" src="/images/offline2.png">김명수</p>
-                            <p class="member"><img class="member-ico" src="/images/offline2.png">방준석</p>
+                        <div class="offline-content">
+                            <div class="offline">
+                                <span><i class="fas fa-toggle-off"></i>offline</span>
+                            </div>
+                            <div class="offline-member">
+                                <p class="member"><img class="member-ico" src="/images/offline2.png">정진수</p>
+                                <p class="member"><img class="member-ico" src="/images/offline2.png">김명수</p>
+                                <p class="member"><img class="member-ico" src="/images/offline2.png">방준석</p>
+                            </div>
                         </div>
-                    </div>
+                    </div>    
                 </div>
             </section>
             <!-- Group Member div END -->
         </div>
     </div>
     <!-- body Content END -->
+            </div>
+        </div>
+    </div>
+    <!-- 전체 Body Div End-->
 
     <!-- footer START -->
 
     <!-- footer END -->
 
-    
+
 </body>
 </html>
+

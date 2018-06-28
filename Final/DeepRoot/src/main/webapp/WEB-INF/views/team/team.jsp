@@ -116,75 +116,343 @@
 
 </script>
 
-<!-- body TOP div START -->
-<section class="my">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-              
-                     위에 뭐가 뜨는 영역
+	<!-- 전체 Body Div START -->
+    <div class="container-fluid team-container">
+        <div id="main-row" class="row">
+            <div class="col-sm-12 whole-body">
 
+    <!-- body TOP div START -->
+    <section class="my">
+        <div class="container-fluid top">
+            <div class="row">
+                <div class="col-sm-12 top-content">
+                    <div class="col-sm-7">
+                         위에 뭐가 뜨는 영역
+                    </div>
+                    <div class="col-sm-5 option">
+                        <span class="option-ico">
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert();"></i>
+
+                                <i class="fas fa-minus-circle team-ico team-ban dropdown" onclick="group_leave();"></i>
+
+                                <i class="fas fa-cog team-ico team-option dropdown"  onclick="group_complete();"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>    
-</section>
-<!-- body TOP div END -->
+     </section>
+    <!-- body TOP div END -->
 
-<!-- body Middle Content START -->
-<div class="container-fluid">
-    <div class="row">
-        <!-- Group Category div START -->
-        <section class="col-sm-4 group-category">    
-            Jstree 북마크 영역
-        </section>
-        <!-- Group Category div END -->
-        
-        <!-- Group Chart div START -->
-        <section class="col-sm-5 chatt">
-          	<div class="chat_content_div">
-	            <div class="chat_element">
-	                <!-- 날짜 변경되면 나오는 친구 -->
-	                <div class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
-	                <div class="chatting_contents">
-	                	<%-- <c:forEach items="${filecontentlist}" var="filecontent">
-	                		<img class="chatting_profile_img" src="${pageContext.request.contextPath}/images/profile/${filecontent.profile}">
-	                		<div class="chatting_text_div">
-	                        <p class="chatting_userid">
-	                           	${filecontent.nname}<span class="chatting_time">${filecontent.datetime}</span>
-	                        </p>
-	                        <span class="chatting_text">
-	                        	${filecontent.content}
-	                        </span>
-	                    </div>
-	                	</c:forEach> --%>
-	                </div>
-	            </div>
-	
-	            <div class="chat_inputbox_div">
-	                <div class="chat_inputbox_bg">
-	                    <div class="chat_textbox">
-	                        <div id="chat_textbox_text">
-	
-	                        </div>
-	                        <div id="chat_textbox_icon">
-	                            <i class="fas fa-share-square"></i>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-        </section>
-        <!-- Group Chart div END -->
-        
-        <!-- Group Member div START -->
-        <section class="col-sm-3 group-member">
-            <c:forEach items="${gmemberlist}" var="gmember">
-            	<p>${gmember.nname}</p>           
-            
-            </c:forEach>
-        </section>
-        <!-- Group Member div END -->
-        
+    <!-- body Content START -->
+    <div class="container-fluid content">
+        <div class="row">
+            <!-- Group Category div START -->
+            <section class="col-sm-3 group-category">
+                <div class="group-category-div">
+                    <div class="group-category-header">
+                        <span><i class="fas fa-chalkboard-teacher"></i> Group Category</span>
+                    </div>
+                    <div class="group-category-body">
+                        <div class="jstree-from">
+                            <ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
+
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
+
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
+
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                    <ul>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
+                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
+                                    </ul>
+                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> uml 시작</li>
+                                <li><i class="fa fa-folder-o"></i> java 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 객체 시작</li>
+                                <li><i class="fa fa-folder-o"></i> 공부 시작</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="group-category-footer">
+
+                    </div>
+                </div>
+            </section>
+            <!-- Group Category div END -->
+
+            <!-- Group Chart div START -->
+            <section class="col-sm-6 chat">
+                <div class="chat-content-div">
+                    <div class="chat-header">
+                        <span class="chatting-roomname"><i class="far fa-comments"></i>ALL</span>
+                        <div class="user-status">
+                            <span><i class="far fa-star"></i></span>
+                        </div>
+                        <div class="header-divider"><hr class="left"/><span id="header-date">today</span><hr class="right"/></div>
+                    </div>
+
+                    <div class="chat-element">
+                        <!-- 날짜 변경되면 나오는 친구 -->
+                        <div id="2018-06-25" class="divider"><hr class="left"/><span>2018-06-25</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="2018-06-26" class="divider"><hr class="left"/><span>2018-06-26</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="2018-06-28" class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://media.giphy.com/media/13gvXfEVlxQjDO/giphy.gif">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   김태웅 <span class="chatting-time">12시 28분</span>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    그냥 만들어 이새키야 말이 많아 이 간나새키가<br>
+                                    오늘 축구 보러 갈꺼니깐 뒤지기 싫으면 빨리 만들어<br>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <!-- 채팅 샘플 데이터 -->
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://media.giphy.com/media/13gvXfEVlxQjDO/giphy.gif">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   김태웅 <span class="chatting-time">12시 28분</span>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    그냥 만들어 이새키야 말이 많아 이 간나새키가<br>
+                                    오늘 축구 보러 갈꺼니깐 뒤지기 싫으면 빨리 만들어<br>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://media.giphy.com/media/13gvXfEVlxQjDO/giphy.gif">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   김태웅 <span class="chatting-time">12시 28분</span>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    그냥 만들어 이새키야 말이 많아 이 간나새키가<br>
+                                    오늘 축구 보러 갈꺼니깐 뒤지기 싫으면 빨리 만들어<br>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://media.giphy.com/media/13gvXfEVlxQjDO/giphy.gif">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   김태웅 <span class="chatting-time">12시 28분</span>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    그냥 만들어 이새키야 말이 많아 이 간나새키가<br>
+                                    오늘 축구 보러 갈꺼니깐 뒤지기 싫으면 빨리 만들어<br>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-inputbox-div">
+                        <div class="chat-inputbox-bg">
+                            <div class="chat-textbox">
+                                <div id="chat-textbox-text">
+
+                                </div>
+                                <div id="chat-textbox-icon">
+                                    <div class="flexbox">
+
+                                    </div>
+                                    <i class="fas fa-share-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </section>
+            <script type="text/javascript" src="../js/chat_contents.js"></script>
+            <!-- Group Chart div END -->
+
+            <!-- Group Member div START -->
+            <section class="col-sm-2 group-member">
+                <div class="group-member-content">
+                    <div>
+                        <div class="group-member-header">
+                            <p><i class="far fa-address-card"></i> Member <i class="fas fa-user-plus"></i></p>
+                        </div>
+                    </div>
+                    <div class="onoffline-content">
+                        <div class="online-content">
+                            <div class="online">
+                                <span><i class="fas fa-toggle-on"></i>online</span>
+                            </div>
+                            <div class="online-member">
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
+                                </p>
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
+                                </p>
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
+                                </p>
+                            </div>
+                        </div>
+                        <div class="offline-content">
+                            <div class="offline">
+                                <span><i class="fas fa-toggle-off"></i>offline</span>
+                            </div>
+                            <div class="offline-member">
+                                <p class="member"><img class="member-ico" src="/images/offline2.png">정진수</p>
+                                <p class="member"><img class="member-ico" src="/images/offline2.png">김명수</p>
+                                <p class="member"><img class="member-ico" src="/images/offline2.png">방준석</p>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </section>
+            <!-- Group Member div END -->
+        </div>
     </div>
-</div>
-<!-- body Middle Content END -->
+    <!-- body Content END -->

@@ -1,30 +1,91 @@
 /* team CSSS START */
-.my .container-fluid .row{
+/*.my .container-fluid .row{
     margin-top: 100px;
     margin-bottom: 20px;
     text-align: center;
     font-size: 15px;
     height: 70px;
     border : 1px solid #222d32;
+}*/
+
+.container-fluid.team-container{
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    width: 1350px;
+}
+.container-fluid.team-container > .row > .col-sm-12{
+    margin-top:100px;
+}
+.container-fluid.team-container .row .col-sm-12{
+    border : 5px double #000;
+    margin-bottom: 0px;
+    height: 100%;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    background-color: #e3d1b9;
 }
 
-.my .container-fluid,
+.top-content{
+    box-shadow: 2px 2px 5px 1px #000;
+    background-color: #fff;
+}
+
+.container-fluid.top{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff;
+}
+
+.container-fluid.content{
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.my .container-fluid.top > .row > .col-sm-12,
+.col-sm-3.group-category,
+.col-sm-6.chat,
+.col-sm-2.group-member {
+    background-color: #fff0;
+}
+
 .container-fluid,
 bdoy .container-fluid{
-    padding-left: 110px;
-    padding-right: 110px;
+    padding-left: 80px;
+    padding-right: 55px;
 }
 /* group-member css START */
-.group-member-content{ height: 500px; width: 100% }
-.online-content{ height: 70%; width: 100% }
-.offline-content{ height: 30%; width: 100% }
-
-.col-sm-2.group-member{
-    padding-left: 0px;
-    padding-right: 0px;
-    border: 2px solid #222d32;
-
+.group-member-content{ 
+    height: 100%;
+    width: 100%;
+    border: 1px solid #8aa4af;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 5px 6px 10px 3px;
+    background-color: #fff;
 }
+.group-member-header {
+    min-height: 45px;
+    max-height: 45px;
+    padding: 10px;
+    border-bottom: 1px solid #888888;
+    border-radius: 8px 16px 0px 0px;
+    background-color: #7bbfa8;
+    color: #fff;
+}
+.group-member-header > p {
+    font-size: 20px;
+    font-weight: 600;
+}
+.group-member-header > p > .fa-user-plus {
+    margin-top: 3px;
+    font-size: 20px;
+    font-weight: 600;
+    float: right;
+}
+.onoffline-content{ height: 640px; overflow-y: auto;}
+.online-content,
+.offline-content{ width: 100% }
+
 
 .online{
     padding-left : 15px;
@@ -47,7 +108,7 @@ bdoy .container-fluid{
 /****** height 벗어나면 수정 필요 *****/
 .online-member,
 .offline-member{
-    height: 100%;
+    
     padding-top: 10px;
     overflow-y: auto;
 }
@@ -84,7 +145,11 @@ bdoy .container-fluid{
 }
 
 /******/
-.col-sm-12{ height: 100%; vertical-align: middle}
+.whole-body{ 
+    height: 100%; 
+    vertical-align: middle;
+    background-image: url('https://data.ac-illust.com/data/thumbnails/fa/fa2a672a7db92d77b1df1d650b6b0806_w.jpeg');
+}
 .col-sm-12 .col-sm-7{ height: 100%;}
 .col-sm-12 .col-sm-5.option{
     height: 100%;
@@ -97,7 +162,7 @@ bdoy .container-fluid{
 .team-ico{
     font-size: 25px;
     margin-right: 10px;
-    color: #424242;
+    color: #fb7070;
 }
 .team-insert,
 .team-ban,
@@ -108,83 +173,82 @@ bdoy .container-fluid{
 .col-sm-5.option .option-ico a{
     text-decoration: none;
 }
-
-#teaminsert{
-    right: 80px;
-    left: auto;
-    top:80%;
-    text-align: right;
-    width: 50%;
-    border: 1px solid #222d32;
-}
-
-#teaminsert form{
-    text-align: center;
-}
-
-#teaminsert input{
-    margin-top: 5px;
-    margin-left: 5px;
-    width: 95% !important;
-    border: 1px solid #00a65a;
-    border-radius: 8px 8px 8px 8px;
-    padding-left: 3px;
-}
-
-#teaminsert hr{
-    margin: 10px 0px;
-    border-color: #ccc;
-}
-
-.insert-btn{
-    margin-right: 10px;
-}
-
-#teamban{
-    right: 55px;
-    left: auto;
-    top: 80%;
-}
-
-#teamoption{
-    right: 15px;
-    left: auto;
-    top:80%;
-}
-
-.insert-btn{
-    background-color: #7bbfa8;
+.member_insert_input{
+    border: 1px solid green;
+    border-radius: 5px 5px;
+    width: 100%;
+    padding-left: 5px;
 }
 /******/
+/* 민재 div css*/
+.group-member{
+    padding: 5px;
+    height: 700px;
+    background-color: #fff0;
+}
 
 /* group-member css END */
 
-
-
-
 /* group-chart CSS START */
 .chat-element::-webkit-scrollbar{width: 10px;}
-.chat-element::-webkit-scrollbar-track {background-color:#f1f1f1;}
+.chat-element::-webkit-scrollbar-track {background-color:#fff0;}
 .chat-element::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
 .chat-element::-webkit-scrollbar-thumb:hover {background: #466b5e;}
 .chat-element::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
     width: 5px;
     height: 5px;
-    background: #fff;
+    background-color: #fff0;
 }
 
 .chat {
-    padding: 0px 10px 0px 10px;
-    height: 800px;
+    height: 700px;
+    padding: 5px;
+    background-color: #fff0;
 }
-.chat-content-div { height: 100%; }
+
+.chat-content-div { 
+    height: 100%; 
+    border: 1px solid #8aa4af;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 5px 6px 10px 3px;
+    background-color: #fff;
+}
 .chat-header {
-    height: 45px;
-    border-bottom: 1px solid #888;
+    padding: 5px;
+    min-height: 45px;
+    max-height: 45px;
+    background-color: #7bbfa8;
+    border-radius: 8px 8px 0px 0px;
 }
-.user-status .fa-circle {
-    font-size: 10px;
-    color: #7bbfa8;
+.chat-header .chatting-roomname {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 5px 0px 0px 10px;
+    float: left;
+    color : #fff;
+}
+.header-divider {
+    position: relative;
+    top: -15px;
+    left: -4px;
+    width:100%;
+    text-align:center;
+    border-radius: 13px 13px 0px 0px;
+    border-bottom-color: #7bbfa8;;
+    clear: both;
+}
+.header-divider span { color:#fff; font: 15px sans-serif; text-transform: uppercase; }
+.header-divider hr { margin: 0px; width:40%; }
+.header-divider .left { float:left; }
+.header-divider .right { float:right; }
+.header-divider .left, .header-divider .right {
+    position: relative;
+    top: 19px;
+    border-color: #888;
+}
+
+.user-status {
+    height: -webkit-fill-available;
     float: left;
 }
 .user-status > span {
@@ -192,21 +256,27 @@ bdoy .container-fluid{
     color: #888888;
     float: left;
 }
+.user-status > span > i {
+    font-size: 20px;
+    color: #7bbfa8;
+    float: left;
+}
+
 .chat-element {
-    padding: 10px 0px 10px 0px;
+    padding: 10px;
     height: 75%;
     overflow-y: auto;
 }
 
-.divider { width:100%; text-align:center; }
-.divider span { font: 20px sans-serif; text-transform: uppercase; }
+.divider { width:100%; text-align:center; clear: both; }
+.divider span { font: 15px sans-serif; text-transform: uppercase; }
 .divider hr { margin: 0px; width:40%; }
 .divider .left { float:left; }
 .divider .right { float:right; }
 .divider .left, .divider .right {
     position: relative;
     top: 15px;
-    border-color: #000;
+    border-color: #888;
 }
 
 /* 채팅 한번 치면 일어나는 놈들 */
@@ -214,7 +284,9 @@ bdoy .container-fluid{
     padding-top: 10px;
 }
 .chatting-text-div { margin-left: 50px; }
-.chatting-userid { margin: 0px; }
+.chatting-userid {
+    margin: 0px;
+}
 .chatting-profile-img {
     margin-right: 5px;
     width: 40px;
@@ -272,11 +344,63 @@ bdoy .container-fluid{
 
 /* group-category CSS START */
 
-.col-sm-4.group-category{
+.jstree-from::-webkit-scrollbar{width: 10px;}
+.jstree-from::-webkit-scrollbar-track {background-color:#fff0;}
+.jstree-from::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
+.jstree-from::-webkit-scrollbar-thumb:hover {background: #466b5e;}
+.jstree-from::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+    width: 5px;
+    height: 5px;
+    background: #fff0;
+}
+
+.group-category {
+    height: 100%;
+    width: 32%;
+    padding: 5px;
+    background-color: #fff0;
+}
+
+.group-category-div {
+    height: 100%;
+    border: 1px solid #8aa4af;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 5px 6px 10px 3px;
+    background-color: #fff;
+}
+
+.group-category-header {
+    padding: 10px;
+    min-height: 45px;
+    max-height: 45px;
+    border-bottom: 1px solid #888;
+    border-radius: 13px 13px 0px 0px;
+    background-color: #7bbfa8;
+}
+
+.group-category-header > span{
+    font-size: 20px;
+    font-weight: 600;
+    float: left;
+    color: #fff;
+}
+
+.col-sm-4.group-category {
     padding-left: 0px;
     padding-right: 0px;
-    border: 2px solid #8aa4af;
     height: 100%;
+}
+
+.jstree-from {
+    padding: 10px 0px 10px 0px;
+    height: 75%;
+    max-height: 650px;
+    overflow-y: auto;
+}
+
+/*임시 jstree css, JSP로 넘어갈때 지우세요*/
+.jstree-from > ul, .jstree-from > ul > ul{
+    list-style : none;
 }
 
 

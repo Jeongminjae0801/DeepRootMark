@@ -33,11 +33,16 @@
     <!-- Group Page CSS START -->
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/team/team.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/team/group.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/team/group.css?ver=2" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
     <!-- Group Page CSS START -->
+    
+    <!-- Group Page Js START -->
+    <script src="/js/member_insert.js"></script>
+    <script src="/js/table_height.js"></script>
+    <!-- Group Page Js END -->
     
     <!--Script Start -->
     <script src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
@@ -66,9 +71,8 @@
 
 	<!-- Custom Script START -->
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js"></script>
-    <!-- Custom Script END -->
-	
-	
     <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
+    <!-- Custom Script END -->
+    
 </body>
 </html>
