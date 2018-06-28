@@ -8,11 +8,11 @@ $('#chat-textbox-text').each(function() {
 $('#chat-textbox-text').click(function() {
     $('#chat-textbox-text').focus()
 });
+$('#chat-textbox-text').keyup(function (e) {return});
 $('#chat-textbox-text').keydown(function (e) {
-    if ( e.ctrlKey && e.keyCode == 13 ) {
-        return
-    } else if( e.shiftKey && e.keyCode == 13 ) {
-        $('#chat-textbox-text').append('<br>');
+    if( e.shiftKey && e.keyCode == 13 ) {
+        e.stopPropagation();
+        $('#chat-textbox-text').append('\n');
         console.log("Input Shift + Enter");
     } else if(e.keyCode == 13) { // Ctrl-Enter pressed
         event.preventDefault();
