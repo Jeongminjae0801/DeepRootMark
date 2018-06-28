@@ -41,6 +41,7 @@
 
     <!-- Group Page Js START -->
     <script src="/js/member_insert.js"></script>
+    <script src="/js/table_height.js"></script>
     <!-- Group Page Js END -->
 </head>
 <body>
@@ -108,18 +109,15 @@
     </header>
     <!-- Header END-->
 
-<<<<<<< HEAD
-=======
     
     <!-- 전체 Body Div START -->
     <div class="container-fluid team-container">
         <div id="main-row" class="row">
             <div class="col-sm-12">
 
->>>>>>> 72050413e99f0a6ef307309c667b05726bfbe9f6
     <!-- body TOP div START -->
     <section class="my">
-        <div class="container-fluid">
+        <div class="container-fluid top">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="col-sm-7">
@@ -127,21 +125,11 @@
                     </div>
                     <div class="col-sm-5 option">
                         <span class="option-ico">
-                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert()"></i>
-						    <!--<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
-                                <i class="fas fa-minus-circle team-ico team-ban dropdown"></i>
-                            </a>
-                                <ul id="teamban" class="dropdown-menu">
-								    <li class=""><a href="#"></a></li>
-								    <li class="" ><a>멤버 강퇴</a></li>
-							    </ul>
-                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
-                                <i class="fas fa-cog team-ico team-option dropdown"></i>
-                            </a>
-                                <ul id="teamoption" class="dropdown-menu">
-								    <li class=""><a>그룹 탈퇴</a></li>
-                                    <li class=""><a>그룹 완료</a></li>
-				                </ul>-->
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert();"></i>
+
+                                <i class="fas fa-minus-circle team-ico team-ban dropdown" onclick="group_leave();"></i>
+
+                                <i class="fas fa-cog team-ico team-option dropdown"  onclick="group_complete();"></i>
                         </span>
                     </div>
                 </div>
@@ -151,13 +139,13 @@
     <!-- body TOP div END -->
 
     <!-- body Content START -->
-    <div class="container-fluid">
+    <div class="container-fluid content">
         <div class="row">
             <!-- Group Category div START -->
-            <section class="col-sm-4 group-category">
+            <section class="col-sm-3 group-category">
                 <div class="group-category-div">
                     <div class="group-category-header">
-                        <span>그룹 카테고리 및 URL</span>
+                        <span><i class="fas fa-chalkboard-teacher"></i> Group Category</span>
                     </div>
                     <div class="group-category-body">
                         <div class="jstree-from">
@@ -227,7 +215,7 @@
                         <div class="user-status">
                             <span><i class="far fa-star"></i></span>
                         </div>
-                        <div class="header-divider"><hr class="left"/><span>today</span><hr class="right"/></div>
+                        <div class="header-divider"><hr class="left"/><span id="header-date">today</span><hr class="right"/></div>
                     </div>
 
                     <div class="chat-element">
@@ -248,8 +236,34 @@
                         </div>
 
                         <div id="2018-06-26" class="divider"><hr class="left"/><span>2018-06-26</span><hr class="right"/></div>
-        zz
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
+
                         <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
+                        <div class="chatting-contents">
+                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+
+                            <div class="chatting-text-div">
+                                <p class="chatting-userid">
+                                   정민재 <span class="chatting-time">12시 27분</span><br>
+                                </p>
+                                <span class="chatting-text">
+                                    희준이는 토게피<br>
+                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
+                                </span>
+                            </div>
+                        </div>
 
                         <div id="2018-06-28" class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
                         <div class="chatting-contents">
@@ -391,9 +405,7 @@
 
 
             </section>
-            <script type="text/javascript" src="../js/chat-contents.js">
-
-            </script>
+            <script type="text/javascript" src="../js/chat_contents.js"></script>
             <!-- Group Chart div END -->
 
             <!-- Group Member div START -->
@@ -436,6 +448,10 @@
         </div>
     </div>
     <!-- body Content END -->
+            </div>
+        </div>
+    </div>
+    <!-- 전체 Body Div End-->
 
     <!-- footer START -->
 
@@ -444,3 +460,4 @@
 
 </body>
 </html>
+
