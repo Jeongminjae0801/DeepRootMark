@@ -14,7 +14,7 @@
 	$(function(){
 		connect();
 		
-		$('#chatt-input').keypress(function(event) {
+		$('#chatt_input').keypress(function(event) {
 			var keycode = (event.keyCode ? event.keyCode : event.which);
 			if (keycode == '13') {
 				sendMessage();
@@ -30,7 +30,7 @@
 	function connect() {
 	    console.log("connect");
 	    // WebSocketMessageBrokerConfigurer의 registerStompEndpoints() 메소드에서 설정한 endpoint("/endpoint")를 파라미터로 전달
-	    var ws = new WebSocket("ws://192.168.0.21:8090/bit/endpoint");
+	    var ws = new SockJS("http://192.168.0.21:8090/bit/endpoint");
 	    stompClient = Stomp.over(ws);
 	    stompClient.connect({}, function(frame) {
 	        // 메세지 구독
@@ -69,7 +69,7 @@
 	    console.log(str);
 	    if(str.length > 0) {
 	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
-	        stompClient.send("/socket/chat/" + gid, {}, JSON.stringify({
+	        stompClient.send("/chat/" + gid, {}, JSON.stringify({
 	           	content: str,
 	           	nname: nname,
 	           	profile: profile
