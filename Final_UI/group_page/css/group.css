@@ -16,14 +16,27 @@ bdoy .container-fluid{
 }
 /* group-member css START */
 .group-member-content{ height: 500px; width: 100% }
+.group-member-header {
+    min-height: 45px;
+    max-height: 45px;
+    padding: 5px;
+    border-bottom: 1px solid #888888;
+}
+.group-member-header > p {
+    font-size: 20px;
+    font-weight: 600;
+}
+.group-member-header > p > .fa-user-plus {
+    font-size: 20px;
+    font-weight: 600;
+    float: right;
+}
 .online-content{ height: 70%; width: 100% }
 .offline-content{ height: 30%; width: 100% }
 
 .col-sm-2.group-member{
     padding-left: 0px;
     padding-right: 0px;
-    border: 2px solid #222d32;
-
 }
 
 .online{
@@ -179,12 +192,18 @@ bdoy .container-fluid{
 }
 .chat-content-div { height: 100%; }
 .chat-header {
-    height: 45px;
+    padding: 5px;
+    min-height: 45px;
+    max-height: 45px;
     border-bottom: 1px solid #888;
 }
-.user-status .fa-circle {
-    font-size: 10px;
-    color: #7bbfa8;
+.chat-header .chatting-roomname {
+    font-size: 20px;
+    font-weight: 600;
+    float: left;
+}
+.user-status {
+    height: -webkit-fill-available;
     float: left;
 }
 .user-status > span {
@@ -192,6 +211,12 @@ bdoy .container-fluid{
     color: #888888;
     float: left;
 }
+.user-status > span > i {
+    font-size: 20px;
+    color: #7bbfa8;
+    float: left;
+}
+
 .chat-element {
     padding: 10px 0px 10px 0px;
     height: 75%;
@@ -214,7 +239,9 @@ bdoy .container-fluid{
     padding-top: 10px;
 }
 .chatting-text-div { margin-left: 50px; }
-.chatting-userid { margin: 0px; }
+.chatting-userid {
+    margin: 0px;
+}
 .chatting-profile-img {
     margin-right: 5px;
     width: 40px;
