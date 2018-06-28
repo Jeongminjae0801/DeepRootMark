@@ -330,17 +330,17 @@ bdoy .container-fluid{
 /* group-category CSS START */
 
 .jstree-from::-webkit-scrollbar{width: 10px;}
-.jstree-from::-webkit-scrollbar-track {background-color:#f1f1f1;}
+.jstree-from::-webkit-scrollbar-track {background-color:#fff0;}
 .jstree-from::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
 .jstree-from::-webkit-scrollbar-thumb:hover {background: #466b5e;}
 .jstree-from::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
     width: 5px;
     height: 5px;
-    background: #fff;
+    background: #fff0;
 }
 
 .group-category {
- 
+
     height: 100%;
     border: 1px solid #8aa4af;
     border-radius: 15px 15px 48px 15px;
