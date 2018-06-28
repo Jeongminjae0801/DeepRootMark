@@ -133,13 +133,25 @@
                          	위에 뭐가 뜨는 영역
                     </div>
                     <div class="col-sm-5 option">
-                        <span class="option-ico">
-                                <i class="fas fa-plus-circle team-ico team-insert dropdown"></i>
-
-                                <i class="fas fa-minus-circle team-ico team-ban dropdown" onclick="group_leave();"></i>
-
-                                <i class="fas fa-cog team-ico team-option dropdown"  onclick="group_complete();"></i>
-                        </span>
+                        <div class="zoom">
+						    <a class="zoom-fab zoom-btn-large" id="zoomBtn"><i class="fa fa-bars"></i></a>
+						    <ul class="zoom-menu">
+						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out"><i class="fa fa-user"></i></a></li>
+						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-doc scale-transition scale-out"><i class="fa fa-book"></i></a></li>
+						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-tangram scale-transition scale-out"><i class="fa fa-dashboard"></i></a></li>
+						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-report scale-transition scale-out"><i class="fa fa-edit"></i></a></li>
+						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-feedback scale-transition scale-out"><i class="fa fa-bell"></i></a></li>
+						    </ul>
+						    <div class="zoom-card scale-transition scale-out">
+								<ul class="zoom-card-content">
+									<li>Content</li>
+									<li>Content</li>
+									<li>Content</li>
+									<li>Content</li>
+									<li>Content</li>
+								</ul>
+							</div>
+				  		</div>
                     </div>
                 </div>
             </div>

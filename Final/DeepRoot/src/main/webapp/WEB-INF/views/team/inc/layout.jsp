@@ -14,8 +14,8 @@
 	<title>뿌리깊은마크</title>
 
 	<!-- Latest compiled Bootstrap Common CSS -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script> --%>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -37,6 +37,7 @@
     <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jstreeTeam.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team/header_icon_zoom.css" />
     <!-- Group Page CSS START -->
     
     <!--Script Start -->
@@ -68,6 +69,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js"></script>
     <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
     <script src="${pageContext.request.contextPath}/js/team/member_insert.js"></script>
+    <script src="${pageContext.request.contextPath}/js/team/header_icon_zoom.js?ver=2"></script>
     <!-- Custom Script END -->
     
 </body>
