@@ -318,20 +318,24 @@ bdoy .container-fluid{
     height: 100%; 
 }
 
-.group-category-header{
-    height: 45px;
-    padding-left: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 22px;
-    width: 100%;
-    border-bottom: 2px solid #8aa4af;
+.group-category-header {
+    padding: 5px;
+    min-height: 45px;
+    max-height: 45px;
+    border-bottom: 1px solid #888;
+    
+}
+
+.group-category-header > span{
+    font-size: 20px;
+    font-weight: 600;
+    float: left;
+
 }
 
 .col-sm-4.group-category {
     padding-left: 0px;
     padding-right: 0px;
-    border: 2px solid #8aa4af;
     height: 100%;
 }
 
