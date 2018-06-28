@@ -75,43 +75,40 @@ function group_leave(){
 
 
 /* 그룹 완료 */
-function group_complete() {
-	$.confirm({
-	    title: '그룹 완료',
-	    content: '' +
-	    '<form id="completeGroup" action="" class="formGroup" method="post">' +
-	    '<div class="form-group">' +
-	    '<label>해시태그</label>' +
-	    '<input type="text" name="htag" placeholder="#해쉬태그" class="htagName form-control" required />' +
-	    '<input type="hidden" class="gid" name="gid" />' + 
-	    '</div>' +
-	    '</form>',
-	    closeIcon: true,
-	    closeIconClass: 'fa fa-close',
-	    
-	    buttons: {
-	        formSubmit: {
-	            text: '완료',
-	            btnClass: 'btn-success',
-	            action: function () {
-	                var name = this.$content.find('.htagName').val();
-	                this.$content.find('.gid').val(gid);
-	                if(!name){
+function group_complete(){
+    $.confirm({
+        title: '그룹 완료',
+        content: '' +
+        '<form id="completeGroup" action="" class="formGroup" method="post">' +
+        '<div class="form-group">' +
+        '<label>해시태그를 입력하세요</label>' +
+        '<input type="text" name="htag" class="htagName form-control" required/>' +
+        '<input type="hidden" class="gid" name="gid" />' +
+        '</div>' +
+        '</form>',
+        closeIcon: true,
+        closeIconClass: 'fa fa-close',
+        buttons: {
+            formSubmit: {
+                text: '완료',
+                btnClass: 'btn-success',
+                action: function () {
+                    var name = this.$content.find('.htagName').val();
+                    if(!name){
 	                    $.alert('해시태그를 적어주세요');
 	                    return false;
 	                }
-	                
-	                $("#completeGroup").submit();
-	                
-	            }
-	        },
-	        '취소': {
-	        	btnClass : 'btn-danger',
-        		action : function() {
-        		}
-	        },
-	    }
-	    
-	});
-}
 
+                    $("#completeGroup").submit();
+
+                }
+            },
+            '취소': {
+                btnClass: 'btn-red',
+                action: function () {
+                //close
+                }
+            },
+        }
+    });
+}
