@@ -178,9 +178,6 @@ bdoy .container-fluid{
 }
 /* group-member css END */
 
-
-
-
 /* group-chart CSS START */
 .chat-element::-webkit-scrollbar{width: 10px;}
 .chat-element::-webkit-scrollbar-track {background-color:#f1f1f1;}
