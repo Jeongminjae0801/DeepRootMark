@@ -34,17 +34,15 @@
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/group.css" rel="stylesheet">
     <!-- Group Page CSS END -->
-<<<<<<< HEAD
 
-=======
+
     
     <!-- Group Page 임시 CSS START -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- Group Page 임시 CSS END -->
     
->>>>>>> 513ef83d42f48af8aa500a8c7ee38dcbcdd1dd6e
     <!-- Group Page Js START -->
-    <script src="/js/member_insert.js"></script>
+    <script src="../js/member_insert.js"></script>
     <!-- Group Page Js END -->
 </head>
 <body>
@@ -122,27 +120,52 @@
                     </div>
                     <div class="col-sm-5 option">
                         <span class="option-ico">
-                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert()"></i>
-						    <!--<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+                                <i class="fas fa-plus-circle team-ico team-insert dropdown" onclick="member_insert();"></i>
+						  
                                 <i class="fas fa-minus-circle team-ico team-ban dropdown"></i>
-                            </a>
-                                <ul id="teamban" class="dropdown-menu">
-								    <li class=""><a href="#"></a></li>
-								    <li class="" ><a>멤버 강퇴</a></li>
-							    </ul>
-                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
+
                                 <i class="fas fa-cog team-ico team-option dropdown"></i>
-                            </a>
-                                <ul id="teamoption" class="dropdown-menu">
-								    <li class=""><a>그룹 탈퇴</a></li>
-                                    <li class=""><a>그룹 완료</a></li>
-				                </ul>-->
+                          
                         </span>
                     </div>
                 </div>
             </div>
         </div>
      </section>
+    
+    <script>
+    function member_insert(){
+$.confirm({
+		    title: '멤버 초대',
+		    content: '' +
+		    '<form " action="" class="" method="post">' +
+		    '<label>추가 할 멤버의 이메일을 입력하세요</label>' +
+		    '<input type="text" name="" class="member_insert_input"/>' +
+		    '</form>',
+		    theme: 'light',
+			type: 'green',
+		    closeIcon: true,
+		    buttons: {
+		        formSubmit: {
+		            text: '초대',
+		            btnClass: 'btn-green',
+		            action: function () {
+		                var name = this.$content.find('.name').val();
+		                
+		                $("#form id 적어줘").submit();
+		                
+		            }
+		        },
+		        '취소': {
+		            btnClass: 'btn-red',
+		            action: function () {
+		            //close
+		            }
+		        },
+		    }
+		});
+}
+    </script>
     <!-- body TOP div END -->
 
     <!-- body Content START -->
