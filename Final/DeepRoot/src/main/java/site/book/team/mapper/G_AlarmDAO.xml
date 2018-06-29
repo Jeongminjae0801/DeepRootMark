@@ -14,10 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getAlarmList" resultType="site.book.team.dto.G_MyAlarmDTO">
-		SELECT TOID, FROMID, team.GNAME, kind.GANAME, SENDDATE 
+		SELECT TOID, you.NNAME as FROMID, team.GID, team.GNAME, kind.GANAME, SENDDATE 
 		FROM `G_ALARM` msg 
-		join `TEAM` team on msg.GID= team.GID
-		join `G_ALARM_KIND` kind on msg.GAID= kind.GAID
+		JOIN `TEAM` team ON msg.GID= team.GID
+		JOIN `G_ALARM_KIND` kind ON msg.GAID= kind.GAID
+		JOIN `USER` you ON msg.FROMID= you.UID
 		where TOID = #{uid}
 		order by SENDDATE
 	</select>
