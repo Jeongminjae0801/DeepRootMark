@@ -32,7 +32,11 @@ public class G_MemberDTO {
 		this.grid = grid;
 		this.nname = nname;
 	}
-
+	
+	public G_MemberDTO(String uid, int gid) {
+		this.uid = uid;
+		this.gid = gid;
+	}
 
 	//Getters and Setters
 	public String getUid() {return uid;}

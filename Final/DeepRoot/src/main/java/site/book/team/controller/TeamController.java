@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
@@ -28,6 +29,7 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
@@ -37,6 +39,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -211,18 +214,27 @@ public class TeamController {
 		
 		return jsonview;
 	}
+	
+	
 	//준석
 	//그룹 페이지  이동
 	@RequestMapping("main.do")
-	public String movegroup(String gid, Model model, HttpServletRequest req) {
+	public String movegroup(String gid, String gname, Model model, HttpServletRequest req) {
 		
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+
+        // 태웅: 사용자가 주소창으로 장난친다면?
+        G_MemberDTO temp_member = new G_MemberDTO(uid, Integer.parseInt(gid));
+        if(teamservice.isGroupMember(temp_member) != true) {
+        	// 마이 페이지로 이동
+        	return "redirect:/user/mybookmark.do";
+        }
+        
 		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
 		
 		model.addAttribute("gmemberlist",gmemberlist);
 		model.addAttribute("gid", gid);
-		
-		HttpSession session = req.getSession();
-        String uid = (String)session.getAttribute("info_userid");
         
         UserDTO user = userservice.getMember(uid);
         model.addAttribute("nname", user.getNname());
@@ -232,7 +244,10 @@ public class TeamController {
 		if(uid != null) {
 			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
 			model.addAttribute("headerTeamList", headerTeamList);
+			
 		}
+		
+		model.addAttribute("gname", gname);
 		
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
 		model.addAttribute("headerNoticeList", headerNoticeList);

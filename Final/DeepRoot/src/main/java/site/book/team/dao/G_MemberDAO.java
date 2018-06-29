@@ -31,4 +31,7 @@ public interface G_MemberDAO {
 	//준석
 	//그룹원 리스트 가져오기
 	public List<G_MemberDTO> selectGMemberlist(String gid)throws ClassNotFoundException, SQLException;
+	
+	//태웅
+	public int isGroupMember(G_MemberDTO member) throws ClassNotFoundException, SQLException;
 }

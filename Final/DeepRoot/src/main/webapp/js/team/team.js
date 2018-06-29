@@ -24,7 +24,15 @@ function member_insert(){
 	                    return false;
 	                }
 
-                    $("#insertMember").submit();
+                    //$("#insertMember").submit();
+                    $.ajax({
+                		url: "invite.do",
+            			type: "post",
+            			data : { uid : name, gid: gid },
+            			success : function(data){
+            				//console.log(data.click);
+            			}
+                	});
 
                 }
             },
@@ -37,6 +45,9 @@ function member_insert(){
         }
     });
 }
+
+
+/* 멤버 초대 END */
 
 /* 그룹 탈퇴 */
 function group_leave(){
