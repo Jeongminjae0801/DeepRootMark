@@ -37,6 +37,7 @@
 			
             //console.log(chat_list_div);
             $(".chatting-contents").append(chat_list_div);
+            $(".chat-element").scrollTop($(".chatting-contents").height());
 			
 		});
 	});
@@ -53,13 +54,28 @@
 	        stompClient.subscribe('/subscribe/chat/' + gid, function(message) {
 	        	console.log(message.body);
 	        	
+	        	
+	        	
 	        	var new_chat = JSON.parse(message.body);
+	        	
+	        	var time =  new_chat.datetime.split("T");
+	        	
+	        	time[1] = time[1].split(":");
+	        	var hour = time[1][0];
+	        	var min = time[1][1];
+	        	var ampm = "";
+	        	if(hour > 12) {
+	        		ampm = "PM";
+	        		hour -= 12;
+	        	}else {
+	        		ampm = "AM";
+	        	}
 	        	//console.log(new_chat.nname);
 	        	var chat_div = "";
 	        	chat_div += '<img class="chatting-profile-img" src="${pageContext.request.contextPath}/images/profile/' + new_chat.profile + '">';
 	        	chat_div += '<div class="chatting-text-div">';
 	        	chat_div += '<p class="chatting-userid">';
-	        	chat_div += new_chat.nname + '<span class="chatting-time">' + new_chat.datetime + '</span>';
+	        	chat_div += new_chat.nname + '&nbsp;<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
 	        	chat_div += '</p>';
 	        	chat_div += '<span class="chatting-text">';
                 chat_div += new_chat.content;
