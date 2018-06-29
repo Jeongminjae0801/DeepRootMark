@@ -7,4 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteAllGroupAlarm">
 		DELETE FROM G_ALARM WHERE TOID = #{uid} OR FROMID = #{uid}
 	</delete>
+	
+	<!-- 태웅 -->
+	<select id="alreadySend" resultType="Integer">
+		select count(*) from `G_ALARM` where TOID=#{toid} and FROMID=#{fromid} and GID=#{gid} and GAID=1
+	</select>
 </mapper>

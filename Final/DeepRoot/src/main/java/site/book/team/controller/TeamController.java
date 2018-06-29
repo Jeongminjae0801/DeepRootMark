@@ -8,50 +8,35 @@
 
 package site.book.team.controller;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.AsynchronousFileChannel;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Future;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.common.base.Charsets;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
+import site.book.team.dto.G_AlarmDTO;
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.TeamDTO;
+import site.book.team.service.G_AlarmService;
 import site.book.team.service.G_BookService;
 import site.book.team.service.G_MemberService;
 import site.book.team.service.TeamService;
@@ -85,9 +70,10 @@ public class TeamController {
 	private NoticeService notice_service;
 	
 	//태웅
-	
 	@Autowired
 	G_BookService gbookservice;
+	@Autowired
+	G_AlarmService galarmservice;
 	
 	//준석
 	@Autowired
@@ -133,14 +119,21 @@ public class TeamController {
 	
 	//해당 그룹 카테고리 리스트
 	@RequestMapping("getTeamJstree.do")
-	public View getTeamJstree(HttpServletRequest req, Model model, String gid) {
+	public void getTeamJstree(HttpServletRequest req,  HttpServletResponse res,String gid) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
+    	
+        JSONArray  jsonarray = gbookservice.getTeamJstree(gid,uid);
         
-        JSONArray jsonarray = gbookservice.getTeamJstree(gid,uid);
-        model.addAttribute("data", jsonarray);
+    	try {
+			res.getWriter().println(jsonarray);
+		}catch (JSONException | IOException e) {
+			e.printStackTrace();
+		}
 		
-		return jsonview;
 	}
 
 	
@@ -203,15 +196,47 @@ public class TeamController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         g_book.setUid(uid);
-        
-		System.out.println(g_book);
+
         int result = gbookservice.insertGroupBookmark(g_book);
-        
 		if(result > 0) {
 			model.addAttribute("result", "success");
 		}else {
 			model.addAttribute("result", "fail");
 		}
+		
+		return jsonview;
+	}
+	
+	// 초대 기능: 닉네임으로 초대 쪽지 보내기
+	@RequestMapping("invite.do")	
+	public View inviteUser(HttpServletRequest req, Model model, G_AlarmDTO alarm) {
+		
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        if( !alarm.getToid().equals(uid) && !galarmservice.alreadySend(alarm, "invite") ) {
+        	alarm.setFromid(uid);
+        	System.out.println(alarm);
+        	int result = g_memberservice.inviteUser(alarm);
+            
+            if(result > 0) {
+    			model.addAttribute("result", "success");
+    		}else {
+    			model.addAttribute("result", "fail");
+    		}
+        }
+		
+		return jsonview;
+	}
+	
+	// 초대 기능: 닉네임 자동완성 기능
+	@RequestMapping("allUserNname.do")	
+	public View getAllUserNname(HttpServletRequest req, Model model, String nname) {
+		
+		System.out.println(nname);
+        List<String> result = userservice.getAllUserNname(nname);
+        
+		model.addAttribute("nname", result);
 		
 		return jsonview;
 	}
@@ -262,6 +287,7 @@ public class TeamController {
 		}
         model.addAttribute("filecontentlist", filecontentlist);
 		model.addAttribute("enabled", user.getEnabled());
+		model.addAttribute("uid",user.getUid());
 		
 		return "team.team";
 	}
