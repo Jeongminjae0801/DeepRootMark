@@ -128,7 +128,9 @@
             <div class="row">
                 <div class="col-sm-12 top-content">
                     <div class="col-sm-7">
-                         	위에 뭐가 뜨는 영역
+                    	<%-- <c:set value="${headerTeamList}" var="team"/> --%>
+                        
+                        
                     </div>
                     <div class="col-sm-5 option">
                         <div class="zoom">
@@ -277,3 +279,6 @@
         </div>
     </div>
     <!-- body Content END -->
+    		</div>
+    	</div>
+    </div>
