@@ -24,6 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -277,12 +278,23 @@ public class TeamController {
     	String fileName = spath;
     	Path path = Paths.get(fileName);
     	
-    	byte [] fileBytes = Files.readAllBytes(path);
-    	char singleChar;
-       /* for(byte b : fileBytes) {
+    	if(Files.exists(path)) {
+    		byte [] fileBytes = Files.readAllBytes(path);
+        	String temp = new String(fileBytes, "UTF-8");
+        	list = Arrays.asList(temp.split("&"));
+    	}
+    	
+    	/*char singleChar;
+    	String str = "";
+    	for(byte b : fileBytes) {
         	singleChar = (char) b;
-        	if(b != )
-        	
+        	if(singleChar != '\n') {
+        		str += singleChar;
+        	}else {
+        		list.add(str);
+        		str = "";
+        		
+        	}
         	System.out.print(singleChar);
         }*/
     	
