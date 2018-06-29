@@ -152,11 +152,11 @@
                 $(".chat-element").scrollTop($(".chatting-contents").height());
 	        });
 	        
-	 /*        stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
+	 		  stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
 	        	
 	        	console.log(message.body);
 	        	
-	        }) */
+	        }) 
 	        
 	    });
 	    
@@ -186,9 +186,10 @@
 	}
 
 	/* Chatting End */
-		
+	
+	/* jstree START */	
 	$(function () {
-		jstree(role,gid ,uid);
+		jstree(role,gid ,uid,nname);
 	})
 
 </script>

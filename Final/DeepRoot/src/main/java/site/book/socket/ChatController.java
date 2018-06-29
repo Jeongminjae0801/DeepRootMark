@@ -93,8 +93,8 @@ public class ChatController {
     @MessageMapping("/JSTREE/{room}")
     @SendTo("/subscribe/JSTREE/{room}")
     public JstreeAlarm sendJstree(@DestinationVariable("room") String room, JstreeAlarm message, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
-        System.out.println("채팅 메세지 들어옴");
-    	
+        System.out.println("jstree 들어옴");
+    	System.out.println(message);
     	
     	
         return message;

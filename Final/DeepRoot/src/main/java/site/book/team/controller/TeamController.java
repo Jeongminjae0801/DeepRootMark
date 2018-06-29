@@ -21,8 +21,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,18 +38,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Charsets;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
-=======
->>>>>>> feature/그룹페이지_JSTREE_웹소켓
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.G_MemberDTO;
@@ -139,7 +139,6 @@ public class TeamController {
 		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
-    	
         JSONArray  jsonarray = gbookservice.getTeamJstree(gid,uid);
         
     	try {
@@ -147,9 +146,40 @@ public class TeamController {
 		}catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//그룹페이지에서 해당 노드 삭제
+	@RequestMapping("deleteTeamNode.do")
+	public View deleteTeamNode(Model model, String gbid) {
 		
+		int result = teamservice.deleteTeamNode(gbid);
+		model.addAttribute("result",result);
+		
+		return jsonview;
 	}
 
+	//그룹페이지에서 해당 노드 제목 수정
+	@RequestMapping("updateTeamNodeText.do")
+	public View updateTeamNodeText(Model model , @RequestParam HashMap<String, String> param) {
+		
+		int result = teamservice.updateTeamNodeText(param);
+		model.addAttribute("result",result);
+		
+		return jsonview;
+	}
+	
+	//그룹페이지에서 폴더 혹은 url 추가
+	@RequestMapping("addTeamFolderOrUrl.do")
+	public View addTeamFolderOrUrl(HttpServletRequest req, Model model , G_BookDTO g_book) {
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        g_book.setUid(uid);
+		int result = teamservice.addTeamFolderOrUrl(g_book);
+		model.addAttribute("result",result);
+		
+		return jsonview;
+	}
 	
 	//태웅
 	//해당 유저의 진행중인 그룹의 카테고리만를 보내준다.
