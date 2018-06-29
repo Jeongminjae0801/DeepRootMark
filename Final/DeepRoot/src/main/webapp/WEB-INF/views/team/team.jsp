@@ -190,6 +190,9 @@
 	$(function () {
 		jstree(role,gid ,uid);
 	})
+	$(function (){
+		get_info(gid, uid);
+	})
 
 </script>
 
@@ -309,7 +312,7 @@
                                 <span><i class="fas fa-toggle-on"></i>online</span>
                             </div>
                             <div class="online-member">
-                                <p class="member" id="member">
+                                <p class="member">
                                     <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
                                 </p>
                                 <p class="member">
