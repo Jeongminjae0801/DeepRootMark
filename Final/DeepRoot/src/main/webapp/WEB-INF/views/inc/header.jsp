@@ -78,7 +78,7 @@
 						<c:choose>
 							<c:when test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 								<c:forEach items="${headerTeamList}" var="headerTeam" varStatus="status">
-									<li><a href="<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}">${headerTeam.gname}</a></li>
+									<li><a href="<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}&gname=${headerTeam.gname}">${headerTeam.gname}</a></li>
 									<c:if test="${status.last}">
 										<c:if test="${status.count < 10}">
 											<li onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>

@@ -62,5 +62,5 @@
 		<websocket:simple-broker prefix="/subscribe"/>
 	</websocket:message-broker> -->
 	
-	
+	<bean id="visitorService" class="site.book.admin.service.VisitorService" />
 </beans>

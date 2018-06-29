@@ -219,11 +219,11 @@ public class TeamController {
 	//준석
 	//그룹 페이지  이동
 	@RequestMapping("main.do")
-	public String movegroup(String gid, Model model, HttpServletRequest req, HttpServletResponse res) {
+	public String movegroup(String gid, String gname, Model model, HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
-		
+
         // 태웅: 사용자가 주소창으로 장난친다면?
         G_MemberDTO temp_member = new G_MemberDTO(uid, Integer.parseInt(gid));
         if(teamservice.isGroupMember(temp_member) != true) {
@@ -244,7 +244,10 @@ public class TeamController {
 		if(uid != null) {
 			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
 			model.addAttribute("headerTeamList", headerTeamList);
+			
 		}
+		
+		model.addAttribute("gname", gname);
 		
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
 		model.addAttribute("headerNoticeList", headerNoticeList);
