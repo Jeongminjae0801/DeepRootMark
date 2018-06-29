@@ -58,11 +58,24 @@ public class G_AlarmService {
 			alarm_list = g_alarmDAO.getAlarmList(uid);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			/*e.printStackTrace();*/
 		}
 		
 		return alarm_list;
 	}
 	
-	
+	// 쪽지 확인 후, 쪽지 자동 삭제
+	public int deleteMemo(G_AlarmDTO alarm) {
+		G_AlarmDAO g_alarmDAO = sqlsession.getMapper(G_AlarmDAO.class);
+		int isDelete = 0;
+
+		System.out.println(alarm);
+		try {
+			isDelete = g_alarmDAO.deleteMemo(alarm);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return isDelete;
+	}
 }

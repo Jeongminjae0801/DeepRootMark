@@ -106,27 +106,25 @@
 						<ul role="menu" class="sub-menu">
 							<c:forEach items="${headerAlarmList}" var="alarmList">
 								<li data-gid="${alarmList.gid}">
+									<span>${alarmList.senddate}</span><br>
 									<span>그룹명: ${alarmList.gname}</span><br>
-									<span>From: ${alarmList.fromid}</span><br>
-									<span>From: ${alarmList.senddate}</span><br>
 									<c:choose>
-									<c:when test="${alarmList.ganame == '초대'}">
-										<span>해당 그룹에서 회원님을 초대했습니다!</span>
-										<i class="fas fa-check g_notice_ok" onclick='inviteOk("${alarmList.gid}")'></i>
-										<i class="fas fa-times g_notice_no" onclick='inviteNo("${alarmList.gid}")'></i>
-									</c:when>
-									<c:when test="${alarmList.ganame == '완료'}">
-										<span>해당 그룹이 완료되었습니다!</span>
-										<i class="fas fa-check g_notice" onclick=""></i>
-									</c:when>
-									<c:when test="${alarmList.ganame == '강퇴'}">
-										<span>해당 그룹에서 회원님을 강퇴했습니다!</span>
-										<i class="fas fa-check g_notice" onclick=""></i>
-									</c:when>
+										<c:when test="${alarmList.ganame == '초대'}">
+											<span>From: ${alarmList.fromid}</span><br>
+											<span>해당 그룹에서 회원님을 초대했습니다!</span>
+											<i class="fas fa-check g_notice_ok" onclick='inviteOk("${alarmList.gid}")'></i>
+										</c:when>
+										<c:when test="${alarmList.ganame == '완료'}">
+											<span>해당 그룹이 완료되었습니다!</span>
+										</c:when>
+										<c:when test="${alarmList.ganame == '강퇴'}">
+											<span>해당 그룹에서 회원님을 강퇴했습니다!</span>
+										</c:when>
 									</c:choose>
+									<i class="fas fa-times g_notice"
+										   onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
 								</li>
 							</c:forEach>
-							<script type="text/javascript">console.log("${headerAlarmList}")</script>
 						</ul>
 						</c:if>
 					</li>
@@ -165,3 +163,5 @@
 	</div>
 </header>
 <!-- Header END-->
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/alarm/alarm.js"></script>
