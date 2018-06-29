@@ -38,11 +38,13 @@
     <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jstreeTeam.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team/header_icon_zoom.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/team/jquery.contextMenu.css" />
     <!-- Group Page CSS START -->
     
     <!--Script Start -->
     <script src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/team/stomp.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/team/jquery.contextMenu.js"></script>
     <!-- Script END -->
     
     <!-- jQuery Ajax Form START -->

@@ -112,3 +112,55 @@ function group_complete(){
         }
     });
 }
+
+
+/* 멤버 강퇴 */
+function member_ban(){
+    $.confirm({
+        title: '멤버 강퇴',
+        content: '' +
+        '<form id="banMember" action="" class="formGroup" method="post">' +
+        '<div class="form-group">' +
+        '<label>해당회원을 강퇴하시겠습니까</label>' +
+        '<input type="hidden" name="nname" class="banName form-control"/>' +
+        '</div>' +
+        '</form>',
+        closeIcon: true,
+        closeIconClass: 'fa fa-close',
+        buttons: {
+            formSubmit: {
+                text: '강퇴',
+                btnClass: 'btn-success',
+                action: function () {
+                    var name = this.$content.find('.banName').val();
+
+                    $("#leaveGroup").submit();
+
+                }
+            },
+            '취소': {
+                btnClass: 'btn-red',
+                action: function () {
+                //close
+                }
+            },
+        }
+    });
+}
+
+/*마우스 오른쪽 이벤트 (회원강퇴) 추가*/
+
+
+$(function() {
+    $.contextMenu({
+        selector: '#member', 
+        callback: function(key, options) {
+            var m = "clicked: " + key;
+            console.log(m);
+        },
+        items: {
+            "abc": {name: "강퇴"},
+            "abc2": {name: "abc2"}
+        }
+    });
+});
