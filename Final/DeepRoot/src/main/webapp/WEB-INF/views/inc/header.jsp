@@ -97,15 +97,40 @@
 					<!-- Social Link  -->
 					<a href="<%= request.getContextPath() %>/social/social.do">Social</a>
 					<!-- Social Link  -->
+					<!-- Alarm START -->
 					</li>
 					<li class="dropdown">
 						<a href="#">Notice <i class="fa fa-angle-down"></i></a>
+						<!-- headerAlarmList -->
+						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
 						<ul role="menu" class="sub-menu">
-							<li>희준이와 아이들에서 초대
-								<input type="checkbox">
-							</li>
+							<c:forEach items="${headerAlarmList}" var="alarmList">
+								<li data-gid="${alarmList.gid}">
+									<span>그룹명: ${alarmList.gname}</span><br>
+									<span>From: ${alarmList.fromid}</span><br>
+									<span>From: ${alarmList.senddate}</span><br>
+									<c:choose>
+									<c:when test="${alarmList.ganame == '초대'}">
+										<span>해당 그룹에서 회원님을 초대했습니다!</span>
+										<i class="fas fa-check g_notice_ok" onclick=""></i>
+										<i class="fas fa-times g_notice_no" onclick=""></i>
+									</c:when>
+									<c:when test="${alarmList.ganame == '완료'}">
+										<span>해당 그룹이 완료되었습니다!</span>
+										<i class="fas fa-check g_notice" onclick=""></i>
+									</c:when>
+									<c:when test="${alarmList.ganame == '강퇴'}">
+										<span>해당 그룹에서 회원님을 강퇴했습니다!</span>
+										<i class="fas fa-check g_notice" onclick=""></i>
+									</c:when>
+									</c:choose>
+								</li>
+							</c:forEach>
+							<script type="text/javascript">console.log("${headerAlarmList}")</script>
 						</ul>
+						</c:if>
 					</li>
+					<!-- Alarm START END -->
 					<!-- Notice Alarm START -->
 					<li id="noticeDropdown" class="dropdown">
 						<a href="#">

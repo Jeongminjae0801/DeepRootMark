@@ -37,9 +37,6 @@ public interface G_MemberDAO {
 	//해당 유저가 들어오고자 하는 그룹의 그룹원이지 확인
 	public int isGroupMember(G_MemberDTO member) throws ClassNotFoundException, SQLException;
 	
-	//이미 한번 보낸 초대 쪽지인지 확인
-	public int alreadySend(G_AlarmDTO alarm ) throws ClassNotFoundException, SQLException;
-	
 	//특정 유저에게 그룹 초대 쪽지 보내기
 	public int sendInviteMemo(G_AlarmDTO alarm) throws ClassNotFoundException, SQLException;
 }
