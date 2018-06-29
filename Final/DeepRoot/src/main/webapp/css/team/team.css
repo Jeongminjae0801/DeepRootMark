@@ -51,11 +51,19 @@ body{
     background-color: #fff0;
 }
 
-.container-fluid,
-bdoy .container-fluid{
+.container-fluid{
     padding-left: 80px;
     padding-right: 55px;
 }
+
+/*  */
+.teamname{
+	font-family: 'Jua';
+	font-size: 20px;
+	color: 
+}
+
+
 
 /* group-member css START */
 .group-member{
