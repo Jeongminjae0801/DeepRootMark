@@ -67,7 +67,7 @@ body{
 }
 
 .teamname-ico{
-	font-size: 45px;
+	font-size: 40px;
 	font-style: oblique;
 	padding-right: 15px;
 	color: #FF4057;
@@ -432,12 +432,6 @@ a:active {
     overflow-y: auto;
 }
 
-/*임시 jstree css, JSP로 넘어갈때 지우세요*/
-.jstree-from > ul, .jstree-from > ul > ul{
-	list-style : none;
-	padding-left: 20px;
-	
-}
 
 /* group-category CSS END */
 
