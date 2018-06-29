@@ -42,6 +42,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Charsets;
 
+import site.book.admin.dto.NoticeDTO;
+import site.book.admin.service.NoticeService;
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.G_MemberDTO;
@@ -75,6 +77,8 @@ public class TeamController {
 	@Autowired
 	private UserService userservice;
 	
+	@Autowired
+	private NoticeService notice_service;
 	
 	//태웅
 	
@@ -224,10 +228,19 @@ public class TeamController {
         model.addAttribute("nname", user.getNname());
         model.addAttribute("profile", user.getProfile());
         
+        // 희준
+		if(uid != null) {
+			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
+			model.addAttribute("headerTeamList", headerTeamList);
+		}
+		
+		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
+		model.addAttribute("headerNoticeList", headerNoticeList);
+        
         List<String> filecontentlist = null;
         try {
 			filecontentlist = fileRead(gid);
-//			Collections.reverse(filecontentlist);
+			Collections.reverse(filecontentlist);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
