@@ -28,15 +28,11 @@ function member_insert(){
                 btnClass: 'btn-success',
                 keys: ['enter'],
                 action: function () {
-                    var name = this.$content.find('.insertUid').val();
-                    
-                    if(!name){
+                    var toid = this.$content.find('.insertUid').val();
+                    if(!toid){
 	                    $.alert('닉네임을 적어주세요');
 	                    return false;
 	                }
-
-
-                    $("#insertMember").submit();
 
                     $.ajax({
                 		url: "invite.do",

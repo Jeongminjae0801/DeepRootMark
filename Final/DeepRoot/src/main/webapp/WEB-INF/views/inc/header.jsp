@@ -119,7 +119,9 @@
 										<c:when test="${alarmList.ganame == '초대'}">
 											<span>From: ${alarmList.fromid}</span><br>
 											<span>해당 그룹에서 회원님을 초대했습니다!</span>
-											<i class="fas fa-check g_notice_ok" onclick='inviteOk("${alarmList.gid}")'></i>
+											<i class="fas fa-check g_notice_ok" onclick="inviteOk('${alarmList.toid}','${alarmList.gid}',
+																								  '${alarmList.gname}','${alarmList.fromid}',
+																								  '${alarmList.ganame}')"></i>
 										</c:when>
 										<c:when test="${alarmList.ganame == '완료'}">
 											<span>해당 그룹이 완료되었습니다!</span>
