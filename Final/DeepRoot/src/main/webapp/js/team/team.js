@@ -13,7 +13,7 @@ function member_insert(){
         closeIconClass: 'fa fa-close',
         buttons: {
             formSubmit: {
-                text: '초대',
+                text: 'ㅇㅇㅇ',
                 btnClass: 'btn-success',
                 keys: ['enter'],
                 action: function () {
@@ -36,7 +36,7 @@ function member_insert(){
 
                 }
             },
-            '취소': {
+            'ㄴㅇㄴㅇㄴ': {
                 btnClass: 'btn-red',
                 action: function () {
                 //close

@@ -188,7 +188,7 @@
             <div class="row">
                 <div class="col-sm-12 top-content">
                     <div class="col-sm-7 teamname">
-                    	${gname}
+                    	<i class="fas fa-map-pin teamname-ico"></i>${gname}
                     </div>
                     <div class="col-sm-5 option">
                         <div class="zoom">
