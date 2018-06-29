@@ -187,8 +187,8 @@
         <div class="container-fluid top">
             <div class="row">
                 <div class="col-sm-12 top-content">
-                    <div class="col-sm-7">
-                         	위에 뭐가 뜨는 영역
+                    <div class="col-sm-7 teamname">
+                    	${gname}
                     </div>
                     <div class="col-sm-5 option">
                         <div class="zoom">
@@ -283,6 +283,9 @@
                                 </div>
                             </div>
                             <div id="chat-textbox-icon">
+                            <div class="flexbox">
+
+                                    </div>
                                 <i class="fas fa-share-square"></i>
                             </div>
                         </div>
@@ -337,3 +340,6 @@
         </div>
     </div>
     <!-- body Content END -->
+    		</div>
+    	</div>
+    </div>
