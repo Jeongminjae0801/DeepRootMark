@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import site.book.team.dao.G_MemberDAO;
+import site.book.team.dao.G_AlarmDAO;
 import site.book.team.dto.G_AlarmDTO;
 
 @Service
@@ -25,7 +25,7 @@ public class G_AlarmService {
 	//태웅
 	//중복 초대/강퇴/완료 쪽지 처리하기
 	public boolean alreadySend(G_AlarmDTO alarm, String alarm_kind){
-		G_MemberDAO g_MemberDAO = sqlsession.getMapper(G_MemberDAO.class);
+		G_AlarmDAO g_alarmDAO = sqlsession.getMapper(G_AlarmDAO.class);
 		boolean already_invite = false;
 		String kind = alarm_kind.toUpperCase();
 		
@@ -34,12 +34,12 @@ public class G_AlarmService {
 		else { alarm.setGaid(1); }
 		
 		try {
-			if( g_MemberDAO.alreadySend(alarm) > 0) {
+			if( g_alarmDAO.alreadySend(alarm) > 0) {
 				already_invite = true;
 			}
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			/*e.printStackTrace();*/
 		}
 		
 		return already_invite;

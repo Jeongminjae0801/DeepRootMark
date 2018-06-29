@@ -214,26 +214,34 @@ public class TeamController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         
-        if( !alarm.getToid().equals(uid) && !galarmservice.alreadySend(alarm, "invite") ) {
+        // 본인에게 보낸 경우
+        if( alarm.getToid().equals(uid) ) {
+        	model.addAttribute("result", "self");
+        	return jsonview;
+        }
+        // 이미 초대한 사용자에게 보낸 경우
+        else if( galarmservice.alreadySend(alarm, "invite") ) {
+        	model.addAttribute("result", "already");
+        	return jsonview;
+        } 
+        // 정상적인 경우에 실행
+        else {
         	alarm.setFromid(uid);
-        	System.out.println(alarm);
         	int result = g_memberservice.inviteUser(alarm);
-            
             if(result > 0) {
     			model.addAttribute("result", "success");
     		}else {
     			model.addAttribute("result", "fail");
     		}
         }
-		
+        
 		return jsonview;
 	}
 	
 	// 초대 기능: 닉네임 자동완성 기능
 	@RequestMapping("allUserNname.do")	
 	public View getAllUserNname(HttpServletRequest req, Model model, String nname) {
-		
-		System.out.println(nname);
+	
         List<String> result = userservice.getAllUserNname(nname);
         
 		model.addAttribute("nname", result);
