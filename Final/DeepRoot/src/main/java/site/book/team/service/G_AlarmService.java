@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import site.book.team.dao.G_AlarmDAO;
 import site.book.team.dto.G_AlarmDTO;
+import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_MyAlarmDTO;
 
 @Service
@@ -26,20 +27,22 @@ public class G_AlarmService {
 	private SqlSession sqlsession;
 	
 	
-	//태웅
-	//중복 초대/강퇴/완료 쪽지 처리하기
+	// 태웅
+	// 쪽지 보내기 전 체크: 중복 초대/강퇴/완료 쪽지 보내기 처리하기
 	public boolean alreadySend(G_AlarmDTO alarm, String alarm_kind){
 		G_AlarmDAO g_alarmDAO = sqlsession.getMapper(G_AlarmDAO.class);
-		boolean already_invite = false;
 		String kind = alarm_kind.toUpperCase();
+		boolean already_invite = false;
 		
 		if(kind.equals("FIRE")) { alarm.setGaid(3); } 
 		else if(kind.equals("COMPLETE")){ alarm.setGaid(2); } 
 		else { alarm.setGaid(1); }
 		
 		try {
+			System.out.println("???: " + alarm);
 			if( g_alarmDAO.alreadySend(alarm) > 0) {
 				already_invite = true;
+				System.out.println("???");
 			}
 			
 		} catch (Exception e) {
@@ -71,9 +74,28 @@ public class G_AlarmService {
 		try {
 			isDelete = g_alarmDAO.deleteMemo(alarm);
 		} catch (Exception e) {
-			/*e.printStackTrace();*/
+			e.printStackTrace();
 		}
 		
 		return isDelete;
+	}
+	
+	// 그룹 초대 쪽지 승인, 그룹 가입
+	public int joinGroup(G_MemberDTO member) {
+		G_AlarmDAO g_alarmDAO = sqlsession.getMapper(G_AlarmDAO.class);
+		int isJoined = 0;
+
+		try {
+			if(g_alarmDAO.alreadyJoin(member) > 0) {
+				isJoined = -1;
+			}else {
+				isJoined = g_alarmDAO.joinGroup(member);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return isJoined;
 	}
 }

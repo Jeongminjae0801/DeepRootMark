@@ -1,8 +1,25 @@
 
 /* 초대 수락 */
-function inviteOk(){
-	$()
-	
+function inviteOk(user_nname, gid, gname, fromid, alarm_kind){
+	var alarm_item = $("#alarmlist" + gid);
+	$.ajax({
+		url: "/bit/alarm/joinGroup.do",
+		type: "post",
+		data : { gid: gid, nname: user_nname, gname: gname },
+		success : function(data){
+			if( data.result.trim() == "joined" ) {
+				$.alert("'" + gname + "'에 가입되셨습니다!");
+				deleteMemo(gid, fromid, alarm_kind);
+				location.href = data.path;
+				
+			}else if( data.result.trim() == "already" ){
+				$.alert("이미 '" + gname + "' 그룹원이십니다!");
+				deleteMemo(gid, fromid, alarm_kind);
+			}else {
+				$.alert("잠시후 다시 시도해주세요!");
+			}
+		}
+	});
 }
 /* 쪽지 없애기 */
 function deleteMemo(gid, fromid, alarm_kind){
@@ -19,10 +36,11 @@ function deleteMemo(gid, fromid, alarm_kind){
 			if( data.result == "deleted" ) {
 				alarm_item.remove();
 			}else {
-				$.alert("잠시후 다시 시도해주세요");
+				$.alert("잠시후 다시 시도해주세요!");
 			}
 		}
 	});
+	return
 }
 
 

@@ -253,6 +253,7 @@ public class TeamController {
 		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
+        alarm.setFromid(uid);
         
         // 본인에게 보낸 경우
         if( alarm.getToid().equals(uid) ) {
@@ -266,16 +267,14 @@ public class TeamController {
         } 
         // 정상적인 경우에 실행
         else {
-        	alarm.setFromid(uid);
         	int result = g_memberservice.inviteUser(alarm);
             if(result > 0) {
     			model.addAttribute("result", "success");
     		}else {
     			model.addAttribute("result", "fail");
     		}
+            return jsonview;
         }
-        
-		return jsonview;
 	}
 	
 	// 초대 기능: 닉네임 자동완성 기능

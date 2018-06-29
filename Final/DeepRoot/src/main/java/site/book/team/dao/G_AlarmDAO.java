@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import site.book.team.dto.G_AlarmDTO;
+import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_MyAlarmDTO;
 
 /**
@@ -33,4 +34,10 @@ public interface G_AlarmDAO {
 	
 	// 쪽지 확인 후 자동 삭제
 	public int deleteMemo(G_AlarmDTO alarm) throws ClassNotFoundException, SQLException;
+	
+	// 그룹 초대 쪽지 승인을 통한 그룹 가입
+	public int joinGroup(G_MemberDTO member) throws ClassNotFoundException, SQLException;
+	
+	// 이미 가입된 그룹이라면? 그룹 초대 쪽지 승인했지만 ...
+	public int alreadyJoin(G_MemberDTO member) throws ClassNotFoundException, SQLException;
 }

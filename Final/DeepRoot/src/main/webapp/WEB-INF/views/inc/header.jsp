@@ -71,6 +71,7 @@
 			</div>
 			
 			<div class="collapse navbar-collapse">
+			
 				<se:authorize access="isAuthenticated()">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -99,45 +100,64 @@
 						</c:choose>
 						</ul> 
 					</li>
-					<li>
 					<!-- Group Menu END -->
+					
 					<!-- Social Link  -->
-					<a href="<%= request.getContextPath() %>/social/social.do">Social</a>
-					<!-- Social Link  -->
-					<!-- Alarm START -->
+					<li>
+						<a href="<%= request.getContextPath() %>/social/social.do">Social</a>
 					</li>
+					<!-- Social Link  -->
+					
+					<!-- Alarm START -->
 					<li class="dropdown">
 						<a href="#">Notice <i class="fa fa-angle-down"></i></a>
 						<!-- headerAlarmList -->
 						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
 						<ul role="menu" class="g_alarm_ul sub-menu">
 							<c:forEach items="${headerAlarmList}" var="alarmList">
-								<li class="g_alarm_li" id="alarmlist${alarmList.gid}" data-gid="${alarmList.gid}">
-									<span class="g_alarm_date">${alarmList.senddate}</span>
-									<i class="fas fa-times g_notice" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i><br style="clear:both">
-									<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">${alarmList.gname}</span></span> <br>
+								<li id="alarmlist${alarmList.gid}" class="g_alarm_li">
+									<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">${alarmList.gname}</span></span> 
+									<i class="fas fa-times g_notice" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+									<br style="clear:both">
 									<c:choose>
+									
 										<c:when test="${alarmList.ganame == '초대'}">
-											<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: <span class="g_alarm_name">${alarmList.fromid}</span></span><br>
+											<span class="g_alarm_head">
+												From&nbsp;&nbsp;&nbsp;: <span class="g_alarm_name">${alarmList.fromid}</span>
+												<span class="g_alarm_date">${alarmList.senddate}</span>
+											</span>
+											<br>
 											<span class="g_alarm_content">해당 그룹에서 회원님을 초대했습니다!
-												<i class="fas fa-check g_notice_ok" onclick='inviteOk("${alarmList.gid}")'></i>
-												<i class="fas fa-times g_notice_no" onclick='inviteOk("${alarmList.gid}")'></i>
-											</span><br style="clear:both">
+											<i class="fas fa-check g_notice_ok" onclick="inviteOk('${alarmList.toid}','${alarmList.gid}',
+																							      '${alarmList.gname}','${alarmList.fromid}',
+																							  	  '${alarmList.ganame}')"></i>
+											</span>
+											<br style="clear:both">
 										</c:when>
+										
 										<c:when test="${alarmList.ganame == '완료'}">
+											<span class="g_alarm_head">
+												From&nbsp;&nbsp;&nbsp;: <span class="g_alarm_name">${alarmList.fromid}</span>
+												<span class="g_alarm_date">${alarmList.senddate}</span>
+												<i class="fas fa-check g_notice_ok" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+											</span>
+											<br>
 											<span>해당 그룹이 완료되었습니다!</span>
 										</c:when>
-										<c:when test="${alarmList.ganame == '강퇴'}">
+											
+										<c:otherwise>
 											<span>해당 그룹에서 회원님을 강퇴했습니다!</span>
-										</c:when>
+											<i class="fas fa-ban g_notice_no" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+										</c:otherwise>
+										
 									</c:choose>
-									
 								</li>
 							</c:forEach>
 						</ul>
 						</c:if>
 					</li>
 					<!-- Alarm START END -->
+					
 					<!-- Notice Alarm START -->
 					<li id="noticeDropdown" class="dropdown">
 						<a href="#">
@@ -149,10 +169,11 @@
 							<c:forEach items="${headerNoticeList}" var="headerNotice">
 								<li><a href="#">${headerNotice.ncontent}</a></li>
 							</c:forEach>
-						</ul>
+							</ul>
 						</c:if>
 					</li>
 					<!-- Notice Alarm END -->
+					
 					<!-- USER INFO START -->
 					<li>
 						<a class="username" href="#">
@@ -167,6 +188,7 @@
 					<!-- USER INFO END -->
 				</ul>
 				</se:authorize>
+				
 			</div>
 		</div>
 	</div>
