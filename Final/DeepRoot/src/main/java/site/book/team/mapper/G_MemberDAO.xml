@@ -22,4 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where GID = #{gid}
 	</select>
 	
+	<!-- 태웅 -->
+	<select id="isGroupMember" resultType="Integer">
+		select count(*) from `G_MEMBER` where UID = #{uid} and GID = #{gid};
+	</select>
 </mapper>

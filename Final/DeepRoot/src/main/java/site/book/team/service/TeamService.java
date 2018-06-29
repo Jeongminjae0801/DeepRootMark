@@ -36,6 +36,20 @@ public class TeamService {
 	
 	
 	//태웅
+	public boolean isGroupMember(G_MemberDTO member) {
+		G_MemberDAO memberDAO = sqlsession.getMapper(G_MemberDAO.class);
+		boolean list = false;
+		
+		try {
+			int result = memberDAO.isGroupMember(member);
+			if(result > 0){ list = true; }
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	
 	
