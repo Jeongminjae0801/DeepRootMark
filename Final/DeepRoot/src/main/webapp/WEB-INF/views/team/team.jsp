@@ -310,7 +310,7 @@
                     <div class="onoffline-content">
                         <div class="online-content">
                             <div class="online">
-                                <span><i class="fas fa-toggle-on"></i>online</span>
+                            	<i class="fas fa-toggle-on"></i>온라인
                             </div>
                             <div class="online-member">
                                 <p class="member">
@@ -326,7 +326,7 @@
                         </div>
                         <div class="offline-content">
                             <div class="offline">
-                                <span><i class="fas fa-toggle-off"></i>offline</span>
+                            	<i class="fas fa-toggle-off"></i>오프라인
                             </div>
                             <div class="offline-member">
                                 <p class="member"><img class="member-ico" src="<%= request.getContextPath() %>/images/team/offline.png">정진수</p>

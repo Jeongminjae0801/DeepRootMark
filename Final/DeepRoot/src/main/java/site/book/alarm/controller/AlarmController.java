@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
 import site.book.team.dto.G_AlarmDTO;
+import site.book.team.dto.G_MemberDTO;
 import site.book.team.service.G_AlarmService;
 
 /**
@@ -41,7 +42,28 @@ public class AlarmController {
 	
 	// 함수 Start
 	// 태웅
-	/*  */
+	/* 초대 쪽지 승인: 그룹 가입 */
+	@RequestMapping(value="joinGroup.do")
+	public View joinGroup(HttpServletRequest req, HttpSession session, Model model, G_MemberDTO member, String gname) {
+		
+		String uid = (String)session.getAttribute("info_userid");
+		member.setUid(uid);
+		
+		int result = galarmservice.joinGroup(member);
+		if(result > 0) {
+			String path_to = "/bit/team/main.do?gid=" + member.getGid() + "&gname=" + gname;
+			model.addAttribute("path", path_to);
+			model.addAttribute("result", "joined");
+		}else if(result < 0){
+			model.addAttribute("result", "already");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		
+		return jsonview;
+	}
+	
+	/* 내게 온 쪽지 삭제 */
 	@RequestMapping(value="deleteMemo.do")
 	public View deleteMemo(HttpServletRequest req, HttpSession session, Model model, G_AlarmDTO alarm) {
 		
