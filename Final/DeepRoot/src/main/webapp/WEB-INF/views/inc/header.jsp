@@ -97,15 +97,24 @@
 					<!-- Social Link  -->
 					<a href="<%= request.getContextPath() %>/social/social.do">Social</a>
 					<!-- Social Link  -->
+					<!-- Alarm START -->
 					</li>
 					<li class="dropdown">
 						<a href="#">Notice <i class="fa fa-angle-down"></i></a>
+						<!-- headerAlarmList -->
+						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
 						<ul role="menu" class="sub-menu">
+							<c:forEach items="${headerAlarmList}" var="alarmList">
+								<li><a href="#">${alarmList.ncontent}</a></li>
+								
+							</c:forEach>
 							<li>희준이와 아이들에서 초대
 								<input type="checkbox">
 							</li>
 						</ul>
+						</c:if>
 					</li>
+					<!-- Alarm START END -->
 					<!-- Notice Alarm START -->
 					<li id="noticeDropdown" class="dropdown">
 						<a href="#">

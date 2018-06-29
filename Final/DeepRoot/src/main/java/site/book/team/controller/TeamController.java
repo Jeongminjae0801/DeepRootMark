@@ -242,6 +242,9 @@ public class TeamController {
 	@RequestMapping("allUserNname.do")	
 	public View getAllUserNname(HttpServletRequest req, Model model, String nname) {
 	
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
         List<String> result = userservice.getAllUserNname(nname);
         
 		model.addAttribute("nname", result);
@@ -249,6 +252,14 @@ public class TeamController {
 		return jsonview;
 	}
 	
+	/*// 초대/강퇴/완료 알람: 내가 받은 쪽지 리스트
+	@RequestMapping("getAlarms.do")	
+	public View getAlarmList(HttpServletRequest req, Model model) {
+	
+		model.addAttribute("nname", result);
+		
+		return jsonview;
+	}*/
 	
 	//준석
 	//그룹 페이지  이동

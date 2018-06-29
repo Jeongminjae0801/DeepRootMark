@@ -8,12 +8,16 @@
 
 package site.book.team.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.book.team.dao.G_AlarmDAO;
 import site.book.team.dto.G_AlarmDTO;
+import site.book.team.dto.G_MyAlarmDTO;
 
 @Service
 public class G_AlarmService {
@@ -44,4 +48,21 @@ public class G_AlarmService {
 		
 		return already_invite;
 	}
+	
+	// 내가 받은 그룹 초대/완료/강퇴 쪽지 리스트 출력
+	public List<G_MyAlarmDTO> getAlarmList(String uid){
+		G_AlarmDAO g_alarmDAO = sqlsession.getMapper(G_AlarmDAO.class);
+		List<G_MyAlarmDTO> alarm_list = new ArrayList<>();
+		
+		try {
+			alarm_list = g_alarmDAO.getAlarmList(uid);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return alarm_list;
+	}
+	
+	
 }
