@@ -210,21 +210,9 @@
                         <div class="zoom">
 						    <a class="zoom-fab zoom-btn-large" id="zoomBtn"><i class="fa fa-bars"></i></a>
 						    <ul class="zoom-menu">
-						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out"><i class="fa fa-user"></i></a></li>
-						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-doc scale-transition scale-out"><i class="fa fa-book"></i></a></li>
-						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-tangram scale-transition scale-out"><i class="fa fa-dashboard"></i></a></li>
-						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-report scale-transition scale-out"><i class="fa fa-edit"></i></a></li>
-						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-feedback scale-transition scale-out"><i class="fa fa-bell"></i></a></li>
+						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out" onclick="group_leave();"><i class="fas fa-sign-out-alt"></i></a></li>
+						      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-feedback scale-transition scale-out" onclick="group_complete();"><i class="fas fa-check"></i></a></li>
 						    </ul>
-						    <div class="zoom-card scale-transition scale-out">
-								<ul class="zoom-card-content">
-									<li>Content</li>
-									<li>Content</li>
-									<li>Content</li>
-									<li>Content</li>
-									<li>Content</li>
-								</ul>
-							</div>
 				  		</div>
                     </div>
                 </div>
@@ -321,7 +309,7 @@
                                 <span><i class="fas fa-toggle-on"></i>online</span>
                             </div>
                             <div class="online-member">
-                                <p class="member">
+                                <p class="member" id="member">
                                     <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
                                 </p>
                                 <p class="member">
