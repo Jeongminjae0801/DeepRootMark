@@ -152,11 +152,11 @@
                 $(".chat-element").scrollTop($(".chatting-contents").height());
 	        });
 	        
-	 /*        stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
+	 		  stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
 	        	
 	        	console.log(message.body);
 	        	
-	        }) */
+	        }) 
 	        
 	    });
 	    
@@ -186,9 +186,13 @@
 	}
 
 	/* Chatting End */
-		
+	
+	/* jstree START */	
 	$(function () {
-		jstree(role,gid ,uid);
+		jstree(role,gid ,uid,nname);
+	})
+	$(function (){
+		get_info(gid, uid);
 	})
 
 </script>
@@ -309,7 +313,7 @@
                             	<i class="fas fa-toggle-on"></i>온라인
                             </div>
                             <div class="online-member">
-                                <p class="member" id="member">
+                                <p class="member">
                                     <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
                                 </p>
                                 <p class="member">

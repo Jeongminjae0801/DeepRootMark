@@ -72,10 +72,22 @@ public class ChatController {
     	spath = spath.substring(1);
 		int index = spath.indexOf("WEB-INF");
 		spath = spath.substring(0, index);
-		spath += "team/chat/" + gid +".txt";
+		spath += "team";
+		Path path = Paths.get(spath);
+		
+		if(!Files.exists(path)) {
+			Files.createDirectories(path);
+		}
+		spath += "/chat";
+		path = Paths.get(spath);
+		
+		if(!Files.exists(path)) {
+			Files.createDirectories(path);
+		}
+		spath += "/" + gid +".txt";
 		
     	String fileName = spath;
-        Path path = Paths.get(fileName);
+        path = Paths.get(fileName);
         System.out.println("path : " + path);
         
         BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
@@ -93,8 +105,8 @@ public class ChatController {
     @MessageMapping("/JSTREE/{room}")
     @SendTo("/subscribe/JSTREE/{room}")
     public JstreeAlarm sendJstree(@DestinationVariable("room") String room, JstreeAlarm message, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
-        System.out.println("채팅 메세지 들어옴");
-    	
+        System.out.println("jstree 들어옴");
+    	System.out.println(message);
     	
     	
         return message;
