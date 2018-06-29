@@ -89,5 +89,14 @@ public class ChatController {
 	
     
     //명수
-    //jstree 변경 메시
+    //jstree 변경 메시지
+    @MessageMapping("/JSTREE/{room}")
+    @SendTo("/subscribe/JSTREE/{room}")
+    public JstreeAlarm sendJstree(@DestinationVariable("room") String room, JstreeAlarm message, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
+        System.out.println("채팅 메세지 들어옴");
+    	
+    	
+    	
+        return message;
+    }
 }

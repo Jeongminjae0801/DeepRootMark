@@ -10,7 +10,8 @@
 	var nname = '<c:out value="${nname}"/>';
 	var profile = '<c:out value="${profile}"/>';
 	var chatList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
-	
+	var role = '<c:out value="${enabled}"/>';
+	var uid = '<c:out value="${uid}"/>';
 	<c:forEach items="${filecontentlist}" var="filecontent">
 		chatList.push("${filecontent}");
 	</c:forEach>
@@ -69,6 +70,11 @@
                 
 	        });
 	        
+	 /*        stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
+	        	
+	        	console.log(message.body);
+	        	
+	        }) */
 	        
 	    });
 	    
@@ -98,6 +104,10 @@
 	}
 
 	/* Chatting End */
+		
+	$(function () {
+		jstree(role,gid ,uid);
+	})
 
 </script>
 
@@ -151,14 +161,7 @@
                         <span><i class="fas fa-chalkboard-teacher"></i> Group Category</span>
                     </div>
                     <div class="group-category-body">
-                        <div class="jstree-from">
-                            <ul>
-                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
-                                    <ul>
-                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
-                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
-                                    </ul>
-                            </ul>
+                        <div id="jstree_container" class="jstree-from">                    
                         </div>
                     </div>
                     <div class="group-category-footer">
