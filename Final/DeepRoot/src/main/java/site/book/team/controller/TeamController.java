@@ -10,7 +10,6 @@ package site.book.team.controller;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -22,18 +21,16 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Future;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,12 +39,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Charsets;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
+=======
+>>>>>>> feature/그룹페이지_JSTREE_웹소켓
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.G_MemberDTO;
@@ -133,14 +133,21 @@ public class TeamController {
 	
 	//해당 그룹 카테고리 리스트
 	@RequestMapping("getTeamJstree.do")
-	public View getTeamJstree(HttpServletRequest req, Model model, String gid) {
+	public void getTeamJstree(HttpServletRequest req,  HttpServletResponse res,String gid) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
+    	
+        JSONArray  jsonarray = gbookservice.getTeamJstree(gid,uid);
         
-        JSONArray jsonarray = gbookservice.getTeamJstree(gid,uid);
-        model.addAttribute("data", jsonarray);
+    	try {
+			res.getWriter().println(jsonarray);
+		}catch (JSONException | IOException e) {
+			e.printStackTrace();
+		}
 		
-		return jsonview;
 	}
 
 	
@@ -262,6 +269,7 @@ public class TeamController {
 		}
         model.addAttribute("filecontentlist", filecontentlist);
 		model.addAttribute("enabled", user.getEnabled());
+		model.addAttribute("uid",user.getUid());
 		
 		return "team.team";
 	}
