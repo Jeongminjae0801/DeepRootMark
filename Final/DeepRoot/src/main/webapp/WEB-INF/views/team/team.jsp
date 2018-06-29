@@ -142,7 +142,7 @@
                 chat_div += '</div>';
                 
                 $(".chatting-contents").append(chat_div);
-                
+                $(".chat-element").scrollTop($(".chatting-contents").height());
 	        });
 	        
 	        
