@@ -432,12 +432,6 @@ a:active {
     overflow-y: auto;
 }
 
-/*임시 jstree css, JSP로 넘어갈때 지우세요*/
-.jstree-from > ul, .jstree-from > ul > ul{
-	list-style : none;
-	padding-left: 20px;
-	
-}
 
 /* group-category CSS END */
 

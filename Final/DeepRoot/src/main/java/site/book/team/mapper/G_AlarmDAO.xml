@@ -12,4 +12,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="alreadySend" resultType="Integer">
 		select count(*) from `G_ALARM` where TOID=#{toid} and FROMID=#{fromid} and GID=#{gid} and GAID=1
 	</select>
+	
+	<select id="getAlarmList" resultType="site.book.team.dto.G_MyAlarmDTO">
+		SELECT TOID, you.NNAME as FROMID, team.GID, team.GNAME, kind.GANAME, SENDDATE 
+		FROM `G_ALARM` msg 
+		JOIN `TEAM` team ON msg.GID= team.GID
+		JOIN `G_ALARM_KIND` kind ON msg.GAID= kind.GAID
+		JOIN `USER` you ON msg.FROMID= you.UID
+		where TOID = #{uid}
+		order by SENDDATE
+	</select>
+	
+	<delete id="deleteMemo">
+		<choose>
+			<when test="gaid == 1"><!-- 초대 쪽지 -->
+				DELETE FROM `G_ALARM` WHERE TOID=#{toid} AND FROMID=(SELECT UID FROM `USER` WHERE NNAME=#{fromid}) AND GID=#{gid} AND GAID=#{gaid};
+			</when>
+			<otherwise><!-- 완료/강퇴 쪽지 -->
+				DELETE FROM `G_ALARM` WHERE TOID=#{toid} AND GID=#{gid} AND GAID=#{gaid};
+			</otherwise>
+		</choose>
+		
+	</delete>
+	
 </mapper>

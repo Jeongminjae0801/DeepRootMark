@@ -63,8 +63,7 @@ public class G_MemberService {
 		try {
 			result = g_MemberDAO.sendInviteMemo(alarm);
 		} catch (Exception e) {
-			
-			e.printStackTrace();
+			/*e.printStackTrace();*/
 		}
 		
 		return result;

@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,11 +28,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
 import site.book.team.dto.G_AlarmDTO;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.common.base.Charsets;
+
+import site.book.admin.dto.NoticeDTO;
+import site.book.admin.service.NoticeService;
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.G_MemberDTO;
@@ -125,7 +135,6 @@ public class TeamController {
 		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
-    	
         JSONArray  jsonarray = gbookservice.getTeamJstree(gid,uid);
         
     	try {
@@ -133,9 +142,40 @@ public class TeamController {
 		}catch (JSONException | IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//그룹페이지에서 해당 노드 삭제
+	@RequestMapping("deleteTeamNode.do")
+	public View deleteTeamNode(Model model, String gbid) {
 		
+		int result = teamservice.deleteTeamNode(gbid);
+		model.addAttribute("result",result);
+		
+		return jsonview;
 	}
 
+	//그룹페이지에서 해당 노드 제목 수정
+	@RequestMapping("updateTeamNodeText.do")
+	public View updateTeamNodeText(Model model , @RequestParam HashMap<String, String> param) {
+		
+		int result = teamservice.updateTeamNodeText(param);
+		model.addAttribute("result",result);
+		
+		return jsonview;
+	}
+	
+	//그룹페이지에서 폴더 혹은 url 추가
+	@RequestMapping("addTeamFolderOrUrl.do")
+	public View addTeamFolderOrUrl(HttpServletRequest req, Model model , G_BookDTO g_book) {
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        g_book.setUid(uid);
+		int result = teamservice.addTeamFolderOrUrl(g_book);
+		model.addAttribute("result",result);
+		
+		return jsonview;
+	}
 	
 	//태웅
 	//해당 유저의 진행중인 그룹의 카테고리만를 보내준다.
@@ -214,26 +254,37 @@ public class TeamController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         
-        if( !alarm.getToid().equals(uid) && !galarmservice.alreadySend(alarm, "invite") ) {
+        // 본인에게 보낸 경우
+        if( alarm.getToid().equals(uid) ) {
+        	model.addAttribute("result", "self");
+        	return jsonview;
+        }
+        // 이미 초대한 사용자에게 보낸 경우
+        else if( galarmservice.alreadySend(alarm, "invite") ) {
+        	model.addAttribute("result", "already");
+        	return jsonview;
+        } 
+        // 정상적인 경우에 실행
+        else {
         	alarm.setFromid(uid);
-        	System.out.println(alarm);
         	int result = g_memberservice.inviteUser(alarm);
-            
             if(result > 0) {
     			model.addAttribute("result", "success");
     		}else {
     			model.addAttribute("result", "fail");
     		}
         }
-		
+        
 		return jsonview;
 	}
 	
 	// 초대 기능: 닉네임 자동완성 기능
 	@RequestMapping("allUserNname.do")	
 	public View getAllUserNname(HttpServletRequest req, Model model, String nname) {
-		
-		System.out.println(nname);
+	
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
         List<String> result = userservice.getAllUserNname(nname);
         
 		model.addAttribute("nname", result);
@@ -241,6 +292,14 @@ public class TeamController {
 		return jsonview;
 	}
 	
+	/*// 초대/강퇴/완료 알람: 내가 받은 쪽지 리스트
+	@RequestMapping("getAlarms.do")	
+	public View getAlarmList(HttpServletRequest req, Model model) {
+	
+		model.addAttribute("nname", result);
+		
+		return jsonview;
+	}*/
 	
 	//준석
 	//그룹 페이지  이동

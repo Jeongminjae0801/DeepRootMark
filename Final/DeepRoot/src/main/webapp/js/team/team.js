@@ -35,7 +35,29 @@ function member_insert(){
 	                    return false;
 	                }
 
+
                     $("#insertMember").submit();
+
+                    $.ajax({
+                		url: "invite.do",
+            			type: "post",
+            			data : { toid : toid, gid: gid },
+            			success : function(data){
+            				var msg = data.result.trim().toUpperCase();
+            				if(msg == "SUCCESS") {
+            					$.alert("초대 쪽지가 전달되었습니다!" + "\n(" + toid + ")");
+            				} else if(msg == "FAIL") {
+            					$.alert("존재하지 않는 이메일입니다!");
+            				} else if(msg == "SELF") {
+            					$.alert("본인을 초대하실 수 없습니다!");
+            				} else if(msg == "ALREADY") {
+            					$.alert("이미 초대된 사용자입니다!");
+            				} else {
+            					$.alert("잠시후 다시 시도해주세요!");
+            				}
+            			}
+                	});
+
 
                 }
             },

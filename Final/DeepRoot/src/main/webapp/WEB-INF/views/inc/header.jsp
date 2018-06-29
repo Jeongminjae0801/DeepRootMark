@@ -9,7 +9,7 @@
 		$.confirm({
 		    title: '그룹 추가',
 		    content: '' +
-		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/addGroup.do" class="formName" method="post">' +
+		    '<form id="addGroupForm" action="${pageContext.request.contextPath}/addGroup.do" class="formName" method="post" onsubmit="return false;">' +
 		    '<div class="form-group">' +
 		    '<label>그룹명</label>' +
 		    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
@@ -18,8 +18,8 @@
 		    type: 'green',
 		    closeIcon: true,
 		    buttons: {
-		        formSubmit: {
-		            text: '추가',
+		    	formSubmit: {
+		    		text: '추가',
 		            btnClass: 'btn-green',
 		            action: function () {
 		                var name = this.$content.find('.name').val();
@@ -27,17 +27,9 @@
 		                    $.alert('그룹명을 적어주세요');
 		                    return false;
 		                }
-		                $("#addGroupForm").ajaxForm({
-		                	success: function(data, statusText, xhr, $form){
-		                		var group = '<li><a href="#">' + data.newTeam.gname + '</a></li>';
-	                			$("#groupDropdownMenu").children().last().before(group);
-		                		if(("#groupDropdownMenu").length > 10){
-		                			$("#groupDropdownMenu").children().last().remove();
-		                		}
-		                	}
-		                });
+		               
 		                $("#addGroupForm").submit();
-		                
+		                $.alert("그룹 추가 성공");
 		            }
 		        },
 		        '취소': {
@@ -45,6 +37,19 @@
 		        	action : function () {}
 		            //close
 		        },
+		        
+		    },
+		    onContentReady: function(){
+		    	var jc = this;
+		    	$("#addGroupForm").ajaxForm({
+		    		success: function(data, statusText, xhr, $form){
+		    			var group = '<li class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
+		    			$("#groupDropdownMenu").children().last().before(group);
+		    			if($(".groupMenu").length > 10){
+		    				$("#groupDropdownMenu").children().last().remove();
+		    			}
+		    		}
+		    	});
 		    }
 
 		});
@@ -78,16 +83,18 @@
 						<c:choose>
 							<c:when test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 								<c:forEach items="${headerTeamList}" var="headerTeam" varStatus="status">
-									<li><a href="<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}&gname=${headerTeam.gname}">${headerTeam.gname}</a></li>
+									<c:if test="${status.index < 10}">
+										<li class="groupMenu"><a href="<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}&gname=${headerTeam.gname}">${headerTeam.gname}</a></li>
+									</c:if>
 									<c:if test="${status.last}">
 										<c:if test="${status.count < 10}">
-											<li onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
+											<li class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
 										</c:if>
 									</c:if>
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<li onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
+								<li class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
 							</c:otherwise>
 						</c:choose>
 						</ul> 
@@ -97,15 +104,38 @@
 					<!-- Social Link  -->
 					<a href="<%= request.getContextPath() %>/social/social.do">Social</a>
 					<!-- Social Link  -->
+					<!-- Alarm START -->
 					</li>
 					<li class="dropdown">
 						<a href="#">Notice <i class="fa fa-angle-down"></i></a>
+						<!-- headerAlarmList -->
+						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
 						<ul role="menu" class="sub-menu">
-							<li>희준이와 아이들에서 초대
-								<input type="checkbox">
-							</li>
+							<c:forEach items="${headerAlarmList}" var="alarmList">
+								<li data-gid="${alarmList.gid}">
+									<span>${alarmList.senddate}</span><br>
+									<span>그룹명: ${alarmList.gname}</span><br>
+									<c:choose>
+										<c:when test="${alarmList.ganame == '초대'}">
+											<span>From: ${alarmList.fromid}</span><br>
+											<span>해당 그룹에서 회원님을 초대했습니다!</span>
+											<i class="fas fa-check g_notice_ok" onclick='inviteOk("${alarmList.gid}")'></i>
+										</c:when>
+										<c:when test="${alarmList.ganame == '완료'}">
+											<span>해당 그룹이 완료되었습니다!</span>
+										</c:when>
+										<c:when test="${alarmList.ganame == '강퇴'}">
+											<span>해당 그룹에서 회원님을 강퇴했습니다!</span>
+										</c:when>
+									</c:choose>
+									<i class="fas fa-times g_notice"
+										   onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+								</li>
+							</c:forEach>
 						</ul>
+						</c:if>
 					</li>
+					<!-- Alarm START END -->
 					<!-- Notice Alarm START -->
 					<li id="noticeDropdown" class="dropdown">
 						<a href="#">
@@ -140,3 +170,5 @@
 	</div>
 </header>
 <!-- Header END-->
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/alarm/alarm.js"></script>
