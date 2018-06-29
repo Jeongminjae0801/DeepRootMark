@@ -122,10 +122,11 @@ public class G_BookService {
 	public JSONArray getTeamJstree(String gid, String uid) {
 		G_BookDAO dao = sqlsession.getMapper(G_BookDAO.class);
 		JSONArray jsonArray = new JSONArray();
+	
+		List<G_BookDTO> list;
 		
 		try {
-			List<G_BookDTO> list = dao.getTeamJstree(gid);
-			
+			list = dao.getTeamJstree(gid);
 			if(list.size() ==0) {
 				
 				JSONObject jsonobject = new JSONObject();

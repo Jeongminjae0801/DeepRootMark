@@ -52,7 +52,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 </head>
 <body>
-
+	<!-- Script -->
+	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/Teamcategory.js"></script>
 	<div id="main-header">
 		<tiles:insertAttribute name="header" />
 	</div>

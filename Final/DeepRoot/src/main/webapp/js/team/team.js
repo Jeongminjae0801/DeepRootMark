@@ -47,7 +47,7 @@ function member_insert(){
                 action: function () {
                 //close
                 }
-            },
+            }
         }
     });
 }

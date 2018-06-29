@@ -15,15 +15,17 @@ body{
     width: 1350px;
     
 }
-.container-fluid.team-container > .row > .col-sm-12{
+
+.whole-body{
     margin-top:100px;
 }
+
 .container-fluid.team-container .row .col-sm-12{
     border : 5px double #000;
     margin-bottom: 0px;
     height: 100%;
     padding-bottom: 15px;
-    padding-top: 10px;
+    padding-top: 15px;
     background-color: #e3d1b9;
 }
 
@@ -51,11 +53,28 @@ body{
     background-color: #fff0;
 }
 
-.container-fluid,
-bdoy .container-fluid{
+.container-fluid{
     padding-left: 80px;
     padding-right: 55px;
 }
+
+/* Top Content CSS START */
+.teamname{
+	height: 50px;
+	font-family: 'Jua';
+	font-size: 35px;
+	color: #596359;
+}
+
+.teamname-ico{
+	font-size: 45px;
+	font-style: oblique;
+	padding-right: 15px;
+	color: #FF4057;
+	vertical-align: middle;
+}
+
+/* Top Content CSS END */
 
 /* group-member css START */
 .group-member{
@@ -351,6 +370,11 @@ bdoy .container-fluid{
 a{
 	text-decoration: none;
 	color: #000;
+}
+a:hover,
+a:focus,
+a:active {
+	text-decoration: none;
 }
 
 .jstree-from::-webkit-scrollbar{width: 10px;}
