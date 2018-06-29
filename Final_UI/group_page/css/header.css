@@ -7,6 +7,26 @@
 /*************************
 *******Header******
 **************************/
+.dropdown {
+    background-color: #fff;
+    border :none;
+    
+}
+.g_notice{
+    color: green;
+    padding-left: 5px;
+    
+}
+.g_notice:hover{
+    color: #7bbfa8;
+}
+.g_notice_ok{
+    color: green;
+}
+.g_notice_no{
+    color: red;
+}
+
 .logo-text {
     font-family: 'Gugi';
     font-size: 45px;
