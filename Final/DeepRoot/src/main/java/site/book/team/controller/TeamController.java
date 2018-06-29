@@ -67,7 +67,7 @@ public class TeamController {
 	
 	//명수
 	@Autowired
-	TeamService teamservice;
+	private TeamService teamservice;
 	
 	@Autowired
     private View jsonview;
@@ -81,13 +81,13 @@ public class TeamController {
 	
 	//태웅
 	@Autowired
-	G_BookService gbookservice;
+	private G_BookService gbookservice;
 	@Autowired
-	G_AlarmService galarmservice;
+	private G_AlarmService galarmservice;
 	
 	//준석
 	@Autowired
-	G_MemberService g_memberservice;
+	private G_MemberService g_memberservice;
 	
 	
 	
