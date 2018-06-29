@@ -12,19 +12,33 @@ function member_insert(){
         closeIcon: true,
         closeIconClass: 'fa fa-close',
         buttons: {
-            formSubmit: {
-                text: '초대',
+        	'초대하기': {
                 btnClass: 'btn-success',
-                keys: ['enter'],
                 action: function () {
-                    var name = this.$content.find('.insertName').val();
+                    var toid = this.$content.find('.insertName').val();
+                    console.log(name);
                     
-                    if(!name){
-	                    $.alert('닉네임을 적어주세요');
+                    if(!toid){
+	                    $.alert('이메일을 적어주세요');
 	                    return false;
 	                }
 
-                    $("#insertMember").submit();
+                    $.ajax({
+                		url: "invite.do",
+            			type: "post",
+            			data : { toid : toid, gid: gid },
+            			success : function(data){
+            				console.log(data.result);
+            				if(data.result == "success") {
+            					$.alert("초대 쪽지가 전달되었습니다!" + "\n(" + toid + ")");
+            					
+            				} else if(data.result == "fail") {
+            					$.alert("존재하지 않는 이메일입니다!");
+            				} else {
+            					$.alert("이미 초대된 사용자입니다!");
+            				}
+            			}
+                	});
 
                 }
             },
@@ -33,10 +47,35 @@ function member_insert(){
                 action: function () {
                 //close
                 }
-            },
+            }
         }
     });
 }
+
+$(function() {
+	$(".insertName").autocomplete({
+		source: function() {
+					$.ajax({
+			    		url: "allUserNname.do",
+						type: "post",
+						data: {nname:$(".insertName").val()},
+						dataType: "json",
+						success : function(data){
+							console.log(data.nname);
+							return data.nname;
+						}
+			    	});
+				},
+		select: function( event, ui ) {
+            // 검색리스트에서 선택하였을때, 
+			$('.insertName').val(ui.item.label);
+        }
+    });
+	
+});
+
+
+/* 멤버 초대 END */
 
 /* 그룹 탈퇴 */
 function group_leave(){

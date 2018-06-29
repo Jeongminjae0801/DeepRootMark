@@ -54,7 +54,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 </head>
 <body>
-
+	<!-- Script -->
+	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/Teamcategory.js"></script>
 	<div id="main-header">
 		<tiles:insertAttribute name="header" />
 	</div>
@@ -68,9 +69,8 @@
 	</div>
 
 	<!-- Custom Script START -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js?ver=1"></script>
     <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
-    <script src="${pageContext.request.contextPath}/js/team/member_insert.js"></script>
     <script src="${pageContext.request.contextPath}/js/team/header_icon_zoom.js?ver=2"></script>
     <!-- Custom Script END -->
     

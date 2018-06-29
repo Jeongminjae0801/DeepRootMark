@@ -2,23 +2,30 @@
 /* 헤더 로고 폰트 */
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 /* 한글 폰트*/
+@import url('https://fonts.googleapis.com/css?family=Jua');
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+body{
+	font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
+}
 .container-fluid.team-container{
     padding-bottom: 0px;
     margin-bottom: 0px;
     width: 1350px;
+    
 }
-.container-fluid.team-container > .row > .col-sm-12{
+
+.whole-body{
     margin-top:100px;
 }
+
 .container-fluid.team-container .row .col-sm-12{
     border : 5px double #000;
     margin-bottom: 0px;
     height: 100%;
     padding-bottom: 15px;
-    padding-top: 10px;
+    padding-top: 15px;
     background-color: #e3d1b9;
 }
 
@@ -46,13 +53,36 @@
     background-color: #fff0;
 }
 
-.container-fluid,
-bdoy .container-fluid{
+.container-fluid{
     padding-left: 80px;
     padding-right: 55px;
 }
 
+/* Top Content CSS START */
+.teamname{
+	height: 50px;
+	font-family: 'Jua';
+	font-size: 35px;
+	color: #596359;
+}
+
+.teamname-ico{
+	font-size: 40px;
+	font-style: oblique;
+	padding-right: 15px;
+	color: #FF4057;
+	vertical-align: middle;
+}
+
+/* Top Content CSS END */
+
 /* group-member css START */
+.group-member{
+    padding: 5px;
+    height: 700px;
+    background-color: #fff0;
+}
+
 .group-member-content{ 
     height: 100%;
     width: 100%;
@@ -62,6 +92,7 @@ bdoy .container-fluid{
     background-color: #fff;
 }
 .group-member-header {
+	font-family: 'Jua';
     min-height: 45px;
     max-height: 45px;
     padding: 10px;
@@ -72,7 +103,7 @@ bdoy .container-fluid{
 }
 .group-member-header > p {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
 }
 .group-member-header > p > .fa-user-plus {
     margin-top: 3px;
@@ -151,16 +182,12 @@ bdoy .container-fluid{
 .col-sm-12 .col-sm-7{ height: 100%;}
 .col-sm-12 .col-sm-5.option{
     text-align: right;
+    
 }
 .team-ico{
     font-size: 25px;
     margin-right: 10px;
     color: #fb7070;
-}
-.team-insert,
-.team-ban,
-.team-option{
-
 }
 
 .col-sm-5.option .option-ico a{
@@ -173,12 +200,6 @@ bdoy .container-fluid{
     padding-left: 5px;
 }
 /******/
-/* 민재 div css*/
-.group-member{
-    padding: 5px;
-    height: 700px;
-    background-color: #fff0;
-}
 
 /* group-member css END */
 
@@ -207,6 +228,7 @@ bdoy .container-fluid{
     background-color: #fff;
 }
 .chat-header {
+	font-family: 'Jua';
     padding: 5px;
     min-height: 45px;
     max-height: 45px;
@@ -215,7 +237,7 @@ bdoy .container-fluid{
 }
 .chat-header .chatting-roomname {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     padding: 5px 0px 0px 10px;
     float: left;
     color : #fff;
@@ -345,6 +367,16 @@ bdoy .container-fluid{
 
 
 /* group-category CSS START */
+a{
+	text-decoration: none;
+	color: #000;
+}
+a:hover,
+a:focus,
+a:active {
+	text-decoration: none;
+}
+
 .jstree-from::-webkit-scrollbar{width: 10px;}
 .jstree-from::-webkit-scrollbar-track {background-color:#fff0;}
 .jstree-from::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
@@ -371,6 +403,7 @@ bdoy .container-fluid{
 }
 
 .group-category-header {
+	font-family: 'Jua';
     padding: 10px;
     min-height: 45px;
     max-height: 45px;
@@ -381,7 +414,7 @@ bdoy .container-fluid{
 
 .group-category-header > span{
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 500;
     float: left;
     color: #fff;
 }
@@ -403,6 +436,7 @@ bdoy .container-fluid{
 .jstree-from > ul, .jstree-from > ul > ul{
 	list-style : none;
 	padding-left: 20px;
+	
 }
 
 /* group-category CSS END */

@@ -1,7 +1,7 @@
 
-
 // 화면 전환시 채팅 스크롤 최하단으로 위치
-$(".chat-element").scrollTop($(".chat-content-div").height());
+//$(".chat-element").scrollTop($(".chat-content-div")[0].scrollHeight);
+$(".chat-element").scrollTop($(".chatting-contents").height());
 $('#chat-textbox-text').each(function() {
     this.contentEditable = true;
 });
@@ -12,7 +12,7 @@ $('#chat-textbox-text').keyup(function (e) {return});
 $('#chat-textbox-text').keydown(function (e) {
     if( e.shiftKey && e.keyCode == 13 ) {
         e.stopPropagation();
-        $('#chat-textbox-text').append('<br>');
+        $('#chat-textbox-text').append('\n');
     } else if(e.keyCode == 13) { // Ctrl-Enter pressed
         event.preventDefault();
         sendMessage();

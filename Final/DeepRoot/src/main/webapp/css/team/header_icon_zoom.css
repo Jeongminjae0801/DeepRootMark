@@ -2,6 +2,8 @@
 
 .zoom {
 	position: relative;
+	height: 50px;
+	
 }
 .zoom-fab {
 	display: inline-block;

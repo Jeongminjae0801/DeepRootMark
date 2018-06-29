@@ -10,7 +10,9 @@
 	var nname = '<c:out value="${nname}"/>';
 	var profile = '<c:out value="${profile}"/>';
 	var chatList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
-	
+	var role = '<c:out value="${enabled}"/>';
+	var uid = '<c:out value="${uid}"/>';
+	var position = 0;
 	<c:forEach items="${filecontentlist}" var="filecontent">
 		chatList.push("${filecontent}");
 	</c:forEach>
@@ -19,24 +21,72 @@
 	$(function(){
 		connect();
 		
+		var lastDate = null;
+		
 		$.each(chatList, function(index, value){
-			chatList[index] = chatList[index].split('|');
-			//console.log(chatList[index]);
-			var chatListIndex = chatList[index]
-			
-			var chat_list_div = "";
-			chat_list_div += '<img class="chatting-profile-img" src="${pageContext.request.contextPath}/images/profile/' + chatListIndex[0] + '">';
-			chat_list_div += '<div class="chatting-text-div">';
-			chat_list_div += '<p class="chatting-userid">';
-			chat_list_div += chatListIndex[1] + '<span class="chatting-time">' + chatListIndex[2] + '</span>';
-			chat_list_div += '</p>';
-			chat_list_div += '<span class="chatting-text">';
-			chat_list_div += chatListIndex[3];
-			chat_list_div += '</span>';
-			chat_list_div += '</div>';  	
-			
-            //console.log(chat_list_div);
-            $(".chatting-contents").append(chat_list_div);
+			if(index < 50){
+				chatList[index] = chatList[index].split('|');
+				// <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
+				//console.log(chatList[index]);
+				var chatListIndex = chatList[index];
+				
+				var time =  chatListIndex[2].split("T");
+				
+				if(lastDate == null){
+					lastDate = time[0];
+					var Now = new Date();
+					var NowTime = Now.getFullYear();
+					if(Now.getMonth() < 10){
+						NowTime += '-0' + (Now.getMonth() + 1) ;
+					}else {
+						NowTime += '-' + (Now.getMonth() + 1) ;
+					}
+					NowTime += '-' + Now.getDate();
+					
+					var today = time[0];
+					console.log("today" + NowTime);
+					if(NowTime == time[0]){
+						today = "Today";
+					}
+					
+					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
+					$(".chatting-contents").append(date);
+				}else if(lastDate != time[0]){
+					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
+					$(".chatting-contents").append(date);
+				}
+				
+				
+				
+				time[1] = time[1].split(":");
+	        	var hour = time[1][0];
+	        	var min = time[1][1];
+	        	var ampm = "";
+	        	if(hour > 12) {
+	        		ampm = "PM";
+	        		hour -= 12;
+	        	}else {
+	        		ampm = "AM";
+	        	}
+				
+				var chat_list_div = "";
+				chat_list_div += '<img class="chatting-profile-img" src="${pageContext.request.contextPath}/images/profile/' + chatListIndex[0] + '">';
+				chat_list_div += '<div class="chatting-text-div">';
+				chat_list_div += '<p class="chatting-userid">';
+				chat_list_div += chatListIndex[1] + '<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
+				chat_list_div += '</p>';
+				chat_list_div += '<span class="chatting-text">';
+				chat_list_div += chatListIndex[3];
+				chat_list_div += '</span>';
+				chat_list_div += '</div>';  	
+				
+	            //console.log(chat_list_div);
+	            $("#" + time[0]).after(chat_list_div);
+	            $(".chat-element").scrollTop($(".chatting-contents").height());
+			}else {
+				position = 50;
+				return false;
+			}
 			
 		});
 	});
@@ -45,7 +95,7 @@
 	function connect() {
 	    //console.log("connect");
 	    // WebSocketMessageBrokerConfigurer의 registerStompEndpoints() 메소드에서 설정한 endpoint("/endpoint")를 파라미터로 전달
-	    var ws = new SockJS("http://localhost:8090/bit/endpoint");
+	    var ws = new SockJS("/bit/endpoint");
 	    stompClient = Stomp.over(ws);
 	    stompClient.connect({}, function(frame) {
 	        // 메세지 구독
@@ -54,21 +104,59 @@
 	        	console.log(message.body);
 	        	
 	        	var new_chat = JSON.parse(message.body);
+	        	
+	        	var time =  new_chat.datetime.split("T");
+	        	
+				if(!$("#" + time[0]).length){
+					var Now = new Date();
+					var NowTime = Now.getFullYear();
+					if(Now.getMonth() < 10){
+						NowTime += '-0' + (Now.getMonth() + 1) ;
+					}else {
+						NowTime += '-' + (Now.getMonth() + 1) ;
+					}
+					NowTime += '-' + Now.getDate();
+					
+					var today = time[0];
+					if(NowTime == time[0]){
+						today = "Today";
+					}
+					
+					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
+					$(".chatting-contents").append(date);
+	        	}
+	        	
+	        	time[1] = time[1].split(":");
+	        	var hour = time[1][0];
+	        	var min = time[1][1];
+	        	var ampm = "";
+	        	if(hour > 12) {
+	        		ampm = "PM";
+	        		hour -= 12;
+	        	}else {
+	        		ampm = "AM";
+	        	}
 	        	//console.log(new_chat.nname);
 	        	var chat_div = "";
 	        	chat_div += '<img class="chatting-profile-img" src="${pageContext.request.contextPath}/images/profile/' + new_chat.profile + '">';
 	        	chat_div += '<div class="chatting-text-div">';
 	        	chat_div += '<p class="chatting-userid">';
-	        	chat_div += new_chat.nname + '<span class="chatting-time">' + new_chat.datetime + '</span>';
+	        	chat_div += new_chat.nname + '&nbsp;<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
 	        	chat_div += '</p>';
 	        	chat_div += '<span class="chatting-text">';
                 chat_div += new_chat.content;
                 chat_div += '</span>';
-                chat_div += '</div>';  	
-                $(".chatting-contents").append(chat_div);
+                chat_div += '</div>';
                 
+                $(".chatting-contents").append(chat_div);
+                $(".chat-element").scrollTop($(".chatting-contents").height());
 	        });
 	        
+	 /*        stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
+	        	
+	        	console.log(message.body);
+	        	
+	        }) */
 	        
 	    });
 	    
@@ -98,6 +186,10 @@
 	}
 
 	/* Chatting End */
+		
+	$(function () {
+		jstree(role,gid ,uid);
+	})
 
 </script>
 
@@ -111,8 +203,8 @@
         <div class="container-fluid top">
             <div class="row">
                 <div class="col-sm-12 top-content">
-                    <div class="col-sm-7">
-                         	위에 뭐가 뜨는 영역
+                    <div class="col-sm-7 teamname">
+                    	<i class="fas fa-thumbtack teamname-ico"></i>${gname}
                     </div>
                     <div class="col-sm-5 option">
                         <div class="zoom">
@@ -139,14 +231,7 @@
                         <span><i class="fas fa-chalkboard-teacher"></i> Group Category</span>
                     </div>
                     <div class="group-category-body">
-                        <div class="jstree-from">
-                            <ul>
-                                <li><i class="fa fa-folder-o"></i> 카테고리 시작</li>
-                                    <ul>
-                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.naver.com/"><a href="https://www.naver.com" target="_blank">네이버</a></li>
-                                        <li><img src="https://www.google.com/s2/favicons?domain=https://www.daum.net/"><a href="https://www.daum.net" target="_blank">다음</a></li>
-                                    </ul>
-                            </ul>
+                        <div id="jstree_container" class="jstree-from">                    
                         </div>
                     </div>
                     <div class="group-category-footer">
@@ -169,9 +254,9 @@
 
                     <div class="chat-element">
                         <!-- 날짜 변경되면 나오는 친구 -->
-                        <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
+                        <!-- <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>-->
                         <div class="chatting-contents">
-                            <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
+                            <!-- <img class="chatting-profile-img" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg">
 
                             <div class="chatting-text-div">
                                 <p class="chatting-userid">
@@ -181,10 +266,10 @@
 					                                    희준이는 토게피<br>
 					                                    아니 채팅창을 만들어본적이 없는데 어떻게 만들란 거야?? 응???
                                 </span>
-                            </div>
+                            </div> -->
                         </div>
                         
-                        <div id="2018-06-28" class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>
+                        <!-- <div id="2018-06-28" class="divider"><hr class="left"/><span>today</span><hr class="right"/></div>  -->
                     </div>
 
                     <div class="chat-inputbox-div">
@@ -195,6 +280,9 @@
                                 </div>
                             </div>
                             <div id="chat-textbox-icon">
+                            <div class="flexbox">
+
+                                    </div>
                                 <i class="fas fa-share-square"></i>
                             </div>
                         </div>
@@ -249,3 +337,6 @@
         </div>
     </div>
     <!-- body Content END -->
+    		</div>
+    	</div>
+    </div>

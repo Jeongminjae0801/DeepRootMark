@@ -79,9 +79,9 @@ public class ChatController {
         System.out.println("path : " + path);
         
         BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-        String str = message.getProfile() + "|" + message.getNname() + "|" + message.getDatetime() + "|" + message.getContent();
+        String str = message.getProfile() + "|" + message.getNname() + "|" + message.getDatetime() + "|" + message.getContent() + "&";
         writer.write(str);
-        writer.write(System.getProperty("line.separator"));
+        //writer.write(System.getProperty("line.separator"));
         writer.flush();
         writer.close();
         
@@ -89,5 +89,14 @@ public class ChatController {
 	
     
     //명수
-    //jstree 변경 메시
+    //jstree 변경 메시지
+    @MessageMapping("/JSTREE/{room}")
+    @SendTo("/subscribe/JSTREE/{room}")
+    public JstreeAlarm sendJstree(@DestinationVariable("room") String room, JstreeAlarm message, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
+        System.out.println("채팅 메세지 들어옴");
+    	
+    	
+    	
+        return message;
+    }
 }
