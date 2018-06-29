@@ -56,7 +56,6 @@ public class G_AlarmService {
 		
 		try {
 			alarm_list = g_alarmDAO.getAlarmList(uid);
-			
 		} catch (Exception e) {
 			/*e.printStackTrace();*/
 		}
@@ -69,11 +68,10 @@ public class G_AlarmService {
 		G_AlarmDAO g_alarmDAO = sqlsession.getMapper(G_AlarmDAO.class);
 		int isDelete = 0;
 
-		System.out.println(alarm);
 		try {
 			isDelete = g_alarmDAO.deleteMemo(alarm);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			/*e.printStackTrace();*/
 		}
 		
 		return isDelete;

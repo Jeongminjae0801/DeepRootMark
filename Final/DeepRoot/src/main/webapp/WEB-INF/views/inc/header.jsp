@@ -112,7 +112,7 @@
 						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
 						<ul role="menu" class="sub-menu">
 							<c:forEach items="${headerAlarmList}" var="alarmList">
-								<li data-gid="${alarmList.gid}">
+								<li id="alarmlist${alarmList.gid}" data-gid="${alarmList.gid}">
 									<span>${alarmList.senddate}</span><br>
 									<span>그룹명: ${alarmList.gname}</span><br>
 									<c:choose>
