@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.book.team.dao.G_MemberDAO;
+import site.book.team.dto.G_AlarmDTO;
 import site.book.team.dto.G_MemberDTO;
 
 @Service
@@ -51,8 +52,23 @@ public class G_MemberService {
 		}
 		
 		return selectgmemberlist;
-		
-		
 	}
+	
+	//태웅
+	//그룹원 초대하기: 초대 쪽지 보내기
+	public int inviteUser(G_AlarmDTO alarm){
+		G_MemberDAO g_MemberDAO = sqlsession.getMapper(G_MemberDAO.class);
+		int result = 0;
+		
+		try {
+			result = g_MemberDAO.sendInviteMemo(alarm);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	
 }
