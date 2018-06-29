@@ -214,7 +214,7 @@ public class TeamController {
 	//준석
 	//그룹 페이지  이동
 	@RequestMapping("main.do")
-	public String movegroup(String gid, Model model, HttpServletRequest req) {
+	public String movegroup(String gid, String gname, Model model, HttpServletRequest req) {
 		
 		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
 		
@@ -232,7 +232,10 @@ public class TeamController {
 		if(uid != null) {
 			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
 			model.addAttribute("headerTeamList", headerTeamList);
+			
 		}
+		
+		model.addAttribute("gname", gname);
 		
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
 		model.addAttribute("headerNoticeList", headerNoticeList);
