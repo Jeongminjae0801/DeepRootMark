@@ -198,9 +198,9 @@ ul.sub-menu {
 }
 
 .g_notice{
-    color: green;
-    padding-left: 5px;
-    
+    color: red;
+    padding-right: 15px;
+    float: right;
 }
 .g_notice:hover{
     color: #7bbfa8;
