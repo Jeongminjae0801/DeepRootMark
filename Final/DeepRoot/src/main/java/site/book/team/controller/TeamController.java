@@ -277,7 +277,18 @@ public class TeamController {
     	String fileName = spath;
     	Path path = Paths.get(fileName);
     	
-    	if(Files.exists(path)) {
+    	byte [] fileBytes = Files.readAllBytes(path);
+    	char singleChar;
+       /* for(byte b : fileBytes) {
+        	singleChar = (char) b;
+        	if(b != )
+        	
+        	System.out.print(singleChar);
+        }*/
+    	
+    	
+    	
+    	/*if(Files.exists(path)) {
     		FileInputStream fileInputStream = new FileInputStream(fileName);
         	
         	InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
@@ -288,7 +299,7 @@ public class TeamController {
         			list.add(line);
         		}
         	}
-    	}
+    	}*/
 
     	/*List<String> fileLinesList = Files.readAllLines(path, StandardCharsets.UTF_8);
     	
