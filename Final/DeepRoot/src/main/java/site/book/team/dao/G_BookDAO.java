@@ -50,4 +50,10 @@ public interface G_BookDAO {
 	public List<G_BookDTO> getTeamJstree(String gid) throws ClassNotFoundException, SQLException;
 	//현재 GBID max
 	public int getCurrentGBID() throws ClassNotFoundException, SQLException;
+	//그룹 페이지 jstree 노드 삭제하기
+	public int deleteTeamNode(String gbid) throws ClassNotFoundException, SQLException;
+	//그룹 페이지 jstree 제목 수정하기
+	public int updateTeamNodeText(HashMap<String, String> param) throws ClassNotFoundException, SQLException;
+	//그룹 페이지 jstree 폴더 혹은 url 추가하기
+	public int addTeamFolderOrUrl( G_BookDTO g_book) throws ClassNotFoundException, SQLException;
 }

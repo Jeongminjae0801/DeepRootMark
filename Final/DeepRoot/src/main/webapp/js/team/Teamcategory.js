@@ -1,4 +1,4 @@
-function jstree(role , gid, uid){
+function jstree(role , gid, uid,nname){
 
 	form = {gid : gid}
 	/* 그룹 시작시 jstree 가져오기 */
@@ -19,6 +19,26 @@ function jstree(role , gid, uid){
 							"dots": false, // 연결선 없애기
 						},
 						"check_callback" : function(op, node, par, pos, more){ // 특정 이벤트 실행 전에 잡아 낼 수 있음
+							console.log("//////////////////");
+							console.log(par);
+							console.log(pos);
+							console.log(more);
+							console.log(node);
+							console.log(node.text);
+							/*	private String nname;
+	private String doing;
+	private String target;
+	private String location;
+	private String type;
+	private String newnameorplace;*/
+							stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
+					           	doing : op,
+					           	target : node.text,
+					           	location : par.text,
+					           	nname: nname
+					           	
+					        }));
+							
 							//권한 검사해서 DND 가능자와 아닌자 구분
 							if(op === "move_node"){ // dnd 이벤트 일때 
 								var dragnode = node.id;
@@ -40,7 +60,6 @@ function jstree(role , gid, uid){
 								})
 								return true;
 							}else if(op === "create_node"){   //폴더 생성시 실행 되는 callback 함수
-								$("#jstree_container_child").jstree(true).redraw_node(par, true); 
 								return true;
 							}else if(op == "copy_node"){	// 오른쪽 url 왼쪽 폴더로 옮기면 실행되는데 이때도 drag drop으로 처리함
 								
@@ -83,10 +102,11 @@ function jstree(role , gid, uid){
 									"separator_after": false,
 									"label": "URL 추가",
 									"action": function (obj) { 
-										$('#form_btn')[0].reset();// modal input text 창 초기화
-										var inst = $.jstree.reference(obj.reference); // 내가 우 클릭한 node의 정보
-										$('#linkAdd_btn').modal(); // url 추가하는 modal 창이 나온다.
-										addUrlLevel1();
+										
+										/* tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+							     						 //console.log(new_node.id);
+							     					 });
+							     					*/
 									}
 								},
 								"folder_create": {
@@ -99,20 +119,18 @@ function jstree(role , gid, uid){
 										var inst = $.jstree.reference(obj.reference);
 										var par_node = inst.get_node(obj.reference);
 										var par = inst.get_node(obj.reference).id;
-										var form = {urlname : "새 폴더", pid : par };// 해당 유저의 아이디 가져오기
+										var form = {urlname : "새 폴더", pid : par ,gid:gid};// 해당 유저의 아이디 가져오기
 										
 										$.ajax({
-											url: "addFolderOrUrl.do",
+											url: "addTeamFolderOrUrl.do",
 											type :"POST",
 											data : form,
 											beforeSend : function(){
-												$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
 							     				},
 							     				success : function(data){
-							     					$('#loading').html("");
-							     					var node_id = $.trim(data.ubid);
+							     					var node_id = $.trim(data.result);
 							     					/*왼쪽 jstree 새폴더 생성과 동시에 이름 수정하게 하기*/
-							     					tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder"} ,"last",function(new_node){
+							     					tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder",uid: uid} ,"last",function(new_node){
 							     						new_node.id = node_id;
 							     						tree.edit(new_node);
 						            				 	});
@@ -146,7 +164,6 @@ function jstree(role , gid, uid){
 				.bind("loaded.jstree", function (event, data) {
 					$('#jstree_container').jstree("open_all");
 					var test = data.instance._model.data
-					var head = 0;
 				})
 				.bind("select_node.jstree", function (e, data) {
 					console.log(data);
@@ -156,32 +173,30 @@ function jstree(role , gid, uid){
 		    		var node_text = data.text;
 		    		/*왼쪽 jstree 폴더 이름 수정하기*/			    		
 		    		$.ajax({
-	        			url : 'updateNodeText.do',
+	        			url : 'updateTeamNodeText.do',
 	        			type: 'POST',
-	        			data: {'id' : node_id, 'text' : node_text},
+	        			data: {'gbid' : node_id, 'text' : node_text},
 	        			beforeSend : function(){
-	        				$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
      					},
 	        			success : function(result){
-	        				$('#loading').html("");
+	        				console.log(result.result);
 	        			}
 	        		});   
 		    	})
 		    	.bind('delete_node.jstree',function(event,data){
 			    		/*왼쪽 jstree 폴더 삭제하기*/
 		    		var node_id = data.node.id;
-		    		var form = {node : node_id}
-
+		    		var form = {gbid : node_id}
+		    		
 		    		$.ajax({
-		    			url:'deleteNode.do',
+		    			url:'deleteTeamNode.do',
 		    			type:'POST',
 		    			dataType : "json",
 		    			data: form,
 		    			beforeSend : function(){
-		    				$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
      					},
      					success : function(result){
-		    				$('#loading').html("");
+     						console.log(result.result);
 						}
 					})  
 		    	});
