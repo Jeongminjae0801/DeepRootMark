@@ -25,7 +25,7 @@
                         <label class="control-label" for="photo">Profile Photo</label>
                         <br>  
                         <center>
-                            <input type="image" class="currentProfileImg" id="currentProfileImg" src="images/profile/${sessionScope.info_userprofile}" onerror="images/profile.png">
+                            <img class="currentProfileImg" id="currentProfileImg" src="images/profile/${sessionScope.info_userprofile}" onerror="images/profile.png">
                             <input type="file" id="profileImg" name="uploadFile" accept="image/jpeg, image/png" style="display: none;" onchange="profileImgUpLoad(this)">
                         </center>
                             
@@ -81,7 +81,7 @@
 	            }
 	        });
 		});
-		$("input[type='image']").click(function(){
+		$("#currentProfileImg").click(function(){
             $("input[id='profileImg']").click();
         })
         
@@ -130,5 +130,19 @@
         }
     }
     
-  
+    /* $("#edit-who-info-btn").prop("disabled", true);
+    
+    $("#edit-who-info-btn").on("dblclick", function(){});
+	$("#edit-who-info-btn").on("click", function(){
+		console.log("xxxx");
+			if($('#pwd_edit').hasClass('form-control')
+			== $('#pwd_confirmation').hasClass('form-control')) {
+				$("#edit-who-info-btn").prop("disabled", false);
+			}else {
+			
+			alert("비밀번호를 모두 작성해주세요");
+			$("#edit-who-info-btn").prop("disabled", true);
+			}
+		
+	}); */
 	</script>
