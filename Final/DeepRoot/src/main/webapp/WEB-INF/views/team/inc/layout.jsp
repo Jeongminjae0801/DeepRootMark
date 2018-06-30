@@ -76,5 +76,58 @@
     <script src="${pageContext.request.contextPath}/js/team/header_icon_zoom.js?ver=2"></script>
     <!-- Custom Script END -->
     
+    <!-- URL 추가 모달 -->
+    
+    	<!-- URL 추가 모달 -->
+	<div id="linkAdd_btn" class="modal fade" role="dialog">
+		<div class="main-modal-controller">
+			<div class="main-modal-center">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">
+								<b>URL 추가</b>
+							</h4>
+						</div>
+		
+						<div class="modal-body">
+							<form id="form_btn">
+								<table class="table">
+									<colgroup>
+										<col width="30%">
+										<col width="70%">
+									</colgroup>
+									<tr class="addUrlLevel1">
+										<td class="info" style="vertical-align: middle;">URL :</td>
+										<td><input type="text" id="url_btn" name="url_btn"
+											class="form-control"></td>
+									</tr>
+									<tr class="addUrlLevel2">
+										<td class="info" style="vertical-align: middle;">제목 :</td>
+										<td><input type="text" id="title_btn" name="title_btn"
+											class="form-control"></td>
+									</tr>
+									<tr class="addUrlLevel2">
+										<td class="info" style="vertical-align: middle;">카테고리 :</td>
+										<td><input type="text" id="category_btn" name="category_btn"
+											class="form-control" readonly="readonly"></td>
+									</tr>
+								</table>
+							</form>
+							<div class="modal-footer">
+								<!-- type="submit" value="Submit" -->
+								<button type="button" class="btn btn-default btn-sm addUrlLevel1" onclick="openAddUrlLevel2()">다음</button>
+								<button type="button" class="btn btn-default btn-sm addUrlLevel2" onclick="addUrlLevel1()">이전</button>
+								<button class="btn btn-default btn-sm addUrlLevel2" onclick="addUrl()">추가하기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
 </body>
 </html>
