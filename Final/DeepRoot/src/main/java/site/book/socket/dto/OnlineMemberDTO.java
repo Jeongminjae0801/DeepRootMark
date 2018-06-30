@@ -1,19 +1,16 @@
 package site.book.socket.dto;
 
-import java.util.List;
-
 public class OnlineMemberDTO {
-	private List<String> online_list;
+	private String uid;
+	private String content;
 	
-	public OnlineMemberDTO() {}
-	public OnlineMemberDTO(List<String> online_list) {
-		this.online_list = online_list;
-	}
-	public List<String> getOnline_list() {return online_list;}
-	public void setOnline_list(List<String> online_list) {this.online_list = online_list;}
+	public String getUid() {return uid;}
+	public void setUid(String uid) {this.uid = uid;}
+	public String getContent() {return content;}
+	public void setContent(String content) {this.content = content;}
 	
 	@Override
 	public String toString() {
-		return "OnlineMemberDTO [online_list=" + online_list + "]";
+		return "OnlineMemberDTO [uid=" + uid + ", content=" + content + "]";
 	}
 }
