@@ -176,6 +176,16 @@ public class TeamController {
 		
 		return jsonview;
 	}
+	 
+	//그룹 페이지에서 DND
+	@RequestMapping("dropTeamNode.do")
+	public View dropTeamNode(@RequestParam HashMap<String, String> param , Model model) {
+		
+		int result = teamservice.dropTeamNode(param);
+		model.addAttribute("result",result);
+		
+		return jsonview;
+	}
 	
 	//태웅
 	//해당 유저의 진행중인 그룹의 카테고리만를 보내준다.
