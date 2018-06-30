@@ -25,7 +25,7 @@
 .skin-blue .main-header .navbar .nav .open > a:hover,
 .skin-blue .main-header .navbar .nav .open > a:focus,
 .skin-blue .main-header .navbar .nav > .active > a {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(68, 75, 82, 0.1);
     color: #f6f6f6
 }
 
@@ -69,7 +69,7 @@
 }
 
 .skin-blue .main-header .logo:hover {
-    background-color: #357ca5
+    background-color: #444b52;
 }
 
 .skin-blue .main-header li.user-header {
@@ -105,7 +105,7 @@
 .skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .sidebar-menu > li.active > a {
     color: #fff;
-    background-color: #408080;
+    background-color: #49626b;
     border-left: 3px solid #00a65a;
 }
 
