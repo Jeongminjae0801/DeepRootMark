@@ -11,10 +11,11 @@ import java.util.Map;
  */
 public class OnOffMemberSingleton {
 	
-	private static Map<String, List<String>> online = new HashMap<>();
+	private static Map<String, Map<String, String>> online = new HashMap<>();
 	
 	public OnOffMemberSingleton() {}
-	public static Map<String, List<String>> getInstance () {
+	//Map<GID, Map<UID, "ON">>
+	public static Map<String, Map<String, String>> getInstance () {
 		return online;
 	}
 	

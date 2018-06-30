@@ -354,14 +354,20 @@ function connect() {
              
         });
  		
- 		
- 		stompClient.subscribe('/subscribe/online/' + gid, function(message){
-        	
-        	console.log(message.body);
-        	
-        });
+ 		stompClient.send('/online/' + gid , {}, JSON.stringify({nname: nname, status: "ON"}));
+ 		stompClient.subscribe('/subscribe/online/' + gid, function(message) {
+ 			 var new_connect = JSON.parse(message.body);
+ 			 console.log(new_connect);
+ 		});
         
     });
+    
+    ws.onclose = function() {
+    	$.alert('close');
+    	stompClient.send('/offline/' + gid , {}, JSON.stringify({nname: nname, status: "OFF"}));
+        stompClient.disconnect();
+        location.href = "/bit/user/mybookmark.do";
+    };
 }
  
 // 채팅 메세지 전달
