@@ -71,7 +71,7 @@ $(function() {
         	}
 			
 			var chat_list_div = "";
-			chat_list_div += '<img class="chatting-profile-img" src="/bit/images/profile/' + chatListIndex[0] + '">';
+			chat_list_div += '<img class="chatting-profile-img" onerror="this.src=\'/bit/images/profile.png\'" src="/bit/images/profile/' + chatListIndex[0] + '">';
 			chat_list_div += '<div class="chatting-text-div">';
 			chat_list_div += '<p class="chatting-userid">';
 			chat_list_div += chatListIndex[1] + '<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
@@ -172,7 +172,7 @@ $(function() {
         	        	}
         				
         				var chat_list_div = "";
-        				chat_list_div += '<img class="chatting-profile-img" src="/bit/images/profile/' + chatListIndex[0] + '">';
+        				chat_list_div += '<img class="chatting-profile-img" onerror="this.src=\'/bit/images/profile.png\'" src="/bit/images/profile/' + chatListIndex[0] + '">';
         				chat_list_div += '<div class="chatting-text-div">';
         				chat_list_div += '<p class="chatting-userid">';
         				chat_list_div += chatListIndex[1] + '<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
@@ -233,7 +233,7 @@ $(function() {
         	        	}
         				
         				var chat_list_div = "";
-        				chat_list_div += '<img class="chatting-profile-img" src="/bit/images/profile/' + chatListIndex[0] + '">';
+        				chat_list_div += '<img class="chatting-profile-img" onerror="this.src=\'/bit/images/profile.png\'" src="/bit/images/profile/' + chatListIndex[0] + '">';
         				chat_list_div += '<div class="chatting-text-div">';
         				chat_list_div += '<p class="chatting-userid">';
         				chat_list_div += chatListIndex[1] + '<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
@@ -303,7 +303,7 @@ function connect() {
         	}
         	//console.log(new_chat.nname);
         	var chat_div = "";
-        	chat_div += '<img class="chatting-profile-img" src="/bit/images/profile/' + new_chat.profile + '">';
+        	chat_div += '<img class="chatting-profile-img" onerror="this.src=\'/bit/images/profile.png\'" src="/bit/images/profile/' + new_chat.profile + '">';
         	chat_div += '<div class="chatting-text-div">';
         	chat_div += '<p class="chatting-userid">';
         	chat_div += new_chat.nname + '&nbsp;<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
