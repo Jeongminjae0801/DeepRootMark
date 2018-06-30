@@ -318,7 +318,6 @@ function connect() {
         });
         
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
-        	
  			var body = JSON.parse(message.body);
             
             var nname = body.nname;
@@ -337,8 +336,22 @@ function connect() {
             }
             
             ohSnap(snap_message, {color: 'red', duration: '3000'});
-             console.log(message.body);           
- 			
+            console.log(message.body);    
+             
+            form = {gid : gid}
+            $.ajax({
+             
+            	url : "getTeamJstree.do",
+         		type:"POST",
+         		data :form,
+         		dataType:"json",
+         		success : function(data){
+         			$("#jstree_container").jstree(true).settings.core.data = data;
+					$("#jstree_container").jstree(true).refresh();
+         			
+         		}
+             })
+             
         });
  		
  		
