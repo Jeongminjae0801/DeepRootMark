@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="group-category-footer">
-
+					<div id="ohsnap"></div>
                     </div>
                 </div>
             </section>

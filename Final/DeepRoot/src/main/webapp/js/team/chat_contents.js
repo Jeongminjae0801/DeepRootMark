@@ -319,7 +319,26 @@ function connect() {
         
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
         	
-        	console.log(message.body);
+ 			var body = JSON.parse(message.body);
+            
+            var nname = body.nname;
+            var doing = body.doing; 
+            var target = body.target;
+            var location = body.location;
+            var type = body.type;
+            var new_name = body.newnameorplace;              
+            
+            var   snap_message = "";
+            
+            if(new_name == "#" || new_name == null){
+               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+            }else{
+               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
+            }
+            
+            ohSnap(snap_message, {color: 'red', duration: '3000'});
+             console.log(message.body);           
+ 			
         });
  		
  		

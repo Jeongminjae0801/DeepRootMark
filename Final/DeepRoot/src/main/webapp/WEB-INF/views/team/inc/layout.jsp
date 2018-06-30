@@ -51,6 +51,9 @@
 	<!-- jQuery Ajax Form START -->
 	
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	
+	<!-- ohsnap jstree 알림창 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/team/ohsnap.js"></script>
 </head>
 <body>
 	<!-- Script -->

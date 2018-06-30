@@ -47,15 +47,25 @@ function jstree(role , gid, uid,nname){
 							}else if	(op == 'rename_node'){
 								newnameorplace = pos;
 								sendmessage()
-							}else if(op =='remove_node'){
+							}else if(op =='delete_node'){
 								sendmessage()
 							}else if(op == 'create_node'){
 								sendmessage()
 							}
 							
 							function sendmessage() {
+								
+								var op_msg = "";
+		                        
+		                        switch(op){
+		                            case 'create_node':   op_msg = "생성"; break;
+		                            case 'rename_node':   op_msg = "수정"; break;
+		                            case 'delete_node':   op_msg = "삭제"; break;
+		                            case 'move_node':   op_msg = "이동"; break;
+		                        }
+								
 								stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
-						           	doing : op,
+						           	doing : op_msg,
 						           	target : node.text,
 						           	location : par.text,
 						           	nname: nname,
@@ -85,23 +95,7 @@ function jstree(role , gid, uid,nname){
 								return true;
 							}else if(op === "create_node"){   //폴더 생성시 실행 되는 callback 함수
 								return true;
-							}/*else if(op == "copy_node"){	// 오른쪽 url 왼쪽 폴더로 옮기면 실행되는데 이때도 drag drop으로 처리함
-								
-								$.ajax({										
-									url : 'dropNode.do',
-									type : 'POST',
-									data : {dragnode : node.id, dropnode : par.id},
-									beforeSend : function(){
-										$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
-									},
-									success : function(){
-										$('#loading').html("");
-										$('#jstree_container').jstree().deselect_all(true);											
-										$('#jstree_container').jstree(true).select_node(par.id);											
-									}
-								});
-								return false;	
-							}*/
+							}
 							return true;	
 						}
 					},
