@@ -44,7 +44,7 @@
 					NowTime += '-' + Now.getDate();
 					
 					var today = time[0];
-					console.log("today" + NowTime);
+					//console.log("today" + NowTime);
 					if(NowTime == time[0]){
 						today = "Today";
 					}
@@ -55,8 +55,6 @@
 					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
 					$(".chatting-contents").append(date);
 				}
-				
-				
 				
 				time[1] = time[1].split(":");
 	        	var hour = time[1][0];
@@ -101,7 +99,7 @@
 	        // 메세지 구독
 	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 subscribe prefix("/subscribe")를 사용해야 함
 	        stompClient.subscribe('/subscribe/chat/' + gid, function(message) {
-	        	console.log(message.body);
+	        	//console.log(message.body);
 	        	
 	        	var new_chat = JSON.parse(message.body);
 	        	

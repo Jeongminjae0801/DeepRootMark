@@ -56,7 +56,7 @@ import site.book.user.service.UserService;
 /**
  * @Class : SocialController.java
  * @Date : 2018. 6. 24.
- * @Author : 김희준, 김태웅
+ * @Author : 김태웅
  */
 @Controller
 @RequestMapping("/team/")
