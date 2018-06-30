@@ -317,11 +317,16 @@ function connect() {
             $(".chat-element").scrollTop($(".chatting-contents").height());
         });
         
- 		  stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
+ 		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
         	
         	console.log(message.body);
+        });
+ 		
+ 		
+ 		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
         	
-        }) 
+        	console.log(message.body);
+        });
         
     });
     
