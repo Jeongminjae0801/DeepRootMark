@@ -323,13 +323,13 @@ function connect() {
         });
  		
  		
- 		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
+ 		stompClient.subscribe('/subscribe/online/' + gid, function(message){
         	
         	console.log(message.body);
+        	
         });
         
     });
-    
 }
  
 // 채팅 메세지 전달
@@ -339,7 +339,7 @@ function sendMessage() {
     var str = $("#chat-textbox-text").html().trim();
     str = str.replace(/ /gi, '&nbsp;')
     str = str.replace(/\n|\r/g, '<br>');
-    console.log(str);
+    //console.log(str);
     if(str.length > 0) {
         // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
         stompClient.send("/chat/" + gid, {}, JSON.stringify({
@@ -348,6 +348,17 @@ function sendMessage() {
            	profile: profile
         }));
     }
+}
+
+// 내가 들어왔으니 온라인으로 이동시켜달라 요청
+function sendOnlineMessage() {
+	
+    // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
+    stompClient.send("/online/" + gid, {}, JSON.stringify({
+       	uid: uid,
+       	content: "ON"
+    }));
+    
 }
  
 // 채팅방 연결 끊기
