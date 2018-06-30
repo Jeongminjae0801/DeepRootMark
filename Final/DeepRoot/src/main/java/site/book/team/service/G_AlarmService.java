@@ -39,10 +39,8 @@ public class G_AlarmService {
 		else { alarm.setGaid(1); }
 		
 		try {
-			System.out.println("???: " + alarm);
 			if( g_alarmDAO.alreadySend(alarm) > 0) {
 				already_invite = true;
-				System.out.println("???");
 			}
 			
 		} catch (Exception e) {
