@@ -19,101 +19,7 @@
 	
 	//console.log(gid);
 	
-	// 채팅방 연결
-	function connect() {
-	    //console.log("connect");
-	    // WebSocketMessageBrokerConfigurer의 registerStompEndpoints() 메소드에서 설정한 endpoint("/endpoint")를 파라미터로 전달
-	    var ws = new SockJS("/bit/endpoint");
-	    stompClient = Stomp.over(ws);
-	    stompClient.connect({}, function(frame) {
-	        // 메세지 구독
-	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 subscribe prefix("/subscribe")를 사용해야 함
-	        stompClient.subscribe('/subscribe/chat/' + gid, function(message) {
-	        	//console.log(message.body);
-	        	
-	        	var new_chat = JSON.parse(message.body);
-	        	
-	        	var time =  new_chat.datetime.split("T");
-	        	
-				if(!$("#" + time[0]).length){
-					var Now = new Date();
-					var NowTime = Now.getFullYear();
-					if(Now.getMonth() < 10){
-						NowTime += '-0' + (Now.getMonth() + 1) ;
-					}else {
-						NowTime += '-' + (Now.getMonth() + 1) ;
-					}
-					NowTime += '-' + Now.getDate();
-					
-					var today = time[0];
-					if(NowTime == time[0]){
-						today = "Today";
-					}
-					
-					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
-					$(".chatting-contents").append(date);
-	        	}
-	        	
-	        	time[1] = time[1].split(":");
-	        	var hour = time[1][0];
-	        	var min = time[1][1];
-	        	var ampm = "";
-	        	if(hour > 12) {
-	        		ampm = "PM";
-	        		hour -= 12;
-	        	}else {
-	        		ampm = "AM";
-	        	}
-	        	//console.log(new_chat.nname);
-	        	var chat_div = "";
-	        	chat_div += '<img class="chatting-profile-img" src="${pageContext.request.contextPath}/images/profile/' + new_chat.profile + '">';
-	        	chat_div += '<div class="chatting-text-div">';
-	        	chat_div += '<p class="chatting-userid">';
-	        	chat_div += new_chat.nname + '&nbsp;<span class="chatting-time">' + hour + "시&nbsp;" + min + '분&nbsp;' + ampm + '</span>';
-	        	chat_div += '</p>';
-	        	chat_div += '<span class="chatting-text">';
-                chat_div += new_chat.content;
-                chat_div += '</span>';
-                chat_div += '</div>';
-                
-                $(".chatting-contents").append(chat_div);
-                $(".chat-element").scrollTop($(".chatting-contents").height());
-	        });
-	        
-	 		  stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
-	        	
-	        	console.log(message.body);
-	        	
-	        }) 
-	        
-	    });
-	    
-	}
-	 
-	// 채팅 메세지 전달
-	function sendMessage() {
-		//console.log("click");
-		
-	    var str = $("#chat-textbox-text").html().trim();
-	    str = str.replace(/ /gi, '&nbsp;')
-	    str = str.replace(/\n|\r/g, '<br>');
-	    console.log(str);
-	    if(str.length > 0) {
-	        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
-	        stompClient.send("/chat/" + gid, {}, JSON.stringify({
-	           	content: str,
-	           	nname: nname,
-	           	profile: profile
-	        }));
-	    }
-	}
-	 
-	// 채팅방 연결 끊기
-	function disconnect() {
-	    stompClient.disconnect();
-	}
-
-	/* Chatting End */
+	
 	
 	/* jstree START */	
 	$(function () {
@@ -241,15 +147,15 @@
                             	<i class="fas fa-toggle-on"></i>온라인
                             </div>
                             <div class="online-member">
-                            	<script type="text/javascript">console.log("${gmemberlist}")</script>
-                            	<c:set var="userid" value="${sessionScope.info_userid}"/>
-                                <c:forEach items="${gmemberlist}" var="memberlist">
-                               	<c:if test="${memberlist.uid != userid}">
-                               		<p class="member">
-	                                    <img class="member-ico" src="<%= request.getContextPath() %>/images/profile/${memberlist.profile}">${memberlist.nname}
-	                                </p>
-                               	</c:if>
-                                </c:forEach>
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
+                                </p>
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
+                                </p>
+                                <p class="member">
+                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
+                                </p>
                             </div>
                         </div>
                         <div class="offline-content">
