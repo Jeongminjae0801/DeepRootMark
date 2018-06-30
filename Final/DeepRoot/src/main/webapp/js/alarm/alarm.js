@@ -36,7 +36,7 @@ function deleteMemo(gid, fromid, alarm_kind){
 			if( data.result == "deleted" ) {
 				alarm_item.remove();
 			}else {
-				$.alert("잠시후 다시 시도해주세요!");
+				/*$.alert("잠시후 다시 시도해주세요!");*/
 			}
 		}
 	});
