@@ -169,8 +169,9 @@ public class TeamController {
 	public View addTeamFolderOrUrl(HttpServletRequest req, Model model , G_BookDTO g_book) {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
-        
         g_book.setUid(uid);
+        System.out.println("/////////////////////////////////");
+        System.out.println(g_book);
 		int result = teamservice.addTeamFolderOrUrl(g_book);
 		model.addAttribute("result",result);
 		

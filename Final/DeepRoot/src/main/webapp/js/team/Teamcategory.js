@@ -1,5 +1,7 @@
+var urlpid = null;
+var gid2 = null;
 function jstree(role , gid, uid,nname){
-
+	gid2 =gid;
 	form = {gid : gid}
 	/* 그룹 시작시 jstree 가져오기 */
 	$.ajax({
@@ -89,11 +91,8 @@ function jstree(role , gid, uid,nname){
 									beforeSend : function(){
 									},
 									success : function(data){
-										$('#loading').html("");
 									}
 								})
-								return true;
-							}else if(op === "create_node"){   //폴더 생성시 실행 되는 callback 함수
 								return true;
 							}
 							return true;	
@@ -105,80 +104,7 @@ function jstree(role , gid, uid,nname){
 						"select_node" : false, // 우클릭 했을 경우 왼클릭되는거 막음
 						
 						/*왼쪽 jstree  우클릭시 생성되는 메뉴 구성하기 START*/
-						"items" : function($node){ //우클릭된 node(폴더)의 정보를 가져온다.
-							
-							var node_uid = $node.original.uid;
-							var href = $node.a_attr.href;
-							var tree = $("#jstree_container").jstree(true);
-							
-							if(node_uid = uid){console.log("ddddddddddd");}
-							// 링크 만들기, 폴더 만들기, 이름 바꾸기, 삭제
-							return {
-								"link_create" : {
-									"icon" : "fa fa-plus",
-									"separator_before": false,
-									"separator_after": false,
-									"label": "URL 추가",
-									"action": function (obj) { 
-										
-										/* tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
-							     						 //console.log(new_node.id);
-							     					 });
-							     					*/
-									}
-								},
-								"folder_create": {
-									"icon" : "fa fa-plus-circle",
-									"separator_before": false,
-									"separator_after": false,
-									"_disabled" : false, 
-									"label": "그룹 추가",
-									"action": function (obj) {
-										var inst = $.jstree.reference(obj.reference);
-										var par_node = inst.get_node(obj.reference);
-										var par = inst.get_node(obj.reference).id;
-										var form = {urlname : "새 폴더", pid : par ,gid:gid};// 해당 유저의 아이디 가져오기
-										
-										$.ajax({
-											url: "addTeamFolderOrUrl.do",
-											type :"POST",
-											data : form,
-											beforeSend : function(){
-							     				},
-							     				success : function(data){
-							     					var node_id = $.trim(data.result);
-							     					/*왼쪽 jstree 새폴더 생성과 동시에 이름 수정하게 하기*/
-							     					console.log("이전ㅇ어어엉");
-							     					tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder",uid: uid ,a_attr : {href: '#'}} ,"last",function(new_node){
-							     						console.log("생성");
-							     						new_node.id = node_id;
-							     						tree.edit(new_node);
-						            				 	});
-					              			 	 	}
-						               		  	})
-									}
-								},
-								"rename" : {
-									"icon" : "fa fa-edit",
-									"separator_before": false,
-									"separator_after": false,
-									"label": "이름 수정",
-									"action" : function (obj) {
-										/*왼쪽 jstree 이름 수정하기 아래에 함수 있음*/
-										tree.edit($node);			
-									}
-								},
-								"remove" : {
-									"icon" : "fa fa-trash",
-									"separator_before": false,
-									"separator_after": false,
-									"label": "삭제",
-									"action": function (obj) { 
-										tree.delete_node($node);
-									}
-								}
-						        };						
-						}
+						"items" : customMenu
 					}			    
 				})	
 				.bind("loaded.jstree", function (event, data) {
@@ -219,7 +145,15 @@ function jstree(role , gid, uid,nname){
      						console.log(result.result);
 						}
 					})  
-		    	});
+		    	})
+		    	.bind("select_node.jstree",function(e,data){
+		    		var href = data.node.a_attr.href;
+		    		
+		    		if(href !='#'){
+						window.open(href); 
+		    		}
+			
+		    	})
 		}
 	})
 	/*왼쪽 jstree 폴더 열렸을 경우 아이콘 변경해 주기*/	
@@ -232,4 +166,167 @@ function jstree(role , gid, uid,nname){
 	})	
 }
 
-		
+function addUrlLevel1() {
+	$(".addUrlLevel1").show();
+	$(".addUrlLevel2").hide();
+	$(".addUrlLevel2").hide();
+}
+
+function openAddUrlLevel2() {
+	
+	var url = $("#url_btn").val().trim();
+	
+	if(url == ""){
+		$.alert("URL을 입력해주세요");
+	}else {
+		$.ajax({
+    		url: "/bit/admin/preview.do",
+			type: "post",
+			data : {
+				url : url // URL 주소
+			},
+			beforeSend: function() {
+				
+				$("#title_btn").css("cursor", "wait ");
+         		$("#title_btn").val("");
+         		//console.log("부모 ID : " + urlpid);
+         		
+         		var text = $('#jstree_container').jstree(true).get_node(urlpid).text;
+         		//console.log("카테고리 : " + text + "/////")
+         		$("#category_btn").val(text);
+         		addUrlLevel2();
+            },
+            complete: function() {
+            	$("#title_btn").css("cursor", "default");
+            },
+			success : function(data){
+				$("#title_btn").val(data.title);
+			},
+    	});
+	}
+	
+}
+
+//2단계 폼 보여주기
+function addUrlLevel2() {
+	$(".addUrlLevel2").show();
+	$(".addUrlLevel1").hide();
+}
+
+//url 추가
+function addUrl(){
+	var url = $('#url_btn').val(); //추가 url 값
+	var title = $('#title_btn').val(); // 추가 url 명값
+	var tree = $("#jstree_container").jstree(true);
+	var form = {url : url , urlname : title , pid : urlpid, gid:gid2}
+	console.log(form);
+	 if(title == ""){
+		 $.alert("제목을 입력해주세요")
+	 }else {
+	$.ajax({
+		url: "addTeamFolderOrUrl.do",
+		type :"POST",
+		data : form,
+		beforeSend : function(){
+				},
+				success : function(data){
+					$('#linkAdd_btn').modal("toggle"); 
+					var par_node = $('#jstree_container').jstree(true).get_node(urlpid);
+					var node_id = $.trim(data.result);
+					tree.create_node(par_node , {text : title , id : node_id  , icon : "https://www.google.com/s2/favicons?domain="+ url ,uid: uid ,a_attr : {href: url}} ,"last",function(new_node){
+				 	});
+			 	 	}
+   		  	})
+	 }
+	
+}
+
+function customMenu($node){
+	var node_uid = $node.original.uid;
+	var href = $node.a_attr.href;
+	var tree = $("#jstree_container").jstree(true);	
+	
+	// 링크 만들기, 폴더 만들기, 이름 바꾸기, 삭제
+	var items = { 
+			"link_create" : {
+				"icon" : "fa fa-plus",
+				"separator_before": false,
+				"separator_after": false,
+				"label": "URL 추가",
+				"action": function (obj) {
+					
+				}
+			},
+			"folder_create": {
+				"icon" : "fa fa-plus-circle",
+				"separator_before": false,
+				"separator_after": false,
+				"_disabled" : false, 
+				"label": "그룹 추가",
+				"action": function (obj) {
+					var inst = $.jstree.reference(obj.reference);
+					var par_node = inst.get_node(obj.reference);
+					var par = inst.get_node(obj.reference).id;
+					var form = {urlname : "새 폴더", pid : par , gid : gid};// 해당 유저의 아이디 가져오기
+					
+					$.ajax({
+						url: "addTeamFolderOrUrl.do",
+						type :"POST",
+						data : form,
+						beforeSend : function(){
+		     			
+						},
+		     			success : function(data){
+		     				var node_id = $.trim(data.result);
+		     				
+		     				/*왼쪽 jstree 새폴더 생성과 동시에 이름 수정하게 하기*/							     			
+		     				tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder",uid: uid ,a_attr : {href: '#'}} ,"last",function(new_node){
+		     					new_node.id = node_id;
+		     					tree.edit(new_node);
+	            			});
+	          			}
+	               	})
+				}
+			},
+			"rename" : {
+				"icon" : "fa fa-edit",
+				"separator_before": false,
+				"separator_after": false,
+				"label": "이름 수정",
+				"action" : function (obj) {
+					/*왼쪽 jstree 이름 수정하기 아래에 함수 있음*/
+					tree.edit($node);			
+				}
+			},							
+			"remove" : {
+				"icon" : "fa fa-trash",
+				"separator_before": false,
+				"separator_after": false,
+				"label": "삭제",
+				"action": function (obj) { 
+					tree.delete_node($node);
+				}
+			}
+	    };
+	
+	if(href == '#'){ // 폴더
+		if(uid == node_uid){ // 자기꺼
+			
+		}else{ // 아닌거
+			delete items.link_create;
+			delete items.folder_create;
+			delete items.rename;
+			delete items.remove;
+		}
+	}else{ // 링크	
+		if(uid == node_uid){ // 자기꺼			
+			delete items.folder_create;			
+		}else{ // 아닌거	
+			delete items.folder_create;
+			delete items.remove;	
+			delete items.rename;
+		}
+	}
+	
+	return items;
+}

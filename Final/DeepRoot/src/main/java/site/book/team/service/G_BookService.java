@@ -164,7 +164,7 @@ public class G_BookService {
 					map.put("href", list.get(i).getUrl());
 					jsonobject.put("id", list.get(i).getGbid());
 					jsonobject.put("text", list.get(i).getUrlname());
-					jsonobject.put("uid",uid);
+					jsonobject.put("uid",list.get(i).getUid());
 					jsonobject.put("a_attr",map);			
 					jsonArray.put(jsonobject);
 					
