@@ -144,16 +144,34 @@ function group_complete(){
 }
 
 
-/* 멤버 강퇴 */
+
+/* 마우스 오른쪽 이벤트 (회원강퇴) 추가*/
+$(function() {
+    $.contextMenu({
+        selector: '.member', 
+        callback: function(key, opt) {
+            var targetNname = opt.$trigger.text().trim();
+            
+            if(key == "ban"){
+            	member_ban(targetNname);
+            }
+        },
+        items: {
+            "ban": {name: "강퇴"}
+        }
+    });   
+});
+
+/* 멤버 강퇴 START */
 function member_ban(targetNname){
     $.confirm({
         title: '멤버 강퇴',
         content: '' +
-        '<form id="banMember" action="" class="formGroup" method="post">' +
+        '<form id="banMember" action="banMember.do" class="formGroup" method="post" onsubmit="return false;">' +
         '<div class="form-group">' +
         '<label>['+targetNname+'] 회원을 강퇴하시겠습니까</label>' +
-        '<input type="hidden" name="nname" value="'+targetNname+'" class="banName form-control"/>' +
-        '<input type="hidden" name="gid" value="'+gid+'" class="banName form-control"/>' +
+        '<input type="hidden" name="nname" value="' + targetNname + '" class="banName form-control"/>' +
+        '<input type="hidden" name="gid" value="' + gid + '" class="banName form-control"/>' +
         '</div>' +
         '</form>',
         closeIcon: true,
@@ -163,10 +181,7 @@ function member_ban(targetNname){
                 text: '강퇴',
                 btnClass: 'btn-success',
                 action: function () {
-                    var name = this.$content.find('.banName').val();
-
                     $("#banMember").submit();
-
                 }
             },
             '취소': {
@@ -175,28 +190,30 @@ function member_ban(targetNname){
                 //close
                 }
             },
+        },
+        onContentReady: function(){
+        	// 그룹원 강퇴 ajaxFrom()
+        	$("#banMember").ajaxForm({
+        		success: function(data, statusText, xhr, $form){
+        			console.log(data);
+        			var recv_data = data.result.trim();
+        			
+        			if(recv_data == 'fired') {
+        				$.alert('해당 그룹원이 강퇴되었습니다!');
+        			}else if(recv_data == 'empty') {
+        				$.alert('해당 그룹원이 존재하지 않습니다!');
+        			}else {
+        				$.alert('잠시후 다시 시도해주세요!');
+        			}
+        		}
+        	});
         }
+
     });
 }
 
-/*마우스 오른쪽 이벤트 (회원강퇴) 추가*/
+/* 멤버 강퇴 END */
 
 
-$(function() {
-    $.contextMenu({
-        selector: '.member', 
-        callback: function(key, opt) {
-            console.log(key);
-            console.log(opt.$trigger.text().trim());
-            var targetNname = opt.$trigger.text().trim();
-            
-            if(key=="ban"){
-            	member_ban(targetNname);
-            }
-        },
-        items: {
-            "ban": {name: "강퇴"}
-        }
-    });   
-});
+
 	

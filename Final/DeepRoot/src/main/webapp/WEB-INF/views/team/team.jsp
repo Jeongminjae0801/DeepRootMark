@@ -313,15 +313,15 @@
                             	<i class="fas fa-toggle-on"></i>온라인
                             </div>
                             <div class="online-member">
-                                <p class="member">
-                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
-                                </p>
-                                <p class="member">
-                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
-                                </p>
-                                <p class="member">
-                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
-                                </p>
+                            	<script type="text/javascript">console.log("${gmemberlist}")</script>
+                            	<c:set var="userid" value="${sessionScope.info_userid}"/>
+                                <c:forEach items="${gmemberlist}" var="memberlist">
+                               	<c:if test="${memberlist.uid != userid}">
+                               		<p class="member">
+	                                    <img class="member-ico" src="<%= request.getContextPath() %>/images/profile/${memberlist.profile}">${memberlist.nname}
+	                                </p>
+                               	</c:if>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="offline-content">

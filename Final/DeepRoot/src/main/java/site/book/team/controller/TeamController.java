@@ -291,14 +291,26 @@ public class TeamController {
 		return jsonview;
 	}
 	
-	/*// 초대/강퇴/완료 알람: 내가 받은 쪽지 리스트
-	@RequestMapping("getAlarms.do")	
-	public View getAlarmList(HttpServletRequest req, Model model) {
-	
-		model.addAttribute("nname", result);
+	// 그룹원 강퇴  & 강퇴 쪽지 보내기
+	@RequestMapping("banMember.do")	
+	public View banMember(HttpServletRequest req, HttpSession session, Model model, G_MemberDTO member_ban) {
+		
+		String uid = (String)session.getAttribute("info_userid");
+		member_ban.setUid(uid);
+		System.out.println(member_ban);
+		int isbaned = g_memberservice.banMember(member_ban);
+		
+		
+		if(isbaned > 0) {
+			model.addAttribute("result", "fired");
+		}else if(isbaned < 0) {
+			model.addAttribute("result", "empty");
+		}else {
+			model.addAttribute("result", "fail");
+		}
 		
 		return jsonview;
-	}*/
+	}
 	
 	//준석
 	//그룹 페이지  이동
