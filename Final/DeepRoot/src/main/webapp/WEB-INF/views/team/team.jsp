@@ -10,20 +10,20 @@
 	var nname = '<c:out value="${nname}"/>';
 	var profile = '<c:out value="${profile}"/>';
 	var chatList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
-	var role = '<c:out value="${enabled}"/>';
+	var enable = '<c:out value="${enabled}"/>';
 	var uid = '<c:out value="${uid}"/>';
 	var position = 0;
 	<c:forEach items="${filecontentlist}" var="filecontent">
 		chatList.push("${filecontent}");
 	</c:forEach>
+	var grid = '<c:out value="${grid}"/>';
 	
 	//console.log(gid);
 	
-	
-	
 	/* jstree START */	
 	$(function () {
-		jstree(role,gid ,uid,nname);
+		jstree(grid , gid ,uid,nname);
+		getnname(nname);
 	})
 	$(function (){
 		get_info(gid, uid);
