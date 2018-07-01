@@ -115,9 +115,6 @@ function jstree(grid , gid, uid ,nname){
 					$('#jstree_container').jstree("open_all");
 					var test = data.instance._model.data
 				})
-				.bind("select_node.jstree", function (e, data) {
-					console.log(data);
-				}) 
 			    .bind('rename_node.jstree', function(event, data){
 		    		var node_id = data.node.id;
 		    		var node_text = data.text;
@@ -152,9 +149,10 @@ function jstree(grid , gid, uid ,nname){
 		    	})
 		    	.bind("select_node.jstree",function(e,data){
 		    		var href = data.node.a_attr.href;
-		    		
+		    		console.log(href);
 		    		if(href !='#'){
 						window.open(href); 
+						console.log(href);
 		    		}
 			
 		    	})
@@ -332,6 +330,9 @@ function customMenu($node){
 							},
 							success: function(data){
 								$('#editurl').modal("toggle");
+								//href 가 반드시 http 로 시작해야한다.
+								$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
+								$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);
 							}
 						}) 
 					})

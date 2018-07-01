@@ -192,7 +192,7 @@ public class TeamController {
 	//url 수정
 	@RequestMapping("editTeamUrl.do")
 	public View editTeamUrl(@RequestParam HashMap<String, String> param , Model model) {
-		System.out.println("eidt url 들어옴!!!!");
+
 		int result = gbookservice.editTeamUrl(param);
 		model.addAttribute("result",result);
 		
