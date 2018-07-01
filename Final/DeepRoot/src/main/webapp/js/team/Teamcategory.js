@@ -1,7 +1,9 @@
 var urlpid = null;
 var gid2 = null;
-function jstree(role , gid, uid,nname){
+var role = null;
+function jstree(grid , gid, uid ,nname){
 	gid2 =gid;
+	role = grid;
 	form = {gid : gid}
 	/* 그룹 시작시 jstree 가져오기 */
 	$.ajax({
@@ -21,13 +23,7 @@ function jstree(role , gid, uid,nname){
 							"dots": false, // 연결선 없애기
 						},
 						"check_callback" : function(op, node, par, pos, more){ // 특정 이벤트 실행 전에 잡아 낼 수 있음
-							console.log("//////////////////");
-							console.log(par);
-							console.log(pos); // 수정시 새이름 들어옴 //rename_node  일경우에만 보내야만
-							console.log(more);
-							console.log("more 위 위");
-							console.log(node);
-							
+
 							var type= '#';
 							var newnameorplace = '#';
 							
@@ -39,12 +35,15 @@ function jstree(role , gid, uid,nname){
 												
 							if(op=='move_node'){
 							// dnd 일경우 more.core =ture 일 경우에만 메세지 보내기
+								
+								if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
+									return false;	
+								}
 								if(more.core){
 									newnameorplace = pos.text
 									
 									sendmessage()
 								}//dnd 성공
-								
 								
 							}else if	(op == 'rename_node'){
 								newnameorplace = pos;
@@ -60,10 +59,14 @@ function jstree(role , gid, uid,nname){
 								var op_msg = "";
 		                        
 		                        switch(op){
-		                            case 'create_node':   op_msg = "생성"; break;
-		                            case 'rename_node':   op_msg = "수정"; break;
-		                            case 'delete_node':   op_msg = "삭제"; break;
-		                            case 'move_node':   op_msg = "이동"; break;
+		                            case 'create_node':   op_msg = "생성"; 
+		                            break;
+		                            case 'rename_node':   op_msg = "수정";
+		                            break;
+		                            case 'delete_node':   op_msg = "삭제";
+		                            break;
+		                            case 'move_node':   op_msg = "이동"; 
+		                            break;
 		                        }
 								
 								stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
@@ -76,7 +79,7 @@ function jstree(role , gid, uid,nname){
 						        }));
 							}
 							
-							//권한 검사해서 DND 가능자와 아닌자 구분
+							//DND 처리 
 							if(op === "move_node"){ // dnd 이벤트 일때 
 								var dragnode = node.id;
 								var dropnode = par.id;
@@ -100,7 +103,8 @@ function jstree(role , gid, uid,nname){
 					},
 					"plugins" : [ "dnd","contextmenu" ], //drag n drop , 과 우클릭시 플러그인 가져옴
 
-					"contextmenu" : { //우클릭시 생성되는 것들 설정
+					/*우클릭 메뉴 설정*/
+					"contextmenu" : { 
 						"select_node" : false, // 우클릭 했을 경우 왼클릭되는거 막음
 						
 						/*왼쪽 jstree  우클릭시 생성되는 메뉴 구성하기 START*/
@@ -191,7 +195,7 @@ function openAddUrlLevel2() {
          		$("#title_btn").val("");
          		//console.log("부모 ID : " + urlpid);
          		
-         		var text = $('#jstree_container').jstree(true).get_node(urlpid).text;
+         		var text = $("#jstree_container").jstree(true).get_node(urlpid).text;
          		//console.log("카테고리 : " + text + "/////")
          		$("#category_btn").val(text);
          		addUrlLevel2();
@@ -245,7 +249,7 @@ function customMenu($node){
 	var node_uid = $node.original.uid;
 	var href = $node.a_attr.href;
 	var tree = $("#jstree_container").jstree(true);	
-	
+	urlpid = $node.id;
 	// 링크 만들기, 폴더 만들기, 이름 바꾸기, 삭제
 	var items = { 
 			"link_create" : {
@@ -254,7 +258,9 @@ function customMenu($node){
 				"separator_after": false,
 				"label": "URL 추가",
 				"action": function (obj) {
-					
+					$('#form_btn')[0].reset();// form 내부 값 reset
+					$('#linkAdd_btn').modal(); //url 추가 모달 창 띄우기
+					addUrlLevel1()
 				}
 			},
 			"folder_create": {
@@ -274,7 +280,6 @@ function customMenu($node){
 						type :"POST",
 						data : form,
 						beforeSend : function(){
-		     			
 						},
 		     			success : function(data){
 		     				var node_id = $.trim(data.result);
@@ -308,25 +313,32 @@ function customMenu($node){
 				}
 			}
 	    };
-	
-	if(href == '#'){ // 폴더
-		if(uid == node_uid){ // 자기꺼
-			
-		}else{ // 아닌거
-			delete items.link_create;
-			delete items.folder_create;
-			delete items.rename;
-			delete items.remove;
+	if(role == '3'){ // 일반 그룹
+		if(href == '#'){ // 폴더
+			if(uid == node_uid){ // 자기꺼
+				delete items.remove;
+			}else{ // 남이 생성한거
+				delete items.rename;
+				delete items.remove;
+			}
+		}else{ // 링크	
+			if(uid == node_uid){ // 자기꺼			
+				delete items.folder_create;	
+				delete items.link_create;
+			}else{ // 남이 생성한거	
+				delete items.link_create;
+				delete items.folder_create;
+				delete items.remove;	
+				delete items.rename;
+			}
 		}
-	}else{ // 링크	
-		if(uid == node_uid){ // 자기꺼			
-			delete items.folder_create;			
-		}else{ // 아닌거	
+	}else{//매니저 그룹장
+		if(href == '#'){// 폴더
+				
+		}else{ //url
 			delete items.folder_create;
-			delete items.remove;	
-			delete items.rename;
+			delete items.link_create;
 		}
 	}
-	
 	return items;
 }

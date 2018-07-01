@@ -369,6 +369,12 @@ public class TeamController {
         model.addAttribute("filecontentlist", filecontentlist);
 		model.addAttribute("enabled", user.getEnabled());
 		model.addAttribute("uid",user.getUid());
+		for(G_MemberDTO dto : gmemberlist) {
+			if(uid.equals(dto.getUid())) {
+				model.addAttribute("grid", dto.getGrid());
+			}
+		}
+	
 		
 		return "team.team";
 	}
