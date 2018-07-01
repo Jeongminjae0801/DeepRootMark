@@ -302,7 +302,41 @@ function customMenu($node){
 					/*왼쪽 jstree 이름 수정하기 아래에 함수 있음*/
 					tree.edit($node);			
 				}
-			},							
+			},			
+			"editurl" : {
+				"separator_before"	: false,
+				"separator_after"	: false,
+				"label" : "URL 수정",
+				"action" : function(obj){
+					
+					$('#form3')[0].reset();	// url 모달창 reset
+					$('#editurl').modal();	//url 수정 모달창 띄우기
+					
+					var inst = $.jstree.reference(obj.reference);
+					var url = inst.get_node(obj.reference).a_attr.href;
+					var id = inst.get_node(obj.reference).id;
+					
+					$('#editurlval').val(url);
+					
+					$('#editurlsubmit').on("click",function(){
+						
+						var newurl = $('#editurlval').val();
+						var form = {gbid : id, url : newurl }
+						
+						$.ajax({
+							
+							url: "editTeamUrl.do",
+							type: "POST",
+							data: form ,
+							beforeSend : function(){
+							},
+							success: function(data){
+								$('#editurl').modal("toggle");
+							}
+						}) 
+					})
+				}
+			},
 			"remove" : {
 				"icon" : "fa fa-trash",
 				"separator_before": false,
@@ -317,9 +351,11 @@ function customMenu($node){
 		if(href == '#'){ // 폴더
 			if(uid == node_uid){ // 자기꺼
 				delete items.remove;
+				delete items.editurl;
 			}else{ // 남이 생성한거
 				delete items.rename;
 				delete items.remove;
+				delete items.editurl;
 			}
 		}else{ // 링크	
 			if(uid == node_uid){ // 자기꺼			
@@ -330,11 +366,12 @@ function customMenu($node){
 				delete items.folder_create;
 				delete items.remove;	
 				delete items.rename;
+				delete items.editurl;
 			}
 		}
 	}else{//매니저 그룹장
 		if(href == '#'){// 폴더
-				
+			delete items.editurl;
 		}else{ //url
 			delete items.folder_create;
 			delete items.link_create;

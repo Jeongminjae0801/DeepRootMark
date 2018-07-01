@@ -107,6 +107,7 @@ public class TeamController {
 		return jsonview;
 	}
 	
+	// 내 그룹 리스트 가져오기
 	@RequestMapping("getTeamList.do")
 	public View getTeamList(HttpServletRequest req,  Model model) {
 		HttpSession session = req.getSession();
@@ -118,6 +119,7 @@ public class TeamController {
 		return jsonview;
 	}
 	
+	// 완료 그룹 삭제하기
 	@RequestMapping("deleteCompletedTeam.do")
 	public View deleteCompletedTeam(String uid, Model model) {
 		
@@ -148,7 +150,7 @@ public class TeamController {
 	@RequestMapping("deleteTeamNode.do")
 	public View deleteTeamNode(Model model, String gbid) {
 		
-		int result = teamservice.deleteTeamNode(gbid);
+		int result = gbookservice.deleteTeamNode(gbid);
 		model.addAttribute("result",result);
 		
 		return jsonview;
@@ -158,7 +160,7 @@ public class TeamController {
 	@RequestMapping("updateTeamNodeText.do")
 	public View updateTeamNodeText(Model model , @RequestParam HashMap<String, String> param) {
 		
-		int result = teamservice.updateTeamNodeText(param);
+		int result = gbookservice.updateTeamNodeText(param);
 		model.addAttribute("result",result);
 		
 		return jsonview;
@@ -170,9 +172,8 @@ public class TeamController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         g_book.setUid(uid);
-        System.out.println("/////////////////////////////////");
-        System.out.println(g_book);
-		int result = teamservice.addTeamFolderOrUrl(g_book);
+       /* System.out.println(g_book);*/
+		int result = gbookservice.addTeamFolderOrUrl(g_book);
 		model.addAttribute("result",result);
 		
 		return jsonview;
@@ -182,7 +183,17 @@ public class TeamController {
 	@RequestMapping("dropTeamNode.do")
 	public View dropTeamNode(@RequestParam HashMap<String, String> param , Model model) {
 		
-		int result = teamservice.dropTeamNode(param);
+		int result = gbookservice.dropTeamNode(param);
+		model.addAttribute("result",result);
+		
+		return jsonview;
+	}
+	
+	//url 수정
+	@RequestMapping("editTeamUrl.do")
+	public View editTeamUrl(@RequestParam HashMap<String, String> param , Model model) {
+		System.out.println("eidt url 들어옴!!!!");
+		int result = gbookservice.editTeamUrl(param);
 		model.addAttribute("result",result);
 		
 		return jsonview;
