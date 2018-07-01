@@ -23,6 +23,7 @@
 	/* jstree START */	
 	$(function () {
 		jstree(grid , gid ,uid,nname);
+		getnname(nname);
 	})
 	$(function (){
 		get_info(gid, uid);

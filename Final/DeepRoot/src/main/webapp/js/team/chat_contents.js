@@ -1,4 +1,7 @@
-
+var user_nname = null;
+function getnname(nname) {
+	user_nname = nname
+}
 // 화면 전환시 채팅 스크롤 최하단으로 위치
 $(".chat-element").scrollTop($(".chatting-contents").height());
 $('#chat-textbox-text').each(function() {
@@ -320,7 +323,7 @@ function connect() {
         //JSTREE 알림 메시지 ex) 누구님이 무엇을 수정했습니다
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
  			var body = JSON.parse(message.body);
-            
+            console.log(user_nname);
             var nname = body.nname;
             var doing = body.doing; 
             var target = body.target;
@@ -328,31 +331,33 @@ function connect() {
             var type = body.type;
             var new_name = body.newnameorplace;              
             
-            var   snap_message = "";
-            
-            if(new_name == "#" || new_name == null){
-               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+            if(user_nname == nname){
+            	
             }else{
-               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
+            	var   snap_message = "";
+	            if(new_name == "#" || new_name == null){
+	               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+	            }else{
+	               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
+	            }
+	            
+	            ohSnap(snap_message, {color: 'red', duration: '3000'});
+	            console.log(message.body);    
+	             
+	            form = {gid : gid}
+	            $.ajax({
+	             
+	            	url : "getTeamJstree.do",
+	         		type:"POST",
+	         		data :form,
+	         		dataType:"json",
+	         		success : function(data){
+	         			$("#jstree_container").jstree(true).settings.core.data = data;
+						$("#jstree_container").jstree(true).refresh();
+	         			
+	         		}
+	             })
             }
-            
-            ohSnap(snap_message, {color: 'red', duration: '3000'});
-            console.log(message.body);    
-             
-            form = {gid : gid}
-            $.ajax({
-             
-            	url : "getTeamJstree.do",
-         		type:"POST",
-         		data :form,
-         		dataType:"json",
-         		success : function(data){
-         			$("#jstree_container").jstree(true).settings.core.data = data;
-					$("#jstree_container").jstree(true).refresh();
-         			
-         		}
-             })
-             
         });
  		
  		stompClient.send('/online/' + gid , {}, JSON.stringify({nname: nname, status: "ON"}));

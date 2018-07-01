@@ -126,7 +126,7 @@ function jstree(grid , gid, uid ,nname){
 	        			beforeSend : function(){
      					},
 	        			success : function(result){
-	        				console.log(result.result);
+	        				//console.log(result.result);
 	        			}
 	        		});   
 		    	})
@@ -143,16 +143,14 @@ function jstree(grid , gid, uid ,nname){
 		    			beforeSend : function(){
      					},
      					success : function(result){
-     						console.log(result.result);
+     						//console.log(result.result);
 						}
 					})  
 		    	})
 		    	.bind("select_node.jstree",function(e,data){
 		    		var href = data.node.a_attr.href;
-		    		console.log(href);
 		    		if(href !='#'){
 						window.open(href); 
-						console.log(href);
 		    		}
 			
 		    	})
@@ -221,7 +219,7 @@ function addUrl(){
 	var title = $('#title_btn').val(); // 추가 url 명값
 	var tree = $("#jstree_container").jstree(true);
 	var form = {url : url , urlname : title , pid : urlpid, gid:gid2}
-	console.log(form);
+	//console.log(form);
 	 if(title == ""){
 		 $.alert("제목을 입력해주세요")
 	 }else {
