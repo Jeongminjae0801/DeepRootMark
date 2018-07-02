@@ -937,6 +937,7 @@ function deleteGroup(gid) {
 	        	keys: ['enter'],
 	        	action : function () {
 	        		$("#"+gid).remove(); // 그룹리스트에서 지우기
+	        		
 	    			$.ajax({
 	    				url: "leaveGroup.do",
 	    				type: "post",
