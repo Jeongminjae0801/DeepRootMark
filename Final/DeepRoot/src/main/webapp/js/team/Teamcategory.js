@@ -40,17 +40,12 @@ function jstree(grid , gid, uid ,nname){
 								if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
 									return false;	
 								}
-								if(more.core){
-									new_name = pos.text
-									
-									sendmessage()
-								}//dnd 성공
 								
 							}else if	(op == 'rename_node'){
 								new_name = pos;
-								sendmessage()
+								
 							}else if(op =='delete_node'){
-								sendmessage()
+								
 							}else if(op == 'create_node'){
 								sendmessage()
 							}
@@ -88,6 +83,7 @@ function jstree(grid , gid, uid ,nname){
 								console.log("chat 보낸후 ");
 							}
 							
+							
 							//DND 처리 
 							if(op === "move_node"){ // dnd 이벤트 일때 
 								var dragnode = node.id;
@@ -103,6 +99,10 @@ function jstree(grid , gid, uid ,nname){
 									beforeSend : function(){
 									},
 									success : function(data){
+										if(more.core){
+											new_name = pos.text
+											sendmessage()
+										}//dnd 성공
 									}
 								})
 								return true;
@@ -138,6 +138,7 @@ function jstree(grid , gid, uid ,nname){
 	        				//console.log(result.result);
 	        			}
 	        		});   
+		    		sendmessage()
 		    	})
 		    	.bind('delete_node.jstree',function(event,data){
 			    		/*왼쪽 jstree 폴더 삭제하기*/
@@ -153,6 +154,7 @@ function jstree(grid , gid, uid ,nname){
      					},
      					success : function(result){
      						//console.log(result.result);
+     						sendmessage()
 						}
 					})  
 		    	})
