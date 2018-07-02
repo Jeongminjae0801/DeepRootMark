@@ -49,12 +49,12 @@ $(function() {
         mouseleave: function() { $(this).children('button').css('display', 'none') }
     });
     $(document).on("click", ".fa-folder-open", function() {
-        $(this).parent().parent().children('ul').hide(500);
+        $(this).parent().parent().children('ul').hide(300);
         $(this).removeClass("fa-folder-open");
         $(this).addClass("fa-folder");
     });
     $(document).on("click", ".fa-folder", function() {
-        $(this).parent().parent().children('ul').show(500);
+        $(this).parent().parent().children('ul').show(300);
         $(this).removeClass("fa-folder");
         $(this).addClass("fa-folder-open");
     });
