@@ -197,6 +197,7 @@ function member_ban(targetNname){
                 btnClass: 'btn-success',
                 action: function () {
                     $("#banMember").submit();
+                    $("#targetNname").remove();
                 }
             },
             '취소': {
