@@ -95,7 +95,7 @@ body{
     max-height: 45px;
     padding: 10px;
     border-bottom: 1px solid #888888;
-    border-radius: 8px 16px 0px 0px;
+    border-radius: 8px 10px 0px 0px;
     background-color: #7bbfa8;
     color: #fff;
 }
@@ -389,7 +389,7 @@ a:active {
 	text-decoration: none;
 }
 
-.jstree-from::-webkit-scrollbar{width: 10px; height: 10px;}
+.jstree-from::-webkit-scrollbar{width: 10px; height: 8px;}
 .jstree-from::-webkit-scrollbar-track {background-color:#fff0;}
 .jstree-from::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
 .jstree-from::-webkit-scrollbar-thumb:hover {background: #466b5e;}

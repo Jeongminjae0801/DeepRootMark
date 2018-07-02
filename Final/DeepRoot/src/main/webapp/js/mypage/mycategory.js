@@ -811,10 +811,16 @@ function openAddUrlLevel2() {
 
 // 2단계 폼 보여주기
 function addUrlLevel2() {
+	if($("#share_btn").is(":checked")){
+		$(".addUrlLevel2-1").hide();
+		$(".addUrlLevel2-2").show();
+	}else {
+		$(".addUrlLevel2-2").hide();
+		$(".addUrlLevel2-1").show();
+	}
+	
 	$(".addUrlLevel2").show();
-	$(".addUrlLevel2-1").show();
 	$(".addUrlLevel1").hide();
-	$(".addUrlLevel2-2").hide();
 	$(".addUrlLevel3").hide();
 }
 
@@ -926,13 +932,13 @@ function deleteGroup(gid) {
 		theme: 'light',
 		backgroundDismiss: true,
 		closeIcon: true,
-	    closeIconClass: 'fa fa-close',
 		buttons: {
 	        '삭제': {
 	        	btnClass : 'btn-danger',
 	        	keys: ['enter'],
 	        	action : function () {
 	        		$("#"+gid).remove(); // 그룹리스트에서 지우기
+	        		
 	    			$.ajax({
 	    				url: "leaveGroup.do",
 	    				type: "post",
@@ -963,7 +969,6 @@ function deleteCompletedGroup(gid) {
 		theme: 'light',
 		backgroundDismiss: true,
 		closeIcon: true,
-	    closeIconClass: 'fa fa-close',
 		buttons: {
 	        '삭제': {
 	        	btnClass : 'btn-danger',
@@ -997,14 +1002,13 @@ function addGroup() {
 	$.confirm({
 	    title: '그룹 추가',
 	    content: '' +
-	    '<form id="addGroupForm" action="/bit/addGroup.do" class="formName" method="post">' +
+	    '<form id="addGroupForm" action="/bit/addGroup.do" class="formName" method="post" onsubmit="return false;">' +
 	    '<div class="form-group">' +
 	    '<label>그룹명</label>' +
 	    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
 	    '</div>' +
 	    '</form>',
 	    closeIcon: true,
-	    closeIconClass: 'fa fa-close',
 	    
 	    buttons: {
 	        formSubmit: {
@@ -1051,7 +1055,7 @@ function completedGroup(gid) {
 	$.confirm({
 	    title: '그룹 완료',
 	    content: '' +
-	    '<form id="completedGroupForm" action="/bit/user/completedGroup.do" class="formName" method="post">' +
+	    '<form id="completedGroupForm" action="/bit/user/completedGroup.do" class="formName" method="post" onsubmit="return false;">' +
 	    '<div class="form-group">' +
 	    '<label>해시태그</label>' +
 	    '<input type="text" name="htag" placeholder="#해쉬태그" class="name form-control" required />' +
@@ -1059,7 +1063,6 @@ function completedGroup(gid) {
 	    '</div>' +
 	    '</form>',
 	    closeIcon: true,
-	    closeIconClass: 'fa fa-close',
 	    
 	    buttons: {
 	        formSubmit: {
@@ -1079,7 +1082,7 @@ function completedGroup(gid) {
 	                		
 	                		var addCompletedGroup = "";
 	                		addCompletedGroup += '<li id="' + data.completedGroup.gid + '" class="list-group-item">';
-	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal('+ data.completedGroup.gname + "','" + data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
+	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal(\''+ data.completedGroup.gname + "', " + data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
 	                		addCompletedGroup += '<div class="pull-right action-buttons">';
 	                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + data.completedGroup.gid + ')"></span></a>';
 	                		addCompletedGroup += '</div>';
