@@ -775,7 +775,7 @@ function openAddUrlLevel2() {
 	});
 	
 	var url = $("#url_btn").val().trim();
-	if(url == ""){
+	if(url == "" || url == "http://"){
 		$.alert("URL을 입력해주세요");
 	}else {
 		$.ajax({

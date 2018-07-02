@@ -141,20 +141,4 @@
                 reader.readAsDataURL(img.files[0]);
         }
     }
-    
-    /* $("#edit-who-info-btn").prop("disabled", true);
-    
-    $("#edit-who-info-btn").on("dblclick", function(){});
-	$("#edit-who-info-btn").on("click", function(){
-		console.log("xxxx");
-			if($('#pwd_edit').hasClass('form-control')
-			== $('#pwd_confirmation').hasClass('form-control')) {
-				$("#edit-who-info-btn").prop("disabled", false);
-			}else {
-			
-			alert("비밀번호를 모두 작성해주세요");
-			$("#edit-who-info-btn").prop("disabled", true);
-			}
-		
-	}); */
 	</script>
