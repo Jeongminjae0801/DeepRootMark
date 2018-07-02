@@ -479,6 +479,7 @@ filter: gray;
   line-height: 22px;
   padding-left: 22px;
   min-width: 22px;
+  margin-left: 0px;
 }
 .jstree-proton .jstree-anchor {
   line-height: 22px;
