@@ -91,7 +91,7 @@
 									<tr class="addUrlLevel1">
 										<td class="info" style="vertical-align: middle;">URL :</td>
 										<td><input type="text" id="url_btn" name="url_btn"
-											class="form-control" value="http://"></td>
+											class="form-control"></td>
 									</tr>
 									<tr class="addUrlLevel2">
 										<td class="info" style="vertical-align: middle;">제목 :</td>
