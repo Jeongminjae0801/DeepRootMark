@@ -368,7 +368,7 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<td class="table-icon">
-										<a onclick="get_groupbook(this)" id="${g_booklist.gid }"><i class="fa fa-share get_groupbook"></i></a>
+										<a onclick="get_groupbook(this)" id="${g_booklist.gid}" name="${g_booklist.gname}"><i class="fa fa-share get_groupbook"></i></a>
 									</td>
 								</tr>
 							</c:forEach>
