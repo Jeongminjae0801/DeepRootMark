@@ -1,15 +1,13 @@
 var urlpid = null;
-var gid2 = null;
-var role = null;
 var target = '';
 var type= '#';
 var new_name = '#';
-var location = '';
+var location1 = '';
 var doing = '';
-function jstree(grid , gid, uid ,nname){
-	gid2 =gid;
-	role = grid;
+//(grid , gid, uid ,nname){
+function jstreetable(){
 	form = {gid : gid}
+	console.log(gid);
 	/* 그룹 시작시 jstree 가져오기 */
 	$.ajax({
 		url : "getTeamJstree.do",
@@ -29,7 +27,7 @@ function jstree(grid , gid, uid ,nname){
 						},
 						"check_callback" : function(op, node, par, pos, more){ // 특정 이벤트 실행 전에 잡아 낼 수 있음
 							target = node.text;
-							location = par.text;
+							location1 = par.text;
 							
 							if(node.a_attr.href =='#')
 								type='폴더';
@@ -60,7 +58,7 @@ function jstree(grid , gid, uid ,nname){
 							}else if(op =='delete_node'){
 								
 							}else if(op == 'create_node'){
-								sendmessage()
+								sendmessagejstree()
 							}
 							
 							//DND 처리 
@@ -80,7 +78,7 @@ function jstree(grid , gid, uid ,nname){
 									success : function(data){
 										if(more.core){
 											new_name = pos.text
-											sendmessage()
+											sendmessagejstree()
 										}//dnd 성공
 									}
 								})
@@ -115,7 +113,7 @@ function jstree(grid , gid, uid ,nname){
      					},
 	        			success : function(result){
 	        				//console.log(result.result);
-	        				sendmessage()
+	        				sendmessagejstree()
 	        			}
 	        		});   
 		    		
@@ -134,16 +132,16 @@ function jstree(grid , gid, uid ,nname){
      					},
      					success : function(result){
      						//console.log(result.result);
-     						sendmessage()
+     						sendmessagejstree()
 						}
 					})  
 		    	})
 		    	.bind("select_node.jstree",function(e,data){
+		    		console.log("selected");
 		    		var href = data.node.a_attr.href;
 		    		if(href !='#'){
 						window.open(href); 
 		    		}
-			
 		    	})
 		}
 	})
@@ -155,8 +153,8 @@ function jstree(grid , gid, uid ,nname){
 	$("#jstree_container").on('close_node.jstree', function(e,data){
 		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
 	})	
-}
-
+};
+	
 function addUrlLevel1() {
 	$(".addUrlLevel1").show();
 	$(".addUrlLevel2").hide();
@@ -209,7 +207,7 @@ function addUrl(){
 	var url = $('#url_btn').val(); //추가 url 값
 	var title = $('#title_btn').val(); // 추가 url 명값
 	var tree = $("#jstree_container").jstree(true);
-	var form = {url : url , urlname : title , pid : urlpid, gid:gid2}
+	var form = {url : url , urlname : title , pid : urlpid, gid:gid}
 	//console.log(form);
 	 if(title == ""){
 		 $.alert("제목을 입력해주세요")
@@ -337,7 +335,9 @@ function customMenu($node){
 				}
 			}
 	    };
-	if(role == '3'){ // 일반 그룹
+	
+	
+	if(grid == '3'){ // 일반 그룹
 		if(href == '#'){ // 폴더
 			if(uid == node_uid){ // 자기꺼
 				delete items.remove;
@@ -370,13 +370,13 @@ function customMenu($node){
 	return items;
 }
 
-function sendmessage() {
+function sendmessagejstree() {
 	var op_msg = "";
     
     if(new_name == "#" || new_name == null){
-    	op_msg =  location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+    	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
      }else{
-     	op_msg =  location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
+     	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
      }
 	stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
        	nname: nname

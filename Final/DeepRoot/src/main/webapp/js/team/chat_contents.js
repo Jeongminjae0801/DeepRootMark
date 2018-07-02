@@ -1,7 +1,3 @@
-var user_nname = null;
-function getnname(nname) {
-	user_nname = nname
-}
 // 화면 전환시 채팅 스크롤 최하단으로 위치
 $(".chat-element").scrollTop($(".chatting-contents").height());
 $('#chat-textbox-text').each(function() {
@@ -25,6 +21,7 @@ $('#chat-textbox-text').keydown(function (e) {
 $(function() {
     
 	connect();
+	jstreetable();
 	
 	var lastDate = null;
 	
@@ -320,12 +317,13 @@ function connect() {
             $(".chat-element").scrollTop($(".chatting-contents").height());
         });
         
+        console.log("jstree subscrib 시작 전");
         //JSTREE 알림 메시지 ex) 누구님이 무엇을 수정했습니다
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
  			var body = JSON.parse(message.body);
-            var nname = body.nname;
-            
-            if(user_nname == nname){
+            var whosend = body.nname;
+            console.log("너 들어오기");
+            if(nname == whosend){
             	
             }else{
 	             
@@ -337,6 +335,7 @@ function connect() {
 	         		data :form,
 	         		dataType:"json",
 	         		success : function(data){
+	         			console.log("아래래래랠");
 	         			console.log(data);
 	         			$("#jstree_container").jstree(true).settings.core.data = data;
 						$("#jstree_container").jstree(true).refresh();
