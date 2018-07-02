@@ -18,6 +18,7 @@ package site.book.socket.dto;
  *
  */
 public class SocketAlarmDTO {
+	private String gid;
 	private String toid; 	// 받는이 ID
 	private String fromid; 	// 초대자 ID
 	private String gname;	// 그룹명
@@ -26,7 +27,8 @@ public class SocketAlarmDTO {
 	
 	public SocketAlarmDTO() {}
 
-	public SocketAlarmDTO(String toid, String fromid, String gname, String gmemo, String senddate) {
+	public SocketAlarmDTO(String gid, String toid, String fromid, String gname, String gmemo, String senddate) {
+		this.gid = gid;
 		this.toid = toid;
 		this.fromid = fromid;
 		this.gname = gname;
@@ -34,6 +36,9 @@ public class SocketAlarmDTO {
 		this.senddate = senddate;
 	}
 	
+	
+	public String getGid() {return gid;}
+	public void setGid(String gid) {this.gid = gid;}
 	public String getToid() {return toid;}
 	public void setToid(String toid) {this.toid = toid;}
 	public String getFromid() {return fromid;}
@@ -47,7 +52,7 @@ public class SocketAlarmDTO {
 
 	@Override
 	public String toString() {
-		return "SocketAlarmDTO [toid=" + toid + ", fromid=" + fromid + ", gname=" + gname + ", gmemo=" + gmemo
+		return "SocketAlarmDTO [gid=" + gid + ", toid=" + toid + ", fromid=" + fromid + ", gname=" + gname + ", gmemo=" + gmemo
 				+ ", senddate=" + senddate + "]";
 	}
 }

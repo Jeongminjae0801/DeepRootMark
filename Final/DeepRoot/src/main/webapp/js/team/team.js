@@ -41,9 +41,9 @@ function member_insert(){
             			success : function(data){
             				var msg = data.result.trim().toUpperCase();
             				if(msg == "SUCCESS") {
-            					
-            					stompClient.send('/alarm/' + nname , {}, 
+            					stompClient.send('/alarm/' + toid , {}, 
             									 	JSON.stringify({
+            									 		gid: gid,
             									 		toid: toid,
             									 		fromid: nname,
             									 		gname: gname,
@@ -52,14 +52,19 @@ function member_insert(){
             										})
             									);
             					$.alert("초대 쪽지가 전달되었습니다!" + "\n(" + toid + ")");
+            					
             				} else if(msg == "FAIL") {
             					$.alert("존재하지 않는 이메일입니다!");
+            					
             				} else if(msg == "SELF") {
             					$.alert("본인을 초대하실 수 없습니다!");
+            					
             				} else if(msg == "ALREADY") {
             					$.alert("이미 초대된 사용자입니다!");
+            					
             				} else {
             					$.alert("잠시후 다시 시도해주세요!");
+            					
             				}
             			}
                 	});
