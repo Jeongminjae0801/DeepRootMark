@@ -196,13 +196,8 @@
 							<img class="dropdown header-ico" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'"> 
 							${sessionScope.info_usernname}
 						</a>
-<<<<<<< HEAD
-						<script type="text/javascript">var nname = '<c:out value="${sessionScope.info_usernname}"/>';</script>
-						<ul role="menu" class="user sub-menu">
-=======
 						<script type="text/javascript">var userid = '<c:out value="${sessionScope.info_userid}"/>';</script>
-						<ul role="menu" class="sub-menu">
->>>>>>> feature/초대강퇴_소켓_통신_진행중
+						<ul role="menu" class="user sub-menu">
 							<li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
 							<li><a href='<%= request.getContextPath() %>/security/logout'>Logout</a></li>
 						</ul>
