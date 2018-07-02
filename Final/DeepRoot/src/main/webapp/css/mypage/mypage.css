@@ -238,3 +238,9 @@ a:hover{text-decoration: none; }
 	cursor : pointer;
 }
 
+/* jstree 길이 넘어가면 ... 표시 */
+.jstree-anchor{
+    overflow:hidden;
+	white-space:nowrap;
+	max-width: 80%;
+}
