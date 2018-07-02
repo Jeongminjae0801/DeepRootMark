@@ -44,7 +44,12 @@ $(function() {
 				}else {
 					NowTime += '-' + (Now.getMonth() + 1) ;
 				}
-				NowTime += '-' + Now.getDate();
+				
+				if(Now.getDate() < 10){
+					NowTime += '-0' + Now.getDate();
+				}else {
+					NowTime += '-' + Now.getDate();
+				}
 				
 				var today = time[0];
 				//console.log("today" + NowTime);
@@ -53,10 +58,14 @@ $(function() {
 				}
 				
 				var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
-				$(".chatting-contents").append(date);
+				$(".chatting-contents").prepend(date);
 			}else if(lastDate != time[0]){
+				console.log("lastdate: " + lastDate);
+				console.log("time[0] :" + time[0])
+				
 				var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
-				$(".chatting-contents").append(date);
+				$(".chatting-contents").prepend(date);
+				lastDate = time[0];
 			}
 			
 			time[1] = time[1].split(":");
@@ -154,10 +163,11 @@ $(function() {
         					}
         					
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
         				}else if(lastDate != time[0]){
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
+        					lastDate = time[0];
         				}
         				
         				time[1] = time[1].split(":");
@@ -215,10 +225,11 @@ $(function() {
         					}
         					
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
         				}else if(lastDate != time[0]){
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
+        					lastDate = time[0];
         				}
         				
         				time[1] = time[1].split(":");
@@ -280,7 +291,11 @@ function connect() {
 				}else {
 					NowTime += '-' + (Now.getMonth() + 1) ;
 				}
-				NowTime += '-' + Now.getDate();
+				if(Now.getDate() < 10){
+					NowTime += '-0' + Now.getDate();
+				}else {
+					NowTime += '-' + Now.getDate();
+				}
 				
 				var today = time[0];
 				if(NowTime == time[0]){
