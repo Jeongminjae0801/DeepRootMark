@@ -70,8 +70,8 @@
     <!-- Header Socket JS -->
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/team/stomp.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/header/alarm_socket.js?ver=1"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/header/alarm.js?ver=1"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/alarm/alarm.js?ver=1"></script>
 	<!-- Header Socket JS END -->
     
     <!-- jstree css & javascript -->
