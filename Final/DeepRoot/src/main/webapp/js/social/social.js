@@ -212,8 +212,7 @@ function selectedGroup(group, gid) {
 var second_data = null
 
 function get_groupbook(group){
-	/*console.log($('.table-groupname').text());*/
-	$('.groupname').text();
+	$('.groupname').text(group);
 	//클릭한 작성자 닉네임
 	var groupname = group.id;
 	$.ajax({
