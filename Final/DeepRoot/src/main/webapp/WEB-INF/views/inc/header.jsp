@@ -126,7 +126,7 @@
 					<!-- Social Link  -->
 					
 					<!-- Alarm START -->
-					<li class="dropdown">
+					<li id="alarm_menu_li" class="dropdown">
 						<a href="#">Notice <i class="fa fa-angle-down"></i></a>
 						<!-- headerAlarmList -->
 						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
@@ -145,7 +145,7 @@
 											</span>
 											<br>
 											<span class="g_alarm_content">해당 그룹에서 회원님을 초대했습니다!
-											<i class="fas fa-check g_notice_ok" onclick=" ('${alarmList.toid}','${alarmList.gid}',
+											<i class="fas fa-check g_notice_ok" onclick="inviteOk('${alarmList.toid}','${alarmList.gid}',
 																							      '${alarmList.gname}','${alarmList.fromid}',
 																							  	  '${alarmList.ganame}');"></i>
 											</span>

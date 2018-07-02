@@ -22,8 +22,6 @@ public class HeaderAlarmController {
     public SocketAlarmDTO sendOnlineMessage(@DestinationVariable("uid") String uid, @Payload SocketAlarmDTO alarm) throws Exception {
     	
     	System.out.println(alarm);
-
-    	
         return alarm;
     }
     

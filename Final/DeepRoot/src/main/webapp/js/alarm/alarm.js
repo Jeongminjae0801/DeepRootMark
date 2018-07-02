@@ -35,6 +35,11 @@ function deleteMemo(gid, fromid, alarm_kind){
 		success : function(data){
 			if( data.result == "deleted" ) {
 				alarm_item.remove();
+				
+				console.log($('.g_alarm_ul').children());
+				if($('.g_alarm_ul').children().length == 0) {
+					$('.g_alarm_ul').remove();
+				}
 			}else {
 				/*$.alert("잠시후 다시 시도해주세요!");*/
 			}
