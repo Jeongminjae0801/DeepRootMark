@@ -212,14 +212,14 @@ function selectedGroup(group, gid) {
 var second_data = null
 
 function get_groupbook(group){
-	/*console.log($('.table-groupname').text());*/
-	$('.groupname').text();
 	//클릭한 작성자 닉네임
-	var groupname = group.id;
+	var gid = group.id;
+	var groupName = group.name;
+	$('.groupname').text(groupName);
 	$.ajax({
 		url : "/bit/user/getCompletedTeamBookmark.do",
 		type : "POST",
-		data : {gid : groupname},
+		data : {gid : gid},
 		dataType :"json",
 		success : function(obj){
 			second_data = obj;

@@ -97,16 +97,22 @@
             if (($('#pwd_edit').val().trim() == "") || !($('#pwd_edit').val().length >= 5 && $('#pwd_edit').val().length <= 15)) {
                 $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
                 $("#edit-who-info-btn").prop("disabled", true);
+            } else if(!($('#pwd_edit').val().length >= 5 && $('#pwd_edit').val().length <= 15) || !($('#pwd_edit').val() == $('#pwd_confirmation').val())) {
+                    $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
+                    $("#edit-who-info-btn").prop("disabled", true);
             } else {
                 $('.error').removeClass('alert alert-danger').html('');
                 $("#edit-who-info-btn").prop("disabled", false);
             }
         });
 
-      //비밀번호 동일 확인 함수
+      	//비밀번호 동일 확인 함수
         $('#pwd_confirmation').keyup(function() {
             if (!($('#pwd_edit').val() == $('#pwd_confirmation').val())) {
                 $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
+                $("#edit-who-info-btn").prop("disabled", true);
+            } else if(($('#pwd_edit').val().trim() == "") || !($('#pwd_edit').val().length >= 5 && $('#pwd_edit').val().length <= 15)) {
+                $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
                 $("#edit-who-info-btn").prop("disabled", true);
             } else {
                 $('.error').removeClass('alert alert-danger').html('');
