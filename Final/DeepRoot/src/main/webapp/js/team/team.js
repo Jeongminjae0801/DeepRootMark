@@ -42,7 +42,7 @@ function member_insert(){
             				var msg = data.result.trim().toUpperCase();
             				if(msg == "SUCCESS") {
             					
-            					stompClient.send('/alarm/' + nname , {}, 
+            					stompClient.send('/alarm/' + toid , {}, 
             									 	JSON.stringify({
             									 		toid: toid,
             									 		fromid: nname,

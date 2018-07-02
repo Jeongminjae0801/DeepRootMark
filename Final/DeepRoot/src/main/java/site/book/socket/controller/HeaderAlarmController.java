@@ -17,9 +17,9 @@ import site.book.socket.dto.SocketAlarmDTO;
 public class HeaderAlarmController {
 	
 	// Header, 소켓 통신: 초대/강퇴/완료 쪽지 수신
-    @MessageMapping("/alarm/{nname}")
-    @SendTo("/subscribe/alarm/{nname}")
-    public SocketAlarmDTO sendOnlineMessage(@DestinationVariable("nname") String nname, @Payload SocketAlarmDTO alarm) throws Exception {
+    @MessageMapping("/alarm/{uid}")
+    @SendTo("/subscribe/alarm/{uid}")
+    public SocketAlarmDTO sendOnlineMessage(@DestinationVariable("uid") String uid, @Payload SocketAlarmDTO alarm) throws Exception {
     	
     	System.out.println(alarm);
 

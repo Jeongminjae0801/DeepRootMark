@@ -145,7 +145,7 @@
 	                            	
 	                            	$.each(memberList, function(index, element) {
 	                            		var member = element;
-	                            		console.log(member);
+	                            		//console.log(member);
 	                            		if(onlinelist.hasOwnProperty(member)) {
                             				var insertOnline = '<p id="' + member + '"' + ' class="member">' 
 				                								+ '<img class="member-ico" src="/bit/images/profile.png" '

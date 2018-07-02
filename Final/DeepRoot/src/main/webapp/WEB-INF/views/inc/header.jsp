@@ -134,7 +134,7 @@
 							<c:forEach items="${headerAlarmList}" var="alarmList">
 								<li id="alarmlist${alarmList.gid}" class="g_alarm_li">
 									<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">${alarmList.gname}</span></span> 
-									<i class="fas fa-times g_notice" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+									<i class="fas fa-times g_notice" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}');"></i>
 									<br style="clear:both">
 									<c:choose>
 									
@@ -145,9 +145,9 @@
 											</span>
 											<br>
 											<span class="g_alarm_content">해당 그룹에서 회원님을 초대했습니다!
-											<i class="fas fa-check g_notice_ok" onclick="inviteOk('${alarmList.toid}','${alarmList.gid}',
+											<i class="fas fa-check g_notice_ok" onclick=" ('${alarmList.toid}','${alarmList.gid}',
 																							      '${alarmList.gname}','${alarmList.fromid}',
-																							  	  '${alarmList.ganame}')"></i>
+																							  	  '${alarmList.ganame}');"></i>
 											</span>
 											<br style="clear:both">
 										</c:when>
@@ -156,7 +156,7 @@
 											<span class="g_alarm_head">
 												From&nbsp;&nbsp;&nbsp;: <span class="g_alarm_name">${alarmList.fromid}</span>
 												<span class="g_alarm_date">${alarmList.senddate}</span>
-												<i class="fas fa-check g_notice_ok" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+												<i class="fas fa-check g_notice_ok" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}');"></i>
 											</span>
 											<br>
 											<span>해당 그룹이 완료되었습니다!</span>
@@ -164,7 +164,7 @@
 											
 										<c:otherwise>
 											<span>해당 그룹에서 회원님을 강퇴했습니다!</span>
-											<i class="fas fa-ban g_notice_no" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+											<i class="fas fa-ban g_notice_no" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}');"></i>
 										</c:otherwise>
 										
 									</c:choose>
@@ -196,7 +196,7 @@
 							<img class="dropdown header-ico" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'"> 
 							${sessionScope.info_usernname}
 						</a>
-						<script type="text/javascript">var nname = '<c:out value="${sessionScope.info_usernname}"/>';</script>
+						<script type="text/javascript">var userid = '<c:out value="${sessionScope.info_userid}"/>';</script>
 						<ul role="menu" class="sub-menu">
 							<li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
 							<li><a href='<%= request.getContextPath() %>/security/logout'>Logout</a></li>
