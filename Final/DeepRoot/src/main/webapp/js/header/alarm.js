@@ -3,8 +3,9 @@
 
 $(function() {
 	// Header Alarm socket connect
-	alarmConnect(userid);
-	
+	if(userid != null || userid != "") {
+		alarmConnect(userid);
+	}
 	
 });
 
@@ -29,7 +30,7 @@ function alarmConnect(userid) {
         	var ganame = recv_alarm.gmemo
         	var senddate = recv_alarm.senddate;
         	
-        	if($('.g_alarm_ul') == null) {
+        	if($('#alarm_menu_li').children('ul').length == 0) {
         		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
 			}
         	
@@ -39,26 +40,23 @@ function alarmConnect(userid) {
         						+ '<br style="clear:both">';
         	
         	if( ganame == "초대" ) {
-        		console.log('초대');
         		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 								+ '<span class="g_alarm_name">' +fromid+ '</span>'
 								+ '<span class="g_alarm_date">' +senddate+ '</span>'
 								+ '</span><br><span class="g_alarm_content">해당 그룹에서 회원님을 초대했습니다!'
 								+ '<i class="fas fa-check g_notice_ok" '
-								+ 'onclick=" ('+toid+','+gid+','+gname+','+fromid+','+ganame+');"></i>'
+								+ 'onclick="inviteOk(\''+toid+'\',\''+gid+'\',\''+gname+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
 								+ '</span><br style="clear:both">';
-        		
+        	
         	}else if( ganame == "강퇴" ) {
-        		console.log('강퇴');
         		common_form += '<span>해당 그룹에서 회원님을 강퇴했습니다!</span>'
         						+ '<i class="fas fa-ban g_notice_no" '
-        						+ 'onclick="deleteMemo('+gid+','+fromid+','+ganame+');"></i>';
-        			
+        						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
+        	
         	}else {
-        		console.log('완료');
         		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 								+ '<span class="g_alarm_name">'+fromid+'</span>'
-								+ 'onclick="deleteMemo('+gid+','+fromid+','+ganame+');"></i>'
+								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
 							 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';
         	}
         	

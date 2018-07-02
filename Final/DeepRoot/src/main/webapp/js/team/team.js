@@ -210,15 +210,28 @@ function member_ban(targetNname){
         	// 그룹원 강퇴 ajaxFrom()
         	$("#banMember").ajaxForm({
         		success: function(data, statusText, xhr, $form){
-        			console.log(data);
         			var recv_data = data.result.trim();
         			
-        			if(recv_data == 'fired') {
-        				$.alert('해당 그룹원이 강퇴되었습니다!');
+        			if(recv_data == 'fail') {
+        				$.alert('잠시후 다시 시도해주세요!');
+        				
         			}else if(recv_data == 'empty') {
         				$.alert('해당 그룹원이 존재하지 않습니다!');
+        				
         			}else {
-        				$.alert('잠시후 다시 시도해주세요!');
+        				var toid = recv_data;
+        				console.log(toid);
+        				stompClient.send('/alarm/' + toid , {}, 
+							 	JSON.stringify({
+							 		gid: gid,
+							 		toid: toid,
+							 		gname: gname,
+							 		gmemo: '강퇴',
+							 		senddate: 'NOW'
+								})
+							);
+        				$.alert('해당 그룹원이 강퇴되었습니다!');
+        				
         			}
         		}
         	});

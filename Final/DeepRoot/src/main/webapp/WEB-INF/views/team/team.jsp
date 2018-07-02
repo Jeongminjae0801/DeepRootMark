@@ -138,12 +138,14 @@
                             		//console.log(onlinelist.hasOwnProperty("민재"));
                             		//console.log('${gmemberlist}');
                             		
-                            		var memberList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+                            		var memberNnameList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+                            		var memberUidList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
                             		<c:forEach items="${gmemberlist}" var="member">
-                            			memberList.push("${member.nname}");
+                            			memberNnameList.push("${member.nname}");
+                            			memberUidList.push("${member.uid}");
 	                            	</c:forEach>
 	                            	
-	                            	$.each(memberList, function(index, element) {
+	                            	$.each(memberNnameList, function(index, element) {
 	                            		var member = element;
 	                            		//console.log(member);
 	                            		if(onlinelist.hasOwnProperty(member)) {

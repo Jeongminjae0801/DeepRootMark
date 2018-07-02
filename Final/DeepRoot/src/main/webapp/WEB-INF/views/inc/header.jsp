@@ -196,7 +196,6 @@
 							<img class="dropdown header-ico" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'"> 
 							${sessionScope.info_usernname}
 						</a>
-						<script type="text/javascript">var userid = '<c:out value="${sessionScope.info_userid}"/>';</script>
 						<ul role="menu" class="user sub-menu">
 							<li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
 							<li><a href='<%= request.getContextPath() %>/security/logout'>Logout</a></li>
@@ -205,7 +204,7 @@
 					<!-- USER INFO END -->
 				</ul>
 				</se:authorize>
-				
+				<script type="text/javascript">var userid = '<c:out value="${sessionScope.info_userid}"/>';</script>
 			</div>
 		</div>
 	</div>

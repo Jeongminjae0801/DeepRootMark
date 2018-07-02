@@ -3,6 +3,8 @@ package site.book.socket.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -24,8 +26,7 @@ public class ChatOnOffController {
     @MessageMapping("/online/{room}")
     @SendTo("/subscribe/online/{room}")
     public OnlineMemberDTO sendOnlineMessage(@DestinationVariable("room") String room, @Payload OnlineMemberDTO member) throws Exception {
-    	
-    	//System.out.println("ON" + member);
+		
     	// 온라인 유저 구독하면, Map(gid: [])에 추가
     	Map<String, Map<String, String>> online_list = OnOffMemberSingleton.getInstance();
     	

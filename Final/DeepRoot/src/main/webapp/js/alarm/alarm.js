@@ -36,7 +36,6 @@ function deleteMemo(gid, fromid, alarm_kind){
 			if( data.result == "deleted" ) {
 				alarm_item.remove();
 				
-				console.log($('.g_alarm_ul').children());
 				if($('.g_alarm_ul').children().length == 0) {
 					$('.g_alarm_ul').remove();
 				}

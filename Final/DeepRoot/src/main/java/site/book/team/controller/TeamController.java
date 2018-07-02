@@ -321,12 +321,13 @@ public class TeamController {
 		
 		String uid = (String)session.getAttribute("info_userid");
 		member_ban.setUid(uid);
-		System.out.println(member_ban);
+		
 		int isbaned = g_memberservice.banMember(member_ban);
-		
-		
+
 		if(isbaned > 0) {
-			model.addAttribute("result", "fired");
+			String toid = g_memberservice.getToUid(member_ban.getNname());
+			System.out.println(toid);
+			model.addAttribute("result", toid);
 		}else if(isbaned < 0) {
 			model.addAttribute("result", "empty");
 		}else {
