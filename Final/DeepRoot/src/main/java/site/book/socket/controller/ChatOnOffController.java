@@ -1,4 +1,4 @@
-package site.book.socket;
+package site.book.socket.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,8 +43,7 @@ public class ChatOnOffController {
         	
         	online_list.put(room, online_users); // 다시 온라인 Map에 저장
     	}
-    	
-    	System.out.println(online_list);
+    	//System.out.println(online_list);
     	
         return member;
     }
@@ -74,8 +73,7 @@ public class ChatOnOffController {
 				online_list.put(room, online_users); // 다시 온라인 Map에 저장
 			}
     	}
-    	
-    	System.out.println(online_list);
+    	//System.out.println(online_list);
     	
         return member;
     }

@@ -17,7 +17,7 @@
 		chatList.push("${filecontent}");
 	</c:forEach>
 	var grid = '<c:out value="${grid}"/>';
-	
+	var gname ='<c:out value="${gname}"/>';
 
 </script>
 

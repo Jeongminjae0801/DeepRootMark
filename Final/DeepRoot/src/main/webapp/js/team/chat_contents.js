@@ -386,7 +386,6 @@ function connect() {
  		});
  		
     }, function(message) {
-
         stompClient.disconnect();
 
     });
