@@ -1,6 +1,11 @@
 var urlpid = null;
 var gid2 = null;
 var role = null;
+var target = '';
+var type= '#';
+var new_name = '#';
+var location = '';
+var doing = '';
 function jstree(grid , gid, uid ,nname){
 	gid2 =gid;
 	role = grid;
@@ -23,16 +28,24 @@ function jstree(grid , gid, uid ,nname){
 							"dots": false, // 연결선 없애기
 						},
 						"check_callback" : function(op, node, par, pos, more){ // 특정 이벤트 실행 전에 잡아 낼 수 있음
-							var target = node.text;
-							var type= '#';
-							var new_name = '#';
-							var location = par.text;
+							target = node.text;
+							location = par.text;
 							
 							if(node.a_attr.href =='#')
 								type='폴더';
 							else
 								type='URL';
-							
+
+						    switch(op){
+						        case 'create_node':   doing = "생성"; 
+						        break;
+						        case 'rename_node':   doing = "수정";
+						        break;
+						        case 'delete_node':   doing = "삭제";
+						        break;
+						        case 'move_node':   doing = "이동"; 
+						        break;
+						    }
 												
 							if(op=='move_node'){
 							// dnd 일경우 more.core =ture 일 경우에만 메세지 보내기
@@ -49,40 +62,6 @@ function jstree(grid , gid, uid ,nname){
 							}else if(op == 'create_node'){
 								sendmessage()
 							}
-							
-							function sendmessage() {
-								var op_msg = "";
-		                        
-		                        switch(op){
-		                            case 'create_node':   doing = "생성"; 
-		                            break;
-		                            case 'rename_node':   doing = "수정";
-		                            break;
-		                            case 'delete_node':   doing = "삭제";
-		                            break;
-		                            case 'move_node':   doing = "이동"; 
-		                            break;
-		                        }
-		                        
-		                        if(new_name == "#" || new_name == null){
-		                        	op_msg =  location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
-		         	            }else{
-		         	            	op_msg =  location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
-		         	            }
-		                        console.log("jstree 보내기전 ");
-								stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
-						           	nname: nname
-						        }));
-								console.log("jstree 보낸후 ");
-								//희준이 message 틀
-								stompClient.send("/chat/" + gid, {}, JSON.stringify({
-									content: op_msg,
-						           	nname: nname,
-						           	profile: profile
-						        }));
-								console.log("chat 보낸후 ");
-							}
-							
 							
 							//DND 처리 
 							if(op === "move_node"){ // dnd 이벤트 일때 
@@ -136,9 +115,10 @@ function jstree(grid , gid, uid ,nname){
      					},
 	        			success : function(result){
 	        				//console.log(result.result);
+	        				sendmessage()
 	        			}
 	        		});   
-		    		sendmessage()
+		    		
 		    	})
 		    	.bind('delete_node.jstree',function(event,data){
 			    		/*왼쪽 jstree 폴더 삭제하기*/
@@ -388,4 +368,25 @@ function customMenu($node){
 		}
 	}
 	return items;
+}
+
+function sendmessage() {
+	var op_msg = "";
+    
+    if(new_name == "#" || new_name == null){
+    	op_msg =  location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+     }else{
+     	op_msg =  location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
+     }
+	stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
+       	nname: nname
+    }));
+	console.log("jstree 보낸후 ");
+	//희준이 message 틀
+	stompClient.send("/chat/" + gid, {}, JSON.stringify({
+		content: op_msg,
+       	nname: nname,
+       	profile: profile
+    }));
+	console.log("chat 보낸후 ");
 }

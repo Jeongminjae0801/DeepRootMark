@@ -337,9 +337,9 @@ function connect() {
 	         		data :form,
 	         		dataType:"json",
 	         		success : function(data){
+	         			console.log(data);
 	         			$("#jstree_container").jstree(true).settings.core.data = data;
 						$("#jstree_container").jstree(true).refresh();
-	         			
 	         		}
 	             })
             }
