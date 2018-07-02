@@ -224,4 +224,39 @@ h1,h2,h3,h4,h5,h6 {
 	
 }
 
+/* 소셜 버튼 css */
+.pagination {
+        float: right;
+        margin: 0 0 5px;
+        /*margin: 10px 0 5px;*/
+    }
+
+.pagination li a {
+    border: none;
+    font-size: 13px;
+    min-width: 30px;
+    min-height: 30px;
+    padding: 0 10px;
+    color: #999;
+    margin: 0 2px;
+    line-height: 30px;
+    border-radius: 30px !important;
+    text-align: center;
+
+}
+
+.pagination li a:hover {
+    color: #666;
+    background: #999;
+}
+
+.pagination li.active a {
+    background: #7bab94;
+}
+
+.pagination li.active a:visited {
+    background: #7bab94;
+}
+
+
 /* Social Page CSS END */
