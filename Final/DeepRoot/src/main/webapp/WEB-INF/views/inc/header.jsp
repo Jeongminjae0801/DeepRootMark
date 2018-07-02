@@ -3,8 +3,10 @@
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+
+
 <script type="text/javascript">
-	// 헤더 이동시 socket disconnect & href 
 
 	// header에 있는 그룹 추가 버튼 클릭 이벤트
 	function headerAddGroup(gid) {
@@ -194,6 +196,7 @@
 							<img class="dropdown header-ico" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'"> 
 							${sessionScope.info_usernname}
 						</a>
+						<script type="text/javascript">var nname = '<c:out value="${sessionScope.info_usernname}"/>';</script>
 						<ul role="menu" class="sub-menu">
 							<li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
 							<li><a href='<%= request.getContextPath() %>/security/logout'>Logout</a></li>
@@ -209,4 +212,3 @@
 </header>
 <!-- Header END-->
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/alarm/alarm.js"></script>

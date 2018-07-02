@@ -41,6 +41,16 @@ function member_insert(){
             			success : function(data){
             				var msg = data.result.trim().toUpperCase();
             				if(msg == "SUCCESS") {
+            					
+            					stompClient.send('/alarm/' + nname , {}, 
+            									 	JSON.stringify({
+            									 		toid: toid,
+            									 		fromid: nname,
+            									 		gname: gname,
+            									 		gmemo: '초대',
+            									 		senddate: 'NOW'
+            										})
+            									);
             					$.alert("초대 쪽지가 전달되었습니다!" + "\n(" + toid + ")");
             				} else if(msg == "FAIL") {
             					$.alert("존재하지 않는 이메일입니다!");
