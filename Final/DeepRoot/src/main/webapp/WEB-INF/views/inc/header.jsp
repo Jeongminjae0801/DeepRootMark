@@ -47,10 +47,23 @@
 		    	var jc = this;
 		    	$("#addGroupForm").ajaxForm({
 		    		success: function(data, statusText, xhr, $form){
-		    			var group = '<li class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
+		    			var group = '<li id="headerGroup${headerTeam.gid}" class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
 		    			$("#groupDropdownMenu").children().last().before(group);
 		    			if($(".groupMenu").length > 10){
 		    				$("#groupDropdownMenu").children().last().remove();
+		    			}
+		    			
+		    			if($("#participatingGroupList").length > 0){
+		    				var groupListAdd = "";
+		    				groupListAdd += '<li id="' + data.newTeam.gid + '" class="list-group-item">';
+		    				groupListAdd += '<label class="my-group-list" onclick="location.href=\'/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '\'"> ' + data.newTeam.gname + '</label>';
+		    				groupListAdd += '<div class="pull-right action-buttons">';
+		    				groupListAdd += '<a class="completed">';
+		    				groupListAdd += '<span class="glyphicon glyphicon-check" onclick="completedGroup(' + data.newTeam.gid + ')"></span>';
+		    				groupListAdd += '</a>';
+		    				groupListAdd += '</div>';
+		    				groupListAdd += '</li>';
+		    				$("#participatingGroupList").children().last().before(groupListAdd);
 		    			}
 		    		}
 		    	});
@@ -89,17 +102,17 @@
 							<c:when test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 								<c:forEach items="${headerTeamList}" var="headerTeam" varStatus="status">
 									<c:if test="${status.index < 10}">
-										<li class="groupMenu"><a href="<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}&gname=${headerTeam.gname}">${headerTeam.gname}</a></li>
+										<li id="headerGroup${headerTeam.gid}" class="groupMenu"><a href="<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}&gname=${headerTeam.gname}">${headerTeam.gname}</a></li>
 									</c:if>
 									<c:if test="${status.last}">
 										<c:if test="${status.count < 10}">
-											<li class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
+											<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
 										</c:if>
 									</c:if>
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
-								<li class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
+								<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>
 							</c:otherwise>
 						</c:choose>
 						</ul> 
