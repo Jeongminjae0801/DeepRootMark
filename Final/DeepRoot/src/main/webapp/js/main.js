@@ -183,7 +183,7 @@ jQuery(function($) {
 		$(window).scroll(function() {
 			// 현재 스크롤 위치를 가져온다.
 			var scrollTop = $(window).scrollTop();
-			var newPosition = scrollTop + floatPosition - 500 + "px";
+			var newPosition = scrollTop + floatPosition - 627 + "px";
 			var fixedpositon = floatPosition + "px";
 			//console.log(scrollTop);
 			// 애니메이션 없이 바로 따라감
