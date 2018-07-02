@@ -908,9 +908,11 @@ function addUrlShare() {
 				$('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
 				//console.log(data);	//id 확인
 				var node_id = $.trim(data.ubid);
-				tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+				$('#jstree_container').jstree().deselect_all(true);											
+				$('#jstree_container').jstree(true).select_node(urlpid);		
+				//tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
 					//console.log(new_node.id);
-				});
+				//});
 			}
 		});
 	}
