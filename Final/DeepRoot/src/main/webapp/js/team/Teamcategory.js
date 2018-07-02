@@ -152,6 +152,30 @@ function jstreetable(){
 	$("#jstree_container").on('close_node.jstree', function(e,data){
 		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
 	})	
+	
+	$.ajax({
+		url : "/bit/user/getCategoryList.do",
+		type:"POST",
+		dataType:"json",
+		success : function(data){	
+			console.log("dddddd");
+			$('#jstree-to-mybookmark')
+			.jstree({	
+				"core": {
+					"data" : data, //ajax로 가져온 json data jstree에 넣어주기
+					'themes':{
+						'name' : 'proton', //테마 이름
+						'responsive' : true,
+						"dots": false, // 연결선 없애기
+					},
+				}
+			})
+			.bind("loaded.jstree", function (event, data) {
+				$('#jstree-to-mybookmark').jstree("open_all");
+			})
+		}
+	})
+
 };
 	
 function addUrlLevel1() {
@@ -327,6 +351,21 @@ function customMenu($node){
 					})
 				}
 			},
+			"geturl" : {
+				"icon" : "fa fa-trash",
+				"separator_before": false,
+				"separator_after": false,
+				"label": "내 북마크로",
+				"action": function (obj) { 
+					
+					$('#jstree-to-mybookmark').jstree().deselect_all(true);	
+					var inst = $.jstree.reference(obj.reference);
+					var url = inst.get_node(obj.reference).a_attr.href;
+					
+					$('#modalurl').val(url);
+					$('#fromGroupToMy').modal();
+				}
+			},
 			"remove" : {
 				"icon" : "fa fa-trash",
 				"separator_before": false,
@@ -344,10 +383,12 @@ function customMenu($node){
 			if(uid == node_uid){ // 자기꺼
 				delete items.remove;
 				delete items.editurl;
+				delete items.geturl;
 			}else{ // 남이 생성한거
 				delete items.rename;
 				delete items.remove;
 				delete items.editurl;
+				delete items.geturl;
 			}
 		}else{ // 링크	
 			if(uid == node_uid){ // 자기꺼			
@@ -364,6 +405,7 @@ function customMenu($node){
 	}else{//매니저 그룹장
 		if(href == '#'){// 폴더
 			delete items.editurl;
+			delete items.geturl;
 		}else{ //url
 			delete items.folder_create;
 			delete items.link_create;
@@ -396,3 +438,8 @@ function sendmessagejstree() {
     }));
 	console.log("chat 보낸후 ");
 }
+
+$('#into-my-bookmark').on("click",function(){
+	console.log("ghkrdls");
+	
+})
