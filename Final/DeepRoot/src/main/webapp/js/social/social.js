@@ -177,7 +177,6 @@ function selectedGroup(group, gid) {
 	$('#into-group-bookmark').css('display', 'block');
 	$('#jstree-to-bottom').remove();
 	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
-
 	$.ajax({
 		url : "/bit/team/getGroupCategoryList.do",
 		type:"POST",
@@ -620,7 +619,7 @@ $(document).ready(function(){
 			    	index += 1;
 			    }
 			    html += '</ul>';
-			    $(".dropdown-item").append(html);
+			    $(".dropdown-item-indishare").append(html);
 	    	}
 	    });
     });

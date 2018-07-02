@@ -27,7 +27,7 @@
 							</form>
 			            </div>
 			            <hr>
-			            <div class="completed-modal-left">
+			            <div class="completed-modal-left abc123">
 			                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
 			                <!-- Dropdown -->
 			                <div class="dropdown completed-modal-dropdown">
@@ -37,7 +37,7 @@
 			                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			                        <li id="dropdown-my-book" class="dropdown-i-tem">My Bookmark</li>
 			                        <hr class="divider-hr">
-			                        <li class="dropdown-item dropdown-submenu">
+			                        <li class="dropdown-item-indishare dropdown-submenu">
 			                            <a tabindex="-1">Group</a>
 			                        	<c:if test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 											<ul class="dropdown-menu">
