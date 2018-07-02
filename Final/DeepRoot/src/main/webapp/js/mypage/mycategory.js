@@ -775,8 +775,9 @@ function openAddUrlLevel2() {
 	});
 	
 	var url = $("#url_btn").val().trim();
-	if(url == "" || url == "http://"){
-		$.alert("URL을 입력해주세요");
+	var regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+	if(!(regex.test($('#url_btn').val()))){
+		$.alert("URL을 확인해주세요");
 	}else {
 		$.ajax({
     		url: "/bit/admin/preview.do",
