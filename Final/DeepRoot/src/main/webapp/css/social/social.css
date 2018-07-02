@@ -215,7 +215,8 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 300;
 }
 
-.table>tbody>tr>td {
+/* 소셜 사이트명 길이 넘어가면 ... 표시 */
+.container .table>tbody>tr>td {
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
