@@ -380,7 +380,7 @@ public class UserController {
 		message.setSubject("뿌리 깊은 마크 URL 추천 ");
 		message.setFrom("bitcamp104@gmail.com");
 		message.setText(url +" "+ text);
-		message.setTo("sonmit002@naver.com");
+		message.setTo("bitcamp104@gmail.com");
 		
 		model.addAttribute("result","메일 전송");
 		
