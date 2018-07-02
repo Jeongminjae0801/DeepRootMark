@@ -28,7 +28,6 @@ function jstreetable(){
 						"check_callback" : function(op, node, par, pos, more){ // 특정 이벤트 실행 전에 잡아 낼 수 있음
 							target = node.text;
 							location1 = par.text;
-							
 							if(node.a_attr.href =='#')
 								type='폴더';
 							else
@@ -65,7 +64,6 @@ function jstreetable(){
 							if(op === "move_node"){ // dnd 이벤트 일때 
 								var dragnode = node.id;
 								var dropnode = par.id;
-								
 								form = {dragnode : dragnode , dropnode : dropnode};
 								
 								$.ajax({	
@@ -77,7 +75,8 @@ function jstreetable(){
 									},
 									success : function(data){
 										if(more.core){
-											new_name = pos.text
+											new_name = '1';//move 라는거 구분하기 위해서
+											location1 = par.text;
 											sendmessagejstree()
 										}//dnd 성공
 									}
@@ -320,6 +319,9 @@ function customMenu($node){
 								//href 가 반드시 http 로 시작해야한다.
 								$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
 								$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);
+								doing = "1";
+								sendmessagejstree()
+								
 							}
 						}) 
 					})
@@ -372,9 +374,13 @@ function customMenu($node){
 
 function sendmessagejstree() {
 	var op_msg = "";
-    
-    if(new_name == "#" || new_name == null){
+	
+	if(doing == "1"){
+		op_msg = location1 + "폴더에서 "+target+ "의 URL을 "+new_name+"으로 수정하였습니다.";    
+	}else if(new_name == "#" || new_name == null){
     	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+     }else if(new_name == "1"){
+    	op_msg = target + "("+type+")를 " + location1 +"으로 이동하였습니다.";
      }else{
      	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
      }
