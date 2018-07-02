@@ -457,7 +457,6 @@ table.table-hover tbody tr:hover {
 }
 .editUrl .form input[type="text"]{
     border-bottom: 1px solid #555;
-    background-color: #fff;
     color: #333333;
     font-size: 15px;
     height: 35px;

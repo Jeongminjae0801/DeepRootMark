@@ -1434,7 +1434,7 @@ a:focus {
 
 
 .form-control:focus {
-    border-color: #fff;
+    border-color: #555;
     box-shadow: none
 }
 

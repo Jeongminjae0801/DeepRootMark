@@ -81,7 +81,7 @@
 				<se:authorize access="isAuthenticated()">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#" onclick="disconnectLocation('<%= request.getContextPath() %>/user/mybookmark.do');">MyBookmark</a>
+						<a onclick="disconnectLocation('<%= request.getContextPath() %>/user/mybookmark.do');">MyBookmark</a>
 					</li>
 					<!-- Group Menu START -->
 					<li id="groupDropdown" class="dropdown">
@@ -113,7 +113,7 @@
 					
 					<!-- Social Link  -->
 					<li>
-						<a href="#" onclick="disconnectLocation('<%= request.getContextPath() %>/social/social.do');">Social</a>
+						<a onclick="disconnectLocation('<%= request.getContextPath() %>/social/social.do');">Social</a>
 					</li>
 					<!-- Social Link  -->
 					
@@ -188,9 +188,9 @@
 							<img class="dropdown header-ico" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'"> 
 							${sessionScope.info_usernname}
 						</a>
-						<ul role="menu" class="sub-menu">
-							<li><a href="#" onclick="disconnectLocation('<%= request.getContextPath() %>/myInfo.do');">회원정보수정</a></li>
-							<li><a href='#' onclick="disconnectLocation('<%= request.getContextPath() %>/security/logout');">Logout</a></li>
+						<ul role="menu" class="user sub-menu">
+							<li><a onclick="disconnectLocation('<%= request.getContextPath() %>/myInfo.do');">회원정보수정</a></li>
+							<li><a onclick="disconnectLocation('<%= request.getContextPath() %>/security/logout');">Logout</a></li>
 						</ul>
 					</li>
 					<!-- USER INFO END -->
