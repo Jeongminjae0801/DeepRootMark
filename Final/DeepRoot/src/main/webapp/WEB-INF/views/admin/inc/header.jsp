@@ -19,7 +19,7 @@
 		    buttons: {
 		        formSubmit: {
 		            text: '등록',
-		            btnClass: 'btn-orange',
+		            btnClass: 'btn-green',
 		            action: function () {
 		                var name = this.$content.find('.name').val();
 		                if(!name){
