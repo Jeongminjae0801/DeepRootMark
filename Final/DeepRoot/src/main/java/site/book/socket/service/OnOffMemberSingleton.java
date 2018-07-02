@@ -1,8 +1,9 @@
 package site.book.socket.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
 
 /**
  * @Class : ChatController.java
@@ -19,4 +20,9 @@ public class OnOffMemberSingleton {
 		return online;
 	}
 	
+	public static String returnConvertJson(String gid){
+		Gson gson = new Gson();
+        String json = gson.toJson(online.get(gid));
+        return json;
+	}
 }

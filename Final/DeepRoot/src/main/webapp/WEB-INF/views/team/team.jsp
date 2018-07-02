@@ -125,29 +125,50 @@
 			                            <div class="online">
 			                            	<i class="fas fa-toggle-on"></i>온라인
 			                            </div>
-			                            <div class="online-member">
-			                                <p class="member">
-			                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김태웅
-			                                </p>
-			                                <p class="member">
-			                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">김희준
-			                                </p>
-			                                <p class="member">
-			                                    <img class="member-ico" src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="images/profile.png">정민재
-			                                </p>
+			                            <div id="online-member" class="online-member">
+			                            	
 			                            </div>
 			                        </div>
 			                        <div class="offline-content">
 			                            <div class="offline">
 			                            	<i class="fas fa-toggle-off"></i>오프라인
 			                            </div>
-			                            <div class="offline-member">
-			                                <p class="member"><img class="member-ico" src="<%= request.getContextPath() %>/images/team/offline.png">정진수</p>
-			                                <p class="member"><img class="member-ico" src="<%= request.getContextPath() %>/images/team/offline.png">김명수</p>
-			                                <p class="member"><img class="member-ico" src="<%= request.getContextPath() %>/images/team/offline.png">방준석</p>
+			                            <div id="offline-member" class="offline-member">
+			                            
 			                            </div>
 			                        </div>
-			                    </div>    
+			                    </div> 
+			                    
+			                    
+			                    <script type="text/javascript">
+                            		var onlinelist = JSON.parse('${onlinelist}');
+                            		//console.log(onlinelist.hasOwnProperty("민재"));
+                            		//console.log('${gmemberlist}');
+                            		
+                            		var memberList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+                            		<c:forEach items="${gmemberlist}" var="member">
+                            			memberList.push("${member.nname}");
+	                            	</c:forEach>
+	                            	
+	                            	$.each(memberList, function(index, element) {
+	                            		var member = element;
+	                            		if(onlinelist.hasOwnProperty(member)) {
+                            				var insertOnline = '<p id="' + member + '"' + ' class="member">' 
+				                								+ '<img class="member-ico" src="/bit/images/profile.png" '
+				                								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + member
+				                							  + '</p>';
+				                			$('#online-member').prepend(insertOnline);
+	                            			
+	                            		}else {
+	                            			var insertOffline = '<p id="' + member + '"' + ' class="member">' 
+					            								+ '<img class="member-ico" src="/bit/images/profile.png" '
+					            								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + member
+					            							  +'</p>';
+					            			$('#offline-member').prepend(insertOffline);
+	                            		}
+	                            	});
+                            	</script>
+                            	   
 			                </div>
 			            </section>
 			            <!-- Group Member div END -->

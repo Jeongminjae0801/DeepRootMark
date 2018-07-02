@@ -362,16 +362,42 @@ function connect() {
  		
  		stompClient.send('/online/' + gid , {}, JSON.stringify({nname: nname, status: "ON"}));
  		stompClient.subscribe('/subscribe/online/' + gid, function(message) {
- 			 var new_connect = JSON.parse(message.body);
- 			 console.log(new_connect);
+ 			var new_connect = JSON.parse(message.body);
+ 			var temp_member = new_connect.nname;
+ 			$('#' + temp_member).remove();
+ 			
+			var insertOnline = '<p id="' + temp_member + '"' + ' class="member">' 
+							+ '<img class="member-ico" src="/bit/images/profile.png" '
+							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
+						  +'</p>';
+			$('#online-member').prepend(insertOnline);
+ 			
  		});
-        
+ 		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
+ 			var new_connect = JSON.parse(message.body);
+ 			var temp_member = new_connect.nname;
+ 			
+ 			$('#' + temp_member).remove();
+ 			
+			var insertOffline = '<p id="' + temp_member + '"' + ' class="member">' 
+							+ '<img class="member-ico" src="/bit/images/profile.png" '
+							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
+						  +'</p>';
+			$('#offline-member').prepend(insertOffline);
+
+ 		});
+    }, function(message) {
+    	stompClient.send("/offline/" + gid, {}, JSON.stringify({
+           	uid: uid,
+           	content: "OFF"
+        }));
+    	
+        stompClient.disconnect();
     });
     
+    
     ws.onclose = function() {
-    	$.alert('close');
-    	stompClient.send('/offline/' + gid , {}, JSON.stringify({nname: nname, status: "OFF"}));
-        stompClient.disconnect();
+    	disconnect();
         location.href = "/bit/user/mybookmark.do";
     };
 }
@@ -393,20 +419,15 @@ function sendMessage() {
         }));
     }
 }
-
-// 내가 들어왔으니 온라인으로 이동시켜달라 요청
-function sendOnlineMessage() {
-	
-    // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
-    stompClient.send("/online/" + gid, {}, JSON.stringify({
-       	uid: uid,
-       	content: "ON"
-    }));
-    
-}
  
 // 채팅방 연결 끊기
 function disconnect() {
+	$.alert('close');
+	stompClient.send("/offline/" + gid, {}, JSON.stringify({
+       	uid: uid,
+       	content: "OFF"
+    }));
+	
     stompClient.disconnect();
 }
 

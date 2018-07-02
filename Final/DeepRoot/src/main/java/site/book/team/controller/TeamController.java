@@ -33,12 +33,14 @@ import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
+import site.book.socket.service.OnOffMemberSingleton;
 import site.book.team.dto.G_AlarmDTO;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Charsets;
+import com.google.gson.Gson;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
@@ -352,6 +354,10 @@ public class TeamController {
 		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
 		
 		model.addAttribute("gmemberlist",gmemberlist);
+		
+		// 현재 접속중인 유저 SEND (Map -> JSON)
+		model.addAttribute("onlinelist", OnOffMemberSingleton.returnConvertJson(gid));
+		
 		model.addAttribute("gid", gid);
         
         UserDTO user = userservice.getMember(uid);
