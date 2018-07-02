@@ -323,26 +323,11 @@ function connect() {
         //JSTREE 알림 메시지 ex) 누구님이 무엇을 수정했습니다
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
  			var body = JSON.parse(message.body);
-            console.log(user_nname);
             var nname = body.nname;
-            var doing = body.doing; 
-            var target = body.target;
-            var location = body.location;
-            var type = body.type;
-            var new_name = body.newnameorplace;              
             
             if(user_nname == nname){
             	
             }else{
-            	var   snap_message = "";
-	            if(new_name == "#" || new_name == null){
-	               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
-	            }else{
-	               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
-	            }
-	            
-	            ohSnap(snap_message, {color: 'red', duration: '3000'});
-	            console.log(message.body);    
 	             
 	            form = {gid : gid}
 	            $.ajax({
@@ -365,7 +350,6 @@ function connect() {
  			 var new_connect = JSON.parse(message.body);
  			 console.log(new_connect);
  		});
-        
     });
     
     ws.onclose = function() {
