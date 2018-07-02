@@ -8,6 +8,7 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+a:hover{text-decoration: none; }
 .material-icons.md-18 { float: left; font-size: 18px; }
 .material-icons.md-24 { float: left; font-size: 24px; }
 .material-icons.md-32 { float: left; font-size: 32px; margin-right: 7px; }
@@ -213,6 +214,7 @@
 
 .my-group-list {
   padding: 0;
+  cursor: pointer;
 }
 
 .group-list-list {
@@ -226,7 +228,7 @@
 .flag { color:rgb(248, 148, 6); }
 .panel-body { padding:0px; overflow-y: hidden; }
 .panel-body-scroll { padding:0px; height: 80%; overflow-y: scroll; }
-.panel .glyphicon,.list-group-item .glyphicon { margin-right:5px; }
+.panel .glyphicon,.list-group-item .glyphicon { margin-right:5px; cursor: pointer;}
 .panel-body .radio, .checkbox { display:inline-block;margin:0px; }
 .panel-body input[type=checkbox]:checked + label { text-decoration: line-through;color: rgb(128, 144, 160); }
 .list-group-item:hover, a.list-group-item:focus {text-decoration: none; background-color: #dddddd;}

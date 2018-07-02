@@ -21,7 +21,7 @@ import site.book.user.dto.U_BookDTO;
 /**
  * @Class : SufingService.java
  * @Date : 2018. 6. 22.
- * @Author : 정진수
+ * @Author : 정진수, 정민재
  */
 
 @Service

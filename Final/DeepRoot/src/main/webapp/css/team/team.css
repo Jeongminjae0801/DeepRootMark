@@ -9,6 +9,7 @@
 body{
 	font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
 }
+
 .container-fluid.team-container{
     padding-bottom: 0px;
     margin-bottom: 0px;
@@ -16,10 +17,7 @@ body{
     
 }
 
-.whole-body{
-    margin-top:100px;
-}
-
+.whole-body{margin-top:100px;}
 .container-fluid.team-container .row .col-sm-12{
     border : 5px double #000;
     margin-bottom: 0px;
@@ -110,6 +108,7 @@ body{
     font-size: 20px;
     font-weight: 600;
     float: right;
+    cursor: pointer;
 }
 .onoffline-content{ height: 640px; overflow-y: auto;}
 .online-content,

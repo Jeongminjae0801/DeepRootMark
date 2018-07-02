@@ -162,7 +162,6 @@
 					<li id="noticeDropdown" class="dropdown">
 						<a href="#">
 						<i class="far fa-bell fa-lg notice-alarm" style="margin-top: -3px;"></i>
-						<%-- <img src="<%= request.getContextPath() %>/icon/alert.png" class="notice-alarm" style="margin-top: -3px;"></a> --%>
 						</a>
 						<c:if test="${(headerNoticeList ne null) && (!empty headerNoticeList)}">
 							<ul role="menu" class="sub-menu">

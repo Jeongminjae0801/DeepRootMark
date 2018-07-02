@@ -362,7 +362,7 @@
 						<tbody>
 							<c:forEach items="${g_list}" var="g_booklist">
 								<tr>
-									<td class="table-groupname"><a href="#">${g_booklist.gname}</a></td>
+									<td class="table-groupname">${g_booklist.gname}</td>
 									<td class="table-tag">"${g_booklist.htag}"</td>
 									<td class="table-write"><a onclick="surfing_modal(this)" id="${g_booklist.nname}">${g_booklist.nname}</a></td>
 									<td class="table-date">${g_booklist.duedate}</td>
