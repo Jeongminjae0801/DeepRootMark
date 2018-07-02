@@ -109,7 +109,7 @@
 			                <div class="group-member-content">
 			                    <div>
 			                        <div class="group-member-header">
-			                            <p><i class="far fa-address-card"></i> Member <i class="fas fa-user-plus" onclick="member_insert();"></i></p>
+			                            <p><i class="far fa-address-card"></i> Member <i class="member_insert_ico fas fa-user-plus" onclick="member_insert();"></i></p>
 			                        </div>
 			                    </div>
 			                    <div class="onoffline-content">

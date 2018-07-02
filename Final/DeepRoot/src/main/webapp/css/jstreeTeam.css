@@ -529,6 +529,7 @@ filter: gray;
 .jstree-proton > .jstree-no-dots .jstree-node,
 .jstree-proton > .jstree-no-dots .jstree-leaf > .jstree-ocl {
   background: transparent;
+  padding-left:0;
 }
 .jstree-proton > .jstree-no-dots .jstree-open > .jstree-ocl {
   background-position: -37px -5px;
@@ -615,6 +616,7 @@ filter: gray;
 .jstree-proton > .jstree-container-ul > .jstree-node {
   margin-left: 0;
   margin-right: 0;
+  padding-left:0;
 }
 #jstree-dnd.jstree-proton {
   line-height: 22px;

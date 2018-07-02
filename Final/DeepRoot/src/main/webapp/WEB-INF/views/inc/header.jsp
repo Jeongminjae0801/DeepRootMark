@@ -197,7 +197,7 @@
 							${sessionScope.info_usernname}
 						</a>
 						<script type="text/javascript">var nname = '<c:out value="${sessionScope.info_usernname}"/>';</script>
-						<ul role="menu" class="sub-menu">
+						<ul role="menu" class="user sub-menu">
 							<li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
 							<li><a href='<%= request.getContextPath() %>/security/logout'>Logout</a></li>
 						</ul>

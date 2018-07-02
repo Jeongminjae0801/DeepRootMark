@@ -115,9 +115,13 @@ html { overflow-y:scroll; }
 ul.sub-menu {
     display: none;
     list-style: none;
-    padding: 0;
+    padding: 0px;
     margin: 0;
 }
+
+#groupDropdownMenu{padding-left: 3px; padding-top:3px; padding-bottom:3px; padding-right:0px}
+#noticeDropdown > ul.sub-menu{ padding-left: 3px; padding-top: 3px; padding-bottom: 3px;}
+.user.sub-menu { padding-left: 3px; padding-top: 3px; padding-bottom: 3px;}
 
 #header .navbar-nav li ul.sub-menu li a {
     color: #818285;
@@ -235,6 +239,8 @@ ul.sub-menu {
 	color: #dd4b39;
 }
 
+.g_alarm_ul > li {margin-bottom:0;}
+.g_alarm_ul.sub-menu{padding-bottom:0px; padding-top: 5px; padding-left: 5px;}
 .g_alarm_head{
 	font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
 	font-size: 16px;
@@ -243,12 +249,18 @@ ul.sub-menu {
 	padding: 10px;
 }
 
-.g_alarm_name,
-.g_alarm_date{
+.g_alarm_name{
 	font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
 	font-size: 15px;
 	font-weight: 400;
-	color: #8aa4af;
+	color: #444e52;
+	padding-left: 5px;
+}
+.g_alarm_date{
+	font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
+	font-size: 11px;
+	font-weight: 400;
+	color: #444e52;
 	padding-left: 5px;
 }
 

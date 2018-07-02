@@ -172,6 +172,11 @@ body{
     margin-right: 8px;
     vertical-align: middle;
 }
+.member_insert_ico.fas.fa-user-plus:hover,
+.member_insert_ico.fas.fa-user-plus:focus,
+.member_insert_ico.fas.fa-user-plus:active{
+	color: #ee7785;
+}
 
 .member-ico{
     border: 1px solid #fff;
