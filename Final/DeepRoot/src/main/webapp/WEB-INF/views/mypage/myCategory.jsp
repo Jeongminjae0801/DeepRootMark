@@ -59,7 +59,7 @@
 					<ul id="participatingGroupList" class="group-list-list">
 						<c:forEach items="${teamList}" var="team">
 							<li id="${team.gid}" class="list-group-item">
-								<label class="my-group-list" onclick="location.href='<%= request.getContextPath()%>/team/main.do?gid=${team.gid}'"> ${team.gname} </label>
+								<label class="my-group-list" onclick="location.href='<%= request.getContextPath()%>/team/main.do?gid=${team.gid}&gname=${team.gname }'"> ${team.gname} </label>
 								<div class="pull-right action-buttons">
 									<c:choose>
 										<c:when test="${team.grid == '1'}">
@@ -77,8 +77,8 @@
 								</div>
 							</li>
 						</c:forEach>
-						<li class="list-group-item"><a class="plus"><span
-								class="glyphicon glyphicon-plus-sign" onclick="addGroup()"></span></a>
+						<li class="list-group-item" onclick="addGroup()"><a class="plus"><span
+								class="glyphicon glyphicon-plus-sign"></span></a>
 							<label class="my-group-list"> 그룹을 만드시겠습니까? </label></li>
 					</ul>
 				</div>
