@@ -1,10 +1,13 @@
 var urlpid = null;
-var gid2 = null;
-var role = null;
-function jstree(grid , gid, uid ,nname){
-	gid2 =gid;
-	role = grid;
+var target = '';
+var type= '#';
+var new_name = '#';
+var location1 = '';
+var doing = '';
+//(grid , gid, uid ,nname){
+function jstreetable(){
 	form = {gid : gid}
+	console.log(gid);
 	/* 그룹 시작시 jstree 가져오기 */
 	$.ajax({
 		url : "getTeamJstree.do",
@@ -23,15 +26,24 @@ function jstree(grid , gid, uid ,nname){
 							"dots": false, // 연결선 없애기
 						},
 						"check_callback" : function(op, node, par, pos, more){ // 특정 이벤트 실행 전에 잡아 낼 수 있음
-
-							var type= '#';
-							var newnameorplace = '#';
+							target = node.text;
+							location1 = par.text;
 							
 							if(node.a_attr.href =='#')
 								type='폴더';
 							else
 								type='URL';
-							
+
+						    switch(op){
+						        case 'create_node':   doing = "생성"; 
+						        break;
+						        case 'rename_node':   doing = "수정";
+						        break;
+						        case 'delete_node':   doing = "삭제";
+						        break;
+						        case 'move_node':   doing = "이동"; 
+						        break;
+						    }
 												
 							if(op=='move_node'){
 							// dnd 일경우 more.core =ture 일 경우에만 메세지 보내기
@@ -39,44 +51,14 @@ function jstree(grid , gid, uid ,nname){
 								if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
 									return false;	
 								}
-								if(more.core){
-									newnameorplace = pos.text
-									
-									sendmessage()
-								}//dnd 성공
 								
 							}else if	(op == 'rename_node'){
-								newnameorplace = pos;
-								sendmessage()
+								new_name = pos;
+								
 							}else if(op =='delete_node'){
-								sendmessage()
+								
 							}else if(op == 'create_node'){
-								sendmessage()
-							}
-							
-							function sendmessage() {
-								
-								var op_msg = "";
-		                        
-		                        switch(op){
-		                            case 'create_node':   op_msg = "생성"; 
-		                            break;
-		                            case 'rename_node':   op_msg = "수정";
-		                            break;
-		                            case 'delete_node':   op_msg = "삭제";
-		                            break;
-		                            case 'move_node':   op_msg = "이동"; 
-		                            break;
-		                        }
-								
-								stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
-						           	doing : op_msg,
-						           	target : node.text,
-						           	location : par.text,
-						           	nname: nname,
-						           	type : type,
-						           	newnameorplace :newnameorplace
-						        }));
+								sendmessagejstree()
 							}
 							
 							//DND 처리 
@@ -94,6 +76,10 @@ function jstree(grid , gid, uid ,nname){
 									beforeSend : function(){
 									},
 									success : function(data){
+										if(more.core){
+											new_name = pos.text
+											sendmessagejstree()
+										}//dnd 성공
 									}
 								})
 								return true;
@@ -127,8 +113,10 @@ function jstree(grid , gid, uid ,nname){
      					},
 	        			success : function(result){
 	        				//console.log(result.result);
+	        				sendmessagejstree()
 	        			}
 	        		});   
+		    		
 		    	})
 		    	.bind('delete_node.jstree',function(event,data){
 			    		/*왼쪽 jstree 폴더 삭제하기*/
@@ -144,15 +132,16 @@ function jstree(grid , gid, uid ,nname){
      					},
      					success : function(result){
      						//console.log(result.result);
+     						sendmessagejstree()
 						}
 					})  
 		    	})
 		    	.bind("select_node.jstree",function(e,data){
+		    		console.log("selected");
 		    		var href = data.node.a_attr.href;
 		    		if(href !='#'){
 						window.open(href); 
 		    		}
-			
 		    	})
 		}
 	})
@@ -164,8 +153,8 @@ function jstree(grid , gid, uid ,nname){
 	$("#jstree_container").on('close_node.jstree', function(e,data){
 		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
 	})	
-}
-
+};
+	
 function addUrlLevel1() {
 	$(".addUrlLevel1").show();
 	$(".addUrlLevel2").hide();
@@ -218,7 +207,7 @@ function addUrl(){
 	var url = $('#url_btn').val(); //추가 url 값
 	var title = $('#title_btn').val(); // 추가 url 명값
 	var tree = $("#jstree_container").jstree(true);
-	var form = {url : url , urlname : title , pid : urlpid, gid:gid2}
+	var form = {url : url , urlname : title , pid : urlpid, gid:gid}
 	//console.log(form);
 	 if(title == ""){
 		 $.alert("제목을 입력해주세요")
@@ -346,7 +335,9 @@ function customMenu($node){
 				}
 			}
 	    };
-	if(role == '3'){ // 일반 그룹
+	
+	
+	if(grid == '3'){ // 일반 그룹
 		if(href == '#'){ // 폴더
 			if(uid == node_uid){ // 자기꺼
 				delete items.remove;
@@ -377,4 +368,25 @@ function customMenu($node){
 		}
 	}
 	return items;
+}
+
+function sendmessagejstree() {
+	var op_msg = "";
+    
+    if(new_name == "#" || new_name == null){
+    	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+     }else{
+     	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
+     }
+	stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
+       	nname: nname
+    }));
+	console.log("jstree 보낸후 ");
+	//희준이 message 틀
+	stompClient.send("/chat/" + gid, {}, JSON.stringify({
+		content: op_msg,
+       	nname: nname,
+       	profile: profile
+    }));
+	console.log("chat 보낸후 ");
 }

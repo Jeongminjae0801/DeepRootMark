@@ -27,7 +27,7 @@
 							</form>
 			            </div>
 			            <hr>
-			            <div class="completed-modal-left">
+			            <div class="completed-modal-left abc123">
 			                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
 			                <!-- Dropdown -->
 			                <div class="dropdown completed-modal-dropdown">
@@ -37,7 +37,7 @@
 			                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			                        <li id="dropdown-my-book" class="dropdown-i-tem">My Bookmark</li>
 			                        <hr class="divider-hr">
-			                        <li class="dropdown-item dropdown-submenu">
+			                        <li class="dropdown-item-indishare dropdown-submenu">
 			                            <a tabindex="-1">Group</a>
 			                        	<c:if test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 											<ul class="dropdown-menu">
@@ -368,7 +368,7 @@
 									<td class="table-date">${g_booklist.duedate}</td>
 									<td class="table-click">${g_booklist.view}</td>
 									<td class="table-icon">
-										<a onclick="get_groupbook(this)" id="${g_booklist.gid }"><i class="fa fa-share get_groupbook"></i></a>
+										<a onclick="get_groupbook(this)" id="${g_booklist.gid}" name="${g_booklist.gname}"><i class="fa fa-share get_groupbook"></i></a>
 									</td>
 								</tr>
 							</c:forEach>

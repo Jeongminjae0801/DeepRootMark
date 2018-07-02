@@ -177,7 +177,6 @@ function selectedGroup(group, gid) {
 	$('#into-group-bookmark').css('display', 'block');
 	$('#jstree-to-bottom').remove();
 	$('.completed-modal-left:eq(1)').append('<div id="jstree-to-bottom" style="clear: both;"></div>');
-
 	$.ajax({
 		url : "/bit/team/getGroupCategoryList.do",
 		type:"POST",
@@ -212,14 +211,14 @@ function selectedGroup(group, gid) {
 var second_data = null
 
 function get_groupbook(group){
-	/*console.log($('.table-groupname').text());*/
-	$('.groupname').text();
 	//클릭한 작성자 닉네임
-	var groupname = group.id;
+	var gid = group.id;
+	var groupName = group.name;
+	$('.groupname').text(groupName);
 	$.ajax({
 		url : "/bit/user/getCompletedTeamBookmark.do",
 		type : "POST",
-		data : {gid : groupname},
+		data : {gid : gid},
 		dataType :"json",
 		success : function(obj){
 			second_data = obj;
@@ -620,7 +619,7 @@ $(document).ready(function(){
 			    	index += 1;
 			    }
 			    html += '</ul>';
-			    $(".dropdown-item").append(html);
+			    $(".dropdown-item-indishare").append(html);
 	    	}
 	    });
     });

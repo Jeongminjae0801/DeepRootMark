@@ -1,7 +1,3 @@
-var user_nname = null;
-function getnname(nname) {
-	user_nname = nname
-}
 // 화면 전환시 채팅 스크롤 최하단으로 위치
 $(".chat-element").scrollTop($(".chatting-contents").height());
 $('#chat-textbox-text').each(function() {
@@ -25,6 +21,7 @@ $('#chat-textbox-text').keydown(function (e) {
 $(function() {
     
 	connect();
+	jstreetable();
 	
 	var lastDate = null;
 	
@@ -47,7 +44,12 @@ $(function() {
 				}else {
 					NowTime += '-' + (Now.getMonth() + 1) ;
 				}
-				NowTime += '-' + Now.getDate();
+				
+				if(Now.getDate() < 10){
+					NowTime += '-0' + Now.getDate();
+				}else {
+					NowTime += '-' + Now.getDate();
+				}
 				
 				var today = time[0];
 				//console.log("today" + NowTime);
@@ -56,10 +58,14 @@ $(function() {
 				}
 				
 				var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
-				$(".chatting-contents").append(date);
+				$(".chatting-contents").prepend(date);
 			}else if(lastDate != time[0]){
+				console.log("lastdate: " + lastDate);
+				console.log("time[0] :" + time[0])
+				
 				var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
-				$(".chatting-contents").append(date);
+				$(".chatting-contents").prepend(date);
+				lastDate = time[0];
 			}
 			
 			time[1] = time[1].split(":");
@@ -157,10 +163,11 @@ $(function() {
         					}
         					
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
         				}else if(lastDate != time[0]){
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
+        					lastDate = time[0];
         				}
         				
         				time[1] = time[1].split(":");
@@ -218,10 +225,11 @@ $(function() {
         					}
         					
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + today + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
         				}else if(lastDate != time[0]){
         					var date = '<div id="' + time[0]+ '" class="divider"><hr class="left"/><span>' + time[0] + '</span><hr class="right"/></div>';
-        					$(".chatting-contents").append(date);
+        					$(".chatting-contents").prepend(date);
+        					lastDate = time[0];
         				}
         				
         				time[1] = time[1].split(":");
@@ -283,7 +291,11 @@ function connect() {
 				}else {
 					NowTime += '-' + (Now.getMonth() + 1) ;
 				}
-				NowTime += '-' + Now.getDate();
+				if(Now.getDate() < 10){
+					NowTime += '-0' + Now.getDate();
+				}else {
+					NowTime += '-' + Now.getDate();
+				}
 				
 				var today = time[0];
 				if(NowTime == time[0]){
@@ -320,29 +332,15 @@ function connect() {
             $(".chat-element").scrollTop($(".chatting-contents").height());
         });
         
+        console.log("jstree subscrib 시작 전");
         //JSTREE 알림 메시지 ex) 누구님이 무엇을 수정했습니다
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
  			var body = JSON.parse(message.body);
-            console.log(user_nname);
-            var nname = body.nname;
-            var doing = body.doing; 
-            var target = body.target;
-            var location = body.location;
-            var type = body.type;
-            var new_name = body.newnameorplace;              
-            
-            if(user_nname == nname){
+            var whosend = body.nname;
+            console.log("너 들어오기");
+            if(nname == whosend){
             	
             }else{
-            	var   snap_message = "";
-	            if(new_name == "#" || new_name == null){
-	               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
-	            }else{
-	               snap_message = nname + "님이 " + location + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
-	            }
-	            
-	            ohSnap(snap_message, {color: 'red', duration: '3000'});
-	            console.log(message.body);    
 	             
 	            form = {gid : gid}
 	            $.ajax({
@@ -352,9 +350,10 @@ function connect() {
 	         		data :form,
 	         		dataType:"json",
 	         		success : function(data){
+	         			console.log("아래래래랠");
+	         			console.log(data);
 	         			$("#jstree_container").jstree(true).settings.core.data = data;
 						$("#jstree_container").jstree(true).refresh();
-	         			
 	         		}
 	             })
             }
@@ -371,8 +370,8 @@ function connect() {
 							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
 						  +'</p>';
 			$('#online-member').prepend(insertOnline);
- 			
  		});
+
  		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
@@ -384,15 +383,12 @@ function connect() {
 							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
 						  +'</p>';
 			$('#offline-member').prepend(insertOffline);
-
  		});
+ 		
     }, function(message) {
-    	stompClient.send("/offline/" + gid, {}, JSON.stringify({
-           	uid: uid,
-           	content: "OFF"
-        }));
-    	
+
         stompClient.disconnect();
+
     });
     
     

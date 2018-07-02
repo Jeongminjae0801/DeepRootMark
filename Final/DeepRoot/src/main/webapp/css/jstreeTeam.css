@@ -183,7 +183,7 @@ font-family: 'Gamja Flower', cursive;
 .vakata-context .vakata-context-right ul {
   left: auto;
   right: 100%;
-  margin-left: auto;
+/*   margin-left: auto; */
   margin-right: -4px;
 }
 .vakata-context li {
@@ -283,7 +283,7 @@ font-family: 'Gamja Flower', cursive;
 .vakata-context-rtl ul {
   left: auto;
   right: 100%;
-  margin-left: auto;
+ /*  margin-left: auto; */
   margin-right: -4px;
 }
 .vakata-context-rtl li > a.vakata-context-parent {

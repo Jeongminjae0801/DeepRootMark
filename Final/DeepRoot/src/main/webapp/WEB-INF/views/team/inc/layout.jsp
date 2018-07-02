@@ -69,6 +69,14 @@
 		<tiles:insertAttribute name="footer" />
 	</div>
     
+    <!-- Custom Script START -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js?ver=1"></script>
+    <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
+    <script src="${pageContext.request.contextPath}/js/team/header_icon_zoom.js?ver=2"></script>
+    <!-- Custom Script END -->
+        <!-- jstree Script -->
+	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/Teamcategory.js"></script>
+	
     <!-- URL 추가 모달 -->
     
     	<!-- URL 추가 모달 -->
@@ -158,12 +166,7 @@
 			</div>
 		</div>
 	</div>
-    <!-- jstree Script -->
-	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/Teamcategory.js"></script>
-	<!-- Custom Script START -->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team.js?ver=1"></script>
-    <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
-    <script src="${pageContext.request.contextPath}/js/team/header_icon_zoom.js?ver=2"></script>
-    <!-- Custom Script END -->
+
+	
 </body>
 </html>
