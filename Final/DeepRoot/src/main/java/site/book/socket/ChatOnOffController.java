@@ -39,7 +39,6 @@ public class ChatOnOffController {
     		// 해당 방의 현재 로그인 중인 리스트 GET
     		Map<String, String> online_users = online_list.get(room);
     		
-			System.out.println(member.getNname() + ": 들어옴");
         	online_users.put(member.getNname(), member.getStatus());
         	
         	online_list.put(room, online_users); // 다시 온라인 Map에 저장
@@ -56,7 +55,7 @@ public class ChatOnOffController {
     public OnlineMemberDTO sendOfflineMessage(@DestinationVariable("room") String room, @Payload OnlineMemberDTO member) throws Exception {
     	
     	Map<String, Map<String, String>> online_list = OnOffMemberSingleton.getInstance();
-    	
+ 
     	// 그룹 생성후 처음 들어온 경우,
     	if( !online_list.containsKey(room) ) {
     		online_list.put(room, new HashMap<String, String>());
@@ -67,10 +66,13 @@ public class ChatOnOffController {
     		// 해당 방의 현재 로그인 중인 리스트 GET
     		Map<String, String> online_users = online_list.get(room);
     		
-			System.out.println(member.getNname() + ": 나감");
 			online_users.remove(member.getNname());
 			
-			online_list.put(room, online_users); // 다시 온라인 Map에 저장
+			if(online_users.size() == 0) {
+				online_list.remove(room);
+			}else {
+				online_list.put(room, online_users); // 다시 온라인 Map에 저장
+			}
     	}
     	
     	System.out.println(online_list);

@@ -343,6 +343,7 @@ public class TeamController {
 		
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
+        String nname = (String)session.getAttribute("info_usernname");
 
         // 태웅: 사용자가 주소창으로 장난친다면?
         G_MemberDTO temp_member = new G_MemberDTO(uid, Integer.parseInt(gid));
@@ -356,7 +357,7 @@ public class TeamController {
 		model.addAttribute("gmemberlist",gmemberlist);
 		
 		// 현재 접속중인 유저 SEND (Map -> JSON)
-		model.addAttribute("onlinelist", OnOffMemberSingleton.returnConvertJson(gid));
+		model.addAttribute("onlinelist", OnOffMemberSingleton.returnConvertJson(nname, gid));
 		
 		model.addAttribute("gid", gid);
         

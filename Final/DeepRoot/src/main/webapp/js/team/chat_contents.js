@@ -418,10 +418,9 @@ function sendMessage() {
  
 // 채팅방 연결 끊기
 function disconnect() {
-	$.alert('close');
 	stompClient.send("/offline/" + gid, {}, JSON.stringify({
-       	uid: uid,
-       	content: "OFF"
+       	nname: nname,
+       	status: "OFF"
     }));
 	
     stompClient.disconnect();

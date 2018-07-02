@@ -5,7 +5,11 @@
 
 <script type="text/javascript">
 	// 헤더 이동시 socket disconnect & href 
-
+	function disconnectLocation(link) {
+		location.href = link;
+		disconnect();
+	}
+	
 	// header에 있는 그룹 추가 버튼 클릭 이벤트
 	function headerAddGroup(gid) {
 		$.confirm({
@@ -63,7 +67,7 @@
  	<div class="navbar navbar-inverse" role="banner">
 		<div class="container">
 			<div class="navbar-brand">
-				<a class="logo-text" href="<%= request.getContextPath() %>/index.do">뿌리깊은마크</a>
+				<a class="logo-text" href="#" onclick="disconnectLocation('<%= request.getContextPath() %>/index.do');">뿌리깊은마크</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
@@ -77,7 +81,7 @@
 				<se:authorize access="isAuthenticated()">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="<%= request.getContextPath() %>/user/mybookmark.do">MyBookmark</a>
+						<a href="#" onclick="disconnectLocation('<%= request.getContextPath() %>/user/mybookmark.do');">MyBookmark</a>
 					</li>
 					<!-- Group Menu START -->
 					<li id="groupDropdown" class="dropdown">
@@ -87,7 +91,10 @@
 							<c:when test="${(headerTeamList ne null) && (!empty headerTeamList)}">
 								<c:forEach items="${headerTeamList}" var="headerTeam" varStatus="status">
 									<c:if test="${status.index < 10}">
-										<li class="groupMenu"><a href="<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}&gname=${headerTeam.gname}">${headerTeam.gname}</a></li>
+										<li class="groupMenu">
+											<a href="#" 
+											   onclick="disconnectLocation('<%= request.getContextPath() %>/team/main.do?gid=${headerTeam.gid}&gname=${headerTeam.gname}');">${headerTeam.gname}</a>
+										</li>
 									</c:if>
 									<c:if test="${status.last}">
 										<c:if test="${status.count < 10}">
@@ -106,7 +113,7 @@
 					
 					<!-- Social Link  -->
 					<li>
-						<a href="<%= request.getContextPath() %>/social/social.do">Social</a>
+						<a href="#" onclick="disconnectLocation('<%= request.getContextPath() %>/social/social.do');">Social</a>
 					</li>
 					<!-- Social Link  -->
 					
@@ -182,8 +189,8 @@
 							${sessionScope.info_usernname}
 						</a>
 						<ul role="menu" class="sub-menu">
-							<li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
-							<li><a href='<%= request.getContextPath() %>/security/logout'>Logout</a></li>
+							<li><a href="#" onclick="disconnectLocation('<%= request.getContextPath() %>/myInfo.do');">회원정보수정</a></li>
+							<li><a href='#' onclick="disconnectLocation('<%= request.getContextPath() %>/security/logout');">Logout</a></li>
 						</ul>
 					</li>
 					<!-- USER INFO END -->

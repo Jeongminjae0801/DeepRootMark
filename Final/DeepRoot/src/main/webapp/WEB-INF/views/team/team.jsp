@@ -133,7 +133,8 @@
 			                    
 			                    
 			                    <script type="text/javascript">
-                            		var onlinelist = JSON.parse('${onlinelist}');
+			                    $(document).ready(function() {
+			                    	var onlinelist = JSON.parse('${onlinelist}');
                             		//console.log(onlinelist.hasOwnProperty("민재"));
                             		//console.log('${gmemberlist}');
                             		
@@ -144,6 +145,7 @@
 	                            	
 	                            	$.each(memberList, function(index, element) {
 	                            		var member = element;
+	                            		console.log(member);
 	                            		if(onlinelist.hasOwnProperty(member)) {
                             				var insertOnline = '<p id="' + member + '"' + ' class="member">' 
 				                								+ '<img class="member-ico" src="/bit/images/profile.png" '
@@ -159,6 +161,7 @@
 					            			$('#offline-member').prepend(insertOffline);
 	                            		}
 	                            	});
+			                    });
                             	</script>
                             	   
 			                </div>
