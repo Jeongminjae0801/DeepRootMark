@@ -938,6 +938,12 @@ function deleteGroup(gid) {
 	        	keys: ['enter'],
 	        	action : function () {
 	        		$("#"+gid).remove(); // 그룹리스트에서 지우기
+	        		$("#headerGroup" + gid).remove();
+	        		
+	        		if($(".groupMenu").length < 10 && $("#headerGroupAdd") == 0){
+	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
+	        			$("#groupDropdownMenu").append(groupAddHTML);
+	    			}
 	        		
 	    			$.ajax({
 	    				url: "leaveGroup.do",
@@ -1033,6 +1039,12 @@ function addGroup() {
 							group += '</li>';
 							
                 			$("#participatingGroupList").children().last().before(group);
+                			
+                			var groupheader = '<li id="headerGroup' + data.newTeam.gid + '" class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
+    		    			$("#groupDropdownMenu").children().last().before(groupheader);
+    		    			if($(".groupMenu").length > 10){
+    		    				$("#groupDropdownMenu").children().last().remove();
+    		    			}
 	                	}
 	                });
 	                
@@ -1089,6 +1101,13 @@ function completedGroup(gid) {
 	                		addCompletedGroup += '</li>';
 	                		
 	                		$("#completedGroupList").append(addCompletedGroup);
+	                		
+	                		$("#headerGroup" + gid).remove();
+	    	        		
+	    	        		if($(".groupMenu").length < 10 && $("#headerGroupAdd").length == 0){
+	    	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
+	    	        			$("#groupDropdownMenu").append(groupAddHTML);
+	    	    			}
 	                	}
 	                });
 	                
