@@ -129,8 +129,6 @@ function group_leave(){
     });
 }
 
-
-
 /* 그룹 완료 */
 function group_complete(){
     $.confirm({
@@ -171,6 +169,16 @@ function group_complete(){
         	// 그룹 완료  ajaxFrom()
         	$("#completeGroup").ajaxForm({
         		success: function(data, statusText, xhr, $form){
+        			
+        			stompClient.send('/alarm' , {}, 
+						 	JSON.stringify({
+						 		gid: gid,
+						 		fromid: nname,
+						 		gname: gname,
+						 		gmemo: '완료',
+						 		senddate: 'NOW'
+							})
+						);
         			
         			$.alert("현재 그룹이 완료되었습니다!");
         			setTimeout(function(){ 

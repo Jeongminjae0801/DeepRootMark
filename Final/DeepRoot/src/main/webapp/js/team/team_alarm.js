@@ -45,14 +45,42 @@ function alarmConnect(stompClient, userid) {
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
     		}
-    	}else {
+    	}
+    	
+    	common_form += '</li>';
+    	//console.log(common_form);
+    	$('.g_alarm_ul').prepend(common_form);
+    	
+    });
+   
+    stompClient.subscribe('/subscribe/alarm', function(message) {
+    	
+    	var recv_alarm = JSON.parse(message.body);
+    	var recv_gid = recv_alarm.gid;
+    	var recv_toid = recv_alarm.toid;
+    	var recv_fromid = recv_alarm.fromid;
+    	var recv_gname = recv_alarm.gname;
+    	var recv_ganame = recv_alarm.gmemo
+    	var recv_senddate = recv_alarm.senddate;
+    	
+    	if($('#alarm_menu_li').children('ul').length == 0) {
+    		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
+		}
+    	
+    	var common_form = '<li id="alarmlist' +recv_gid+ '" class="g_alarm_li">'
+    						+ '<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">' +recv_gname+ '</span></span>'
+    						+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
+    						+ '<br style="clear:both">';
+    	
+    	if( recv_ganame == "완료" ) {
     		
     		if( gid == recv_gid ) {
-    			$.alert("현재 그룹이 그룹장에 의해 완료되었습니다!");
+    			
+    			$.alert("그룹장(" +recv_fromid+ ")에 의해 완료되었습니다!");
     			setTimeout(function(){ location.replace("/bit/index.do"); }, 3000);
     			return
-    			
-    		}else {
+    		}
+    		else {
         		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 								+ '<span class="g_alarm_name">'+recv_fromid+'</span>'
 								+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
@@ -65,8 +93,6 @@ function alarmConnect(stompClient, userid) {
     	$('.g_alarm_ul').prepend(common_form);
     	
     });
-   
-    
 }
 
 //Header Alarm socket disconnect
