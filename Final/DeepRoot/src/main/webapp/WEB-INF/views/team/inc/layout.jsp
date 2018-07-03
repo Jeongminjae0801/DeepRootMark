@@ -76,7 +76,8 @@
     <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
     <script src="${pageContext.request.contextPath}/js/team/header_icon_zoom.js?ver=2"></script>
     <!-- Custom Script END -->
-        <!-- jstree Script -->
+    
+    <!-- jstree Script -->
 	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/Teamcategory.js"></script>
 	
     <!-- URL 추가 모달 -->

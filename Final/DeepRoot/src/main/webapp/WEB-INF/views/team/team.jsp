@@ -18,9 +18,14 @@
 	</c:forEach>
 	var grid = '<c:out value="${grid}"/>';
 	var gname ='<c:out value="${gname}"/>';
-
+	
+	/* 그룹에서의 나의 권한 */
+	var myRole = '<c:out value="${requestScope.group_auth}"/>';
+	//console.log(myRole);
 </script>
-
+	<!-- 그룹에서의 나의 권한 -->
+	<c:set var="myRole" value="${requestScope.group_auth}"/>
+	
 	<!-- 전체 Body Div START -->
     <div class="container-fluid team-container">
         <div id="main-row" class="row">
@@ -37,8 +42,14 @@
 			                        <div class="zoom">
 									    <a class="zoom-fab zoom-btn-large" id="zoomBtn"><i class="fa fa-bars"></i></a>
 									    <ul class="zoom-menu">
-									      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out" onclick="group_leave();"><i class="fas fa-sign-out-alt"></i></a></li>
-									      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-feedback scale-transition scale-out" onclick="group_complete();"><i class="fas fa-check"></i></a></li>
+									    <c:choose>
+								    	<c:when test="${myRole == '그룹장'}">
+								    		<li><a class="zoom-fab zoom-btn-sm zoom-btn-feedback scale-transition scale-out" onclick="group_complete();"><i class="fas fa-check"></i></a></li>
+								    	</c:when>
+								    	<c:otherwise>
+								    		<li><a class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out" onclick="group_leave();"><i class="fas fa-sign-out-alt"></i></a></li>
+								    	</c:otherwise>
+									    </c:choose>
 									    </ul>
 							  		</div>
 			                    </div>
@@ -130,7 +141,6 @@
 			                            </div>
 			                        </div>
 			                    </div> 
-			                    
 			                    
 			                    <script type="text/javascript">
 			                    $(document).ready(function() {

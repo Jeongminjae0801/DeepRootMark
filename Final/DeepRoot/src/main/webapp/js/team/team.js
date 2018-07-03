@@ -87,7 +87,7 @@ function group_leave(){
     $.confirm({
         title: '그룹 탈퇴',
         content: '' +
-        '<form id="leaveGroup" action="" class="formGroup" method="post">' +
+        '<form id="leaveGroup" action="/bit/user/leaveGroup.do" class="formGroup" method="post">' +
         '<div class="form-group">' +
         '<label>그룹을 탈퇴하시겠습니까</label>' +
         '<input type="hidden" name="uid" value="'+uid+'" class="leaveUid form-control"/>' +
@@ -113,6 +113,18 @@ function group_leave(){
                 //close
                 }
             },
+        },
+        onContentReady: function(){
+        	// 그룹 탈퇴  ajaxFrom()
+        	$("#leaveGroup").ajaxForm({
+        		success: function(data, statusText, xhr, $form){
+        			
+        			$.alert("현재 그룹에서 탈퇴하셨습니다!");
+        			setTimeout(function(){ 
+        				location.replace("/bit/user/mybookmark.do"); 
+        			}, 1000);
+        		}
+        	});
         }
     });
 }
@@ -124,7 +136,7 @@ function group_complete(){
     $.confirm({
         title: '그룹 완료',
         content: '' +
-        '<form id="completeGroup" action="" class="formGroup" method="post">' +
+        '<form id="completeGroup" action="/bit/user/completedGroup.do" class="formGroup" method="post">' +
         '<div class="form-group">' +
         '<label>해시태그를 입력하세요</label>' +
         '<input type="text" name="htag" class="htagName form-control" required/>' +
@@ -154,6 +166,18 @@ function group_complete(){
                 //close
                 }
             },
+        },
+        onContentReady: function(){
+        	// 그룹 완료  ajaxFrom()
+        	$("#completeGroup").ajaxForm({
+        		success: function(data, statusText, xhr, $form){
+        			
+        			$.alert("현재 그룹이 완료되었습니다!");
+        			setTimeout(function(){ 
+        				location.replace("/bit/user/mybookmark.do"); 
+        			}, 1000);
+        		}
+        	});
         }
     });
 }
@@ -162,19 +186,21 @@ function group_complete(){
 
 /* 마우스 오른쪽 이벤트 (회원강퇴) 추가*/
 $(function() {
-    $.contextMenu({
-        selector: '.member', 
-        callback: function(key, opt) {
-            var targetNname = opt.$trigger.text().trim();
-            
-            if(key == "ban"){
-            	member_ban(targetNname);
-            }
-        },
-        items: {
-            "ban": {name: "강퇴"}
-        }
-    });   
+	if( myRole != "그룹원" ){
+		$.contextMenu({
+	        selector: '.member', 
+	        callback: function(key, opt) {
+	            var targetNname = opt.$trigger.text().trim();
+	            
+	            if(key == "ban"){
+	            	member_ban(targetNname);
+	            }
+	        },
+	        items: {
+	            "ban": {name: "강퇴"}
+	        }
+	    });   
+	}
 });
 
 /* 멤버 강퇴 START */
@@ -244,7 +270,5 @@ function member_ban(targetNname){
 }
 
 /* 멤버 강퇴 END */
-
-
 
 	

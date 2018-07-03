@@ -13,6 +13,7 @@ import java.util.List;
 
 import site.book.team.dto.G_AlarmDTO;
 import site.book.team.dto.G_MemberDTO;
+import site.book.team.dto.G_RoleDTO;
 import site.book.user.dto.UserDTO;
 
 /**
@@ -36,7 +37,7 @@ public interface G_MemberDAO {
 	
 	// 태웅
 	// 해당 유저가 들어오고자 하는 그룹의 그룹원이지 확인
-	public int isGroupMember(G_MemberDTO member) throws ClassNotFoundException, SQLException;
+	public G_RoleDTO isGroupMember(G_MemberDTO member) throws ClassNotFoundException, SQLException;
 	
 	// 특정 유저에게 그룹 초대 쪽지 보내기
 	public int sendInviteMemo(G_AlarmDTO alarm) throws ClassNotFoundException, SQLException;

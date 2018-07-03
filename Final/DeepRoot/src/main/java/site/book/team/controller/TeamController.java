@@ -48,6 +48,7 @@ import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_MyAlarmDTO;
+import site.book.team.dto.G_RoleDTO;
 import site.book.team.dto.TeamDTO;
 import site.book.team.service.G_AlarmService;
 import site.book.team.service.G_BookService;
@@ -349,9 +350,14 @@ public class TeamController {
 
         // 태웅: 사용자가 주소창으로 장난친다면?
         G_MemberDTO temp_member = new G_MemberDTO(uid, Integer.parseInt(gid));
-        if(teamservice.isGroupMember(temp_member) != true) {
+        G_RoleDTO roll_name = teamservice.isGroupMember(temp_member);
+        if(roll_name == null) {
         	// 마이 페이지로 이동
         	return "redirect:/user/mybookmark.do";
+        }else {
+        	// 그룹원이라면, 해당 유저의 그룹 권한 명을 model
+        	req.setAttribute("group_auth", roll_name.getGrname());
+        	model.addAttribute("gmemberrole", roll_name.getGrname());
         }
         
 		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
@@ -371,7 +377,6 @@ public class TeamController {
 		if(uid != null) {
 			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
 			model.addAttribute("headerTeamList", headerTeamList);
-			
 		}
 		
 		model.addAttribute("gname", gname);

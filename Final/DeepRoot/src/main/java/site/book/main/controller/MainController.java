@@ -260,6 +260,10 @@ public class MainController {
 			model.addAttribute("headerTeamList", headerTeamList);
 		}
 		
+		// 그룹 초대/강퇴/완료 알람  쪽지 리스트
+		List<G_MyAlarmDTO> headerAlarmList = galarmservice.getAlarmList(uid);
+		model.addAttribute("headerAlarmList", headerAlarmList);
+		
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
 		model.addAttribute("headerNoticeList", headerNoticeList);
 		

@@ -87,11 +87,9 @@ public class UserController {
 	public View userIdCheck(@RequestParam("uid") String uid, Model model) {
 		//System.out.println(uid);
 		int result = userservice.checkUserID(uid);
-		if(result > 0) {
-			model.addAttribute("result", "fail");
-		}else {
-			model.addAttribute("result", "pass");
-		}
+
+		String data = (result > 0) ? "fail" : "pass";
+		model.addAttribute("result", data);
 		
 		return jsonview;
 	}
@@ -100,12 +98,10 @@ public class UserController {
 	public View userNnameCheck(@RequestParam("nname") String nname, Model model) {
 		//System.out.println(nname);
 		int result = userservice.checkUserNickname(nname);
-		if(result > 0) {
-			model.addAttribute("result", "fail");
-		}else {
-			model.addAttribute("result", "pass");
-		}
 		
+		String data = (result > 0) ? "fail" : "pass";
+		model.addAttribute("result", data);
+	
 		return jsonview;
 	}
 	
@@ -115,13 +111,12 @@ public class UserController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         book.setUid(uid);
-        System.out.println(book);
+        //System.out.println(book);
+        
         int result = u_bookservice.addToMyBookmark(book);
-		if(result > 0) {
-			model.addAttribute("result", "success");
-		}else {
-			model.addAttribute("result", "fail");
-		}
+		
+		String data = (result > 0) ? "success" : "fail";
+		model.addAttribute("result", data);
 		
 		return jsonview;
 	}
