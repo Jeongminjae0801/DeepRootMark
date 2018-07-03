@@ -12,7 +12,6 @@ var counturl = '';
 //(grid , gid, uid ,nname){
 function jstreetable(){
 	form = {gid : gid}
-	console.log(gid);
 	/* 그룹 시작시 jstree 가져오기 */
 	$.ajax({
 		url : "getTeamJstree.do",
@@ -141,7 +140,6 @@ function jstreetable(){
 					})  
 		    	})
 		    	.bind("select_node.jstree",function(e,data){
-		    		console.log("selected");
 		    		var href = data.node.a_attr.href;
 		    		if(href !='#'){
 						window.open(href); 
@@ -318,6 +316,8 @@ function customMenu($node){
 						"separator_after": false,
 						"label": "내 북마크",
 						"action" : function(obj){
+							
+							$('#jstree-from-mybook').jstree().uncheck_all( );		
 							var inst = $.jstree.reference(obj.reference);
 							var par_text = inst.get_node(obj.reference).text;
 							addUrlFolder_id= inst.get_node(obj.reference).id;
