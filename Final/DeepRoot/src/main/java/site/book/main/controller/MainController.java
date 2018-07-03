@@ -260,6 +260,9 @@ public class MainController {
 			model.addAttribute("headerTeamList", headerTeamList);
 		}
 		
+		List<G_MyAlarmDTO> headerAlarmList = galarmservice.getAlarmList(uid);
+		model.addAttribute("headerAlarmList", headerAlarmList);
+		
 		List<NoticeDTO> headerNoticeList = notice_service.getNotices();
 		model.addAttribute("headerNoticeList", headerNoticeList);
 		
