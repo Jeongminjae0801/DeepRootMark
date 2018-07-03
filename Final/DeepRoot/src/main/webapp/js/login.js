@@ -414,7 +414,7 @@ $(function() {
     //비밀번호 길이 확인 함수
     $(function() {
         $('#pwd').keyup(function() {
-            if (($('#pwd').val().trim() == "") || !($('#pwd').val().length >=4 && $('#pwd').val().length <= 15)) {
+            if (($('#pwd').val().trim() == "") || !($('#pwd').val().length >=5 && $('#pwd').val().length <= 15)) {
             	$('.error').addClass('alert alert-success').html("비밀번호를 5자~15자 사이로 입력해주세요.");
             } else {
                 $('.error').removeClass('alert alert-danger').html('');
