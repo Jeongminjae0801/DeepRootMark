@@ -36,10 +36,10 @@
                         <input id="nname_edit" class="form-control" type="text" name="nname" value="${sessionScope.info_usernname}" readonly><br>
 
                         <label class="control-label" for="pwd_edit">Password</label>
-                        <input id="pwd_edit" class="form-control" type="password" placeholder="Enter Password" name="pwd" required><br>
+                        <input id="pwd_edit" class="form-control" type="password" placeholder="Enter Password" name="pwd"><br>
 
                         <label class="control-label" for="pwd_confirmation">Repeat Password</label>
-                        <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation" required><br>
+                        <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation"><br>
 
                         <center>
                             <input id="edit-who-info-btn" type="submit" class="btn btn-default confirm" value="수정">
@@ -70,6 +70,8 @@
 	            	if(data.result == 'pass') {
 	            		$('#re-confirm-form').css('display', 'none');
 	            		$('#edit-info-form').css('display', 'block');
+	            		$('#pwd_edit').val($('#pwd_check').val());
+	            		$('#pwd_confirmation').val($('#pwd_check').val());
 	            	}
 	            	else {
 	            		alert('비밀번호를 재확인 해주세요');
