@@ -4,7 +4,6 @@ $('.indi-share').on('click', function(){
 	var title = $(this).data('title');
 	urlname= $(this).data('urlname');
 	$('.indishare-url').val(title);
-	console.log(urlname);
 });
   
 
@@ -21,7 +20,6 @@ $(function() {
 	$('.getbookmark').on('dblclick', function(){});
     $('.getbookmark').on('click', function(){
     	$('#socialIndiModal').css({"z-index":"9999"});
-    	console.log("민재꺼");
     	// 모달 초기화 START
     	$('#dropdownMenuButton-indi').html("Click <span class='caret'></span>");
     	$('#jstree-to-bottom').html('');
@@ -33,7 +31,6 @@ $(function() {
     // 나의 북마크 선택했을 때, 
     $('#dropdown-my-book').on('dblclick', function(){});
     $('#dropdown-my-book').on('click', function(){
-    	console.log($(this).text());
     	// Modal init()
     	$('#dropdownMenuButton-indi').text($(this).text());
     	$('#into-my-bookmark').css('display', 'block');
@@ -71,7 +68,6 @@ $(function() {
     // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
     $('#into-my-bookmark').on('dblclick', function(){});
     $('#into-my-bookmark').on('click', function(){
-    	console.log("민재꺼 나의 북마크 선택 끝");
     	var submit_obj = [];
     	var selected_node_id = $(".indishare-userpid").val();
     	
@@ -85,7 +81,6 @@ $(function() {
 				"urlname" : urlname,
 				"pid": selected_node_id
     			});
-    	console.log(submit_obj);
     	var submit_obj_json = JSON.stringify(submit_obj);
     	
 		$.ajax({
@@ -123,7 +118,6 @@ $(function() {
     // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
     $('#into-group-bookmark').on('dblclick', function(){});
     $('#into-group-bookmark').on('click', function(){
-    	console.log("민재꺼 나의 북마크 그룹 추가 끝");
     	var selected_node_id = $(".indishare-userpid").val();
     	
     	if(selected_node_id == 0) {
@@ -142,7 +136,6 @@ $(function() {
 			},
 			dataType:"json",
 			success : function(data){
-				console.log(data.result);
 				if(data.result == "success") {
 					swal("Thank you!", "북마크에 추가되었습니다!", "success");
 					$(".indishare-userpid").val(0);
@@ -215,7 +208,6 @@ var second_data = null
 
 function get_groupbook(group){
 	//클릭한 작성자 닉네임
-	console.log("민재꺼 그룹 공유 가져가기");
 	var gid = group.id;
 	var groupName = group.name;
 	$('.groupname').text(groupName);
@@ -261,10 +253,8 @@ $(document).ready(function(){
     //나의 북마크 선택했을 때
     $('#dropdown-my-bookmark-getgroup').on('dblclick', function(){});
     $('#dropdown-my-bookmark-getgroup').on('click', function(){
-    	//console.log("민재꺼 그룹 공유 나의 북마크 선택");
-    	console.log($(this).eq(0).text());
+
     	$('#dropdownMenuButton-group').text($(this).text());
-    	
     	$('#into-my-bookmark-getgroup-btn').css('display', 'inline');
     	$('#into-group-bookmark-getgroup-btn').css('display', 'none');
     	$('#jstree-to-right-group').remove();
@@ -540,7 +530,6 @@ function surfing_modal(d){
 	//모달열기
 	$('#socialSurfingModal').modal();
 	$('#socialSurfingModal').css({'Z-index':'9999'});
-	console.log("아 진수형");
 };
 
 $(document).ready(function(){
@@ -566,7 +555,6 @@ $(document).ready(function(){
     //나의 북마크 선택했을 때
     $('#dropdown-my-bookmark').on('dblclick', function(){});
     $('#dropdown-my-bookmark').on('click', function(){
-    	console.log("아 진수형 마이 북마크 선택");
 
     	$('#dropdownMenuButton').text($(this).text());
     	$('#into-my-bookmark-surfing-btn').css('display', 'inline');
@@ -601,7 +589,6 @@ $(document).ready(function(){
     // 링크 내 북마크로 가져가기 버튼 클릭
     $('.table-write').on('dblclick', function(){});
     $('.table-write').on('click', function(){
-    	console.log("아 진수형 마이 북마크 선택");
     	//모달 초기화 START
     	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
     	$('#jstree-to-right-all').html('');
@@ -714,7 +701,6 @@ $(document).ready(function(){
     		}
 		});
     	$('#socialSurfingModal').css({'Z-index':'0'});
-    	console.log("아 진수형??????????");
     });
     
     //[버튼]:그룹 북마크로 추가 버튼 클릭했을 때
@@ -795,7 +781,6 @@ $(document).ready(function(){
 			}
 		});
 		$('#socialSurfingModal').css({"Z-index":"0"});
-		console.log("아 진수형 진짜 뭐지");
 	});
 })
     
