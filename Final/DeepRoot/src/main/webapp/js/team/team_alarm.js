@@ -17,10 +17,7 @@ function alarmConnect(userid) {
     stompClient.connect({}, function(frame) {
         // 메세지 구독
         // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 subscribe prefix("/subscribe")를 사용해야 함
-    	var user_nname = userid;
-    	console.log(userid);
-    	
-        stompClient.subscribe('/subscribe/alarm/' + user_nname, function(message) {
+        stompClient.subscribe('/subscribe/alarm/' + userid, function(message) {
         	
         	var recv_alarm = JSON.parse(message.body);
         	var gid = recv_alarm.gid;
@@ -49,21 +46,28 @@ function alarmConnect(userid) {
 								+ '</span><br style="clear:both">';
         	
         	}else if( ganame == "강퇴" ) {
-        		/*common_form += '<span>해당 그룹에서 회원님을 강퇴했습니다!</span>'
-        						+ '<i class="fas fa-ban g_notice_no" '
-        						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';*/
-        		if(window.location.href.includes('gid=37')) {
-        			
+        		console.log("왔니??" + gid);
+        		if(window.location.href.includes('gid=' + gid)) {
+        			$.alert("현재 그룹에서 강퇴당하셨습니다!");
+        			location.href = "/bit/index.do";
+        			return
+        		}else {
+        			common_form += '<span>해당 그룹에서 회원님을 강퇴했습니다!</span>'
+								+ '<i class="fas fa-ban g_notice_no" '
+								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
         		}
-        		location.href = "/bit/index.do";
-        	
         	}else {
-        		/*common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
-								+ '<span class="g_alarm_name">'+fromid+'</span>'
-								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
-							 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';*/
         		
-        		location.href = "/bit/index.do";
+        		if(window.location.href.includes('gid=' + gid)) {
+        			$.alert("현재 그룹이 그룹장에 의해 완료되었습니다!");
+        			location.href = "/bit/index.do";
+        			return
+        		}else {
+	        		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
+									+ '<span class="g_alarm_name">'+fromid+'</span>'
+									+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
+								 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';
+        		}
         	}
         	
         	common_form += '</li>';

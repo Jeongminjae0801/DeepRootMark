@@ -45,6 +45,7 @@
     <script src="${pageContext.request.contextPath}/js/team/stomp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/team/jquery.contextMenu.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team_alarm.js"></script>
     <!-- Script END -->
     
     <!-- jQuery Ajax Form START -->

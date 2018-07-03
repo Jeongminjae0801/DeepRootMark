@@ -196,11 +196,11 @@
 					<!-- USER INFO END -->
 				</ul>
 				</se:authorize>
-				
+				<script type="text/javascript">var userid = '<c:out value="${sessionScope.info_userid}"/>';</script>
 			</div>
 		</div>
 	</div>
 </header>
 <!-- Header END-->
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/alarm/alarm.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/header/alarm.js"></script>
