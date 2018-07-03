@@ -395,7 +395,7 @@ $(function() {
     /* 로그인 Ajax() START */
     
     // 이메일 형식 확인 함수
-    $('#uid').keydown(function() {
+    $('#uid').keyup(function() {
         var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
         
         // 이메일 길이 확인
@@ -407,7 +407,8 @@ $(function() {
                  $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 이메일 입니다.");
         }
         else{
-            $('.error').removeClass('alert alert-danger').html('');
+        	$('.error').removeClass('alert alert-danger').html('');
+            $('.error').addClass('alert alert-success').html('로그인 가능한 이메일입니다.');
         }
     })
     //비밀번호 길이 확인 함수
