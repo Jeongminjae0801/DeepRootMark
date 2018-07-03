@@ -37,7 +37,7 @@ function alarmConnect(stompClient, userid) {
     	}else if( recv_ganame == "강퇴" ) {
     		if( gid == recv_gid ) {
     			$.alert("현재 그룹에서 강퇴당하셨습니다!");
-    			setTimeout(function(){ location.replace("/bit/index.do"); }, 3000);
+    			setTimeout(function(){ location.href("/bit/user/mybookmark.do"); }, 3000);
     			return
     			
     		}else {
@@ -77,7 +77,7 @@ function alarmConnect(stompClient, userid) {
     		if( gid == recv_gid ) {
     			
     			$.alert("그룹장(" +recv_fromid+ ")에 의해 완료되었습니다!");
-    			setTimeout(function(){ location.replace("/bit/index.do"); }, 3000);
+    			setTimeout(function(){ location.href("/bit/user/mybookmark.do"); }, 3000);
     			return
     		}
     		else {

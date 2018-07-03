@@ -363,25 +363,26 @@ function connect() {
  		stompClient.subscribe('/subscribe/online/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
- 			$('#' + temp_member).remove();
  			
-			var insertOnline = '<p id="' + temp_member + '"' + ' class="member">' 
-							+ '<img class="member-ico" src="/bit/images/profile.png" '
-							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
+			var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
+							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
+							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">"+ temp_member
 						  +'</p>';
+			
+			$('#' + temp_member).remove();
 			$('#online-member').prepend(insertOnline);
  		});
 
  		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
- 			
- 			$('#' + temp_member).remove();
- 			
-			var insertOffline = '<p id="' + temp_member + '"' + ' class="member">' 
-							+ '<img class="member-ico" src="/bit/images/profile.png" '
+
+			var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
+							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
 							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
 						  +'</p>';
+			
+			$('#' + temp_member).remove();
 			$('#offline-member').prepend(insertOffline);
  		});
  		
@@ -430,6 +431,28 @@ function disconnect() {
     stompClient.disconnect();
 }
 
+
+function checkImg(nname) {
+	$.get("/bit/images/profile/" + nname + ".png").done(function() { 
+		return nname + ".png";
+		
+    }).fail(function() { 
+    	$.get("/bit/images/profile/" + nname + ".gif").done(function() { 
+    		return nname + ".gif";
+    		
+        }).fail(function() { 
+        	$.get("/bit/images/profile/" + nname + ".jpeg").done(function() { 
+        		return nname + ".jpeg";
+        		
+            }).fail(function() { 
+            	return nname + ".jpg";
+            	
+            })
+        	
+        })
+    	
+    });
+}
 /* Chatting End */
 
 

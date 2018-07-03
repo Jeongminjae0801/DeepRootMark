@@ -13,7 +13,7 @@ function member_insert(){
     $.confirm({
         title: '멤버 초대',
         content: '' +
-        '<form id="insertMember" action="" class="formGroup" method="post">' +
+        '<form id="insertMember" action="" class="formGroup" method="post" onsubmit="return false;>' +
         '<div class="form-group">' +
         '<label>추가 할 멤버의 이메일을 입력하세요</label>' +
         '<input type="text" name="uid" class="insertUid form-control"/>' +
@@ -87,7 +87,7 @@ function group_leave(){
     $.confirm({
         title: '그룹 탈퇴',
         content: '' +
-        '<form id="leaveGroup" action="/bit/user/leaveGroup.do" class="formGroup" method="post">' +
+        '<form id="leaveGroup" action="/bit/user/leaveGroup.do" class="formGroup" method="post" onsubmit="return false;>' +
         '<div class="form-group">' +
         '<label>그룹을 탈퇴하시겠습니까</label>' +
         '<input type="hidden" name="uid" value="'+uid+'" class="leaveUid form-control"/>' +
@@ -121,7 +121,7 @@ function group_leave(){
         			
         			$.alert("현재 그룹에서 탈퇴하셨습니다!");
         			setTimeout(function(){ 
-        				location.replace("/bit/user/mybookmark.do"); 
+        				location.href("/bit/user/mybookmark.do"); 
         			}, 1000);
         		}
         	});
@@ -134,7 +134,7 @@ function group_complete(){
     $.confirm({
         title: '그룹 완료',
         content: '' +
-        '<form id="completeGroup" action="/bit/user/completedGroup.do" class="formGroup" method="post">' +
+        '<form id="completeGroup" action="/bit/user/completedGroup.do" class="formGroup" method="post" onsubmit="return false;>' +
         '<div class="form-group">' +
         '<label>해시태그를 입력하세요</label>' +
         '<input type="text" name="htag" class="htagName form-control" required/>' +
@@ -182,7 +182,7 @@ function group_complete(){
         			
         			$.alert("현재 그룹이 완료되었습니다!");
         			setTimeout(function(){ 
-        				location.replace("/bit/user/mybookmark.do"); 
+        				location.href("/bit/user/mybookmark.do"); 
         			}, 1000);
         		}
         	});
@@ -199,9 +199,11 @@ $(function() {
 	        selector: '.member', 
 	        callback: function(key, opt) {
 	            var targetNname = opt.$trigger.text().trim();
+	            //var hisGrid = opt.$trigger.outerHTML.data('grid').trim();attributes
+	            var hisGrid = opt.$trigger.eq(0).data("grid");
 	            
 	            if(key == "ban"){
-	            	member_ban(targetNname);
+	            	member_ban(targetNname, hisGrid);
 	            }
 	        },
 	        items: {
@@ -212,7 +214,7 @@ $(function() {
 });
 
 /* 멤버 강퇴 START */
-function member_ban(targetNname){
+function member_ban(targetNname, hisGrid){
     $.confirm({
         title: '멤버 강퇴',
         content: '' +
@@ -221,6 +223,8 @@ function member_ban(targetNname){
         '<label>['+targetNname+'] 회원을 강퇴하시겠습니까</label>' +
         '<input type="hidden" name="nname" value="' + targetNname + '" class="banName form-control"/>' +
         '<input type="hidden" name="gid" value="' + gid + '" class="banName form-control"/>' +
+        '<input type="hidden" name="grid" value="' + hisGrid + '" class="banName form-control"/>' +
+        '<input type="hidden" name="mygrid" value="' + grid + '" class="banName form-control"/>' +
         '</div>' +
         '</form>',
         closeIcon: true,
@@ -242,18 +246,17 @@ function member_ban(targetNname){
             },
         },
         onContentReady: function(){
+        	
         	// 그룹원 강퇴 ajaxFrom()
         	$("#banMember").ajaxForm({
         		success: function(data, statusText, xhr, $form){
-        			var recv_data = data.result.trim();
+        			var recv_data = data.result;
         			
-        			if(recv_data == 'fail') {
-        				$.alert('잠시후 다시 시도해주세요!');
-        				
-        			}else if(recv_data == 'empty') {
-        				$.alert('해당 그룹원이 존재하지 않습니다!');
-        				
-        			}else {
+        			if(recv_data == 'fail') { $.alert('잠시후 다시 시도해주세요!'); }
+        			else if(recv_data == 'empty') { $.alert('해당 그룹원이 존재하지 않습니다!'); }
+        			else if(recv_data == 'master') { $.alert('그룹장이십니다!'); }
+        			else if(recv_data == 'manager') { $.alert('그룹장이십니다!'); }
+        			else {
         				var toid = recv_data;
         				
         				stompClient.send('/alarm/' + toid , {}, 

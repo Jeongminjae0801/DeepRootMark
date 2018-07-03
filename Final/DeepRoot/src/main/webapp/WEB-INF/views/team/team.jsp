@@ -145,30 +145,32 @@
 			                    <script type="text/javascript">
 			                    $(document).ready(function() {
 			                    	var onlinelist = JSON.parse('${onlinelist}');
-                            		//console.log(onlinelist.hasOwnProperty("민재"));
+                            		//console.log(onlinelist);
                             		//console.log('${gmemberlist}');
                             		
-                            		var memberNnameList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
-                            		var memberUidList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+                            		var memberList = new Array(); 		// 전체 카테고리 리스트 비동기로 받아오기
                             		<c:forEach items="${gmemberlist}" var="member">
-                            			memberNnameList.push("${member.nname}");
-                            			memberUidList.push("${member.uid}");
+                            			var memberInfo = new Array();
+                            			memberInfo.push("${member.nname}");
+                            			memberInfo.push("${member.profile}");
+                            			memberInfo.push("${member.grid}");
+                            			memberList.push(memberInfo);
 	                            	</c:forEach>
 	                            	
-	                            	$.each(memberNnameList, function(index, element) {
+	                            	$.each(memberList, function(index, element) {
 	                            		var member = element;
-	                            		//console.log(member);
-	                            		if(onlinelist.hasOwnProperty(member)) {
-                            				var insertOnline = '<p id="' + member + '"' + ' class="member">' 
-				                								+ '<img class="member-ico" src="/bit/images/profile.png" '
-				                								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + member
+	                            		//console.log(member[0] + "/" + member[1] + "/" + member[2]);
+	                            		if(onlinelist.hasOwnProperty(member[0])) {
+                            				var insertOnline = '<p id="' +member[0]+ '"' + ' class="member" data-grid="' +member[2]+ '">' 
+				                								+ '<img class="member-ico" src="/bit/images/profile/' +member[1]+ '" '
+				                								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" +member[0]
 				                							  + '</p>';
 				                			$('#online-member').prepend(insertOnline);
 	                            			
 	                            		}else {
-	                            			var insertOffline = '<p id="' + member + '"' + ' class="member">' 
-					            								+ '<img class="member-ico" src="/bit/images/profile.png" '
-					            								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + member
+	                            			var insertOffline = '<p id="' + member[0] + '"' + ' class="member" data-grid="' +member[2]+ '">' 
+					            								+ '<img class="member-ico" src="/bit/images/profile/' + member[1] + '" '
+					            								+ 'onerror="this.src=\'/bit/images/profile.png\'">' + member[0]
 					            							  +'</p>';
 					            			$('#offline-member').prepend(insertOffline);
 	                            		}

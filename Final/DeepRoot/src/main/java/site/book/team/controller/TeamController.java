@@ -324,6 +324,18 @@ public class TeamController {
 		String uid = (String)session.getAttribute("info_userid");
 		member_ban.setUid(uid);
 		
+		// 강퇴 대상이 그룹장인 경우 return
+		if( member_ban.getGrid()  == 1 ) {
+			model.addAttribute("result", "master");
+			return jsonview;
+		}
+		// 강퇴 대상이 매니저 vs 매니저인 경우 return
+		else if( member_ban.getGrid() == member_ban.getMygrid() ) {
+			model.addAttribute("result", "manager");
+			return jsonview;
+		}
+		
+		// 강퇴 대상이 그룹장->그룹원, 그룹장->매니저, 매니저->그룹원
 		int isbaned = g_memberservice.banMember(member_ban);
 
 		if(isbaned > 0) {
