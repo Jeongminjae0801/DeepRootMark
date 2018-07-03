@@ -96,7 +96,7 @@
 					</li>
 					<!-- Group Menu START -->
 					<li id="groupDropdown" class="dropdown">
-						<a href="#">Group <i class="fa fa-angle-down"></i></a>
+						<a href="#" id="group_menu">Group <i class="fa fa-angle-down"></i></a>
 						<ul id="groupDropdownMenu" role="menu" class="sub-menu">
 						<c:choose>
 							<c:when test="${(headerTeamList ne null) && (!empty headerTeamList)}">
@@ -127,10 +127,14 @@
 					
 					<!-- Alarm START -->
 					<li id="alarm_menu_li" class="dropdown">
-						<a href="#">Notice <i class="fa fa-angle-down"></i></a>
+						<a href="#" id="alarm_menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notice <i class="fa fa-angle-down"></i>
+							<c:if test="${ 0!=1 }">
+								<span id="counter">10</span>
+							</c:if>
+						</a>
 						<!-- headerAlarmList -->
 						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
-						<ul role="menu" class="g_alarm_ul sub-menu">
+						<ul role="menu" class="g_alarm_ul dropdown-menu">
 							<c:forEach items="${headerAlarmList}" var="alarmList">
 								<li id="alarmlist${alarmList.gid}" class="g_alarm_li">
 									<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">${alarmList.gname}</span></span> 

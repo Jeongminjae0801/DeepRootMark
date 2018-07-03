@@ -104,7 +104,7 @@ html { overflow-y:scroll; }
 #header .navbar-inverse .navbar-nav li.active > a:focus,
 #header .navbar-nav.navbar-right li > a:hover,
 .navbar-inverse .navbar-nav > .open > a {
-    background-color: inherit;
+    background-color: #fff;
     border: 0;
     color: #7bbfa8;
 }
@@ -200,8 +200,12 @@ ul.sub-menu {
     }
 }
 /* Group Notice CSS START */
-.g_alarm_ul.sub-menu{
+.g_alarm_ul.dropdown-menu{
 	min-width: 350px;
+	border: 1px solid #7bbfa8;
+	border-radius: 0px;
+    max-height: 290px;
+    overflow-y: auto;
 }
 
 .g_notice{
@@ -243,7 +247,13 @@ ul.sub-menu {
 }
 
 .g_alarm_ul > li {margin-bottom:0;}
-.g_alarm_ul.sub-menu{padding-bottom:0px; padding-top: 5px; padding-left: 5px;}
+.g_alarm_ul.dropdown-menu{
+	padding-left: 3px;
+    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-right: 3px;
+}
+
 .g_alarm_head{
 	font-family: 'Lato', 'Spoqa Han Sans', sans-serif;
 	font-size: 16px;
@@ -293,3 +303,37 @@ ul.sub-menu {
 }
 /* Notice Alarm Style CSS END */
 
+/* Alarm icon css START */
+#counter {
+	background-color: #fa3e3e;
+    border-radius: 40px;
+    color: #fff;
+    padding: 0px 4px;
+    font-size: 11px;
+    position: absolute;
+    top: 2px;
+    right: 72px;
+    border: 2px solid #fff;
+}
+
+.header .navbar-inverse .navbar-nav>.open>a, 
+.header .navbar-inverse .navbar-nav>.open>a:focus, 
+.header .navbar-inverse .navbar-nav>.open>a:hover{
+	background-color: #ffffff;
+}
+
+.header .dropdown-menu > li:hover{
+	background-color: #ffffff;
+}
+
+.g_alarm_ul::-webkit-scrollbar{width: 10px; height: 8px;}
+.g_alarm_ul::-webkit-scrollbar-track {background-color:#fff0;}
+.g_alarm_ul::-webkit-scrollbar-thumb {background-color:#7bbfa8; border-radius: 10px;}
+.g_alarm_ul::-webkit-scrollbar-thumb:hover {background: #466b5e;}
+.g_alarm_ul::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+    width: 5px;
+    height: 5px;
+    background: #fff0;
+}
+
+/* Alarm icon css END */
