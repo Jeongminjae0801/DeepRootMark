@@ -54,3 +54,14 @@ $(function() {
 	
 	/* 그룹 강퇴 쪽지 확인 */
 })
+
+
+/*Alarm icon script START*/
+
+$(function() {
+	$('#alarm_menu').click(function(){
+		$("#counter").fadeOut("slow");
+	})
+})
+
+/*Alarm icon script END*/
