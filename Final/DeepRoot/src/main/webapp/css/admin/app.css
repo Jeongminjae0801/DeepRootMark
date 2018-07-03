@@ -451,3 +451,15 @@ td {
     white-space: nowrap;
     max-width: 0;
 }
+
+
+/* header */
+#userMenu {
+	width: 150px;
+	text-align: center;
+}
+
+#userMenu li {
+	width: 150spx;
+	padding: 7px 10px 7px 10px;
+}
