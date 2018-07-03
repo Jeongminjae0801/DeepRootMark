@@ -62,6 +62,10 @@ $(function() {
 	$('#alarm_menu').click(function(){
 		$("#counter").fadeOut("slow");
 	})
+	
+	$('.dropdown-menu').on('click', function(event){ //알림창 내의 목록 클릭시 알림창이 꺼지지 않도록 이벤트 멈춤
+	    event.stopPropagation();
+	});
 })
 
 /*Alarm icon script END*/
