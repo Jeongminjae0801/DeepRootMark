@@ -4,6 +4,9 @@ var type= '#';
 var new_name = '#';
 var location1 = '';
 var doing = '';
+var modal_url = '#';
+var modal_urlname = '#';
+var checked_id = '#';
 //(grid , gid, uid ,nname){
 function jstreetable(){
 	form = {gid : gid}
@@ -153,12 +156,12 @@ function jstreetable(){
 		$.jstree.reference('#jstree_container').set_icon(data.node, "fa fa-folder")
 	})	
 	
+	/*모달창 마이카테고리 jstree*/
 	$.ajax({
 		url : "/bit/user/getCategoryList.do",
 		type:"POST",
 		dataType:"json",
 		success : function(data){	
-			console.log("dddddd");
 			$('#jstree-to-mybookmark')
 			.jstree({	
 				"core": {
@@ -172,6 +175,9 @@ function jstreetable(){
 			})
 			.bind("loaded.jstree", function (event, data) {
 				$('#jstree-to-mybookmark').jstree("open_all");
+			})
+			.bind("select_node.jstree",function(e,data){
+				checked_id =  data.node.id;
 			})
 		}
 	})
@@ -344,6 +350,7 @@ function customMenu($node){
 								$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
 								$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);
 								doing = "1";
+								new_name = newurl;
 								sendmessagejstree()
 								
 							}
@@ -352,7 +359,7 @@ function customMenu($node){
 				}
 			},
 			"geturl" : {
-				"icon" : "fa fa-trash",
+				"icon" : "fas fa-share",
 				"separator_before": false,
 				"separator_after": false,
 				"label": "내 북마크로",
@@ -360,9 +367,11 @@ function customMenu($node){
 					
 					$('#jstree-to-mybookmark').jstree().deselect_all(true);	
 					var inst = $.jstree.reference(obj.reference);
-					var url = inst.get_node(obj.reference).a_attr.href;
+					modal_url = inst.get_node(obj.reference).a_attr.href;
+					modal_urlname =  inst.get_node(obj.reference).text;
+					checked_id = '#';
 					
-					$('#modalurl').val(url);
+					$('#modalurl').val(modal_url);
 					$('#fromGroupToMy').modal();
 				}
 			},
@@ -376,7 +385,6 @@ function customMenu($node){
 				}
 			}
 	    };
-	
 	
 	if(grid == '3'){ // 일반 그룹
 		if(href == '#'){ // 폴더
@@ -440,6 +448,53 @@ function sendmessagejstree() {
 }
 
 $('#into-my-bookmark').on("click",function(){
-	console.log("ghkrdls");
+	var submit_obj = [];
+	
+    if(modal_url == '#'){
+        alert("선택한 URL이 없습니다.")
+        return false
+    };
+    
+    if(checked_id == '#'){
+    	 alert("선택한 폴더가 없습니다.")
+         return false
+    }
+    submit_obj.push({
+		"url": modal_url,
+		"urlname" : modal_urlname,
+		"pid": checked_id
+		});
+    
+    var submit_obj_json = JSON.stringify(submit_obj);
+    
+    $.ajax({
+		url : "/bit/social/getmybookmark.do",
+		type: "post",
+		data: {obj : submit_obj_json},
+		success : function(data){
+			if(data.result == "success") {
+				swal("Thank you!", "북마크에 추가되었습니다!", "success");
+				$('#modalurl').modal("toggle");
+			}else {
+                swal({
+                    title: "목적지 폴더를 확인하셨나요?",
+                    text: "잠시후 다시 시도해주세요!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
+				});
+			}
+		},
+		error : function(error) {
+			swal({
+                title: "목적지 폴더를 확인하셨나요?",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
+			});
+	    }
+	});
+	
 	
 })
