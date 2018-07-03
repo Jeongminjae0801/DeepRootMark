@@ -206,6 +206,22 @@ font-family: 'Gamja Flower', cursive;
   border-radius: 1px;
 }
 
+/* .vakata-context > ul > a {
+  display: block;
+  padding: 0 !important;
+  text-decoration: none;
+  width: auto;
+  color: black;
+  white-space: nowrap;
+  line-height: 2.4em;
+  -moz-text-shadow: 1px 1px 0 white;
+  -webkit-text-shadow: 1px 1px 0 white;
+  text-shadow: 1px 1px 0 white;
+  -moz-border-radius: 1px;
+  -webkit-border-radius: 1px;
+  border-radius: 1px;
+} */
+
 .vakata-context li > a:hover { /* 호버 contextmenu  */
   position: relative;
   color: #000;
