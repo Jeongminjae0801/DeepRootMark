@@ -197,7 +197,7 @@ function member_ban(targetNname){
                 btnClass: 'btn-success',
                 action: function () {
                     $("#banMember").submit();
-                    $("#targetNname").remove();
+                    
                 }
             },
             '취소': {
@@ -221,16 +221,18 @@ function member_ban(targetNname){
         				
         			}else {
         				var toid = recv_data;
-        				console.log(toid);
+        				
         				stompClient.send('/alarm/' + toid , {}, 
-							 	JSON.stringify({
-							 		gid: gid,
-							 		toid: toid,
-							 		gname: gname,
-							 		gmemo: '강퇴',
-							 		senddate: 'NOW'
-								})
-							);
+						 	JSON.stringify({
+						 		gid: gid,
+						 		toid: toid,
+						 		gname: gname,
+						 		gmemo: '강퇴',
+						 		senddate: 'NOW'
+							})
+						);
+        				
+        				$("#" + targetNname).remove();
         				$.alert('해당 그룹원이 강퇴되었습니다!');
         				
         			}

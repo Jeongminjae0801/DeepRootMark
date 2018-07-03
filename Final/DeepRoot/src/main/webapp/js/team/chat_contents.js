@@ -385,6 +385,11 @@ function connect() {
 			$('#offline-member').prepend(insertOffline);
  		});
  		
+ 		// Header Alarm socket connect
+ 		if(userid != null || userid != "") {
+ 			alarmConnect(stompClient, userid);
+ 		}
+ 		
     }, function(message) {
         stompClient.disconnect();
 
