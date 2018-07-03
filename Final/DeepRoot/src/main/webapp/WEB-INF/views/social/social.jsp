@@ -31,11 +31,11 @@
 			                <h4 class="completed-modal-to"><b>가져가기 : </b></h4>
 			                <!-- Dropdown -->
 			                <div class="dropdown completed-modal-dropdown">
-			                    <button id="dropdownMenuButton" class="btn btn-secondary indishare dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			                    <button id="dropdownMenuButton-indi" class="btn btn-secondary indishare dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                    	Click <span class="caret"></span>
 			                    </button>
-			                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			                        <li id="dropdown-my-book" class="dropdown-i-tem">My Bookmark</li>
+			                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-indi">
+			                        <li id="dropdown-my-book" class="dropdown-item">My Bookmark</li>
 			                        <hr class="divider-hr">
 			                        <li class="dropdown-item-indishare dropdown-submenu">
 			                            <a tabindex="-1">Group</a>
@@ -104,10 +104,10 @@
 			               	<h4 class="completed-modal-to"><b>To : </b></h4>
 			               	<!-- Dropdown -->
 			               	<div class="dropdown completed-modal-dropdown">
-			                   	<button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			                   	<button class="btn btn-secondary groupshare dropdown-toggle" type="button" id="dropdownMenuButton-group" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                       	Click <span class="caret"></span>
 			                   	</button>
-			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton-group">
 			                       	<li id="dropdown-my-bookmark-getgroup" class="dropdown-item">My Bookmark</li>
 			                       	<hr class="divider-hr">
 			                       	<li class="dropdown-item dropdown-submenu">
@@ -168,7 +168,7 @@
 			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 			                       	<li id="dropdown-my-bookmark" class="dropdown-item">My Bookmark</li>
 			                       	<hr class="divider-hr">
-			                       	<li class="dropdown-item dropdown-submenu">
+			                       	<li class="dropdown-item dropdown-submenu surfing">
 					                	<a tabindex="-1">Group</a>
 					                </li>
 			                   	</div>

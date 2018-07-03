@@ -21,8 +21,9 @@ $(function() {
 	$('.getbookmark').on('dblclick', function(){});
     $('.getbookmark').on('click', function(){
     	$('#socialIndiModal').css({"z-index":"9999"});
+    	console.log("민재꺼");
     	// 모달 초기화 START
-    	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
+    	$('#dropdownMenuButton-indi').html("Click <span class='caret'></span>");
     	$('#jstree-to-bottom').html('');
     	$('#dropdown-empty-area').remove();	
     	$('.indishare-urlname').val($(this).parent().parent().children().eq(0).children('a').text()); 
@@ -32,8 +33,9 @@ $(function() {
     // 나의 북마크 선택했을 때, 
     $('#dropdown-my-book').on('dblclick', function(){});
     $('#dropdown-my-book').on('click', function(){
+    	console.log("민재꺼 나의 북마크 선택");
     	// Modal init()
-    	$('#dropdownMenuButton').text($(this).text());
+    	$('#dropdownMenuButton-indi').text($(this).text());
     	$('#into-my-bookmark').css('display', 'block');
     	$('#into-group-bookmark').css('display', 'none');
     	$('#jstree-to-bottom').remove();
@@ -69,6 +71,7 @@ $(function() {
     // [확인]: 나의 북마크로 추가 버튼 클릭했을 때, 
     $('#into-my-bookmark').on('dblclick', function(){});
     $('#into-my-bookmark').on('click', function(){
+    	console.log("민재꺼 나의 북마크 선택 끝");
     	var submit_obj = [];
     	var selected_node_id = $(".indishare-userpid").val();
     	
@@ -120,7 +123,7 @@ $(function() {
     // [확인]: 그룹 북마크로 추가 버튼 클릭했을 때, 
     $('#into-group-bookmark').on('dblclick', function(){});
     $('#into-group-bookmark').on('click', function(){
-    	
+    	console.log("민재꺼 나의 북마크 그룹 추가 끝");
     	var selected_node_id = $(".indishare-userpid").val();
     	
     	if(selected_node_id == 0) {
@@ -171,7 +174,7 @@ $(function() {
 //내의 그룹리스트 중 하나를 선택 했을 때,
 function selectedGroup(group, gid) {
 	// Modal Init()
-	$('#dropdownMenuButton').text(group);
+	$('#dropdownMenuButton-indi').text(group);
 	$('.indishare-gid').val(gid);
 	$('#into-my-bookmark').css('display', 'none');
 	$('#into-group-bookmark').css('display', 'block');
@@ -212,6 +215,7 @@ var second_data = null
 
 function get_groupbook(group){
 	//클릭한 작성자 닉네임
+	console.log("민재꺼 그룹 공유 가져가기");
 	var gid = group.id;
 	var groupName = group.name;
 	$('.groupname').text(groupName);
@@ -257,7 +261,9 @@ $(document).ready(function(){
     //나의 북마크 선택했을 때
     $('#dropdown-my-bookmark-getgroup').on('dblclick', function(){});
     $('#dropdown-my-bookmark-getgroup').on('click', function(){
-    	$('#dropdownMenuButton').text($(this).text());
+    	console.log("민재꺼 그룹 공유 나의 북마크 선택");
+    	$('#dropdownMenuButton-group').text($(this).text());
+    	
     	$('#into-my-bookmark-getgroup-btn').css('display', 'inline');
     	$('#into-group-bookmark-getgroup-btn').css('display', 'none');
     	$('#jstree-to-right-group').remove();
@@ -291,7 +297,7 @@ $(document).ready(function(){
     $('.get_groupbook').on('dblclick', function(){});
     $('.get_groupbook').on('click', function(){
     	//모달 초기화 START
-    	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
+    	$('#dropdownMenuButton-group').html("Click <span class='caret'></span>");
     	$('#jstree-to-right-group').html('');
 	    $('.groupshare-url').text('');
 	    $('.groupshare-urlname-left').val('');
@@ -393,6 +399,7 @@ $(document).ready(function(){
     			});
     		}
 		})
+		$('#socialGroupModal').css({"z-index":"0"});
     });
     
     //[버튼]:그룹 북마크로 추가 버튼 클릭했을 때
@@ -473,12 +480,13 @@ $(document).ready(function(){
 				});
 			}
 		});
+		$('#socialGroupModal').css({"z-index":"0"});
 	});
 })
     
 //내 그룹리스트 중 하나를 선택 했을 때,
 function selectedGroupget(group, gid) {
-	$('#dropdownMenuButton').text(group);
+	$('#dropdownMenuButton-group').text(group);
 	$('.groupshare-gid-left').val(gid);
 	$('#into-my-bookmark-getgroup-btn').css('display', 'none');
 	$('#into-group-bookmark-getgroup-btn').css('display', 'inline');
@@ -530,6 +538,8 @@ function surfing_modal(d){
 	})
 	//모달열기
 	$('#socialSurfingModal').modal();
+	$('#socialSurfingModal').css({'Z-index':'9999'});
+	console.log("아 진수형");
 };
 
 $(document).ready(function(){
@@ -555,6 +565,8 @@ $(document).ready(function(){
     //나의 북마크 선택했을 때
     $('#dropdown-my-bookmark').on('dblclick', function(){});
     $('#dropdown-my-bookmark').on('click', function(){
+    	console.log("아 진수형 마이 북마크 선택");
+
     	$('#dropdownMenuButton').text($(this).text());
     	$('#into-my-bookmark-surfing-btn').css('display', 'inline');
     	$('#into-group-bookmark-surfing-btn').css('display', 'none');
@@ -588,6 +600,7 @@ $(document).ready(function(){
     // 링크 내 북마크로 가져가기 버튼 클릭
     $('.table-write').on('dblclick', function(){});
     $('.table-write').on('click', function(){
+    	console.log("아 진수형 마이 북마크 선택");
     	//모달 초기화 START
     	$('#dropdownMenuButton').html("Click <span class='caret'></span>");
     	$('#jstree-to-right-all').html('');
@@ -619,9 +632,10 @@ $(document).ready(function(){
 			    	index += 1;
 			    }
 			    html += '</ul>';
-			    $(".dropdown-item-indishare").append(html);
+			    $(".surfing").append(html);
 	    	}
 	    });
+		$('#socialSurfingModal').css({'Z-index':'0'});
     });
     
     //[버튼]:나의 북마크로 추가 버튼 클릭했을 때
@@ -698,6 +712,8 @@ $(document).ready(function(){
     			});
     		}
 		});
+    	$('#socialSurfingModal').css({'Z-index':'0'});
+    	console.log("아 진수형??????????");
     });
     
     //[버튼]:그룹 북마크로 추가 버튼 클릭했을 때
@@ -777,6 +793,8 @@ $(document).ready(function(){
 				});
 			}
 		});
+		$('#socialSurfingModal').css({"Z-index":"0"});
+		console.log("아 진수형 진짜 뭐지");
 	});
 })
     
