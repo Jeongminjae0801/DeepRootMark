@@ -35,7 +35,7 @@
 			                    	Click <span class="caret"></span>
 			                    </button>
 			                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-indi">
-			                        <li id="dropdown-my-book" class="dropdown-item">My Bookmark</li>
+			                        <li id="dropdown-my-book" class="dropdown-item-mybook">My Bookmark</li>
 			                        <hr class="divider-hr">
 			                        <li class="dropdown-item-indishare dropdown-submenu">
 			                            <a tabindex="-1">Group</a>
@@ -108,7 +108,7 @@
 			                       	Click <span class="caret"></span>
 			                   	</button>
 			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton-group">
-			                       	<li id="dropdown-my-bookmark-getgroup" class="dropdown-item">My Bookmark</li>
+			                       	<li id="dropdown-my-bookmark-getgroup" class="dropdown-item-mybook">My Bookmark</li>
 			                       	<hr class="divider-hr">
 			                       	<li class="dropdown-item dropdown-submenu">
 					                	<a tabindex="-1">Group</a>
@@ -166,7 +166,7 @@
 			                       	Click <span class="caret"></span>
 			                   	</button>
 			                   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			                       	<li id="dropdown-my-bookmark" class="dropdown-item">My Bookmark</li>
+			                       	<li id="dropdown-my-bookmark" class="dropdown-item-surfing">My Bookmark</li>
 			                       	<hr class="divider-hr">
 			                       	<li class="dropdown-item dropdown-submenu surfing">
 					                	<a tabindex="-1">Group</a>

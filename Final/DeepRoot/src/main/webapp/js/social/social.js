@@ -25,7 +25,7 @@ $(function() {
     	// 모달 초기화 START
     	$('#dropdownMenuButton-indi').html("Click <span class='caret'></span>");
     	$('#jstree-to-bottom').html('');
-    	$('#dropdown-empty-area').remove();	
+    	/*$('#dropdown-empty-area').remove();	*/
     	$('.indishare-urlname').val($(this).parent().parent().children().eq(0).children('a').text()); 
     	// 모달 초기화 END
     });
@@ -33,7 +33,7 @@ $(function() {
     // 나의 북마크 선택했을 때, 
     $('#dropdown-my-book').on('dblclick', function(){});
     $('#dropdown-my-book').on('click', function(){
-    	console.log("민재꺼 나의 북마크 선택");
+    	console.log($(this).text());
     	// Modal init()
     	$('#dropdownMenuButton-indi').text($(this).text());
     	$('#into-my-bookmark').css('display', 'block');
@@ -261,7 +261,8 @@ $(document).ready(function(){
     //나의 북마크 선택했을 때
     $('#dropdown-my-bookmark-getgroup').on('dblclick', function(){});
     $('#dropdown-my-bookmark-getgroup').on('click', function(){
-    	console.log("민재꺼 그룹 공유 나의 북마크 선택");
+    	//console.log("민재꺼 그룹 공유 나의 북마크 선택");
+    	console.log($(this).eq(0).text());
     	$('#dropdownMenuButton-group').text($(this).text());
     	
     	$('#into-my-bookmark-getgroup-btn').css('display', 'inline');
