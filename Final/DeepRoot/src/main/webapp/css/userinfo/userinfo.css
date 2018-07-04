@@ -11,7 +11,7 @@ body{ height: 91%; }
     height: 100%;
     font-size : 15px;
     padding-top: 100px;
-    padding-bottom: 180px;
+    padding-bottom: 69px;
 }
 
 .userinfo .form{
@@ -112,5 +112,5 @@ body{ height: 91%; }
 
 /* To footer space */
 .to-footer-space {
-	padding-bottom: 368px;
+	padding-bottom: 479px;
 }
