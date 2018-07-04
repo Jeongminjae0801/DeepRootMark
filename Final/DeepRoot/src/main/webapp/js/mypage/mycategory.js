@@ -207,7 +207,8 @@ $(document).ready(function(){
 		}
 	})
 			
-	/*왼쪽 위에 new category 버튼 클릭시 실행*/			
+	/*왼쪽 위에 new category 버튼 클릭시 실행*/
+	$('#addroot').on('dblclick', function(){ return });
 	$('#addroot')
 		.on("click",function(){
 		
@@ -313,7 +314,7 @@ $(document).ready(function(){
 											var id = inst.get_node(obj.reference).id;
 											
 											$('#editurlval').val(url);
-											
+											$('#editurlsubmit').on('dblclick', function(){ return });
 											$('#editurlsubmit').on("click",function(){
 												
 												var newurl = $('#editurlval').val();
@@ -330,6 +331,9 @@ $(document).ready(function(){
 													success: function(data){
 														$('#loading').html("");
 														$('#editurl').modal("toggle");
+														
+														$('#jstree_container').jstree().deselect_all(true);											
+														$('#jstree_container').jstree(true).select_node(urlpid);		
 													}
 												}) 
 											})
@@ -431,6 +435,7 @@ $(document).ready(function(){
 											var id = inst.get_node(obj.reference).id;
 											                
 											$('#editurlval').val(url);
+											$('#editurlsubmit').on('dblclick', function(){ return });
 											$('#editurlsubmit').on("click",function(){
 												
 												var newurl = $('#editurlval').val();

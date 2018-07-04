@@ -383,30 +383,34 @@ function customMenu($node){
 					var id = inst.get_node(obj.reference).id;
 					
 					$('#editurlval').val(url);
-					
+					$('#editurlsubmit').on('dblclick', function(){ return });
 					$('#editurlsubmit').on("click",function(){
 						
 						var newurl = $('#editurlval').val();
 						var form = {gbid : id, url : newurl }
+						var regex =/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/;
 						
-						$.ajax({
-							
-							url: "editTeamUrl.do",
-							type: "POST",
-							data: form ,
-							beforeSend : function(){
-							},
-							success: function(data){
-								$('#editurl').modal("toggle");
-								//href 가 반드시 http 로 시작해야한다.
-								$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
-								$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);
-								doing = "1"; //url 수정 메세지
-								new_name = newurl;
-								sendmessagejstree()
+						if(!(regex.test(newurl))){
+							$.alert("URL을 확인해주세요");
+						}else{
+							$.ajax({
 								
-							}
-						}) 
+								url: "editTeamUrl.do",
+								type: "POST",
+								data: form ,
+								beforeSend : function(){
+								},
+								success: function(data){
+									$('#editurl').modal("toggle");
+									//href 가 반드시 http 로 시작해야한다.
+									$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
+									$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);
+									doing = "1"; //url 수정 메세지
+									new_name = newurl;
+									sendmessagejstree()
+								}
+							}) 
+						}
 					})
 				}
 			},
@@ -497,9 +501,14 @@ function sendmessagejstree() {
        	nname: nname,
        	profile: profile
     }));
+	
+	new_name = '#';
+	doing = '';
+	
 }
 
 //그룹에서 내 북마크로 가져가기 확인 버튼 누를시
+$('#into-my-bookmark').on('dblclick', function(){ return });
 $('#into-my-bookmark').on("click",function(){
 	var submit_obj = [];
 	
@@ -551,6 +560,7 @@ $('#into-my-bookmark').on("click",function(){
 })
 
 //내 북마크에서 그룹으로 url 보내기 확인 버튼 누를시
+$('#from-my-bookmark').on('dblclick', function(){ return });
 $('#from-my-bookmark').on("click",function(){
 	var checked_ids = [];
 	var submit_obj = [];
