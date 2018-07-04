@@ -84,7 +84,7 @@ $(function() {
     $('#pwd_join').keyup(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
             $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
-        } else if(!($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) || !($('#pwd_edit').val() == $('#pwd_confirmation').val())) {
+        } else if(!($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) || !($('#pwd_join').val() == $('#pwd_confirmation').val())) {
             $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
         } else {
             $('.error').removeClass('alert alert-danger').html('');
@@ -235,7 +235,7 @@ $(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
              $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
             //$('#pwd_join').focus();
-        } else if(!($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) || !($('#pwd_edit').val() == $('#pwd_confirmation').val())) {
+        } else if(!($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) || !($('#pwd_join').val() == $('#pwd_confirmation').val())) {
              $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
         } else {
              $('.error').removeClass('alert alert-danger').html('');
