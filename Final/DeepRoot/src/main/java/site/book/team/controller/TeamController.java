@@ -353,21 +353,28 @@ public class TeamController {
 	
 	// 그룹원에게 권한 부여
 	@RequestMapping("giveGorupRole.do")	
-	public View giveGorupRole(HttpServletRequest req, HttpSession session, Model model, G_MemberDTO member_auth) {
-
+	public View giveGorupRole(HttpServletRequest req, HttpSession session, Model model, G_MemberDTO member_auth, String key) {
+		
+		System.out.println(key + ": " + member_auth);
+		
 		// 권한 부여 대상이 그룹장인 경우 return
 		if( member_auth.getGrid()  == 1 ) {
 			model.addAttribute("result", "master");
 			return jsonview;
 		}
 		// 권한 부여 대상이 이미 매니저인 경우
-		else if( member_auth.getGrid() == 2 ) {
+		else if( member_auth.getGrid() == 2 && key.equals("manager")) {
 			model.addAttribute("result", "manager");
+			return jsonview;
+		}
+		// 권한 부여 대상이 이미 그룹원인 경우
+		else if( member_auth.getGrid() == 3 && key.equals("member")) {
+			model.addAttribute("result", "member");
 			return jsonview;
 		}
 		
 		// 권한 부여 대상: 그룹원->매니저, 매니저->그룹원
-		int isAuth = g_memberservice.banMember(member_auth);
+		int isAuth = (key.equals("manager")) ? g_memberservice.giveManager(member_auth) : g_memberservice.giveMember(member_auth);
 
 		if(isAuth > 0) {
 			model.addAttribute("result", "success");

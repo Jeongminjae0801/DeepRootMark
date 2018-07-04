@@ -194,21 +194,18 @@ function group_complete(){
 
 /* 마우스 오른쪽 이벤트 (회원강퇴) 추가*/
 $(function() {
-	if( myRole != "그룹원" ){
+	if( grid == 1 ){
 		$.contextMenu({
 	        selector: '.member', 
 	        callback: function(key, opt) {
 	            var targetNname = opt.$trigger.text().trim();
-	            //var hisGrid = opt.$trigger.outerHTML.data('grid').trim();attributes
 	            var hisGrid = opt.$trigger.eq(0).data("grid");
+	            console.log(opt.$trigger.eq(0));
 	            
 	            if(key == "ban"){
 	            	member_ban(targetNname, hisGrid);
 	            }
-	            else if(key == "manager") {
-	            	member_auth(key, targetNname, hisGrid);
-	            }
-				else if(key == "member") {
+	            else {
 					member_auth(key, targetNname, hisGrid);
 	            }
 	        },
@@ -216,7 +213,24 @@ $(function() {
 	            "manager": {name: "매니저 승급", icon: "far fa-edit"},
 	            "member": {name: "매니저 강등", icon: "fas fa-eraser"},
 	            "sep1": "---------",
-	            "ban": {name: "강퇴", icon: "fas fa-ban"},
+	            "ban": {name: "강퇴", icon: "fas fa-ban"}
+	        }
+	    });   
+	}
+	
+	if( grid == 2 ){
+		$.contextMenu({
+	        selector: '.member', 
+	        callback: function(key, opt) {
+	            var targetNname = opt.$trigger.text().trim();
+	            var hisGrid = opt.$trigger.eq(0).data("grid");
+	            
+	            if(key == "ban"){
+	            	member_ban(targetNname, hisGrid);
+	            }
+	        },
+	        items: {
+	            "ban": {name: "강퇴", icon: "fas fa-ban"}
 	        }
 	    });   
 	}
@@ -224,39 +238,36 @@ $(function() {
 
 /* 멤버 권한 관리 START */
 function member_auth(key, targetNname, hisGrid){   	
+	console.log(key + "/" + targetNname + "/" + hisGrid);
 	// 그룹원 권한 권리  Ajax
 	$.ajax({
 		url: "giveGorupRole.do",
 		type: "post",
-		data : { abid : abid },
+		data : { key: key, nname: targetNname, gid: gid, grid: hisGrid },
 		success : function(data){
-			//console.log(data.click);
-		}
-	});
-	$("#giveGorupRole").ajaxForm({
-		success: function(data, statusText, xhr, $form){
 			var recv_data = data.result;
 			
 			if(recv_data == 'fail') { $.alert('잠시후 다시 시도해주세요!'); }
-			else if(recv_data == 'empty') { $.alert('해당 그룹원이 존재하지 않습니다!'); }
 			else if(recv_data == 'master') { $.alert('그룹장이십니다!'); }
-			else if(recv_data == 'manager') { $.alert('그룹장이십니다!'); }
+			else if(recv_data == 'manager') { $.alert('이미 매니저입니다!'); }
+			else if(recv_data == 'member') { $.alert('이미 그룹원입니다!'); }
+			else if(data.result == "success") { 
+				$.alert("해당 권한이 부여되었습니다");
+				$("#"+targetNname).attr("data-grid", (key=="manager" ? 2 : 3));
+				
+				stompClient.send('/alarm', {}, 
+					 	JSON.stringify({
+					 		gid: gid,
+					 		toid: targetNname,
+					 		fromid: uid,
+					 		gname: gname,
+					 		gmemo: key,
+					 		senddate: 'NOW'
+						})
+					);
+			}
 			else {
-				var toid = recv_data;
-				
-				stompClient.send('/alarm/' + toid , {}, 
-				 	JSON.stringify({
-				 		gid: gid,
-				 		toid: toid,
-				 		gname: gname,
-				 		gmemo: '강퇴',
-				 		senddate: 'NOW'
-					})
-				);
-				
-				$("#" + targetNname).remove();
-				$.alert('해당 그룹원이 강퇴되었습니다!');
-				
+				$.alert("잠시후 다시 시도해주세요!");
 			}
 		}
 	});

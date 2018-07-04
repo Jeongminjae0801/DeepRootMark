@@ -361,26 +361,28 @@ function connect() {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
  			
-			var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
+			/*var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
 							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
 							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">"+ temp_member
-						  +'</p>';
+						  +'</p>';*/
 			
+			var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
-			$('#online-member').prepend(insertOnline);
+			$('#online-member').prepend($who);
  		});
 
  		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
 
-			var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
+			/*var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
 							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
 							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
-						  +'</p>';
+						  +'</p>';*/
 			
+			var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
-			$('#offline-member').prepend(insertOffline);
+			$('#offline-member').prepend($who);
  		});
  		
  		// Header Alarm socket connect
@@ -428,28 +430,6 @@ function disconnect() {
     stompClient.disconnect();
 }
 
-
-function checkImg(nname) {
-	$.get("/bit/images/profile/" + nname + ".png").done(function() { 
-		return nname + ".png";
-		
-    }).fail(function() { 
-    	$.get("/bit/images/profile/" + nname + ".gif").done(function() { 
-    		return nname + ".gif";
-    		
-        }).fail(function() { 
-        	$.get("/bit/images/profile/" + nname + ".jpeg").done(function() { 
-        		return nname + ".jpeg";
-        		
-            }).fail(function() { 
-            	return nname + ".jpg";
-            	
-            })
-        	
-        })
-    	
-    });
-}
 /* Chatting End */
 
 

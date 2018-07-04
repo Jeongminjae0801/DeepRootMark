@@ -47,4 +47,7 @@ public interface G_MemberDAO {
 	
 	// 닉네임을 통해 상대방 ID 가져오기
 	public UserDTO getToUid(String nname) throws ClassNotFoundException, SQLException;
+	
+	// 그룹원 권한 부여 또는 뺏기 
+	public int giveManager(G_MemberDTO member_auth) throws ClassNotFoundException, SQLException;
 }

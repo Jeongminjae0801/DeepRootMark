@@ -14,10 +14,10 @@ package site.book.team.dto;
  * @Author : 김희준
  */
 public class G_MemberDTO {
-	// 강퇴한 사람 GRID
+	// Alarm의 경우 자신의  GRID
 	private int mygrid;
 	
-	// 강퇴할 사람 GRID
+	// Alarm의 경우 대상  GRID 
 	private String uid;
 	private int gid;
 	private int ccount;

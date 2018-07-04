@@ -87,6 +87,22 @@ function alarmConnect(stompClient, userid) {
 							 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';
     		}
     	}
+    	// 매니저 혹은 그룹원 권한 처리
+    	else {
+    		if( gid == recv_gid ) {
+    			// 그룹장에게는 안오게
+    			if(recv_fromid == uid) {
+    				return
+    				
+    			}// 본인꺼 찾기
+    			else if(recv_toid == uid) {
+    				$.alert("그룹장님이 '" + recv_ganame + "\' 권한을 부여하셨습니다!");
+        			grid = (recv_ganame == "manager" ? 2 : 3);
+    			}
+    			
+    			$("#"+recv_toid).attr("data-grid", (recv_ganame == "manager" ? 2 : 3));
+    		}
+    	}
     	
     	common_form += '</li>';
     	//console.log(common_form);

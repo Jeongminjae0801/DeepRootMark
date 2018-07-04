@@ -48,4 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT UID FROM `USER` WHERE NNAME=#{nname}
 	</select>
 	
+	<update id="giveManager">
+		UPDATE `G_MEMBER` m JOIN `USER` u on m.UID=u.UID
+		SET m.GRID=#{grid} WHERE m.GID=#{gid} and u.NNAME=#{nname};
+	</update>
+	
 </mapper>
