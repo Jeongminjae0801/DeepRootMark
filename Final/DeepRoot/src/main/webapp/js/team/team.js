@@ -263,7 +263,15 @@ function member_auth(key, targetNname, hisGrid){
 					 		gmemo: key,
 					 		senddate: 'NOW'
 						})
-					);
+				);
+				
+				stompClient.send('/chat/' + gid, {}, 
+					 	JSON.stringify({
+					 		nname: "시스템",
+					 		content: "--------------- '" + targetNname + "'님이 " + (key=="manager" ? "매니저" : "그룹원") + "이 되셨습니다! ---------------",
+					 		profile: "system.png"
+						})
+				);
 			}
 			else {
 				$.alert("잠시후 다시 시도해주세요!");
