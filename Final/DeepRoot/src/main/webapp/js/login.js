@@ -415,7 +415,7 @@ $(function() {
         }
         else{
         	$('.error').removeClass('alert alert-danger').html('');
-            $('.error').addClass('alert alert-success').html('감사합니다');
+            $('.error').addClass('alert alert-success').html('환영합니다');
         }
     })
     //비밀번호 길이 확인 함수
