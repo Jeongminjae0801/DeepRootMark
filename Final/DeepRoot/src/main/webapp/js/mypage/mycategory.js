@@ -1037,7 +1037,7 @@ function addGroup() {
 	                $("#addGroupForm").ajaxForm({
 	                	success: function(data, statusText, xhr, $form){
 	                		var group = '<li id="' + data.newTeam.gid + '" class="list-group-item">';
-	                		group += '<label class="my-group-list">' + data.newTeam.gname + '</label>';
+	                		group += '<label class="my-group-list" onclick="location.href=\'/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '\'"  >' + data.newTeam.gname + '</label>';
 	                		group += '<div class="pull-right action-buttons">';
 	                		group += '<a class="completed">';
 	                		group += '<span class="glyphicon glyphicon-check" onclick="completedGroup(' + data.newTeam.gid + ')"></span>';
