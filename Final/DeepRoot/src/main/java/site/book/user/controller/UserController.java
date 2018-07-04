@@ -390,7 +390,7 @@ public class UserController {
 		message.setFrom("bitcamp104@gmail.com");
 		message.setText(url +" "+ text);
 		message.setTo("bitcamp104@gmail.com");
-		
+		mailSender.send(message);
 		model.addAttribute("result","메일 전송");
 		
 		return jsonview;
