@@ -108,7 +108,7 @@ $(function() {
 	var scrollTop = $('.chat-element').scrollTop();
 	
 	var scrollPos = $('.chat-element').scrollTop();
-    var date_eq = $(".chat-element").children(".divider").length - 1;
+    var date_eq = $(".chatting-contents").children(".divider").length - 1;
     
 	$('.chat-element').scroll(function() {
         var curScrollPos = $(this).scrollTop();
@@ -117,14 +117,20 @@ $(function() {
         if (curScrollPos > scrollPos) { //Scrolling Down
             if(date_line <= 35 ) {
                 var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                //console.log("donw: " + date_line);
+                //console.log(temp);
                 $("#header-date").text(temp);
-                if( date_eq < $(".chat-element").children(".divider").length - 1 ) { date_eq += 1; }
+                if( date_eq < $(".chatting-contents").children(".divider").length - 1 ) { date_eq += 1; }
+                
             }
         } else { //Scrolling Up
             if(date_line > 30 ) {
                 if( date_eq > 0 ) { date_eq -= 1; }
                 var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                //console.log("up: " + date_line);
+                //console.log(temp);
                 $("#header-date").text(temp);
+                
             }
         }
         
@@ -362,28 +368,28 @@ function connect() {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
  			
-			/*var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
-							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
-							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">"+ temp_member
-						  +'</p>';*/
+			var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
+								+ '<i class="fas fa-circle online-ico"></i>'
+								+ temp_member
+						  +'</p>';
 			
-			var $who = $('#' + temp_member).clone();
+			//var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
-			$('#online-member').prepend($who);
+			$('#online-member').prepend(insertOnline);
  		});
 
  		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
 
-			/*var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
-							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
-							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
-						  +'</p>';*/
+			var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
+								+ '<i class="fas fa-circle offline-ico"></i>'
+								+ temp_member
+						  +'</p>';
 			
-			var $who = $('#' + temp_member).clone();
+			//var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
-			$('#offline-member').prepend($who);
+			$('#offline-member').prepend(insertOffline);
  		});
  		
  		// Header Alarm socket connect
