@@ -84,6 +84,8 @@ $(function() {
     $('#pwd_join').keyup(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
             $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
+        } else if(!($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) || !($('#pwd_edit').val() == $('#pwd_confirmation').val())) {
+            $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
         } else {
             $('.error').removeClass('alert alert-danger').html('');
         }
@@ -95,6 +97,8 @@ $(function() {
         var pwd_con = $('#pwd_confirmation').val();*/
         if (!($('#pwd_join').val() == $('#pwd_confirmation').val())) {
             $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
+        } else if(($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
+            $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
         } else {
             $('.error').removeClass('alert alert-danger').html('');
         }
@@ -105,10 +109,10 @@ $(function() {
         /*var email = $('#uid_join').val();*/
         var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
         if(($('#uid_join').val().trim() == "") || !($('#uid_join').val().length >= 5 )){
-                 $('.error').addClass('alert alert-danger').html("이메일은 5자 이상 입력해야 합니다.");
+            $('.error').addClass('alert alert-danger').html("이메일은 5자 이상 입력해야 합니다.");
             
         } else if( !(regex.test($('#uid_join').val())) ) {
-                 $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 이메일 입니다.");
+            $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 이메일 입니다.");
         } else {
             $('.error').removeClass('alert alert-danger').html('');
         }
@@ -117,10 +121,9 @@ $(function() {
     //인증키 확인 함수
     $('#authcode_join').keyup(function(){
         if( ($('#authcode_join').val().length >= 11 ) ) {
-            $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 인증키 입니다.");
-        }
-        else{
-            $('.error').removeClass('alert alert-danger').html('');
+             $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 인증키 입니다.");
+        } else {
+             $('.error').removeClass('alert alert-danger').html('');
         }
     });
 })
@@ -139,7 +142,7 @@ $(function() {
         // 이메일 길이 확인
         if(($('#uid_join').val().trim() == "") || !($('#uid_join').val().length >= 5 )){
                  $('.error').addClass('alert alert-danger').html("이메일은 5자 이상 입력해야 합니다.");
-        } 
+        }
         // 이메일 형식 확인
         else if( !(regex.test($('#uid_join').val())) ) {
                  $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 이메일 입니다.");
@@ -153,10 +156,10 @@ $(function() {
     $('#authcode_join').keyup(function(){
     	// authcode 길이 확인
         if( ($('#authcode_join').val().length >= 11 ) ) {
-            $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 인증키 입니다.");
+             $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 인증키 입니다.");
         }
         else{
-            $('.error').removeClass('alert alert-danger').html('');
+             $('.error').removeClass('alert alert-danger').html('');
         }
     })
     
@@ -230,21 +233,25 @@ $(function() {
 	//3.비밀번호 길이 확인 함수
     $('#pwd_join').blur(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
-            $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
+             $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
             //$('#pwd_join').focus();
+        } else if(!($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) || !($('#pwd_edit').val() == $('#pwd_confirmation').val())) {
+             $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
         } else {
-            $('.error').removeClass('alert alert-danger').html('');
-            $('#pwd_join').removeClass('clear_join').addClass('clear_join');
+             $('.error').removeClass('alert alert-danger').html('');
+             $('#pwd_join').removeClass('clear_join').addClass('clear_join');
         }
     });
 
     //4.비밀번호 동일 확인 함수
     $('#pwd_confirmation').keyup(function() {
         if (!($('#pwd_join').val() == $('#pwd_confirmation').val())) {
-            $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
+              $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
+        } else if(($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
+              $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
         } else {
-        	$('.error').removeClass('alert alert-danger').html('');
-        	$('#pwd_confirmation').removeClass('clear_join').addClass('clear_join');
+        	  $('.error').removeClass('alert alert-danger').html('');
+        	  $('#pwd_confirmation').removeClass('clear_join').addClass('clear_join');
         }
     });
 	
