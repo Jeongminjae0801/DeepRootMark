@@ -95,21 +95,19 @@ $(function() {
 					$('#socialIndiModal').modal("toggle");
 				}else {
                     swal({
+                    	type:'error',
                         title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true
+                        icon: "warning"
 					});
 				}
 			},
 			error : function(error) {
 				swal({
+					type:'error',
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true
+                    icon: "warning"
 				});
 		    }
 		});
@@ -142,21 +140,19 @@ $(function() {
 					$('#socialIndiModal').modal("toggle");
 				}else {
                     swal({
+                    	type:'error',
                         title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true
+                        icon: "warning"
 					});
 				}
 			},
 			error : function(error) {
 				swal({
+					type: 'error',
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true
+                    icon: "warning"
 				});
 		    }
 		});
@@ -372,21 +368,19 @@ $(document).ready(function(){
     				$('#socialGroupModal').css({"z-index":"0"});
     			} else {
     				swal({
+    					type: 'error',
     					title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true
+                        icon: "warning"
     				});
     			}
     		},
     		error : function(error) {
     			swal({
+    				type: 'error',
     				title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true
+                    icon: "warning"
     			});
     		}
 		})
@@ -398,11 +392,10 @@ $(document).ready(function(){
 	$('#into-group-bookmark-getgroup-btn').on('click', function(){
 		if($('.groupshare-url').text() == '#'){
 			swal({
+				type : 'error',
 				title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true
+                icon: "warning"
 			});
 			return;
 		}
@@ -453,21 +446,19 @@ $(document).ready(function(){
 					$('#socialGroupModal').css({"z-index":"0"});
 				} else {
 					swal({
+						type : 'error',
 						title: "목적지 폴더를 확인하셨나요?",
 						text: "잠시후 다시 시도해주세요!",
-	                    icon: "warning",
-	                    buttons: true,
-	                    dangerMode: true
+	                    icon: "warning"
 					});
 				}
 			},
 			error : function(error) {
 				swal({
+					type : 'error',
 					title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true
+                    icon: "warning"
 				});
 			}
 		});
@@ -631,11 +622,10 @@ $(document).ready(function(){
     $('#into-my-bookmark-surfing-btn').on('click', function(){
     	if($('.indishare-url-surfing').text() == '#'){
     		swal({
+    			type: 'error',
     			title: "목적지 폴더를 확인하셨나요?",
     			text: "잠시후 다시 시도해주세요!",
-    			icon: "warning",
-    			buttons: true,
-    			dangerMode: true
+    			icon: "warning"
     		});
     		return;
     	}
@@ -682,21 +672,19 @@ $(document).ready(function(){
     				$('#socialSurfingModal').modal("toggle");
     			} else {
     				swal({
+    					type:'error',
     					title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true
+                        icon: "warning"
     				});
     			}
     		},
     		error : function(error) {
     			swal({
+    				type:'error',
     				title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true
+                    icon: "warning"
     			});
     		}
 		});
@@ -708,11 +696,10 @@ $(document).ready(function(){
 	$('#into-group-bookmark-surfing-btn').on('click', function(){
 		if($('.indishare-url-surfing').text() == '#'){
 			swal({
+				type:'error',
 				title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true
+                icon: "warning"
 			});
 			return;
 		}
@@ -762,21 +749,19 @@ $(document).ready(function(){
 					$('#socialSurfingModal').modal("toggle");
 				} else {
 					swal({
+						type:'error',
 						title: "목적지 폴더를 확인하셨나요?",
 						text: "잠시후 다시 시도해주세요!",
-	                    icon: "warning",
-	                    buttons: true,
-	                    dangerMode: true
+	                    icon: "warning"
 					});
 				}
 			},
 			error : function(error) {
 				swal({
+					type:'error',
 					title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true
+                    icon: "warning"
 				});
 			}
 		});
