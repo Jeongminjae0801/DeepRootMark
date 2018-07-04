@@ -70,7 +70,6 @@ $(document).ready(function(){
 					"plugins" : [ "dnd","contextmenu" ], //drag n drop , 과 우클릭시 플러그인 가져옴
 
 					"contextmenu" : { //우클릭시 생성되는 것들 설정
-						"select_node" : false, // 우클릭 했을 경우 왼클릭되는거 막음
 						
 						/*왼쪽 jstree  우클릭시 생성되는 메뉴 구성하기 START*/
 						"items" : function($node){ //우클릭된 node(폴더)의 정보를 가져온다.
@@ -208,7 +207,8 @@ $(document).ready(function(){
 		}
 	})
 			
-	/*왼쪽 위에 new category 버튼 클릭시 실행*/			
+	/*왼쪽 위에 new category 버튼 클릭시 실행*/
+	$('#addroot').on('dblclick', function(){ return });
 	$('#addroot')
 		.on("click",function(){
 		
@@ -238,11 +238,14 @@ $(document).ready(function(){
 		.on("click",function(){
 			var tree_child = $("#jstree_container_child").jstree(true);
 		
-			//왼쪽 폴더 선택 안하고 클릭한 것을 방지한다.
-			if(urlpid == null){
-				$.alert("URL을 추가할 카테고리를 선택해주세요");
-				return false;
-			}
+			var selected_node_left = $('#jstree_container').jstree("get_selected");
+            
+            //왼쪽 폴더 선택 안하고 클릭한 것을 방지한다.
+            if(selected_node_left.length == "0"){
+                $.alert("URL을 추가할 카테고리를 선택해주세요");
+                return false;
+            }
+            
 			// 모달창 띄우기 전에 reset하기
 			$('#form_btn')[0].reset();// modal input text 창 초기화
 			$('#linkAdd_btn').modal(); // url 추가하는 modal 창이 나온다.
@@ -311,7 +314,7 @@ $(document).ready(function(){
 											var id = inst.get_node(obj.reference).id;
 											
 											$('#editurlval').val(url);
-											
+											$('#editurlsubmit').on('dblclick', function(){ return });
 											$('#editurlsubmit').on("click",function(){
 												
 												var newurl = $('#editurlval').val();
@@ -328,6 +331,9 @@ $(document).ready(function(){
 													success: function(data){
 														$('#loading').html("");
 														$('#editurl').modal("toggle");
+														
+														$('#jstree_container').jstree().deselect_all(true);											
+														$('#jstree_container').jstree(true).select_node(urlpid);		
 													}
 												}) 
 											})
@@ -429,6 +435,7 @@ $(document).ready(function(){
 											var id = inst.get_node(obj.reference).id;
 											                
 											$('#editurlval').val(url);
+											$('#editurlsubmit').on('dblclick', function(){ return });
 											$('#editurlsubmit').on("click",function(){
 												
 												var newurl = $('#editurlval').val();
@@ -1030,7 +1037,7 @@ function addGroup() {
 	                $("#addGroupForm").ajaxForm({
 	                	success: function(data, statusText, xhr, $form){
 	                		var group = '<li id="' + data.newTeam.gid + '" class="list-group-item">';
-	                		group += '<label class="my-group-list">' + data.newTeam.gname + '</label>';
+	                		group += '<label class="my-group-list" onclick="location.href=\'/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '\'"  >' + data.newTeam.gname + '</label>';
 	                		group += '<div class="pull-right action-buttons">';
 	                		group += '<a class="completed">';
 	                		group += '<span class="glyphicon glyphicon-check" onclick="completedGroup(' + data.newTeam.gid + ')"></span>';

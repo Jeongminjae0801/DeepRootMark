@@ -368,28 +368,28 @@ function connect() {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
  			
-			/*var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
-							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
-							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">"+ temp_member
-						  +'</p>';*/
+			var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
+								+ '<i class="fas fa-circle online-ico"></i>'
+								+ temp_member
+						  +'</p>';
 			
-			var $who = $('#' + temp_member).clone();
+			//var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
-			$('#online-member').prepend($who);
+			$('#online-member').prepend(insertOnline);
  		});
 
  		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
 
-			/*var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
-							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
-							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
-						  +'</p>';*/
+			var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
+								+ '<i class="fas fa-circle offline-ico"></i>'
+								+ temp_member
+						  +'</p>';
 			
-			var $who = $('#' + temp_member).clone();
+			//var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
-			$('#offline-member').prepend($who);
+			$('#offline-member').prepend(insertOffline);
  		});
  		
  		// Header Alarm socket connect
