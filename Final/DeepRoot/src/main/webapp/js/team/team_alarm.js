@@ -37,26 +37,13 @@ function alarmConnect(stompClient, userid) {
     	}else if( recv_ganame == "강퇴" ) {
     		if( gid == recv_gid ) {
     			$.alert("현재 그룹에서 강퇴당하셨습니다!");
-    			setTimeout(function(){ location.replace("/bit/index.do"); }, 3000);
+    			setTimeout(function(){ location.href="/bit/user/mybookmark.do"; }, 3000);
     			return
     			
     		}else {
     			common_form += '<span>해당 그룹에서 회원님을 강퇴했습니다!</span>'
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
-    		}
-    	}else {
-    		
-    		if( gid == recv_gid ) {
-    			$.alert("현재 그룹이 그룹장에 의해 완료되었습니다!");
-    			setTimeout(function(){ location.replace("/bit/index.do"); }, 3000);
-    			return
-    			
-    		}else {
-        		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
-								+ '<span class="g_alarm_name">'+recv_fromid+'</span>'
-								+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
-							 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';
     		}
     	}
     	
@@ -66,7 +53,66 @@ function alarmConnect(stompClient, userid) {
     	
     });
    
-    
+    stompClient.subscribe('/subscribe/alarm', function(message) {
+    	
+    	var recv_alarm = JSON.parse(message.body);
+    	var recv_gid = recv_alarm.gid;
+    	var recv_toid = recv_alarm.toid;
+    	var recv_fromid = recv_alarm.fromid;
+    	var recv_gname = recv_alarm.gname;
+    	var recv_ganame = recv_alarm.gmemo
+    	var recv_senddate = recv_alarm.senddate;
+    	
+    	if($('#alarm_menu_li').children('ul').length == 0) {
+    		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
+		}
+    	
+    	var common_form = '<li id="alarmlist' +recv_gid+ '" class="g_alarm_li">'
+    						+ '<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">' +recv_gname+ '</span></span>'
+    						+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
+    						+ '<br style="clear:both">';
+    	
+    	if( recv_ganame == "완료" ) {
+    		
+    		if( gid == recv_gid ) {
+    			
+    			$.alert("그룹장(" +recv_fromid+ ")에 의해 완료되었습니다!");
+    			setTimeout(function(){ location.href="/bit/user/mybookmark.do"; }, 3000);
+    			return
+    		}
+    		else {
+        		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
+								+ '<span class="g_alarm_name">'+recv_fromid+'</span>'
+								+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
+							 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';
+    		}
+    	}
+    	// 매니저 혹은 그룹원 권한 처리
+    	else {
+    		if( gid == recv_gid ) {
+    			// 그룹장에게는 안오게
+    			if(recv_fromid == uid) {
+    				return
+    				
+    			}// 본인꺼 찾기
+    			else if(recv_toid == nname) {
+    				$trigger = $('.member');
+    				$.alert("그룹장님이 '" + (recv_ganame == "manager" ? "매니저" : "그룹원") + "\' 권한을 부여하셨습니다!");
+    				grid = (recv_ganame == "manager" ? 2 : 3);
+    				(grid == 2) ? $trigger.contextMenu(true) : $trigger.contextMenu(false);
+
+    			}
+    			
+    			$("#"+recv_toid).attr("data-grid", (recv_ganame == "manager" ? 2 : 3));
+
+    		}
+    	}
+    	
+    	common_form += '</li>';
+    	//console.log(common_form);
+    	$('.g_alarm_ul').prepend(common_form);
+    	
+    });
 }
 
 //Header Alarm socket disconnect

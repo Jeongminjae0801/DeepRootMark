@@ -954,7 +954,7 @@ function deleteGroup(gid) {
 	    					gid : gid // 그룹 ID
 	    				},
 	    				success : function(data){
-	    					console.log(data);
+	    					//console.log(data);
 	    				}
 	    			});
 	        	}

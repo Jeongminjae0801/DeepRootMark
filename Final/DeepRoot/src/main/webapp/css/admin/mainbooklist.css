@@ -403,6 +403,12 @@ table.table-hover tbody tr:hover i {
 	width: 20px;
 }
 
+#acname4{
+	background-color: #ccc;
+    border-radius: 10px;
+    border: none;
+}
+
 /*modal css*/
 .editUrl .btn-next, .editUrl .btn-prev, .editUrl .btn-comp {
 	background-color: #30cd72;
@@ -493,11 +499,11 @@ table.table-hover tbody tr:hover i {
 }
 
 .dropdown-menu.category {
-	transform: translate3d(320px, -30px, 0px);
+	transform: translate3d(355px, -30px, 0px);
 }
 
 .dropdown-menu.categorylist {
-	transform: translate3d(435px, -25px, 0px);
+	transform: translate3d(475px, -25px, 0px);
 }
 
 .btn-category {

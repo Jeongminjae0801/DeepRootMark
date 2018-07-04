@@ -31,6 +31,7 @@ import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
+import site.book.team.dto.G_AlarmDTO;
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_MyAlarmDTO;
@@ -87,11 +88,9 @@ public class UserController {
 	public View userIdCheck(@RequestParam("uid") String uid, Model model) {
 		//System.out.println(uid);
 		int result = userservice.checkUserID(uid);
-		if(result > 0) {
-			model.addAttribute("result", "fail");
-		}else {
-			model.addAttribute("result", "pass");
-		}
+
+		String data = (result > 0) ? "fail" : "pass";
+		model.addAttribute("result", data);
 		
 		return jsonview;
 	}
@@ -100,12 +99,10 @@ public class UserController {
 	public View userNnameCheck(@RequestParam("nname") String nname, Model model) {
 		//System.out.println(nname);
 		int result = userservice.checkUserNickname(nname);
-		if(result > 0) {
-			model.addAttribute("result", "fail");
-		}else {
-			model.addAttribute("result", "pass");
-		}
 		
+		String data = (result > 0) ? "fail" : "pass";
+		model.addAttribute("result", data);
+	
 		return jsonview;
 	}
 	
@@ -115,13 +112,12 @@ public class UserController {
 		HttpSession session = req.getSession();
         String uid = (String)session.getAttribute("info_userid");
         book.setUid(uid);
-        System.out.println(book);
+        //System.out.println(book);
+        
         int result = u_bookservice.addToMyBookmark(book);
-		if(result > 0) {
-			model.addAttribute("result", "success");
-		}else {
-			model.addAttribute("result", "fail");
-		}
+		
+		String data = (result > 0) ? "success" : "fail";
+		model.addAttribute("result", data);
 		
 		return jsonview;
 	}
@@ -146,7 +142,7 @@ public class UserController {
 	// 그룹 추가
 	@RequestMapping("addGroup.do")
 	public String addGroup(HttpServletRequest req, String gname) {
-		System.out.println("그룹 추가");
+		//System.out.println("그룹 추가");
 		HttpSession session = req.getSession();
 		String uid = (String)session.getAttribute("info_userid");
 		
@@ -161,8 +157,12 @@ public class UserController {
 	
 	// 그룹 완료
 	@RequestMapping("completedGroup.do")
-	public View completedGroup(TeamDTO team, Model model) {
-		TeamDTO completedGroup = teamservice.completedGroup(team);
+	public View completedGroup(HttpServletRequest req, TeamDTO team, G_AlarmDTO alarm, Model model) {
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		alarm.setFromid(uid);
+		
+		TeamDTO completedGroup = teamservice.completedGroup(team, alarm);
 		model.addAttribute("completedGroup", completedGroup);
 		
 		return jsonview;
