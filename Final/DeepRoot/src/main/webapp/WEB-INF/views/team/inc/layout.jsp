@@ -78,7 +78,7 @@
     <!-- Custom Script END -->
     
     <!-- jstree Script -->
-	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/Teamcategory.js"></script>
+	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/teamcategory.js"></script>
 	
     <!-- URL 추가 모달 -->
     
