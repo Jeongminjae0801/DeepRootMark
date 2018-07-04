@@ -372,8 +372,18 @@ font-family: 'Gamja Flower', cursive;
  text-align:center;
  }
  /*   */
-
-
+ 
+ .jstree-anchor {
+  display : inline-block;
+  color: #333;
+  white-space: nowrap;
+  padding: 0 4px 0 1px;
+  margin: 0;
+  vertical-align: top;
+  overflow :  hidden;
+  text-overflow: ellipsis;
+  width: auto;
+}
 
 .jstree-proton .jstree-clicked { /* 그냥 클릭 됨 */
   background: #FFFF7E;

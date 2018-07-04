@@ -368,7 +368,8 @@ function connect() {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
  			
-			var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
+ 			var your_grid = ($('#' + temp_member).attr("data-grid") != null) ? $('#' + temp_member).attr("data-grid") : "3";
+			var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +your_grid+ '">'
 								+ '<i class="fas fa-circle online-ico"></i>'
 								+ temp_member
 						  +'</p>';
@@ -382,7 +383,8 @@ function connect() {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
 
-			var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
+ 			var your_grid = ($('#' + temp_member).attr("data-grid") != null) ? $('#' + temp_member).attr("data-grid") : "3";
+			var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +your_grid+ '">'
 								+ '<i class="fas fa-circle offline-ico"></i>'
 								+ temp_member
 						  +'</p>';

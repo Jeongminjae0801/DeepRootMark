@@ -165,14 +165,14 @@
 	                            		var member = element;
 	                            		//console.log(member[0] + "/" + member[1] + "/" + member[2]);
 	                            		if(onlinelist.hasOwnProperty(member[0])) {
-	                            			var insertOnline = '<p id="' + member[0] + '"' + ' class="member">' 
+	                            			var insertOnline = '<p id="' + member[0] + '"' + ' class="member" data-grid="'+member[2]+'">' 
             												 	+ '<i class="fas fa-circle online-ico"></i>'
             												 	+ member[0]
             							  					+ '</p>';
             								$('#online-member').prepend(insertOnline);
             			
             							}else {
-            								var insertOffline = '<p id="' + member[0] + '"' + ' class="member">' 
+            								var insertOffline = '<p id="' + member[0] + '"' + ' class="member" data-grid="'+member[2]+'">' 
 					            								+ '<i class="fas fa-circle offline-ico"></i>'
 					            								+ member[0]
 					            							  + '</p>';

@@ -323,7 +323,7 @@ function member_ban(targetNname, hisGrid){
         			if(recv_data == 'fail') { $.alert('잠시후 다시 시도해주세요!'); }
         			else if(recv_data == 'empty') { $.alert('해당 그룹원이 존재하지 않습니다!'); }
         			else if(recv_data == 'master') { $.alert('그룹장이십니다!'); }
-        			else if(recv_data == 'manager') { $.alert('그룹장이십니다!'); }
+        			else if(recv_data == 'manager') { $.alert('매니저입니다!'); }
         			else {
         				var toid = recv_data;
         				
