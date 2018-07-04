@@ -19,6 +19,7 @@
                             <input id="re-confirm-password-btn" type="button" class="btn btn-default confirm" value="확인">
                             <input type="button" class="btn btn-default cancel" value="취소" onclick="location.href='index.do'">
                         </center>
+                        <div class="to-footer-space"></div>
                 	</form>
                 
                     <form id="edit-info-form" action="myInfo.do" method="post" enctype="multipart/form-data" style="display: none;">   
