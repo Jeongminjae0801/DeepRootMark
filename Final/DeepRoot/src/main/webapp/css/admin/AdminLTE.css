@@ -416,7 +416,7 @@ a:focus {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 14px;
-    padding: 7px 5px;
+    padding: 20px 5px 5px 5px;
     position: absolute;
     top: 15px;
     right: 10px;
