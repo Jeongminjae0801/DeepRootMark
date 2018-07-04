@@ -8,6 +8,8 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+#main{ height: 100%; }
+
 a:hover{text-decoration: none; }
 .material-icons.md-18 { float: left; font-size: 18px; }
 .material-icons.md-24 { float: left; font-size: 24px; }
@@ -100,7 +102,7 @@ a:hover{text-decoration: none; }
 
 .mydiv-height {
   padding: 0;
-  height: 735px;
+  height: 757px;
 }
 
 .mypage-title {

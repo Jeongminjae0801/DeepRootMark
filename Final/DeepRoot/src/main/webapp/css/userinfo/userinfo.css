@@ -4,6 +4,8 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+body{ height: 91%; }
+#main{ height: 100%; }
 .userinfo{
     font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
     height: 100%;
@@ -88,7 +90,6 @@
     margin-left: 5px;
     margin-right: 5px;
     border: 1px solid #fff;
-    font-weight: 500;
 }
 
 .userinfo .cancel:hover{

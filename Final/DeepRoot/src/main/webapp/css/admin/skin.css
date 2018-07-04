@@ -94,7 +94,7 @@
 }
 .skin-blue .sidebar-menu > li.header {
     color: #fff;
-    background: linear-gradient(to right, rgb(16, 117, 89) 0, #3f8ca6 100%);
+    background: linear-gradient(to right, rgb(81, 165, 141) 0, #3f8ca6 100%);
     font-size:16px;
 }
 
@@ -105,8 +105,8 @@
 .skin-blue .sidebar-menu > li:hover > a,
 .skin-blue .sidebar-menu > li.active > a {
     color: #fff;
-    background-color: #8aa4af;
-    border-left: 5px solid #0bedb0;
+    background-color: #65757c;
+    border-left: 5px solid #09e5d8;
 }
 
 .skin-blue .sidebar-menu > li > .treeview-menu {
