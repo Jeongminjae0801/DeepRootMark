@@ -108,7 +108,7 @@ $(function() {
 	var scrollTop = $('.chat-element').scrollTop();
 	
 	var scrollPos = $('.chat-element').scrollTop();
-    var date_eq = $(".chat-element").children(".divider").length - 1;
+    var date_eq = $(".chatting-contents").children(".divider").length - 1;
     
 	$('.chat-element').scroll(function() {
         var curScrollPos = $(this).scrollTop();
@@ -117,14 +117,20 @@ $(function() {
         if (curScrollPos > scrollPos) { //Scrolling Down
             if(date_line <= 35 ) {
                 var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                //console.log("donw: " + date_line);
+                //console.log(temp);
                 $("#header-date").text(temp);
-                if( date_eq < $(".chat-element").children(".divider").length - 1 ) { date_eq += 1; }
+                if( date_eq < $(".chatting-contents").children(".divider").length - 1 ) { date_eq += 1; }
+                
             }
         } else { //Scrolling Up
             if(date_line > 30 ) {
                 if( date_eq > 0 ) { date_eq -= 1; }
                 var temp = $(".divider:eq(" + date_eq + ") > span").text(); // 가장 맨 위의 내용
+                //console.log("up: " + date_line);
+                //console.log(temp);
                 $("#header-date").text(temp);
+                
             }
         }
         
