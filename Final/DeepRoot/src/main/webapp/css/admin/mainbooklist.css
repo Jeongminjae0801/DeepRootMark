@@ -3,6 +3,9 @@
 /* 한글 폰트*/
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 
+
+
+#main{ height: 100%; }
 /* header category */
 .category-dropdown {
 	cursor: pointer;
