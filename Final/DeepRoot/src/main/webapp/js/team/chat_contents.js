@@ -28,7 +28,7 @@ $(function() {
 	$.each(chatList, function(index, value){
 		position = index;
 		if(index < 50){
-			chatList[index] = chatList[index].split('|');
+			chatList[index] = chatList[index].split('▣');
 			// <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
 			//console.log(chatList[index]);
 			var chatListIndex = chatList[index];
@@ -138,7 +138,7 @@ $(function() {
         		
         		if(chatList.length - position > 50){
         			for(var index=position; index < position+50; index++){
-        				chatList[index] = chatList[index].split('|');
+        				chatList[index] = chatList[index].split('▣');
         				// <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
         				//console.log(chatList[index]);
         				var chatListIndex = chatList[index];
@@ -200,7 +200,7 @@ $(function() {
         			$(this).scrollTop(50 * 42);
         		}else {
         			for(var index = position; index < chatList.length; index++){
-        				chatList[index] = chatList[index].split('|');
+        				chatList[index] = chatList[index].split('▣');
         				// <div id="2018-06-27" class="divider"><hr class="left"/><span>2018-06-27</span><hr class="right"/></div>
         				//console.log(chatList[index]);
         				var chatListIndex = chatList[index];
@@ -406,6 +406,7 @@ function sendMessage() {
     var str = $("#chat-textbox-text").html().trim();
     str = str.replace(/ /gi, '&nbsp;')
     str = str.replace(/\n|\r/g, '<br>');
+    str = str.replace(/"/gi, '&uml;');
     //console.log(str);
     if(str.length > 0) {
         // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함

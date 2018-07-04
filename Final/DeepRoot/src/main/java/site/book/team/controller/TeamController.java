@@ -418,7 +418,7 @@ public class TeamController {
     	if(Files.exists(path)) {
     		byte [] fileBytes = Files.readAllBytes(path);
         	String temp = new String(fileBytes, "UTF-8");
-        	list = Arrays.asList(temp.split("&"));
+        	list = Arrays.asList(temp.split("⊙"));
     	}
     	
     	/*char singleChar;
