@@ -110,6 +110,9 @@
 								<img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
 								<span class="hidden-xs">${sessionScope.info_usernname}</span>
 							</a>
+							<ul id="userMenu" class="dropdown-menu">
+								<li class="header"><a href="<%= request.getContextPath() %>/security/logout">로그아웃</a></li>
+							</ul>
 						</li>
 						<!-- Admin Infomation END -->
 					</ul>

@@ -454,3 +454,28 @@ a:active {
 
 
 /* team CSSS END */
+/* jstree모달*/
+.indishare-url{
+	margin-left: 10px;
+	border : none;
+	border-bottom: 1px solid #000;
+	color: #000;
+	width: 90%;
+}
+.completed-modal-from { 
+	color: #dc3500; 
+	font-size : 15px;
+}
+.completed-modal-dropdown { 
+	float: left;
+	background-color: #fff;
+	color: #081971;
+	display: block;
+ }
+
+.completed-modal-to { 
+	float: left; 
+	margin-right: 10px;
+	color: #081971; 
+	font-size : 15px;
+}

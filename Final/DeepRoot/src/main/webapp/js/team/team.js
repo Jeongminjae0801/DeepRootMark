@@ -205,13 +205,63 @@ $(function() {
 	            if(key == "ban"){
 	            	member_ban(targetNname, hisGrid);
 	            }
+	            else if(key == "manager") {
+	            	member_auth(key, targetNname, hisGrid);
+	            }
+				else if(key == "member") {
+					member_auth(key, targetNname, hisGrid);
+	            }
 	        },
 	        items: {
-	            "ban": {name: "강퇴"}
+	            "manager": {name: "매니저 승급", icon: "far fa-edit"},
+	            "member": {name: "매니저 강등", icon: "fas fa-eraser"},
+	            "sep1": "---------",
+	            "ban": {name: "강퇴", icon: "fas fa-ban"},
 	        }
 	    });   
 	}
 });
+
+/* 멤버 권한 관리 START */
+function member_auth(key, targetNname, hisGrid){   	
+	// 그룹원 권한 권리  Ajax
+	$.ajax({
+		url: "giveGorupRole.do",
+		type: "post",
+		data : { abid : abid },
+		success : function(data){
+			//console.log(data.click);
+		}
+	});
+	$("#giveGorupRole").ajaxForm({
+		success: function(data, statusText, xhr, $form){
+			var recv_data = data.result;
+			
+			if(recv_data == 'fail') { $.alert('잠시후 다시 시도해주세요!'); }
+			else if(recv_data == 'empty') { $.alert('해당 그룹원이 존재하지 않습니다!'); }
+			else if(recv_data == 'master') { $.alert('그룹장이십니다!'); }
+			else if(recv_data == 'manager') { $.alert('그룹장이십니다!'); }
+			else {
+				var toid = recv_data;
+				
+				stompClient.send('/alarm/' + toid , {}, 
+				 	JSON.stringify({
+				 		gid: gid,
+				 		toid: toid,
+				 		gname: gname,
+				 		gmemo: '강퇴',
+				 		senddate: 'NOW'
+					})
+				);
+				
+				$("#" + targetNname).remove();
+				$.alert('해당 그룹원이 강퇴되었습니다!');
+				
+			}
+		}
+	});
+}
+/* 멤버 권한 관리 END */
 
 /* 멤버 강퇴 START */
 function member_ban(targetNname, hisGrid){

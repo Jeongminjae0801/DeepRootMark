@@ -113,19 +113,24 @@ body {
     }
 }
 
-.content-wrapper,
 .right-side {
-    background-color: #444b52;
-    z-index: 800;
-    color:#fff;
+    background-color: #018786;
+    color:#000;
+}
+.content-wrapper{
+	background-color: #eee;
+	color:#000;
+	z-index: 800;
 }
 
 .main-footer {
-    background: #444b52;
+	position: absolute;
+    width: 100%;
     padding: 15px;
-    color: #b8c7ce;
-    border-top: 3px solid #00a65a;
+    color: #fff;
     font-size: 13px;
+    box-shadow: 0px 0px 5px 0px #083431;
+    background: #083431;
     
 }
 
@@ -236,7 +241,7 @@ a:focus {
     width:100%;
     max-height: 100px;
     z-index: 900;
-    border-bottom: 3px solid #00a65a;
+    border-bottom: 1px solid #154026;
     
 }
 
@@ -413,7 +418,7 @@ a:focus {
 }
 
 .content-header > .breadcrumb > li > a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
     display: inline-block
 }
@@ -500,6 +505,7 @@ a:focus {
     left: 0;
     padding-top: 60px;
     width: 230px;
+    height:100%;
     z-index: 810;
     -webkit-transition: -webkit-transform .3s ease-in-out, width .3s ease-in-out;
     -moz-transition: -moz-transform .3s ease-in-out, width .3s ease-in-out;
@@ -955,7 +961,7 @@ a:focus {
 
 .control-sidebar-dark,
 .control-sidebar-dark + .control-sidebar-bg {
-    background: #444b52
+    background: #018786
 }
 
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs {
@@ -988,7 +994,7 @@ a:focus {
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:hover,
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:focus,
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:active {
-    background: #444b52;
+    background: #018786;
     color: #fff
 }
 
@@ -1064,7 +1070,8 @@ a:focus {
 
 .dropdown-menu {
     box-shadow: none;
-    border-color: #eee
+    border: 2px solid #222d32;
+    border-radius: 5px;
 }
 
 .dropdown-menu > li > a {
@@ -1414,6 +1421,10 @@ a:focus {
     position: absolute;
     right: 0;
     left: auto
+}
+
+.navbar-custom-menu > .navbar-nav > li:hover{
+border-bottom: 3px solid #fff;
 }
 
 @media (max-width:991px) {
@@ -2979,15 +2990,6 @@ a:focus {
     border-top-color: #d2d6de
 }
 
-.pagination > li > a {
-    background: #fafafa;
-    color: #666
-}
-
-.pagination.pagination-flat > li > a {
-    border-radius: 0 !important
-}
-
 .products-list {
     list-style: none;
     margin: 0;
@@ -3248,7 +3250,7 @@ table.text-center th {
     bottom: 0;
     height: 250px;
     width: 100%;
-    background: #444b52;
+    background: #018786;
     color: #fff;
     overflow: auto
 }

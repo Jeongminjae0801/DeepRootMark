@@ -337,7 +337,6 @@ function connect() {
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
  			var body = JSON.parse(message.body);
             var whosend = body.nname;
-            console.log("너 들어오기");
             if(nname == whosend){
             	
             }else{
@@ -350,8 +349,6 @@ function connect() {
 	         		data :form,
 	         		dataType:"json",
 	         		success : function(data){
-	         			console.log("아래래래랠");
-	         			console.log(data);
 	         			$("#jstree_container").jstree(true).settings.core.data = data;
 						$("#jstree_container").jstree(true).refresh();
 	         		}

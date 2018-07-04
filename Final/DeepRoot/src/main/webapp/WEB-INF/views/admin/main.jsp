@@ -42,7 +42,7 @@
 <!-- Page Transition START -->
 <div class="loader">
 	<svg height="100%" width="100%" class="svg-wrap">
-    <circle class="circle" r="100%" cx="50%" cy="50%" fill="#465a64" />
+    <circle class="circle" r="100%" cx="50%" cy="50%" fill="#17aaa9" />
   </svg>
 </div>
 <!-- Page Transition END -->
@@ -68,7 +68,7 @@
 
 				var chart = AmCharts.makeChart("chartdiv1", {
 					"type" : "serial",
-					"theme" : "dark",
+					"theme" : "light",
 					"legend" : {
 						"useGraphSettings" : true
 					},
@@ -144,7 +144,7 @@
 
 				var chart = AmCharts.makeChart("chartdiv2", {
 					"type" : "serial",
-					"theme" : "dark",
+					"theme" : "light",
 					"legend" : {
 						"useGraphSettings" : true
 					},
@@ -220,7 +220,7 @@
 
 				var chart = AmCharts.makeChart("chartdiv3", {
 					"type" : "serial",
-					"theme" : "dark",
+					"theme" : "light",
 					"legend" : {
 						"useGraphSettings" : true
 					},
@@ -296,7 +296,7 @@
 
 				var chart = AmCharts.makeChart("chartdiv4", {
 					"type" : "serial",
-					"theme" : "dark",
+					"theme" : "light",
 					"legend" : {
 						"useGraphSettings" : true
 					},

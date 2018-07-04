@@ -7,31 +7,39 @@
 
 /* CHART ID CSS START */
 #chartdiv1 {
-    background-color: #444b52; 
-    color: #fff; 
+    background-color: #fff; 
+    color: #000; 
     width: 90%;
     height: 300px;
+    border-radius: 15px;
+    border: 5px solid #8aa4af;
 }
 
 #chartdiv2 {
-    background-color: #444b52; 
-    color: #fff; 
+    background-color: #fff; 
+    color: #000; 
     width: 90%;
     height: 300px;
+    border-radius: 15px;
+    border: 5px solid #8aa4af;
 }
 
 #chartdiv3 {
-    background-color: #444b52; 
-    color: #fff; 
+    background-color: #fff; 
+    color: #000; 
     width: 90%;
     height: 300px;
+    border-radius: 15px;
+    border: 5px solid #8aa4af;
 }
 
 #chartdiv4 {
-    background-color: #444b52; 
-    color: #fff; 
+    background-color: #fff; 
+    color: #000; 
     width: 90%;
     height: 300px;
+    border-radius: 15px;
+    border: 5px solid #8aa4af;
 }
 
 #chartdiv1 image,
@@ -55,16 +63,20 @@
     display: none !important;
 }
 
+.amcharts-value-axis > text { font-size: 13px;}
+.amcharts-category-axis > text { font-size: 13px;}
+.amcharts-export-menu li:last-child>a {background-color: #eee}
+
 /* CHART ID CSS END */
 .admin-notice:hover,
 .admin-notice:focus{
-	color: #f39c12;
+	color: #fff;
 	
 }
 
 .admin-mail:hover,
 .admin-mail:focus {
-	color: #00a65a;
+	color: #fff;
 }
 
 .wrapper.fixed_layout .main-header {
@@ -168,7 +180,6 @@ hr.visible-xs-block {
 body,
 html {
     height: 94.8%;
-    background-color: #444b52; /*모달실행시 스크롤바 중복생성 영역의 색상*/
 }
 
 .container-table {
@@ -439,4 +450,16 @@ td {
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 0;
+}
+
+
+/* header */
+#userMenu {
+	width: 150px;
+	text-align: center;
+}
+
+#userMenu li {
+	width: 150spx;
+	padding: 7px 10px 7px 10px;
 }
