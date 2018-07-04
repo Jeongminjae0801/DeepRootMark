@@ -31,6 +31,7 @@ import org.springframework.web.servlet.View;
 
 import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.NoticeService;
+import site.book.team.dto.G_AlarmDTO;
 import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_MyAlarmDTO;
@@ -141,7 +142,7 @@ public class UserController {
 	// 그룹 추가
 	@RequestMapping("addGroup.do")
 	public String addGroup(HttpServletRequest req, String gname) {
-		System.out.println("그룹 추가");
+		//System.out.println("그룹 추가");
 		HttpSession session = req.getSession();
 		String uid = (String)session.getAttribute("info_userid");
 		
@@ -156,8 +157,12 @@ public class UserController {
 	
 	// 그룹 완료
 	@RequestMapping("completedGroup.do")
-	public View completedGroup(TeamDTO team, Model model) {
-		TeamDTO completedGroup = teamservice.completedGroup(team);
+	public View completedGroup(HttpServletRequest req, TeamDTO team, G_AlarmDTO alarm, Model model) {
+		HttpSession session = req.getSession();
+		String uid = (String)session.getAttribute("info_userid");
+		alarm.setFromid(uid);
+		
+		TeamDTO completedGroup = teamservice.completedGroup(team, alarm);
 		model.addAttribute("completedGroup", completedGroup);
 		
 		return jsonview;

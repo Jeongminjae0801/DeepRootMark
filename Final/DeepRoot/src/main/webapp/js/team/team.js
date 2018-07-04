@@ -193,7 +193,7 @@ function group_complete(){
 
 
 /* 마우스 오른쪽 이벤트 (회원강퇴) 추가*/
-function refreshContextMenu() {
+function myContextMenu() {
 	if( grid == 1 ){
 		$.contextMenu({
 	        selector: '.member', 
@@ -268,7 +268,7 @@ function member_auth(key, targetNname, hisGrid){
 				stompClient.send('/chat/' + gid, {}, 
 					 	JSON.stringify({
 					 		nname: "시스템",
-					 		content: "--------------- '" + targetNname + "'님이 " + (key=="manager" ? "매니저" : "그룹원") + "이 되셨습니다! ---------------",
+					 		content: "'" + targetNname + "'님이 " + (key=="manager" ? "매니저" : "그룹원") + "이 되셨습니다!",
 					 		profile: "system.png"
 						})
 				);
