@@ -482,24 +482,24 @@ function sendmessagejstree() {
 	var op_msg = "";
 	
 	if(doing == "1"){ //url 수정 메세지
-		op_msg = location1 + "폴더에서 "+target+ "의 URL을 "+new_name+"으로 수정하였습니다.";    
+		op_msg = nname + "님이 " + location1 + "폴더에서 "+target+ "의 URL을 "+new_name+"으로 수정하였습니다.";    
 	}else if(doing == "2"){ // 내북마크에서 다중 urㅣ 가져오기
-		op_msg ="내북마크에서 "+ location1 +" 폴더 아래에 " +counturl+ " 개의 URL을 추가하였습니다.";
+		op_msg = nname + "님의  " +"북마크에서 "+ location1 +" 폴더 아래에 " +counturl+ " 개의 URL을 추가하였습니다.";
 	}else if(new_name == "#" || new_name == null){
-    	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
+    	op_msg =  nname + "님이 " + location1 + "폴더에서 "+target+"("+type+")를 "+doing+"하였습니다.";             
      }else if(new_name == "1"){
-    	op_msg = target + "("+type+")를 " + location1 +"으로 이동하였습니다.";
+    	op_msg =  nname + "님이 " +target + "("+type+")를 " + location1 +"으로 이동하였습니다.";
      }else{
-     	op_msg =  location1 + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
+     	op_msg =  nname + "님이 " +location1 + "폴더에서 "+target+"("+type+")를 "+new_name+"으로 "+doing+"하였습니다.";    
      }
 	stompClient.send("/JSTREE/" + gid, {}, JSON.stringify({
        	nname: nname
     }));
-	//희준이 message 틀
+	
 	stompClient.send("/chat/" + gid, {}, JSON.stringify({
 		content: op_msg,
-       	nname: nname,
-       	profile: profile
+       	nname:  "시스템",
+       	profile: "system.png"
     }));
 	
 	new_name = '#';
