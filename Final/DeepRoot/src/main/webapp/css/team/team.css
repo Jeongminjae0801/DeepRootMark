@@ -186,6 +186,19 @@ body{
     margin-right: 5px;
 }
 
+.online-ico{
+	color: green;
+	margin-right: 5px;
+	/* padding-bottom: 8px; */
+	font-size: 12px;
+}
+
+.offline-ico{
+	color: gray;
+	margin-right: 5px;
+	/* padding-bottom: 8px; */
+	font-size: 12px;
+}
 /******/
 .whole-body{ 
     height: 100%; 
