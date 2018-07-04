@@ -18,9 +18,14 @@
 	</c:forEach>
 	var grid = '<c:out value="${grid}"/>';
 	var gname ='<c:out value="${gname}"/>';
-
+	
+	/* 그룹에서의 나의 권한 */
+	var myRole = '<c:out value="${requestScope.group_auth}"/>';
+	//console.log(myRole);
 </script>
-
+	<!-- 그룹에서의 나의 권한 -->
+	<c:set var="myRole" value="${requestScope.group_auth}"/>
+	
 	<!-- 전체 Body Div START -->
     <div class="container-fluid team-container">
         <div id="main-row" class="row">
@@ -37,8 +42,14 @@
 			                        <div class="zoom">
 									    <a class="zoom-fab zoom-btn-large" id="zoomBtn"><i class="fa fa-bars"></i></a>
 									    <ul class="zoom-menu">
-									      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out" onclick="group_leave();"><i class="fas fa-sign-out-alt"></i></a></li>
-									      	<li><a class="zoom-fab zoom-btn-sm zoom-btn-feedback scale-transition scale-out" onclick="group_complete();"><i class="fas fa-check"></i></a></li>
+									    <c:choose>
+								    	<c:when test="${myRole == '그룹장'}">
+								    		<li><a class="zoom-fab zoom-btn-sm zoom-btn-feedback scale-transition scale-out" onclick="group_complete();"><i class="fas fa-check"></i></a></li>
+								    	</c:when>
+								    	<c:otherwise>
+								    		<li><a class="zoom-fab zoom-btn-sm zoom-btn-person scale-transition scale-out" onclick="group_leave();"><i class="fas fa-sign-out-alt"></i></a></li>
+								    	</c:otherwise>
+									    </c:choose>
 									    </ul>
 							  		</div>
 			                    </div>
@@ -109,7 +120,11 @@
 			                <div class="group-member-content">
 			                    <div>
 			                        <div class="group-member-header">
-			                            <p><i class="far fa-address-card"></i> Member <i class="member_insert_ico fas fa-user-plus" onclick="member_insert();"></i></p>
+			                            <p>	<i class="far fa-address-card"></i> Member 
+		                            	<c:if test="${myRole != '그룹원'}">
+		                            		<i class="member_insert_ico fas fa-user-plus" onclick="member_insert();"></i>
+		                            	</c:if>
+			                            </p>
 			                        </div>
 			                    </div>
 			                    <div class="onoffline-content">
@@ -131,34 +146,35 @@
 			                        </div>
 			                    </div> 
 			                    
-			                    
 			                    <script type="text/javascript">
 			                    $(document).ready(function() {
 			                    	var onlinelist = JSON.parse('${onlinelist}');
-                            		//console.log(onlinelist.hasOwnProperty("민재"));
+                            		//console.log(onlinelist);
                             		//console.log('${gmemberlist}');
                             		
-                            		var memberNnameList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
-                            		var memberUidList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+                            		var memberList = new Array(); 		// 전체 카테고리 리스트 비동기로 받아오기
                             		<c:forEach items="${gmemberlist}" var="member">
-                            			memberNnameList.push("${member.nname}");
-                            			memberUidList.push("${member.uid}");
+                            			var memberInfo = new Array();
+                            			memberInfo.push("${member.nname}");
+                            			memberInfo.push("${member.profile}");
+                            			memberInfo.push("${member.grid}");
+                            			memberList.push(memberInfo);
 	                            	</c:forEach>
 	                            	
-	                            	$.each(memberNnameList, function(index, element) {
+	                            	$.each(memberList, function(index, element) {
 	                            		var member = element;
-	                            		//console.log(member);
-	                            		if(onlinelist.hasOwnProperty(member)) {
-                            				var insertOnline = '<p id="' + member + '"' + ' class="member">' 
-				                								+ '<img class="member-ico" src="/bit/images/profile.png" '
-				                								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + member
+	                            		//console.log(member[0] + "/" + member[1] + "/" + member[2]);
+	                            		if(onlinelist.hasOwnProperty(member[0])) {
+                            				var insertOnline = '<p id="' +member[0]+ '"' + ' class="member" data-grid="' +member[2]+ '">' 
+				                								+ '<img class="member-ico" src="/bit/images/profile/' +member[1]+ '" '
+				                								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" +member[0]
 				                							  + '</p>';
 				                			$('#online-member').prepend(insertOnline);
 	                            			
 	                            		}else {
-	                            			var insertOffline = '<p id="' + member + '"' + ' class="member">' 
-					            								+ '<img class="member-ico" src="/bit/images/profile.png" '
-					            								+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + member
+	                            			var insertOffline = '<p id="' + member[0] + '"' + ' class="member" data-grid="' +member[2]+ '">' 
+					            								+ '<img class="member-ico" src="/bit/images/profile/' + member[1] + '" '
+					            								+ 'onerror="this.src=\'/bit/images/profile.png\'">' + member[0]
 					            							  +'</p>';
 					            			$('#offline-member').prepend(insertOffline);
 	                            		}

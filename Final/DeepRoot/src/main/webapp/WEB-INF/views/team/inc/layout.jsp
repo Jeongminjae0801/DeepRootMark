@@ -44,7 +44,7 @@
     <script src="${pageContext.request.contextPath}/js/jstree.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/team/stomp.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/team/jquery.contextMenu.js"></script>
+    <script src="${pageContext.request.contextPath}/js/team/jquery.contextMenu.js?ver=2"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team_alarm.js?ver=2"></script>
     <!-- Script END -->
     
@@ -76,7 +76,8 @@
     <script src="${pageContext.request.contextPath}/js/team/chat_contents.js?ver=2"></script>
     <script src="${pageContext.request.contextPath}/js/team/header_icon_zoom.js?ver=2"></script>
     <!-- Custom Script END -->
-        <!-- jstree Script -->
+    
+    <!-- jstree Script -->
 	<script type="text/javascript"  src="${pageContext.request.contextPath}/js/team/Teamcategory.js"></script>
 	
     <!-- URL 추가 모달 -->

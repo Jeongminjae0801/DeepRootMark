@@ -29,12 +29,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="selectLastGroupID" resultType="Integer">
-		SELECT Max(GID) from TEAM
+		SELECT Max(GID) FROM TEAM
 	</select>
 	
 	<update id="completedGroup">
 		update TEAM set HTAG = #{htag}, DUEDATE = sysdate() where gid = #{gid}
 	</update>
+	
+	<select id="getGroupMember" resultType="site.book.team.dto.G_AlarmDTO">
+		select (select #{fromid} from DUAL) as FROMID, UID as toid, GID 
+		from G_MEMBER
+		where GID=#{gid};
+	</select>
+	
+	<insert id="sendCompletedMemo" parameterType="java.util.List">
+		INSERT INTO G_ALARM(FROMID, TOID, GID, GAID, SENDDATE) 
+		VALUES
+		<foreach collection="list" item="element" separator=",">
+		( #{element.fromid}, #{element.toid}, #{element.gid}, 2, sysdate() )
+		</foreach>
+	</insert>
 	
 	<select id="selectGroup" resultType="site.book.team.dto.TeamDTO">
 		SELECT GID, GNAME, HTAG, REGDATE, DUEDATE FROM TEAM WHERE gid = #{gid}

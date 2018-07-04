@@ -22,6 +22,7 @@ $(function() {
     
 	connect();
 	jstreetable();
+	myContextMenu();
 	
 	var lastDate = null;
 	
@@ -360,26 +361,29 @@ function connect() {
  		stompClient.subscribe('/subscribe/online/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
- 			$('#' + temp_member).remove();
  			
-			var insertOnline = '<p id="' + temp_member + '"' + ' class="member">' 
-							+ '<img class="member-ico" src="/bit/images/profile.png" '
-							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
-						  +'</p>';
-			$('#online-member').prepend(insertOnline);
+			/*var insertOnline = '<p id="'+ temp_member +'"' + ' class="member" data-grid="' +grid+ '">'
+							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
+							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">"+ temp_member
+						  +'</p>';*/
+			
+			var $who = $('#' + temp_member).clone();
+			$('#' + temp_member).remove();
+			$('#online-member').prepend($who);
  		});
 
  		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
  			var new_connect = JSON.parse(message.body);
  			var temp_member = new_connect.nname;
- 			
- 			$('#' + temp_member).remove();
- 			
-			var insertOffline = '<p id="' + temp_member + '"' + ' class="member">' 
-							+ '<img class="member-ico" src="/bit/images/profile.png" '
+
+			/*var insertOffline = '<p id="' + temp_member + '"' + ' class="member" data-grid="' +grid+ '">'
+							+ '<img class="member-ico" src="/bit/images/profile/'+ checkImg(temp_member) +'" '
 							+ 'onerror="this.src=' + "'/bit/images/profile.png'\">" + temp_member
-						  +'</p>';
-			$('#offline-member').prepend(insertOffline);
+						  +'</p>';*/
+			
+			var $who = $('#' + temp_member).clone();
+			$('#' + temp_member).remove();
+			$('#offline-member').prepend($who);
  		});
  		
  		// Header Alarm socket connect

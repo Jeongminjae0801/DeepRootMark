@@ -48,6 +48,7 @@ import site.book.team.dto.G_BookDTO;
 import site.book.team.dto.G_JstreeDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_MyAlarmDTO;
+import site.book.team.dto.G_RoleDTO;
 import site.book.team.dto.TeamDTO;
 import site.book.team.service.G_AlarmService;
 import site.book.team.service.G_BookService;
@@ -323,6 +324,18 @@ public class TeamController {
 		String uid = (String)session.getAttribute("info_userid");
 		member_ban.setUid(uid);
 		
+		// 강퇴 대상이 그룹장인 경우 return
+		if( member_ban.getGrid()  == 1 ) {
+			model.addAttribute("result", "master");
+			return jsonview;
+		}
+		// 강퇴 대상이 매니저 vs 매니저인 경우 return
+		else if( member_ban.getGrid() == member_ban.getMygrid() ) {
+			model.addAttribute("result", "manager");
+			return jsonview;
+		}
+		
+		// 강퇴 대상이 그룹장->그룹원, 그룹장->매니저, 매니저->그룹원
 		int isbaned = g_memberservice.banMember(member_ban);
 
 		if(isbaned > 0) {
@@ -331,6 +344,39 @@ public class TeamController {
 			model.addAttribute("result", toid);
 		}else if(isbaned < 0) {
 			model.addAttribute("result", "empty");
+		}else {
+			model.addAttribute("result", "fail");
+		}
+		
+		return jsonview;
+	}
+	
+	// 그룹원에게 권한 부여
+	@RequestMapping("giveGorupRole.do")	
+	public View giveGorupRole(HttpServletRequest req, HttpSession session, Model model, G_MemberDTO member_auth, String key) {
+		
+		//System.out.println(key + ": " + member_auth);
+		// 권한 부여 대상이 그룹장인 경우 return
+		if( member_auth.getGrid()  == 1 ) {
+			model.addAttribute("result", "master");
+			return jsonview;
+		}
+		// 권한 부여 대상이 이미 매니저인 경우
+		else if( member_auth.getGrid() == 2 && key.equals("manager")) {
+			model.addAttribute("result", "manager");
+			return jsonview;
+		}
+		// 권한 부여 대상이 이미 그룹원인 경우
+		else if( member_auth.getGrid() == 3 && key.equals("member")) {
+			model.addAttribute("result", "member");
+			return jsonview;
+		}
+		
+		// 권한 부여 대상: 그룹원->매니저, 매니저->그룹원
+		int isAuth = (key.equals("manager")) ? g_memberservice.giveManager(member_auth) : g_memberservice.giveMember(member_auth);
+
+		if(isAuth > 0) {
+			model.addAttribute("result", "success");
 		}else {
 			model.addAttribute("result", "fail");
 		}
@@ -349,9 +395,14 @@ public class TeamController {
 
         // 태웅: 사용자가 주소창으로 장난친다면?
         G_MemberDTO temp_member = new G_MemberDTO(uid, Integer.parseInt(gid));
-        if(teamservice.isGroupMember(temp_member) != true) {
+        G_RoleDTO roll_name = teamservice.isGroupMember(temp_member);
+        if(roll_name == null) {
         	// 마이 페이지로 이동
         	return "redirect:/user/mybookmark.do";
+        }else {
+        	// 그룹원이라면, 해당 유저의 그룹 권한 명을 model
+        	req.setAttribute("group_auth", roll_name.getGrname());
+        	model.addAttribute("gmemberrole", roll_name.getGrname());
         }
         
 		List<G_MemberDTO> gmemberlist = g_memberservice.selectGMemberlist(gid);
@@ -371,7 +422,6 @@ public class TeamController {
 		if(uid != null) {
 			List<TeamDTO> headerTeamList = teamservice.getTeamList(uid);
 			model.addAttribute("headerTeamList", headerTeamList);
-			
 		}
 		
 		model.addAttribute("gname", gname);

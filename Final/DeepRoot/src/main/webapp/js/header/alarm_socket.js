@@ -18,7 +18,7 @@ function alarmConnect(userid) {
         // 메세지 구독
         // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 subscribe prefix("/subscribe")를 사용해야 함
     	var user_nname = userid;
-    	console.log(userid);
+    	//console.log(userid);
     	
         stompClient.subscribe('/subscribe/alarm/' + user_nname, function(message) {
         	
