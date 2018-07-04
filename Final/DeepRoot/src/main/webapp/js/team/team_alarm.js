@@ -95,12 +95,16 @@ function alarmConnect(stompClient, userid) {
     				return
     				
     			}// 본인꺼 찾기
-    			else if(recv_toid == uid) {
-    				$.alert("그룹장님이 '" + recv_ganame + "\' 권한을 부여하셨습니다!");
-        			grid = (recv_ganame == "manager" ? 2 : 3);
+    			else if(recv_toid == nname) {
+    				$trigger = $('.member');
+    				$.alert("그룹장님이 '" + (recv_ganame == "manager" ? "매니저" : "그룹원") + "\' 권한을 부여하셨습니다!");
+    				grid = (recv_ganame == "manager" ? 2 : 3);
+    				(grid == 2) ? $trigger.contextMenu(true) : $trigger.contextMenu(false);
+    				//console.log($trigger.contextMenu());
     			}
     			
     			$("#"+recv_toid).attr("data-grid", (recv_ganame == "manager" ? 2 : 3));
+    			//refreshContextMenu();
     		}
     	}
     	

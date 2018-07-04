@@ -355,8 +355,7 @@ public class TeamController {
 	@RequestMapping("giveGorupRole.do")	
 	public View giveGorupRole(HttpServletRequest req, HttpSession session, Model model, G_MemberDTO member_auth, String key) {
 		
-		System.out.println(key + ": " + member_auth);
-		
+		//System.out.println(key + ": " + member_auth);
 		// 권한 부여 대상이 그룹장인 경우 return
 		if( member_auth.getGrid()  == 1 ) {
 			model.addAttribute("result", "master");

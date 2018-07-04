@@ -22,6 +22,7 @@ $(function() {
     
 	connect();
 	jstreetable();
+	refreshContextMenu();
 	
 	var lastDate = null;
 	

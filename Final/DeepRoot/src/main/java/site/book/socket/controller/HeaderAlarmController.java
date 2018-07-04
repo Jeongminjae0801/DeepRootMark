@@ -30,7 +30,7 @@ public class HeaderAlarmController {
     @SendTo("/subscribe/alarm")
     public SocketAlarmDTO sendCompleteMessage(@Payload SocketAlarmDTO alarm) throws Exception {
     	
-    	System.out.println(alarm);
+    	//System.out.println(alarm);
         return alarm;
     }
 }

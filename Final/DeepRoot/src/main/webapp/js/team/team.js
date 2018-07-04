@@ -193,14 +193,13 @@ function group_complete(){
 
 
 /* 마우스 오른쪽 이벤트 (회원강퇴) 추가*/
-$(function() {
+function refreshContextMenu() {
 	if( grid == 1 ){
 		$.contextMenu({
 	        selector: '.member', 
 	        callback: function(key, opt) {
 	            var targetNname = opt.$trigger.text().trim();
-	            var hisGrid = opt.$trigger.eq(0).data("grid");
-	            console.log(opt.$trigger.eq(0));
+	            var hisGrid = opt.$trigger.eq(0).attr("data-grid");
 	            
 	            if(key == "ban"){
 	            	member_ban(targetNname, hisGrid);
@@ -234,11 +233,11 @@ $(function() {
 	        }
 	    });   
 	}
-});
+}
 
 /* 멤버 권한 관리 START */
 function member_auth(key, targetNname, hisGrid){   	
-	console.log(key + "/" + targetNname + "/" + hisGrid);
+	//console.log(key + "/" + targetNname + "/" + hisGrid);
 	// 그룹원 권한 권리  Ajax
 	$.ajax({
 		url: "giveGorupRole.do",
