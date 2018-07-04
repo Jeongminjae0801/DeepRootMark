@@ -94,7 +94,7 @@
 }
 .skin-blue .sidebar-menu > li.header {
     color: #fff;
-    background: linear-gradient(to right, rgb(81, 165, 141) 0, #3f8ca6 100%);
+    border-bottom: 2px solid #efefef;
     font-size:16px;
 }
 

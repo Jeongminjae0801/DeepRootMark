@@ -6552,7 +6552,7 @@ button.list-group-item-danger.active:hover {
     border-bottom: 1px solid transparent;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    font-size:17px;
+    font-size:32px;
 }
 
 .panel-heading > .dropdown .dropdown-toggle {
