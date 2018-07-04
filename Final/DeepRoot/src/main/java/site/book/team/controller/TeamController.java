@@ -323,9 +323,10 @@ public class TeamController {
 		
 		String uid = (String)session.getAttribute("info_userid");
 		member_ban.setUid(uid);
+		System.out.println(member_ban);
 		
 		// 강퇴 대상이 그룹장인 경우 return
-		if( member_ban.getGrid()  == 1 ) {
+		if( member_ban.getGrid() == 1 ) {
 			model.addAttribute("result", "master");
 			return jsonview;
 		}
@@ -340,7 +341,6 @@ public class TeamController {
 
 		if(isbaned > 0) {
 			String toid = g_memberservice.getToUid(member_ban.getNname());
-			System.out.println(toid);
 			model.addAttribute("result", toid);
 		}else if(isbaned < 0) {
 			model.addAttribute("result", "empty");
