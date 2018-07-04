@@ -129,8 +129,8 @@ body {
     padding: 15px;
     color: #fff;
     font-size: 13px;
-    box-shadow: 0px 0px 5px 0px #083431;
-    background: #083431;
+    /* box-shadow: 0px 0px 5px 0px #083431; */
+    background: linear-gradient(to right, rgb(19, 158, 149) 0, #3f8ca6 70%)
     
 }
 
@@ -184,6 +184,13 @@ body.hold-transition .main-header .logo {
     margin-right: auto;
     margin-left: auto;
 }
+.content.chart {
+    text-align: center;
+    min-height: 250px;
+    padding: 20px 10px 68px 80px;
+    margin-right: auto;
+    margin-left: auto;
+}
 /* Body Content CSS END */
 
 /*admin modal CSS start*/
@@ -214,7 +221,7 @@ h6,
 }
 
 a {
-    color: #3c8dbc
+    color: #000
 }
 
 a:hover,
@@ -222,7 +229,8 @@ a:active,
 a:focus {
     outline: none;
     text-decoration: none;
-    color: #72afd2
+    color: #222d32;
+    cursor: pointer;
 }
 
 .page-header {
@@ -385,7 +393,7 @@ a:focus {
 
 .content-header {
     position: relative;
-    padding: 15px 15px 0 15px;
+    padding: 25px 15px 0 55px;
 }
 
 .content-header > h1 {
@@ -709,8 +717,8 @@ a:focus {
         -ms-transform: translate(0, 0);
         -o-transform: translate(0, 0);
         transform: translate(0, 0);
-        width: 50px !important;
-        z-index: 850
+        width: 70px !important;
+        z-index: 800
     }
     .sidebar-mini.sidebar-collapse .sidebar-menu > li {
         position: relative

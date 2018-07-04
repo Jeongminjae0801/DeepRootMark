@@ -57,7 +57,7 @@
 		</ol>
 	</section>
 	<!-- 일일/누적 방문자 수 차트 START -->
-	<section class="content">
+	<section class="content chart">
 		<h1>
 			<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;방문자 수
 		</h1>
@@ -134,7 +134,7 @@
 	<!-- 일일/누적 방문자 수 차트 END -->
 
 	<!-- 일일 가입자/ 전체 회원 수 START -->
-	<section class="content">
+	<section class="content chart">
 		<h1>
 			<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;사이트 회원 수
 		</h1>
@@ -210,7 +210,7 @@
 	<!-- 일일 가입자/ 전체 회원 수 END -->
 
 	<!-- 개인  페이지에서 추가한 북마크 수 START -->
-	<section class="content">
+	<section class="content chart">
 		<h1>
 			<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;개인 북마크 수
 		</h1>
@@ -286,7 +286,7 @@
 	<!-- 개인  그룹 페이지에서 추가한 북마크 수 END -->
 	
 	<!-- 그룹 페이지에서 추가한 북마크 수 START -->
-	<section class="content">
+	<section class="content chart">
 		<h1>
 			<i class="fa fa-arrow-right"></i>&nbsp;&nbsp;그룹 북마크 수
 		</h1>
