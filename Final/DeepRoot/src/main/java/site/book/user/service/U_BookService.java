@@ -282,7 +282,7 @@ public class U_BookService {
 				list.add(dto);
 			}
 		}
-		System.out.println(list.toString());
+		//System.out.println(list.toString());
 		map.put("list", list);
 		
 		try {

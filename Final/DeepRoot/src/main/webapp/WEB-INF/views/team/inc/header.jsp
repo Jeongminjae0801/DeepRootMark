@@ -4,6 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
+
+	var headerTeamList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+	
+	<c:forEach items="${headerTeamList}" var="team">
+		headerTeamList.push("${team.gid}");
+	</c:forEach>
+
 	// 헤더 이동시 socket disconnect & href 
 	function disconnectLocation(link) {
 		location.href = link;

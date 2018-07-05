@@ -4,6 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
+	var headerTeamList = new Array(); // 팀 리스트 가져오기
+	
+	<c:forEach items="${headerTeamList}" var="team">
+		headerTeamList.push("${team.gid}");
+	</c:forEach>
+
 	// header에 있는 그룹 추가 버튼 클릭 이벤트
 	function headerAddGroup(gid) {
 		$.confirm({
@@ -43,7 +49,7 @@
 		    	var jc = this;
 		    	$("#addGroupForm").ajaxForm({
 		    		success: function(data, statusText, xhr, $form){
-		    			var group = '<li id="headerGroup${headerTeam.gid}" class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
+		    			var group = '<li id="headerGroup' + data.newTeam.gid + '" class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
 		    			$("#groupDropdownMenu").children().last().before(group);
 		    			if($(".groupMenu").length > 10){
 		    				$("#groupDropdownMenu").children().last().remove();
@@ -61,6 +67,8 @@
 		    				groupListAdd += '</li>';
 		    				$("#participatingGroupList").children().last().before(groupListAdd);
 		    			}
+		    			
+		    			headerTeamList.push(data.newTeam.gid);
 		    		}
 		    	});
 		    }
