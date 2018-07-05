@@ -88,10 +88,11 @@ $(document).ready(function(){
 	    
 	    if(checked_ids == null || selected_node_id == 0) {
 	        swal({
-	        	type: 'error',
 				title: "두 경로를 정확하게 선택해주세요!",
                 text: "좌측은 체크박스를 우측은 폴더 경로를 클릭해 주세요!",
-                icon: "warning"
+                icon: "warning",
+                buttons: true,
+                dangerMode: true
 			});
 	        return false
 	    };
