@@ -184,9 +184,8 @@ function jstreetable(){
 	
 	/*모달창 마이카테고리 전체 jstree*/
 	$.ajax({
-		url : "/bit/social/getCategoryList.do",
+		url : "getMyCategoryList.do",
 		type : "POST",
-		data : {nname : nname},
 		dataType :"json",
 		success : function(obj){
 			
@@ -334,7 +333,7 @@ function customMenu($node){
 				"separator_before": false,
 				"separator_after": false,
 				"_disabled" : false, 
-				"label": "그룹 추가",
+				"label": "폴더 추가",
 				"action": function (obj) {
 					var inst = $.jstree.reference(obj.reference);
 					var par_node = inst.get_node(obj.reference);
@@ -425,7 +424,6 @@ function customMenu($node){
 					var inst = $.jstree.reference(obj.reference);
 					modal_url = inst.get_node(obj.reference).a_attr.href;
 					modal_urlname =  inst.get_node(obj.reference).text;
-					checked_id = '#';
 					
 					$('#modalurl').val(modal_url);
 					$('#fromGroupToMy').modal();
@@ -536,7 +534,7 @@ $('#into-my-bookmark').on("click",function(){
 		success : function(data){
 			if(data.result == "success") {
 				swal("Thank you!", "북마크에 추가되었습니다!", "success");
-				$('#modalurl').modal("toggle");
+				$('#fromGroupToMy').modal("toggle");
 			}else {
                 swal({
                     title: "목적지 폴더를 확인하셨나요?",
@@ -566,7 +564,6 @@ $('#from-my-bookmark').on("click",function(){
 	var submit_obj = [];
 	
 	checked_ids = $('#jstree-from-mybook').jstree("get_checked",null,true);
-	
 	if(checked_ids == null){
 		alert("선택한 URL이 없습니다.")
 		return false
@@ -587,18 +584,18 @@ $('#from-my-bookmark').on("click",function(){
 	});
     counturl = submit_obj.length;
     var submit_obj_json = JSON.stringify(submit_obj);
-    
     $.ajax({
 		url : "/bit/social/getGroupBookList.do",
 		type: "post",
 		data: {obj : submit_obj_json},
 		success : function(data){
+			//console.log(data);
 			if(data.result == "success") {
 				swal("Thank you!", "북마크에 추가되었습니다!", "success");
 				$('#fromMytoGroup').modal("toggle");
 				doing = "2";//다중의 url 내북마크에서 가져오기
 				sendmessagejstree();
-				
+				//전체 refresh
 				form = {gid : gid}
 	            $.ajax({
 	             

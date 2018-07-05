@@ -373,6 +373,7 @@ $(document).ready(function(){
                         text: "잠시후 다시 시도해주세요!",
                         icon: "warning"
     				});
+    				return;
     			}
     		},
     		error : function(error) {
@@ -382,9 +383,9 @@ $(document).ready(function(){
                     text: "잠시후 다시 시도해주세요!",
                     icon: "warning"
     			});
+    			return;
     		}
 		})
-		$('#socialGroupModal').css({"z-index":"0"});
     });
     
     //[버튼]:그룹 북마크로 추가 버튼 클릭했을 때
@@ -462,7 +463,6 @@ $(document).ready(function(){
 				});
 			}
 		});
-		$('#socialGroupModal').css({"z-index":"0"});
 	});
 })
     

@@ -310,7 +310,6 @@ public class UserController {
 				jsonobject.put("htag", list.get(i).getHtag());
 			}
 				
-			jsonobject.put("test", "dd");
 			jsonobject.put("a_attr", href);
 			
 			jsonArray.put(jsonobject);

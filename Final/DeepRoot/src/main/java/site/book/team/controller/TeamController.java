@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +55,9 @@ import site.book.team.service.G_AlarmService;
 import site.book.team.service.G_BookService;
 import site.book.team.service.G_MemberService;
 import site.book.team.service.TeamService;
+import site.book.user.dto.U_BookDTO;
 import site.book.user.dto.UserDTO;
+import site.book.user.service.U_BookService;
 import site.book.user.service.UserService;
 
 /**
@@ -75,6 +78,9 @@ public class TeamController {
 	
 	@Autowired
     private View jsonview;
+	
+	@Autowired
+	private U_BookService u_bookservice;
 	
 	//희준
 	@Autowired
@@ -202,6 +208,72 @@ public class TeamController {
 		
 		return jsonview;
 	}
+	
+	@RequestMapping("getMyCategoryList.do")
+	public void getMyCategoryList(HttpServletRequest req,  HttpServletResponse res) {
+		
+		res.setCharacterEncoding("UTF-8");
+		
+		HttpSession session = req.getSession();
+        String uid = (String)session.getAttribute("info_userid");
+        
+        JSONArray jsonArray = new JSONArray();	
+        HashMap<String, String> href = new HashMap();
+		List<U_BookDTO> list = gbookservice.getMyCategoryList(uid);
+        
+		if(list.size() ==0) {
+			
+			JSONObject jsonobject = new JSONObject();
+			
+			// 처음 가입자는 첫 카테고리를  생성해 준다.
+			int ubid = u_bookservice.insertRootFolder(uid);
+			
+			//처음 가입한 유저일 경우 root폴더 생성해 준다.
+				
+			jsonobject.put("id", ubid);
+			jsonobject.put("parent", "#");
+			jsonobject.put("text", "첫 카테고리");
+			jsonobject.put("icon", "fa fa-folder");
+			jsonobject.put("uid", uid);
+			jsonArray.put(jsonobject);
+				
+		}else {
+			
+			for(int i =0;i<list.size();i++) {
+				
+				JSONObject jsonobject = new JSONObject();
+				
+				String parentid = String.valueOf(list.get(i).getPid());
+				
+				if(parentid.equals("0") || parentid.equals(""))
+					jsonobject.put("parent", "#");
+				else
+					jsonobject.put("parent", parentid);
+				
+				if(list.get(i).getUrl() == null)
+					jsonobject.put("icon", "fa fa-folder");	//favicon 추가
+				else {
+					jsonobject.put("icon", "https://www.google.com/s2/favicons?domain="+list.get(i).getUrl());	//favicon 추가
+				}
+				href.put("href", list.get(i).getUrl());
+				
+				jsonobject.put("id", list.get(i).getUbid());
+				jsonobject.put("text", list.get(i).getUrlname());
+				jsonobject.put("uid",uid);
+				jsonobject.put("a_attr", href);
+				
+				jsonArray.put(jsonobject);
+				
+			}
+		}
+		try {
+			res.getWriter().println(jsonArray);
+		}catch (JSONException | IOException e) {
+			e.printStackTrace();
+		}
+        
+	}
+	
 	
 	//태웅
 	//해당 유저의 진행중인 그룹의 카테고리만를 보내준다.
