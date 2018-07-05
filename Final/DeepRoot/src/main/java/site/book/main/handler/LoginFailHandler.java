@@ -20,7 +20,7 @@ public class LoginFailHandler implements AuthenticationFailureHandler {
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		
-		System.out.println(exception.getLocalizedMessage());
+		//System.out.println(exception.getLocalizedMessage());
 		if(exception.getLocalizedMessage().toUpperCase().contains("SESSION")) {
 			request.setAttribute("msg", "duplicate");
 		}else {
