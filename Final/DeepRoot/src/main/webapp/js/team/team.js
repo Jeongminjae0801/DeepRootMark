@@ -121,7 +121,7 @@ function group_leave(){
         			
         			$.alert("현재 그룹에서 탈퇴하셨습니다!");
         			setTimeout(function(){ 
-        				location.href("/bit/user/mybookmark.do"); 
+        				location.href= "/bit/user/mybookmark.do"; 
         			}, 1000);
         		}
         	});
@@ -182,7 +182,7 @@ function group_complete(){
         			
         			$.alert("현재 그룹이 완료되었습니다!");
         			setTimeout(function(){ 
-        				location.href("/bit/user/mybookmark.do"); 
+        				location.href= "/bit/user/mybookmark.do"; 
         			}, 1000);
         		}
         	});
