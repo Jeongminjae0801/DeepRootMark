@@ -107,7 +107,7 @@
 						<!-- Admin Infomation START -->
 						<li class="dropdown user user-menu">
 							<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle">
-								<img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
+								<i class="fas fa-user-circle"></i>
 								<span class="hidden-xs">${sessionScope.info_usernname}</span>
 							</a>
 							<ul id="userMenu" class="dropdown-menu">

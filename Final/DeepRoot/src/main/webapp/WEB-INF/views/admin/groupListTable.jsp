@@ -55,7 +55,7 @@
 <!-- Main Content START -->
 <div class="content-wrapper" style="min-height: 913px;">
 	<section class="content-header">
-		<h1>Group List</h1>
+		<h1><i class="fas fa-clipboard-list content-header-ico"></i>Group List</h1>
 		<ol class="breadcrumb">
 			<li><i class="fa fa-home"></i>Home</li>
 			<li class="active">group list</li>
