@@ -16,6 +16,9 @@ function alarmConnect(stompClient, userid) {
     	var recv_ganame = recv_alarm.gmemo
     	var recv_senddate = recv_alarm.senddate;
     	
+    	$('#alarm_menu').addClass('animated shake');
+    	$('#alarm_menu').css('color', '#ff8300');
+    	
     	if($('#alarm_menu_li').children('ul').length == 0) {
     		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
 		}
@@ -26,6 +29,7 @@ function alarmConnect(stompClient, userid) {
     						+ '<br style="clear:both">';
     	
     	if( recv_ganame == "초대" ) {
+    		
     		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 							+ '<span class="g_alarm_name">' +recv_fromid+ '</span>'
 							+ '<span class="g_alarm_date">' +recv_senddate+ '</span>'
@@ -35,6 +39,7 @@ function alarmConnect(stompClient, userid) {
 							+ '</span><br style="clear:both">';
     	
     	}else if( recv_ganame == "강퇴" ) {
+    		
     		if( gid == recv_gid ) {
     			$.alert("현재 그룹에서 강퇴당하셨습니다!");
     			setTimeout(function(){ location.href="/bit/user/mybookmark.do"; }, 3000);
@@ -73,6 +78,8 @@ function alarmConnect(stompClient, userid) {
     						+ '<br style="clear:both">';
     	
     	if( recv_ganame == "완료" ) {
+    		$('#alarm_menu').addClass('animated shake');
+    		$('#alarm_menu').css('color', '#ff8300');
     		
     		if( gid == recv_gid ) {
     			
