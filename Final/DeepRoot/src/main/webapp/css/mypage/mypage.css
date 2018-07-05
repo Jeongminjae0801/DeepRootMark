@@ -187,13 +187,13 @@ a:hover{text-decoration: none; }
 .group-list-div {
   padding: 0;
   margin: 0;
-  height: 69%;
+  height: 67%;
   box-shadow: 10px 10px 20px 0px;
   border-bottom-left-radius: 0px;
 }
 .group-list-panel {
   padding-bottom: 0px;
-  margin: 0 0 7px 20px;
+  margin: 0 0 10px 20px;
   border-color: #000;
   border: 1px solid;
   overflow: hidden;
@@ -250,10 +250,10 @@ a:hover{text-decoration: none; }
 /* confirm 버튼 색상 지정 */
 .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default {
 	color: #fff;
-	background: #7bbfa8;
+	background: #5cb85c;
 }
 
 .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default:hover {
 	color: #fff;
-	background: #7bab94;
+	background: #5cb85c;
 }

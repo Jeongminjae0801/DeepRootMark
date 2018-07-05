@@ -60,8 +60,8 @@ body{ height: 91%; }
 /* Set a style for the submit button */
 .userinfo .confirm{
     font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
-    font-size:18px;
-    background-color: #7bbfa8;
+    font-size: 18px;
+    background-color: #2ecc71;
     color: white;
     padding: 5px 20px;
     margin-left: 5px;
@@ -79,9 +79,9 @@ body{ height: 91%; }
 
 .userinfo .cancel{
     font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
-    font-size:18px;
-    background-color: #ff5757;
-    color: white;
+    font-size: 18px;
+    background-color: #e42911;
+    color: #fff;
     padding: 5px 20px;
     margin: 8px 0;
     border: none;
