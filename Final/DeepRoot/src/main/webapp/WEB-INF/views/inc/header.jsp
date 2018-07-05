@@ -8,6 +8,13 @@
 
 <script type="text/javascript">
 
+	var headerTeamList = new Array(); // 전체 카테고리 리스트 비동기로 받아오기
+	
+	<c:forEach items="${headerTeamList}" var="team">
+		headerTeamList.push("${team.gid}");
+	</c:forEach>
+
+
 	// header에 있는 그룹 추가 버튼 클릭 이벤트
 	function headerAddGroup(gid) {
 		$.confirm({
@@ -65,6 +72,8 @@
 		    				groupListAdd += '</li>';
 		    				$("#participatingGroupList").children().last().before(groupListAdd);
 		    			}
+		    			
+		    			headerTeamList.push(data.newTeam.gid);
 		    		}
 		    	});
 		    }
