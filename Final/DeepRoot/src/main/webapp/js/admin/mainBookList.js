@@ -38,26 +38,27 @@ $(function(){
 			
 			// content row에 테이블 추가
 			var html = '<div class="col-sm-6">';
-			html += '<div id="panel' + data.newCategory.acid + '" class="panel">';
-			html += '<div class="panel-heading">';
-			html += '<span id="categoryName' + data.newCategory.acid + '"> '+ data.newCategory.acname + '</span>';
-			html += '<button class="colorPickSelector categoryColor'+ data.newCategory.acid + '"></button>';
-			html += '<i class="fas fa-pencil-alt" data-toggle="modal" onclick="openCategoryEditModal('+ data.newCategory.acid + ", '" + data.newCategory.acname + "'" + ');"></i>';
-			html += '<div class="pull-right">';
-			html += '<i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal(' + data.newCategory.acid + ", '" + data.newCategory.acname + "'" +');"></i>';
-			html += '</div>'
-			html += '<div class="panel-body">';
-			html += '<table width="100%" class="table table-hover" id="table' + data.newCategory.acid + '">';
-			html += '<thead>';
-			html += '<tr>';
-			html += '<th>사이트명</th>';
-			html += '<th>URL 주소</th>';
-			html += '<th>Actions</th>';
-			html += '</tr>';
-			html += '</thead>';
-			html += '</table>';
-			html += '</div>';
-			html += '</div>';
+				html += '<div id="panel' + data.newCategory.acid + '" class="panel">';
+					html += '<div class="panel-heading">';
+						html += '<span id="categoryName' + data.newCategory.acid + '"> '+ data.newCategory.acname + '</span>';
+						html += '<button class="colorPickSelector categoryColor'+ data.newCategory.acid + '"></button>';
+						html += '<i class="fas fa-pencil-alt" data-toggle="modal" onclick="openCategoryEditModal('+ data.newCategory.acid + ", '" + data.newCategory.acname + "'" + ');"></i>';
+						html += '<div class="pull-right">';
+							html += '<i class="fa fa-plus-circle i-plus-circle" data-toggle="modal" onclick="openUrlModal(' + data.newCategory.acid + ", '" + data.newCategory.acname + "'" +');"></i>';
+						html += '</div>'
+					html += '</div>';		
+				html += '<div class="panel-body">';
+					html += '<table width="100%" class="table table-hover" id="table' + data.newCategory.acid + '">';
+					html += '<thead>';
+					html += '<tr>';
+					html += '<th>사이트명</th>';
+					html += '<th>URL 주소</th>';
+					html += '<th>Actions</th>';
+					html += '</tr>';
+					html += '</thead>';
+					html += '</table>';
+				
+				html += '</div>';
 			html += '</div>';
 			
 			$(".content>#page-wrapper>.row").append(html);

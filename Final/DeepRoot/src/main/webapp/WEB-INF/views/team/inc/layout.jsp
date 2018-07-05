@@ -30,6 +30,7 @@
     <!-- Common Script JavaScript & CSS END -->
     
     <!-- Group Page CSS START -->
+    <%-- <link href="${pageContext.request.contextPath}/css/mainpage/modal.css?ver=2" rel="stylesheet"> --%>
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/team/team.css?ver=2" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
@@ -135,35 +136,39 @@
 	
 	<!-- URL 수정 모달 -->
 	<div class="modal fade" id="editurl" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">
-						<b>URL 변경</b>
-					</h4>
-				</div>
-
-				<div class="modal-body">
-					<form id="form3">
-						<table class="table">
-							<colgroup>
-								<col width="30%">
-								<col width="70%">
-							</colgroup>
-							<tr>
-								<td class="info" style="vertical-align: middle;">URL</td>
-								<td><input type="text" id="editurlval" name="editurlval"
-									class="form-control"></td>
-							</tr>
-						</table>
-					</form>
-					<div class="modal-footer">
-						<!-- type="submit" value="Submit" -->
-						<button type="button" class="btn btn-default btn-sm"
-							data-dismiss="modal">취소</button>
-						<button class="btn btn-default btn-sm" id="editurlsubmit">수정하기</button>
+		<div class="main-modal-controller">
+			<div class="main-modal-center">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">
+								<b>URL 변경</b>
+							</h4>
+						</div>
+		
+						<div class="modal-body">
+							<form id="form3">
+								<table class="table">
+									<colgroup>
+										<col width="30%">
+										<col width="70%">
+									</colgroup>
+									<tr>
+										<td class="info" style="vertical-align: middle;">URL</td>
+										<td><input type="text" id="editurlval" name="editurlval"
+											class="form-control"></td>
+									</tr>
+								</table>
+							</form>
+							<div class="modal-footer">
+								<!-- type="submit" value="Submit" -->
+								<button type="button" class="btn btn-default btn-sm"
+									data-dismiss="modal">취소</button>
+								<button class="btn btn-default btn-sm" id="editurlsubmit">수정하기</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

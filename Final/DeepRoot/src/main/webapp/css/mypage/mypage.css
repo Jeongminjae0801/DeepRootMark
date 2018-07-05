@@ -26,6 +26,33 @@ a:hover{text-decoration: none; }
     width: 100%;
     height: 100%;
 }
+.edit_htag_test{
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+	
+}
+.editurl_test{
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+	
+}
+/* #edit_htag{
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+	
+} */
+/* #editurl{
+	perspective-origin: center center;
+    display: table;
+    width: 100%;
+    height: 100%;
+} */
 #completedGroupModal {
 	perspective-origin: center center;
     display: table;

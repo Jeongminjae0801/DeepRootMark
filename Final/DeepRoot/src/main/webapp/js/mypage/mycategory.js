@@ -529,6 +529,7 @@ $(document).ready(function(){
 												edithashtagList.push("#"+htag_split[i]); //배열에 기존 htag 저장
 												$('#edit_htag_append').append("<input class='btn btn-default btn-hash' id='btnEditHash" + htagStartPoint + "' type='button' value='#" + htag_split[i] + "' onclick='edit_deleteHashtag(this)'>");
 												htagStartPoint +=1;
+												
 											}
 										}
 									},
@@ -752,6 +753,9 @@ function edit_htag_submit(){
 			data : form,
 			success : function(data){
 				$('#edit_htag').modal("toggle");
+				var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
+				$('#jstree_container').jstree().deselect_all(true);											
+				$('#jstree_container').jstree(true).select_node(selected_node_left);			
 			}
 		})
 	}

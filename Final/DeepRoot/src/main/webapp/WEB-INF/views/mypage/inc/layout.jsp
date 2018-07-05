@@ -152,36 +152,40 @@
 	</div>
 
 	<!-- URL 수정 모달 -->
-	<div class="modal fade" id="editurl" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">
-						<b>URL 변경</b>
-					</h4>
-				</div>
-
-				<div class="modal-body">
-					<form id="form3">
-						<table class="table">
-							<colgroup>
-								<col width="30%">
-								<col width="70%">
-							</colgroup>
-							<tr>
-								<td class="info" style="vertical-align: middle;">URL</td>
-								<td><input type="text" id="editurlval" name="editurlval"
-									class="form-control"></td>
-							</tr>
-						</table>
-					</form>
-					<div class="modal-footer">
-						<!-- type="submit" value="Submit" -->
-						<button type="button" class="btn btn-default btn-sm"
-							data-dismiss="modal">취소</button>
-						<button class="btn btn-default btn-sm" id="editurlsubmit">수정하기</button>
+	<div class="modal fade editurl_test" id="editurl" role="dialog">
+		<div class="main-modal-controller">
+			<div class="main-modal-center">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">
+								<b>URL 변경</b>
+							</h4>
+						</div>
+		
+						<div class="modal-body">
+							<form id="form3">
+								<table class="table">
+									<colgroup>
+										<col width="30%">
+										<col width="70%">
+									</colgroup>
+									<tr>
+										<td class="info" style="vertical-align: middle;">URL</td>
+										<td><input type="text" id="editurlval" name="editurlval"
+											class="form-control"></td>
+									</tr>
+								</table>
+							</form>
+							<div class="modal-footer">
+								<!-- type="submit" value="Submit" -->
+								<button type="button" class="btn btn-default btn-sm"
+									data-dismiss="modal">취소</button>
+								<button class="btn btn-default btn-sm" id="editurlsubmit">수정하기</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -189,42 +193,46 @@
 	</div>
 	
 	<!-- 공유 수정 모달 -->
-	<div class="modal fade" id="edit_htag" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">
-						<b>공유 수정</b>
-					</h4>
-				</div>
-
-				<div class="modal-body">
-					<form id="edit_htag_form">
-						<table class="table">
-							<colgroup>
-								<col width="30%">
-								<col width="70%">
-							</colgroup>
-							<tr >
-								<td class="info" style="vertical-align: middle;">공유제목 :</td>
-								<td><input type="text" id="edit_sname_btn" name="edit_sname_btn"
-									class="form-control"></td>
-							</tr>
-							<tr class="addUrlLevel3">
-								<td class="info" style="vertical-align: middle;">해시태그 :</td>
-								<td><input type="text" id="edit_htag_btn" name="edit_htag_btn"
-									class="form-control" onkeydown="edit_addHashtag()"></td>
-							</tr>
-							<tr >
-								<td colspan="2"  id="edit_htag_append"></td>
-							</tr>
-						</table>
-					</form>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default btn-sm " data-dismiss="modal">취소</button>
-						<button class="btn btn-default btn-sm " onclick="edit_htag_submit()">수정하기</button>
+	<div class="modal fade edit_htag_test" id="edit_htag" role="dialog">
+		<div class="main-modal-controller">
+			<div class="main-modal-center">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">
+								<b>공유 수정</b>
+							</h4>
+						</div>
+		
+						<div class="modal-body">
+							<form id="edit_htag_form">
+								<table class="table">
+									<colgroup>
+										<col width="30%">
+										<col width="70%">
+									</colgroup>
+									<tr >
+										<td class="info" style="vertical-align: middle;">공유제목 :</td>
+										<td><input type="text" id="edit_sname_btn" name="edit_sname_btn"
+											class="form-control"></td>
+									</tr>
+									<tr class="addUrlLevel3">
+										<td class="info" style="vertical-align: middle;">해시태그 :</td>
+										<td><input type="text" id="edit_htag_btn" name="edit_htag_btn"
+											class="form-control" onkeydown="edit_addHashtag()"></td>
+									</tr>
+									<tr >
+										<td colspan="2"  id="edit_htag_append"></td>
+									</tr>
+								</table>
+							</form>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default btn-sm " data-dismiss="modal">취소</button>
+								<button class="btn btn-default btn-sm " onclick="edit_htag_submit()">수정하기</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
