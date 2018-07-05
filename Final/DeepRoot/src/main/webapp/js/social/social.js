@@ -95,19 +95,21 @@ $(function() {
 					$('#socialIndiModal').modal("toggle");
 				}else {
                     swal({
-                    	type:'error',
                         title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning"
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true
 					});
 				}
 			},
 			error : function(error) {
 				swal({
-					type:'error',
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning"
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true
 				});
 		    }
 		});
