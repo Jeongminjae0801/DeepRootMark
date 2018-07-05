@@ -118,6 +118,10 @@
     height: 4em
 }
 
+/* panel head home icon */
+.fa.fa-home{
+	margin-right: 5px;
+}
 hr.visible-xs-block {
     width: 100%;
     background-color: rgba(0, 0, 0, .17);

@@ -125,8 +125,8 @@
 				<!-- Category List Table START -->
 				<c:forEach items="${url_by_category}" var="list">
 					<c:forEach items="${list}" var="hashmap">
-						<div id="panel${hashmap.key.acid}" class="col-sm-6">
-						<div class="panel">
+						<div class="col-sm-6">
+						<div class="panel" id="panel${hashmap.key.acid}" >
 							<!-- Category Name & edit & insert START -->
 
 							<div class="panel-heading">
@@ -143,8 +143,7 @@
 
 							<!-- Category Name & edit & insert END -->
 							<div class="panel-body">
-								<table width="100%" class="table table-hover"
-									id= "table${hashmap.key.acid}">
+								<table width="100%" class="table table-hover" id= "table${hashmap.key.acid}">
 									<thead>
 										<tr>
 											<th>사이트명</th>

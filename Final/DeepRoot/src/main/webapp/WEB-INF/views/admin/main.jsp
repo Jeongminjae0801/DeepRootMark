@@ -52,7 +52,7 @@
 	<section class="content-header">
 		<h1>Chart</h1>
 		<ol class="breadcrumb">
-			<li><a><i class="fa fa-home"></i>Home</a></li>
+			<li><i class="fa fa-home"></i>Home</li>
 			<li>chart</li>
 		</ol>
 	</section>
