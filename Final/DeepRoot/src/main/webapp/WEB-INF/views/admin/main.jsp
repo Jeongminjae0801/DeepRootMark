@@ -50,7 +50,7 @@
 <!-- Main Content START -->
 <div class="content-wrapper" style="min-height: 913px;">
 	<section class="content-header">
-		<h1>Chart</h1>
+		<h1><i class="fas fa-chart-line content-header-chartico"></i>Chart</h1>
 		<ol class="breadcrumb">
 			<li><i class="fa fa-home"></i>Home</li>
 			<li>chart</li>

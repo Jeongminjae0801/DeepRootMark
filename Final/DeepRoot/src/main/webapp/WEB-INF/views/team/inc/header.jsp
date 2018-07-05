@@ -125,11 +125,13 @@
 					<!-- Social Link  -->
 					
 					<!-- Alarm START -->
-					<li class="dropdown">
-						<a href="#">Notice <i class="fa fa-angle-down"></i></a>
+					<li id="alarm_menu_li" class="dropdown">
+						<a href="#" id="alarm_menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Notice <i class="fa fa-angle-down"></i>
+						</a>
 						<!-- headerAlarmList -->
 						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
-						<ul role="menu" class="g_alarm_ul sub-menu">
+						<ul role="menu" class="g_alarm_ul dropdown-menu">
 							<c:forEach items="${headerAlarmList}" var="alarmList">
 								<li id="alarmlist${alarmList.gid}" class="g_alarm_li">
 									<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">${alarmList.gname}</span></span> 
@@ -154,15 +156,16 @@
 										<c:when test="${alarmList.ganame == '완료'}">
 											<span class="g_alarm_head">
 												From&nbsp;&nbsp;&nbsp;: <span class="g_alarm_name">${alarmList.fromid}</span>
-												<span class="g_alarm_date">${alarmList.senddate}</span>
-												<i class="fas fa-check g_notice_ok" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+												<span class="g_alarm_date">${alarmList.senddate}</span>	
 											</span>
 											<br>
-											<span>해당 그룹이 완료되었습니다!</span>
+											<span class="g_alarm_content">해당 그룹이 완료되었습니다!
+											<i class="fas fa-check g_notice_ok" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
+											</span>
 										</c:when>
 											
 										<c:otherwise>
-											<span>해당 그룹에서 회원님을 강퇴했습니다!</span>
+											<span class="g_alarm_content">해당 그룹에서 회원님을 강퇴했습니다!</span>
 											<i class="fas fa-ban g_notice_no" onclick="deleteMemo('${alarmList.gid}','${alarmList.fromid}','${alarmList.ganame}')"></i>
 										</c:otherwise>
 										
