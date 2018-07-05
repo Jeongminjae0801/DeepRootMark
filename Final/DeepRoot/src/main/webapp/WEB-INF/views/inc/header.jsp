@@ -127,12 +127,10 @@
 					
 					<!-- Alarm START -->
 					<li id="alarm_menu_li" class="dropdown">
-						<a href="#" id="alarm_menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notice <i class="fa fa-angle-down"></i>
-							<c:if test="${ 0!=1 }">
-								<span id="counter">10</span>
-							</c:if>
+						<a href="#" id="alarm_menu" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Notice <i class="fa fa-angle-down"></i>
 						</a>
-						<!-- headerAlarmList -->
+						<!-- headerAlarmList --> 
 						<c:if test="${(headerAlarmList ne null) && (!empty headerAlarmList)}">
 						<ul role="menu" class="g_alarm_ul dropdown-menu">
 							<c:forEach items="${headerAlarmList}" var="alarmList">
