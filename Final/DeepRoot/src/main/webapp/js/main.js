@@ -281,7 +281,7 @@ function previewDetail(abid) {
 			}else {
 				sub_domain += "Not supported</span>";
 			}
-			console.log(sub_domain);
+			//console.log(sub_domain);
 			$("#world-ranking-visitor").append(ranking);
 			$("#world-ranking-visitor").append(visitors);
 			$("#url-sub-domain").html(sub_domain);

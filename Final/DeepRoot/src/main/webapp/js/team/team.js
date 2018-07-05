@@ -209,10 +209,10 @@ function myContextMenu() {
 	            }
 	        },
 	        items: {
-	            "manager": {name: "매니저 승급", icon: "far fa-edit"},
-	            "member": {name: "매니저 강등", icon: "fas fa-eraser"},
+	            "manager": {name: "매니저 승급"/*, icon: "far fa-edit"*/},
+	            "member": {name: "매니저 강등"/*, icon: "fas fa-eraser"*/},
 	            "sep1": "---------",
-	            "ban": {name: "강퇴", icon: "fas fa-ban"}
+	            "ban": {name: "강퇴"/*, icon: "fas fa-ban"*/}
 	        }
 	    });   
 	}

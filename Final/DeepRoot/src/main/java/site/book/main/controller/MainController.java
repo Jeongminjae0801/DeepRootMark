@@ -197,7 +197,7 @@ public class MainController {
 	public View emailConfirm(HttpServletRequest request, HttpServletResponse response, 
 			EmailAuthDTO auth, Model model) {
 		
-		System.out.println(auth);
+		//System.out.println(auth);
 		int result = user_service.confirmEmail(auth);
 		if(result > 0) {
 			model.addAttribute("email", "pass");
@@ -212,7 +212,7 @@ public class MainController {
 	public View checkAuthcode(HttpServletRequest request, HttpServletResponse response, 
 			EmailAuthDTO auth, Model model) {
 		
-		System.out.println(auth);
+		//System.out.println(auth);
 		int result = user_service.checkAuthcode(auth);
 		if(result > 0) {
 			model.addAttribute("auth", "pass");

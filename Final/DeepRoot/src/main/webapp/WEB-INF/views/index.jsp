@@ -79,8 +79,11 @@
                         </se:authorize>
                         <!-- Login / Roll in Button END -->
                     </div>
+                   	
                     <!-- Login / Roll in / password find modal START -->
-                    <div class="modal fade login" id="loginModal">
+                    <div id="main-modal-controller">
+					<div id="main-modal-center">
+                    <div class="modal fade login" id="loginModal" style="top: 10%;">
                         <div class="modal-dialog login animated">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -128,13 +131,15 @@
                                                 <form id="rollin-form">
                                                 	<strong class="error-text"></strong>
                                                     <input id="uid_join" class="form-control" type="text" placeholder="Email@example.com" name="uid">
-                                                    <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd">
-                                                    <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation">
-                                                    <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname">
                                                     <div id="auth-div" class="form-group" style="display: none">
                                                        <input id="authcode_join" class="form-control" type="text" placeholder="Auth Code" name="authcode">
                                                        <input id="authcode_check" class="btn btn-default" type="button" value="인증키 재전송">
                                                    	</div>
+                                                   	
+                                                    <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd">
+                                                    <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation">
+                                                    <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname">
+
                                                     <div>
                                                     	<input id="agree-site-rule" class="form-check-input" type="checkbox"><span class="agree-site-rule-text">
                                                     	뿌리깊은마크를 악의적인 용도로 사용하면 안됩니다.</span>
@@ -149,7 +154,7 @@
                                         <div class="content findBox" style="display:none;">
                                             <!-- password find START -->
                                             <div class="form">
-                                                <form>
+                                                <form id="find-form">
                                                     <input id="uid_find" class="form-control" type="text" placeholder="Email">
                                                     <input id="check_email_find" class="btn btn-default btn-find" type="button" value="Are you a member?">
                                                     
@@ -182,6 +187,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    </div>
                     </div>
                     <!-- Login / Roll in / password find modal END -->
                     <img src="images/home/slider/hill.png" class="slider-hill" alt="slider image">
