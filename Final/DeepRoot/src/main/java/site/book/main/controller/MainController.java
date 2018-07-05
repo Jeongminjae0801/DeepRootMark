@@ -144,8 +144,14 @@ public class MainController {
 			HttpSession session, Model model, UserDTO user) {
 		
 		// process message from Handler and JSON data response
+		// 로그인 실패: 아이디 또는 비밀번호 잘못 입력		
 		if(request.getAttribute("msg").equals("fail")) {
 			model.addAttribute("login", "fail");
+		
+		// 중복 로그인 처리
+		}else if(request.getAttribute("msg").equals("duplicate")) {
+			model.addAttribute("login", "duplicate");
+			
 		}else {
 			String userid = (String)request.getAttribute("userid");
 			user.setUid(userid);
@@ -168,7 +174,7 @@ public class MainController {
 		return jsonview;
 	}
 	
-	/* Roll in */
+	/* 회원가입  */
 	@RequestMapping(value="/joinus/rollin.do", method=RequestMethod.POST)
 	public View rollin(HttpServletRequest request, HttpServletResponse response, 
 			UserDTO user, Model model) {
@@ -186,7 +192,7 @@ public class MainController {
 		return jsonview;
 	}
 	
-	/* Send email & Save email, authcode */
+	/* 회원가입 유저에게 이메일 전송과 DB에 해당 유저의 email과 authcode 저장 */
 	@RequestMapping(value="/joinus/emailsend.do", method=RequestMethod.POST)
 	public View emailConfirm(HttpServletRequest request, HttpServletResponse response, 
 			EmailAuthDTO auth, Model model) {

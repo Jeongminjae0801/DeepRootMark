@@ -440,8 +440,13 @@ $(function() {
             success:function(data){
             	if(data.login == 'success') {
             		location.href = data.path;
-            	}
-            	else {  
+            	
+            	}else if(data.login == 'duplicate') {
+            		$("#uid").val('');
+            		$("#pwd").val('');
+	        		$("#login-form > strong").html("이미 로그인된 아이디입니다. 확인 부탁드립니다");
+            		
+            	}else {  
 	            	$("#pwd").val('');
 	        		$("#login-form > strong").html("아이디 또는 비밀번호 오류입니다.");
             	}
