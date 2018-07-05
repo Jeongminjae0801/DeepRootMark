@@ -95,19 +95,19 @@ $(function() {
 					$('#socialIndiModal').modal("toggle");
 				}else {
                     swal({
-                    	type:'error',
                         title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning"
+                        icon: "warning",
+                        dangerMode: true
 					});
 				}
 			},
 			error : function(error) {
 				swal({
-					type:'error',
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning"
+                    icon: "warning",
+                    dangerMode: true
 				});
 		    }
 		});
@@ -140,19 +140,19 @@ $(function() {
 					$('#socialIndiModal').modal("toggle");
 				}else {
                     swal({
-                    	type:'error',
-                        title: "목적지 폴더를 확인하셨나요?",
+                    	title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning"
+                        icon: "warning",
+                        dangerMode: true
 					});
 				}
 			},
 			error : function(error) {
 				swal({
-					type: 'error',
-                    title: "목적지 폴더를 확인하셨나요?",
+					title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning"
+                    icon: "warning",
+                    dangerMode: true
 				});
 		    }
 		});
@@ -350,7 +350,17 @@ $(document).ready(function(){
 	            }) 
 	        }
 	     });
-	    
+
+        if(submit_obj.length == 0){
+    		swal({
+    			title: "해당 카테고리엔 URL이 존재하지 않습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+    		});
+    		return;
+    	}
+        
 	    var submit_obj_json = JSON.stringify(submit_obj);
 
     	$.ajax({
@@ -368,20 +378,20 @@ $(document).ready(function(){
     				$('#socialGroupModal').css({"z-index":"0"});
     			} else {
     				swal({
-    					type: 'error',
     					title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning"
+                        icon: "warning",
+                        dangerMode: true
     				});
     				return;
     			}
     		},
     		error : function(error) {
     			swal({
-    				type: 'error',
     				title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning"
+                    icon: "warning",
+                    dangerMode: true
     			});
     			return;
     		}
@@ -393,10 +403,10 @@ $(document).ready(function(){
 	$('#into-group-bookmark-getgroup-btn').on('click', function(){
 		if($('.groupshare-url').text() == '#'){
 			swal({
-				type : 'error',
 				title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
-                icon: "warning"
+                icon: "warning",
+                dangerMode: true
 			});
 			return;
 		}
@@ -430,7 +440,17 @@ $(document).ready(function(){
 	            }) 
 	        }
 	    });
-	    
+
+        if(submit_obj.length == 0){
+    		swal({
+    			title: "해당 카테고리엔 URL이 존재하지 않습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+    		});
+    		return;
+    	}
+        
 	    var submit_obj_json = JSON.stringify(submit_obj);
 
 		$.ajax({
@@ -447,19 +467,19 @@ $(document).ready(function(){
 					$('#socialGroupModal').css({"z-index":"0"});
 				} else {
 					swal({
-						type : 'error',
 						title: "목적지 폴더를 확인하셨나요?",
-						text: "잠시후 다시 시도해주세요!",
-	                    icon: "warning"
+	                    text: "잠시후 다시 시도해주세요!",
+	                    icon: "warning",
+	                    dangerMode: true
 					});
 				}
 			},
 			error : function(error) {
 				swal({
-					type : 'error',
 					title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning"
+                    icon: "warning",
+                    dangerMode: true
 				});
 			}
 		});
@@ -622,10 +642,10 @@ $(document).ready(function(){
     $('#into-my-bookmark-surfing-btn').on('click', function(){
     	if($('.indishare-url-surfing').text() == '#'){
     		swal({
-    			type: 'error',
     			title: "목적지 폴더를 확인하셨나요?",
-    			text: "잠시후 다시 시도해주세요!",
-    			icon: "warning"
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
     		});
     		return;
     	}
@@ -657,6 +677,17 @@ $(document).ready(function(){
 	            }) 
             }
         });
+        
+        if(submit_obj.length == 0){
+    		swal({
+    			title: "해당 카테고리엔 URL이 존재하지 않습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+    		});
+    		return;
+    	}
+        
         var submit_obj_json = JSON.stringify(submit_obj);
     	
     	$.ajax({
@@ -672,19 +703,19 @@ $(document).ready(function(){
     				$('#socialSurfingModal').modal("toggle");
     			} else {
     				swal({
-    					type:'error',
     					title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
-                        icon: "warning"
+                        icon: "warning",
+                        dangerMode: true
     				});
     			}
     		},
     		error : function(error) {
     			swal({
-    				type:'error',
     				title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning"
+                    icon: "warning",
+                    dangerMode: true
     			});
     		}
 		});
@@ -696,10 +727,10 @@ $(document).ready(function(){
 	$('#into-group-bookmark-surfing-btn').on('click', function(){
 		if($('.indishare-url-surfing').text() == '#'){
 			swal({
-				type:'error',
 				title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
-                icon: "warning"
+                icon: "warning",
+                dangerMode: true
 			});
 			return;
 		}
@@ -733,6 +764,16 @@ $(document).ready(function(){
 	            }) 
             }
         });
+
+        if(submit_obj.length == 0){
+    		swal({
+    			title: "해당 카테고리엔 URL이 존재하지 않습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+    		});
+    		return;
+    	}
         
         var submit_obj_json = JSON.stringify(submit_obj);
         
@@ -749,19 +790,19 @@ $(document).ready(function(){
 					$('#socialSurfingModal').modal("toggle");
 				} else {
 					swal({
-						type:'error',
 						title: "목적지 폴더를 확인하셨나요?",
-						text: "잠시후 다시 시도해주세요!",
-	                    icon: "warning"
+	                    text: "잠시후 다시 시도해주세요!",
+	                    icon: "warning",
+	                    dangerMode: true
 					});
 				}
 			},
 			error : function(error) {
 				swal({
-					type:'error',
 					title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
-                    icon: "warning"
+                    icon: "warning",
+                    dangerMode: true
 				});
 			}
 		});

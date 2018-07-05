@@ -47,7 +47,7 @@
                             <input type="button" class="btn btn-default cancel" value="취소" onclick="location.href='index.do'">
                         </center>
                         
-                        <a id="rollout-member" href="rollout.do?uid=${sessionScope.info_userid}" style="float: right;">회원탈퇴를 하시겠습니까?</a>
+                        <a id="rollout-member" href="#" style="float: right;">회원탈퇴를 하시겠습니까?</a>
                     </form>
                 </div>
             </div>
@@ -60,6 +60,34 @@
     
         
     $(function() {
+    	// 회원 탈퇴
+    	$('#rollout-member').dblclick(function(){});
+    	$('#rollout-member').click(function(){
+    		$.confirm({
+    			title : '회원 탈퇴',
+    			content : '회원 탈퇴 하시겠습니까?',
+    			theme: 'light',
+    			backgroundDismiss: true,
+    			closeIcon: true,
+    			buttons: {
+    		        '회원탈퇴': {
+    		        	btnClass : 'btn-danger',
+    		        	keys: ['enter'],
+    		        	action : function () {
+    		        		location.href= "rollout.do";
+    		        	}
+    		        },
+    		        '취소': {
+    		        	btnClass : 'btn-success',
+    		        	action : function() { return }
+    		        }
+    		    }
+    		});
+    		
+    		loaction.href= "rollout.do";
+    	});
+    	
+    	
 	    $('#re-confirm-password-btn').dblclick(function(){});
 		$('#re-confirm-password-btn').click(function(){
 			$.ajax({ 
