@@ -126,7 +126,7 @@ public class MainController {
 	@RequestMapping(value="/clickurl.do")
 	public View clickURL(HttpServletRequest req, Model model, String abid) {
 		
-		System.out.println(abid);
+		//System.out.println(abid);
 		int result = a_book_service.clickURL(abid);
 		
 		if(result > 0) {
