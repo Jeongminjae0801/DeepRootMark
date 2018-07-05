@@ -24,6 +24,10 @@
 	
 	<security:intercept-url pattern="/member/**" access="hasRole('ROLE_USER')" />
 	<security:intercept-url pattern="/ad/**" access="hasRole('ROLE_ADMIN')" />
+	
+	<security:session-management invalid-session-url="/index.do" session-fixation-protection="migrateSession">
+		<security:concurrency-control max-sessions="1" expired-url="/index.do" error-if-maximum-exceeded="true"/>
+	</security:session-management>
 </security:http>
 
 <security:authentication-manager>
