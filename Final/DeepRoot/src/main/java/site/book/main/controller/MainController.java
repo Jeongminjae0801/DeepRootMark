@@ -314,17 +314,11 @@ public class MainController {
 	
 	/* 회원 탈퇴 */
 	@RequestMapping(value="/rollout.do", method=RequestMethod.GET)
-	public String rolloutMember(HttpServletRequest request, Model model) {
-		
-		String uid = (String)request.getParameter("uid");
-		//System.out.println(uid);
-		int result = user_service.deleteMember(uid);
+	public String rolloutMember(HttpServletRequest request, HttpSession session, Model model) {
+		String uid = (String)session.getAttribute("info_userid");
+		System.out.println(uid);
+		user_service.deleteMember(uid);
 
-		if(result > 0) {
-			model.addAttribute("result", "pass");
-		}else {
-			model.addAttribute("result", "fail");
-		}
 		return "member.logout";
 	}
 	
