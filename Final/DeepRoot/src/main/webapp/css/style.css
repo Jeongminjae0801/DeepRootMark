@@ -1200,7 +1200,7 @@ filter: gray;
 
 
 .btn.btn-default.btn-sm{
-	background-color: #e42911;
+	background-color: #2ecc71;
     color: #fff;
     font-weight: 600;
     font-size: 14px;
@@ -1208,7 +1208,7 @@ filter: gray;
 }
 .btn.btn-default.btn-sm:hover,
 .btn.btn-default.btn-sm:active{
-	background-color: #e42911;
+	background-color: #2ecc71;
     color: #fff;
     opacity: 0.7;
 }
