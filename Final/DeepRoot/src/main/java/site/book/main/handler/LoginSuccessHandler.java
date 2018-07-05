@@ -41,7 +41,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		//System.out.println(authorized);
 		
 		if(authorized) {
-			System.out.println("????");
+			//System.out.println("????");
 			request.setAttribute("ROLE", "ADMIN");
 		}else {
 			request.setAttribute("ROLE", "USER");

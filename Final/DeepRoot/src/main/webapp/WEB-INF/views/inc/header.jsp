@@ -47,7 +47,7 @@
 		    	var jc = this;
 		    	$("#addGroupForm").ajaxForm({
 		    		success: function(data, statusText, xhr, $form){
-		    			var group = '<li id="headerGroup${headerTeam.gid}" class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
+		    			var group = '<li id="headerGroup' + data.newTeam.gid + '" class="groupMenu"><a href="/bit/team/main.do?gid=' + data.newTeam.gid + '&gname=' + data.newTeam.gname + '">' + data.newTeam.gname + '</a></li>';
 		    			$("#groupDropdownMenu").children().last().before(group);
 		    			if($(".groupMenu").length > 10){
 		    				$("#groupDropdownMenu").children().last().remove();
