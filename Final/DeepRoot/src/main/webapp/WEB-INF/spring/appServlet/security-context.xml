@@ -18,15 +18,16 @@
    						 authentication-success-handler-ref="loginSuccessHandler"
    						 authentication-failure-handler-ref="loginFailureHandler" /><!-- default-target-url="/index.do" -->
    						 
-	<security:logout logout-url="/security/logout"
-					 invalidate-session="true"
+	<security:logout logout-url="/security/logout" 
+					 invalidate-session="true" 
 					 logout-success-url="/index.do" />
+	
 	
 	<security:intercept-url pattern="/member/**" access="hasRole('ROLE_USER')" />
 	<security:intercept-url pattern="/ad/**" access="hasRole('ROLE_ADMIN')" />
 	
 	<security:session-management invalid-session-url="/index.do" session-fixation-protection="migrateSession">
-		<security:concurrency-control max-sessions="1" expired-url="/joinus/login.do?error=duplicate" error-if-maximum-exceeded="true"/>
+		<security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
 	</security:session-management>
 </security:http>
 

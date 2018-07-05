@@ -114,7 +114,7 @@
                                                 	<strong class="error-text"></strong>
                                                     <input id="uid" class="form-control" type="text" placeholder="Email" name="uid">
                                                     <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
-                                                    <!-- <input id="loginAjax" class="btn btn-default btn-login" type="submit" value="Login"> -->
+                                    
                                                     <input id="loginAjax" class="btn btn-default btn-login" type="button" value="Login">
                                                 </form>
                                                 <!-- Login END -->

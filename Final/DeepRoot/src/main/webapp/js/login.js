@@ -442,9 +442,8 @@ $(function() {
             		location.href = data.path;
             	
             	}else if(data.login == 'duplicate') {
-            		$("#uid").val('');
-            		$("#pwd").val('');
-	        		$("#login-form > strong").html("이미 로그인된 아이디입니다. 확인 부탁드립니다");
+            		alert("이미 로그인된 아이디입니다. 확인 부탁드립니다!");
+            		setTimeout(function(){ location.replace("index.do"); }, 500);
             		
             	}else {  
 	            	$("#pwd").val('');
