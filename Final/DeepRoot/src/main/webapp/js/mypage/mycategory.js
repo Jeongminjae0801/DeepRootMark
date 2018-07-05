@@ -944,6 +944,7 @@ function deleteGroup(gid) {
 	        	btnClass : 'btn-danger',
 	        	keys: ['enter'],
 	        	action : function () {
+	        		
 	        		$("#"+gid).remove(); // 그룹리스트에서 지우기
 	        		$("#headerGroup" + gid).remove();
 	        		
@@ -951,6 +952,12 @@ function deleteGroup(gid) {
 	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
 	        			$("#groupDropdownMenu").append(groupAddHTML);
 	    			}
+					
+	        		$.each(headerTeamList, function(index, element){
+	        			if(element == gid){
+	        				delete headerTeamList[index];
+	        			}
+	        		});
 	        		
 	    			$.ajax({
 	    				url: "leaveGroup.do",
@@ -995,7 +1002,7 @@ function deleteCompletedGroup(gid) {
 	    					gid : gid // 그룹 ID
 	    				},
 	    				success : function(data){
-	    					console.log(data);
+	    					//console.log(data);
 	    				}
 	    			});
 	        	}
@@ -1052,7 +1059,11 @@ function addGroup() {
     		    			if($(".groupMenu").length > 10){
     		    				$("#groupDropdownMenu").children().last().remove();
     		    			}
+    		    			
+    		    			headerTeamList.push(data.newTeam.gid);
 	                	}
+	                
+	                	
 	                });
 	                
 	                $("#addGroupForm").submit();
@@ -1070,67 +1081,7 @@ function addGroup() {
 	});
 }
 
-function completedGroup(gid) {
-	$.confirm({
-	    title: '그룹 완료',
-	    content: '' +
-	    '<form id="completedGroupForm" action="/bit/user/completedGroup.do" class="formName" method="post" onsubmit="return false;">' +
-	    '<div class="form-group">' +
-	    '<label>해시태그</label>' +
-	    '<input type="text" name="htag" placeholder="#해쉬태그" class="name form-control" required />' +
-	    '<input type="hidden" class="gid" name="gid" />' + 
-	    '</div>' +
-	    '</form>',
-	    closeIcon: true,
-	    
-	    buttons: {
-	        formSubmit: {
-	            text: '완료',
-	            btnClass: 'btn-success',
-	            action: function () {
-	                var name = this.$content.find('.name').val();
-	                this.$content.find('.gid').val(gid);
-	                if(!name){
-	                    $.alert('해시태그를 적어주세요');
-	                    return false;
-	                }
-	                
-	                $("#completedGroupForm").ajaxForm({
-	                	success: function(data, statusText, xhr, $form){
-	                		$("#"+ data.completedGroup.gid).remove();
-	                		
-	                		var addCompletedGroup = "";
-	                		addCompletedGroup += '<li id="' + data.completedGroup.gid + '" class="list-group-item">';
-	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal(\''+ data.completedGroup.gname + "', " + data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
-	                		addCompletedGroup += '<div class="pull-right action-buttons">';
-	                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + data.completedGroup.gid + ')"></span></a>';
-	                		addCompletedGroup += '</div>';
-	                		addCompletedGroup += '</li>';
-	                		
-	                		$("#completedGroupList").append(addCompletedGroup);
-	                		
-	                		$("#headerGroup" + gid).remove();
-	    	        		
-	    	        		if($(".groupMenu").length < 10 && $("#headerGroupAdd").length == 0){
-	    	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
-	    	        			$("#groupDropdownMenu").append(groupAddHTML);
-	    	    			}
-	                	}
-	                });
-	                
-	                $("#completedGroupForm").submit();
-	                
-	            }
-	        },
-	        '취소': {
-	        	btnClass : 'btn-danger',
-        		action : function() {
-        		}
-	        },
-	    }
-	    
-	});
-}
+
 
 
 
