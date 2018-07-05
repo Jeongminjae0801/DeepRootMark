@@ -152,7 +152,7 @@
 	</div>
 
 	<!-- URL 수정 모달 -->
-	<div class="modal fade" id="editurl" role="dialog">
+	<div class="modal fade editurl_test" id="editurl" role="dialog">
 		<div class="main-modal-controller">
 			<div class="main-modal-center">
 				<div class="modal-dialog">
@@ -193,7 +193,7 @@
 	</div>
 	
 	<!-- 공유 수정 모달 -->
-	<div class="modal fade" id="edit_htag" role="dialog">
+	<div class="modal fade edit_htag_test" id="edit_htag" role="dialog">
 		<div class="main-modal-controller">
 			<div class="main-modal-center">
 				<div class="modal-dialog">

@@ -258,5 +258,31 @@ h1,h2,h3,h4,h5,h6 {
     background: #7bab94;
 }
 
+/* Modal scrolling */
+.jstree-proton > .jstree-container-ul > .jstree-node {
+	padding: 0px 0px 10px 0px;
+	overflow: auto;
+    max-height: 800px;
+}
 
+.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar{width: 10px; height: 10px;}
+.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-track {background-color:#fff0;}
+.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-thumb {background-color:#ccc; border-radius: 10px;}
+.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-thumb:hover {background: #b9b9b9;}
+.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+    width: 5px;
+    height: 5px;
+    background-color: #fff0;
+}
+
+
+/* ellipsis
+.jstree-anchor{
+    overflow:hidden;
+	white-space:nowrap;
+	max-width: 80%;
+}
+ */
+ 
+ 
 /* Social Page CSS END */
