@@ -40,6 +40,10 @@
     <link href="css/animate.min.css" rel="stylesheet">
     <!-- Main Page CSS END -->
     
+    <!-- Text Effect(Alarm) -->
+    <link href="${pageContext.request.contextPath}/css/text-effect.css" rel="stylesheet">
+    <!-- Text Effect(Alarm) END -->
+    
     <!-- User Info Page CSS -->
     <link href="css/userinfo/userinfo.css?ver=2" rel="stylesheet">
 	<!-- User Info CSS END -->

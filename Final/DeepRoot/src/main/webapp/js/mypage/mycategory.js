@@ -96,7 +96,7 @@ $(document).ready(function(){
 									"separator_before": false,
 									"separator_after": false,
 									"_disabled" : false, 
-									"label": "그룹 추가",
+									"label": "폴더 추가",
 									"action": function (obj) {
 										var inst = $.jstree.reference(obj.reference);
 										var par_node = inst.get_node(obj.reference);
