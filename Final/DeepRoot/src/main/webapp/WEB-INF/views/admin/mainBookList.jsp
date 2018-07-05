@@ -81,8 +81,7 @@
 <!-- Main Content START -->
 <div class="content-wrapper" style="min-height: 913px;">
 	<section class="content-header">
-		<h1>
-			Main Bookmark List
+		<h1><i class="fas fa-clipboard-list content-header-ico"></i>Main Bookmark List
 			<!-- Category insert / Delete START -->
 			<span class="span-category">
 				<span class="btn-category" data-toggle="dropdown"><i
