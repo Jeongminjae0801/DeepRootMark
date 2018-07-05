@@ -339,7 +339,6 @@ function connect() {
             $(".chat-element").scrollTop($(".chatting-contents").height());
         });
         
-        console.log("jstree subscrib 시작 전");
         //JSTREE 알림 메시지 ex) 누구님이 무엇을 수정했습니다
  		stompClient.subscribe('/subscribe/JSTREE/' + gid,function(message){
  			var body = JSON.parse(message.body);

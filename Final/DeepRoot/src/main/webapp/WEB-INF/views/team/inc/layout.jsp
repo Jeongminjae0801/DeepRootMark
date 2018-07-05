@@ -52,10 +52,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 	<!-- jQuery Ajax Form START -->
 	
-	
-	
-	<!-- ohsnap jstree 알림창 -->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/team/ohsnap.js"></script>
 </head>
 <body>
 	
