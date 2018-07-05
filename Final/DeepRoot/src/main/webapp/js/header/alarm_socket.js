@@ -108,6 +108,29 @@ function alarmConnect(userid) {
 	                	common_form += '</li>';
 		                console.log(common_form);
 		                $('.g_alarm_ul').prepend(common_form);
+		                
+		                // 마이페이지일 때 그룹 완료로 이동시키기
+		                if($('#participatingGroupList').length > 0) {
+		                	$("#"+ recv_gid).remove();
+	                		
+	                		var addCompletedGroup = "";
+	                		addCompletedGroup += '<li id="' + recv_gid + '" class="list-group-item">';
+	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal(\''+ recv_gname + "', " + recv_gid + ')">' + recv_gname + '</label>';
+	                		addCompletedGroup += '<div class="pull-right action-buttons">';
+	                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + recv_gid+ ')"></span></a>';
+	                		addCompletedGroup += '</div>';
+	                		addCompletedGroup += '</li>';
+	                		
+	                		$("#completedGroupList").append(addCompletedGroup);
+	                		
+	                		$("#headerGroup" + recv_gid).remove();
+	    	        		
+	    	        		if($(".groupMenu").length < 10 && $("#headerGroupAdd").length == 0){
+	    	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
+	    	        			$("#groupDropdownMenu").append(groupAddHTML);
+	    	    			}
+		                }
+		                
 	                }
         			return false;
         		}

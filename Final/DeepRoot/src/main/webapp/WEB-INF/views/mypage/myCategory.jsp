@@ -30,26 +30,8 @@ function completedGroup(gid) {
 	                
 	                $("#completedGroupForm").ajaxForm({
 	                	success: function(data, statusText, xhr, $form){
-	                		$("#"+ data.completedGroup.gid).remove();
+	                		var fromid = '${sessionScope.info_usernname}';
 	                		
-	                		var addCompletedGroup = "";
-	                		addCompletedGroup += '<li id="' + data.completedGroup.gid + '" class="list-group-item">';
-	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal(\''+ data.completedGroup.gname + "', " + data.completedGroup.gid + ')">' + data.completedGroup.gname + '</label>';
-	                		addCompletedGroup += '<div class="pull-right action-buttons">';
-	                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + data.completedGroup.gid + ')"></span></a>';
-	                		addCompletedGroup += '</div>';
-	                		addCompletedGroup += '</li>';
-	                		
-	                		$("#completedGroupList").append(addCompletedGroup);
-	                		
-	                		$("#headerGroup" + gid).remove();
-	    	        		
-	    	        		if($(".groupMenu").length < 10 && $("#headerGroupAdd").length == 0){
-	    	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
-	    	        			$("#groupDropdownMenu").append(groupAddHTML);
-	    	    			}
-	    	        		var fromid = '${sessionScope.info_usernname}';
-	    	        		
 	    	        		stompClient.send('/alarm' , {}, 
 	    	        			JSON.stringify({
 	    	        			gid: data.completedGroup.gid,
