@@ -3,11 +3,7 @@
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
-
 <script type="text/javascript">
-
 	// header에 있는 그룹 추가 버튼 클릭 이벤트
 	function headerAddGroup(gid) {
 		$.confirm({
