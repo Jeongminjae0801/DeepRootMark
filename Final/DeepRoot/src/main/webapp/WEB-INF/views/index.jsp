@@ -211,8 +211,7 @@
                 <div class="col-sm-12">
                     <!-- Admin Bookmark & Search Area START -->
                     <span class="bookmark-title">
-                        <i class="fa fa-book" aria-hidden="true" style="color: #270119"></i>
-                        Admin Bookmark
+                        <i class="fas fa-seedling" aria-hidden="true" style="color: #54e00e"></i>&nbsp;&nbsp;추천 사이트
                     </span>
                     <div id="custom-search-input">
                         <div class="input-group">
@@ -226,8 +225,7 @@
                     <div class="col-sm-12">
                         <div class="category-div">
                             <span class="bookmark-category">
-                            <i class="fa fa-tags" aria-hidden="true" style="color: #294400"></i>
-                            Category
+                            <i class="fa fa-tags" aria-hidden="true" style="color: #294400; font-size: 20px;"></i>&nbsp;카테고리
                           </span>
                         </div>
                         <div id="category-display" class="col-sm-12 category-items">
