@@ -595,8 +595,7 @@ $(document).ready(function(){
 			var node_id = data.node.id;
 			var node_text = data.text;
 			var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
-			$('#jstree_container').jstree().deselect_all(true);											
-			$('#jstree_container').jstree(true).select_node(selected_node_left);			
+			
 			$.ajax({
 				url : 'updateNodeText.do',
 				type: 'POST',
@@ -606,6 +605,8 @@ $(document).ready(function(){
 				},
 				success : function(result){
 					$('#loading').html("");
+					$('#jstree_container').jstree().deselect_all(true);											
+					$('#jstree_container').jstree(true).select_node(selected_node_left);			
 					if(result.result != 1)
 						alert('수정 실패');
 				}
