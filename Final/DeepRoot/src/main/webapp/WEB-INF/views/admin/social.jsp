@@ -7,12 +7,15 @@
 <!-- adminTable CSS END -->
 
 <script type="text/javascript">
+	var socialUserTable = null;
+	var socialGroupTable = null;
+	
 	$(function() {
-		$('#socialUserBookmarkTable').DataTable({
+		socialUserTable = $('#socialUserBookmarkTable').DataTable({
 			responsive : true,
 			"order" : [ [ 3, "desc" ] ]
 		});
-		$('#socialGroupBookmarkTable').DataTable({
+		socialGroupTable = $('#socialGroupBookmarkTable').DataTable({
 			responsive : true,
 			"order" : [ [ 3, "desc" ] ]
 		});
@@ -31,7 +34,8 @@
 		        	btnClass : 'btn-danger',
 		        	keys: ['enter'],
 		        	action : function () {
-		        		$("#ubid" + ubid).remove(); // dataTable에서 지우기
+		        		socialUserTable.row($('tr[id=ubid' + ubid + ']')).remove().draw(); // dataTable에서 지우기
+		        		
 						$.ajax({
 							url: "deleteSUBook.do",
 							type: "post",
@@ -69,7 +73,7 @@
 		        	btnClass : 'btn-danger',
 		        	keys: ['enter'],
 		        	action : function () {
-		        		$("#gid" + gid).remove(); // dataTable에서 지우기
+		        		socialGroupTable.row($('tr[id=gid' + gid + ']')).remove().draw(); // dataTable에서 지우기
 						$.ajax({
 							url: "deleteGroup.do",
 							type: "post",
