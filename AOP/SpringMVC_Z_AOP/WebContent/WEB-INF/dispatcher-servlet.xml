@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- 
+	AspectJ AOP 사용시 필요한것
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    <aop:aspectj-autoproxy/> // 자동 프록시 생성
+	-->
+	
+	<!-- AspectJ lib
+	aspectj-weaver.jar
+	aspectjrt.jar
+	com.springsource.org.aopalliance-1.0.0.jar 
+	-->
+	
+	<context:annotation-config />
+	<context:component-scan base-package="kr.or.bit.controller" />
+	<aop:aspectj-autoproxy/>
+	
+	<bean id="aspect" class="kr.or.bit.aspect.AspectJ"></bean>
+	
+	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ 		<property name="prefix">
+ 			<value>/WEB-INF/view/</value>
+ 		</property>
+ 		<property name="suffix">
+ 			<value>.jsp</value>
+ 		</property>
+ 	</bean>
+
+	<aop:config>
+		<aop:aspect id="xmlAspect" ref="aspect">
+			<aop:pointcut expression="execution(* kr.or.bit.controller.MainController.*(..))" id="xmlPointcut"/>
+			<aop:after method="after" pointcut-ref="xmlPointcut"/>
+		</aop:aspect>
+	</aop:config>
+</beans>
+
+
+
+

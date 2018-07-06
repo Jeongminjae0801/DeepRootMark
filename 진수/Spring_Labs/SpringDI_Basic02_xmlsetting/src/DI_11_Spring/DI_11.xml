@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+<!--  
+	IOC 컨테이너 (Spring 전용 메모리) 안에 생성될 [객체 만들고 조립(의존) 설정] 파일
+	:제어의 역전 (프로그램을 제어구조 바꿘다)
+	
+	1.DataSourceFactory 빈 객체 생성
+	2.DI_11.xml 에서 (jdbc.properties) 파일을 read 해서
+	3.DataSourceFactory : 4개의 setter 통해서 설정 주입
+	 
+	4.context 자원 사용해서 
+	  > xmlns:context="http://www.springframework.org/schema/context" 추가
+	  > 접두어 : context
+	  > context (파일 기반 작업 : JNDI 지원)
+	  > 파일 기반 작업 경로 / (. 이 아니다)
+-->
+  <context:property-placeholder location="classpath:DI_11_Spring/jdbc.properties" />
+  <bean id="dataSourceFactory" class="DI_11_Spring.DataSourceFactory">
+  	<property name="jdbcDriver" value="${jdbc.driver}"></property>
+  	<property name="jdbcUrl" value="${jdbc.url}"></property>
+  	<property name="username" value="${jdbc.username}"></property>
+  	<property name="password" value="${jdbc.password}"></property>
+  </bean>
+</beans>
+
+
+
+

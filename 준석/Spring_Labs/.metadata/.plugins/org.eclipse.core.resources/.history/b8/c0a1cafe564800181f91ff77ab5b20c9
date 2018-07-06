@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+<!--  
+	IOC 컨테이너 (Spring 전용 메모리) 안에 생성될 [객체 만들고 조립(의존) 설정] 파일
+	:제어의 역전 (프로그램을 제어구조 바꿘다)
+
+    1.Calc calc = new NewCalc();
+    
+    2.Calc cal =(Calc)Proxy.newProxyInstance(calc.getClass().getClassLoader(), //실제 클래스 메타 정보
+				               calc.getClass().getInterfaces(), //행위정보 (인터페이스)
+				               new LogPrintHandler(calc)); //핸들러(보조관심) >> 실객체 주소(생성자)
+    
+    >>import org.springframework.aop.framework.ProxyFactoryBean;
+           을 통해서  Proxy 객체 생성 
+    
+    3.LogPrintAroundAdvice 객체 생성(bean)
+    
+    4.LogPrintBeforeAdvice 객체 생성(bean)
+    
+        하나의 함수가 실행될때 여러가지 보조업무(Advice) 실행 가능
+-->	
+	<bean id="calc" class="AOP_Basic_Spring_04.NewCalc"></bean>
+	<bean id="logPrintAroundAdvice" class="AOP_Basic_Spring_04.LogPrintAroundAdvice"></bean>
+	<bean id="logPrintBeforeAdvice" class="AOP_Basic_Spring_04.LogPrintBeforeAdvice"></bean>
+	
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- private List<> proxyInterfaces -->
+		<property name="proxyInterfaces"><!-- 행위정보 : 클래스가 가지는 함수 자원 정보 -->
+			<list>
+				<value>AOP_Basic_Spring_04.Calc</value>
+			</list>
+		</property>
+		<property name="target" ref="calc" ></property>
+		<property name="interceptorNames">
+			<list>
+				<!-- <value>logPrintAroundAdvice</value> --><!-- Advice 가지고 있는 보조업무 객체의 이름 -->
+				<value>logPrintBeforeAdvice</value>
+			</list>
+		</property>
+	</bean>
+</beans>
+
+
+
+

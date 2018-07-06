@@ -1,0 +1,61 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:tx="http://www.springframework.org/schema/tx"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx.xsd">
+  
+  
+  <bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+    <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"></property>
+    <property name="username" value="springuser"></property>
+    <property name="password" value="1004"></property>
+  </bean>
+  
+  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <property name="dataSource" ref="driverManagerDataSource" />
+  </bean>
+    
+  <!-- 공통빈 --> 
+  <bean id="multipartResolver" 
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+             <property name="maxUploadSize" value="10485760"/>
+  </bean>
+  
+   <!-- Transaction 만들기 -->
+   <bean id="transactionManager" 
+   class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+   <property name="dataSource" ref="driverManagerDataSource" /> 
+   </bean>
+  
+   <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
+
+트랜잭션 처리하기
+ xmlns:tx="http://www.springframework.org/schema/tx"
+ http://www.springframework.org/schema/tx
+ http://www.springframework.org/schema/tx/spring-tx.xsd"
+
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+   <beans:property name="dataSource" ref="dataSource" />
+</bean>
+<tx:annotation-driven transaction-manager="transactionManager" />
+  
+ 
+테이블 변경
+alter table member
+add point number;
+
+alter table member 
+add constraint ck_member_hit check(point < 3);
+
+
+DAO
+update member
+set point = nvl(point,0) + 1
+where userid = 'kglim';     

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>뿌리깊은마크_관리자</title>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css>
+    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css>
+
+    <!-- CSS START -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/AdminLTE.css">
+    <link rel="stylesheet" href="/css/skin.css">
+    <link rel="stylesheet" href="/css/pace.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/pagetransition.css">
+    <!-- CSS END -->
+
+    <!-- Script START -->
+    <script src="/js/jquery.js"></script>
+    <!-- Script END -->
+
+    <!--CHART Resources START-->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/dark.js"></script>
+    <!--CHART Resources END-->
+    
+     <!-- 페이지 전환 Script START -->
+    <script type="text/javascript">
+        $(window).load(function() {
+            setTimeout(function() {
+                $(".loader").addClass('end');
+            }, 100);
+            $('.skin-blue').on('click', 'transition', function(e) {
+                e.preventDefault();
+                var t = $(this),
+                    duration = t.data('duration'),
+                    getNum = /[^0-9]/g,
+                    href = t.attr('href'),
+                    time = parseFloat(duration);
+
+                time = time * 1000;
+                console.log(time);
+
+                $('.loader').find('*').css({
+                    '-moz-transition-duration': duration,
+                    '-o-transition-duration': duration,
+                    '-webkit-transition-duration': duration,
+                    'transition-duration': duration
+                });
+                $('.loader').addClass('exit');
+                window.setTimeout(function() {
+                    window.location = href
+                }, time)
+            });
+        });
+    </script>
+    <!-- 페이지 전환 Script END -->
+</head>
+
+<body class="skin-blue sidebar-mini pace-done" style="overflow-y:scroll">
+     <!-- Page Transition START -->
+    <div class="loader">
+        <svg height="100%" width="100%" class="svg-wrap">
+    <circle class="circle"  r="100%" cx="50%" cy="50%" fill="#2f3d44"/>
+  </svg>
+    </div>
+    <!-- Page Transition END -->
+   
+    <div id="app">
+        <div class="wrapper">
+            <header class="main-header"><span class="logo-mini"><a href="main.html" data-duration="0.2s"><span class="img-responsive center-block logo">뿌리깊은마크</span></a>
+                </span>
+                <!-- header menu bar START -->
+                <nav role="navigation" class="navbar navbar-static-top"><a href="javascript:;" data-toggle="offcanvas" role="button" class="sidebar-toggle"><span class="sr-only">Toggle navigation</span></a>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown messages-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">3</span></a>
+                                <!-- Message Alarm START -->
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 1 message(s)</li>
+                                    <li>
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="javascript:;">
+                                                    <h4>
+                                                        Support Team
+                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
+                                                    <p>Why not consider this a test message?</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="javascript:;">See All Messages</a></li>
+                                </ul>
+                                <!-- Message Alarm END -->
+                            </li>
+                            <!-- Notice Alarm START -->
+                            <li class="dropdown notifications-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">0</span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 0 notification(s)</li>
+                                </ul>
+                            </li>
+                            <!-- Notice Alarm END -->
+                           
+                            <!-- Admin Infomation START -->
+                            <li class="dropdown user user-menu"><a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/GavicoInd/128.jpg" alt="User Image" class="user-image">
+                                <span class="hidden-xs">관리자(Admin)</span></a></li>
+                            <!-- Admin Infomation END -->
+                        </ul>
+                    </div>
+                </nav>
+                <!-- header menu bar END -->
+            </header>
+
+            <!-- SideMenu START -->
+            <aside class="main-sidebar">
+                <section class="sidebar">
+                    <ul class="sidebar-menu">
+                        <!-- Sidemenu Chart START -->
+                        <li class="header"><i class="fa fa-area-chart"></i>&nbsp;&nbsp;CHART</li>
+                        <li class="pageLink router-link-active"><a href="main.html" class="transition">&nbsp;&nbsp;&nbsp;<i class="fa fa-line-chart"></i> <span class="page">Chart</span></a></li>
+                        <!-- Sidemenu Chart END -->
+
+                        <!-- Sidemenu Pages Bookmark list START -->
+                        <li class="header"><i class="fa fa-book"></i>&nbsp;&nbsp;Bookmark List</li>
+                        <li class="pageLink"><a href="mainbooklist.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark fa-fw"></i><span class="page">Main Page Bookmark</span></a></li>
+                        <li class="pageLink"><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark fa-fw"></i><span class="page">Social Page Bookmark</span></a></li>
+                        <!-- Sidemenu Pages Bookmark list END -->
+
+                        <!-- Sidemenu List START -->
+                        <li class="header"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;List</li>
+                        <li class="pageLink"><a href="groupListTable.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-list-ul"></i><span class="page">Group List</span></a></li>
+                        <li class="pageLink"><a href="userListTable.html">&nbsp;&nbsp;&nbsp;<i class="fa fa-list-ul"></i><span class="page">User List</span></a></li>
+                        <!-- Sidemenu List END -->
+                    </ul>
+                </section>
+            </aside>
+            <!-- Sidemenu END -->
+
+            <!-- Main Content START -->
+            <div class="content-wrapper" style="min-height: 913px;">
+                <section class="content-header">
+                    <h1>Chart</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="javascript:;"><i class="fa fa-home"></i>Home</a></li>
+                        <li class="active">chart</li>
+                    </ol>
+                </section>
+                <!-- 일일/누적 방문자 수 차트 START -->
+                <section class="content">
+                    <h1><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;방문자 수</h1>
+                    <div class="row" id="chartdiv1">
+                        <script>
+                            var chart = AmCharts.makeChart("chartdiv1", {
+                                "type": "serial",
+                                "theme": "dark",
+                                "marginRight": 80,
+                                "autoMarginOffset": 20,
+                                "dataDateFormat": "YYYY-MM-DD HH:NN",
+                                "dataProvider": [{
+                                    "date": "2012-01-01",
+                                    color: "#dd4b39",
+                                    "value": 8
+                                }, {
+                                    "date": "2012-01-02",
+                                    color: "#dd4b39",
+                                    "value": 10
+                                }, {
+                                    "date": "2012-01-03",
+                                    color: "#dd4b39",
+                                    "value": 12
+                                }, {
+                                    "date": "2012-01-04",
+                                    color: "#dd4b39",
+                                    "value": 14
+                                }, {
+                                    "date": "2012-01-05",
+                                    color: "#dd4b39",
+                                    "value": 11
+                                }, {
+                                    "date": "2012-01-06",
+                                    color: "#dd4b39",
+                                    "value": 6
+                                }, {
+                                    "date": "2012-01-07",
+                                    color: "#dd4b39",
+                                    "value": 7
+                                }, {
+                                    "date": "2012-01-08",
+                                    color: "#dd4b39",
+                                    "value": 9
+                                }, {
+                                    "date": "2012-01-09",
+                                    color: "#dd4b39",
+                                    "value": 13
+                                }, {
+                                    "date": "2012-01-10",
+                                    color: "#dd4b39",
+                                    "value": 15
+                                }, {
+                                    "date": "2012-01-11",
+                                    color: "#dd4b39",
+                                    "value": 19
+                                }, {
+                                    "date": "2012-01-12",
+                                    color: "#dd4b39",
+                                    "value": 21
+                                }, {
+                                    "date": "2012-01-13",
+                                    color: "#dd4b39",
+                                    "value": 22
+                                }, {
+                                    "date": "2012-01-14",
+                                    color: "#dd4b39",
+                                    "value": 20
+                                }, {
+                                    "date": "2012-01-15",
+                                    color: "#dd4b39",
+                                    "value": 18
+                                }, {
+                                    "date": "2012-01-16",
+                                    color: "#dd4b39",
+                                    "value": 14
+                                }, {
+                                    "date": "2012-01-17",
+                                    color: "#dd4b39",
+                                    "value": 16
+                                }, {
+                                    "date": "2012-01-18",
+                                    color: "#dd4b39",
+                                    "value": 18
+                                }, {
+                                    "date": "2012-01-19",
+                                    color: "#dd4b39",
+                                    "value": 17
+                                }, {
+                                    "date": "2012-01-20",
+                                    color: "#dd4b39",
+                                    "value": 15
+                                }, {
+                                    "date": "2012-01-21",
+                                    color: "#dd4b39",
+                                    "value": 12
+                                }, {
+                                    "date": "2012-01-22",
+                                    color: "#dd4b39",
+                                    "value": 10
+                                }, {
+                                    "date": "2012-01-23",
+                                    color: "#dd4b39",
+                                    "value": 8
+                                }],
+                                "valueAxes": [{
+                                    "axisAlpha": 0,
+                                    "guides": [{
+                                        "fillAlpha": 0.1,
+                                        "fillColor": "#222d32",
+                                        "lineAlpha": 0,
+                                        "toValue": 16,
+                                        "value": 10
+                                    }],
+                                    "position": "left",
+                                    "tickLength": 0
+                                }],
+                                "graphs": [{
+                                    "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
+                                    "bullet": "round",
+                                    "dashLength": 3,
+                                    "colorField": "color",
+                                    "valueField": "value"
+                                }],
+                                "chartScrollbar": {
+                                    "scrollbarHeight": 1,
+                                    "offset": -1,
+                                    "backgroundAlpha": 0.1,
+                                    "backgroundColor": "#888888",
+                                    "selectedBackgroundColor": "#f39c12",
+                                    "selectedBackgroundAlpha": 1
+                                },
+                                "chartCursor": {
+                                    "fullWidth": true,
+                                    "valueLineEabled": true,
+                                    "valueLineBalloonEnabled": true,
+                                    "valueLineAlpha": 0.5,
+                                    "cursorAlpha": 0
+                                },
+                                "categoryField": "date",
+                                "categoryAxis": {
+                                    "parseDates": true,
+                                    "axisAlpha": 0,
+                                    "gridAlpha": 0.1,
+                                    "minorGridAlpha": 0.1,
+                                    "minorGridEnabled": true
+                                },
+                                "export": {
+                                    "enabled": true
+                                }
+                            });
+                            chart.addListener("dataUpdated", zoomChart);
+
+                            function zoomChart() {
+                                chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
+                            }
+                        </script>
+                    </div>
+                </section>
+                <!-- 일일/누적 방문자 수 차트 END -->
+
+                <!-- 일일 가입자/ 전체 회원 수 START -->
+                <section class="content">
+                    <h1><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;사이트 회원 수</h1>
+                    <div class="row" id="chartdiv2">
+                        <script>
+                            var chart = AmCharts.makeChart("chartdiv2", {
+                                "type": "serial",
+                                "theme": "dark",
+                                "marginRight": 80,
+                                "autoMarginOffset": 20,
+                                "dataDateFormat": "YYYY-MM-DD HH:NN",
+                                "dataProvider": [{
+                                    "date": "2012-01-01",
+                                    color: "#dd4b39",
+                                    "value": 8
+                                }, {
+                                    "date": "2012-01-02",
+                                    color: "#dd4b39",
+                                    "value": 10
+                                }, {
+                                    "date": "2012-01-03",
+                                    color: "#dd4b39",
+                                    "value": 12
+                                }, {
+                                    "date": "2012-01-04",
+                                    color: "#dd4b39",
+                                    "value": 14
+                                }, {
+                                    "date": "2012-01-05",
+                                    color: "#dd4b39",
+                                    "value": 11
+                                }, {
+                                    "date": "2012-01-06",
+                                    color: "#dd4b39",
+                                    "value": 6
+                                }, {
+                                    "date": "2012-01-07",
+                                    color: "#dd4b39",
+                                    "value": 7
+                                }, {
+                                    "date": "2012-01-08",
+                                    color: "#dd4b39",
+                                    "value": 9
+                                }, {
+                                    "date": "2012-01-09",
+                                    color: "#dd4b39",
+                                    "value": 13
+                                }, {
+                                    "date": "2012-01-10",
+                                    color: "#dd4b39",
+                                    "value": 15
+                                }, {
+                                    "date": "2012-01-11",
+                                    color: "#dd4b39",
+                                    "value": 19
+                                }, {
+                                    "date": "2012-01-12",
+                                    color: "#dd4b39",
+                                    "value": 21
+                                }, {
+                                    "date": "2012-01-13",
+                                    color: "#dd4b39",
+                                    "value": 22
+                                }, {
+                                    "date": "2012-01-14",
+                                    color: "#dd4b39",
+                                    "value": 20
+                                }, {
+                                    "date": "2012-01-15",
+                                    color: "#dd4b39",
+                                    "value": 18
+                                }, {
+                                    "date": "2012-01-16",
+                                    color: "#dd4b39",
+                                    "value": 14
+                                }, {
+                                    "date": "2012-01-17",
+                                    color: "#dd4b39",
+                                    "value": 16
+                                }, {
+                                    "date": "2012-01-18",
+                                    color: "#dd4b39",
+                                    "value": 18
+                                }, {
+                                    "date": "2012-01-19",
+                                    color: "#dd4b39",
+                                    "value": 17
+                                }, {
+                                    "date": "2012-01-20",
+                                    color: "#dd4b39",
+                                    "value": 15
+                                }, {
+                                    "date": "2012-01-21",
+                                    color: "#dd4b39",
+                                    "value": 12
+                                }, {
+                                    "date": "2012-01-22",
+                                    color: "#dd4b39",
+                                    "value": 10
+                                }, {
+                                    "date": "2012-01-23",
+                                    color: "#dd4b39",
+                                    "value": 8
+                                }],
+                                "valueAxes": [{
+                                    "axisAlpha": 0,
+                                    "guides": [{
+                                        "fillAlpha": 0.1,
+                                        "fillColor": "#222d32",
+                                        "lineAlpha": 0,
+                                        "toValue": 16,
+                                        "value": 10
+                                    }],
+                                    "position": "left",
+                                    "tickLength": 0
+                                }],
+                                "graphs": [{
+                                    "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
+                                    "bullet": "round",
+                                    "dashLength": 3,
+                                    "colorField": "color",
+                                    "valueField": "value"
+                                }],
+                                "chartScrollbar": {
+                                    "scrollbarHeight": 2,
+                                    "offset": -1,
+                                    "backgroundAlpha": 0.1,
+                                    "backgroundColor": "#888888",
+                                    "selectedBackgroundColor": "#f39c12",
+                                    "selectedBackgroundAlpha": 1
+                                },
+                                "chartCursor": {
+                                    "fullWidth": true,
+                                    "valueLineEabled": true,
+                                    "valueLineBalloonEnabled": true,
+                                    "valueLineAlpha": 0.5,
+                                    "cursorAlpha": 0
+                                },
+                                "categoryField": "date",
+                                "categoryAxis": {
+                                    "parseDates": true,
+                                    "axisAlpha": 0,
+                                    "gridAlpha": 0.1,
+                                    "minorGridAlpha": 0.1,
+                                    "minorGridEnabled": true
+                                },
+                                "export": {
+                                    "enabled": true
+                                }
+                            });
+                            chart.addListener("dataUpdated", zoomChart);
+
+                            function zoomChart() {
+                                chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
+                            }
+                        </script>
+                    </div>
+                </section>
+                <!-- 일일 가입자/ 전체 회원 수 END -->
+
+                <!-- 개인 / 그룹 페이지에서 추가한 북마크 수 START -->
+                <section class="content">
+                    <h1><i class="fa fa-arrow-right"></i>&nbsp;&nbsp;추가한 북마크 수</h1>
+                    <div class="row" id="chartdiv3">
+                        <script>
+                            var chart = AmCharts.makeChart("chartdiv3", {
+                                "type": "serial",
+                                "theme": "dark",
+                                "marginRight": 80,
+                                "autoMarginOffset": 20,
+                                "dataDateFormat": "YYYY-MM-DD HH:NN",
+                                "dataProvider": [{
+                                    "date": "2012-01-01",
+                                    color: "#dd4b39",
+                                    "value": 8
+                                }, {
+                                    "date": "2012-01-02",
+                                    color: "#dd4b39",
+                                    "value": 10
+                                }, {
+                                    "date": "2012-01-03",
+                                    color: "#dd4b39",
+                                    "value": 12
+                                }, {
+                                    "date": "2012-01-04",
+                                    color: "#dd4b39",
+                                    "value": 14
+                                }, {
+                                    "date": "2012-01-05",
+                                    color: "#dd4b39",
+                                    "value": 11
+                                }, {
+                                    "date": "2012-01-06",
+                                    color: "#dd4b39",
+                                    "value": 6
+                                }, {
+                                    "date": "2012-01-07",
+                                    color: "#dd4b39",
+                                    "value": 7
+                                }, {
+                                    "date": "2012-01-08",
+                                    color: "#dd4b39",
+                                    "value": 9
+                                }, {
+                                    "date": "2012-01-09",
+                                    color: "#dd4b39",
+                                    "value": 13
+                                }, {
+                                    "date": "2012-01-10",
+                                    color: "#dd4b39",
+                                    "value": 15
+                                }, {
+                                    "date": "2012-01-11",
+                                    color: "#dd4b39",
+                                    "value": 19
+                                }, {
+                                    "date": "2012-01-12",
+                                    color: "#dd4b39",
+                                    "value": 21
+                                }, {
+                                    "date": "2012-01-13",
+                                    color: "#dd4b39",
+                                    "value": 22
+                                }, {
+                                    "date": "2012-01-14",
+                                    color: "#dd4b39",
+                                    "value": 20
+                                }, {
+                                    "date": "2012-01-15",
+                                    color: "#dd4b39",
+                                    "value": 18
+                                }, {
+                                    "date": "2012-01-16",
+                                    color: "#dd4b39",
+                                    "value": 14
+                                }, {
+                                    "date": "2012-01-17",
+                                    color: "#dd4b39",
+                                    "value": 16
+                                }, {
+                                    "date": "2012-01-18",
+                                    color: "#dd4b39",
+                                    "value": 18
+                                }, {
+                                    "date": "2012-01-19",
+                                    color: "#dd4b39",
+                                    "value": 17
+                                }, {
+                                    "date": "2012-01-20",
+                                    color: "#dd4b39",
+                                    "value": 15
+                                }, {
+                                    "date": "2012-01-21",
+                                    color: "#dd4b39",
+                                    "value": 12
+                                }, {
+                                    "date": "2012-01-22",
+                                    color: "#dd4b39",
+                                    "value": 10
+                                }, {
+                                    "date": "2012-01-23",
+                                    color: "#dd4b39",
+                                    "value": 8
+                                }],
+                                "valueAxes": [{
+                                    "axisAlpha": 0,
+                                    "guides": [{
+                                        "fillAlpha": 0.1,
+                                        "fillColor": "#222d32",
+                                        "lineAlpha": 0,
+                                        "toValue": 16,
+                                        "value": 10
+                                    }],
+                                    "position": "left",
+                                    "tickLength": 0
+                                }],
+                                "graphs": [{
+                                    "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
+                                    "bullet": "round",
+                                    "dashLength": 3,
+                                    "colorField": "color",
+                                    "valueField": "value"
+                                }],
+                                "chartScrollbar": {
+                                    "scrollbarHeight": 2,
+                                    "offset": -1,
+                                    "backgroundAlpha": 0.1,
+                                    "backgroundColor": "#888888",
+                                    "selectedBackgroundColor": "#f39c12",
+                                    "selectedBackgroundAlpha": 1
+                                },
+                                "chartCursor": {
+                                    "fullWidth": true,
+                                    "valueLineEabled": true,
+                                    "valueLineBalloonEnabled": true,
+                                    "valueLineAlpha": 0.5,
+                                    "cursorAlpha": 0
+                                },
+                                "categoryField": "date",
+                                "categoryAxis": {
+                                    "parseDates": true,
+                                    "axisAlpha": 0,
+                                    "gridAlpha": 0.1,
+                                    "minorGridAlpha": 0.1,
+                                    "minorGridEnabled": true
+                                },
+                                "export": {
+                                    "enabled": true
+                                }
+                            });
+                            chart.addListener("dataUpdated", zoomChart);
+
+                            function zoomChart() {
+                                chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
+                            }
+                        </script>
+                    </div>
+                </section>
+                <!-- 개인 / 그룹 페이지에서 추가한 북마크 수 END -->
+            </div>
+            <!-- Main Content END -->
+
+            <!-- footer START -->
+            <footer class="main-footer"><strong>Copyright © 2018
+            <a href="http://www.bitcamp.co.kr">BitCamp</a>.</strong> <b>Java 104th, Team2</b>
+            </footer>
+            <!-- footer END -->
+        </div>
+    </div>
+    <!-- Script START -->
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/app.min.js"></script>
+    <script src="/js/pace.js"></script>
+    <script src="//d2wy8f7a9ursnm.cloudfront.net/v4/bugsnag.min.js"></script>
+    <script src="//d2wy8f7a9ursnm.cloudfront.net/bugsnag-plugins/v1/bugsnag-vue.min.js"></script>
+    <!-- Script END -->
+</body>
+</html>

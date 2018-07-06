@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+<!--  
+	IOC 컨테이너 (Spring 전용 메모리) 안에 생성될 [객체 만들고 조립(의존) 설정] 파일
+	:제어의 역전 (프로그램을 제어구조 바꿘다)
+	
+
+-->
+
+</beans>
+
+
+
+

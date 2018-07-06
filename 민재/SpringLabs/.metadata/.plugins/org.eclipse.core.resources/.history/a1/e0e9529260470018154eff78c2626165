@@ -1,0 +1,6 @@
+package DI_06_Spring;
+
+// 요청 판단 DAO 생성 / DTO 생성 하던 알아서 판단하라
+public class WriteArticleService {
+
+}

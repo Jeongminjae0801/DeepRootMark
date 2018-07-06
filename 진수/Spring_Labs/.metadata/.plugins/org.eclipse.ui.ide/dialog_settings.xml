@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\Bit\Desktop\SpringMVC_Z_AOP"/>
+		<item value="C:\Users\Bit\Desktop\Last Team\AOP\SpringMVC_Z_AOP"/>
+		<item value="C:\Users\Bit\Desktop\Last Team\Tiles\TilesBoot_CSS_DB"/>
+		<item value="C:\Users\Bit\Desktop\TilesBoot_CSS_DB"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\Bit\Desktop\TilesBoot_CSS_DB"/>
+			<item value="C:\Users\Bit\Desktop\TilesBoot"/>
+			<item value="C:\Users\Bit\Desktop\SpringMVC_Basic06_Tiles"/>
+			<item value="C:\Users\Bit\Desktop\SpringMVC_Basic05_JdbcTemplate"/>
+			<item value="C:\Users\Bit\Desktop\SpringMVC_Basic03_WebSite_Annotation_Solution"/>
+			<item value="C:\Users\Bit\Desktop\SpringMVC_Basic02_WebSite"/>
+			<item value="C:\Users\Bit\Desktop\SpringDI_Basic05_Prototype"/>
+			<item value="C:\Users\Bit\Desktop\SpringDI_Basic04_Bean_LifeCycle"/>
+			<item value="C:\Users\Bit\Desktop\SpringDI_Basic03_Annotation"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDI_Basic01"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic5"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic4"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic3"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic2"/>
+			<item value="D:\bitcamp104\Spring\Spring_SampleCode\SpringDAO_Basic1"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item value="525" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="580" key="DIALOG_HEIGHT"/>
+		<item value="706" key="DIALOG_X_ORIGIN"/>
+		<item value="142" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

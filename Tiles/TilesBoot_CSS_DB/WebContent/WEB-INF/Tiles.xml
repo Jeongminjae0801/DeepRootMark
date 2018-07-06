@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+
+ <tiles-definitions>
+
+	<!-- 최종본 패턴을 사용 -->
+	<!--  return home.index  -->
+	<definition name="do.*" template="/WEB-INF/view/inc/layout.jsp"> 
+	    <put-attribute name="title"  value="wecome to kosta" />
+	    <put-attribute name="css" value="{1}.css" />
+	    <put-attribute name="header"  value="/WEB-INF/view/inc/header.jsp" /> 
+	    <put-attribute name="footer"  value="/WEB-INF/view/inc/footer.jsp" />
+	    <put-attribute name="content" value="/WEB-INF/view/{1}.jsp" />
+	</definition>
+	  
+	<definition name="*.*" template="/WEB-INF/view/inc/layout.jsp"> 
+	    <put-attribute name="title"  value="wecome to kosta" />
+	    <put-attribute name="header"  value="/WEB-INF/view/inc/header.jsp" /> 
+	    <put-attribute name="footer"  value="/WEB-INF/view/inc/footer.jsp" />
+	    <put-attribute name="content" value="/WEB-INF/view/{1}/{2}.jsp" />
+	</definition>
+    
+ </tiles-definitions>    

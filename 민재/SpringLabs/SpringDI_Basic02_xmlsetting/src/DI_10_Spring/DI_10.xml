@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+<!-- IOC 컨테이너 안에 생성될 객체를 만들고 조립(의존)관계 설정하는 파일
+
+ 	BookClient bookclient = new BookClient();
+		// Collection Framework : List , Set , Map , Properties
+		Properties prop = new Properties();
+		prop.setProperty("server", "192.168.0.26");
+		prop.setProperty("connection_timeout", "20000");
+		
+		bookclient.setConfig(prop);
+-->
+	<bean id="bookclient" class="DI_10_Spring.BookClient">
+		<property name="config">
+			<props>
+				<prop key="server">192.168.0.26</prop>
+				<prop key="connection_timeout">20000</prop>	
+			</props>
+		</property>
+	
+	</bean>
+</beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--
+	IOC 컨테이너 (Spring 전용 메모리 공간) 안에 생성될 객체를 만들고 조립(의존)관계 설정 하는 파일
+	//MessageBeanimpl messagebean = new MessageBeanimpl("hong");	//name 생성자 초기화
+	//messagebean.setGreeting("hello");	//greeting 는 setter 함수에서 초기화
+	//messagebean.sayHello();
+	
+	DI문법
+	<bean id="하내의이름(식별자)"
+			name="여러개의 이름" 구분자를 통해서(,) , (공백) , (;)
+	<bean name="m1,m2 m3;m4 class="">
+	
+	 **객체를 생성하고 필요한 객체를 주입**
+ 	 **주입방법 : 생성자 주입 (의무적)
+            setter 주입   (일반적 : 선택적) : 필요할때 사용   
+	
+  -->		
+	<bean id="messagebean" name="m1,m2 m3;m4" class="DI_04_Spring.MessageBeanimpl">
+	
+		<!-- 
+		<constructor-arg>
+			<value>hong</value>
+		</constructor-arg> 
+		-->
+		
+		
+		<constructor-arg value="hong"/>
+		<property name="greeting">
+			<value>hello</value>
+		</property>
+	</bean>
+</beans>
