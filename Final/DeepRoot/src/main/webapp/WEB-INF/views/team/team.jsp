@@ -149,8 +149,6 @@
 			                    <script type="text/javascript">
 			                    $(document).ready(function() {
 			                    	var onlinelist = JSON.parse('${onlinelist}');
-                            		//console.log(onlinelist);
-                            		//console.log('${gmemberlist}');
                             		
                             		var memberList = new Array(); 		// 전체 카테고리 리스트 비동기로 받아오기
                             		<c:forEach items="${gmemberlist}" var="member">
@@ -163,7 +161,6 @@
 	                            	
 	                            	$.each(memberList, function(index, element) {
 	                            		var member = element;
-	                            		//console.log(member[0] + "/" + member[1] + "/" + member[2]);
 	                            		if(onlinelist.hasOwnProperty(member[0])) {
 	                            			var insertOnline = '<p id="' + member[0] + '"' + ' class="member" data-grid="'+member[2]+'">' 
             												 	+ '<i class="fas fa-circle online-ico"></i>'
@@ -213,9 +210,6 @@
 		            <div class="completed-modal-left abc123">
 		                <h4 class="completed-modal-to"><b>가져가기&nbsp;&nbsp;&nbsp; :
 		                							&nbsp;&nbsp;&nbsp;&nbsp;My Bookmark</b></h4>
-		                <!-- <div class="completed-modal-dropdown">
-		                       My Bookmark
-		                </div> -->
 		                <div id="jstree-to-mybookmark" style="clear: both;"></div>
 		            </div>
 				</div>
