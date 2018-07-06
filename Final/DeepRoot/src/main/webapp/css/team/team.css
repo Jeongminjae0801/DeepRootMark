@@ -20,24 +20,19 @@ body{
 .modal { z-index: -10; }
 .modal-open .modal { z-index: 1050; }
 
-#linkAdd_btn{
-	perspective-origin: center center;
-    display: table;
-    width: 100%;
-    height: 100%;
-}
-#editurl{
-	perspective-origin: center center;
-    display: table;
-    width: 100%;
-    height: 100%;
-}
+
 #fromMytoGroup{
 	perspective-origin: center center;
     display: table;
     width: 100%;
     height: 100%;
 	
+}
+.jstree-modal-center{
+	 margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 30%;
 }
 .main-modal-controller { display: table-row; width: 100%; }
 .main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }

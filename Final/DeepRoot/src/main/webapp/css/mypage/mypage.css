@@ -31,8 +31,6 @@ a:hover{text-decoration: none; }
     position: absolute;
     top: 30%;
     left: 30%;
-	
-	
 }
 #completedGroupModal {
 	perspective-origin: center center;
