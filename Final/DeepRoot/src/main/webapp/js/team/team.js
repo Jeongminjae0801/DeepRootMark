@@ -132,30 +132,39 @@ function group_leave(){
 /* 그룹 완료 */
 function group_complete(){
     $.confirm({
-        title: '그룹 완료',
-        content: '' +
-        '<form id="completeGroup" action="/bit/user/completedGroup.do" class="formGroup" method="post" onsubmit="return false;>' +
-        '<div class="form-group">' +
-        '<label>해시태그를 입력하세요</label>' +
-        '<input type="text" name="htag" class="htagName form-control" required/>' +
-        '<input type="hidden" name="gid" value="'+gid+'" class="banName form-control"/>' +
-        '</div>' +
-        '</form>',
-        closeIcon: true,
+    	title: '그룹 완료',
+	    content: '' +
+	    '<form id="completeGroup" action="/bit/user/completedGroup.do" class="formGroup" method="post" onsubmit="return false;">' +
+	    '<div class="form-group">' +
+	    '<label>해시태그</label>' +
+	    '<input type="text" id="htag_btn2" name="htag" class="name2 form-control" onkeydown="addHashtag2()">' +
+	    '<div id="htag_append2"></div>' +
+	    '<input type="hidden" name="gid" value="'+gid+'" class="banName form-control"/>' +
+	    '</div>' +
+	    '</form>',
+	    closeIcon: true,
         closeIconClass: 'fa fa-close',
         buttons: {
             formSubmit: {
                 text: '완료',
                 btnClass: 'btn-success',
                 action: function () {
-                    var name = this.$content.find('.htagName').val();
-                    if(!name){
-	                    $.alert('해시태그를 적어주세요');
-	                    return false;
-	                }
-
-                    $("#completeGroup").submit();
-
+                	var htag='';
+	                 
+	                $.each(hashtagList2 , function(index,data){
+	        	    	htag += data;
+	        	    })
+	        	    
+	        	    if(htag == ""){
+	        			$.alert("해시태그를 하나 이상 입력해주세요")
+	        			return false;
+	        		}else if(hashtagList2.length >10){
+	        			$.alert("해시태그는 10개 까지만 입력 가능합니다");
+	        			return false;
+	        		}else{
+	        			this.$content.find('.name2').val(htag);
+	        			$("#completeGroup").submit();
+	        		}
                 }
             },
             '취소': {
@@ -351,3 +360,26 @@ function member_ban(targetNname, hisGrid){
 /* 멤버 강퇴 END */
 
 	
+
+var hashtagList2 = [];
+var hashtagStartPoint2 = 0;
+
+/*URL 해시태그 추가(그룹완료)*/ 
+function addHashtag2() {
+	if (event.keyCode == 13 || event.keyCode == 32 ) {
+		hashtagList2.push("#"+$.trim($('#htag_btn2').val()));
+		var hashtag = $.trim($('#htag_btn2').val());
+		$('#htag_btn2').val('');
+		$('#htag_btn2').focus();
+		$('#htag_append2').append("<input class='btn btn-default btn-hash' id='btnHash2" + hashtagStartPoint2 + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag2(this)'>");
+		hashtagStartPoint2++;
+	}
+}
+
+/*해시태그 삭제(그룹완료)*/
+function deleteHashtag2(data) {
+	var str = $(data).attr('id');
+	$('#' + str).remove();
+	var val = $(data).val();
+	hashtagList2.splice($.inArray(val, hashtagList2), 1);
+}
