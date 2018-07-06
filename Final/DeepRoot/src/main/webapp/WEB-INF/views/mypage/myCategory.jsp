@@ -10,7 +10,8 @@ function completedGroup(gid) {
 	    '<form id="completedGroupForm" action="/bit/user/completedGroup.do" class="formName" method="post" onsubmit="return false;">' +
 	    '<div class="form-group">' +
 	    '<label>해시태그</label>' +
-	    '<input type="text" name="htag" placeholder="#해쉬태그" class="name form-control" required />' +
+	    '<input type="text" id="htag_btn2" name="htag" class="name2 form-control" onkeydown="addHashtag2()">' +
+	    '<div id="htag_append2"></div>' +
 	    '<input type="hidden" class="gid" name="gid" />' + 
 	    '</div>' +
 	    '</form>',
@@ -21,32 +22,42 @@ function completedGroup(gid) {
 	            text: '완료',
 	            btnClass: 'btn-success',
 	            action: function () {
-	                var name = this.$content.find('.name').val();
 	                this.$content.find('.gid').val(gid);
-	                if(!name){
-	                    $.alert('해시태그를 적어주세요');
-	                    return false;
-	                }
-	                
-	                $("#completedGroupForm").ajaxForm({
-	                	success: function(data, statusText, xhr, $form){
-	                		var fromid = '${sessionScope.info_usernname}';
-	                		
-	    	        		stompClient.send('/alarm' , {}, 
-	    	        			JSON.stringify({
-	    	        			gid: data.completedGroup.gid,
-	    	        			fromid:  fromid,
-	    	        			gname: data.completedGroup.gname,
-	    	        			gmemo: '완료',
-	    	        			senddate: 'NOW'})
-	    	        		);
-	    	        		
-	    	        		console.log(fromid);
-	                	}
-	                });
-	                
-	                $("#completedGroupForm").submit();
-	                
+	                var htag='';
+	                 
+	                $.each(hashtagList2 , function(index,data){
+	        	    	htag += data;
+	        	    })
+	        	    
+	        	    if(htag == ""){
+	        			$.alert("해시태그를 하나 이상 입력해주세요")
+	        			return false;
+	        		}else if(hashtagList2.length >10){
+	        			$.alert("해시태그는 10개 까지만 입력 가능합니다");
+	        			return false;
+	        		}else{
+		                
+		                this.$content.find('.name2').val(htag);
+		                
+		                $("#completedGroupForm").ajaxForm({
+		                	success: function(data, statusText, xhr, $form){
+		                		var fromid = '${sessionScope.info_usernname}';
+		                		
+		    	        		stompClient.send('/alarm' , {}, 
+		    	        			JSON.stringify({
+		    	        			gid: data.completedGroup.gid,
+		    	        			fromid:  fromid,
+		    	        			gname: data.completedGroup.gname,
+		    	        			gmemo: '완료',
+		    	        			senddate: 'NOW'})
+		    	        		);
+		    	        		
+		    	        		console.log(fromid);
+		                	}
+		                });
+		                
+		                $("#completedGroupForm").submit();
+	        		}
 	            }
 	        },
 	        '취소': {

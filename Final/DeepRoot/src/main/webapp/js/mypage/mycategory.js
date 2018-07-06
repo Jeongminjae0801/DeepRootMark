@@ -700,6 +700,22 @@ function addHashtag() {
 	}
 }
 
+
+var hashtagList2 = [];
+var hashtagStartPoint2 = 0;
+
+/*URL 해시태그 추가(그룹완료)*/ 
+function addHashtag2() {
+	if (event.keyCode == 13 || event.keyCode == 32 ) {
+		hashtagList2.push("#"+$.trim($('#htag_btn2').val()));
+		var hashtag = $.trim($('#htag_btn2').val());
+		$('#htag_btn2').val('');
+		$('#htag_btn2').focus();
+		$('#htag_append2').append("<input class='btn btn-default btn-hash' id='btnHash2" + hashtagStartPoint2 + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag2(this)'>");
+		hashtagStartPoint2++;
+	}
+}
+
 /*해시태그 수정*/
 function edit_addHashtag() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
@@ -718,6 +734,14 @@ function deleteHashtag(data) {
 	$('#' + str).remove();
 	var val = $(data).val();
 	hashtagList.splice($.inArray(val, hashtagList), 1);
+}
+
+/*해시태그 삭제(그룹완료)*/
+function deleteHashtag2(data) {
+	var str = $(data).attr('id');
+	$('#' + str).remove();
+	var val = $(data).val();
+	hashtagList2.splice($.inArray(val, hashtagList2), 1);
 }
 
 /*해시태그 수정에서 삭제*/
