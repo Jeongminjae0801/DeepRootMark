@@ -330,7 +330,8 @@ $(document).ready(function(){
 													},
 													success: function(data){
 														$('#loading').html("");
-														$('#editurl').modal("toggle");
+														//$('#editurl').modal("toggle");
+														$('.modal.in').modal('hide');
 														$('#jstree_container').jstree().deselect_all(true);											
 														$('#jstree_container').jstree(true).select_node(urlpid);		
 													}
@@ -450,7 +451,8 @@ $(document).ready(function(){
 													},
 													success: function(data){
 														$('#loading').html("");
-														$('#editurl').modal("toggle");
+														//$('#editurl').modal("toggle");
+														$('.modal.in').modal('hide');
 													}
 												}) 
 											})
