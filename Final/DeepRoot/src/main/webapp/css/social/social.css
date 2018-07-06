@@ -259,16 +259,16 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 /* Modal scrolling */
-.jstree-proton > .jstree-container-ul > .jstree-node {
+.jstree-container-ul {
 	overflow: auto;
-    max-height: 100px;
+    max-height: 800px;
 }
 
-.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar{width: 10px; height: 10px;}
-.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-track {background-color:#fff0;}
-.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-thumb {background-color:#ccc; border-radius: 10px;}
-.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-thumb:hover {background: #b9b9b9;}
-.jstree-proton > .jstree-container-ul > .jstree-node::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+.jstree-container-ul::-webkit-scrollbar{width: 10px; height: 10px;}
+.jstree-container-ul::-webkit-scrollbar-track {background-color:#fff0;}
+.jstree-container-ul::-webkit-scrollbar-thumb {background-color:#ccc; border-radius: 10px;}
+.jstree-container-ul::-webkit-scrollbar-thumb:hover {background: #b9b9b9;}
+.jstree-container-ul::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
     width: 5px;
     height: 5px;
     background-color: #fff0;
