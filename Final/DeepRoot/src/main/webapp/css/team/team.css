@@ -483,6 +483,12 @@ a:active {
 
 /* group-category CSS END */
 
+/* Team Header Notice dropdown > li CSS */
+.dropdown-menu > li{
+    padding: 5px 10px 5px 10px;
+    background-color: #fff;
+}
+
 
 /* team CSSS END */
 /* jstree모달*/

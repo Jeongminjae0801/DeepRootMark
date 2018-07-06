@@ -247,7 +247,7 @@ a:hover{text-decoration: none; }
 }
 
 /* jstree 길이 넘어가면 ... 표시 */
-.jstree-anchor{
+.my-bookmark-print-div .jstree-anchor{
     overflow:hidden;
 	white-space:nowrap;
 	max-width: 80%;
@@ -273,4 +273,20 @@ a:hover{text-decoration: none; }
 }
 .modal-footer {
 	clear: both;
+}
+
+/* jstree scrolling */
+.jstree-container-ul {
+	overflow: auto;
+    max-height: 690px;
+}
+
+.jstree-container-ul::-webkit-scrollbar{width: 10px; height: 10px;}
+.jstree-container-ul::-webkit-scrollbar-track {background-color:#fff0;}
+.jstree-container-ul::-webkit-scrollbar-thumb {background-color:#ccc; border-radius: 10px;}
+.jstree-container-ul::-webkit-scrollbar-thumb:hover {background: #b9b9b9;}
+.jstree-container-ul::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+    width: 5px;
+    height: 5px;
+    background-color: #fff0;
 }

@@ -30,7 +30,6 @@
     <!-- Common Script JavaScript & CSS END -->
     
     <!-- Group Page CSS START -->
-    <%-- <link href="${pageContext.request.contextPath}/css/mainpage/modal.css?ver=2" rel="stylesheet"> --%>
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/team/team.css?ver=2" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
