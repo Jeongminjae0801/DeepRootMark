@@ -67,9 +67,14 @@
                     <div class="slide-text">
                         <!-- introduce text START -->
                         <div class="introduce-text">
-							개발자들에게 필요한 사이트들을 제공해줍니다<br>
-							자신만의 북마크 사이트를 추가하고<br>
-							다른사람들과 공유해보세요<br>
+                        	
+                        	<span>어디서든 빠르고 쉽게</span><br>
+							<span>개발자가 사용하기 좋은 사이트들을 제공해줍니다!</span><br>
+							<span>자신만의 북마크를 꾸며보세요!</span><br>
+							<span>그룹을 개설하여 북마크를 공유해보세요!</span><br>
+							<span>다른사람들과 공유해보세요!</span><br>
+							
+							
                         </div>
                         <!-- introduce text END -->
                         <!-- Login / Roll in Button START -->
