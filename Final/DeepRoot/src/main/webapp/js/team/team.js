@@ -7,7 +7,6 @@ function get_info(gid, uid){
 	uid = uid;
 }
 
-
 /* 멤버 초대 */
 function member_insert(){
     $.confirm({
@@ -68,8 +67,6 @@ function member_insert(){
             				}
             			}
                 	});
-
-
                 }
             },
             '취소': {
@@ -199,8 +196,6 @@ function group_complete(){
     });
 }
 
-
-
 /* 마우스 오른쪽 이벤트 (회원강퇴) 추가*/
 function myContextMenu() {
 	if( grid == 1 ){
@@ -218,10 +213,10 @@ function myContextMenu() {
 	            }
 	        },
 	        items: {
-	            "manager": {name: "매니저 승급"/*, icon: "far fa-edit"*/},
-	            "member": {name: "매니저 강등"/*, icon: "fas fa-eraser"*/},
+	            "manager": {name: "매니저 승급"},
+	            "member": {name: "매니저 강등"},
 	            "sep1": "---------",
-	            "ban": {name: "강퇴"/*, icon: "fas fa-ban"*/}
+	            "ban": {name: "강퇴"}
 	        }
 	    });   
 	}
@@ -238,7 +233,7 @@ function myContextMenu() {
 	            }
 	        },
 	        items: {
-	            "ban": {name: "강퇴", icon: "fas fa-ban"}
+	            "ban": {name: "강퇴"}
 	        }
 	    });   
 	}
@@ -246,7 +241,6 @@ function myContextMenu() {
 
 /* 멤버 권한 관리 START */
 function member_auth(key, targetNname, hisGrid){   	
-	//console.log(key + "/" + targetNname + "/" + hisGrid);
 	// 그룹원 권한 권리  Ajax
 	$.ajax({
 		url: "giveGorupRole.do",
