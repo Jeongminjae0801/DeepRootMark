@@ -235,13 +235,15 @@ $(function() {
     });
 	
 	//3.비밀번호 길이 확인 함수
+    $('#pwd_join').focus(function() {
+    	$('#pwd_confirmation').val('');
+    	$('#pwd_join').removeClass('clear_join')
+    	$('#pwd_confirmation').removeClass('clear_join');
+    });
     $('#pwd_join').keyup(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
              $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
              $('#pwd_join').removeClass('clear_join')
-        } else if(!($('#pwd_join').val() == $('#pwd_confirmation').val())) {
-             $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
-             $('#pwd_confirmation').removeClass('clear_join');
         } else {
              $('.error').removeClass('alert alert-danger').html('');
              $('#pwd_join').removeClass('clear_join').addClass('clear_join');
