@@ -542,7 +542,6 @@ $('#into-my-bookmark').on("click",function(){
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
                     icon: "warning",
-                    buttons: true,
                     dangerMode: true
 				});
 			}
@@ -552,7 +551,6 @@ $('#into-my-bookmark').on("click",function(){
                 title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
                 icon: "warning",
-                buttons: true,
                 dangerMode: true
 			});
 	    }
@@ -615,7 +613,6 @@ $('#from-my-bookmark').on("click",function(){
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
                     icon: "warning",
-                    buttons: true,
                     dangerMode: true
 				});
 			}
@@ -625,7 +622,6 @@ $('#from-my-bookmark').on("click",function(){
                 title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
                 icon: "warning",
-                buttons: true,
                 dangerMode: true
 			});
 	    }
