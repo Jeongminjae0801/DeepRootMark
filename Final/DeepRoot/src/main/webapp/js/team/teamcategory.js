@@ -227,7 +227,7 @@ function openAddUrlLevel2() {
 		$.alert("URL을 확인해주세요");
 	}else {
 		$.ajax({
-    		url: "/bit/admin/preview.do",
+    		url: "/bit/user/preview.do",
 			type: "post",
 			data : {
 				url : url // URL 주소
@@ -400,7 +400,9 @@ function customMenu($node){
 								beforeSend : function(){
 								},
 								success: function(data){
-									$('#editurl').modal("toggle");
+									//$('#editurl').modal("toggle");
+									//$('.modal-backdrop').remove()
+									$('.modal.in').modal('hide');
 									//href 가 반드시 http 로 시작해야한다.
 									$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
 									$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);
@@ -540,7 +542,6 @@ $('#into-my-bookmark').on("click",function(){
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
                     icon: "warning",
-                    buttons: true,
                     dangerMode: true
 				});
 			}
@@ -550,7 +551,6 @@ $('#into-my-bookmark').on("click",function(){
                 title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
                 icon: "warning",
-                buttons: true,
                 dangerMode: true
 			});
 	    }
@@ -613,7 +613,6 @@ $('#from-my-bookmark').on("click",function(){
                     title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
                     icon: "warning",
-                    buttons: true,
                     dangerMode: true
 				});
 			}
@@ -623,7 +622,6 @@ $('#from-my-bookmark').on("click",function(){
                 title: "목적지 폴더를 확인하셨나요?",
                 text: "잠시후 다시 시도해주세요!",
                 icon: "warning",
-                buttons: true,
                 dangerMode: true
 			});
 	    }

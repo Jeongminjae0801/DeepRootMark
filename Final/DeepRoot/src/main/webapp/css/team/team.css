@@ -21,13 +21,7 @@ body{
 .modal-open .modal { z-index: 1050; }
 
 
-#fromMytoGroup{
-	perspective-origin: center center;
-    display: table;
-    width: 100%;
-    height: 100%;
-	
-}
+
 .jstree-modal-center{
 	 margin: 0;
     position: absolute;
@@ -35,7 +29,14 @@ body{
     left: 30%;
 }
 .main-modal-controller { display: table-row; width: 100%; }
-.main-modal-center { display: table-cell; vertical-align: middle; padding-bottom: 50px; }
+.main-modal-center { 
+	display: table-cell; 
+	vertical-align: middle; 
+	position: absolute;
+    padding-bottom: 50px;
+    top: 30%;
+    left: 30%;
+}
 .whole-body{margin-top:100px;}
 .container-fluid.team-container .row .col-sm-12{
     border : 5px double #000;
@@ -73,6 +74,12 @@ body{
 .container-fluid{
     padding-left: 80px;
     padding-right: 55px;
+}
+.jstree-modal-fromgrouptomy{
+		 margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 30%;
 }
 
 /* Top Content CSS START */
@@ -483,6 +490,12 @@ a:active {
 
 /* group-category CSS END */
 
+/* Team Header Notice dropdown > li CSS */
+.dropdown-menu > li{
+    padding: 5px 10px 5px 10px;
+    background-color: #fff;
+}
+
 
 /* team CSSS END */
 /* jstree모달*/
@@ -509,4 +522,12 @@ a:active {
 	margin-right: 10px;
 	color: #081971; 
 	font-size : 15px;
+}
+
+.modal-header {
+    padding: 15px 15px 10px 15px;
+    border-bottom: 2px solid #7bbfa8;
+}
+.modal-body{
+	padding-top: 0px;
 }

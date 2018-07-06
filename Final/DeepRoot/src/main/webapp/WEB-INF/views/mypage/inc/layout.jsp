@@ -215,7 +215,7 @@
 									<td><input type="text" id="edit_sname_btn" name="edit_sname_btn"
 										class="form-control"></td>
 								</tr>
-								<tr class="addUrlLevel3">
+								<tr >
 									<td class="info" style="vertical-align: middle;">해시태그 :</td>
 									<td><input type="text" id="edit_htag_btn" name="edit_htag_btn"
 										class="form-control" onkeydown="edit_addHashtag()"></td>

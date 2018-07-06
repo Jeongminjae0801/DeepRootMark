@@ -48,7 +48,7 @@ html { overflow-y:scroll; }
 #header {
     margin-bottom: 0;
     width: 100%;
-    padding: 15px 0 15px 0;
+    padding: 15px 0 0 0;
     position: fixed;
     z-index: 2;
     background-color: #fff;

@@ -7,6 +7,7 @@ package site.book.user.controller;
  */
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,10 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
@@ -184,6 +189,42 @@ public class UserController {
 			e.printStackTrace();
 		}
 	}
+	
+	// URL 추가시 타이틀 가져오기
+	@RequestMapping("preview.do")
+	public View WebCrawling(String url, Model model) {
+		Document doc;
+		Map<String, List<String>> result = new HashMap<String, List<String>>();
+		String[] REQUIRED_META = new String[] { "og:title" };
+		try {
+			doc = Jsoup.connect(url).userAgent(
+					"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36")
+					.referrer("http://www.google.com").get();
+			Elements ogElements = doc.select("meta[property^=og], meta[name^=og]");
+			for (Element e : ogElements) {
+				String target = e.hasAttr("property") ? "property" : "name";
+
+				if (!result.containsKey(e.attr(target))) {
+					result.put(e.attr(target), new ArrayList<String>());
+				}
+				result.get(e.attr(target)).add(e.attr("content"));
+			}
+			for (String s : REQUIRED_META) {
+				if (!(result.containsKey(s) && result.get(s).size() > 0)) {
+					if (s.equals(REQUIRED_META[0])) {
+						result.put(REQUIRED_META[0], Arrays.asList(new String[] { doc.select("title").eq(0).text() }));
+					}
+				}
+			}
+			for (String s : result.keySet()) {
+				model.addAttribute(s.substring(3), result.get(s));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jsonview;
+	}
+	
 	
 	
 	// 명수
