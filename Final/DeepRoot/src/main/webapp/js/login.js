@@ -1,6 +1,5 @@
 
 /* Login / Roll_in / Password find script START */
-
 function showRegisterForm() {
 	clearForm();
 	$('.findBox').fadeOut('fast');
@@ -10,7 +9,6 @@ function showRegisterForm() {
             $('.register-footer').fadeIn('fast');
         });
         $('.modal-title').html('Register with');
-    	
     });
     $('.error').removeClass('alert alert-danger').html('');
 }
@@ -27,7 +25,6 @@ function showLoginForm() {
                 $('.login-footer').fadeIn('fast')
             });
         });
-
         $('.modal-title').html('Login with');
     });
     $('.error').removeClass('alert alert-danger').html('');
@@ -48,9 +45,12 @@ function showFindForm() {
 }
 
 function clearForm() {
+	$("#uid_join").on("blur", email_check);
 	$('#login-form')[0].reset();
 	$('#rollin-form')[0].reset();
 	$('#find-form')[0].reset();
+	$('#uid_join').prop('readonly', false);
+	$('#auth-div').css('display', 'none');
 }
 
 function openLoginModal() {
@@ -59,7 +59,6 @@ function openLoginModal() {
     setTimeout(function() {
         $('#loginModal').modal('show');
     }, 230);
-
 }
 
 function openRegisterModal() {
@@ -68,7 +67,6 @@ function openRegisterModal() {
     setTimeout(function() {
         $('#loginModal').modal('show');
     }, 230);
-
 }
 
 function openFindModal() {
@@ -88,93 +86,142 @@ function shakeModal_login() {
     }, 1000);
 }
 
-
 /*
  * 회원가입 Ajax + 유효성 확인
  */
+function email_check(){
+	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
+    
+    // 이메일 길이 확인
+    if(($('#uid_join').val().trim() == "") || !($('#uid_join').val().length >= 5 )){
+        $('.error').addClass('alert alert-danger').html("이메일은 5자 이상 입력해야 합니다!");
+        $('#uid_join').removeClass('clear_join');
+        $('#uid_join').focus();
+        return
+    }
+    // 이메일 형식 확인
+    else if( !(regex.test($('#uid_join').val())) ) {
+        $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 이메일 입니다!");
+        $('#uid_join').removeClass('clear_join');
+        $('#uid_join').focus();
+        return
+    }
+    else{
+        $('.error').removeClass('alert alert-danger').html('');
+        $('.error').removeClass('alert alert-success').html('');
+    }
+	
+	// 1. User ID Check
+    $.ajax({ 
+		url:"joinus/checkuid.do",
+        type:"POST",
+        data: {	"uid": $('#uid_join').val() },
+        dataType:"json", 
+        beforeSend: function() {
+            //마우스 커서를 로딩 중 커서로 변경
+            $('html').css("cursor", "wait");
+        },
+        complete: function() {
+            //마우스 커서를 원래대로 돌린다
+            $('html').css("cursor", "auto");
+        },
+        success:function(data){
+        	// 사용 가능한 ID
+        	if(data.result == 'pass') {
+        		$('.error').removeClass('alert alert-danger').html('');
+        		
+        		
+        		if( $('#auth-div').css('display') == 'block' ) {
+        			$('#uid_join').removeClass('clear_join');
+        			return
+        		}else {
+        			$('#uid_join').removeClass('clear_join').addClass('clear_join');
+        			$("#uid_join").prop('readonly', true);
+            		$("#uid_join").off("blur");
+            		$('#auth-div').css('display', 'block');
+            		
+        		}
+        		
+        		// 2. 가입자 이메일로 인증키 전송
+        		$.ajax({ 
+            		url:"joinus/emailsend.do",
+                    type:"POST",
+                    data: {	"uid": $('#uid_join').val() },
+                    dataType:"json",
+                    success:function(data){
+                    	if(data.email == 'pass') {
+                    		$.alert("해당 이메일로 인증키가 발송되었습니다!");
+                    		$('#uid_join').addClass('clear_join');
+                    	}
+                    	else {
+                    		$('#loginModal .modal-dialog').addClass('shake');
+                    		$('.error').addClass('alert alert-danger').html("회원님의 실제 이메일을 입력해주세요!");
+    	                    setTimeout(function() {
+    	                    	$('#uid_join').removeClass('clear_join');
+    	                        $('#loginModal .modal-dialog').removeClass('shake');
+    	                    }, 500);
+                    	}
+                    }
+                });
+        	}
+        	// 사용 불가능한 ID
+        	else { 
+        		$('#loginModal .modal-dialog').addClass('shake');
+        		$("#uid_join").val("");
+        		$("#uid_join").focus();
+        		$('.error').removeClass('alert alert-danger').addClass('alert alert-danger').html("이미 가입된 이메일입니다");
+                setTimeout(function() {
+                	$('#uid_join').removeClass('clear_join');
+                    $('#loginModal .modal-dialog').removeClass('shake');
+                }, 500);
+        	}
+        },
+        error:function(e){  
+        	console.log("Error: " + e.responseText); 
+        }
+    });
+}
+
+
+
 $(function() {
     /* 회원가입 Ajax() START */
 	// 이메일 형식 확인 함수
-    $('#uid_join').keyup(function() {
-        var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
-        
-        // 이메일 길이 확인
-        if(($('#uid_join').val().trim() == "") || !($('#uid_join').val().length >= 5 )){
-                 $('.error').addClass('alert alert-danger').html("이메일은 5자 이상 입력해야 합니다.");
-        }
-        // 이메일 형식 확인
-        else if( !(regex.test($('#uid_join').val())) ) {
-                 $('.error').addClass('alert alert-danger').html("형식에 맞지 않은 이메일 입니다.");
-        }
-        else{
-            $('.error').removeClass('alert alert-danger').html('');
-        }
+    $('#uid_join').focus(function() {
+    	if($('#uid_join').prop('readonly') == true) { return }
+    	$('.error').addClass('alert alert-success').html("회원님의 실제 이메일을 적어주세요!");
+    });
+    
+    $('#uid_join').dblclick(function() {
+    	if($('#uid_join').prop('readonly') == true) {
+    		$.confirm({
+    	        title: '이메일 수정',
+    	        content: '회원가입하실 이메일을 수정하시겠습니까?',
+    	        closeIcon: true,
+    	        closeIconClass: 'fa fa-close',
+    	        buttons: {
+    	            formSubmit: {
+    	                text: '완료',
+    	                btnClass: 'btn-success',
+    	                action: function () {
+    	                	$("#uid_join").on("blur", email_check);
+    	                	$('#uid_join').removeClass('clear_join');
+    	                	$('#uid_join').prop('readonly', false);
+    	                	$('#auth-div').val('');
+    	                	$('#auth-div').css('display', 'none');
+    	                }
+    	            },
+    	            '취소': {
+    	                btnClass: 'btn-red',
+    	                action: function () { /* close */ }
+    	            }
+    	        }
+    	    }); 
+    	}
+    	else { return }
     });
 	
-	$("#uid_join").blur(function(){
-		// 1. User ID Check
-        $.ajax({ 
-    		url:"joinus/checkuid.do",
-            type:"POST",
-            data: {	"uid": $('#uid_join').val() },
-            dataType:"json", 
-            beforeSend: function() {
-                //마우스 커서를 로딩 중 커서로 변경
-                $('html').css("cursor", "wait");
-            },
-            complete: function() {
-                //마우스 커서를 원래대로 돌린다
-                $('html').css("cursor", "auto");
-            },
-            success:function(data){
-            	// 사용 가능한 ID
-            	if(data.result == 'pass') {
-            		$('.error').removeClass('alert alert-danger').html('');
-            		$('.error').addClass('alert alert-success').html("사용 가능한 이메일입니다");
-            		$('#uid_join').removeClass('clear_join').addClass('clear_join');
-            		
-            		// 2. 가입자 이메일로 인증키 전송
-            		$.ajax({ 
-                		url:"joinus/emailsend.do",
-                        type:"POST",
-                        data: {	"uid": $('#uid_join').val() },
-                        dataType:"json",
-                        success:function(data){
-                        	if(data.email == 'pass') {
-                        		$('.error').removeClass('alert alert-danger').html('');
-                        		$('.error').addClass('alert alert-success').html("해당 이메일로 인증키가 발송되었습니다.");
-                        		alert("해당 이메일로 인증키가 발송되었습니다.");
-                        		$('#auth-div').css('display', 'block');
-                        	}
-                        	else {
-                        		$('#loginModal .modal-dialog').addClass('shake');
-                        		$('.error').addClass('alert alert-danger').html("존재하지 않는 이메일입니다. 확인 부탁드립니다.");
-        	                    setTimeout(function() {
-        	                        $('#loginModal .modal-dialog').removeClass('shake');
-        	                    }, 500);
-                        	}
-                        },
-                        error:function(e){  
-                        	console.log("Error: " + e.responseText); 
-                        }
-                    });
-            	}
-            	// 사용 불가능한 ID
-            	else { 
-            		$('#loginModal .modal-dialog').addClass('shake');
-            		$("#uid_join").val("");
-            		$("#uid_join").focus();
-            		$('.error').removeClass('alert alert-danger').addClass('alert alert-danger').html("이미 가입된 이메일입니다");
-                    setTimeout(function() {
-                        $('#loginModal .modal-dialog').removeClass('shake');
-                    }, 500);
-            	}
-            },
-            error:function(e){  
-            	console.log("Error: " + e.responseText); 
-            }
-        });
-    });
+	$("#uid_join").on("blur", email_check);
 	
 	// 이메일 authcode 형식 확인
     $('#authcode_join').keyup(function(){
@@ -191,9 +238,7 @@ $(function() {
     $('#pwd_join').keyup(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
              $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
-            //$('#pwd_join').focus();
-        } else if(!($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15) || !($('#pwd_join').val() == $('#pwd_confirmation').val())) {
-             $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
+             $('#pwd_join').removeClass('clear_join')
         } else {
              $('.error').removeClass('alert alert-danger').html('');
              $('#pwd_join').removeClass('clear_join').addClass('clear_join');
@@ -204,8 +249,10 @@ $(function() {
     $('#pwd_confirmation').keyup(function() {
         if (!($('#pwd_join').val() == $('#pwd_confirmation').val())) {
               $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
+              $('#pwd_confirmation').removeClass('clear_join');
         } else if(($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
               $('.error').addClass('alert alert-danger').html("비밀번호는 5자~15자 사이로 만들어야 합니다.");
+              $('#pwd_confirmation').removeClass('clear_join');
         } else {
         	  $('.error').removeClass('alert alert-danger').html('');
         	  $('#pwd_confirmation').removeClass('clear_join').addClass('clear_join');
@@ -214,36 +261,36 @@ $(function() {
 	
     //5.닉네임 중복확인
 	$("#nname_join").blur(function(){
-        $.ajax({ 
-    		url:"joinus/checknname.do",
-            type:"POST",
-            data: {	"nname": $('#nname_join').val() },
-            dataType:"json", 
-            beforeSend: function() {
-                $('html').css("cursor", "wait");
-            },
-            complete: function() {
-                $('html').css("cursor", "auto");
-            },
-            success:function(data){
-            	if(data.result == 'pass') {
-            		$('.error').removeClass('alert alert-danger').html('');
-            		$('.error').addClass('alert alert-success').html("사용 가능한 닉네임입니다");
-            		$('#nname_join').removeClass('clear_join').addClass('clear_join');
-            	}
-            	else {
-            		$('#loginModal .modal-dialog').addClass('shake');
-            		$('.error').addClass('alert alert-danger').html("해당 닉네임이 이미 존재합니다.");
-	                    setTimeout(function() {
-	                        $('#loginModal .modal-dialog').removeClass('shake');
-	                    }, 500);
-            		$("#nname_join").focus();
-            	}
-            },
-            error:function(e){  
-            	console.log("Error: " + e.responseText); 
-            }
-        });
+		if (($('#nname_join').val().trim() == "") || !($('#nname_join').val().length >= 1 && $('#nname_join').val().length <= 10)) {
+			$('.error').addClass('alert alert-danger').html("닉네임은 2~10자 입니다!");
+            $('#nname_join').removeClass('clear_join');
+            
+		}else {
+			$.ajax({ 
+	    		url:"joinus/checknname.do",
+	            type:"POST",
+	            data: {	"nname": $('#nname_join').val() },
+	            dataType:"json", 
+	            beforeSend: function() { $('html').css("cursor", "wait"); },
+	            complete: function() { $('html').css("cursor", "auto"); },
+	            success:function(data){
+	            	if(data.result == 'pass') {
+	            		$('.error').removeClass('alert alert-danger').html('');
+	            		$('.error').addClass('alert alert-success').html("사용 가능한 닉네임입니다");
+	            		$('#nname_join').removeClass('clear_join').addClass('clear_join');
+	            	}
+	            	else {
+	            		$('#loginModal .modal-dialog').addClass('shake');
+	            		$('.error').addClass('alert alert-danger').html("해당 닉네임이 이미 존재합니다.");
+		                    setTimeout(function() {
+		                        $('#loginModal .modal-dialog').removeClass('shake');
+		                    }, 500);
+	            		$("#nname_join").focus();
+	            		$('#nname_join').removeClass('clear_join');
+	            	}
+	            }
+	        });
+		}
     });
 	
 	//5.이메일 authcode 확인
@@ -269,11 +316,12 @@ $(function() {
             		
             	}else {
             		$('#loginModal .modal-dialog').addClass('shake');
+            		$('#authcode_join').removeClass('clear_join');
+            		$("#authcode_check").prop("disabled", false);
             		$('.error').addClass('alert alert-danger').html("잘못된 인증키 입니다.");
 	                    setTimeout(function() {
 	                        $('#loginModal .modal-dialog').removeClass('shake');
 	                    }, 500);
-            		$("#authcode_check").prop("disabled", false);
             	}
             },
             error:function(e){  
@@ -293,11 +341,11 @@ $(function() {
 					&& $('#authcode_join').hasClass('clear_join')) {
 				$("#rollinAjax").prop("disabled", false);
 			}else {
-				alert("위 항목을 모두 작성해주세요");
+				$.alert("위 항목을 모두 정확히 작성해주세요");
 				$("#agree-site-rule").prop("checked", false);
 			}
 		}else {
-			console.log("xxxx");
+			//console.log("xxxx");
 			$("#rollinAjax").prop("disabled", true);
 		}
 	});
@@ -312,7 +360,7 @@ $(function() {
            /*  crossDomain: false, */
             success:function(data){
             	if(data.email == 'pass') {
-            		alert("인증 코드가 재발송되었습니다.");
+            		$.alert("인증 코드가 재발송되었습니다.");
             		$("#authcode_check").prop("disabled", true);
             	}else { 
             		$('#loginModal .modal-dialog').addClass('shake');
@@ -331,6 +379,7 @@ $(function() {
 	
 	$("#rollinAjax").on("dblclick", function(){ });
     $("#rollinAjax").on("click", function(){
+    	console.log("????");
     	$.ajax({ 
     		url:"joinus/rollin.do",
             type:"POST",
@@ -341,8 +390,9 @@ $(function() {
             dataType:"json",
            /*  crossDomain: false, */
             success:function(data){
+            	console.log(data);
             	if(data.rollin == 'pass') {
-            		location.href="index.do"; 
+            		location.replace("index.do"); 
             	}
             	else { 
             		$("#rollinAjax > strong").html("잘못된 접근입니다. 잠시후 다시 시도해주세요.");
@@ -354,6 +404,8 @@ $(function() {
         });
     });
     /* 회원가입 Ajax() END */
+    
+    
     
     
     /* 로그인 Ajax() START */
@@ -399,7 +451,7 @@ $(function() {
             		location.href = data.path;
             	
             	}else if(data.login == 'duplicate') {
-            		alert("이미 로그인된 아이디입니다. 확인 부탁드립니다!");
+            		$.alert("이미 로그인된 아이디입니다. 확인 부탁드립니다!");
             		setTimeout(function(){ location.replace("index.do"); }, 500);
             		
             	}else {  

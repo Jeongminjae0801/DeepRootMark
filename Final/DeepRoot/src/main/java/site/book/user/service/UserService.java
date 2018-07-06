@@ -101,9 +101,11 @@ public class UserService {
 		try {
 			Map<String, String> convert_user = oMapper.convertValue(user, Map.class);
 			row = userDAO.insertNewUser(convert_user);
+			System.out.println(row);
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
+			row = -1;
 		}
 		
 		return row;

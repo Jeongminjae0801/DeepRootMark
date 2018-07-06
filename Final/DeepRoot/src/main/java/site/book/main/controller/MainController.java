@@ -183,7 +183,7 @@ public class MainController {
 		//System.out.println(user);
 		
 		int result = user_service.rollinUser(user);
-		if(result > 0) {
+		if(result >= 0) {
 			model.addAttribute("rollin", "pass");
 		}else {
 			model.addAttribute("rollin", "fail");
