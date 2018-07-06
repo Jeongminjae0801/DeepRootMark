@@ -62,11 +62,11 @@
 	
 	<!-- 방문자 Listener -->
 	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+		<listener-class>site.book.utils.VisitorCounter</listener-class>
 	</listener>
 	
 	<listener>
-		<listener-class>site.book.utils.VisitorCounter</listener-class>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 	
 	<!-- 중복로그인을 방지 -->

@@ -235,6 +235,11 @@ $(function() {
     });
 	
 	//3.비밀번호 길이 확인 함수
+    $('#pwd_join').focus(function() {
+    	$('#pwd_confirmation').val('');
+    	$('#pwd_join').removeClass('clear_join')
+    	$('#pwd_confirmation').removeClass('clear_join');
+    });
     $('#pwd_join').keyup(function() {
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
              $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
