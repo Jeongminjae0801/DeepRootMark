@@ -400,7 +400,9 @@ function customMenu($node){
 								beforeSend : function(){
 								},
 								success: function(data){
-									$('#editurl').modal("toggle");
+									//$('#editurl').modal("toggle");
+									//$('.modal-backdrop').remove()
+									$('.modal.in').modal('hide');
 									//href 가 반드시 http 로 시작해야한다.
 									$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
 									$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);
