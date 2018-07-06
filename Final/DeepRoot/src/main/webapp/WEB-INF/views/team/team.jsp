@@ -211,7 +211,8 @@
 		            </div>
 		            <hr>
 		            <div class="completed-modal-left abc123">
-		                <h4 class="completed-modal-to"><b>가져가기 :  My Bookmark</b></h4>
+		                <h4 class="completed-modal-to"><b>가져가기&nbsp;&nbsp;&nbsp; :
+		                							&nbsp;&nbsp;&nbsp;&nbsp;My Bookmark</b></h4>
 		                <!-- <div class="completed-modal-dropdown">
 		                       My Bookmark
 		                </div> -->
