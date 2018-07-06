@@ -253,6 +253,10 @@ a:hover{text-decoration: none; }
 	max-width: 80%;
 }
 
+.jstree-container-ul.jstree-children.jstree-no-dots.jstree-contextmenu.jstree-wholerow-ul{
+	max-width: 100%;
+}
+
 /* confirm 버튼 색상 지정 */
 .jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default {
 	color: #fff;
