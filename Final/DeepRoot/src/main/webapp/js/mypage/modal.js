@@ -91,7 +91,6 @@ $(document).ready(function(){
 				title: "두 경로를 정확하게 선택해주세요!",
                 text: "좌측은 체크박스를 우측은 폴더 경로를 클릭해 주세요!",
                 icon: "warning",
-                buttons: true,
                 dangerMode: true
 			});
 	        return false
@@ -127,7 +126,6 @@ $(document).ready(function(){
     					title: "목적지 폴더를 확인하셨나요?",
                         text: "잠시후 다시 시도해주세요!",
                         icon: "warning",
-                        buttons: true,
                         dangerMode: true
     				});
     			}
@@ -137,7 +135,6 @@ $(document).ready(function(){
     				title: "목적지 폴더를 확인하셨나요?",
                     text: "잠시후 다시 시도해주세요!",
                     icon: "warning",
-                    buttons: true,
                     dangerMode: true
     			});
     		}
@@ -160,7 +157,6 @@ $(document).ready(function(){
 				title: "두 경로를 정확하게 선택해주세요!",
                 text: "좌측은 체크박스를 우측은 폴더 경로를 클릭해 주세요!",
                 icon: "warning",
-                buttons: true,
                 dangerMode: true
 			});
 			return;
@@ -196,7 +192,6 @@ $(document).ready(function(){
 						title: "두 경로를 정확하게 선택해주세요!",
 		                text: "좌측은 체크박스를 우측은 폴더 경로를 클릭해 주세요!",
 		                icon: "warning",
-		                buttons: true,
 		                dangerMode: true
 					});
 				}
@@ -206,7 +201,6 @@ $(document).ready(function(){
 					title: "두 경로를 정확하게 선택해주세요!",
 	                text: "좌측은 체크박스를 우측은 폴더 경로를 클릭해 주세요!",
 	                icon: "warning",
-	                buttons: true,
 	                dangerMode: true
 				});
 			}
