@@ -64,4 +64,7 @@ public interface TeamDAO {
 
 	// 완료된 그룹 삭제하기
 	public int deleteCompletedTeam(String uid);
+	
+	// 그룹 리스트 조회수 증가
+	public int updateViewCount(int gid) throws ClassNotFoundException, SQLException;
 }

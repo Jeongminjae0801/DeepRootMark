@@ -96,4 +96,8 @@
 			</foreach>
 	</insert>
 	
+	<update id="updateViewCount">
+		update U_BOOK set view = view + 1 where UBID = #{ubid}
+	</update>
+	
 </mapper>

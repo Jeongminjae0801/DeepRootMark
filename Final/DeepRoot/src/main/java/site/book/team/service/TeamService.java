@@ -26,6 +26,7 @@ import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_RoleDTO;
 import site.book.team.dto.S_TeamDTO;
 import site.book.team.dto.TeamDTO;
+import site.book.user.dao.U_BookDAO;
 
 /**
  * @Class : TeamService.java
@@ -67,9 +68,6 @@ public class TeamService {
 		
 		try {
 			list = teamDAO.socialGroupList();
-			for(S_TeamDTO team : list) {
-				team.setView(g_bookDAO.selectGroupViews(team.getGid()));
-			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -193,6 +191,19 @@ public class TeamService {
 		
 		return result;
 		
+	}
+	
+	// 소셜 조회수 증가 
+	public int updateGroupViewCount(int gid) {
+
+		TeamDAO dao = sqlsession.getMapper(TeamDAO.class);
+		int result = 0;
+		try {
+			result = dao.updateViewCount(gid);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }

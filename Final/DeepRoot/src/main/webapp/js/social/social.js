@@ -843,4 +843,46 @@ function seletedGroup(group, gid) {
 	});
 }
 
+// 진수, 개인 북마크 조회수 증가
+function indiViewCount(ubid) {
+	var count = $('#social_'+ ubid + ' .indiCount').text();
+	
+	$.ajax({
+		url : "indiViewCount.do",
+		type:"POST",
+		data: {ubid : ubid},
+		success : function(data){
+			if(data.result == "success"){
+				$('#social_'+ ubid + ' .indiCount').text(Number(count) + 1);
+			} else {
+				$('#social_'+ ubid + ' .indiCount').text(Number(count));
+			}
+		}
+	});
+}
+
+
+//진수, 그룹 조회수 증가
+function groupViewCount(gid) {
+	var count = $('#group_'+ gid + ' .groupCount').text();
+	
+	$.ajax({
+		url : "groupViewCount.do",
+		type:"POST",
+		data: {gid : gid},
+		success : function(data){
+			if(data.result == "success"){
+				$('#group_'+ gid + ' .groupCount').text(Number(count) + 1);
+			} else {
+				$('#group_'+ gid + ' .groupCount').text(Number(count));
+			}
+		}
+	});
+}
+
+function socialGetGroup(group, gid){
+	get_groupbook(group);
+	groupViewCount(gid);
+}
+
 /*진수 end*/
