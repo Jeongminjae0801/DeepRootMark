@@ -61,8 +61,9 @@ $(function() {
 $(function() {
 	
 	$('#alarm_menu_li').click(function(){
-		$('#alarm_menu').removeClass("animated bounce");
+		$('#alarm_menu').removeClass("animated pulse");
 		$('#alarm_menu').css('color', '#000');
+		$('#alarm_menu').css('font-weight', '400');
 	})
 	
 	$('.g_alarm_ul').on('click', function(event){ //알림창 내의 목록 클릭시 알림창이 꺼지지 않도록 이벤트 멈춤
