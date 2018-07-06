@@ -222,7 +222,7 @@
                     <!-- Admin Bookmark & Search Area END -->
 
                     <!-- Category Area START -->
-                    <div class="col-sm-12">
+                    <div id="category-div" class="col-sm-12">
                         <div class="category-div">
                             <span class="bookmark-category">
                             <i class="fa fa-tags" aria-hidden="true" style="color: #294400; font-size: 20px;"></i>&nbsp;카테고리
