@@ -499,11 +499,11 @@ table.table-hover tbody tr:hover i {
 }
 
 .dropdown-menu.category {
-	transform: translate3d(355px, -30px, 0px);
+	transform: translate3d(428px, -30px, 0px);
 }
 
 .dropdown-menu.categorylist {
-	transform: translate3d(475px, -25px, 0px);
+	transform: translate3d(546px, -25px, 0px);
 }
 
 .btn-category {
