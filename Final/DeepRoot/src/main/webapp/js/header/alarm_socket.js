@@ -30,8 +30,9 @@ function alarmConnect(userid) {
         	var ganame = recv_alarm.gmemo
         	var senddate = recv_alarm.senddate;
         	
-        	$('#alarm_menu').addClass('animated bounce');
+        	$('#alarm_menu').addClass('animated pulse');
         	$('#alarm_menu').css('color', '#ff8300');
+        	$('#alarm_menu').css('font-weight', '900');
         	
         	if($('#alarm_menu_li').children('ul').length == 0) {
         		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
@@ -96,9 +97,9 @@ function alarmConnect(userid) {
 	                						+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
 	                						+ '<br style="clear:both">';
 	                	
-	                	$('#alarm_menu').addClass('animated bounce');
+	                	$('#alarm_menu').addClass('animated pulse');
 	                	$('#alarm_menu').css('color', '#ff8300');
-	                		
+	                	$('#alarm_menu').css('font-weight', '900');	
 	                		
 	                	common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 									+ '<span class="g_alarm_name">'+recv_fromid+'</span>'

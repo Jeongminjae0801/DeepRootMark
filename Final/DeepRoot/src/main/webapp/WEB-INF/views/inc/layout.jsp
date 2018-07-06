@@ -100,6 +100,7 @@
 	    	
 	    	$(document).on("click", ".category", function() {
 	    		var id = $(this).text().trim();
+	    		$(this).removeClass("animated jello").addClass("animated rubberBand");
 	    		/* 
 	    			category class를 클릭한 text가 Show All일 경우, 전체 카테고리 리스트를 slideDown!! 
 	    			선택된 카테고리 리스트는 배경색 기존색으로 변경(removeClass)
@@ -123,6 +124,7 @@
 	    			/* 선택된 카테고리를 다시 클릭시 해당 카테고리만 SelectCategory에서 지우기 */
 	    			if($(this).hasClass("reddiv") == true) {
 	    				$(this).removeClass("reddiv");
+	    				$(this).removeClass("animated rubberBand").addClass("animated jello");
 	    				
 	    				const idx = selectedCategory.indexOf(id);
 	    				selectedCategory.splice(idx, 1);
@@ -146,7 +148,7 @@
 	    					$("#showall").addClass("reddiv");
 	    				}
 	    				
-	    			}else { 
+	    			}else {
 	    				/* 
 	    					카테고리를 선택한 경우 
 	    					전체 카테고리 리스트 SlideUp, 선택된 카테고리 리스트는 SlideDown

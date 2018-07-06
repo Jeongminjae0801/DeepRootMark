@@ -16,8 +16,9 @@ function alarmConnect(stompClient, userid) {
     	var recv_ganame = recv_alarm.gmemo
     	var recv_senddate = recv_alarm.senddate;
     	
-    	$('#alarm_menu').addClass('animated bounce');
+    	$('#alarm_menu').addClass('animated pulse');
     	$('#alarm_menu').css('color', '#ff8300');
+    	$('#alarm_menu').css('font-weight', '900');
     	
     	if($('#alarm_menu_li').children('ul').length == 0) {
     		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
@@ -78,8 +79,9 @@ function alarmConnect(stompClient, userid) {
     						+ '<br style="clear:both">';
     	
     	if( recv_ganame == "완료" ) {
-    		$('#alarm_menu').addClass('animated bounce');
+    		$('#alarm_menu').addClass('animated pulse');
     		$('#alarm_menu').css('color', '#ff8300');
+    		$('#alarm_menu').css('font-weight', '900');
     		
     		if( gid == recv_gid ) {
     			
