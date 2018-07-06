@@ -466,7 +466,8 @@ a:active {
 .jstree-from {
     padding: 10px 0px 10px 0px;
     height: 75%;
-    max-height: 650px;
+    max-height: 644px;
+    min-height: 644px;
     overflow-y: auto;
 }
 /* group-category CSS END */
