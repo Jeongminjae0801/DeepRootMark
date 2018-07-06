@@ -379,7 +379,6 @@ $(function() {
 	
 	$("#rollinAjax").on("dblclick", function(){ });
     $("#rollinAjax").on("click", function(){
-    	console.log("????");
     	$.ajax({ 
     		url:"joinus/rollin.do",
             type:"POST",
