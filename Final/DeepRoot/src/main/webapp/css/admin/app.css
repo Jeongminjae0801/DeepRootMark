@@ -469,8 +469,6 @@ td {
 }
 
 .content-head{ margin-right: 5px;}
-
-
 .content-header-ico{
  	color: #333; 
  	padding-left: 35px; 
@@ -482,5 +480,15 @@ td {
 	margin-right: 15px;
 }
 
+.jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default,
+.jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default:hover,
+.jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default:active,
+.jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button.btn-default:focus{
+    color: #fff;
+    background-color: #2ecc71;
+}
+.jconfirm.jconfirm-light .jconfirm-box {
+    border-top: 10px solid #2ecc71;
+}
 
 .fas.fa-user-circle{font-size: 20px;}
