@@ -792,7 +792,7 @@ function openAddUrlLevel2() {
 		$.alert("URL을 확인해주세요");
 	}else {
 		$.ajax({
-    		url: "/bit/admin/preview.do",
+    		url: "/bit/user/preview.do",
 			type: "post",
 			data : {
 				url : url // URL 주소
