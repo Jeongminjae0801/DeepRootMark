@@ -21,13 +21,7 @@ body{
 .modal-open .modal { z-index: 1050; }
 
 
-#fromMytoGroup{
-	perspective-origin: center center;
-    display: table;
-    width: 100%;
-    height: 100%;
-	
-}
+
 .jstree-modal-center{
 	 margin: 0;
     position: absolute;
@@ -73,6 +67,12 @@ body{
 .container-fluid{
     padding-left: 80px;
     padding-right: 55px;
+}
+.jstree-modal-fromgrouptomy{
+		 margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 30%;
 }
 
 /* Top Content CSS START */

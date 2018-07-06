@@ -593,7 +593,9 @@ $(document).ready(function(){
 		.bind('rename_node.jstree', function(event, data){
 			var node_id = data.node.id;
 			var node_text = data.text;
-			
+			var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
+			$('#jstree_container').jstree().deselect_all(true);											
+			$('#jstree_container').jstree(true).select_node(selected_node_left);			
 			$.ajax({
 				url : 'updateNodeText.do',
 				type: 'POST',
@@ -617,7 +619,6 @@ $(document).ready(function(){
 				var sname = $('#jstree_container_child').jstree(true).get_node(node_ids[i]).original.sname;
 				if(sname != "#"){
 					$('#'+ node_ids[i]).append("<i class='shared fas fa-share-alt'></i>");
-					
 				}
 			}
 		})

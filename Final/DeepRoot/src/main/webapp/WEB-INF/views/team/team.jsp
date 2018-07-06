@@ -195,37 +195,35 @@
     
 <!-- 그룹 북마크 마이카테고리로 가져가기 div START -->
 <div id="fromGroupToMy" class="modal fade" tabindex="-1" role="dialog">
-	<div class="main-modal-controller">
-		<div class="main-modal-center">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
-					</div>
-					<div class="modal-body">
-						<div class="completed-modal-left">
-							<h4 class="completed-modal-from"><b>URL :</b>
-							<input type="text" id="modalurl"class="indishare-url" readonly></h4>
-			            </div>
-			            <hr>
-			            <div class="completed-modal-left abc123">
-			                <h4 class="completed-modal-to"><b>가져가기 :  My Bookmark</b></h4>
-			                <!-- <div class="completed-modal-dropdown">
-			                       My Bookmark
-			                </div> -->
-			                <div id="jstree-to-mybookmark" style="clear: both;"></div>
-			            </div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
-						<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div>
+	<div class="jstree-modal-fromgrouptomy">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="gridSystemModalLabel">북마크 가져가기</h4>
+				</div>
+				<div class="modal-body">
+					<div class="completed-modal-left">
+						<h4 class="completed-modal-from"><b>URL :</b>
+						<input type="text" id="modalurl"class="indishare-url" readonly></h4>
+		            </div>
+		            <hr>
+		            <div class="completed-modal-left abc123">
+		                <h4 class="completed-modal-to"><b>가져가기 :  My Bookmark</b></h4>
+		                <!-- <div class="completed-modal-dropdown">
+		                       My Bookmark
+		                </div> -->
+		                <div id="jstree-to-mybookmark" style="clear: both;"></div>
+		            </div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default indishare" data-dismiss="modal">취소</button>
+					<button id="into-my-bookmark" type="button" class="btn btn-primary">확인</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
 	</div>
 </div><!-- /.modal -->
 
