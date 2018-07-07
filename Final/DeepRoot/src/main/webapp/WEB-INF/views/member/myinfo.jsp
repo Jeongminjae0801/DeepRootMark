@@ -14,7 +14,7 @@
                 	<div class="error"></div>
                 	<form id="re-confirm-form">
                 		<label class="control-label" for="pwd_check">Password check</label>
-                        <input id="pwd_check" class="form-control" type="password" placeholder="Password check" name="pwd" required>
+                        <input id="pwd_check" class="form-control" type="password" placeholder="Password check" name="pwd" maxlength="15" required>
                 		<center>
                             <input id="re-confirm-password-btn" type="button" class="btn btn-default confirm" value="확인">
                             <input type="button" class="btn btn-default cancel" value="취소" onclick="location.href='index.do'">
@@ -37,10 +37,10 @@
                         <input id="nname_edit" class="form-control" type="text" name="nname" value="${sessionScope.info_usernname}" readonly><br>
 
                         <label class="control-label" for="pwd_edit">Password</label>
-                        <input id="pwd_edit" class="form-control" type="password" placeholder="Enter Password" name="pwd"><br>
+                        <input id="pwd_edit" class="form-control" type="password" placeholder="Enter Password" name="pwd" maxlength="15"><br>
 
                         <label class="control-label" for="pwd_confirmation">Repeat Password</label>
-                        <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation"><br>
+                        <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation" maxlength="15"><br>
 
                         <center>
                             <input id="edit-who-info-btn" type="submit" class="btn btn-default confirm" value="수정">

@@ -119,8 +119,8 @@
                                                 <!-- Login START -->
                                                 <form id="login-form">
                                                 	<strong class="error-text"></strong>
-                                                    <input id="uid" class="form-control" type="text" placeholder="Email" name="uid">
-                                                    <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd">
+                                                    <input id="uid" class="form-control" type="text" placeholder="Email" name="uid" maxlength="33">
+                                                    <input id="pwd" class="form-control" type="password" placeholder="Password" name="pwd" maxlength="15">
                                     
                                                     <input id="loginAjax" class="btn btn-default btn-login" type="button" value="Login">
                                                 </form>
@@ -134,15 +134,15 @@
                                             <div class="form">
                                                 <form id="rollin-form">
                                                 	<strong class="error-text"></strong>
-                                                    <input id="uid_join" class="form-control" type="text" placeholder="Email@example.com" name="uid" autocomplete="off">
+                                                    <input id="uid_join" class="form-control" type="text" placeholder="Email@example.com" name="uid" autocomplete="off" maxlength="33">
                                                     <div id="auth-div" class="form-group" style="display: none">
-                                                       <input id="authcode_join" class="form-control" type="text" placeholder="Auth Code" name="authcode" autocomplete="off">
+                                                       <input id="authcode_join" class="form-control" type="text" placeholder="Auth Code" name="authcode" autocomplete="off" maxlength="10">
                                                        <input id="authcode_check" class="btn btn-default" type="button" value="인증키 재전송">
                                                    	</div>
                                                    	
-                                                    <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd" autocomplete="off">
-                                                    <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation" autocomplete="off">
-                                                    <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname" autocomplete="off">
+                                                    <input id="pwd_join" class="form-control" type="password" placeholder="Password" name="pwd" autocomplete="off" maxlength="15">
+                                                    <input id="pwd_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="pwd_confirmation" autocomplete="off" maxlength="15">
+                                                    <input id="nname_join" class="form-control" type="text" placeholder="Nickname" name="nname" autocomplete="off" maxlength="10">
 
                                                     <div>
                                                     	<input id="agree-site-rule" class="form-check-input" type="checkbox"><span class="agree-site-rule-text">
@@ -263,7 +263,7 @@
 	                                        	<img class="zoom_img" src="icon/url_save.png"></button>
 	                                       	</se:authorize>
 	                                        <button class="url_hover_btn" type="button">
-	                                        	<img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
+	                                        <img class="zoom_img" src="icon/open_preview.png" onclick="preview(${bList.abid})"></button>
 	                                        <img class="favicon" src="https://www.google.com/s2/favicons?domain=${bList.url}">
 	                                        <p class="url ${bList.abid}" data-abid="${bList.abid}"
 				                                        			     data-url="${bList.url}"
