@@ -129,7 +129,8 @@ $(document).ready(function(){
 									"label": "이름 수정",
 									"action" : function (obj) {
 										/*왼쪽 jstree 이름 수정하기 아래에 함수 있음*/
-										tree.edit($node);			
+										tree.edit($node);
+										$(".jstree-rename-input").attr("maxLength",33);
 									}
 								},
 								"remove" : {
@@ -228,6 +229,7 @@ $(document).ready(function(){
 					tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fa fa-folder"} ,"last",function(new_node){
 						new_node = ubid;
 						tree.edit(new_node); //생성과 동시에 이름 수정할 수 있게 함
+						
 					});
 				}
 			})
@@ -297,6 +299,7 @@ $(document).ready(function(){
 										"label" : "이름 수정",
 										"action" : function(obj){
 											tree_child.edit($node);
+											$(".jstree-rename-input").attr("maxLength",33);
 										}
 									},
 									/*오른쪽 jstree url 수정*/						            	  
@@ -423,6 +426,7 @@ $(document).ready(function(){
 										"label" : "이름 수정",
 										"action" : function(obj){
 											tree_child.edit($node);
+											$(".jstree-rename-input").attr("maxLength",33);
 										}
 									},
 									/*오른쪽 공유된 jstree url 수정*/							            	  
@@ -1148,6 +1152,9 @@ function editurlsubmit() {
 		})
 	}
 }
-
+$("#jstree_container").on("keydown", ".jstree-rename-input", function (e) { 
+	console.log(e);
+	
+});
 
 
