@@ -98,12 +98,13 @@
 									<tr class="addUrlLevel1">
 										<td class="info" style="vertical-align: middle;">URL :</td>
 										<td><input type="text" id="url_btn" name="url_btn"
-											class="form-control"></td>
+											class="form-control" maxlength="150"></td>
 									</tr>
 									<tr class="addUrlLevel2">
 										<td class="info" style="vertical-align: middle;">제목 :</td>
 										<td><input type="text" id="title_btn" name="title_btn"
 											class="form-control" maxlength="33" placeholder="최대 33글자"></td>
+
 									</tr>
 									<tr class="addUrlLevel2">
 										<td class="info" style="vertical-align: middle;">카테고리 :</td>
@@ -114,11 +115,12 @@
 										<td class="info" style="vertical-align: middle;">공유제목 :</td>
 										<td><input type="text" id="sname_btn" name="sname_btn"
 											class="form-control" maxlength="33" placeholder="최대 33글자"></td>
+
 									</tr>
 									<tr class="addUrlLevel3">
 										<td class="info" style="vertical-align: middle;">해시태그 :</td>
 										<td><input type="text" id="htag_btn" name="htag_btn"
-											class="form-control" onkeydown="addHashtag()"></td>
+											class="form-control" onkeydown="addHashtag()" maxlength="15"></td>
 									</tr>
 									<tr class="addUrlLevel3">
 										<td colspan="2"  id="htag_append"></td>
@@ -174,7 +176,7 @@
 								<tr>
 									<td class="info" style="vertical-align: middle;">URL</td>
 									<td><input type="text" id="editurlval" name="editurlval"
-										class="form-control"></td>
+										class="form-control"  maxlength="150"></td>
 								</tr>
 							</table>
 							<input type="hidden" id="editurlid" value=''>
@@ -219,7 +221,7 @@
 								<tr >
 									<td class="info" style="vertical-align: middle;">해시태그 :</td>
 									<td><input type="text" id="edit_htag_btn" name="edit_htag_btn"
-										class="form-control" onkeydown="edit_addHashtag()"></td>
+										class="form-control" onkeydown="edit_addHashtag()" maxlength="15"></td>
 								</tr>
 								<tr >
 									<td colspan="2"  id="edit_htag_append"></td>
