@@ -625,7 +625,10 @@ filter: gray;
   background-position: 0 0;
 }
 .jstree-proton > .jstree-container-ul .jstree-loading > .jstree-ocl {
-  background: url("../images/throbber.gif") center center no-repeat;
+  background-image : url("../images/throbber.gif") ;
+  background-repeat: no-repeat;
+  background-position: 300px 0px;
+  
 }
 .jstree-proton .jstree-file {
   background: url("../images/32px.png") -101px -69px no-repeat;
@@ -795,7 +798,9 @@ filter: gray;
   background-position: 0 0;
 }
 .jstree-proton-small > .jstree-container-ul .jstree-loading > .jstree-ocl {
-  background: url("../images/throbber.gif") center center no-repeat;
+  background-image : url("../images/throbber.gif") ;
+  background-repeat: no-repeat;
+  background-position: 300px 0px;
 }
 .jstree-proton-small .jstree-file {
   background: url("../images/32px.png") -103px -71px no-repeat;
@@ -965,7 +970,9 @@ filter: gray;
   background-position: 0 0;
 }
 .jstree-proton-large > .jstree-container-ul .jstree-loading > .jstree-ocl {
-  background: url("../images/throbber.gif") center center no-repeat;
+  background-image : url("../images/throbber.gif") ;
+  background-repeat: no-repeat;
+  background-position: 300px 0px;
 }
 .jstree-proton-large .jstree-file {
   background: url("../images/32px.png") -96px -64px no-repeat;

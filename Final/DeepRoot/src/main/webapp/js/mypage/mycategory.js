@@ -259,6 +259,9 @@ $(document).ready(function(){
 	$("#jstree_container_child")
 		.jstree({
 			"core" : {
+				'strings' : {
+					 			'Loading ...' : ' Loading'
+					 			},
 				'data' : child_data,
 				'themes' : { 
 					'name' : 'proton',
@@ -583,7 +586,7 @@ $(document).ready(function(){
 		.bind('rename_node.jstree', function(event, data){
 			var node_id = data.node.id;
 			var node_text = data.text;
-			console.log(data.node.original.htag);
+			//console.log(data.node.original.htag);
 			var htag = data.node.original.htag;
 			var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
 			
