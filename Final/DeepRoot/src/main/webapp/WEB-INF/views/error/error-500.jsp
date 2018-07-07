@@ -8,8 +8,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>404 Error Page</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/error/error.css">
+	<title>500 Error Page</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/error/error-500.css">
 </head>
 
 <body>
@@ -588,7 +588,7 @@
 
 		<div class="text">
 		    <div class="text-inner">
-		        <h1> 404 ERROR </h1>
+		        <h1> 500 ERROR </h1>
 		
 		        <h2> 
 		        	죄송합니다. 현재 찾을 수 없는 페이지를 요청하셨습니다. <br>
@@ -603,7 +603,7 @@
 		        </div>
 		        
 		        <div id="home" class="button">
-		            <a href="index.do"> 메인으로 </a>
+		            <a href="${pageContext.request.contextPath}/index.do"> 메인으로 </a>
 		        </div>
 		        
 		    </div>
