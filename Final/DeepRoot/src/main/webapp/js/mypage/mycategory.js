@@ -4,7 +4,7 @@ var child_data = null;	//오른쪽 url jstree data 담을 변수
 var edit_htag_node_id = null;
 var first_data = null;	//완료 그룹 모달 왼쪽 jstree
 var right_data = null;	//완료 그룹 모달 오른쪽 jstree
-
+var regex =/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/;
 $(document).ready(function(){
 
 	/* mybookmark 가져오기 왼쪽 (폴더만 있는거) */
@@ -314,7 +314,8 @@ $(document).ready(function(){
 											var id = inst.get_node(obj.reference).id;
 											
 											$('#editurlval').val(url);
-											$('#editurlsubmit').on('dblclick', function(){ return });
+											$('#editurlid').val(id);
+											/*$('#editurlsubmit').on('dblclick', function(){ return });
 											$('#editurlsubmit').on("click",function(){
 												
 												var newurl = $('#editurlval').val();
@@ -340,7 +341,7 @@ $(document).ready(function(){
 														}
 													})
 												}
-											})
+											})*/
 										}
 									}
 								}
@@ -437,34 +438,9 @@ $(document).ready(function(){
 											var inst = $.jstree.reference(obj.reference);
 											var url = inst.get_node(obj.reference).a_attr.href;
 											var id = inst.get_node(obj.reference).id;
-											                
+											$('#editurlid').val(id);
 											$('#editurlval').val(url);
-											$('#editurlsubmit').on('dblclick', function(){ return });
-											$('#editurlsubmit').on("click",function(){
-												
-												var newurl = $('#editurlval').val();
-												var form = {ubid : id, url : newurl }
-												
-												var regex =/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/;
-												if(!(regex.test(newurl))){
-													$.alert("URL을 확인해주세요");
-												}else {
-													$.ajax({
-														
-														url: "editUrl.do",
-														type: "POST",
-														data: form ,
-														beforeSend : function(){
-															$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
-														},
-														success: function(data){
-															$('#loading').html("");
-															//$('#editurl').modal("toggle");
-															$('.modal.in').modal('hide');
-														}
-													});
-												}
-											})
+										
 										}
 									}
 								}
@@ -603,7 +579,13 @@ $(document).ready(function(){
 		.bind('rename_node.jstree', function(event, data){
 			var node_id = data.node.id;
 			var node_text = data.text;
+			console.log(data.node.original.htag);
+			var htag = data.node.original.htag;
 			var selected_node_left = $('#jstree_container').jstree("get_selected",true)[0].id;
+			
+			if(htag !="#"){
+				$('#'+ node_id).append("<i class='shared fas fa-share-alt'></i>");
+			}
 			
 			$.ajax({
 				url : 'updateNodeText.do',
@@ -614,8 +596,12 @@ $(document).ready(function(){
 				},
 				success : function(result){
 					$('#loading').html("");
-					$('#jstree_container').jstree().deselect_all(true);											
-					$('#jstree_container').jstree(true).select_node(selected_node_left);			
+				/*	$('#jstree_container').jstree().deselect_all(true);											
+					$('#jstree_container').jstree(true).select_node(selected_node_left);			*/
+					/*if(htag !="#"){
+						$('#'+ node_id).append("<i class='shared fas fa-share-alt'></i>");
+					}*/
+					
 					if(result.result != 1)
 						alert('수정 실패');
 				}
@@ -1132,7 +1118,36 @@ function addGroup() {
 	});
 }
 
-
+//url 수정 모달 창 onclick function
+function editurlsubmit() {
+	var newurl = $('#editurlval').val();
+	var id = 	$('#editurlid').val();
+	console.log(newurl + id);
+	form = {ubid : id, url : newurl};
+	if(!(regex.test($('#editurlval').val()))){
+		$.alert("URL을 확인해주세요");
+	}else {
+		$.ajax({
+			url: "editUrl.do",
+			type: "POST",
+			data: form ,
+			beforeSend : function(){
+				$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+			},
+			success: function(data){
+				$('#loading').html("");
+				//$('#editurl').modal("toggle");
+				$('.modal.in').modal('hide');
+				/*
+				$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
+				$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);*/
+				
+				$('#jstree_container').jstree().deselect_all(true);											
+				$('#jstree_container').jstree(true).select_node(urlpid);		
+			}
+		})
+	}
+}
 
 
 
