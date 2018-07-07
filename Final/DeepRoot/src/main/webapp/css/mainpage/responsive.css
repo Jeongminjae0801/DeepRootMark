@@ -20,7 +20,7 @@
     padding-left: 20px;
   }
 }
-
+/* 
 @media only screen and (max-width : 962px) {
 	#home-slider{ height: 365px}
 	.slide-hill{ 
@@ -31,7 +31,7 @@
 	#header{
 		top: 0;
 	}	
-}
+} */
 /* sm */
 @media only screen and (max-width : 992px) {
   h1{
@@ -49,6 +49,7 @@
  /*  #home-slider .main-slider {
     height: 250px;
   } */
+  
   #home-slider .slide-text {
     width: 60%;
     padding-left: 0px;
@@ -138,8 +139,8 @@
 }
 @media only screen and (max-width: 1198px){
 	#home-slider .slider-hill{
-      	width: 50%;
-    	height: 70%;
+      /* 	width: 50%;
+    	height: 70%; */
     	left: 60%;
 	}	
 }
