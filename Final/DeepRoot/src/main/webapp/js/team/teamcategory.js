@@ -383,7 +383,7 @@ function customMenu($node){
 					
 					$('#editurlval').val(url);
 					$('#editurlsubmit').on('dblclick', function(){ return });
-					$('#editurlsubmit').on("click",function(){
+					$('#editurlsubmit').off("click").on("click",function(){
 						
 						var newurl = $('#editurlval').val();
 						var form = {gbid : id, url : newurl }
