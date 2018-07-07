@@ -4,7 +4,14 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 @import url('https://fonts.googleapis.com/css?family=Gugi|Jua');
-
+.loading_img{
+	vertical-align: baseline;
+}
+.loading_p{
+	margin-bottom: 0px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
 /* jsTree default theme */
 .jstree-node,
 .jstree-children,
