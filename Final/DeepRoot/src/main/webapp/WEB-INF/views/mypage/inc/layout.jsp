@@ -109,7 +109,8 @@
 									<tr class="addUrlLevel2">
 										<td class="info" style="vertical-align: middle;">제목 :</td>
 										<td><input type="text" id="title_btn" name="title_btn"
-											class="form-control" maxlength="33"></td>
+											class="form-control" maxlength="33" placeholder="최대 33글자"></td>
+
 									</tr>
 									<tr class="addUrlLevel2">
 										<td class="info" style="vertical-align: middle;">카테고리 :</td>
@@ -119,7 +120,8 @@
 									<tr class="addUrlLevel3">
 										<td class="info" style="vertical-align: middle;">공유제목 :</td>
 										<td><input type="text" id="sname_btn" name="sname_btn"
-											class="form-control" maxlength="33"></td>
+											class="form-control" maxlength="33" placeholder="최대 33글자"></td>
+
 									</tr>
 									<tr class="addUrlLevel3">
 										<td class="info" style="vertical-align: middle;">해시태그 :</td>
@@ -183,12 +185,13 @@
 										class="form-control"  maxlength="150"></td>
 								</tr>
 							</table>
+							<input type="hidden" id="editurlid" value=''>
 						</form>
 						<div class="modal-footer">
 							<!-- type="submit" value="Submit" -->
 							<button type="button" class="btn btn-default btn-sm"
 								data-dismiss="modal">취소</button>
-							<button class="btn btn-default btn-sm" id="editurlsubmit">수정하기</button>
+							<button class="btn btn-default btn-sm" onclick="editurlsubmit()">수정하기</button>
 						</div>
 					</div>
 				</div>
@@ -219,7 +222,7 @@
 								<tr >
 									<td class="info" style="vertical-align: middle;">공유제목 :</td>
 									<td><input type="text" id="edit_sname_btn" name="edit_sname_btn"
-										class="form-control" maxlength="33"></td>
+										class="form-control" maxlength="33" placeholder="최대 33글자"></td>
 								</tr>
 								<tr >
 									<td class="info" style="vertical-align: middle;">해시태그 :</td>

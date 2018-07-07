@@ -288,6 +288,7 @@ function addUrl(){
 
 function customMenu($node){
 	var node_uid = $node.original.uid;
+	var node_root = $node.parent;
 	var href = $node.a_attr.href;
 	var tree = $("#jstree_container").jstree(true);	
 	urlpid = $node.id;
@@ -366,6 +367,7 @@ function customMenu($node){
 				"action" : function (obj) {
 					/*왼쪽 jstree 이름 수정하기 아래에 함수 있음*/
 					tree.edit($node);			
+					$(".jstree-rename-input").attr("maxLength",33);
 				}
 			},			
 			"editurl" : {
@@ -470,11 +472,14 @@ function customMenu($node){
 		if(href == '#'){// 폴더
 			delete items.editurl;
 			delete items.geturl;
+			if(node_root == '#')
+				delete items.remove;
 		}else{ //url
 			delete items.folder_create;
 			delete items.link_create;
 		}
 	}
+	
 	return items;
 }
 //jstree 수정된거 메세지 폼 만들어서 보내기
