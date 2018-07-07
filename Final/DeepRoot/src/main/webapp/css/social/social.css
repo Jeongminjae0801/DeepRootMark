@@ -2,6 +2,7 @@
 /* 헤더 로고 폰트 */
 @import url('https://fonts.googleapis.com/css?family=Gugi');
 /* 한글 폰트*/
+@import url('https://fonts.googleapis.com/css?family=Jua');
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 /* Social Page CSS START */
@@ -99,7 +100,9 @@ table thead tr td.table-write{
 
 table thead tr th.table-date,
 table tbody tr td.table-date{
-    width:100px;
+    width: 17%;
+    overflow: hidden;
+    text-overflow: clip !important;
 }
 
 table thead tr th.table-click,
