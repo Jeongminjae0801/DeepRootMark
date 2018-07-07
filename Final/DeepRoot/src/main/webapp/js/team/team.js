@@ -15,7 +15,7 @@ function member_insert(){
         '<form id="insertMember" action="" class="formGroup" method="post" onsubmit="return false;>' +
         '<div class="form-group">' +
         '<label>추가 할 멤버의 이메일을 입력하세요</label>' +
-        '<input type="text" name="uid" class="insertUid form-control"/>' +
+        '<input type="text" name="uid" class="insertUid form-control" maxlength="30"/>' +
         '<input type="hidden" name="gid" value="'+gid+'" class="banName form-control"/>' +
         '</div>' +
         '</form>',
@@ -134,7 +134,7 @@ function group_complete(){
 	    '<form id="completeGroup" action="/bit/user/completedGroup.do" class="formGroup" method="post" onsubmit="return false;">' +
 	    '<div class="form-group">' +
 	    '<label>해시태그</label>' +
-	    '<input type="text" id="htag_btn2" name="htag" class="name2 form-control" onkeydown="addHashtag2()">' +
+	    '<input type="text" id="htag_btn2" name="htag" class="name2 form-control" onkeydown="addHashtag2()" maxlength="15">' +
 	    '<div id="htag_append2"></div>' +
 	    '<input type="hidden" name="gid" value="'+gid+'" class="banName form-control"/>' +
 	    '</div>' +

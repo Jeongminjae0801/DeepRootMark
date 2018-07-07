@@ -105,12 +105,12 @@
 								<tr class="addUrlLevel1">
 									<td class="info" style="vertical-align: middle;">URL :</td>
 									<td><input type="text" id="url_btn" name="url_btn"
-										class="form-control"></td>
+										class="form-control" maxlength="150"></td>
 								</tr>
 								<tr class="addUrlLevel2">
 									<td class="info" style="vertical-align: middle;">제목 :</td>
 									<td><input type="text" id="title_btn" name="title_btn"
-										class="form-control"></td>
+										class="form-control" maxlength="33"></td>
 								</tr>
 								<tr class="addUrlLevel2">
 									<td class="info" style="vertical-align: middle;">카테고리 :</td>
@@ -154,7 +154,7 @@
 								<tr>
 									<td class="info" style="vertical-align: middle;">URL</td>
 									<td><input type="text" id="editurlval" name="editurlval"
-										class="form-control"></td>
+										class="form-control" maxlength="150"></td>
 								</tr>
 							</table>
 						</form>
