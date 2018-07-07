@@ -320,22 +320,26 @@ $(document).ready(function(){
 												var newurl = $('#editurlval').val();
 												var form = {ubid : id, url : newurl }
 												
-												$.ajax({
-													
-													url: "editUrl.do",
-													type: "POST",
-													data: form ,
-													beforeSend : function(){
-														$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
-													},
-													success: function(data){
-														$('#loading').html("");
-														//$('#editurl').modal("toggle");
-														$('.modal.in').modal('hide');
-														$('#jstree_container').jstree().deselect_all(true);											
-														$('#jstree_container').jstree(true).select_node(urlpid);		
-													}
-												}) 
+												var regex =/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/;
+												if(!(regex.test($('#url_btn').val()))){
+													$.alert("URL을 확인해주세요");
+												}else {
+													$.ajax({
+														url: "editUrl.do",
+														type: "POST",
+														data: form ,
+														beforeSend : function(){
+															$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+														},
+														success: function(data){
+															$('#loading').html("");
+															//$('#editurl').modal("toggle");
+															$('.modal.in').modal('hide');
+															$('#jstree_container').jstree().deselect_all(true);											
+															$('#jstree_container').jstree(true).select_node(urlpid);		
+														}
+													})
+												}
 											})
 										}
 									}
@@ -441,20 +445,25 @@ $(document).ready(function(){
 												var newurl = $('#editurlval').val();
 												var form = {ubid : id, url : newurl }
 												
-												$.ajax({
-													
-													url: "editUrl.do",
-													type: "POST",
-													data: form ,
-													beforeSend : function(){
-														$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
-													},
-													success: function(data){
-														$('#loading').html("");
-														//$('#editurl').modal("toggle");
-														$('.modal.in').modal('hide');
-													}
-												}) 
+												var regex =/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/;
+												if(!(regex.test(newurl))){
+													$.alert("URL을 확인해주세요");
+												}else {
+													$.ajax({
+														
+														url: "editUrl.do",
+														type: "POST",
+														data: form ,
+														beforeSend : function(){
+															$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+														},
+														success: function(data){
+															$('#loading').html("");
+															//$('#editurl').modal("toggle");
+															$('.modal.in').modal('hide');
+														}
+													});
+												}
 											})
 										}
 									}
@@ -694,12 +703,16 @@ var check_htag = '';
 /*URL 해시태그 추가*/ 
 function addHashtag() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
-		hashtagList.push("#"+$.trim($('#htag_btn').val()));
-		var hashtag = $.trim($('#htag_btn').val());
-		$('#htag_btn').val('');
-		$('#htag_btn').focus();
-		$('#htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag(this)'>");
-		hashtagStartPoint++;
+		if(jQuery.trim($('#htag_btn').val()) != ""){
+			hashtagList.push("#"+$.trim($('#htag_btn').val()));
+			var hashtag = $.trim($('#htag_btn').val());
+			$('#htag_btn').val('');
+			$('#htag_btn').focus();
+			$('#htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag(this)'>");
+			hashtagStartPoint++;
+		}else {
+			$.alert("해시태그를 입력해주세요");
+		}
 	}
 }
 
@@ -710,24 +723,32 @@ var hashtagStartPoint2 = 0;
 /*URL 해시태그 추가(그룹완료)*/ 
 function addHashtag2() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
-		hashtagList2.push("#"+$.trim($('#htag_btn2').val()));
-		var hashtag = $.trim($('#htag_btn2').val());
-		$('#htag_btn2').val('');
-		$('#htag_btn2').focus();
-		$('#htag_append2').append("<input class='btn btn-default btn-hash' id='btnHash2" + hashtagStartPoint2 + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag2(this)'>");
-		hashtagStartPoint2++;
+		if(jQuery.trim($('#htag_btn2').val()) != ""){
+			hashtagList2.push("#"+$.trim($('#htag_btn2').val()));
+			var hashtag = $.trim($('#htag_btn2').val());
+			$('#htag_btn2').val('');
+			$('#htag_btn2').focus();
+			$('#htag_append2').append("<input class='btn btn-default btn-hash' id='btnHash2" + hashtagStartPoint2 + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag2(this)'>");
+			hashtagStartPoint2++;
+		}else {
+			$.alert("해시태그를 입력해주세요");
+		}
 	}
 }
 
 /*해시태그 수정*/
 function edit_addHashtag() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
-		edithashtagList.push("#"+$.trim($('#edit_htag_btn').val()));
-		var hashtag = $.trim($('#edit_htag_btn').val());
-		$('#edit_htag_btn').val('');
-		$('#edit_htag_btn').focus();
-		$('#edit_htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='edit_deleteHashtag(this)'>");
-		hashtagStartPoint++;
+		if(jQuery.trim($('#edit_htag_btn').val()) != ""){
+			edithashtagList.push("#"+$.trim($('#edit_htag_btn').val()));
+			var hashtag = $.trim($('#edit_htag_btn').val());
+			$('#edit_htag_btn').val('');
+			$('#edit_htag_btn').focus();
+			$('#edit_htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='edit_deleteHashtag(this)'>");
+			hashtagStartPoint++;
+		}else {
+			$.alert("해시태그를 입력해주세요");
+		}
 	}
 }
 

@@ -89,7 +89,7 @@
 						</div>
 		
 						<div class="modal-body">
-							<form id="form_btn">
+							<form id="form_btn" onsubmit="return false;">
 								<table class="table">
 									<colgroup>
 										<col width="30%">
@@ -165,7 +165,7 @@
 					</div>
 	
 					<div class="modal-body">
-						<form id="form3">
+						<form id="form3" onsubmit="return false;">
 							<table class="table">
 								<colgroup>
 									<col width="30%">
@@ -204,7 +204,7 @@
 					</div>
 	
 					<div class="modal-body">
-						<form id="edit_htag_form">
+						<form id="edit_htag_form" onsubmit="return false;">
 							<table class="table">
 								<colgroup>
 									<col width="30%">
