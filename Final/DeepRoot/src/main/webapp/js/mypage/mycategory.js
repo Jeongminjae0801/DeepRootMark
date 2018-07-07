@@ -37,7 +37,7 @@ $(document).ready(function(){
 									type : 'POST',
 									data : form,
 									beforeSend : function(){
-										$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+										$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 									},
 									success : function(data){
 										$('#loading').html("");
@@ -54,7 +54,7 @@ $(document).ready(function(){
 									type : 'POST',
 									data : {dragnode : node.id, dropnode : par.id},
 									beforeSend : function(){
-										$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+										$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 									},
 									success : function(){
 										$('#loading').html("");
@@ -108,7 +108,7 @@ $(document).ready(function(){
 											type :"POST",
 											data : form,
 											beforeSend : function(){
-												$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+												$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 							     				},
 							     				success : function(data){
 							     					$('#loading').html("");
@@ -180,7 +180,7 @@ $(document).ready(function(){
 	        			type: 'POST',
 	        			data: {'id' : node_id, 'text' : node_text},
 	        			beforeSend : function(){
-	        				$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+	        				$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
      					},
 	        			success : function(result){
 	        				$('#loading').html("");
@@ -198,7 +198,7 @@ $(document).ready(function(){
 		    			dataType : "json",
 		    			data: form,
 		    			beforeSend : function(){
-		    				$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+		    				$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
      					},
      					success : function(result){
 		    				$('#loading').html("");
@@ -220,7 +220,7 @@ $(document).ready(function(){
 				url : "addRoot.do",
 				type : "POST",
 				beforeSend : function(){
-					$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+					$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 				},
 				success : function(data){
 					$('#loading').html("");
@@ -400,7 +400,7 @@ $(document).ready(function(){
 										type : "POST",
 										data : form,
 										beforeSend : function(){
-											$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+											$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 										},
 										success : function(data){
 											$('#loading').html("");
@@ -478,7 +478,7 @@ $(document).ready(function(){
 										type : "POST",
 										data : form,
 										beforeSend : function(){
-											$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+											$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 										},
 										success : function(data){
 											$('#loading').html("");
@@ -537,7 +537,7 @@ $(document).ready(function(){
 												type: 'POST',
 												data: {ubid: id },
 												beforeSend : function(){
-													$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+													$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 												},
 												success:function(data){
 													$('#loading').html("");
@@ -573,7 +573,7 @@ $(document).ready(function(){
 				dataType : "json",
 				data: form,
 				beforeSend : function(){
-					$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+					$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 				},
 				success:function(result){
 					$('#loading').html("");
@@ -596,12 +596,10 @@ $(document).ready(function(){
 				type: 'POST',
 				data: {'id' : node_id, 'text' : node_text},
 				beforeSend : function(){
-					$('#loading').html("<p>   SAVING  </p><img src='../images/throbber.gif' />");
+					$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 				},
 				success : function(result){
 					$('#loading').html("");
-				/*	$('#jstree_container').jstree().deselect_all(true);											
-					$('#jstree_container').jstree(true).select_node(selected_node_left);			*/
 					/*if(htag !="#"){
 						$('#'+ node_id).append("<i class='shared fas fa-share-alt'></i>");
 					}*/
@@ -1126,7 +1124,6 @@ function addGroup() {
 function editurlsubmit() {
 	var newurl = $('#editurlval').val();
 	var id = 	$('#editurlid').val();
-	console.log(newurl + id);
 	form = {ubid : id, url : newurl};
 	if(!(regex.test($('#editurlval').val()))){
 		$.alert("URL을 확인해주세요");
@@ -1136,7 +1133,7 @@ function editurlsubmit() {
 			type: "POST",
 			data: form ,
 			beforeSend : function(){
-				$('#loading').html(" SAVING<span><img src='../images/throbber.gif' /></span>");
+				$('#loading').html("<p class='loading_p'>SAVING   <img src='../images/throbber.gif' class='loading_img' /></p>");
 			},
 			success: function(data){
 				$('#loading').html("");
@@ -1145,16 +1142,14 @@ function editurlsubmit() {
 				/*
 				$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
 				$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);*/
-				
-				$('#jstree_container').jstree().deselect_all(true);											
-				$('#jstree_container').jstree(true).select_node(urlpid);		
+				$($('#jstree_container_child').jstree(true).get_node(id).a_attr).attr("href",newurl);
+				$('#jstree_container_child').jstree(true).set_icon($('#jstree_container_child').jstree(true).get_node(id), "https://www.google.com/s2/favicons?domain="+ newurl)
+			/*	$('#jstree_container').jstree().deselect_all(true);											
+				$('#jstree_container').jstree(true).select_node(urlpid);		*/
 			}
 		})
 	}
 }
-$("#jstree_container").on("keydown", ".jstree-rename-input", function (e) { 
-	console.log(e);
-	
-});
+
 
 
