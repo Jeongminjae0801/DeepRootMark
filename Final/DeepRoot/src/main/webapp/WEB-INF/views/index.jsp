@@ -67,14 +67,16 @@
                     <div class="slide-text">
                         <!-- introduce text START -->
                         <div class="introduce-text">
-                        	
                         	<span>어디서든 빠르고 쉽게</span><br>
-							<span>개발자가 사용하기 좋은 사이트들을 제공해줍니다!</span><br>
-							<span>자신만의 북마크를 꾸며보세요!</span><br>
-							<span>그룹을 개설하여 북마크를 공유해보세요!</span><br>
-							<span>다른사람들과 공유해보세요!</span><br>
-							
-							
+							<span class="intro-span1">
+								<span class="intro-text1">개발자</span>가 사용하기 좋은 사이트들을 제공해줍니다!</span><br>
+							<span class="intro-span2">
+								<span class="intro-text2">자신만의 북마크</span>를 만들고</span><br>
+							<span class="intro-span3">
+								<span class="intro-text3">그룹</span>과
+								<span class="intro-text3">소셜</span> 페이지 에서</span><br>
+							<span class="intro-span4">다른사람들과 
+								<span class="intro-text2">북마크를 공유</span>해보세요!</span><br>
                         </div>
                         <!-- introduce text END -->
                         <!-- Login / Roll in Button START -->
