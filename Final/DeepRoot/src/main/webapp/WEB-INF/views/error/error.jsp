@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
+
 
 <head>
 	<meta charset="UTF-8">
 	<title>404 Error Page</title>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/error.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/error/error.css">
 </head>
 
 <body>
@@ -600,7 +603,7 @@
 		        </div>
 		        
 		        <div id="home" class="button">
-		            <a href="https://www.naver.com"> 메인으로 </a>
+		            <a href="index.do"> 메인으로 </a>
 		        </div>
 		        
 		    </div>
