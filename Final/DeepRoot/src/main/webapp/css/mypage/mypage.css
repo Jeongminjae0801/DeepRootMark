@@ -73,7 +73,7 @@ a:hover{text-decoration: none; }
 	position: relative;
 	left: 10px;
 	right: 20px;
-	font-family: 'Jua', 'Jua';
+	font-family: 'Jua';
 }
 .spring {
   position: relative;
@@ -101,7 +101,6 @@ a:hover{text-decoration: none; }
 }
 
 .my-row-bg {
-  /*background: #6291cc;*/
   padding: 25px 0px 25px 30px;
   border-radius: 20px;
 }
@@ -113,7 +112,7 @@ a:hover{text-decoration: none; }
 
 .mypage-title {
   font-size: 23px;
-  font-family: 'Jua', 'Jua';
+  font-family: 'Jua';
 }
 .heading {
   color: #fff;
@@ -171,7 +170,6 @@ a:hover{text-decoration: none; }
   margin-left: 25px;
   background-color: #fff;
   border: 1px solid;
-  /*border-right: none;*/
   border-color: #000;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -181,7 +179,6 @@ a:hover{text-decoration: none; }
   margin-left: 10px;
   background-color: #fff;
   border: 1px solid;
-  /*border-left: none;*/
   border-right-style: double;
   border-color: #000;
   border-top-right-radius: 10px;
@@ -203,7 +200,6 @@ a:hover{text-decoration: none; }
   border-color: #000;
   border: 1px solid;
   overflow: hidden;
-  /*border-top-right-radius: 30px;*/
 }
 
 .completed-group-list-div {
@@ -216,8 +212,6 @@ a:hover{text-decoration: none; }
 .group-completed-list-panel {
   border-color: #000;
   border: 1px solid;
-  /*padding-bottom: 30px;*/
-  /*border-bottom-right-radius: 30px;*/
 }
 
 .my-group-list {

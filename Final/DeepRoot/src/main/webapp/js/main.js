@@ -250,9 +250,9 @@ function preview(abid){
 				if(data.title != "" && data.title != null){
 					comment = "<b>" + data.title + "</b>";
 				}
-				if(data.url != "" && data.url != null){
+				/*if(data.url != "" && data.url != null){
 					comment += "&nbsp;-&nbsp;<a href='" + data.url + "' target='_blank'>" + data.url + "</a>";
-				}
+				}*/
 				if(data.description != "" && data.description != null){
 					comment += "<br> <p>&nbsp;&nbsp;" + data.description + "</p>";
 				}
