@@ -315,7 +315,7 @@ $(document).ready(function(){
 											
 											$('#editurlval').val(url);
 											$('#editurlsubmit').on('dblclick', function(){ return });
-											$('#editurlsubmit').on("click",function(){
+											$('#editurlsubmit').off("click").on("click",function(){
 												
 												var newurl = $('#editurlval').val();
 												var form = {ubid : id, url : newurl }
@@ -440,7 +440,7 @@ $(document).ready(function(){
 											                
 											$('#editurlval').val(url);
 											$('#editurlsubmit').on('dblclick', function(){ return });
-											$('#editurlsubmit').on("click",function(){
+											$('#editurlsubmit').off("click").on("click",function(){
 												
 												var newurl = $('#editurlval').val();
 												var form = {ubid : id, url : newurl }
