@@ -110,7 +110,7 @@
 								<tr class="addUrlLevel2">
 									<td class="info" style="vertical-align: middle;">제목 :</td>
 									<td><input type="text" id="title_btn" name="title_btn"
-										class="form-control" maxlength="33"></td>
+										class="form-control" maxlength="33" placeholder="최대 33자"></td>
 								</tr>
 								<tr class="addUrlLevel2">
 									<td class="info" style="vertical-align: middle;">카테고리 :</td>

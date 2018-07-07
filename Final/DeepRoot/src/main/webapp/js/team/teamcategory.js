@@ -366,6 +366,7 @@ function customMenu($node){
 				"action" : function (obj) {
 					/*왼쪽 jstree 이름 수정하기 아래에 함수 있음*/
 					tree.edit($node);			
+					$(".jstree-rename-input").attr("maxLength",33);
 				}
 			},			
 			"editurl" : {
