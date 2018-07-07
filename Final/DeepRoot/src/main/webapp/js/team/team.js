@@ -361,12 +361,16 @@ var hashtagStartPoint2 = 0;
 /*URL 해시태그 추가(그룹완료)*/ 
 function addHashtag2() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
-		hashtagList2.push("#"+$.trim($('#htag_btn2').val()));
-		var hashtag = $.trim($('#htag_btn2').val());
-		$('#htag_btn2').val('');
-		$('#htag_btn2').focus();
-		$('#htag_append2').append("<input class='btn btn-default btn-hash' id='btnHash2" + hashtagStartPoint2 + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag2(this)'>");
-		hashtagStartPoint2++;
+		if(jQuery.trim($('#htag_btn2').val()) != "" && hashtagList2.length < 10){
+			hashtagList2.push("#"+$.trim($('#htag_btn2').val()));
+			var hashtag = $.trim($('#htag_btn2').val());
+			$('#htag_btn2').val('');
+			$('#htag_btn2').focus();
+			$('#htag_append2').append("<input class='btn btn-default btn-hash' id='btnHash2" + hashtagStartPoint2 + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag2(this)'>");
+			hashtagStartPoint2++;
+		}else {
+			$.alert("해시태그를 입력해주세요 (최대 10개 입력)");
+		}
 	}
 }
 

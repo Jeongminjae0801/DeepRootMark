@@ -703,7 +703,7 @@ var check_htag = '';
 /*URL 해시태그 추가*/ 
 function addHashtag() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
-		if(jQuery.trim($('#htag_btn').val()) != ""){
+		if(jQuery.trim($('#htag_btn').val()) != "" && hashtagList.length < 10){
 			hashtagList.push("#"+$.trim($('#htag_btn').val()));
 			var hashtag = $.trim($('#htag_btn').val());
 			$('#htag_btn').val('');
@@ -711,7 +711,7 @@ function addHashtag() {
 			$('#htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag(this)'>");
 			hashtagStartPoint++;
 		}else {
-			$.alert("해시태그를 입력해주세요");
+			$.alert("해시태그를 입력해주세요 (최대 10개 입력)");
 		}
 	}
 }
@@ -723,7 +723,7 @@ var hashtagStartPoint2 = 0;
 /*URL 해시태그 추가(그룹완료)*/ 
 function addHashtag2() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
-		if(jQuery.trim($('#htag_btn2').val()) != ""){
+		if(jQuery.trim($('#htag_btn2').val()) != "" && hashtagList2.length < 10){
 			hashtagList2.push("#"+$.trim($('#htag_btn2').val()));
 			var hashtag = $.trim($('#htag_btn2').val());
 			$('#htag_btn2').val('');
@@ -731,7 +731,7 @@ function addHashtag2() {
 			$('#htag_append2').append("<input class='btn btn-default btn-hash' id='btnHash2" + hashtagStartPoint2 + "' type='button' value='#" + hashtag + "' onclick='deleteHashtag2(this)'>");
 			hashtagStartPoint2++;
 		}else {
-			$.alert("해시태그를 입력해주세요");
+			$.alert("해시태그를 입력해주세요 (최대 10개 입력)");
 		}
 	}
 }
@@ -739,7 +739,7 @@ function addHashtag2() {
 /*해시태그 수정*/
 function edit_addHashtag() {
 	if (event.keyCode == 13 || event.keyCode == 32 ) {
-		if(jQuery.trim($('#edit_htag_btn').val()) != ""){
+		if(jQuery.trim($('#edit_htag_btn').val()) != "" && edithashtagList.length < 10){
 			edithashtagList.push("#"+$.trim($('#edit_htag_btn').val()));
 			var hashtag = $.trim($('#edit_htag_btn').val());
 			$('#edit_htag_btn').val('');
@@ -747,7 +747,7 @@ function edit_addHashtag() {
 			$('#edit_htag_append').append("<input class='btn btn-default btn-hash' id='btnHash" + hashtagStartPoint + "' type='button' value='#" + hashtag + "' onclick='edit_deleteHashtag(this)'>");
 			hashtagStartPoint++;
 		}else {
-			$.alert("해시태그를 입력해주세요");
+			$.alert("해시태그를 입력해주세요 (최대 10개 입력)");
 		}
 	}
 }
