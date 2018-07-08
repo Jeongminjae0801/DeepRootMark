@@ -103,7 +103,11 @@
 	            		$('#pwd_confirmation').val($('#pwd_check').val());
 	            	}
 	            	else {
-	            		alert('비밀번호를 재확인 해주세요');
+	            		swal({title: "비밀번호를 다시 확인해주세요!",
+	                        text: "잠시후 다시 시도해주세요!",
+	                        icon: "warning",
+	                        dangerMode: true
+	        			});
 	            		$('#pwd_check').val('');
 	            	}
 	            },
