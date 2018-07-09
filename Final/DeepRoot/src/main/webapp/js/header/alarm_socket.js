@@ -89,7 +89,7 @@ function alarmConnect(userid) {
         				
         				console.log("완료");
 	        			if($('#alarm_menu_li').children('ul').length == 0) {
-	                		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
+	                		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
 	            		}
 	                	
 	                	var common_form = '<li id="alarmlist' +recv_gid+ '" class="g_alarm_li">'

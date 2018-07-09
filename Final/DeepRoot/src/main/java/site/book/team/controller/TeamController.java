@@ -345,7 +345,7 @@ public class TeamController {
 		return jsonview;
 	}
 	
-	// 초대 기능: 닉네임으로 초대 쪽지 보내기
+	// 초대 기능: 이메일로 초대 쪽지 보내기
 	@RequestMapping("invite.do")	
 	public View inviteUser(HttpServletRequest req, Model model, G_AlarmDTO alarm) {
 		
@@ -353,9 +353,18 @@ public class TeamController {
         String uid = (String)session.getAttribute("info_userid");
         alarm.setFromid(uid);
         
+        G_MemberDTO member = new G_MemberDTO();
+        member.setUid(alarm.getToid());
+        member.setGid(alarm.getGid());
+        
         // 본인에게 보낸 경우
         if( alarm.getToid().equals(uid) ) {
         	model.addAttribute("result", "self");
+        	return jsonview;
+        }
+        // 이미 그룹원인 경우
+        else if( teamservice.isGroupMember(member) != null ) {
+        	model.addAttribute("result", "member");
         	return jsonview;
         }
         // 이미 초대한 사용자에게 보낸 경우
@@ -363,6 +372,7 @@ public class TeamController {
         	model.addAttribute("result", "already");
         	return jsonview;
         } 
+        
         // 정상적인 경우에 실행
         else {
         	int result = g_memberservice.inviteUser(alarm);
