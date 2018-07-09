@@ -272,8 +272,8 @@ a:hover{text-decoration: none; }
 /* jstree scrolling */
 .jstree-container-ul {
 	overflow: auto;
-    max-height: 702px;
-    min-height: 702px;
+    max-height: 300px;
+    min-height: 300px;
 }
 
 .jstree-container-ul::-webkit-scrollbar{width: 10px; height: 10px;}
