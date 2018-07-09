@@ -101,20 +101,10 @@
                                     <div class="box">
                                         <div class="content">
                                             <div class="social">
-                                                <a class="circle github" href="#">
-                                                	<i class="fab fa-github" ></i>
-                                                </a>
-                                                <a id="google_login" class="circle google" href="#">
-                                                	<i class="fab fa-google"></i>
-                                                </a>
-                                                <a id="facebook_login" class="circle facebook" href="#">
-                                                    <span class="naver">N</span>
-                                                </a>
+                                                <a class="logo-text" href="<%= request.getContextPath() %>/index.do">뿌리깊은마크</a>
                                             </div>
                                             <div class="division">
-                                                <div class="line l"></div>
-                                                <span>or</span>
-                                                <div class="line r"></div>
+                                                <hr>
                                             </div>
                                             <div class="error"></div>
                                             <div class="form loginBox">
