@@ -117,6 +117,7 @@ $(document).ready(function(){
 							     					tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder"} ,"last",function(new_node){
 							     						new_node.id = node_id;
 							     						tree.edit(new_node);
+							     						$(".jstree-rename-input").attr("maxLength",33);
 						            				 	});
 					              			 	 	}
 						               		  	})
@@ -229,6 +230,7 @@ $(document).ready(function(){
 					tree.create_node( null , {text : "새 카테고리" , id : ubid , icon : "fa fa-folder"} ,"last",function(new_node){
 						new_node = ubid;
 						tree.edit(new_node); //생성과 동시에 이름 수정할 수 있게 함
+						$(".jstree-rename-input").attr("maxLength",33);
 						
 					});
 				}
@@ -926,8 +928,11 @@ function addUrlNotShare() {
 				 $('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
 				 //console.log(data);	//id 확인
 				 var node_id = $.trim(data);
-				 $('#jstree_container').jstree().deselect_all(true);											
-				 $('#jstree_container').jstree(true).select_node(urlpid);		
+				/* $('#jstree_container').jstree().deselect_all(true);											
+				 $('#jstree_container').jstree(true).select_node(urlpid);		*/
+				 tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url,sname: '#',htag: '#'} ,"last",function(new_node){
+						//console.log(new_node.id);
+					});
 			 }
 		 });
 	}
@@ -964,11 +969,11 @@ function addUrlShare() {
 				$('#linkAdd_btn').modal("toggle"); // 모달 창 닫아주기
 				//console.log(data);	//id 확인
 				var node_id = $.trim(data.ubid);
-				$('#jstree_container').jstree().deselect_all(true);											
-				$('#jstree_container').jstree(true).select_node(urlpid);		
-				//tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url} ,"last",function(new_node){
+			/*	$('#jstree_container').jstree().deselect_all(true);											
+				$('#jstree_container').jstree(true).select_node(urlpid);		*/
+				tree_child.create_node( null , {text : title , id : node_id , a_attr : {href : url} , icon : "https://www.google.com/s2/favicons?domain="+ url,sname:sname,htag:htag} ,"last",function(new_node){
 					//console.log(new_node.id);
-				//});
+				});
 			}
 		});
 	}
@@ -1147,6 +1152,7 @@ function editurlsubmit() {
 				$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
 				$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);*/
 				$($('#jstree_container_child').jstree(true).get_node(id).a_attr).attr("href",newurl);
+				 /*$('#editurlval').val(newurl);*/
 				$('#jstree_container_child').jstree(true).set_icon($('#jstree_container_child').jstree(true).get_node(id), "https://www.google.com/s2/favicons?domain="+ newurl)
 			/*	$('#jstree_container').jstree().deselect_all(true);											
 				$('#jstree_container').jstree(true).select_node(urlpid);		*/
