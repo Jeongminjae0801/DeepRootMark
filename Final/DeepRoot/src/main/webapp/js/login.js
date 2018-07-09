@@ -204,6 +204,8 @@ $(function() {
     	                text: '완료',
     	                btnClass: 'btn-success',
     	                action: function () {
+    	                	$('#agree-site-rule').prop('checked', false);
+    	                	$("#rollinAjax").prop("disabled", true);
     	                	$("#uid_join").on("blur", email_check);
     	                	$('#uid_join').removeClass('clear_join');
     	                	$('#uid_join').prop('readonly', false);
@@ -236,11 +238,15 @@ $(function() {
 	
 	//3.비밀번호 길이 확인 함수
     $('#pwd_join').focus(function() {
+    	$('#agree-site-rule').prop('checked', false);
+    	$("#rollinAjax").prop("disabled", true);
+    	
     	$('#pwd_confirmation').val('');
     	$('#pwd_join').removeClass('clear_join')
     	$('#pwd_confirmation').removeClass('clear_join');
     });
     $('#pwd_join').keyup(function() {
+    	
         if (($('#pwd_join').val().trim() == "") || !($('#pwd_join').val().length >= 5 && $('#pwd_join').val().length <= 15)) {
              $('.error').addClass('alert alert-danger').html("비밀번호는 5~15자로 입력해주세요");
              $('#pwd_join').removeClass('clear_join')
@@ -250,7 +256,13 @@ $(function() {
         }
     });
     
+    
     //4.비밀번호 동일 확인 함수
+    $('#pwd_confirmation').focus(function(){
+    	$('#agree-site-rule').prop('checked', false);
+    	$("#rollinAjax").prop("disabled", true);
+    });
+    
     $('#pwd_confirmation').keyup(function() {
         if (!($('#pwd_join').val() == $('#pwd_confirmation').val())) {
               $('.error').addClass('alert alert-danger').html("입력한 비밀번호가 다릅니다.");
@@ -264,13 +276,18 @@ $(function() {
         }
     });
 	
+    // 재수정시 체크박스 해제
+    $("#nname_join").focus(function(){
+    	$('#agree-site-rule').prop('checked', false);
+    	$("#rollinAjax").prop("disabled", true);
+    	$('#nname_join').removeClass('clear_join');
+    });
     $("#nname_join").keydown(function(){
     	//  /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
     	var regex = /[a-zA-Z0-9|가-힣]{2,10}/;
 		if( !(regex.test($('#nname_join').val())) ) {
 			$('.error').addClass('alert alert-danger').html("<small><b>※닉네임은 변경 불가능하니 신중하게 적어주세요!</b></small><br>"+
 															" 닉네임은 2~10자의 한글, 알파벳 대/소문자<br>또는 한글과 알파벳의 조합입니다!");
-			$('#nname_join').focus();
             $('#nname_join').removeClass('clear_vaildate');
             
 		}else {
@@ -282,8 +299,8 @@ $(function() {
     //5.닉네임 중복확인
 	$("#nname_join").blur(function(){
 		if( !$('#nname_join').hasClass('clear_vaildate') ) {
-			$('#nname_join').focus();
 			$('#nname_join').removeClass('clear_join');
+			$('#nname_join').focus();
 			return
 		}
 		
@@ -313,6 +330,9 @@ $(function() {
 		                        $('#loginModal .modal-dialog').removeClass('shake');
 		                    }, 500);
 	            		$("#nname_join").focus();
+	            		$('#agree-site-rule').prop('checked', false);
+	            		$("#rollinAjax").prop("disabled", true);
+	            		$('#nname_join').removeClass('clear_vaildate');
 	            		$('#nname_join').removeClass('clear_join');
 	            	}
 	            }
@@ -370,6 +390,7 @@ $(function() {
 			}else {
 				$.alert("위 항목을 모두 정확히 작성해주세요");
 				$("#agree-site-rule").prop("checked", false);
+				$("#rollinAjax").prop("disabled", true);
 			}
 		}else {
 			//console.log("xxxx");

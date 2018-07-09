@@ -316,7 +316,7 @@ public class MainController {
 	@RequestMapping(value="/rollout.do", method=RequestMethod.GET)
 	public String rolloutMember(HttpServletRequest request, HttpSession session, Model model) {
 		String uid = (String)session.getAttribute("info_userid");
-		System.out.println(uid);
+		//System.out.println(uid);
 		user_service.deleteMember(uid);
 
 		return "member.logout";
@@ -327,7 +327,7 @@ public class MainController {
 	@RequestMapping(value="/confirmuser.do", method=RequestMethod.POST)
 	public View confirmUser(HttpServletRequest request, Model model, EmailAuthDTO user) {
 
-		System.out.println(user);
+		//System.out.println(user);
 		int result = user_service.confirmUser(user);
 
 		if(result > 0) {
