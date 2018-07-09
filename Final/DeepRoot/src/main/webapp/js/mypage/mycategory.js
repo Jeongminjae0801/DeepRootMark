@@ -382,7 +382,7 @@ $(document).ready(function(){
 									edit_htag_node_id = id;
 					                			
 									$('#edit_htag_append').empty();	//기존 모달에 있던 htag button 없애기
-									$('#edit_htag_btn').empty();
+									$('#edit_htag_btn').val('');
 									$('#edit_htag').modal();	//htag 수정하기 모달
 									$('#edit_sname_btn').val(sname);	//sname 넣어주기
 							                	
@@ -518,7 +518,7 @@ $(document).ready(function(){
 											edit_htag_node_id = id;
 								                			
 											$('#edit_htag_append').empty();	//기존 모달에 있던 htag button 없애기
-											$('#edit_htag_btn').empty();
+											$('#edit_htag_btn').val('');
 											$('#edit_htag').modal();	//htag 수정하기 모달
 											$('#edit_sname_btn').val(sname);	//sname 넣어주기
 								                			
