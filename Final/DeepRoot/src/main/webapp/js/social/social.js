@@ -72,7 +72,11 @@ $(function() {
     	var selected_node_id = $(".indishare-userpid").val();
     	
     	if(selected_node_id == 0) {
-	        alert("가져가기 할 폴더를 선택하지 않았습니다.")
+    		swal({title: "목적지 폴더를 확인하셨나요?",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
     	
@@ -119,10 +123,14 @@ $(function() {
     	var selected_node_id = $(".indishare-userpid").val();
     	
     	if(selected_node_id == 0) {
-	        alert("가져가기 할 폴더를 선택하지 않았습니다.")
+    		swal({title: "목적지 폴더를 확인하셨나요?",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
-    	
+	    
 		$.ajax({
 			url : "getGroupBook.do",
 			type: "POST",
@@ -329,12 +337,20 @@ $(document).ready(function(){
 	    checked_ids = $('#jstree-from-left-group').jstree("get_checked",null,true);
 	    
 	    if(checked_ids == null){
-	        alert("선택한 URL이 없습니다.")
+	    	swal({title: "선택한 URL이 없습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
 	    
 	    if(selected_node_id == 0) {
-	        alert("가져가기 할 폴더를 선택하지 않았습니다.")
+	    	swal({title: "목적지 폴더를 확인하셨나요?",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
 	    
@@ -417,12 +433,20 @@ $(document).ready(function(){
 	    checked_ids = $('#jstree-from-left-group').jstree("get_checked",null,true);
 	    
 	    if(checked_ids == null){
-	        alert("선택한 URL이 없습니다.")
+	    	swal({title: "선택한 URL이 없습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
 	    
 	    if(selected_node_id == 0) {
-	        alert("가져가기 할 폴더를 선택하지 않았습니다.")
+	    	swal({title: "목적지 폴더를 확인하셨나요?",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
 	    
@@ -656,12 +680,20 @@ $(document).ready(function(){
         checked_ids = $('#jstree-from-left-all').jstree("get_checked",null,true);
         
         if(checked_ids == null){
-	        alert("선택한 URL이 없습니다.")
+        	swal({title: "선택한 URL이 없습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
 	    
 	    if(selected_node_id == 0) {
-	        alert("가져가기 할 폴더를 선택하지 않았습니다.")
+	    	swal({title: "목적지 폴더를 확인하셨나요?",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
         
@@ -741,12 +773,20 @@ $(document).ready(function(){
         checked_ids = $('#jstree-from-left-all').jstree("get_checked",null,true);
 		
         if(checked_ids == null){
-	        alert("선택한 URL이 없습니다.")
+        	swal({title: "선택한 URL이 없습니다!",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
 	    
 	    if(selected_node_id == 0) {
-	        alert("가져가기 할 폴더를 선택하지 않았습니다.")
+	    	swal({title: "목적지 폴더를 확인하셨나요?",
+                text: "잠시후 다시 시도해주세요!",
+                icon: "warning",
+                dangerMode: true
+			});
 	        return false
 	    };
         

@@ -103,7 +103,7 @@
 
 
 <!-- Main Content START -->
-<div class="content-wrapper" style="min-height: 913px;">
+<div class="content-wrapper adminSocial" style="min-height: 913px;">
 	<section class="content-header">
 		<h1><i class="fas fa-clipboard-list content-header-ico"></i>Social Bookmark List</h1>
 		<ol class="breadcrumb">

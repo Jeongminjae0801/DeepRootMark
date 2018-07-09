@@ -63,6 +63,23 @@ table.table-hover a {
 	color: #000;
 }
 
+.adminSocial table tbody tr th.table-date{
+	white-space: nowrap !important;
+}
+
+.adminSocial table tbody tr td.table-date{
+    width: 12.5% !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip !important;
+}
+
+.adminSocial table.dataTable thead > tr > th {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+
 .pagination {
 	float: right;
 	margin: 0 0 5px;
