@@ -67,7 +67,7 @@
                     <div class="slide-text">
                         <!-- introduce text START -->
                         <div class="introduce-text">
-                        	<span>어디서든 빠르고 쉽게</span><br>
+                        	<span class="intro-text">어디서든 빠르고 쉽게</span><br>
 							<span class="intro-span1">
 								<span class="intro-text1">개발자</span>가 사용하기 좋은 사이트들을 제공해줍니다!</span><br>
 							<span class="intro-span2">

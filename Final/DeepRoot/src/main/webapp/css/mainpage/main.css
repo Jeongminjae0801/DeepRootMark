@@ -252,9 +252,10 @@ span.title {font-family: 'Jua';}
 #home-slider .intro-span3{padding-left: 60px}
 #home-slider .intro-span4{padding-left: 80px}
 
-#home-slider .intro-text1{color: #dd4b39;}
-#home-slider .intro-text2{color: #5a78ff;}
-#home-slider .intro-text3{color: #47478c;}
+#home-slider .intro-text{font-size: 30px;}
+#home-slider .intro-text1{color: #dd4b39; font-size: 30px;}
+#home-slider .intro-text2{color: #5a78ff; font-size: 30px;}
+#home-slider .intro-text3{color: #47478c; font-size: 30px;}
 
 #home-slider .slider-hill {
     position: absolute;
