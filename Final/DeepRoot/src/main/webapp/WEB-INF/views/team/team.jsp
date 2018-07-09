@@ -145,7 +145,6 @@
 			                            </div>
 			                        </div>
 			                    </div> 
-			                    
 			                    <script type="text/javascript">
 			                    $(document).ready(function() {
 			                    	var onlinelist = JSON.parse('${onlinelist}');
@@ -165,8 +164,15 @@
 	                            			var insertOnline = '<p id="' + member[0] + '"' + ' class="member" data-grid="'+member[2]+'">' 
             												 	+ '<i class="fas fa-circle online-ico"></i>'
             												 	+ member[0]
+            												 
             							  					+ '</p>';
             								$('#online-member').prepend(insertOnline);
+            								
+            								if(member[2] == 1) {
+            									$("#" + member[0]).append('<i class="fas fa-crown group-master"></i>');
+            								}else if(member[2] == 2) {
+            									$("#" + member[0]).append('<i class="fas fa-chess-knight group-manager"></i>');
+            								}
             			
             							}else {
             								var insertOffline = '<p id="' + member[0] + '"' + ' class="member" data-grid="'+member[2]+'">' 
@@ -174,6 +180,12 @@
 					            								+ member[0]
 					            							  + '</p>';
 					            			$('#offline-member').prepend(insertOffline);
+					            			
+					            			if(member[2] == 1) {
+            									$("#" + member[0]).append('<i class="fas fa-crown group-master"></i>');
+            								}else if(member[2] == 2) {
+            									$("#" + member[0]).append('<i class="fas fa-chess-knight group-manager"></i>');
+            								}
 	                            		}
 	                            	});
 			                    });

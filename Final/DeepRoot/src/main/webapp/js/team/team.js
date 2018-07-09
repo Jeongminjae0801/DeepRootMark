@@ -259,6 +259,11 @@ function member_auth(key, targetNname, hisGrid){
 			else if(data.result == "success") { 
 				$.alert("해당 권한이 부여되었습니다");
 				$("#"+targetNname).attr("data-grid", (key=="manager" ? 2 : 3));
+				if(key == "manager") {
+    				$("#" + targetNname).append(' <i class="fas fa-chess-knight group-manager"></i>');
+    			}else {
+    				$("#" + targetNname).children().last().remove();
+    			}
 				
 				stompClient.send('/alarm', {}, 
 					 	JSON.stringify({
@@ -274,7 +279,7 @@ function member_auth(key, targetNname, hisGrid){
 				stompClient.send('/chat/' + gid, {}, 
 					 	JSON.stringify({
 					 		nname: "시스템",
-					 		content: "'" + targetNname + "'님이 " + (key=="manager" ? "매니저" : "그룹원") + "이 되셨습니다!",
+					 		content: "'" + targetNname + "'님이 " + (key=="manager" ? "매니저" : "그룹원") + "이(가) 되셨습니다!",
 					 		profile: "system.png"
 						})
 				);
