@@ -29,10 +29,10 @@ function member_insert(){
                 action: function () {
                     var toid = this.$content.find('.insertUid').val();
                     if(!toid){
-	                    $.alert('닉네임을 적어주세요');
+	                    $.alert('이메일을 적어주세요');
 	                    return false;
 	                }
-
+                    
                     $.ajax({
                 		url: "invite.do",
             			type: "post",
@@ -57,6 +57,9 @@ function member_insert(){
             					
             				} else if(msg == "SELF") {
             					$.alert("본인을 초대하실 수 없습니다!");
+            					
+            				} else if(msg == "MEMBER") {
+            					$.alert("이미 그룹 멤버입니다!");
             					
             				} else if(msg == "ALREADY") {
             					$.alert("이미 초대된 사용자입니다!");

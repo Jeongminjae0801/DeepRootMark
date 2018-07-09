@@ -50,7 +50,9 @@ function jstreetable(){
 												
 							if(op=='move_node'){
 							// dnd 일경우 more.core =ture 일 경우에만 메세지 보내기
-								
+								if(par.id == '#'){
+									return false;
+								}
 								if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
 									return false;	
 								}
@@ -90,8 +92,10 @@ function jstreetable(){
 							return true;	
 						}
 					},
-					"plugins" : [ "dnd","contextmenu" ], //drag n drop , 과 우클릭시 플러그인 가져옴
-
+					"plugins" : [ "dnd","contextmenu" ,"sort"], //drag n drop , 과 우클릭시 플러그인 가져옴
+					"sort" : function(a,b){
+						return this.get_node(a).a_attr.href.length > this.get_node(b).a_attr.href.length ? 1: -1;
+					} ,
 					/*우클릭 메뉴 설정*/
 					"contextmenu" : { 
 						"select_node" : false, // 우클릭 했을 경우 왼클릭되는거 막음
