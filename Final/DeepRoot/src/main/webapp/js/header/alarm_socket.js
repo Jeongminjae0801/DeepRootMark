@@ -35,7 +35,7 @@ function alarmConnect(userid) {
         	$('#alarm_menu').css('font-weight', '900');
         	
         	if($('#alarm_menu_li').children('ul').length == 0) {
-        		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
+        		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
 			}
         	
         	var common_form = '<li id="alarmlist' +gid+ '" class="g_alarm_li">'
