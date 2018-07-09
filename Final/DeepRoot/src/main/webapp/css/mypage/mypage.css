@@ -272,8 +272,8 @@ a:hover{text-decoration: none; }
 /* jstree scrolling */
 .jstree-container-ul {
 	overflow: auto;
-    max-height: 300px;
-    min-height: 300px;
+    max-height: 702px;
+    min-height: 702px;
 }
 
 .jstree-container-ul::-webkit-scrollbar{width: 10px; height: 10px;}
@@ -284,4 +284,10 @@ a:hover{text-decoration: none; }
     width: 5px;
     height: 5px;
     background-color: #fff0;
+}
+.completed .jstree-container-ul {
+	overflow: auto;
+    max-height: 300px;
+    min-height: 300px;
+
 }
