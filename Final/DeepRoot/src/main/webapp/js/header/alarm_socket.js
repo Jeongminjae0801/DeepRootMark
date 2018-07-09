@@ -30,7 +30,7 @@ function alarmConnect(userid) {
         	var ganame = recv_alarm.gmemo
         	var senddate = recv_alarm.senddate;
         	
-        	$('#alarm_menu').addClass('animated pulse');
+        	$('#alarm_menu').addClass('animated bounce');
         	$('#alarm_menu').css('color', '#ff8300');
         	$('#alarm_menu').css('font-weight', '900');
         	
@@ -97,7 +97,7 @@ function alarmConnect(userid) {
 	                						+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
 	                						+ '<br style="clear:both">';
 	                	
-	                	$('#alarm_menu').addClass('animated pulse');
+	                	$('#alarm_menu').addClass('animated bounce');
 	                	$('#alarm_menu').css('color', '#ff8300');
 	                	$('#alarm_menu').css('font-weight', '900');	
 	                		

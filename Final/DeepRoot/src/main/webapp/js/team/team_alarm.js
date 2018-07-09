@@ -16,7 +16,7 @@ function alarmConnect(stompClient, userid) {
     	var recv_ganame = recv_alarm.gmemo
     	var recv_senddate = recv_alarm.senddate;
     	
-    	$('#alarm_menu').addClass('animated pulse');
+    	$('#alarm_menu').addClass('animated bounce');
     	$('#alarm_menu').css('color', '#ff8300');
     	$('#alarm_menu').css('font-weight', '900');
     	
@@ -79,7 +79,7 @@ function alarmConnect(stompClient, userid) {
     						+ '<br style="clear:both">';
     	
     	if( recv_ganame == "완료" ) {
-    		$('#alarm_menu').addClass('animated pulse');
+    		$('#alarm_menu').addClass('animated bounce');
     		$('#alarm_menu').css('color', '#ff8300');
     		$('#alarm_menu').css('font-weight', '900');
     		
