@@ -358,6 +358,7 @@ function customMenu($node){
 		     				tree.create_node(par_node , {text : "새 폴더" , id : node_id  ,icon : "fa fa-folder",uid: uid ,a_attr : {href: '#'}} ,"last",function(new_node){
 		     					new_node.id = node_id;
 		     					tree.edit(new_node);
+		     					$(".jstree-rename-input").attr("maxLength",33);
 	            			});
 	          			}
 	               	})
