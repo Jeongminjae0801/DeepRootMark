@@ -320,6 +320,7 @@ body{
     padding: 10px 10px 0px 10px;
     height: 75%;
     overflow-y: auto;
+    word-break: break-all;
 }
 
 .divider { width:100%; text-align:center; clear: both; margin-bottom: 5px}
