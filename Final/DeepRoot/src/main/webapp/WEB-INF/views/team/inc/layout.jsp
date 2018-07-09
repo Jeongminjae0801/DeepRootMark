@@ -37,7 +37,7 @@
     <!-- Group Page CSS START -->
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/team/team.css?ver=2" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/mainpage/header.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/mainpage/header.css?ver=2" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/footer.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/mainpage/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jstreeTeam.css" />
@@ -52,6 +52,10 @@
     <script src="${pageContext.request.contextPath}/js/team/jquery.contextMenu.js?ver=2"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/team/team_alarm.js?ver=2"></script>
     <!-- Script END -->
+    
+    <!-- Text Effect(Alarm) -->
+    <link href="${pageContext.request.contextPath}/css/text-effect.css" rel="stylesheet">
+    <!-- Text Effect(Alarm) END -->
     
     <!-- Header Socket JS -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/header/alarm.js?ver=1"></script>

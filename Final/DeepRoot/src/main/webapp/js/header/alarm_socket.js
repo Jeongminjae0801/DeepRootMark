@@ -30,7 +30,7 @@ function alarmConnect(userid) {
         	var ganame = recv_alarm.gmemo
         	var senddate = recv_alarm.senddate;
         	
-        	$('#alarm_menu').addClass('animated bounce');
+        	$('#alarm_menu').addClass('animated flash');
         	$('#alarm_menu').css('color', '#ff8300');
         	$('#alarm_menu').css('font-weight', '900');
         	
@@ -68,12 +68,19 @@ function alarmConnect(userid) {
         	//console.log(common_form);
         	$('.g_alarm_ul').prepend(common_form);
         	
+        	alarm_count = $('.g_alarm_li').length;
+        	if( alarm_count <= 3 && alarm_count > 0 ) {
+				$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;" + alarm_count + "&nbsp;</i>");
+			}else if( alarm_count == 0 ){
+				$('#alarm-count-text').html('');
+			}else {
+				$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;3+&nbsp;</i>");
+			}
         });
         
         stompClient.subscribe('/subscribe/alarm', function(message) {
         	
-        	console.log("알람 들어옴");
-        	
+        	//console.log("알람 들어옴");
         	var recv_complete_alarm = JSON.parse(message.body);
         	var recv_gid = recv_complete_alarm.gid;
         	var recv_toid = recv_complete_alarm.toid;
@@ -82,12 +89,12 @@ function alarmConnect(userid) {
         	var recv_ganame = recv_complete_alarm.gmemo
         	var recv_senddate = recv_complete_alarm.senddate;
         	
-        	console.log(headerTeamList);
+        	//console.log(headerTeamList);
         	$.each(headerTeamList, function(index, element){
         		if(element == recv_gid){
         			if( recv_ganame == "완료" ) {
         				
-        				console.log("완료");
+        				//console.log("완료");
 	        			if($('#alarm_menu_li').children('ul').length == 0) {
 	                		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
 	            		}
@@ -97,7 +104,7 @@ function alarmConnect(userid) {
 	                						+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
 	                						+ '<br style="clear:both">';
 	                	
-	                	$('#alarm_menu').addClass('animated bounce');
+	                	$('#alarm_menu').addClass('animated flash');
 	                	$('#alarm_menu').css('color', '#ff8300');
 	                	$('#alarm_menu').css('font-weight', '900');	
 	                		
@@ -138,6 +145,14 @@ function alarmConnect(userid) {
         		
         	});
         	
+        	alarm_count = $('.g_alarm_li').length;
+        	if( alarm_count <= 3 && alarm_count > 0 ) {
+				$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;" + alarm_count + "&nbsp;</i>");
+			}else if( alarm_count == 0 ){
+				$('#alarm-count-text').html('');
+			}else {
+				$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;3+&nbsp;</i>");
+			}
         });
     }, 
     function(message) {

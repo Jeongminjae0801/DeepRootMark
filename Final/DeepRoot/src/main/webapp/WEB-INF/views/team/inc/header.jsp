@@ -174,7 +174,18 @@
 							</c:forEach>
 						</ul>
 						</c:if>
+						<div id="alarm-count-text" class="alarm-count-div animated flash"></div>
 					</li>
+					<script type="text/javascript">
+						var alarm_count = $('.g_alarm_li').length;
+						if( alarm_count <= 3 && alarm_count > 0 ) {
+							$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;" + alarm_count + "&nbsp;</i>");
+						}else if( alarm_count == 0 ){
+							$('#alarm-count-text').html('');
+						}else {
+							$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;3+&nbsp;</i>");
+						}
+					</script>
 					<!-- Alarm START END -->
 					
 					<!-- Notice Alarm START -->

@@ -16,7 +16,7 @@ function alarmConnect(stompClient, userid) {
     	var recv_ganame = recv_alarm.gmemo
     	var recv_senddate = recv_alarm.senddate;
     	
-    	$('#alarm_menu').addClass('animated bounce');
+    	$('#alarm_menu').addClass('animated flash');
     	$('#alarm_menu').css('color', '#ff8300');
     	$('#alarm_menu').css('font-weight', '900');
     	
@@ -57,6 +57,14 @@ function alarmConnect(stompClient, userid) {
     	//console.log(common_form);
     	$('.g_alarm_ul').prepend(common_form);
     	
+    	alarm_count = $('.g_alarm_li').length;
+    	if( alarm_count <= 3 && alarm_count > 0 ) {
+			$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;" + alarm_count + "&nbsp;</i>");
+		}else if( alarm_count == 0 ){
+			$('#alarm-count-text').html('');
+		}else {
+			$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;3+&nbsp;</i>");
+		}
     });
    
     stompClient.subscribe('/subscribe/alarm', function(message) {
@@ -79,7 +87,7 @@ function alarmConnect(stompClient, userid) {
     						+ '<br style="clear:both">';
     	
     	if( recv_ganame == "완료" ) {
-    		$('#alarm_menu').addClass('animated bounce');
+    		$('#alarm_menu').addClass('animated flash');
     		$('#alarm_menu').css('color', '#ff8300');
     		$('#alarm_menu').css('font-weight', '900');
     		
@@ -123,6 +131,14 @@ function alarmConnect(stompClient, userid) {
     	//console.log(common_form);
     	$('.g_alarm_ul').prepend(common_form);
     	
+    	alarm_count = $('.g_alarm_li').length;
+    	if( alarm_count <= 3 && alarm_count > 0 ) {
+			$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;" + alarm_count + "&nbsp;</i>");
+		}else if( alarm_count == 0 ){
+			$('#alarm-count-text').html('');
+		}else {
+			$('#alarm-count-text').html("<i class='fas fa-bullhorn'>&nbsp;3+&nbsp;</i>");
+		}
     });
 }
 

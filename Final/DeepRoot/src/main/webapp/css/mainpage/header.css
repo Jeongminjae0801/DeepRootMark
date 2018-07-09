@@ -366,4 +366,20 @@ ul.sub-menu {
 	-webkit-animation-timing-function: linear;
 }
 
+
+.alarm-count-div {
+	position: absolute;
+    top: 5px;
+    left: 2px;
+    height: 15px;
+    width: 15px;
+    color: rgb(255, 131, 0);
+    font-weight: 900;
+    font-size: 12px;
+    font-family: sans-serif;
+    
+    animation-duration: 1.5s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+}
 /* Alarm icon css END */
