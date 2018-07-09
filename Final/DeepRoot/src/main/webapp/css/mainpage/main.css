@@ -32,7 +32,7 @@ a:focus {
 }
 
 a {
-    font-family: 'Lato', 'Jua', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
     color: #000;
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
