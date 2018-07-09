@@ -185,7 +185,7 @@ function completedGroup(gid) {
 		<div class="main-modal-controller">
 			<div class="main-modal-center">
 				<div class="modal-dialog" role="document">
-					<div class="modal-content social completed">
+					<div class="modal-content social completed-group">
 						<div class="modal-header group">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>

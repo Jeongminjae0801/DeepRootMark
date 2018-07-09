@@ -285,7 +285,7 @@ a:hover{text-decoration: none; }
     height: 5px;
     background-color: #fff0;
 }
-.completed .jstree-container-ul {
+.completed-group .jstree-container-ul {
 	overflow: auto;
     max-height: 300px;
     min-height: 300px;
