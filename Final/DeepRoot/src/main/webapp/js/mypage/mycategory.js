@@ -28,7 +28,9 @@ $(document).ready(function(){
 							if(op === "move_node"){ // dnd 이벤트 일때 
 								var dragnode = node.id;
 								var dropnode = par.id;
-								
+								if(dropnode == '#'){
+									return false;
+								}
 								form = {dragnode : dragnode , dropnode : dropnode};
 								
 								$.ajax({	
