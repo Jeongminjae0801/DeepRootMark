@@ -50,7 +50,9 @@ function jstreetable(){
 												
 							if(op=='move_node'){
 							// dnd 일경우 more.core =ture 일 경우에만 메세지 보내기
-								
+								if(par.id == '#'){
+									return false;
+								}
 								if(par.a_attr.href != "#"){ // 최상단(root)와 동급 불가										
 									return false;	
 								}
