@@ -30,12 +30,12 @@ function alarmConnect(userid) {
         	var ganame = recv_alarm.gmemo
         	var senddate = recv_alarm.senddate;
         	
-        	$('#alarm_menu').addClass('animated pulse');
+        	$('#alarm_menu').addClass('animated bounce');
         	$('#alarm_menu').css('color', '#ff8300');
         	$('#alarm_menu').css('font-weight', '900');
         	
         	if($('#alarm_menu_li').children('ul').length == 0) {
-        		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
+        		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
 			}
         	
         	var common_form = '<li id="alarmlist' +gid+ '" class="g_alarm_li">'
@@ -89,7 +89,7 @@ function alarmConnect(userid) {
         				
         				console.log("완료");
 	        			if($('#alarm_menu_li').children('ul').length == 0) {
-	                		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul sub-menu"></ul>');
+	                		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
 	            		}
 	                	
 	                	var common_form = '<li id="alarmlist' +recv_gid+ '" class="g_alarm_li">'
@@ -97,7 +97,7 @@ function alarmConnect(userid) {
 	                						+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
 	                						+ '<br style="clear:both">';
 	                	
-	                	$('#alarm_menu').addClass('animated pulse');
+	                	$('#alarm_menu').addClass('animated bounce');
 	                	$('#alarm_menu').css('color', '#ff8300');
 	                	$('#alarm_menu').css('font-weight', '900');	
 	                		

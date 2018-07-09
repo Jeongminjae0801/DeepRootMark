@@ -61,7 +61,7 @@ $(function() {
 $(function() {
 	
 	$('#alarm_menu_li').click(function(){
-		$('#alarm_menu').removeClass("animated pulse");
+		$('#alarm_menu').removeClass("animated bounce");
 		$('#alarm_menu').css('color', '#000');
 		$('#alarm_menu').css('font-weight', '400');
 	})

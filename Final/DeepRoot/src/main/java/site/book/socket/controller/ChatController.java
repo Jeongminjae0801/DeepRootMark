@@ -6,7 +6,7 @@
 */
 
 
-package site.book.socket;
+package site.book.socket.controller;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -35,6 +35,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import site.book.socket.ChatMessage;
+import site.book.socket.JstreeAlarm;
 import site.book.user.dto.UserDTO;
 import site.book.user.service.UserService;
 
