@@ -264,10 +264,32 @@ $(function() {
         }
     });
 	
+    $("#nname_join").keydown(function(){
+    	//  /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
+    	var regex = /[a-zA-Z0-9|가-힣]{2,10}/;
+		if( !(regex.test($('#nname_join').val())) ) {
+			$('.error').addClass('alert alert-danger').html("<small><b>※닉네임은 변경 불가능하니 신중하게 적어주세요!</b></small><br>"+
+															" 닉네임은 2~10자의 한글, 알파벳 대/소문자<br>또는 한글과 알파벳의 조합입니다!");
+			$('#nname_join').focus();
+            $('#nname_join').removeClass('clear_vaildate');
+            
+		}else {
+			$('.error').removeClass('alert alert-danger').html('');
+			$('#nname_join').addClass('clear_vaildate');
+		}
+    });
+    
     //5.닉네임 중복확인
 	$("#nname_join").blur(function(){
-		if (($('#nname_join').val().trim() == "") || !($('#nname_join').val().length >= 1 && $('#nname_join').val().length <= 10)) {
+		if( !$('#nname_join').hasClass('clear_vaildate') ) {
+			$('#nname_join').focus();
+			$('#nname_join').removeClass('clear_join');
+			return
+		}
+		
+		if (($('#nname_join').val().trim() == "") || !($('#nname_join').val().length >= 2 && $('#nname_join').val().length <= 10)) {
 			$('.error').addClass('alert alert-danger').html("닉네임은 2~10자 입니다!");
+			$('#nname_join').focus();
             $('#nname_join').removeClass('clear_join');
             
 		}else {
