@@ -98,6 +98,20 @@ body{
 /* Top Content CSS END */
 
 /* group-member css START */
+.group-master {
+	margin-left: 2px;
+	font-size: 10px;
+    color: orange;
+    vertical-align: text-top;
+}
+
+.group-manager {
+	margin-left: 3px;
+	font-size: 14px;
+    color: #dd77ff;
+    vertical-align: text-top;
+}
+
 .group-member{
     padding: 5px;
     height: 700px;

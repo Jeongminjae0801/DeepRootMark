@@ -123,7 +123,11 @@ function alarmConnect(stompClient, userid) {
     			}
     			
     			$("#"+recv_toid).attr("data-grid", (recv_ganame == "manager" ? 2 : 3));
-
+    			if(recv_ganame == "manager") {
+    				$("#" + recv_toid).append(' <i class="fas fa-chess-knight group-manager"></i>');
+    			}else {
+    				$("#" + recv_toid).chlidren().last().remove();
+    			}
     		}
     	}
     	

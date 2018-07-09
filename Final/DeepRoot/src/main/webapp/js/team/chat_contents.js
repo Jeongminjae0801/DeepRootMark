@@ -376,6 +376,12 @@ function connect() {
 			//var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
 			$('#online-member').prepend(insertOnline);
+			
+			if(your_grid == "1") {
+				$("#" + temp_member).append('<i class="fas fa-crown group-master"></i>');
+			}else if(your_grid == "2") {
+				$("#" + temp_member).append('<i class="fas fa-chess-knight group-manager"></i>');
+			}
  		});
 
  		stompClient.subscribe('/subscribe/offline/' + gid, function(message) {
@@ -391,6 +397,12 @@ function connect() {
 			//var $who = $('#' + temp_member).clone();
 			$('#' + temp_member).remove();
 			$('#offline-member').prepend(insertOffline);
+			
+			if(your_grid == "1") {
+				$("#" + temp_member).append('<i class="fas fa-crown group-master"></i>');
+			}else if(your_grid == "2") {
+				$("#" + temp_member).append('<i class="fas fa-chess-knight group-manager"></i>');
+			}
  		});
  		
  		// Header Alarm socket connect
