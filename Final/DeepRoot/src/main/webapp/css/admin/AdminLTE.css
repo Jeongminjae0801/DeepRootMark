@@ -1261,7 +1261,7 @@ a:focus {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     padding: 1px 0 0 0;
-    border-top-width: 0;
+    /* /border-top-width: 0; */
     width: 280px
 }
 

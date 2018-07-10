@@ -109,7 +109,7 @@ span.title {font-family: 'Jua';}
 .category {
     font-family: 'Jua', 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
     height: 30px;
-    width: 106px;
+    width: 140px;
     margin-bottom: 10px;
     margin-right: 15px;
     padding: 5px 10px 5px 10px;
@@ -123,7 +123,7 @@ span.title {font-family: 'Jua';}
     box-shadow: 2px 2px 5px 1px #8f8f8f;
 }
 .category-title {
-	font-family: 'Jua', 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
+	font-family: 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
 	font-weight: 500;
 	font-size: 15px;
 }

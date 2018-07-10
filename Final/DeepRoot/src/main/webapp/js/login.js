@@ -209,8 +209,12 @@ $(function() {
     	                	$("#uid_join").on("blur", email_check);
     	                	$('#uid_join').removeClass('clear_join');
     	                	$('#uid_join').prop('readonly', false);
-    	                	$('#auth-div').val('');
-    	                	$('#auth-div').css('display', 'none');
+    	                	$('#auth-div').css('display', 'none');              	
+    	                	
+    	                	$('#authcode_join').val('');
+    	                	$('#authcode_join').removeClass('clear_join');
+    	                	$('#authcode_join').prop('disabled', false);
+    	                	$('#authcode_check').prop("disabled", false);
     	                }
     	            },
     	            '취소': {
