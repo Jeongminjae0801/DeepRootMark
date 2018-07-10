@@ -8,12 +8,14 @@
 
 package site.book.main.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,16 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.impl.GoogleTemplate;
+import org.springframework.social.google.api.plus.Person;
+import org.springframework.social.google.api.plus.PlusOperations;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +50,6 @@ import site.book.admin.dto.NoticeDTO;
 import site.book.admin.service.A_BookService;
 import site.book.admin.service.A_CategoryService;
 import site.book.admin.service.NoticeService;
-import site.book.team.dto.G_AlarmDTO;
 import site.book.team.dto.G_MemberDTO;
 import site.book.team.dto.G_MyAlarmDTO;
 import site.book.team.dto.TeamDTO;
@@ -61,6 +72,13 @@ public class MainController {
 	// 태웅
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	/* GoogleLogin */
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
 	
 	@Autowired
 	private A_CategoryService a_category_service;
@@ -172,6 +190,72 @@ public class MainController {
 		}
 		
 		return jsonview;
+	}
+	
+	/* Google Login API START */
+	/* 구글 로그인 버튼 클릭시 Google+ API 실행 */
+	@RequestMapping(value="/joinus/googleLogin", method= { RequestMethod.GET, RequestMethod.POST })
+	public View doGoogleSignInActionPage(HttpServletRequest request, Model model) throws Exception{
+		
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		
+		// System.out.println("/joinus/googleLogin, url : " + url);
+		model.addAttribute("url",url);
+		
+		return jsonview;
+	}
+	
+	/* 사용자가 인증 처리시 redirect 되는 함수. 따라서, 여기서 가입 처리와 로그인을 담당 */
+	@RequestMapping(value="/joinus/googleSignInCallback", method= { RequestMethod.GET, RequestMethod.POST })
+	public String googleRollin(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+								Model model, @RequestParam String code, UserDTO user) throws ServletException, IOException {
+		
+		//System.out.println(code);
+		
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code , googleOAuth2Parameters.getRedirectUri(), null);
+		
+		String accessToken = accessGrant.getAccessToken();
+		Long expireTime = accessGrant.getExpireTime();
+		
+		if (expireTime != null && expireTime < System.currentTimeMillis()) {
+			accessToken = accessGrant.getRefreshToken();
+		    System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+		}
+		
+		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+		
+		PlusOperations plusOperations = google.plusOperations();
+		Person profile = plusOperations.getGoogleProfile();
+		
+		System.out.println(profile.getDisplayName() + "/" + profile.getId() + "/");
+		System.out.println(profile.getAccountEmail());
+		
+		user.setUid(profile.getAccountEmail());
+		user.setNname(profile.getDisplayName());
+		
+		// UserDTO String OAuth 가 생겨야하구요.
+		// INSERT INTO `USER`(id, name, age) VALUES (1, 'A', 19) ON DUPLICATE KEY UPDATE id = id + 1;
+		/*
+		 	delimiter #
+			create procedure insert_or_update_oauth()
+			begin
+			  IF EXISTS (select * from `user` where username = 'something') THEN
+			    update `user` set nname= {nname} where uid = {uid};
+			  ELSE 
+			    insert into `user` (uid) values ('something');
+			  END IF;
+			end #
+			delimiter ; 
+		 */
+		//request.getRequestDispatcher("security/login").forward(request, response);
+		
+		session.setAttribute("info_userid", profile.getAccountEmail());
+		session.setAttribute("info_nname", profile.getDisplayName());
+		return "redirect:/";
 	}
 	
 	/* 회원가입  */
