@@ -105,18 +105,6 @@
 		</dependency>
 				
 		<!-- Servlet -->
-		<!-- <dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency> -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
@@ -209,14 +197,12 @@
             <version>2.7.3</version>
         </dependency>
  
-        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>
             <version>1.9.13</version>
         </dependency>
  
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -306,18 +292,6 @@
 		    <artifactId>spring-websocket</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
-		
-		<!-- <dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>sockjs-client</artifactId>
-		    <version>1.0.2</version>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>stomp-websocket</artifactId>
-		    <version>2.3.3</version>
-		</dependency> -->
 		
 		<dependency>
 		    <groupId>org.springframework</groupId>
