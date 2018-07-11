@@ -252,10 +252,10 @@ span.title {font-family: 'Jua';}
 #home-slider .intro-span3{padding-left: 60px}
 #home-slider .intro-span4{padding-left: 80px} */
 
-#home-slider .intro-text{font-size: 30px;}
+#home-slider .intro-text{font-size: 35px;}
 #home-slider .intro-text1{color: #dd4b39; font-size: 30px;}
 #home-slider .intro-text2{color: #5a78ff; font-size: 30px;}
-#home-slider .intro-text3{color: #47478c; font-size: 30px;}
+#home-slider .intro-text3{color: #1eb51e; font-size: 30px;}
 
 #home-slider .slider-hill {
     position: absolute;
@@ -265,8 +265,9 @@ span.title {font-family: 'Jua';}
 }
 
 #home-slider .btn-common {
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: 700;
+    font-style: oblique;
 }
 
 #home-slider .preloader {
@@ -329,7 +330,7 @@ span.title {font-family: 'Jua';}
   float: left;
   width: 100%;
   height: 40%;
-  background-color: #F8FAFF; 
+  background-color: #FFF; 
   color: #353866;
   border-radius: 0px 0px 10px 10px;
   border : 2px solid #575b5f;

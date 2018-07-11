@@ -235,7 +235,7 @@ function preview(abid){
 		type: "post",
 		data : { abid : abid },// 북마크 ID
 		beforeSend: function() {
-			$('#layout').html('<img src="/bit/images/loading/preview.gif" style="margin-top: 0;"/>');
+			$('#layout').html('<img src="/bit/images/loading/preview.gif" style="margin-top: 60px;"/>');
 		},
 		complete: function() {
 			$('#layout').html('');
@@ -272,7 +272,7 @@ function previewDetail(abid) {
 		type: "post",
 		data : { abid : abid },// 북마크 ID
 		beforeSend: function() {
-			$('#ajax-loading-div').html('<img id="loading-img" src="/bit/images/loading/loading.gif" style="width:35%;"/>');
+			$('#ajax-loading-div').html('<img id="loading-img" src="/bit/images/loading/writer.gif" style="width:35%;"/>');
 		},
 		complete: function() {
 			$('#ajax-loading-div').html('');
