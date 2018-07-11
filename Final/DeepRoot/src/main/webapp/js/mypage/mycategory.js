@@ -279,7 +279,7 @@ $(document).ready(function(){
 					return true;	
 				}
 			},
-			"plugins" : [ "dnd","contextmenu" , "wholerow"],
+			"plugins" : [ "dnd","contextmenu" , "wholerow","sort"],
 		
 			"contextmenu" : {
 				
