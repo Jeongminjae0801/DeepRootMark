@@ -245,12 +245,12 @@ span.title {font-family: 'Jua';}
     font-family: 'Jua', 'Lato', 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
     text-align: left;
     font-size: 25px;
-    padding-left: 20px;
+    padding-left: 50px;
 }
-#home-slider .intro-span1{padding-left: 20px}
+/* #home-slider .intro-span1{padding-left: 20px}
 #home-slider .intro-span2{padding-left: 40px}
 #home-slider .intro-span3{padding-left: 60px}
-#home-slider .intro-span4{padding-left: 80px}
+#home-slider .intro-span4{padding-left: 80px} */
 
 #home-slider .intro-text{font-size: 30px;}
 #home-slider .intro-text1{color: #dd4b39; font-size: 30px;}

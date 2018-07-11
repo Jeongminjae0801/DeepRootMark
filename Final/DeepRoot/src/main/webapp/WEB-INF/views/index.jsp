@@ -75,7 +75,7 @@
 							<span class="intro-span3">
 								<span class="intro-text3">그룹</span>과
 								<span class="intro-text3">소셜</span> 페이지 에서</span><br>
-							<span class="intro-span4">다른사람들과 
+							<span class="intro-span4">다른 사람들과 
 								<span class="intro-text2">북마크를 공유</span>해보세요!</span><br>
                         </div>
                         <!-- introduce text END -->
