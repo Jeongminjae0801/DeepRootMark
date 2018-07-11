@@ -180,7 +180,7 @@ jQuery(function($) {
 		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 		var floatPosition = parseInt($("#floatMenu").css('top'));
 		// category-div height
-		var categoryBottomPos = $('#category-div').offset().top + 125;
+		var categoryBottomPos = $('#category-div').offset().top + 100;
 		// FloatMecu 절대좌표floatMenu
 		var floatBottomPos = $("#floatMenu").offset().top + 800;
 		// Footer 절대좌표
@@ -194,15 +194,15 @@ jQuery(function($) {
 			//console.log(floatBottomPos + "/" + footerPos);
 			
 			// 현재 스크롤 위치를 가져온다.
-			var newPosition = curScrollPos + floatPosition - 600 + "px";
-
+			var newPosition = curScrollPos + floatPosition - 630 + "px";
+			
 			if (curScrollPos > scrollPos) { //Scrolling Down
 	        	//console.log("donw");
 	        	if (curScrollPos <= categoryBottomPos) {
 					$("#floatMenu").css("top","0px");
 				}
 				else if (floatBottomPos >=  footerPos) {
-					$("#floatMenu").css("top", (footerPos - 1450) + "px");
+					$("#floatMenu").css("top", (footerPos - 1480) + "px");
 				}
 				else{
 					$("#floatMenu").css('top', newPosition);
@@ -214,7 +214,7 @@ jQuery(function($) {
 					$("#floatMenu").css("top","0px");
 				}
 				else if (floatBottomPos >=  footerPos) {
-					$("#floatMenu").css('top', (newPosition));
+					$("#floatMenu").css('top', newPosition);
 				}
 				else{
 					$("#floatMenu").css('top', newPosition);
