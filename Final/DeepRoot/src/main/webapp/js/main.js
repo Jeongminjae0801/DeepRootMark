@@ -194,7 +194,7 @@ jQuery(function($) {
 			//console.log(floatBottomPos + "/" + footerPos);
 			
 			// 현재 스크롤 위치를 가져온다.
-			var newPosition = curScrollPos + floatPosition - 630 + "px";
+			var newPosition = curScrollPos + floatPosition - 635 + "px";
 			
 			if (curScrollPos > scrollPos) { //Scrolling Down
 	        	//console.log("donw");
