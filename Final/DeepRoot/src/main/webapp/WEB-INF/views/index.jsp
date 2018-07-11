@@ -103,9 +103,6 @@
                                             <div class="social">
                                                 <a class="logo-text" href="#">뿌리깊은마크</a>
                                                 
-                                                <a class="circle github" href="#">
-                                                    <i class="fab fa-github" ></i>
-                                                </a>
                                                 <a id="google_login" class="circle google" href="#">
                                                     <i class="fab fa-google"></i>
                                                 </a>
@@ -125,9 +122,26 @@
                                                 	    });
                                                 	});
                                                 </script>
-                                                <a id="facebook_login" class="circle facebook" href="#">
+                                                
+                                                <a id="facebook_login" class="circle github" href="#">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                                <script type="text/javascript">
+                                                	$('#facebook_login').dblclick(function() {});
+                                                	$('#facebook_login').click(function() {
+                                                		$.alert("준비중입니다!")
+                                                	});
+                                                </script>
+                                                
+                                                <a id="naver_login" class="circle facebook" href="#">
                                                     <span class="naver">N</span>
                                                 </a>
+                                                <script type="text/javascript">
+                                                	$('#naver_login').dblclick(function() {});
+                                                	$('#naver_login').click(function() {
+                                                		$.alert("준비중입니다!")
+                                                	});
+                                                </script>
                                             </div>
                                                 
                                             <div class="division">
