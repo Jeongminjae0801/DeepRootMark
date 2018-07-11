@@ -78,6 +78,7 @@
   #header {
     padding-bottom: 40px;
     padding-top: 10px;
+    top: 0px;
   }
   #header .navbar-inverse .navbar-toggle,
   #header .navbar-inverse .navbar-toggle:focus {
