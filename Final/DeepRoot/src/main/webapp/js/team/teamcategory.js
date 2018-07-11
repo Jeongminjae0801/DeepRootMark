@@ -264,8 +264,9 @@ function addUrlLevel2() {
 	$(".addUrlLevel1").hide();
 }
 
-//url 추가
-function addUrl(){
+//url 추가 
+$('#addurlbtn').on('dblclick', function(){ return });
+$('#addurlbtn').on("click",function(){
 	var url = $('#url_btn').val(); //추가 url 값
 	var title = $('#title_btn').val(); // 추가 url 명값
 	var tree = $("#jstree_container").jstree(true);
@@ -286,9 +287,8 @@ function addUrl(){
 				});
 			}
 		})
-	 }
-	
-}
+	 }	
+})
 
 function customMenu($node){
 	var node_uid = $node.original.uid;
