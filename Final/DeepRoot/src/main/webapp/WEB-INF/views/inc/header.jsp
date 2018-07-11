@@ -93,7 +93,8 @@
 			
 			<div class="collapse navbar-collapse">
 			
-				<se:authorize access="isAuthenticated()">
+				<%-- <se:authorize access="isAuthenticated()"> --%>
+				<c:if test="${sessionScope.info_userid != null}">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a href="<%= request.getContextPath() %>/user/mybookmark.do">MyBookmark</a>
@@ -211,17 +212,27 @@
 					<!-- USER INFO START -->
 					<li>
 						<a class="username" href="#">
-							<img class="dropdown header-ico" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'"> 
-							${sessionScope.info_usernname}
+						<c:choose>
+							<c:when test="${sessionScope.info_oauth != null}">
+								<img class="dropdown header-ico" src="${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'">
+							</c:when>
+							<c:otherwise>
+								<img class="dropdown header-ico" src="<%= request.getContextPath() %>/images/profile/${sessionScope.info_userprofile}" onerror="this.src='<%= request.getContextPath() %>/images/profile.png'">
+							</c:otherwise>
+						</c:choose>
+							&nbsp;${sessionScope.info_usernname}
 						</a>
 						<ul role="menu" class="user sub-menu">
+							<c:if test="${sessionScope.info_oauth == null}">
 							<li><a href="<%= request.getContextPath() %>/myInfo.do">회원정보수정</a></li>
+							</c:if>
 							<li><a href='<%= request.getContextPath() %>/security/logout'>Logout</a></li>
 						</ul>
 					</li>
 					<!-- USER INFO END -->
 				</ul>
-				</se:authorize>
+				</c:if>
+				<%-- </se:authorize> --%>
 				<script type="text/javascript">var userid = '<c:out value="${sessionScope.info_userid}"/>';</script>
 			</div>
 		</div>

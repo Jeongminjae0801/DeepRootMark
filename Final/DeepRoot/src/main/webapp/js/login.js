@@ -471,7 +471,7 @@ $(function() {
     
     
     /* 로그인 Ajax() START */
-    
+    /*
     // 이메일 형식 확인 함수
     $('#uid').keyup(function() {
         var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
@@ -499,7 +499,7 @@ $(function() {
             }
          })
     });
-    
+    */
 	$("#loginAjax").on("dblclick", function(){ });
     $("#loginAjax").on("click", function(){
     	$.ajax({ 

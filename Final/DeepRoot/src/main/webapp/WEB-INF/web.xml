@@ -7,7 +7,7 @@
     	<welcome-file>index.do</welcome-file>
   	</welcome-file-list>
   	
-  	<!-- spring-security filter -->
+  	<!-- Spring Security Filter 적용 -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

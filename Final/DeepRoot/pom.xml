@@ -231,7 +231,7 @@
 		<!-- mybatis -->
 		
 		<!-- 인증과 권한처리(security) -->
-		 <dependency>
+		<dependency>
 	        <groupId>org.springframework.security</groupId>
 	        <artifactId>spring-security-web</artifactId>
 	        <version>4.0.1.RELEASE</version>

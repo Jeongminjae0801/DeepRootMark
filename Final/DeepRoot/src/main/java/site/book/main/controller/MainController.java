@@ -214,7 +214,7 @@ public class MainController {
 	/* 사용자가 인증 처리시 redirect 되는 함수. 따라서, 여기서 가입 처리와 로그인을 담당 */
 	@RequestMapping(value="/joinus/googleSignInCallback", method= { RequestMethod.GET, RequestMethod.POST })
 	public String googleRollin(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-								Model model, @RequestParam String code, UserDTO user) throws ServletException, IOException {
+								Model model, @RequestParam String code) throws ServletException, IOException {
 		
 		//System.out.println(code);
 		
@@ -235,30 +235,23 @@ public class MainController {
 		PlusOperations plusOperations = google.plusOperations();
 		Person profile = plusOperations.getGoogleProfile();
 		
-		System.out.println(profile.getDisplayName() + "/" + profile.getId() + "/");
-		System.out.println(profile.getAccountEmail());
+		//System.out.println(profile.getDisplayName() + "/" + profile.getId() + "/" + profile.getImageUrl());
+		//System.out.println(profile.getAccountEmail() + "/" + profile);
 		
+		//Save into DB
+		UserDTO user = new UserDTO();
 		user.setUid(profile.getAccountEmail());
 		user.setNname(profile.getDisplayName());
+		user.setOauth_code(profile.getId());
 		
-		// UserDTO String OAuth 가 생겨야하구요.
-		// INSERT INTO `USER`(id, name, age) VALUES (1, 'A', 19) ON DUPLICATE KEY UPDATE id = id + 1;
-		/*
-		 	delimiter #
-			create procedure insert_or_update_oauth()
-			begin
-			  IF EXISTS (select * from `user` where username = 'something') THEN
-			    update `user` set nname= {nname} where uid = {uid};
-			  ELSE 
-			    insert into `user` (uid) values ('something');
-			  END IF;
-			end #
-			delimiter ; 
-		 */
-		//request.getRequestDispatcher("security/login").forward(request, response);
+		user_service.rollinUser(user);
 		
+		// set info session userid
 		session.setAttribute("info_userid", profile.getAccountEmail());
-		session.setAttribute("info_nname", profile.getDisplayName());
+		session.setAttribute("info_usernname", profile.getDisplayName());
+		session.setAttribute("info_userprofile", profile.getImageUrl());
+		session.setAttribute("info_oauth", "google");
+		
 		return "redirect:/";
 	}
 	
