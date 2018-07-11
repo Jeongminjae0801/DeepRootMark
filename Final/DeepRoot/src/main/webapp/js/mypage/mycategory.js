@@ -1074,7 +1074,7 @@ function addGroup() {
 	    '<form id="addGroupForm" action="/bit/addGroup.do" class="formName" method="post" onsubmit="return false;">' +
 	    '<div class="form-group">' +
 	    '<label>그룹명</label>' +
-	    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required />' +
+	    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required maxlength="20"/>' +
 	    '</div>' +
 	    '</form>',
 	    closeIcon: true,
