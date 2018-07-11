@@ -162,31 +162,35 @@ public class MainController {
 			HttpSession session, Model model, UserDTO user) {
 		
 		// process message from Handler and JSON data response
-		// 로그인 실패: 아이디 또는 비밀번호 잘못 입력		
-		if(request.getAttribute("msg").equals("fail")) {
-			model.addAttribute("login", "fail");
-		
-		// 중복 로그인 처리
-		}else if(request.getAttribute("msg").equals("duplicate")) {
-			model.addAttribute("login", "duplicate");
+		// 로그인 실패: 아이디 또는 비밀번호 잘못 입력
+		try {
+			if(request.getAttribute("msg").equals("fail")) {
+				model.addAttribute("login", "fail");
 			
-		}else {
-			String userid = (String)request.getAttribute("userid");
-			user.setUid(userid);
-			user = user_service.getMember(user.getUid());
-			model.addAttribute("login", "success");
-			
-			String role = (String)request.getAttribute("ROLE");
-			if(role.equals("ADMIN")) {
-				model.addAttribute("path", "admin/main.do");
+			// 중복 로그인 처리
+			}else if(request.getAttribute("msg").equals("duplicate")) {
+				model.addAttribute("login", "duplicate");
+				
 			}else {
-				model.addAttribute("path", "index.do");
+				String userid = (String)request.getAttribute("userid");
+				user.setUid(userid);
+				user = user_service.getMember(user.getUid());
+				model.addAttribute("login", "success");
+				
+				String role = (String)request.getAttribute("ROLE");
+				if(role.equals("ADMIN")) {
+					model.addAttribute("path", "admin/main.do");
+				}else {
+					model.addAttribute("path", "index.do");
+				}
+				
+				// set info session userid
+				session.setAttribute("info_userid", user.getUid());
+				session.setAttribute("info_usernname", user.getNname());
+				session.setAttribute("info_userprofile", user.getProfile());
 			}
-			
-			// set info session userid
-			session.setAttribute("info_userid", user.getUid());
-			session.setAttribute("info_usernname", user.getNname());
-			session.setAttribute("info_userprofile", user.getProfile());
+		} catch (Exception e) {
+			/*e.printStackTrace();*/
 		}
 		
 		return jsonview;
@@ -463,18 +467,16 @@ public class MainController {
 			
 			List<List<String>> url_percent = new ArrayList<>();
 			
-			try {
-				for(int i = 0; i < 5; i++) {
-					List<String> temp = new ArrayList<>();
-					String sub = subURL.get(i).select("span").text();
-					String rate = percent.get(i+1).select("span").text();
-					temp.add(sub);
-					temp.add(rate);
-					url_percent.add(temp);
-				}
-			}catch (Exception e) {
-				
+			
+			for(int i = 0; i < 5; i++) {
+				List<String> temp = new ArrayList<>();
+				String sub = subURL.get(i).select("span").text();
+				String rate = percent.get(i+1).select("span").text();
+				temp.add(sub);
+				temp.add(rate);
+				url_percent.add(temp);
 			}
+			
 			model.addAttribute("suburl", url_percent);
 			
 			// Daily Visitor & World Rank Top5 START
