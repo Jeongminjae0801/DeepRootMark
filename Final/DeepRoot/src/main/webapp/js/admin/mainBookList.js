@@ -40,7 +40,7 @@ $(function(){
 			var html = '<div class="col-sm-6">';
 				html += '<div id="panel' + data.newCategory.acid + '" class="panel">';
 					html += '<div class="panel-heading">';
-						html += '<span id="categoryName' + data.newCategory.acid + '"> '+ data.newCategory.acname + '</span>';
+						html += '<span id="categoryName' + data.newCategory.acid + '">'+ data.newCategory.acname + '</span>';
 						html += '<button class="colorPickSelector categoryColor'+ data.newCategory.acid + '"></button>';
 						html += '<i class="fas fa-pencil-alt" data-toggle="modal" onclick="openCategoryEditModal('+ data.newCategory.acid + ", '" + data.newCategory.acname + "'" + ');"></i>';
 						html += '<div class="pull-right">';
