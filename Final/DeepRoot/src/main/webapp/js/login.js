@@ -286,8 +286,19 @@ $(function() {
     	$("#rollinAjax").prop("disabled", true);
     	$('#nname_join').removeClass('clear_join');
     });
-    $("#nname_join").keydown(function(){
-    	//  /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/; 
+    $("#nname_join").keydown(function(event){
+    	
+    	// 공백 입력 방지
+		if (event.keyCode == 32) {
+			event.preventDefault();
+			$.alert("공백 입력은 불가능합니다!");
+			
+			var remove_blank = $('#nname_join').val().replace(" ", "");
+			$('#nname_join').val( remove_blank );
+
+			return;
+		}
+		
     	var regex = /[a-zA-Z0-9|가-힣]{2,10}/;
 		if( !(regex.test($('#nname_join').val())) ) {
 			$('.error').addClass('alert alert-danger').html("<small><b>※닉네임은 변경 불가능하니 신중하게 적어주세요!</b></small><br>"+
