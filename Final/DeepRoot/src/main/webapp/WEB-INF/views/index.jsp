@@ -104,7 +104,7 @@
                                     <div class="box">
                                         <div class="content">
                                             <div class="social">
-                                                <a class="logo-text" href="#">뿌리깊은마크</a>
+                                                <a class="logo-text-modal" href="#">뿌리깊은마크</a>
                                                 
                                                 <a id="google_login" class="circle google" href="#">
                                                     <i class="fab fa-google"></i>

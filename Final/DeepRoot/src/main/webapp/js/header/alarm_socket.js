@@ -53,15 +53,16 @@ function alarmConnect(userid) {
 								+ '</span><br style="clear:both">';
         	
         	}else if( ganame == "강퇴" ) {
-        		common_form += '<span>해당 그룹에서 회원님을 강퇴했습니다!</span>'
+        		common_form += '<span class="g_alarm_content">해당 그룹에서 회원님을 강퇴했습니다!</span>'
         						+ '<i class="fas fa-ban g_notice_no" '
         						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
         	
         	}else {
         		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 								+ '<span class="g_alarm_name">'+fromid+'</span>'
+								+ '<i class="fas fa-ban g_notice" ' 
 								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
-							 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';
+							 + '</span><br><span class="g_alarm_content">해당 그룹이 완료되었습니다!</span>';
         	}
         	
         	common_form += '</li>';
@@ -94,7 +95,6 @@ function alarmConnect(userid) {
         		if(element == recv_gid){
         			if( recv_ganame == "완료" ) {
         				
-        				//console.log("완료");
 	        			if($('#alarm_menu_li').children('ul').length == 0) {
 	                		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
 	            		}
@@ -110,8 +110,9 @@ function alarmConnect(userid) {
 	                		
 	                	common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 									+ '<span class="g_alarm_name">'+recv_fromid+'</span>'
+									+ '<span class="g_alarm_date">'+recv_senddate+'</span>'
 									+ '<i class="fas fa-check g_notice_ok" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_gname+'\');"></i>'
-									+ '</span><br><span>해당 그룹이 완료되었습니다!</span>';
+									+ '</span><br><span class="g_alarm_content">해당 그룹이 완료되었습니다!</span>';
 	                	
 	                	common_form += '</li>';
 		                console.log(common_form);

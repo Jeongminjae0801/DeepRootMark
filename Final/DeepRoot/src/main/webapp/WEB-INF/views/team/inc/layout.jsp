@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>뿌리깊은마크</title>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/icon/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/icon/book_favicon.ico">
 	<meta property="og:url" content="">
     <meta property="og:title" content="뿌리깊은마크">
     <!-- <meta property="og:image" content="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png"> -->

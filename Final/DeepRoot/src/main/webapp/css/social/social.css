@@ -50,11 +50,11 @@
 }
 
 .slideimg{
-    background: url(../../images/social/1196.png) 0 85% repeat-x;
+    /* background: url(../../images/social/1196.png) 0 85% repeat-x; */
     height: 85px;
 }
 
-.slideimg::after {
+/* .slideimg::after {
   display: block;
   position: relative;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0, #fff 100%);
@@ -62,7 +62,7 @@
   width: 100%;
   content: '';
 }
-
+ */
 .bg-bottom{
     position: absolute;
     float: left;
@@ -217,7 +217,12 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'Lato','Noto Sans KR', 'Spoqa Han Sans';
     font-weight: 300;
 }
-
+.container .top5-table>tbody>tr>td {
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
 /* 소셜 사이트명 길이 넘어가면 ... 표시 */
 .container .table>tbody>tr>td {
 	white-space: nowrap;
@@ -249,15 +254,15 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .pagination li a:hover {
-    color: #666;
+    color: #fff;
     background: #999;
 }
 
-.pagination li.active a {
-    background: #7bab94;
-}
-
-.pagination li.active a:visited {
+.pagination li.active a,
+.pagination li.active a:active,
+.pagination li.active a:focus,
+.pagination li.active a:visited,
+.pagination li.active a:visited:hover {
     background: #7bab94;
 }
 

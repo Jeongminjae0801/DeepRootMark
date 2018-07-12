@@ -9,7 +9,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>뿌리깊은마크</title>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/icon/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/icon/book_favicon.ico">
 	<meta property="og:url" content="">
     <meta property="og:title" content="뿌리깊은마크">
     <!-- <meta property="og:image" content="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png"> -->
@@ -148,8 +148,6 @@
 								<button type="button" class="btn btn-default btn-sm addUrlLevel2-1" onclick="addUrlNotShare()">추가</button>
 								<button type="button" class="btn btn-default btn-sm addUrlLevel2-2" onclick="openAddUrlLevel3()">다음</button>
 								<button type="button" class="btn btn-default btn-sm addUrlLevel3" onclick="addUrlLevel2_1();">이전</button>
-								<!-- <button type="button" class="btn btn-default btn-sm"
-									data-dismiss="modal">취소</button> -->
 								<button class="btn btn-default btn-sm addUrlLevel3" onclick="addUrlShare()">추가하기</button>
 							</div>
 						</div>
@@ -188,7 +186,6 @@
 							<input type="hidden" id="editurlid" value=''>
 						</form>
 						<div class="modal-footer">
-							<!-- type="submit" value="Submit" -->
 							<button type="button" class="btn btn-default btn-sm"
 								data-dismiss="modal">취소</button>
 							<button class="btn btn-default btn-sm" onclick="editurlsubmit()">수정하기</button>
