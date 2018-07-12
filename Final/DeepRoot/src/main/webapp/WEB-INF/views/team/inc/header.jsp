@@ -85,7 +85,8 @@
 			
 			<div class="collapse navbar-collapse">
 			
-				<se:authorize access="isAuthenticated()">
+				<%-- <se:authorize access="isAuthenticated()"> --%>
+				<c:if test="${sessionScope.info_userid != null}">
 				<ul class="nav navbar-nav navbar-right">
 					<li>
 						<a onclick="disconnectLocation('<%= request.getContextPath() %>/user/mybookmark.do');">MyBookmark</a>
@@ -216,7 +217,8 @@
 					</li>
 					<!-- USER INFO END -->
 				</ul>
-				</se:authorize>
+				</c:if>
+				<%-- </se:authorize> --%>
 				<script type="text/javascript">var userid = '<c:out value="${sessionScope.info_userid}"/>';</script>
 			</div>
 		</div>

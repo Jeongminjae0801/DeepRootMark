@@ -369,8 +369,8 @@
 				<configuration>
 					<url>http://52.78.224.167:8080/manager/text</url>
 					<path>/bit</path>
-					<username>bitcamp104</username>
-					<password>Qnflrlvdmsakzm2</password>
+					<username>bitrootmark</username>
+					<password>markroot3</password>
 				</configuration>
             </plugin>
             <!-- Apache Tomcat War Plugin END -->
