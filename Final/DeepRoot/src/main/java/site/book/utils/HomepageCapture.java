@@ -38,23 +38,18 @@ public class HomepageCapture {
 	@Autowired
 	private A_BookService a_book_service;
 	
+	// 매일 04시에 스케줄러 시작
 	@Scheduled(cron= "0 0 4 * * *" )
 	public void screenshot() {
-		System.out.println("스케줄러 시작");
-		
 		String path = this.getClass().getResource("").getPath();
-		
 		int index = path.indexOf("WEB-INF");
-		//System.out.println(path);
-		
 		String realpath = path.substring(0, index);
-		/*String path = request.getServletContext().getRealPath("/");*/
 		
-		//System.out.println(realpath);
-		
+		// 크롬 드라이버 경로 설정
 		String exePath = realpath + "\\resources\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver", exePath);
 
+		// 크롬 옵션 설정
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless"); // 창 없는 옵션
 		options.addArguments("--hide-scrollbars"); // 스크롤바 없애는 옵션
@@ -79,7 +74,5 @@ public class HomepageCapture {
 			}
 			driver.quit();
 		}
-		
-		System.out.println("스케줄러 끝");
 	}
 }
