@@ -87,12 +87,4 @@
 	 	<property name="redirectUri" value="http://localhost:8090/bit/joinus/googleSignInCallback" />
 	</bean>
 	
-	
-	<websocket:message-broker application-destination-prefix="/">
-		<websocket:stomp-endpoint path="/endpoint">
-			<websocket:sockjs/>
-		</websocket:stomp-endpoint>
-		<websocket:simple-broker prefix="/subscribe"/>
-	</websocket:message-broker>
-	
 </beans>

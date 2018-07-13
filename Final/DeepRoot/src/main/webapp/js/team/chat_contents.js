@@ -282,10 +282,7 @@ function connect() {
     stompClient = Stomp.over(ws);
     stompClient.connect({}, function(frame) {
         // 메세지 구독
-        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 subscribe prefix("/subscribe")를 사용해야 함
         stompClient.subscribe('/subscribe/chat/' + gid, function(message) {
-        	//console.log(message.body);
-        	
         	var new_chat = JSON.parse(message.body);
         	
         	var time =  new_chat.datetime.split("T");
@@ -430,9 +427,7 @@ function sendMessage() {
     str = str.replace(/ /gi, '&nbsp;')
     str = str.replace(/\n|\r/g, '<br>');
     str = str.replace(/"/gi, '&uml;');
-    //console.log(str);
     if(str.length > 0) {
-        // WebSocketMessageBrokerConfigurer의 configureMessageBroker() 메소드에서 설정한 send prefix("/")를 사용해야 함
         stompClient.send("/chat/" + gid, {}, JSON.stringify({
            	content: str,
            	nname: nname,
