@@ -60,7 +60,7 @@ function alarmConnect(userid) {
         	}else {
         		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 								+ '<span class="g_alarm_name">'+fromid+'</span>'
-								+ '<i class="fas fa-ban g_notice" ' 
+								+ '<i class="fas fa-check g_notice" ' 
 								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
 							 + '</span><br><span class="g_alarm_content">해당 그룹이 완료되었습니다!</span>';
         	}
@@ -107,7 +107,7 @@ function alarmConnect(userid) {
 	                	$('#alarm_menu').addClass('animated flash');
 	                	$('#alarm_menu').css('color', '#ff8300');
 	                	$('#alarm_menu').css('font-weight', '900');	
-	                		
+
 	                	common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 									+ '<span class="g_alarm_name">'+recv_fromid+'</span>'
 									+ '<span class="g_alarm_date">'+recv_senddate+'</span>'
