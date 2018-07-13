@@ -70,25 +70,15 @@ public class HomepageCapture {
 			try {
 				driver = new ChromeDriver(options);
 				driver.get(book.getUrl());
-				try {
-					Thread.sleep(5000);
-				} catch (Exception e) {}
+				try { Thread.sleep(5000);} catch (Exception e) {}
+				
 				File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 				FileUtils.copyFile(scrFile, new File(realpath + "\\images\\homepage\\" + book.getAbid() + ".png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}finally {
-				if(driver != null) {
-					try {
-						driver.quit();
-					} catch (Exception e2) {
-						e2.printStackTrace();
-					}
-				}
-				
+				if(driver != null) {try {driver.quit();} catch (Exception e2) {e2.printStackTrace();}}
 			}
-			
 		}
-		//System.out.println("스케줄러 끝");
 	}
 }
