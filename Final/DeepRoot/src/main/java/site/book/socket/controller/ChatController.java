@@ -9,6 +9,7 @@
 package site.book.socket.controller;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -45,16 +46,12 @@ public class ChatController {
     @MessageMapping("/chat/{room}")
     @SendTo("/subscribe/chat/{room}")
     public ChatMessage sendChatMessage(@DestinationVariable("room") String room, ChatMessage message, SimpMessageHeaderAccessor headerAccessor, Principal principal) {
-        //System.out.println("채팅 메세지 들어옴");
-    	
     	message.setDatetime(LocalDateTime.now().toString());
-    	
     	try {
 			fileWrite(room, message);
 		} catch (IOException | InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
-    	
         return message;
     }
     
@@ -65,7 +62,14 @@ public class ChatController {
 		int index = spath.indexOf("WEB-INF");
 		spath = spath.substring(0, index);
 		spath += "team";
+		
+		spath = spath.replace("/", File.separator);
+		
+		System.out.println(spath);
+		
 		Path path = Paths.get(spath);
+		
+		
 		
 		if(!Files.exists(path)) {
 			Files.createDirectories(path);
