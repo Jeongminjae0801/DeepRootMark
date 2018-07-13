@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>뿌리깊은마크</title>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/icon/favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/icon/book_favicon.ico">
 	<meta property="og:url" content="">
     <meta property="og:title" content="뿌리깊은마크">
     <!-- <meta property="og:image" content="https://s.pstatic.net/static/www/mobile/edit/2016/0705/mobile_212852414260.png"> -->
@@ -66,8 +66,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 	<!-- jQuery Ajax Form START -->
 
-	<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" />
-    <script  src="${pageContext.request.contextPath}/js/jstree.min.js"></script> --%>
     <script>
         /*****************  Table Start **********************/
         $(function() {

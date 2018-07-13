@@ -198,7 +198,7 @@
 				<div class="panel-body rank-table">
 					<span class="ranktitle"><img src="<%=request.getContextPath()%>/icon/trophy.png"
 						class="rankimg">개인 Top 5</span>
-					<table>
+					<table class="top5-table">
 						<thead>
 							<tr>
 								<th>Rank</th>
@@ -249,7 +249,7 @@
 				<div class="panel-body rank-table">
 					<span class="ranktitle"><img src="../icon/trophy.png"
 						class="rankimg">그룹 Top 5</span>
-					<table>
+					<table class="top5-table">
 						<thead>
 							<tr>
 								<th>Rank</th>
@@ -300,7 +300,7 @@
 
 <!-- Share Bookmark div START -->
 <section class="bookmark-share-div">
-	<img src="../images/social/books.png" class="bg-bottom">
+	<!-- <img src="../images/social/books.png" class="bg-bottom"> -->
 	<div class="container">
 		<div class="row">
 			<!-- Individual Share Bookmark START -->

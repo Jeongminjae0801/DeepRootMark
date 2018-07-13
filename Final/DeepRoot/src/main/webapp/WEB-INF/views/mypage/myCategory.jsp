@@ -52,6 +52,8 @@ function completedGroup(gid) {
 		    	        			senddate: 'NOW'})
 		    	        		);
 		    	        		
+		    	        		hashtagList2 = [];
+		    	        		
 		    	        		console.log(fromid);
 		                	}
 		                });

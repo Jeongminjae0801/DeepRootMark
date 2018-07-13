@@ -1074,7 +1074,7 @@ function addGroup() {
 	    '<form id="addGroupForm" action="/bit/addGroup.do" class="formName" method="post" onsubmit="return false;">' +
 	    '<div class="form-group">' +
 	    '<label>그룹명</label>' +
-	    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required maxlength="20"/>' +
+	    '<input type="text" name="gname" placeholder="그룹명" class="name form-control" required maxlength="12"/>' +
 	    '</div>' +
 	    '</form>',
 	    closeIcon: true,
@@ -1111,22 +1111,16 @@ function addGroup() {
     		    			
     		    			headerTeamList.push(data.newTeam.gid);
 	                	}
-	                
-	                	
 	                });
-	                
 	                $("#addGroupForm").submit();
-	                
 	            }
 	        },
 	        '취소': {
 	        	btnClass : 'btn-danger',
         		action : function() {
-        		
         		}
 	        },
 	    }
-
 	});
 }
 
@@ -1148,16 +1142,9 @@ function editurlsubmit() {
 			},
 			success: function(data){
 				$('#loading').html("");
-				//$('#editurl').modal("toggle");
 				$('.modal.in').modal('hide');
-				/*
-				$(inst.get_node(obj.reference).a_attr).attr("href", newurl);
-				$.jstree.reference('#jstree_container').set_icon(inst.get_node(obj.reference), "https://www.google.com/s2/favicons?domain="+ newurl);*/
 				$($('#jstree_container_child').jstree(true).get_node(id).a_attr).attr("href",newurl);
-				 /*$('#editurlval').val(newurl);*/
 				$('#jstree_container_child').jstree(true).set_icon($('#jstree_container_child').jstree(true).get_node(id), "https://www.google.com/s2/favicons?domain="+ newurl)
-			/*	$('#jstree_container').jstree().deselect_all(true);											
-				$('#jstree_container').jstree(true).select_node(urlpid);		*/
 			}
 		})
 	}

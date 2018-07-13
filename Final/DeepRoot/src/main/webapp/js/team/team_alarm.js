@@ -30,7 +30,6 @@ function alarmConnect(stompClient, userid) {
     						+ '<br style="clear:both">';
     	
     	if( recv_ganame == "초대" ) {
-    		
     		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 							+ '<span class="g_alarm_name">' +recv_fromid+ '</span>'
 							+ '<span class="g_alarm_date">' +recv_senddate+ '</span>'
@@ -47,14 +46,13 @@ function alarmConnect(stompClient, userid) {
     			return
     			
     		}else {
-    			common_form += '<span>해당 그룹에서 회원님을 강퇴했습니다!</span>'
+    			common_form += '<span class="g_alarm_content">해당 그룹에서 회원님을 강퇴했습니다!</span>'
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
     		}
     	}
     	
     	common_form += '</li>';
-    	//console.log(common_form);
     	$('.g_alarm_ul').prepend(common_form);
     	
     	alarm_count = $('.g_alarm_li').length;
@@ -100,8 +98,9 @@ function alarmConnect(stompClient, userid) {
     		else {
         		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
 								+ '<span class="g_alarm_name">'+recv_fromid+'</span>'
-								+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
-							 + '</span><br><span>해당 그룹이 완료되었습니다!</span>';
+								+ '<span class="g_alarm_date">'+recv_senddate+'</span>'
+								+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
+							 + '</span><br><span class="g_alarm_content">해당 그룹이 완료되었습니다!</span>';
     		}
     	}
     	// 매니저 혹은 그룹원 권한 처리

@@ -445,7 +445,7 @@ public class MainController {
 	@RequestMapping("previewdetail.do")
 	public View WebCrawling2(String abid, Model model) {
 		A_BookDTO book = a_book_service.getBook(Integer.parseInt(abid));
-		String url = book.getUrl();
+		String url = book.getUrl().replace("http://", "").replace("https://", "");
 	
 		try {
 			/* <Woong> Web Crawling - SubURL & Daily Visitor & World Rank */
@@ -460,14 +460,17 @@ public class MainController {
 			
 			List<List<String>> url_percent = new ArrayList<>();
 			
-			
-			for(int i = 0; i < 5; i++) {
-				List<String> temp = new ArrayList<>();
-				String sub = subURL.get(i).select("span").text();
-				String rate = percent.get(i+1).select("span").text();
-				temp.add(sub);
-				temp.add(rate);
-				url_percent.add(temp);
+			try {
+				for(int i = 0; i < 5; i++) {
+					List<String> temp = new ArrayList<>();
+					String sub = subURL.get(i).select("span").text();
+					String rate = percent.get(i+1).select("span").text();
+					temp.add(sub);
+					temp.add(rate);
+					url_percent.add(temp);
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
 			}
 			
 			model.addAttribute("suburl", url_percent);
@@ -485,7 +488,7 @@ public class MainController {
 			model.addAttribute("rank", rank);
 			
 		} catch (Exception e) {
-			/*e.printStackTrace();*/
+			e.printStackTrace();
 		}
 		return jsonview;
 	}

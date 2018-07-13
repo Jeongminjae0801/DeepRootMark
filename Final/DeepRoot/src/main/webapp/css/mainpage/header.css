@@ -21,7 +21,6 @@ html { overflow-y:scroll; }
 .logo-text:focus,
 .logo-text:active {
     font-family: 'Gugi';
-    font-size: 45px;
     color:#9d9d9d;
     text-decoration:none;
 }
