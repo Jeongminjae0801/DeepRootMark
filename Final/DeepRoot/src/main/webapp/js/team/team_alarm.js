@@ -125,7 +125,7 @@ function alarmConnect(stompClient, userid) {
     			if(recv_ganame == "manager") {
     				$("#" + recv_toid).append(' <i class="fas fa-chess-knight group-manager"></i>');
     			}else {
-    				$("#" + recv_toid).chlidren().last().remove();
+    				$("#" + recv_toid).children().last().remove();
     			}
     		}
     	}

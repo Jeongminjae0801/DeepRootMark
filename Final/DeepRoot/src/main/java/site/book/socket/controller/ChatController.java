@@ -11,9 +11,6 @@ package site.book.socket.controller;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -21,13 +18,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
@@ -38,7 +29,6 @@ import org.springframework.stereotype.Controller;
 
 import site.book.socket.ChatMessage;
 import site.book.socket.JstreeAlarm;
-import site.book.user.dto.UserDTO;
 import site.book.user.service.UserService;
 
 /**
