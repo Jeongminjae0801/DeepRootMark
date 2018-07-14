@@ -42,7 +42,7 @@ function alarmConnect(stompClient, userid) {
     		
     		if( gid == recv_gid ) {
     			$.alert("현재 그룹에서 강퇴당하셨습니다!");
-    			setTimeout(function(){ location.href="/bit/user/mybookmark.do"; }, 3000);
+    			setTimeout(function(){ location.href="/user/mybookmark.do"; }, 3000);
     			return
     			
     		}else {
@@ -50,7 +50,18 @@ function alarmConnect(stompClient, userid) {
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
     		}
-    	}else { return }
+    		
+    	}else if(recv_ganame == "manager") {
+    		common_form += '<span class="g_alarm_content">해당 그룹에서 매니저로 임명되었습니다!</span>'
+						+ '<i class="fas fa-ban g_notice_no" '
+						+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+		
+		}else if(recv_ganame == "member") {
+			common_form += '<span class="g_alarm_content">해당 그룹에서 일반 그룹원이 되었습니다!</span>'
+						+ '<i class="fas fa-ban g_notice_no" '
+						+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+			
+		}else { return; }
     	
     	common_form += '</li>';
     	$('.g_alarm_ul').prepend(common_form);
@@ -94,7 +105,7 @@ function alarmConnect(stompClient, userid) {
     		if( gid == recv_gid ) {
     			
     			$.alert("그룹장(" +recv_fromid+ ")에 의해 완료되었습니다!");
-    			setTimeout(function(){ location.href="/bit/user/mybookmark.do"; }, 3000);
+    			setTimeout(function(){ location.href="/user/mybookmark.do"; }, 3000);
     			return
     		}
     		else {

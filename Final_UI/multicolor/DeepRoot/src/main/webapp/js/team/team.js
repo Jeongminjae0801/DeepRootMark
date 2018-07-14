@@ -270,7 +270,7 @@ function member_auth(key, targetNname, hisGrid){
     				$("#" + targetNname).children().last().remove();
     			}
 				
-				stompClient.send('/alarm', {}, 
+				stompClient.send('/alarm/' + targetNname, {}, 
 					 	JSON.stringify({
 					 		gid: gid,
 					 		toid: targetNname,

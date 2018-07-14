@@ -54,6 +54,23 @@ function deleteMemo(gid, fromid, alarm_kind){
 	});
 	return
 }
+function deleteMemo(gid){
+	var alarm_item = $("#alarmlist" + gid);
+	
+	alarm_item.remove();
+	
+	if($('.g_alarm_ul').children().length == 0) {
+		$('.g_alarm_ul').remove();
+	}
+	
+	alarm_count = $('.g_alarm_li').length;
+	if(alarm_count != 0) {
+		$('#alarm-count-text').html("&nbsp;" + alarm_count + "&nbsp;");
+	}else {
+		$('#alarm-count-text').html("");
+	}
+	return;
+}
 
 /*Alarm icon script START*/
 

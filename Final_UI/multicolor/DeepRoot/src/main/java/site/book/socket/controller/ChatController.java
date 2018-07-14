@@ -82,7 +82,7 @@ public class ChatController {
 		
     	String fileName = spath;
         path = Paths.get(fileName);
-        //System.out.println("path : " + path);
+        System.out.println("path : " + path);
         
         BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         String str = message.getProfile() + "▣" + message.getNname() + "▣" + message.getDatetime() + "▣" + message.getContent() + "⊙";

@@ -12,7 +12,7 @@ $(function() {
 //Header Alarm socket connect
 function alarmConnect(userid) {
     // WebSocketMessageBrokerConfigurer의 registerStompEndpoints() 메소드에서 설정한 endpoint("/endpoint")를 파라미터로 전달
-    var ws = new SockJS("/bit/endpoint");
+    var ws = new SockJS("/endpoint");
     stompClient = Stomp.over(ws);
     stompClient.connect({}, function(frame) {
         // 메세지 구독
@@ -57,6 +57,16 @@ function alarmConnect(userid) {
         						+ '<i class="fas fa-ban g_notice_no" '
         						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
         	
+        	}else if(ganame == "manager") {
+        		common_form += '<span class="g_alarm_content">해당 그룹에서 매니저로 임명되었습니다!</span>'
+								+ '<i class="fas fa-ban g_notice_no" '
+								+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+        		
+        	}else if(ganame == "member") {
+        		common_form += '<span class="g_alarm_content">해당 그룹에서 일반 그룹원이 되었습니다!</span>'
+					+ '<i class="fas fa-ban g_notice_no" '
+					+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+        		
         	}else { return; }
         	
         	common_form += '</li>';
@@ -159,7 +169,7 @@ function alarmConnect(userid) {
     });
     ws.onclose = function() {
     	alarmDisconnect();
-        location.href = "/bit/index.do";
+        location.href = "/";
     };
 }
 
