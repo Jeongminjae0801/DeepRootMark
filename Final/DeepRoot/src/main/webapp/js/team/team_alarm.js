@@ -50,7 +50,18 @@ function alarmConnect(stompClient, userid) {
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
     		}
-    	}else { return; }
+    		
+    	}else if(recv_ganame == "manager") {
+    		common_form += '<span class="g_alarm_content">해당 그룹에서 매니저로 임명되었습니다!</span>'
+						+ '<i class="fas fa-ban g_notice_no" '
+						+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+		
+		}else if(recv_ganame == "member") {
+			common_form += '<span class="g_alarm_content">해당 그룹에서 일반 그룹원이 되었습니다!</span>'
+						+ '<i class="fas fa-ban g_notice_no" '
+						+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+			
+		}else { return; }
     	
     	common_form += '</li>';
     	$('.g_alarm_ul').prepend(common_form);
@@ -74,6 +85,8 @@ function alarmConnect(stompClient, userid) {
     	var recv_gname = recv_alarm.gname;
     	var recv_ganame = recv_alarm.gmemo
     	var recv_senddate = recv_alarm.senddate;
+    	
+    	if( !headerTeamList.includes(recv_gid) ){ return }
     	
     	if($('#alarm_menu_li').children('ul').length == 0) {
     		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
@@ -128,6 +141,7 @@ function alarmConnect(stompClient, userid) {
     				$("#" + recv_toid).children().last().remove();
     			}
     		}
+    		return;
     	}
     	
     	common_form += '</li>';
