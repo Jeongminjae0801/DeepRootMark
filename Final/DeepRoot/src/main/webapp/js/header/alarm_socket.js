@@ -57,7 +57,17 @@ function alarmConnect(userid) {
         						+ '<i class="fas fa-ban g_notice_no" '
         						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
         	
-        	}else { return; }
+        	}else if(recv_ganame == "manager") {
+        		common_form += '<span class="g_alarm_content">해당 그룹에서 매니저로 임명되었습니다!</span>'
+							+ '<i class="fas fa-ban g_notice_no" '
+							+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+			
+			}else if(recv_ganame == "member") {
+				common_form += '<span class="g_alarm_content">해당 그룹에서 일반 그룹원이 되었습니다!</span>'
+							+ '<i class="fas fa-ban g_notice_no" '
+							+ 'onclick="deleteMemo(\''+gid+'\');"></i>';
+				
+			}else { return; }
         	
         	common_form += '</li>';
         	//console.log(common_form);
