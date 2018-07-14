@@ -12,7 +12,7 @@ $(function() {
 //Header Alarm socket connect
 function alarmConnect(userid) {
     // WebSocketMessageBrokerConfigurer의 registerStompEndpoints() 메소드에서 설정한 endpoint("/endpoint")를 파라미터로 전달
-    var ws = new SockJS("/endpoint");
+    var ws = new SockJS("/bit/endpoint");
     stompClient = Stomp.over(ws);
     stompClient.connect({}, function(frame) {
         // 메세지 구독
@@ -57,35 +57,7 @@ function alarmConnect(userid) {
         						+ '<i class="fas fa-ban g_notice_no" '
         						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
         	
-        	}else {
-        		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
-								+ '<span class="g_alarm_name">'+fromid+'</span>'
-								+ '<i class="fas fa-check g_notice" ' 
-								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
-							 + '</span><br><span class="g_alarm_content">해당 그룹이 완료되었습니다!</span>';
-        		
-        		// 마이페이지일 때 그룹 완료로 이동시키기
-                if($('#participatingGroupList').length > 0) {
-                	$("#"+ recv_gid).remove();
-            		
-            		var addCompletedGroup = "";
-            		addCompletedGroup += '<li id="' + recv_gid + '" class="list-group-item">';
-            		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal(\''+ recv_gname + "', " + recv_gid + ')">' + recv_gname + '</label>';
-            		addCompletedGroup += '<div class="pull-right action-buttons">';
-            		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + recv_gid+ ')"></span></a>';
-            		addCompletedGroup += '</div>';
-            		addCompletedGroup += '</li>';
-            		
-            		$("#completedGroupList").append(addCompletedGroup);
-            		
-            		$("#headerGroup" + recv_gid).remove();
-	        		
-	        		if($(".groupMenu").length < 10 && $("#headerGroupAdd").length == 0){
-	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
-	        			$("#groupDropdownMenu").append(groupAddHTML);
-	    			}
-                }
-        	}
+        	}else { return; }
         	
         	common_form += '</li>';
         	//console.log(common_form);
@@ -102,7 +74,7 @@ function alarmConnect(userid) {
         });
         
         stompClient.subscribe('/subscribe/alarm', function(message) {
-        	
+
         	//console.log("알람 들어옴");
         	var recv_complete_alarm = JSON.parse(message.body);
         	var recv_gid = recv_complete_alarm.gid;
@@ -111,6 +83,10 @@ function alarmConnect(userid) {
         	var recv_gname = recv_complete_alarm.gname;
         	var recv_ganame = recv_complete_alarm.gmemo
         	var recv_senddate = recv_complete_alarm.senddate;
+        	
+        	//console.log(headerTeamList);
+        	//console.log(recv_gid);
+        	if( !headerTeamList.includes(recv_gid) ){ return }
         	
         	//console.log(headerTeamList);
         	$.each(headerTeamList, function(index, element){
@@ -123,7 +99,7 @@ function alarmConnect(userid) {
 	                	
 	                	var common_form = '<li id="alarmlist' +recv_gid+ '" class="g_alarm_li">'
 	                						+ '<span class="g_alarm_head">Group&nbsp;: <span class="g_alarm_name">' +recv_gname+ '</span></span>'
-	                						+ '<i class="fas fa-ban g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
+	                						+ '<i class="fas fa-times g_notice" onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>'
 	                						+ '<br style="clear:both">';
 	                	
 	                	$('#alarm_menu').addClass('animated flash');
@@ -140,7 +116,27 @@ function alarmConnect(userid) {
 		                console.log(common_form);
 		                $('.g_alarm_ul').prepend(common_form);
 		                
-		                
+		                // 마이페이지일 때 그룹 완료로 이동시키기
+		                if($('#participatingGroupList').length > 0) {
+		                	$("#"+ recv_gid).remove();
+	                		
+	                		var addCompletedGroup = "";
+	                		addCompletedGroup += '<li id="' + recv_gid + '" class="list-group-item">';
+	                		addCompletedGroup += '<label class="my-group-list" onclick="open_completed_group_modal(\''+ recv_gname + "', " + recv_gid + ')">' + recv_gname + '</label>';
+	                		addCompletedGroup += '<div class="pull-right action-buttons">';
+	                		addCompletedGroup += '<a class="trash"><span class="glyphicon glyphicon-trash" onclick="deleteCompletedGroup(' + recv_gid+ ')"></span></a>';
+	                		addCompletedGroup += '</div>';
+	                		addCompletedGroup += '</li>';
+	                		
+	                		$("#completedGroupList").append(addCompletedGroup);
+	                		
+	                		$("#headerGroup" + recv_gid).remove();
+	    	        		
+	    	        		if($(".groupMenu").length < 10 && $("#headerGroupAdd").length == 0){
+	    	        			var groupAddHTML = '<li id="headerGroupAdd" class="groupMenu" onclick="headerAddGroup()"><a href="#"><i class="fa fa-plus-circle" style="color: red;"></i>&nbsp;&nbsp;그룹 추가</a></li>';
+	    	        			$("#groupDropdownMenu").append(groupAddHTML);
+	    	    			}
+		                }
 		                
 	                }
         			return false;
@@ -163,7 +159,7 @@ function alarmConnect(userid) {
     });
     ws.onclose = function() {
     	alarmDisconnect();
-        location.href = "/";
+        location.href = "/bit/index.do";
     };
 }
 

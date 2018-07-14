@@ -50,7 +50,7 @@ function alarmConnect(stompClient, userid) {
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
     		}
-    	}
+    	}else { return }
     	
     	common_form += '</li>';
     	$('.g_alarm_ul').prepend(common_form);
@@ -74,6 +74,8 @@ function alarmConnect(stompClient, userid) {
     	var recv_gname = recv_alarm.gname;
     	var recv_ganame = recv_alarm.gmemo
     	var recv_senddate = recv_alarm.senddate;
+    	
+    	if( !headerTeamList.includes(recv_gid) ){ return }
     	
     	if($('#alarm_menu_li').children('ul').length == 0) {
     		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
@@ -128,6 +130,7 @@ function alarmConnect(stompClient, userid) {
     				$("#" + recv_toid).chlidren().last().remove();
     			}
     		}
+    		return;
     	}
     	
     	common_form += '</li>';

@@ -57,13 +57,7 @@ function alarmConnect(userid) {
         						+ '<i class="fas fa-ban g_notice_no" '
         						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
         	
-        	}else {
-        		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
-								+ '<span class="g_alarm_name">'+fromid+'</span>'
-								+ '<i class="fas fa-ban g_notice" ' 
-								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
-							 + '</span><br><span class="g_alarm_content">해당 그룹이 완료되었습니다!</span>';
-        	}
+        	}else { return; }
         	
         	common_form += '</li>';
         	//console.log(common_form);
@@ -80,7 +74,7 @@ function alarmConnect(userid) {
         });
         
         stompClient.subscribe('/subscribe/alarm', function(message) {
-        	
+
         	//console.log("알람 들어옴");
         	var recv_complete_alarm = JSON.parse(message.body);
         	var recv_gid = recv_complete_alarm.gid;
@@ -89,6 +83,10 @@ function alarmConnect(userid) {
         	var recv_gname = recv_complete_alarm.gname;
         	var recv_ganame = recv_complete_alarm.gmemo
         	var recv_senddate = recv_complete_alarm.senddate;
+        	
+        	//console.log(headerTeamList);
+        	//console.log(recv_gid);
+        	if( !headerTeamList.includes(recv_gid) ){ return }
         	
         	//console.log(headerTeamList);
         	$.each(headerTeamList, function(index, element){

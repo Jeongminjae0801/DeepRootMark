@@ -42,7 +42,7 @@ function alarmConnect(stompClient, userid) {
     		
     		if( gid == recv_gid ) {
     			$.alert("현재 그룹에서 강퇴당하셨습니다!");
-    			setTimeout(function(){ location.href="/user/mybookmark.do"; }, 3000);
+    			setTimeout(function(){ location.href="/bit/user/mybookmark.do"; }, 3000);
     			return
     			
     		}else {
@@ -50,7 +50,7 @@ function alarmConnect(stompClient, userid) {
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
     		}
-    	}
+    	}else { return }
     	
     	common_form += '</li>';
     	$('.g_alarm_ul').prepend(common_form);
@@ -75,6 +75,8 @@ function alarmConnect(stompClient, userid) {
     	var recv_ganame = recv_alarm.gmemo
     	var recv_senddate = recv_alarm.senddate;
     	
+    	if( !headerTeamList.includes(recv_gid) ){ return }
+    	
     	if($('#alarm_menu_li').children('ul').length == 0) {
     		$('#alarm_menu_li').append('<ul role="menu" class="g_alarm_ul dropdown-menu"></ul>');
 		}
@@ -92,7 +94,7 @@ function alarmConnect(stompClient, userid) {
     		if( gid == recv_gid ) {
     			
     			$.alert("그룹장(" +recv_fromid+ ")에 의해 완료되었습니다!");
-    			setTimeout(function(){ location.href="/user/mybookmark.do"; }, 3000);
+    			setTimeout(function(){ location.href="/bit/user/mybookmark.do"; }, 3000);
     			return
     		}
     		else {
@@ -125,9 +127,10 @@ function alarmConnect(stompClient, userid) {
     			if(recv_ganame == "manager") {
     				$("#" + recv_toid).append(' <i class="fas fa-chess-knight group-manager"></i>');
     			}else {
-    				$("#" + recv_toid).children().last().remove();
+    				$("#" + recv_toid).chlidren().last().remove();
     			}
     		}
+    		return;
     	}
     	
     	common_form += '</li>';
