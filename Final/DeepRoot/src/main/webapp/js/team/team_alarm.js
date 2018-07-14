@@ -50,7 +50,7 @@ function alarmConnect(stompClient, userid) {
 							+ '<i class="fas fa-ban g_notice_no" '
 							+ 'onclick="deleteMemo(\''+recv_gid+'\',\''+recv_fromid+'\',\''+recv_ganame+'\');"></i>';
     		}
-    	}
+    	}else { return; }
     	
     	common_form += '</li>';
     	$('.g_alarm_ul').prepend(common_form);

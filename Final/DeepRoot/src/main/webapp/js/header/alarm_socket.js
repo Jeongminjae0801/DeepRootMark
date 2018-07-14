@@ -57,13 +57,7 @@ function alarmConnect(userid) {
         						+ '<i class="fas fa-ban g_notice_no" '
         						+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>';
         	
-        	}else {
-        		common_form += '<span class="g_alarm_head">From&nbsp;&nbsp;&nbsp;: '
-								+ '<span class="g_alarm_name">'+fromid+'</span>'
-								+ '<i class="fas fa-check g_notice" ' 
-								+ 'onclick="deleteMemo(\''+gid+'\',\''+fromid+'\',\''+ganame+'\');"></i>'
-							 + '</span><br><span class="g_alarm_content">해당 그룹이 완료되었습니다!</span>';
-        	}
+        	}else { return; }
         	
         	common_form += '</li>';
         	//console.log(common_form);
