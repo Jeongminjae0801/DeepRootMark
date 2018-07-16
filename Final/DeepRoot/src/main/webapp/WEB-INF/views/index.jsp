@@ -341,11 +341,16 @@
                             </h2>
                         </div>
                         <div id="preview_content" >
-                            <div id="layout">미리보기: Page Image</div>
+                            <div id="layout">
+								
+							</div>
                             <div id="comment" >
                             	<div id="comment-detail" >
-                            		설명 Detail
-                            	</div>
+									<div class="video-container">
+										<iframe class="preview_video" 
+										src="https://www.youtube.com/embed/SGJtZVfHGj4?rel=0&amp;autoplay=1" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
+									</div>
+							</div>
                             	<div id="ajax-loading-div">
                             	</div>
                             	<div id="world-ranking-visitor">

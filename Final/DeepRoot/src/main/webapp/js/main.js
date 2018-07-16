@@ -257,6 +257,7 @@ function preview(abid){
 					comment += "<br> <p>&nbsp;&nbsp;" + data.description + "</p>";
 				}
 				$("#comment-detail").html(comment);
+				$("#comment").css("overflow-y","auto");
 				$('#comment').fadeIn(1000);
 				
 				previewDetail(abid);

@@ -348,7 +348,7 @@ span.title {font-family: 'Jua';}
   border : 2px solid #575b5f;
   border-top:none;
   box-shadow: 7px 4px 10px 5px #bbb;
-  overflow-y: auto; 
+  /* overflow-y: auto; */ 
 }
 
 #comment > img {
@@ -436,4 +436,28 @@ span.title {font-family: 'Jua';}
     box-shadow : 0px 0px 20px 5px #E0E3DA;
     border-radius: 5px;
 }
+.preview_video{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	top: -20px;
+}
+.video-container {
+	margin: 0;
+	padding-bottom: 75%;
+	max-width: 100%;
+	height: 0;
+	position: relative;
+	overflow: hidden;
+}
 
+.video-container iframe, .video-container object, .video-container embed
+	{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 70%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
